@@ -45,3 +45,8 @@ WireGuard/WireGuard/Config/Developer.xcconfig
 
 # Vim
 .*.sw*
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+Carthage/

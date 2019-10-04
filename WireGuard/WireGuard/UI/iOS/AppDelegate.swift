@@ -25,10 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
 
         let mainVC = MainViewController()
-        window.rootViewController = mainVC
+        window.rootViewController = NavigationCoordinator.sharedCoordinator.rootViewController()
         window.makeKeyAndVisible()
 
         self.mainVC = mainVC
+
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
 
         return true
     }
