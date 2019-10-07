@@ -4,9 +4,9 @@
 import Foundation
 import UIKit
 
-class NavigationCoordinator: NavigationProtocol {
-    let dependencyProvider: DependencyProviding
+class NavigationCoordinator: Navigating {
 
+    let dependencyProvider: DependencyProviding
     let userManager = UserManager.sharedManager
     var currentViewController: UIViewController?
 
@@ -15,10 +15,10 @@ class NavigationCoordinator: NavigationProtocol {
     }
 
     func rootViewController() -> UIViewController {
-        if userManager.fetchSavedUserAndToken() {
-            let tabBarController = GuardianTabBarController(viewControllers: loggedInViewControllers)
-            currentViewController = tabBarController
-            return tabBarController
+        if userManager.fetchSavedToken() {
+            let loadingViewController = LoadingViewController(userManager: dependencyProvider.userManager, coordinatorDelegate: self)
+            currentViewController = loadingViewController
+            return loadingViewController
         } else {
             let loginViewController = LoginViewController(userManager: dependencyProvider.userManager, coordinatorDelegate: self)
             currentViewController = loginViewController
@@ -29,21 +29,23 @@ class NavigationCoordinator: NavigationProtocol {
     // MARK: <NavigationProtocol>
     func navigate(after action: NavigationAction) {
         switch action {
-        case .manualLoginSucceeded:
+        case .loginSucceeded:
             navigateToHomeVPN()
+        case .loginFailed:
+            navigateToLogin()
         case .vpnNewSelection:
             presentVPNLocationSelection()
         }
     }
 
     private func navigateToHomeVPN() {
-        let tabBarController = GuardianTabBarController(viewControllers: loggedInViewControllers)
-        currentViewController = tabBarController
+        currentViewController = GuardianTabBarController(viewControllers: tabBarViewControllers)
+        setKeyWindow(with: currentViewController!)
+    }
 
-        if let window = UIApplication.shared.keyWindow {
-            window.rootViewController = tabBarController
-            window.makeKeyAndVisible()
-        }
+    private func navigateToLogin() {
+        currentViewController = LoginViewController(userManager: dependencyProvider.userManager, coordinatorDelegate: self)
+        setKeyWindow(with: currentViewController!)
     }
 
     private func presentVPNLocationSelection() {
@@ -54,8 +56,15 @@ class NavigationCoordinator: NavigationProtocol {
         currentViewController?.present(navController, animated: true, completion: nil)
     }
 
-    private var loggedInViewControllers: [UIViewController] {
+    private var tabBarViewControllers: [UIViewController] {
         let homeViewController = HomeVPNViewController(userManager: dependencyProvider.userManager, coordinatorDelegate: self)
         return [homeViewController]
+    }
+
+    private func setKeyWindow(with viewController: UIViewController) {
+        if let window = UIApplication.shared.keyWindow {
+            window.rootViewController = viewController
+            window.makeKeyAndVisible()
+        }
     }
 }

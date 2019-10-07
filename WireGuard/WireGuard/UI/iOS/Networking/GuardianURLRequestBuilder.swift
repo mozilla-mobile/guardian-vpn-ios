@@ -4,14 +4,14 @@
 import Foundation
 
 struct GuardianURLRequestBuilder {
-    private static let baseURL = "https://guardian-dev.herokuapp.com" // will have to change in future
+    private static let baseURL = "https://stage.guardian.nonprod.cloudops.mozgcp.net" // will have to change in future
 
     static func urlRequest(request: GuardianRelativeRequest,
                            type: HTTPMethod,
                            queryParameters: [String: String]? = nil,
                            httpHeaderParams: [String: String]? = nil,
                            body: Data? = nil) -> URLRequest {
-        var urlString = "\(GuardianURLRequestBuilder.baseURL)\(request.endpoint)"
+        let urlString = "\(GuardianURLRequestBuilder.baseURL)\(request.endpoint)"
 
         return buildURLRequest(with: urlString, type: type, queryParameters: queryParameters, httpHeaderParams: httpHeaderParams, body: body)
     }

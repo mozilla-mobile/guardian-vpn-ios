@@ -9,10 +9,10 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     let successfulLoginString = "/vpn/client/login/success"
 
     @IBOutlet var webView: WKWebView!
-    private weak var coordinatorDelegate: NavigationProtocol?
-    private let userManager: UserManagerProtocol
+    private weak var coordinatorDelegate: Navigating?
+    private let userManager: UserManaging
 
-    init(userManager: UserManagerProtocol, coordinatorDelegate: NavigationProtocol) {
+    init(userManager: UserManaging, coordinatorDelegate: Navigating) {
         self.userManager = userManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: LoginViewController.self), bundle: Bundle.main)
@@ -46,7 +46,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
                 switch result {
                 case .success:
                     DispatchQueue.main.async {
-                        self?.coordinatorDelegate?.navigate(after: .manualLoginSucceeded)
+                        self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
                     }
                 case .failure(let error):
                     print(error) // handle this!

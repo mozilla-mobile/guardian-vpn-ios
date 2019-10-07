@@ -6,7 +6,8 @@ import Foundation
 public enum GuardianFailReason: String, Error {
     case no200 = "Response status code not 200"
     case couldNotDecodeFromJson = "Could not decode from JSON"
-    case loginError = "Error with login"
+    case loginError = "Login error"
+    case emptyToken = "User could not be verified"
 }
 
 enum HTTPMethod: String {
@@ -18,6 +19,7 @@ enum GuardianRelativeRequest {
     case login
     case verify(String)
     case retrieveServers
+    case account
 
     var endpoint: String {
         switch self {
@@ -27,6 +29,8 @@ enum GuardianRelativeRequest {
             return "/api/v1/vpn/login/verify/" + token
         case .retrieveServers:
             return "/api/v1/vpn/servers/"
+        case .account:
+            return "/api/v1/vpn/account"
 
         }
     }

@@ -4,10 +4,11 @@
 import Foundation
 
 enum NavigationAction {
-    case manualLoginSucceeded
+    case loginSucceeded
+    case loginFailed
     case vpnNewSelection
 }
 
-protocol NavigationProtocol: class {
+protocol Navigating: class {
     func navigate(after action: NavigationAction)
 }

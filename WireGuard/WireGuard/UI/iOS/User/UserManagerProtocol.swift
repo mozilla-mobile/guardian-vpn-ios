@@ -3,11 +3,11 @@
 
 import Foundation
 
-protocol UserManagerProtocol {
+protocol UserManaging {
     var loginCheckPointModel: LoginCheckpointModel? { get }
 
     func retrieveUserLoginInformation(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
     func verifyAfterLogin(completion: @escaping (Result<User, Error>) -> Void)
-    func verify(with token: String, completion: @escaping (Result<User, Error>) -> Void)
+    func accountInfo(completion: @escaping (Result<User, Error>) -> Void)
     func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void)
 }

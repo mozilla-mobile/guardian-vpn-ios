@@ -9,10 +9,10 @@ class HomeVPNViewController: UIViewController {
     @IBOutlet var selectConnectionLabel: UILabel!
     @IBOutlet var vpnSelectionView: CurrentVPNSelectorView!
 
-    private let userManager: UserManagerProtocol
-    private weak var coordinatorDelegate: NavigationProtocol?
+    private let userManager: UserManaging
+    private weak var coordinatorDelegate: Navigating?
 
-    init(userManager: UserManagerProtocol, coordinatorDelegate: NavigationProtocol) {
+    init(userManager: UserManaging, coordinatorDelegate: Navigating) {
         self.userManager = userManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: HomeVPNViewController.self), bundle: Bundle.main)

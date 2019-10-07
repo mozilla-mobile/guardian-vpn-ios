@@ -6,11 +6,11 @@ import Foundation
 class DependencyFactory: DependencyProviding {
     static let sharedFactory = DependencyFactory()
 
-    var userManager: UserManagerProtocol {
+    var userManager: UserManaging {
         return user
     }
 
-    private let user: UserManagerProtocol
+    private let user: UserManaging
 
     init() {
         self.user = UserManager.sharedManager

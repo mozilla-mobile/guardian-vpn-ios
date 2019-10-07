@@ -204,9 +204,11 @@
 		F42A23032347D20800763B0D /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23022347D20800763B0D /* DependencyFactory.swift */; };
 		F42A23052347D22100763B0D /* DependencyProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23042347D22100763B0D /* DependencyProviding.swift */; };
 		F42A23072347D37F00763B0D /* UserManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23062347D37F00763B0D /* UserManagerProtocol.swift */; };
+		F43DFC07234BB32C003EA64A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC05234BB32C003EA64A /* LoadingViewController.swift */; };
+		F43DFC08234BB32C003EA64A /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F43DFC06234BB32C003EA64A /* LoadingViewController.xib */; };
 		F45D7098233D34B100871447 /* VerifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D7097233D34B100871447 /* VerifyResponse.swift */; };
 		F45D709B233D384E00871447 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D709A233D384E00871447 /* NavigationCoordinator.swift */; };
-		F45D70A1233D3BC000871447 /* NavigationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A0233D3BC000871447 /* NavigationProtocol.swift */; };
+		F45D70A1233D3BC000871447 /* Navigating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A0233D3BC000871447 /* Navigating.swift */; };
 		F45D70A4233D3D6C00871447 /* HomeVPNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A2233D3D6C00871447 /* HomeVPNViewController.swift */; };
 		F45D70A5233D3D6C00871447 /* HomeVPNViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70A3233D3D6C00871447 /* HomeVPNViewController.xib */; };
 		F45D70A7233E87E700871447 /* UIColor+GuardianBranding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A6233E87E700871447 /* UIColor+GuardianBranding.swift */; };
@@ -519,9 +521,11 @@
 		F42A23022347D20800763B0D /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
 		F42A23062347D37F00763B0D /* UserManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerProtocol.swift; sourceTree = "<group>"; };
+		F43DFC05234BB32C003EA64A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		F43DFC06234BB32C003EA64A /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		F45D7097233D34B100871447 /* VerifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyResponse.swift; sourceTree = "<group>"; };
 		F45D709A233D384E00871447 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
-		F45D70A0233D3BC000871447 /* NavigationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationProtocol.swift; sourceTree = "<group>"; };
+		F45D70A0233D3BC000871447 /* Navigating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigating.swift; sourceTree = "<group>"; };
 		F45D70A2233D3D6C00871447 /* HomeVPNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVPNViewController.swift; sourceTree = "<group>"; };
 		F45D70A3233D3D6C00871447 /* HomeVPNViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVPNViewController.xib; sourceTree = "<group>"; };
 		F45D70A6233E87E700871447 /* UIColor+GuardianBranding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+GuardianBranding.swift"; sourceTree = "<group>"; };
@@ -991,7 +995,7 @@
 		F45D709F233D3BB000871447 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				F45D70A0233D3BC000871447 /* NavigationProtocol.swift */,
+				F45D70A0233D3BC000871447 /* Navigating.swift */,
 				F45D70AA233E921900871447 /* GuardianTabBarController.swift */,
 			);
 			path = Navigation;
@@ -1062,6 +1066,8 @@
 			children = (
 				F465853B233BB2CB0081D7D7 /* LoginViewController.swift */,
 				F465853C233BB2CB0081D7D7 /* LoginViewController.xib */,
+				F43DFC05234BB32C003EA64A /* LoadingViewController.swift */,
+				F43DFC06234BB32C003EA64A /* LoadingViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1458,6 +1464,7 @@
 				F465853E233BB2CB0081D7D7 /* LoginViewController.xib in Resources */,
 				F45D70F823427D2F00871447 /* CurrentVPNSelectorView.xib in Resources */,
 				F45D70FE23428DCE00871447 /* LocationVPNViewController.xib in Resources */,
+				F43DFC08234BB32C003EA64A /* LoadingViewController.xib in Resources */,
 				F45D70DC2342431F00871447 /* Metropolis-ExtraBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1829,7 +1836,7 @@
 				5F4541A921C451D100994C13 /* TunnelStatus.swift in Sources */,
 				6F8F0D7422267AD2000E8335 /* ChevronCell.swift in Sources */,
 				F40831D1233CFD5600A60FCA /* User.swift in Sources */,
-				F45D70A1233D3BC000871447 /* NavigationProtocol.swift in Sources */,
+				F45D70A1233D3BC000871447 /* Navigating.swift in Sources */,
 				6F61F1E921B932F700483816 /* WireGuardAppError.swift in Sources */,
 				6F6899A62180447E0012E523 /* x25519.c in Sources */,
 				F4658548233BBBF30081D7D7 /* LoginCheckpointModel.swift in Sources */,
@@ -1863,6 +1870,7 @@
 				6F6899A8218044FC0012E523 /* Curve25519.swift in Sources */,
 				F465853D233BB2CB0081D7D7 /* LoginViewController.swift in Sources */,
 				F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */,
+				F43DFC07234BB32C003EA64A /* LoadingViewController.swift in Sources */,
 				F45D70AB233E921900871447 /* GuardianTabBarController.swift in Sources */,
 				F42A23072347D37F00763B0D /* UserManagerProtocol.swift in Sources */,
 				6F0F44C9222D55BB00B0FF04 /* TextCell.swift in Sources */,

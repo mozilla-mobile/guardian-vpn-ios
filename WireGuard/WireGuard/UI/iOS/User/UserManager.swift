@@ -3,7 +3,7 @@
 
 import Foundation
 
-class UserManager: UserManagerProtocol {
+class UserManager: UserManaging {
     static let sharedManager = UserManager()
     private let verifyResponseUserDefaultsKey = "verifyResponseUserDefaults"
     private let currentUserUserDefaultsKey = "currentUserUserDefaults"
@@ -38,17 +38,22 @@ class UserManager: UserManagerProtocol {
         }
     }
 
-    func verify(with token: String, completion: @escaping (Result<User, Error>) -> Void) {
-        GuardianAPI.verify(token: token) { [weak self] result in
-            completion(result.map { verifyResponse in
-                self?.save(with: verifyResponse)
-                return verifyResponse.user
+    func accountInfo(completion: @escaping (Result<User, Error>) -> Void) {
+        guard let token = token else {
+            completion(Result.failure(GuardianFailReason.emptyToken))
+            return // TODO: Handle this case?
+        }
+        GuardianAPI.accountInfo(token: token) { [weak self] result in
+            completion(result.map { user in
+                self?.currentUser = user
+                return user
             })
         }
     }
 
     func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
         guard let token = token else {
+            completion(Result.failure(GuardianFailReason.emptyToken))
             return // TODO: Handle this case?
         }
         GuardianAPI.availableServers(with: token, completion: completion)
@@ -67,8 +72,7 @@ class UserManager: UserManagerProtocol {
         }
     }
 
-    func fetchSavedUserAndToken() -> Bool {
-        return false
+    func fetchSavedToken() -> Bool {
         if let decoded = UserDefaults.standard.object(forKey: verifyResponseUserDefaultsKey) as? Data {
             let decoder = JSONDecoder()
             if let response = try? decoder.decode(VerifyResponse.self, from: decoded) {

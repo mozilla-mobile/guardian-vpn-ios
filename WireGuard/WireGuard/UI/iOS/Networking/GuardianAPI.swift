@@ -13,11 +13,11 @@ class GuardianAPI {
         }
     }
 
-    static func verify(token: String, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .verify(token), type: .GET)
+    static func accountInfo(token: String, completion: @escaping (Result<User, Error>) -> Void) {
+        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .account, type: .GET, httpHeaderParams: ["Authorization": "Bearer \(token)"])
         NetworkLayer.fireURLRequest(with: urlRequest) { result in
             completion(result.flatMap { data in
-                Result { try data.convert(to: VerifyResponse.self) }
+                Result { try data.convert(to: User.self) }
             })
         }
     }
