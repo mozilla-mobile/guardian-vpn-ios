@@ -3,31 +3,36 @@
 
 import Foundation
 
-class UserManager {
+class UserManager: UserManagerProtocol {
     static let sharedManager = UserManager()
     private let verifyResponseUserDefaultsKey = "verifyResponseUserDefaults"
     private let currentUserUserDefaultsKey = "currentUserUserDefaults"
 
+    var loginCheckPointModel: LoginCheckpointModel? {
+        return loginModel
+    }
+
     private var token: String?
     private(set) var currentUser: User? // temporary?
-    private(set) var loginCheckPointModel: LoginCheckpointModel? // temporary?
+    private(set) var loginModel: LoginCheckpointModel? // temporary?
 
     func retrieveUserLoginInformation(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
         GuardianAPI.initiateUserLogin { [weak self] result in
             completion(result.map { loginCheckPointModel in
-                self?.loginCheckPointModel = loginCheckPointModel
+                self?.loginModel = loginCheckPointModel
                 return loginCheckPointModel
             })
         }
     }
 
-    func verify(with loginCheckPointModel: LoginCheckpointModel,
-                completion: @escaping (Result<User, Error>) -> Void) {
+    func verifyAfterLogin(completion: @escaping (Result<User, Error>) -> Void) {
+        guard let loginCheckPointModel = loginCheckPointModel else {
+            completion(Result.failure(GuardianFailReason.loginError))
+            return
+        }
         GuardianAPI.verify(urlString: loginCheckPointModel.verificationUrl.absoluteString) { [weak self] result in
             completion(result.map { verifyResponse in
                 self?.save(with: verifyResponse)
-                self?.token = verifyResponse.token
-                self?.currentUser = verifyResponse.user
                 return verifyResponse.user
             })
         }
@@ -37,8 +42,6 @@ class UserManager {
         GuardianAPI.verify(token: token) { [weak self] result in
             completion(result.map { verifyResponse in
                 self?.save(with: verifyResponse)
-                self?.token = verifyResponse.token
-                self?.currentUser = verifyResponse.user
                 return verifyResponse.user
             })
         }
@@ -58,6 +61,7 @@ class UserManager {
             let defaults = UserDefaults.standard
             defaults.set(encoded, forKey: verifyResponseUserDefaultsKey)
             defaults.synchronize()
+            token = verifyResponse.token
         } else {
             print("blahhh") // TODO: Handle this
         }

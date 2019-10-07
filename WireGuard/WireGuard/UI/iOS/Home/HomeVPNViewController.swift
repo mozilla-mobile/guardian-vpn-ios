@@ -8,9 +8,19 @@ class HomeVPNViewController: UIViewController {
     @IBOutlet var vpnToggleView: VPNToggleView!
     @IBOutlet var selectConnectionLabel: UILabel!
     @IBOutlet var vpnSelectionView: CurrentVPNSelectorView!
-    weak var coordinatorDelegate: NavigationProtocol?
 
-    let userManager = UserManager.sharedManager
+    private let userManager: UserManagerProtocol
+    private weak var coordinatorDelegate: NavigationProtocol?
+
+    init(userManager: UserManagerProtocol, coordinatorDelegate: NavigationProtocol) {
+        self.userManager = userManager
+        self.coordinatorDelegate = coordinatorDelegate
+        super.init(nibName: String(describing: HomeVPNViewController.self), bundle: Bundle.main)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

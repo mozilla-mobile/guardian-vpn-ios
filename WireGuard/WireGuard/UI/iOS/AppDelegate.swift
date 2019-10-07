@@ -10,6 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var mainVC: MainViewController?
     var isLaunchedForSpecificAction = false
+    var navigationCoordinator: NavigationCoordinator?
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Logger.configureGlobal(tagged: "APP", withFilePath: FileManager.logFileURL?.path)
@@ -25,7 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
 
         let mainVC = MainViewController()
-        window.rootViewController = NavigationCoordinator.sharedCoordinator.rootViewController()
+        let dependencyProvider = DependencyFactory()
+        navigationCoordinator = NavigationCoordinator(dependencyProvider: dependencyProvider)
+        window.rootViewController = navigationCoordinator!.rootViewController()
         window.makeKeyAndVisible()
 
         self.mainVC = mainVC

@@ -37,7 +37,7 @@ class GuardianAPI {
             completion(result.flatMap { data in
                 Result {
                     guard let countries = try data.convert(to: [String: [VPNCountry]].self)["countries"] else {
-                        throw NetworkingFailReason.couldNotDecodeFromJson
+                        throw GuardianFailReason.couldNotDecodeFromJson
                     }
                     return countries
                 }

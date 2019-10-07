@@ -10,7 +10,7 @@ extension Data {
             let decodedResponse = try decoder.decode(type, from: self)
             return decodedResponse
         } catch {
-            throw NetworkingFailReason.couldNotDecodeFromJson
+            throw GuardianFailReason.couldNotDecodeFromJson
         }
     }
 }

@@ -4,18 +4,18 @@
 import UIKit
 
 class GuardianTabBarController: UITabBarController {
-    var homeVPNViewController: HomeVPNViewController!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        createViewControllers()
         styleViews()
     }
 
-    private func createViewControllers() {
-        homeVPNViewController = HomeVPNViewController.init(nibName: String(describing: HomeVPNViewController.self), bundle: Bundle.main)
-        homeVPNViewController.coordinatorDelegate = NavigationCoordinator.sharedCoordinator
-        viewControllers = [homeVPNViewController]
+    init(viewControllers: [UIViewController]) {
+        super.init(nibName: nil, bundle: Bundle.main)
+        self.viewControllers = viewControllers
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func styleViews() {

@@ -6,12 +6,21 @@ import WebKit
 import SafariServices
 
 class LoginViewController: UIViewController, WKNavigationDelegate {
-    @IBOutlet var webView: WKWebView!
-
-    weak var coordinatorDelegate: NavigationProtocol?
-
-    let userManager = UserManager.sharedManager
     let successfulLoginString = "/vpn/client/login/success"
+
+    @IBOutlet var webView: WKWebView!
+    private weak var coordinatorDelegate: NavigationProtocol?
+    private let userManager: UserManagerProtocol
+
+    init(userManager: UserManagerProtocol, coordinatorDelegate: NavigationProtocol) {
+        self.userManager = userManager
+        self.coordinatorDelegate = coordinatorDelegate
+        super.init(nibName: String(describing: LoginViewController.self), bundle: Bundle.main)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +41,10 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         let urlContainsSuccess = webView.url?.absoluteString.contains(successfulLoginString) ?? false
         if urlContainsSuccess,
-            let loginCheckPointModel = userManager.loginCheckPointModel {
-            userManager.verify(with: loginCheckPointModel) { [weak self] result in
+            userManager.loginCheckPointModel != nil {
+            userManager.verifyAfterLogin { [weak self] result in
                 switch result {
-                case .success(let _):
+                case .success:
                     DispatchQueue.main.async {
                         self?.coordinatorDelegate?.navigate(after: .manualLoginSucceeded)
                     }

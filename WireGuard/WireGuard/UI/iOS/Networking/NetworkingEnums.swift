@@ -3,9 +3,10 @@
 
 import Foundation
 
-public enum NetworkingFailReason: String, Error {
+public enum GuardianFailReason: String, Error {
     case no200 = "Response status code not 200"
     case couldNotDecodeFromJson = "Could not decode from JSON"
+    case loginError = "Error with login"
 }
 
 enum HTTPMethod: String {

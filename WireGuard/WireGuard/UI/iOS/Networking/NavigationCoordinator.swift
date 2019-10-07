@@ -5,19 +5,22 @@ import Foundation
 import UIKit
 
 class NavigationCoordinator: NavigationProtocol {
-    static let sharedCoordinator = NavigationCoordinator()
+    let dependencyProvider: DependencyProviding
 
     let userManager = UserManager.sharedManager
     var currentViewController: UIViewController?
 
+    init(dependencyProvider: DependencyProviding) {
+        self.dependencyProvider = dependencyProvider
+    }
+
     func rootViewController() -> UIViewController {
         if userManager.fetchSavedUserAndToken() {
-            let tabBarController = GuardianTabBarController()
+            let tabBarController = GuardianTabBarController(viewControllers: loggedInViewControllers)
             currentViewController = tabBarController
             return tabBarController
         } else {
-            let loginViewController = LoginViewController.init(nibName: String(describing: LoginViewController.self), bundle: Bundle.main)
-            loginViewController.coordinatorDelegate = self
+            let loginViewController = LoginViewController(userManager: dependencyProvider.userManager, coordinatorDelegate: self)
             currentViewController = loginViewController
             return loginViewController
         }
@@ -34,7 +37,7 @@ class NavigationCoordinator: NavigationProtocol {
     }
 
     private func navigateToHomeVPN() {
-        let tabBarController = GuardianTabBarController()
+        let tabBarController = GuardianTabBarController(viewControllers: loggedInViewControllers)
         currentViewController = tabBarController
 
         if let window = UIApplication.shared.keyWindow {
@@ -49,5 +52,10 @@ class NavigationCoordinator: NavigationProtocol {
         navController.navigationBar.barTintColor = UIColor.backgroundOffWhite
         navController.navigationBar.tintColor = UIColor.guardianBlack
         currentViewController?.present(navController, animated: true, completion: nil)
+    }
+
+    private var loggedInViewControllers: [UIViewController] {
+        let homeViewController = HomeVPNViewController(userManager: dependencyProvider.userManager, coordinatorDelegate: self)
+        return [homeViewController]
     }
 }

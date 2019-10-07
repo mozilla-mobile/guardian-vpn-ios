@@ -16,7 +16,7 @@ class NetworkLayer {
                 response.statusCode == 200 {
                 completion(.success(data))
             } else {
-                completion(.failure(NetworkingFailReason.no200))
+                completion(.failure(GuardianFailReason.no200))
             }
         }
 
