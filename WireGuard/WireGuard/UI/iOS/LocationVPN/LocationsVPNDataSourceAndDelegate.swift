@@ -49,6 +49,7 @@ extension LocationsVPNDataSourceAndDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath != selectedIndexPath {
             selectedIndexPath = indexPath
+
             tableView.reloadData()
         }
     }

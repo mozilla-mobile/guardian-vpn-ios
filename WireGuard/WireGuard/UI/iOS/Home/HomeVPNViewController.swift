@@ -2,6 +2,7 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
+import NetworkExtension
 
 class HomeVPNViewController: UIViewController {
     @IBOutlet var navigationTitleLabel: UILabel!
@@ -11,11 +12,13 @@ class HomeVPNViewController: UIViewController {
 
     private let userManager: UserManaging
     private weak var coordinatorDelegate: Navigating?
+    private var countries: [VPNCountry]?
 
     init(userManager: UserManaging, coordinatorDelegate: Navigating) {
         self.userManager = userManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: HomeVPNViewController.self), bundle: Bundle.main)
+        self.retrieveVPNServerList()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -28,6 +31,7 @@ class HomeVPNViewController: UIViewController {
         applyLabelTexts()
         styleViews()
         addTapGesture()
+        addToggleGesture()
     }
 
     private func setupTabBar() {
@@ -55,12 +59,30 @@ class HomeVPNViewController: UIViewController {
         vpnSelectionView.addGestureRecognizer(tapGesture)
     }
 
+    private func addToggleGesture() {
+        let toggleGesture = UITapGestureRecognizer(target: self, action: #selector(toggleVPN))
+        vpnToggleView.vpnSwitch.addGestureRecognizer(toggleGesture)
+    }
+
+    @objc func toggleVPN() {
+        if vpnToggleView.vpnSwitch.isOn {
+            let first = countries?.first
+            let packetTunnelProvider = NEPacketTunnelProvider.init()
+//            let settings = NETunnelNetworkSettings.ini
+//            packetTunnelProvider.setTunnelNetworkSettings(<#T##tunnelNetworkSettings: NETunnelNetworkSettings?##NETunnelNetworkSettings?#>, completionHandler: <#T##((Error?) -> Void)?##((Error?) -> Void)?##(Error?) -> Void#>)
+//            let peerConfig = PeerConfiguration.init(publicKey: <#T##Data#>)
+//            let interface = InterfaceConfiguration.init(privateKey: <#T##Data#>)
+//            let tunnelConfiguration = TunnelConfiguration.init(name: <#T##String?#>, interface: interface, peers: <#T##[PeerConfiguration]#>)
+//            let tunnel = NETunnelProviderProtocol.init(tunnelConfiguration: tunnelConfiguration)
+        }
+    }
+
     // MARK: Tap Gesture
     @objc func selectVpn() {
         UIView.animate(withDuration: 0.3, animations: {
             self.vpnSelectionView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }, completion: { _ in
-            self.coordinatorDelegate?.navigate(after: .vpnNewSelection)
+            self.coordinatorDelegate?.navigate(after: .vpnNewSelection(self.countries))
             UIView.animate(withDuration: 0.7,
                            delay: 0,
                            usingSpringWithDamping: 0.4,
@@ -70,5 +92,18 @@ class HomeVPNViewController: UIViewController {
                             self.vpnSelectionView.transform = CGAffineTransform.identity
             }, completion: nil)
         })
+    }
+
+    private func retrieveVPNServerList() {
+        userManager.retrieveVPNServers { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                do {
+                    self.countries = try result.get()
+                } catch {
+                    print(error)
+                }
+            }
+        }
     }
 }

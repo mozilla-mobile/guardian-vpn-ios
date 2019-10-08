@@ -3,10 +3,10 @@
 
 import Foundation
 
+// TODO: This class is getting too big. We need to break it up among it's responsibilities.
+
 class UserManager: UserManaging {
     static let sharedManager = UserManager()
-    private let verifyResponseUserDefaultsKey = "verifyResponseUserDefaults"
-    private let currentUserUserDefaultsKey = "currentUserUserDefaults"
 
     var loginCheckPointModel: LoginCheckpointModel? {
         return loginModel
@@ -15,6 +15,14 @@ class UserManager: UserManaging {
     private var token: String?
     private(set) var currentUser: User? // temporary?
     private(set) var loginModel: LoginCheckpointModel? // temporary?
+    private(set) var currentDevice: Device? // temporary
+
+    //move these somewhere else
+    func setup(with verifyResponse: VerifyResponse, device: Device) {
+        currentDevice = device
+        token = verifyResponse.token
+        currentUser = verifyResponse.user
+    }
 
     func retrieveUserLoginInformation(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
         GuardianAPI.initiateUserLogin { [weak self] result in
@@ -33,6 +41,7 @@ class UserManager: UserManaging {
         GuardianAPI.verify(urlString: loginCheckPointModel.verificationUrl.absoluteString) { [weak self] result in
             completion(result.map { verifyResponse in
                 self?.save(with: verifyResponse)
+                self?.token = verifyResponse.token
                 return verifyResponse.user
             })
         }
@@ -59,30 +68,59 @@ class UserManager: UserManaging {
         GuardianAPI.availableServers(with: token, completion: completion)
     }
 
-    // MARK: User Defaults
-    func save(with verifyResponse: VerifyResponse) {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(verifyResponse) {
-            let defaults = UserDefaults.standard
-            defaults.set(encoded, forKey: verifyResponseUserDefaultsKey)
-            defaults.synchronize()
-            token = verifyResponse.token
-        } else {
-            print("blahhh") // TODO: Handle this
+    func addDevice(completion: @escaping (Result<Device, Error>) -> Void) {
+        guard let token = token else {
+            completion(Result.failure(GuardianFailReason.emptyToken))
+            return // TODO: Handle this case?
+        }
+        GuardianAPI.addDevice(with: token) { [weak self] result in
+            completion(result.map { device in
+                self?.currentDevice = device
+                device.saveToUserDefaults()
+                return device
+            })
         }
     }
 
-    func fetchSavedToken() -> Bool {
-        if let decoded = UserDefaults.standard.object(forKey: verifyResponseUserDefaultsKey) as? Data {
-            let decoder = JSONDecoder()
-            if let response = try? decoder.decode(VerifyResponse.self, from: decoded) {
-                token = response.token
-                currentUser = response.user
-                return true
-            }
-            return false
-        } else {
-            return false
+    // MARK: User Defaults
+    func save<T: UserDefaulting>(with response: T) {
+        let encoder = JSONEncoder()
+        do {
+            let encoded = try encoder.encode(response)
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: T.userDefaultsKey)
+            defaults.synchronize()
+
+        } catch {
+            print(error) // TODO: Handle this
         }
     }
+
+    // TODO: Make these 2 functions generic.
+    //    func fetchDevice() -> Bool {
+    //        if let decoded = UserDefaults.standard.object(forKey: Device.userDefaultsKey) as? Data {
+    //            let decoder = JSONDecoder()
+//            if let response = try? decoder.decode(Device.self, from: decoded) {
+//                currentDevice = response
+//                return true
+//            }
+//            return false
+//        } else {
+//            return false
+//        }
+//    }
+//
+//    func fetchSavedToken() -> Bool {
+//        if let decoded = UserDefaults.standard.object(forKey: VerifyResponse.userDefaultsKey) as? Data {
+//            let decoder = JSONDecoder()
+//            if let response = try? decoder.decode(VerifyResponse.self, from: decoded) {
+//                token = response.token
+//                currentUser = response.user
+//                return true
+//            }
+//            return false
+//        } else {
+//            return false
+//        }
+//    }
 }

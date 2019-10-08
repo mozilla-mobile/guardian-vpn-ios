@@ -3,7 +3,8 @@
 
 import Foundation
 
-struct VerifyResponse: Codable {
+struct VerifyResponse: UserDefaulting {
+    static let userDefaultsKey = "verifyResponse"
     let user: User
     let token: String
 

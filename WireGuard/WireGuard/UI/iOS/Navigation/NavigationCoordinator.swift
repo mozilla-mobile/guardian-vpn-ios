@@ -15,7 +15,12 @@ class NavigationCoordinator: Navigating {
     }
 
     func rootViewController() -> UIViewController {
-        if userManager.fetchSavedToken() {
+        if let verifyResponse = VerifyResponse.fetchFromUserDefaults(),
+            let device = Device.fetchFromUserDefaults() {
+            userManager.setup(with: verifyResponse, device: device)
+//        }
+//        if userManager.fetchSavedToken() {
+//            userManager.fetchDevice()
             let loadingViewController = LoadingViewController(userManager: dependencyProvider.userManager, coordinatorDelegate: self)
             currentViewController = loadingViewController
             return loadingViewController
@@ -33,8 +38,8 @@ class NavigationCoordinator: Navigating {
             navigateToHomeVPN()
         case .loginFailed:
             navigateToLogin()
-        case .vpnNewSelection:
-            presentVPNLocationSelection()
+        case .vpnNewSelection(let countries):
+            presentVPNLocationSelection(countries: countries)
         }
     }
 
@@ -48,8 +53,8 @@ class NavigationCoordinator: Navigating {
         setKeyWindow(with: currentViewController!)
     }
 
-    private func presentVPNLocationSelection() {
-        let locationVPNVC = LocationVPNViewController.init(nibName: String(describing: LocationVPNViewController.self), bundle: Bundle.main)
+    private func presentVPNLocationSelection(countries: [VPNCountry]? = nil) {
+        let locationVPNVC = LocationVPNViewController(countries: countries, userManager: dependencyProvider.userManager)
         let navController = UINavigationController(rootViewController: locationVPNVC)
         navController.navigationBar.barTintColor = UIColor.backgroundOffWhite
         navController.navigationBar.tintColor = UIColor.guardianBlack

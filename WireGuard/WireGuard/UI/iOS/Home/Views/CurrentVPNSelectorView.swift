@@ -8,6 +8,8 @@ class CurrentVPNSelectorView: UIView {
     @IBOutlet var countryFlagImageView: UIImageView!
     @IBOutlet var countryTitleLabel: UILabel!
 
+    var selectedCountry: VPNCountry?
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         Bundle.main.loadNibNamed(String(describing: CurrentVPNSelectorView.self), owner: self, options: nil)
@@ -21,7 +23,7 @@ class CurrentVPNSelectorView: UIView {
     }
 
     func styleViews() {
-        countryTitleLabel.text = "Australia"
+        countryTitleLabel.text = selectedCountry?.name ?? "Australia"
 
         countryTitleLabel.font = UIFont.vpnSelectorTitleFont
         countryTitleLabel.textColor = UIColor.guardianGrey

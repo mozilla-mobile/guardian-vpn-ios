@@ -9,7 +9,7 @@ struct InterfaceConfiguration {
     var addresses = [IPAddressRange]()
     var listenPort: UInt16?
     var mtu: UInt16?
-    var dns = [DNSServer]()
+    var dns = [DNSServer]() //ipv4 gateway from the server list
 
     init(privateKey: Data) {
         if privateKey.count != TunnelConfiguration.keyLength {

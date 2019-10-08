@@ -10,4 +10,5 @@ protocol UserManaging {
     func verifyAfterLogin(completion: @escaping (Result<User, Error>) -> Void)
     func accountInfo(completion: @escaping (Result<User, Error>) -> Void)
     func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void)
+    func addDevice(completion: @escaping (Result<Device, Error>) -> Void)
 }

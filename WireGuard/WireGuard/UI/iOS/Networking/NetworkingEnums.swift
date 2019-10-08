@@ -20,6 +20,7 @@ enum GuardianRelativeRequest {
     case verify(String)
     case retrieveServers
     case account
+    case addDevice
 
     var endpoint: String {
         switch self {
@@ -31,7 +32,8 @@ enum GuardianRelativeRequest {
             return "/api/v1/vpn/servers/"
         case .account:
             return "/api/v1/vpn/account"
-
+        case .addDevice:
+            return "/api/v1/vpn/device"
         }
     }
 }

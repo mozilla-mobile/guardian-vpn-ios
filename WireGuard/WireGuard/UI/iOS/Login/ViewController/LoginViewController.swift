@@ -45,6 +45,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
             userManager.verifyAfterLogin { [weak self] result in
                 switch result {
                 case .success:
+                    self?.userManager.addDevice { _ in } // TODO: Delete
                     DispatchQueue.main.async {
                         self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
                     }
