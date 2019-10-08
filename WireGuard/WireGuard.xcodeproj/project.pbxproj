@@ -996,6 +996,7 @@
 			isa = PBXGroup;
 			children = (
 				F45D70A0233D3BC000871447 /* Navigating.swift */,
+				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
 				F45D70AA233E921900871447 /* GuardianTabBarController.swift */,
 			);
 			path = Navigation;
@@ -1075,7 +1076,6 @@
 		F465853F233BB39C0081D7D7 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
 				F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */,
 				F4658542233BB44A0081D7D7 /* NetworkLayer.swift */,
 				F4658544233BB7690081D7D7 /* GuardianAPI.swift */,
