@@ -278,6 +278,8 @@
 		F499C0F3234E29B300126CDA /* DeviceManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */; };
 		F499C0F6234E301900126CDA /* DeviceManagementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F4234E301900126CDA /* DeviceManagementCell.swift */; };
 		F499C0F7234E301900126CDA /* DeviceManagementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0F5234E301900126CDA /* DeviceManagementCell.xib */; };
+		F499C0F9234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */; };
+		F499C0FB234E41B800126CDA /* DeviceLimitReachedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */; };
 		F4D150B1234517D800739CDA /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B0234517D800739CDA /* Data+JSON.swift */; };
 		F4D150B323451DC900739CDA /* GuardianURLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */; };
 		F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B423453F9900739CDA /* CityVPNCell.swift */; };
@@ -579,6 +581,8 @@
 		F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceManagementViewController.xib; sourceTree = "<group>"; };
 		F499C0F4234E301900126CDA /* DeviceManagementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementCell.swift; sourceTree = "<group>"; };
 		F499C0F5234E301900126CDA /* DeviceManagementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceManagementCell.xib; sourceTree = "<group>"; };
+		F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceLimitReachedView.xib; sourceTree = "<group>"; };
 		F4D150B0234517D800739CDA /* Data+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JSON.swift"; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
@@ -1003,6 +1007,8 @@
 				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
 				F499C0F4234E301900126CDA /* DeviceManagementCell.swift */,
 				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
+				F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */,
+				F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -1475,6 +1481,7 @@
 				F45D70D22342431F00871447 /* Metropolis-Regular.otf in Resources */,
 				F45D70F02342775000871447 /* Inter-SemiBold.otf in Resources */,
 				6F70E20E221058E1008BDFB4 /* InfoPlist.strings in Resources */,
+				F499C0FB234E41B800126CDA /* DeviceLimitReachedView.xib in Resources */,
 				F45D70E22342431F00871447 /* Metropolis-LightItalic.otf in Resources */,
 				F45D70D02342431F00871447 /* Metropolis-Black.otf in Resources */,
 				F499C0F3234E29B300126CDA /* DeviceManagementViewController.xib in Resources */,
@@ -1927,6 +1934,7 @@
 				6F7774F321774263006A79B3 /* TunnelEditTableViewController.swift in Sources */,
 				6FBA103B21D6B4290051C35F /* ErrorPresenterProtocol.swift in Sources */,
 				6FDEF802218646BA00D8FBF6 /* ZipArchive.swift in Sources */,
+				F499C0F9234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift in Sources */,
 				5F45419021C2D53800994C13 /* SwitchCell.swift in Sources */,
 				F40831CF233CFA2000A60FCA /* UserManager.swift in Sources */,
 				6BD5C97B220D1AE200784E08 /* key.c in Sources */,
