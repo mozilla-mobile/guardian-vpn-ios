@@ -276,6 +276,13 @@
 		F4658545233BB7690081D7D7 /* GuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658544233BB7690081D7D7 /* GuardianAPI.swift */; };
 		F4658548233BBBF30081D7D7 /* LoginCheckpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */; };
 		F465854D233BF0860081D7D7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F465854C233BF0850081D7D7 /* WebKit.framework */; };
+		F499C0F2234E29B300126CDA /* DeviceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */; };
+		F499C0F3234E29B300126CDA /* DeviceManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */; };
+		F499C0F6234E301900126CDA /* DeviceManagementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F4234E301900126CDA /* DeviceManagementCell.swift */; };
+		F499C0F7234E301900126CDA /* DeviceManagementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0F5234E301900126CDA /* DeviceManagementCell.xib */; };
+		F499C0F9234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */; };
+		F499C0FB234E41B800126CDA /* DeviceLimitReachedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */; };
+		F499C0FD234E490600126CDA /* DeviceLimitReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */; };
 		F4D150B1234517D800739CDA /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B0234517D800739CDA /* Data+JSON.swift */; };
 		F4D150B323451DC900739CDA /* GuardianURLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */; };
 		F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B423453F9900739CDA /* CityVPNCell.swift */; };
@@ -575,6 +582,13 @@
 		F4658544233BB7690081D7D7 /* GuardianAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPI.swift; sourceTree = "<group>"; };
 		F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckpointModel.swift; sourceTree = "<group>"; };
 		F465854C233BF0850081D7D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewController.swift; sourceTree = "<group>"; };
+		F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceManagementViewController.xib; sourceTree = "<group>"; };
+		F499C0F4234E301900126CDA /* DeviceManagementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementCell.swift; sourceTree = "<group>"; };
+		F499C0F5234E301900126CDA /* DeviceManagementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceManagementCell.xib; sourceTree = "<group>"; };
+		F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceLimitReachedView.xib; sourceTree = "<group>"; };
+		F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLimitReachedView.swift; sourceTree = "<group>"; };
 		F4D150B0234517D800739CDA /* Data+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JSON.swift"; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
@@ -997,6 +1011,13 @@
 			isa = PBXGroup;
 			children = (
 				F43DFC0D234D1361003EA64A /* Device.swift */,
+				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
+				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
+				F499C0F4234E301900126CDA /* DeviceManagementCell.swift */,
+				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
+				F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */,
+				F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */,
+				F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -1469,8 +1490,10 @@
 				F45D70D22342431F00871447 /* Metropolis-Regular.otf in Resources */,
 				F45D70F02342775000871447 /* Inter-SemiBold.otf in Resources */,
 				6F70E20E221058E1008BDFB4 /* InfoPlist.strings in Resources */,
+				F499C0FB234E41B800126CDA /* DeviceLimitReachedView.xib in Resources */,
 				F45D70E22342431F00871447 /* Metropolis-LightItalic.otf in Resources */,
 				F45D70D02342431F00871447 /* Metropolis-Black.otf in Resources */,
+				F499C0F3234E29B300126CDA /* DeviceManagementViewController.xib in Resources */,
 				6FE1765621C90BBE002690EA /* Localizable.strings in Resources */,
 				6FF4AC22211EC472002C96EB /* LaunchScreen.storyboard in Resources */,
 				F4D150BE2346422000739CDA /* CountryVPNHeaderView.xib in Resources */,
@@ -1495,6 +1518,7 @@
 				F465853E233BB2CB0081D7D7 /* LoginViewController.xib in Resources */,
 				F45D70F823427D2F00871447 /* CurrentVPNSelectorView.xib in Resources */,
 				F45D70FE23428DCE00871447 /* LocationVPNViewController.xib in Resources */,
+				F499C0F7234E301900126CDA /* DeviceManagementCell.xib in Resources */,
 				F43DFC08234BB32C003EA64A /* LoadingViewController.xib in Resources */,
 				F45D70DC2342431F00871447 /* Metropolis-ExtraBold.otf in Resources */,
 			);
@@ -1840,6 +1864,7 @@
 			files = (
 				6FE1765A21C90E87002690EA /* LocalizationHelper.swift in Sources */,
 				6F29A94722787B1600DC6A6B /* QuickActionItem.swift in Sources */,
+				F499C0F6234E301900126CDA /* DeviceManagementCell.swift in Sources */,
 				6FF3527221C2616C0008484E /* ringlogger.c in Sources */,
 				F45D70FD23428DCE00871447 /* LocationVPNViewController.swift in Sources */,
 				6F0F44CB222D55FD00B0FF04 /* EditableTextCell.swift in Sources */,
@@ -1884,6 +1909,7 @@
 				5F45419821C2D60500994C13 /* KeyValueCell.swift in Sources */,
 				6FBA103E21D6B6D70051C35F /* TunnelImporter.swift in Sources */,
 				F4658541233BB3D00081D7D7 /* NetworkingEnums.swift in Sources */,
+				F499C0FD234E490600126CDA /* DeviceLimitReachedView.swift in Sources */,
 				6F9B8A8E223398610041B9C4 /* SSIDOptionDetailTableViewController.swift in Sources */,
 				6F19D30422402B8700A126F2 /* ConfirmationAlertPresenter.swift in Sources */,
 				6F919EC3218A2AE90023B400 /* ErrorPresenter.swift in Sources */,
@@ -1905,6 +1931,7 @@
 				F465853D233BB2CB0081D7D7 /* LoginViewController.swift in Sources */,
 				F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */,
 				F43DFC07234BB32C003EA64A /* LoadingViewController.swift in Sources */,
+				F499C0F2234E29B300126CDA /* DeviceManagementViewController.swift in Sources */,
 				F45D70AB233E921900871447 /* GuardianTabBarController.swift in Sources */,
 				F42A23072347D37F00763B0D /* UserManaging.swift in Sources */,
 				F43DFC14234E436E003EA64A /* DeviceKeys.swift in Sources */,
@@ -1918,6 +1945,7 @@
 				6F7774F321774263006A79B3 /* TunnelEditTableViewController.swift in Sources */,
 				6FBA103B21D6B4290051C35F /* ErrorPresenterProtocol.swift in Sources */,
 				6FDEF802218646BA00D8FBF6 /* ZipArchive.swift in Sources */,
+				F499C0F9234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift in Sources */,
 				5F45419021C2D53800994C13 /* SwitchCell.swift in Sources */,
 				F40831CF233CFA2000A60FCA /* UserManager.swift in Sources */,
 				6BD5C97B220D1AE200784E08 /* key.c in Sources */,
