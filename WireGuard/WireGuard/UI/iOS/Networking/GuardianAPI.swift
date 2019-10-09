@@ -14,7 +14,7 @@ class GuardianAPI {
     }
 
     static func accountInfo(token: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .account, type: .GET, httpHeaderParams: bearerToken(from: token))
+        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .account, type: .GET, httpHeaderParams: headers(with: token))
         NetworkLayer.fireURLRequest(with: urlRequest) { result in
             completion(result.flatMap { data in
                 Result { try data.convert(to: User.self) }
@@ -32,7 +32,7 @@ class GuardianAPI {
     }
 
     static func availableServers(with token: String, completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .retrieveServers, type: .GET, httpHeaderParams: bearerToken(from: token))
+        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .retrieveServers, type: .GET, httpHeaderParams: headers(with: token))
         NetworkLayer.fireURLRequest(with: urlRequest) { result in
             completion(result.flatMap { data in
                 Result {
@@ -45,8 +45,8 @@ class GuardianAPI {
         }
     }
 
-    static func addDevice(with token: String, completion: @escaping (Result<Device, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: bearerToken(from: token))
+    static func addDevice(with token: String, body: Data, completion: @escaping (Result<Device, Error>) -> Void) {
+        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token), body: body)
         NetworkLayer.fireURLRequest(with: urlRequest) { result in
             completion(result.flatMap { data in
                 Result { try data.convert(to: Device.self) }
@@ -54,7 +54,8 @@ class GuardianAPI {
         }
     }
 
-    private static func bearerToken(from token: String) -> [String: String] {
-        return ["Authorization": "Bearer \(token)"]
+    private static func headers(with token: String) -> [String: String] {
+        return ["Authorization": "Bearer \(token)",
+                "Content-Type": "application/json"]
     }
 }

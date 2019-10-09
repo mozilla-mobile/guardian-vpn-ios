@@ -9,8 +9,8 @@ struct Account {
     var user: User
     var token: String
     var availableServers: [VPNCountry]?
-    
-    init(user: User, token: Token, device: Device) {
+
+    init(user: User, token: String, device: Device) {
         self.user = user
         self.token = token
         self.currentDevice = device

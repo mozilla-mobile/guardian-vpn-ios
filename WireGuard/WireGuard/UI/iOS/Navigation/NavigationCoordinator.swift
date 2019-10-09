@@ -15,9 +15,9 @@ class NavigationCoordinator: Navigating {
     }
 
     func rootViewController() -> UIViewController {
-        if let verifyResponse = VerifyResponse.fetchFromUserDefaults(),
+        if let verification = VerifyResponse.fetchFromUserDefaults(),
             let device = Device.fetchFromUserDefaults() {
-            let account = Account.init(user: verifyResponse.user, token: verifyResponse.token, device: device)
+            let account = Account.init(user: verification.user, token: verification.token, device: device)
 //            userManager.setup(with: verifyResponse, device: device)
 //        }
 //        if userManager.fetchSavedToken() {

@@ -3,13 +3,13 @@
 
 import Foundation
 
-struct VPNCountry: Codable {
+public struct VPNCountry: Codable {
     let name: String
     let code: String
     let cities: [VPNCity]
 }
 
-struct VPNCity: Codable {
+public struct VPNCity: Codable {
     let name: String
     let code: String
     let latitude: Float
@@ -17,7 +17,7 @@ struct VPNCity: Codable {
     let servers: [VPNServer]
 }
 
-struct VPNServer: Codable {
+public struct VPNServer: Codable {
     let hostname: String
     let includeInCountry: Bool
     let publicKey: String
