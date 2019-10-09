@@ -3,7 +3,7 @@
 
 import Foundation
 
-struct Device: UserDefaulting {
+public struct Device: UserDefaulting {
     let name: String
     let publicKey: String
     let ipv4Address: String
@@ -13,10 +13,10 @@ struct Device: UserDefaulting {
 
     private let createdAtDateString: String
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
-        publicKey = try container.decode(String.self, forKey: .pubKey)
+        publicKey = try container.decode(String.self, forKey: .pubkey)
         ipv4Address = try container.decode(String.self, forKey: .ipv4Address)
         ipv6Address = try container.decode(String.self, forKey: .ipv6Address)
 
@@ -25,10 +25,10 @@ struct Device: UserDefaulting {
         createdAtDate = dateFormatter.date(from: createdAtDateString)!
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
-        try container.encode(publicKey, forKey: .pubKey)
+        try container.encode(publicKey, forKey: .pubkey)
         try container.encode(ipv4Address, forKey: .ipv4Address)
         try container.encode(ipv6Address, forKey: .ipv6Address)
         try container.encode(createdAtDateString, forKey: .createAtDate)
@@ -36,7 +36,7 @@ struct Device: UserDefaulting {
 
     enum CodingKeys: String, CodingKey {
         case name
-        case pubKey
+        case pubkey
         case ipv4Address = "ipv4_address"
         case ipv6Address = "ipv6_address"
         case createAtDate = "created_at"

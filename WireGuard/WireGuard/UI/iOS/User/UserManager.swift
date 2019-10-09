@@ -2,24 +2,30 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import Foundation
+import UIKit
 
 // TODO: This class is getting too big. We need to break it up among it's responsibilities.
 
 class UserManager: UserManaging {
     static let sharedManager = UserManager()
+    let credentialsStore = CredentialsStore.sharedStore
 
     var loginCheckPointModel: LoginCheckpointModel? {
         return loginModel
     }
 
+    var currentDevice: Device? {
+        return device
+    }
+
     private var token: String?
     private(set) var currentUser: User? // temporary?
     private(set) var loginModel: LoginCheckpointModel? // temporary?
-    private(set) var currentDevice: Device? // temporary
+    private(set) var device: Device? // temporary
 
     //move these somewhere else
     func setup(with verifyResponse: VerifyResponse, device: Device) {
-        currentDevice = device
+        self.device = device
         token = verifyResponse.token
         currentUser = verifyResponse.user
     }
@@ -73,12 +79,20 @@ class UserManager: UserManaging {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return // TODO: Handle this case?
         }
-        GuardianAPI.addDevice(with: token) { [weak self] result in
-            completion(result.map { device in
-                self?.currentDevice = device
-                device.saveToUserDefaults()
-                return device
-            })
+
+        let deviceBody: [String: Any] = ["name": UIDevice.current.name, "pubkey":  credentialsStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
+
+        do {
+            let body = try JSONSerialization.data(withJSONObject: deviceBody)
+            GuardianAPI.addDevice(with: token, body: body) { [weak self] result in
+                completion(result.map { device in
+                    self?.device = device
+                    device.saveToUserDefaults()
+                    return device
+                })
+            }
+        } catch {
+            completion(Result.failure(GuardianFailReason.couldNotCreateBody))
         }
     }
 

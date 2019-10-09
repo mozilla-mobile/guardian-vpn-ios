@@ -5,6 +5,7 @@ import Foundation
 
 protocol UserManaging {
     var loginCheckPointModel: LoginCheckpointModel? { get }
+    var currentDevice: Device? { get }
 
     func retrieveUserLoginInformation(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
     func verifyAfterLogin(completion: @escaping (Result<User, Error>) -> Void)

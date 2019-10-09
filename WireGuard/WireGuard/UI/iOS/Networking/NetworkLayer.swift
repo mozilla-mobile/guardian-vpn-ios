@@ -13,7 +13,7 @@ class NetworkLayer {
                 completion(.failure(error))
             } else if let data = data,
                 let response = response as? HTTPURLResponse,
-                response.statusCode == 200 {
+                response.statusCode == 200 || response.statusCode == 201 {
                 completion(.success(data))
             } else {
                 completion(.failure(GuardianFailReason.no200))
