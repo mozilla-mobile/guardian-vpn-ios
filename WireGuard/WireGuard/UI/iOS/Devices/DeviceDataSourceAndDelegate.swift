@@ -4,10 +4,14 @@
 import UIKit
 
 class DeviceDataSourceAndDelegate: NSObject {
-    let devices: [Device]
+    private var devices: [Device]
 
     private var canAddDevice: Bool {
-        return devices.count < 6
+        return devices.count < 5
+    }
+
+    private var sectionHeight: CGFloat {
+        return canAddDevice ? 0 : DeviceLimitReachedView.height
     }
 
     init(devices: [Device]) {
@@ -19,9 +23,13 @@ class DeviceDataSourceAndDelegate: NSObject {
 extension DeviceDataSourceAndDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard canAddDevice else {
-            return tableView.dequeueReusableHeaderFooterView(withIdentifier: "DeviceLimitReachedView")
+            return tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
         }
         return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return sectionHeight
     }
 }
 

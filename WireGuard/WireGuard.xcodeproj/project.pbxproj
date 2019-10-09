@@ -280,6 +280,7 @@
 		F499C0F7234E301900126CDA /* DeviceManagementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0F5234E301900126CDA /* DeviceManagementCell.xib */; };
 		F499C0F9234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */; };
 		F499C0FB234E41B800126CDA /* DeviceLimitReachedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */; };
+		F499C0FD234E490600126CDA /* DeviceLimitReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */; };
 		F4D150B1234517D800739CDA /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B0234517D800739CDA /* Data+JSON.swift */; };
 		F4D150B323451DC900739CDA /* GuardianURLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */; };
 		F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B423453F9900739CDA /* CityVPNCell.swift */; };
@@ -583,6 +584,7 @@
 		F499C0F5234E301900126CDA /* DeviceManagementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceManagementCell.xib; sourceTree = "<group>"; };
 		F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceLimitReachedView.xib; sourceTree = "<group>"; };
+		F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLimitReachedView.swift; sourceTree = "<group>"; };
 		F4D150B0234517D800739CDA /* Data+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JSON.swift"; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
@@ -1009,6 +1011,7 @@
 				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
 				F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */,
 				F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */,
+				F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -1900,6 +1903,7 @@
 				5F45419821C2D60500994C13 /* KeyValueCell.swift in Sources */,
 				6FBA103E21D6B6D70051C35F /* TunnelImporter.swift in Sources */,
 				F4658541233BB3D00081D7D7 /* NetworkingEnums.swift in Sources */,
+				F499C0FD234E490600126CDA /* DeviceLimitReachedView.swift in Sources */,
 				6F9B8A8E223398610041B9C4 /* SSIDOptionDetailTableViewController.swift in Sources */,
 				6F19D30422402B8700A126F2 /* ConfirmationAlertPresenter.swift in Sources */,
 				6F919EC3218A2AE90023B400 /* ErrorPresenter.swift in Sources */,
