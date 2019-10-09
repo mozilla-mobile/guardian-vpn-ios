@@ -10,9 +10,9 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
 
     @IBOutlet var webView: WKWebView!
     private weak var coordinatorDelegate: Navigating?
-    private let userManager: UserManaging
+    private let userManager: AccountManaging
 
-    init(userManager: UserManaging, coordinatorDelegate: Navigating) {
+    init(userManager: AccountManaging, coordinatorDelegate: Navigating) {
         self.userManager = userManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: LoginViewController.self), bundle: Bundle.main)

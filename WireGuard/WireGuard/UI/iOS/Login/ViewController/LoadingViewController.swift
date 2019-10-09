@@ -7,10 +7,10 @@ class LoadingViewController: UIViewController {
 
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
-    let userManager: UserManaging
+    let userManager: AccountManaging
     weak var coordinatorDelegate: Navigating?
 
-    init(userManager: UserManaging, coordinatorDelegate: Navigating) {
+    init(userManager: AccountManaging, coordinatorDelegate: Navigating) {
         self.userManager = userManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: LoadingViewController.self), bundle: Bundle.main)

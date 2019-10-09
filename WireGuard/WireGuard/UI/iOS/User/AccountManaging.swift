@@ -3,7 +3,7 @@
 
 import Foundation
 
-protocol UserManaging {
+protocol AccountManaging {
     var loginCheckPointModel: LoginCheckpointModel? { get }
 
     func retrieveUserLoginInformation(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)

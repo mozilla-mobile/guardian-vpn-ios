@@ -5,12 +5,14 @@ import Foundation
 
 // TODO: This class is getting too big. We need to break it up among it's responsibilities.
 
-class UserManager: UserManaging {
-    static let sharedManager = UserManager()
+class AccountManager: AccountManaging {
+    static let sharedManager = AccountManager()
 
     var loginCheckPointModel: LoginCheckpointModel? {
         return loginModel
     }
+    
+    private var account = Account()
 
     private var token: String?
     private(set) var currentUser: User? // temporary?
@@ -18,10 +20,10 @@ class UserManager: UserManaging {
     private(set) var currentDevice: Device? // temporary
 
     //move these somewhere else
-    func setup(with verifyResponse: VerifyResponse, device: Device) {
-        currentDevice = device
-        token = verifyResponse.token
-        currentUser = verifyResponse.user
+    func setupAccount(with verifyResponse: VerifyResponse, device: Device) {
+        account.currentDevice = device
+        account.token = verifyResponse.token
+        account.user = verifyResponse.user
     }
 
     func retrieveUserLoginInformation(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
@@ -40,7 +42,7 @@ class UserManager: UserManaging {
         }
         GuardianAPI.verify(urlString: loginCheckPointModel.verificationUrl.absoluteString) { [weak self] result in
             completion(result.map { verifyResponse in
-                self?.save(with: verifyResponse)
+                verifyResponse.saveToUserDefaults()
                 self?.token = verifyResponse.token
                 return verifyResponse.user
             })
@@ -83,18 +85,18 @@ class UserManager: UserManaging {
     }
 
     // MARK: User Defaults
-    func save<T: UserDefaulting>(with response: T) {
-        let encoder = JSONEncoder()
-        do {
-            let encoded = try encoder.encode(response)
-            let defaults = UserDefaults.standard
-            defaults.set(encoded, forKey: T.userDefaultsKey)
-            defaults.synchronize()
-
-        } catch {
-            print(error) // TODO: Handle this
-        }
-    }
+//    func save<T: UserDefaulting>(with response: T) {
+//        let encoder = JSONEncoder()
+//        do {
+//            let encoded = try encoder.encode(response)
+//            let defaults = UserDefaults.standard
+//            defaults.set(encoded, forKey: T.userDefaultsKey)
+//            defaults.synchronize()
+//
+//        } catch {
+//            print(error) // TODO: Handle this
+//        }
+//    }
 
     // TODO: Make these 2 functions generic.
     //    func fetchDevice() -> Bool {

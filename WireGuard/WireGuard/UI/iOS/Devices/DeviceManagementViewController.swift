@@ -27,5 +27,10 @@ class DeviceManagementViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
+    }
+
+    func setupNavigationBar() {
+        navigationItem.title = "My devices"
     }
 }

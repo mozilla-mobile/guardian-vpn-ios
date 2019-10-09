@@ -7,7 +7,7 @@ import UIKit
 class NavigationCoordinator: Navigating {
 
     let dependencyProvider: DependencyProviding
-    let userManager = UserManager.sharedManager
+    let userManager = AccountManager.sharedManager
     var currentViewController: UIViewController?
 
     init(dependencyProvider: DependencyProviding) {
@@ -17,7 +17,8 @@ class NavigationCoordinator: Navigating {
     func rootViewController() -> UIViewController {
         if let verifyResponse = VerifyResponse.fetchFromUserDefaults(),
             let device = Device.fetchFromUserDefaults() {
-            userManager.setup(with: verifyResponse, device: device)
+            let account = Account.init(user: verifyResponse.user, token: verifyResponse.token, device: device)
+//            userManager.setup(with: verifyResponse, device: device)
 //        }
 //        if userManager.fetchSavedToken() {
 //            userManager.fetchDevice()

@@ -7,11 +7,11 @@ class LocationVPNViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
-    private let userManager: UserManaging
+    private let userManager: AccountManaging
     private var dataSource: LocationsVPNDataSourceAndDelegate?
     private var countries: [VPNCountry]?
 
-    init(countries: [VPNCountry]? = nil, userManager: UserManaging = UserManager.sharedManager) {
+    init(countries: [VPNCountry]? = nil, userManager: AccountManaging = AccountManager.sharedManager) {
         self.userManager = userManager
         self.countries = countries
         super.init(nibName: String(describing: LocationVPNViewController.self), bundle: Bundle.main)
