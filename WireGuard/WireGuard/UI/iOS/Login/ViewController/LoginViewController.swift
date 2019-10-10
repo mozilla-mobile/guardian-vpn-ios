@@ -26,10 +26,11 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
-        userManager.retrieveUserLoginInformation { [weak self] result in
+        accountManager.login { [weak self] result in
             switch result {
             case .success(let checkPointModel):
                 DispatchQueue.main.async {
+                    self?.verificationURL = checkPointModel.verificationUrl
                     let urlRequest = URLRequest(url: checkPointModel.loginUrl)
                     self?.webView.load(urlRequest)
                 }
@@ -40,20 +41,41 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        let urlContainsSuccess = webView.url?.absoluteString.contains(successfulLoginString) ?? false
-        if urlContainsSuccess,
-            userManager.loginCheckPointModel != nil {
-            userManager.verifyAfterLogin { [weak self] result in
-                switch result {
-                case .success:
-                    self?.userManager.addDevice { _ in } // TODO: Delete
-                    DispatchQueue.main.async {
-                        self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
-                    }
-
-                case .failure(let error):
-                    print(error) // handle this!
+        if let urlString = webView.url?.absoluteString, urlString.contains(successfulLoginString) {
+            setupAccount { [weak self] result in
+                if case .failure(let error) = result {
+                    print(error) //handle this
+                    return
                 }
+                self?.accountManager.retrieveVPNServers { _ in }
+                DispatchQueue.main.async {
+                    self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
+                }
+            }
+        }
+    }
+
+    private func setupAccount(completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let verificationURL = verificationURL else {
+            completion(.failure(GuardianFailReason.loginError))
+            return
+        }
+        accountManager.verify(url: verificationURL) { [weak self] result in
+            do {
+                let verification = try result.get()
+                self?.accountManager.addDevice { deviceResult in
+                    switch deviceResult {
+                    case .success(let device):
+                        self?.accountManager.set(with: Account.init(user: verification.user,
+                                                                    token: verification.token,
+                                                                    device: device))
+                        completion(.success(()))
+                    case .failure(let deviceError):
+                        completion(.failure(deviceError))
+                    }
+                }
+            } catch {
+                completion(.failure(error))
             }
         }
     }
