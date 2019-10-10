@@ -9,7 +9,6 @@ class LocationVPNViewController: UIViewController {
 
     private let accountManager: AccountManaging
     private var dataSource: LocationsVPNDataSourceAndDelegate?
-    private var countries: [VPNCountry]?
 
     init(accountManager: AccountManaging = AccountManager.sharedManager) {
         self.accountManager = accountManager
@@ -25,7 +24,7 @@ class LocationVPNViewController: UIViewController {
         setupNavigationBar()
         styleViews()
 
-        guard let countries = countries else {
+        guard let countries = accountManager.account?.availableServers else {
             getVPNServerList()
             return
         }

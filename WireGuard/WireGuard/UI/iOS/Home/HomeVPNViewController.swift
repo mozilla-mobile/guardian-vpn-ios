@@ -12,7 +12,6 @@ class HomeVPNViewController: UIViewController {
 
     private let accountManager: AccountManaging
     private weak var coordinatorDelegate: Navigating?
-    private var countries: [VPNCountry]?
 
     init(accountManager: AccountManaging, coordinatorDelegate: Navigating) {
         self.accountManager = accountManager
