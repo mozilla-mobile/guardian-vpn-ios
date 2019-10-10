@@ -10,10 +10,11 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
 
     @IBOutlet var webView: WKWebView!
     private weak var coordinatorDelegate: Navigating?
-    private let userManager: AccountManaging
+    private let accountManager: AccountManaging
+    private var verificationURL: URL?
 
-    init(userManager: AccountManaging, coordinatorDelegate: Navigating) {
-        self.userManager = userManager
+    init(accountManager: AccountManaging, coordinatorDelegate: Navigating) {
+        self.accountManager = accountManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: LoginViewController.self), bundle: Bundle.main)
     }
@@ -49,6 +50,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
                     DispatchQueue.main.async {
                         self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
                     }
+
                 case .failure(let error):
                     print(error) // handle this!
                 }

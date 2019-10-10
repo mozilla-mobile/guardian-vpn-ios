@@ -6,7 +6,7 @@ import Foundation
 enum NavigationAction {
     case loginSucceeded
     case loginFailed
-    case vpnNewSelection([VPNCountry]?)
+    case vpnNewSelection
 }
 
 protocol Navigating: class {

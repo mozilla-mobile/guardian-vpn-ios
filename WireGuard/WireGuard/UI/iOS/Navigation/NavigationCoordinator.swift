@@ -1,13 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
-import Foundation
 import UIKit
 
 class NavigationCoordinator: Navigating {
 
     let dependencyProvider: DependencyProviding
-    let userManager = AccountManager.sharedManager
     var currentViewController: UIViewController?
 
     init(dependencyProvider: DependencyProviding) {
@@ -30,6 +28,10 @@ class NavigationCoordinator: Navigating {
             currentViewController = loginViewController
             return loginViewController
         }
+
+        let loadingViewController = LoadingViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
+        currentViewController = loadingViewController
+        return loadingViewController
     }
 
     // MARK: <NavigationProtocol>
@@ -39,8 +41,8 @@ class NavigationCoordinator: Navigating {
             navigateToHomeVPN()
         case .loginFailed:
             navigateToLogin()
-        case .vpnNewSelection(let countries):
-            presentVPNLocationSelection(countries: countries)
+        case .vpnNewSelection:
+            presentVPNLocationSelection()
         }
     }
 
@@ -50,7 +52,7 @@ class NavigationCoordinator: Navigating {
     }
 
     private func navigateToLogin() {
-        currentViewController = LoginViewController(userManager: dependencyProvider.userManager, coordinatorDelegate: self)
+        currentViewController = LoginViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
         setKeyWindow(with: currentViewController!)
     }
 
@@ -63,7 +65,7 @@ class NavigationCoordinator: Navigating {
     }
 
     private var tabBarViewControllers: [UIViewController] {
-        let homeViewController = HomeVPNViewController(userManager: dependencyProvider.userManager, coordinatorDelegate: self)
+        let homeViewController = HomeVPNViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
         return [homeViewController]
     }
 

@@ -7,13 +7,12 @@ class LocationVPNViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
-    private let userManager: AccountManaging
+    private let accountManager: AccountManaging
     private var dataSource: LocationsVPNDataSourceAndDelegate?
     private var countries: [VPNCountry]?
 
-    init(countries: [VPNCountry]? = nil, userManager: AccountManaging = AccountManager.sharedManager) {
-        self.userManager = userManager
-        self.countries = countries
+    init(accountManager: AccountManaging = AccountManager.sharedManager) {
+        self.accountManager = accountManager
         super.init(nibName: String(describing: LocationVPNViewController.self), bundle: Bundle.main)
     }
 
@@ -51,7 +50,7 @@ class LocationVPNViewController: UIViewController {
     }
 
     private func getVPNServerList() {
-        userManager.retrieveVPNServers { [weak self] result in
+        accountManager.retrieveVPNServers { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 do {

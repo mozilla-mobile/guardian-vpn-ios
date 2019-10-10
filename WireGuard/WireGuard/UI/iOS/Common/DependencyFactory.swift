@@ -6,7 +6,7 @@ import Foundation
 class DependencyFactory: DependencyProviding {
     static let sharedFactory = DependencyFactory()
 
-    var userManager: AccountManaging {
+    var accountManager: AccountManaging {
         return user
     }
 
