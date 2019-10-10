@@ -81,7 +81,7 @@ class HomeVPNViewController: UIViewController {
         UIView.animate(withDuration: 0.3, animations: {
             self.vpnSelectionView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }, completion: { _ in
-            self.coordinatorDelegate?.navigate(after: .vpnNewSelection(self.countries))
+            self.coordinatorDelegate?.navigate(after: .vpnNewSelection)
             UIView.animate(withDuration: 0.7,
                            delay: 0,
                            usingSpringWithDamping: 0.4,

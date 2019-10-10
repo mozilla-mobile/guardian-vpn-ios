@@ -56,8 +56,8 @@ class NavigationCoordinator: Navigating {
         setKeyWindow(with: currentViewController!)
     }
 
-    private func presentVPNLocationSelection(countries: [VPNCountry]? = nil) {
-        let locationVPNVC = LocationVPNViewController(countries: countries, userManager: dependencyProvider.userManager)
+    private func presentVPNLocationSelection() {
+        let locationVPNVC = LocationVPNViewController(accountManager: dependencyProvider.accountManager)
         let navController = UINavigationController(rootViewController: locationVPNVC)
         navController.navigationBar.barTintColor = UIColor.backgroundOffWhite
         navController.navigationBar.tintColor = UIColor.guardianBlack
