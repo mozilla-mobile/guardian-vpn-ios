@@ -3,8 +3,7 @@
 
 import Foundation
 
-struct Account {
-    var devices: [Device]?
+class Account {
     var currentDevice: Device
     var user: User
     var token: String
