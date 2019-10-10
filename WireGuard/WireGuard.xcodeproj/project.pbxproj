@@ -198,12 +198,12 @@
 		6FFA5DA42197085D0001E2F7 /* ActivateOnDemandOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFA5DA32197085D0001E2F7 /* ActivateOnDemandOption.swift */; };
 		6FFACD2021E4D8D500E9A2A5 /* ParseError+WireGuardAppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFACD1E21E4D89600E9A2A5 /* ParseError+WireGuardAppError.swift */; };
 		F40831CC233CF5BF00A60FCA /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40831CB233CF5BE00A60FCA /* SafariServices.framework */; };
-		F40831CF233CFA2000A60FCA /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40831CE233CFA2000A60FCA /* UserManager.swift */; };
+		F40831CF233CFA2000A60FCA /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40831CE233CFA2000A60FCA /* AccountManager.swift */; };
 		F40831D1233CFD5600A60FCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40831D0233CFD5600A60FCA /* User.swift */; };
 		F40831D4233D04B600A60FCA /* GuardianAPIDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */; };
 		F42A23032347D20800763B0D /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23022347D20800763B0D /* DependencyFactory.swift */; };
 		F42A23052347D22100763B0D /* DependencyProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23042347D22100763B0D /* DependencyProviding.swift */; };
-		F42A23072347D37F00763B0D /* UserManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23062347D37F00763B0D /* UserManaging.swift */; };
+		F42A23072347D37F00763B0D /* AccountManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23062347D37F00763B0D /* AccountManaging.swift */; };
 		F43DFC07234BB32C003EA64A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC05234BB32C003EA64A /* LoadingViewController.swift */; };
 		F43DFC08234BB32C003EA64A /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F43DFC06234BB32C003EA64A /* LoadingViewController.xib */; };
 		F43DFC0B234D0B5C003EA64A /* TunnelConfigurationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */; };
@@ -283,6 +283,7 @@
 		F499C0F9234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */; };
 		F499C0FB234E41B800126CDA /* DeviceLimitReachedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */; };
 		F499C0FD234E490600126CDA /* DeviceLimitReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */; };
+		F499C0FF234E644600126CDA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0FE234E644600126CDA /* Account.swift */; };
 		F4D150B1234517D800739CDA /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B0234517D800739CDA /* Data+JSON.swift */; };
 		F4D150B323451DC900739CDA /* GuardianURLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */; };
 		F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B423453F9900739CDA /* CityVPNCell.swift */; };
@@ -527,12 +528,12 @@
 		6FFA5DA32197085D0001E2F7 /* ActivateOnDemandOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateOnDemandOption.swift; sourceTree = "<group>"; };
 		6FFACD1E21E4D89600E9A2A5 /* ParseError+WireGuardAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParseError+WireGuardAppError.swift"; sourceTree = "<group>"; };
 		F40831CB233CF5BE00A60FCA /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		F40831CE233CFA2000A60FCA /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		F40831CE233CFA2000A60FCA /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		F40831D0233CFD5600A60FCA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPIDateFormatter.swift; sourceTree = "<group>"; };
 		F42A23022347D20800763B0D /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
-		F42A23062347D37F00763B0D /* UserManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManaging.swift; sourceTree = "<group>"; };
+		F42A23062347D37F00763B0D /* AccountManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManaging.swift; sourceTree = "<group>"; };
 		F43DFC05234BB32C003EA64A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F43DFC06234BB32C003EA64A /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfigurationBuilder.swift; sourceTree = "<group>"; };
@@ -589,6 +590,7 @@
 		F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceLimitReachedView.xib; sourceTree = "<group>"; };
 		F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLimitReachedView.swift; sourceTree = "<group>"; };
+		F499C0FE234E644600126CDA /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		F4D150B0234517D800739CDA /* Data+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JSON.swift"; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
@@ -1025,10 +1027,11 @@
 		F45D7099233D380A00871447 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				F40831CE233CFA2000A60FCA /* UserManager.swift */,
+				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
 				F40831D0233CFD5600A60FCA /* User.swift */,
 				F45D7097233D34B100871447 /* VerifyResponse.swift */,
-				F42A23062347D37F00763B0D /* UserManaging.swift */,
+				F42A23062347D37F00763B0D /* AccountManaging.swift */,
+				F499C0FE234E644600126CDA /* Account.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1885,6 +1888,7 @@
 				F4D150C023464DE300739CDA /* CountryVPNHeaderView.swift in Sources */,
 				F45D70AE23423C8C00871447 /* VPNToggleView.swift in Sources */,
 				6F693A562179E556008551C1 /* Endpoint.swift in Sources */,
+				F499C0FF234E644600126CDA /* Account.swift in Sources */,
 				6FDEF7E62185EFB200D8FBF6 /* QRScanViewController.swift in Sources */,
 				6FDB6D18224CC05A00EE4BC3 /* LogViewController.swift in Sources */,
 				6FFA5D952194454A0001E2F7 /* NETunnelProviderProtocol+Extension.swift in Sources */,
@@ -1933,7 +1937,7 @@
 				F43DFC07234BB32C003EA64A /* LoadingViewController.swift in Sources */,
 				F499C0F2234E29B300126CDA /* DeviceManagementViewController.swift in Sources */,
 				F45D70AB233E921900871447 /* GuardianTabBarController.swift in Sources */,
-				F42A23072347D37F00763B0D /* UserManaging.swift in Sources */,
+				F42A23072347D37F00763B0D /* AccountManaging.swift in Sources */,
 				F43DFC14234E436E003EA64A /* DeviceKeys.swift in Sources */,
 				6F0F44C9222D55BB00B0FF04 /* TextCell.swift in Sources */,
 				F45D7098233D34B100871447 /* VerifyResponse.swift in Sources */,
@@ -1947,7 +1951,7 @@
 				6FDEF802218646BA00D8FBF6 /* ZipArchive.swift in Sources */,
 				F499C0F9234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift in Sources */,
 				5F45419021C2D53800994C13 /* SwitchCell.swift in Sources */,
-				F40831CF233CFA2000A60FCA /* UserManager.swift in Sources */,
+				F40831CF233CFA2000A60FCA /* AccountManager.swift in Sources */,
 				6BD5C97B220D1AE200784E08 /* key.c in Sources */,
 				F43DFC12234E4230003EA64A /* CredentialsStore.swift in Sources */,
 				F4D150B323451DC900739CDA /* GuardianURLRequestBuilder.swift in Sources */,

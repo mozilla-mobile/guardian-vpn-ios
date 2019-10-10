@@ -10,15 +10,13 @@ class HomeVPNViewController: UIViewController {
     @IBOutlet var selectConnectionLabel: UILabel!
     @IBOutlet var vpnSelectionView: CurrentVPNSelectorView!
 
-    private let userManager: UserManaging
+    private let accountManager: AccountManaging
     private weak var coordinatorDelegate: Navigating?
-    private var countries: [VPNCountry]?
 
-    init(userManager: UserManaging, coordinatorDelegate: Navigating) {
-        self.userManager = userManager
+    init(accountManager: AccountManaging, coordinatorDelegate: Navigating) {
+        self.accountManager = accountManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: HomeVPNViewController.self), bundle: Bundle.main)
-        self.retrieveVPNServerList()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -82,7 +80,7 @@ class HomeVPNViewController: UIViewController {
         UIView.animate(withDuration: 0.3, animations: {
             self.vpnSelectionView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }, completion: { _ in
-            self.coordinatorDelegate?.navigate(after: .vpnNewSelection(self.countries))
+            self.coordinatorDelegate?.navigate(after: .vpnNewSelection)
             UIView.animate(withDuration: 0.7,
                            delay: 0,
                            usingSpringWithDamping: 0.4,
@@ -92,18 +90,5 @@ class HomeVPNViewController: UIViewController {
                             self.vpnSelectionView.transform = CGAffineTransform.identity
             }, completion: nil)
         })
-    }
-
-    private func retrieveVPNServerList() {
-        userManager.retrieveVPNServers { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                do {
-                    self.countries = try result.get()
-                } catch {
-                    print(error)
-                }
-            }
-        }
     }
 }

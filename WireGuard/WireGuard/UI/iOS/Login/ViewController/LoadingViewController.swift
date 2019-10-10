@@ -7,15 +7,15 @@ class LoadingViewController: UIViewController {
 
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
-    let userManager: UserManaging
+    let accountManager: AccountManaging
     weak var coordinatorDelegate: Navigating?
 
-    init(userManager: UserManaging, coordinatorDelegate: Navigating) {
-        self.userManager = userManager
+    init(accountManager: AccountManaging, coordinatorDelegate: Navigating) {
+        self.accountManager = accountManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: LoadingViewController.self), bundle: Bundle.main)
 
-        userManager.accountInfo { [weak self] result in
+        accountManager.retrieveUser { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:

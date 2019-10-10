@@ -4,5 +4,5 @@
 import Foundation
 
 protocol DependencyProviding: class {
-    var userManager: UserManaging { get }
+    var accountManager: AccountManaging { get }
 }

@@ -6,13 +6,13 @@ import Foundation
 class DependencyFactory: DependencyProviding {
     static let sharedFactory = DependencyFactory()
 
-    var userManager: UserManaging {
+    var accountManager: AccountManaging {
         return user
     }
 
-    private let user: UserManaging
+    private let user: AccountManaging
 
     init() {
-        self.user = UserManager.sharedManager
+        self.user = AccountManager.sharedManager
     }
 }
