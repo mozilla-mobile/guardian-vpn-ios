@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
-import Foundation
 import UIKit
 
 // TODO: This class is getting too big. We need to break it up among it's responsibilities.
@@ -9,87 +8,73 @@ import UIKit
 class AccountManager: AccountManaging {
     static let sharedManager = AccountManager()
     let credentialsStore = CredentialsStore.sharedStore
+    private(set) var account: Account?
 
-    var loginCheckPointModel: LoginCheckpointModel? {
-        return loginModel
+    func set(with account: Account) {
+        self.account = account
+
+        retrieveUser { _ in }
+        retrieveVPNServers { _ in }
     }
 
-    private var account: Account?
-
-    var currentDevice: Device? {
-        return device
+    func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
+        GuardianAPI.initiateUserLogin(completion: completion)
     }
 
-    private var token: String?
-    private(set) var currentUser: User? // temporary?
-    private(set) var loginModel: LoginCheckpointModel? // temporary?
-    private(set) var device: Device? // temporary
-
-    //move these somewhere else
-    func setupAccount(with verifyResponse: VerifyResponse, device: Device) {
-        account = Account.init(user: verifyResponse.user, token: verifyResponse.token, device: device)
-//        account.currentDevice = device
-//        account.token = verifyResponse.token
-//        account.user = verifyResponse.user
-    }
-
-    func retrieveUserLoginInformation(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
-        GuardianAPI.initiateUserLogin { [weak self] result in
-            completion(result.map { loginCheckPointModel in
-                self?.loginModel = loginCheckPointModel
-                return loginCheckPointModel
-            })
-        }
-    }
-
-    func verifyAfterLogin(completion: @escaping (Result<User, Error>) -> Void) {
-        guard let loginCheckPointModel = loginCheckPointModel else {
-            completion(Result.failure(GuardianFailReason.loginError))
-            return
-        }
-        GuardianAPI.verify(urlString: loginCheckPointModel.verificationUrl.absoluteString) { [weak self] result in
+    func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
+        GuardianAPI.verify(urlString: url.absoluteString) { result in
             completion(result.map { verifyResponse in
                 verifyResponse.saveToUserDefaults()
-                self?.token = verifyResponse.token
-                return verifyResponse.user
+//                self?.account?.token = verifyResponse.token
+                return verifyResponse
             })
         }
     }
 
-    func accountInfo(completion: @escaping (Result<User, Error>) -> Void) {
-        guard let token = token else {
+    func retrieveUser(completion: @escaping (Result<User, Error>) -> Void) {
+        guard let account = account else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return // TODO: Handle this case?
         }
-        GuardianAPI.accountInfo(token: token) { [weak self] result in
+        GuardianAPI.accountInfo(token: account.token) { result in
             completion(result.map { user in
-                self?.currentUser = user
+                account.user = user
                 return user
             })
         }
     }
 
     func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
-        guard let token = token else {
+        guard let account = account else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return // TODO: Handle this case?
         }
-        GuardianAPI.availableServers(with: token, completion: completion)
+        GuardianAPI.availableServers(with: account.token) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                do {
+                    self.account?.availableServers = try result.get()
+                } catch {
+                    print(error)
+                }
+            }
+        }
     }
 
     func addDevice(completion: @escaping (Result<Device, Error>) -> Void) {
-        guard let token = token else {
+        guard let account = account else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return // TODO: Handle this case?
         }
 
-        let deviceBody: [String: Any] = ["name": UIDevice.current.name, "pubkey":  credentialsStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
+        let deviceBody: [String: Any] = ["name": UIDevice.current.name,
+                                         "pubkey":  credentialsStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
 
         do {
             let body = try JSONSerialization.data(withJSONObject: deviceBody)
-            GuardianAPI.addDevice(with: token, body: body) { [weak self] result in
+            GuardianAPI.addDevice(with: account.token, body: body) { [weak self] result in
                 completion(result.map { device in
-                    self?.device = device
+                    self?.account?.currentDevice = device
                     device.saveToUserDefaults()
                     return device
                 })
@@ -98,46 +83,4 @@ class AccountManager: AccountManaging {
             completion(Result.failure(GuardianFailReason.couldNotCreateBody))
         }
     }
-
-    // MARK: User Defaults
-//    func save<T: UserDefaulting>(with response: T) {
-//        let encoder = JSONEncoder()
-//        do {
-//            let encoded = try encoder.encode(response)
-//            let defaults = UserDefaults.standard
-//            defaults.set(encoded, forKey: T.userDefaultsKey)
-//            defaults.synchronize()
-//
-//        } catch {
-//            print(error) // TODO: Handle this
-//        }
-//    }
-
-    // TODO: Make these 2 functions generic.
-    //    func fetchDevice() -> Bool {
-    //        if let decoded = UserDefaults.standard.object(forKey: Device.userDefaultsKey) as? Data {
-    //            let decoder = JSONDecoder()
-//            if let response = try? decoder.decode(Device.self, from: decoded) {
-//                currentDevice = response
-//                return true
-//            }
-//            return false
-//        } else {
-//            return false
-//        }
-//    }
-//
-//    func fetchSavedToken() -> Bool {
-//        if let decoded = UserDefaults.standard.object(forKey: VerifyResponse.userDefaultsKey) as? Data {
-//            let decoder = JSONDecoder()
-//            if let response = try? decoder.decode(VerifyResponse.self, from: decoded) {
-//                token = response.token
-//                currentUser = response.user
-//                return true
-//            }
-//            return false
-//        } else {
-//            return false
-//        }
-//    }
 }

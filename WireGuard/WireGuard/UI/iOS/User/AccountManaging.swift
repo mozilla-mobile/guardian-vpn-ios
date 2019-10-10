@@ -4,12 +4,12 @@
 import Foundation
 
 protocol AccountManaging {
-    var loginCheckPointModel: LoginCheckpointModel? { get }
-    var currentDevice: Device? { get }
+    var account: Account? { get }
 
-    func retrieveUserLoginInformation(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
-    func verifyAfterLogin(completion: @escaping (Result<User, Error>) -> Void)
-    func accountInfo(completion: @escaping (Result<User, Error>) -> Void)
+    func set(with: Account)
+    func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
+    func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void)
+    func retrieveUser(completion: @escaping (Result<User, Error>) -> Void)
     func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void)
     func addDevice(completion: @escaping (Result<Device, Error>) -> Void)
 }
