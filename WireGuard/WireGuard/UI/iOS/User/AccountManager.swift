@@ -13,7 +13,6 @@ class AccountManager: AccountManaging {
     func set(with account: Account) {
         self.account = account
 
-        retrieveUser { _ in }
         retrieveVPNServers { _ in }
     }
 
