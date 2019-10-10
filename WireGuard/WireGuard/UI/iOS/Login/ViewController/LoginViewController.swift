@@ -47,7 +47,6 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
                     print(error) //handle this
                     return
                 }
-                self?.accountManager.retrieveVPNServers { _ in }
                 DispatchQueue.main.async {
                     self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
                 }
@@ -63,12 +62,10 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
         accountManager.verify(url: verificationURL) { [weak self] result in
             do {
                 let verification = try result.get()
+                self?.accountManager.set(with: Account.init(user: verification.user, token: verification.token))
                 self?.accountManager.addDevice { deviceResult in
                     switch deviceResult {
                     case .success(let device):
-                        self?.accountManager.set(with: Account.init(user: verification.user,
-                                                                    token: verification.token,
-                                                                    device: device))
                         completion(.success(()))
                     case .failure(let deviceError):
                         completion(.failure(deviceError))

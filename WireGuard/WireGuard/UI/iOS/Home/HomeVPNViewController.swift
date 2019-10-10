@@ -64,14 +64,7 @@ class HomeVPNViewController: UIViewController {
 
     @objc func toggleVPN() {
         if vpnToggleView.vpnSwitch.isOn {
-//            let first = countries?.first
-//            let packetTunnelProvider = NEPacketTunnelProvider.init()
-//            let settings = NETunnelNetworkSettings.ini
-//            packetTunnelProvider.setTunnelNetworkSettings(<#T##tunnelNetworkSettings: NETunnelNetworkSettings?##NETunnelNetworkSettings?#>, completionHandler: <#T##((Error?) -> Void)?##((Error?) -> Void)?##(Error?) -> Void#>)
-//            let peerConfig = PeerConfiguration.init(publicKey: <#T##Data#>)
-//            let interface = InterfaceConfiguration.init(privateKey: <#T##Data#>)
-//            let tunnelConfiguration = TunnelConfiguration.init(name: <#T##String?#>, interface: interface, peers: <#T##[PeerConfiguration]#>)
-//            let tunnel = NETunnelProviderProtocol.init(tunnelConfiguration: tunnelConfiguration)
+
         }
     }
 

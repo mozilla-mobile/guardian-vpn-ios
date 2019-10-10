@@ -2,15 +2,36 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
+import NetworkExtension
 
 class LocationsVPNDataSourceAndDelegate: NSObject {
     let countries: [VPNCountry]
     private var selectedIndexPath: IndexPath?
 
+    // TODO: Dependency Inject
+//    private var tunnelsManager: TunnelsManager?
+    private var accountManager = AccountManager.sharedManager
+    private let tunnelsManager = GuardianTunnelManager()
+
     init(countries: [VPNCountry], tableView: UITableView) {
         self.countries = countries
         super.init()
         setup(with: tableView)
+        tunnelsManager.loadTunnels()
+
+//        if tunnelsManager == nil {
+//            TunnelsManager.create { [weak self] result in
+//                guard let self = self else { return }
+//
+//                switch result {
+//                case .failure(let error):
+//                    print("fail")
+//                case .success(let tunnelsManager):
+//                    self.tunnelsManager = tunnelsManager
+//                    print("success")
+//                }
+//            }
+//        }
     }
 
     private func setup(with tableView: UITableView) {
@@ -50,6 +71,57 @@ extension LocationsVPNDataSourceAndDelegate: UITableViewDataSource {
         if indexPath != selectedIndexPath {
             selectedIndexPath = indexPath
 
+            if let device = accountManager.account?.currentDevice {
+                let city = countries[indexPath.section].cities[indexPath.row]
+                let privateKey = accountManager.credentialsStore.deviceKeys.devicePrivateKey
+
+//                let tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: privateKey)
+                tunnelsManager.createTunnel(device: device, city: city, privateKey: privateKey)
+//                func someFunc() {
+//                    let tunnelProviderManager = NETunnelProviderManager()
+//                    tunnelProviderManager.setTunnelConfiguration(tunnelConfiguration)
+//                    tunnelProviderManager.isEnabled = true
+//                    let tunnel = TunnelContainer(tunnel: tunnelProviderManager)
+//                    do {
+//                        try (tunnelProviderManager.connection as? NETunnelProviderSession)?.startTunnel()
+//                    } catch {
+//                        print(error)
+//                    }
+//                }
+//
+//                someFunc()
+//                guard let ip4Address = city.servers.randomElement()?.ipv4AddrIn else { return }
+//
+//                let tunnelProviderManager = NETunnelProviderManager()
+//                let tunnelProviderProtocol = NETunnelProviderProtocol()
+//
+//                tunnelProviderProtocol.providerBundleIdentifier = "Connected.Guardian" // TODO: Change this
+//                tunnelProviderProtocol.serverAddress = ip4Address
+//                tunnelProviderProtocol.providerConfiguration?["WgQuickConfig"] = tunnelConfiguration.asWgQuickConfig()
+//
+//                tunnelProviderManager.protocolConfiguration = tunnelProviderProtocol
+//                tunnelProviderManager.localizedDescription = "Firefox Guardian"
+//                tunnelProviderManager.isEnabled = true
+//                tunnelProviderManager.saveToPreferences { error in
+//                    guard error == nil else {
+//                        print("Error: \(error!)")
+//                        return
+//                    }
+////                    guard let self = self else { return }
+//                    do {
+//                        try (tunnelProviderManager.connection as? NETunnelProviderSession)?.startTunnel()
+//                    } catch let error {
+//                        print("Error: \(error)")
+//                    }
+//                }
+//
+//                tunnelsManager?.add(tunnelConfiguration: tunnelConfiguration, onDemandOption: .anyInterface(.anySSID)) { [weak self] result  in
+//                    if case .failure(let error) = result {
+//                        print(error)
+//                        return
+//                    }
+//                }
+            }
             tableView.reloadData()
         }
     }
@@ -74,3 +146,6 @@ extension LocationsVPNDataSourceAndDelegate: UITableViewDelegate {
         return CountryVPNHeaderView.height()
     }
 }
+
+
+

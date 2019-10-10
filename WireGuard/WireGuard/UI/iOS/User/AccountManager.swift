@@ -12,7 +12,6 @@ class AccountManager: AccountManaging {
 
     func set(with account: Account) {
         self.account = account
-
         retrieveVPNServers { _ in }
     }
 
@@ -24,7 +23,6 @@ class AccountManager: AccountManaging {
         GuardianAPI.verify(urlString: url.absoluteString) { result in
             completion(result.map { verifyResponse in
                 verifyResponse.saveToUserDefaults()
-//                self?.account?.token = verifyResponse.token
                 return verifyResponse
             })
         }

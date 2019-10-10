@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainVC = MainViewController()
         let dependencyProvider = DependencyFactory()
         navigationCoordinator = NavigationCoordinator(dependencyProvider: dependencyProvider)
-        window.rootViewController = navigationCoordinator!.rootViewController()
+        window.rootViewController = navigationCoordinator?.rootViewController()
         window.makeKeyAndVisible()
 
         self.mainVC = mainVC

@@ -10,11 +10,12 @@ class NavigationCoordinator: Navigating {
 
     init(dependencyProvider: DependencyProviding) {
         self.dependencyProvider = dependencyProvider
-        if let verification = VerifyResponse.fetchFromUserDefaults(),
-            let device = Device.fetchFromUserDefaults() {
+        if let verification = VerifyResponse.fetchFromUserDefaults() {
             dependencyProvider.accountManager.set(with: Account.init(user: verification.user,
-                                                                     token: verification.token,
-                                                                     device: device))
+                                                                     token: verification.token))
+            if let device = Device.fetchFromUserDefaults() {
+                dependencyProvider.accountManager.account?.currentDevice = device
+            }
         }
     }
 
