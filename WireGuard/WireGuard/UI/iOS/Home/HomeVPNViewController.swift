@@ -17,7 +17,6 @@ class HomeVPNViewController: UIViewController {
         self.accountManager = accountManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: HomeVPNViewController.self), bundle: Bundle.main)
-        self.retrieveVPNServerList()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -91,18 +90,5 @@ class HomeVPNViewController: UIViewController {
                             self.vpnSelectionView.transform = CGAffineTransform.identity
             }, completion: nil)
         })
-    }
-
-    private func retrieveVPNServerList() {
-        userManager.retrieveVPNServers { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                do {
-                    self.countries = try result.get()
-                } catch {
-                    print(error)
-                }
-            }
-        }
     }
 }
