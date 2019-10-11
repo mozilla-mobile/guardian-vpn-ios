@@ -44,6 +44,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
         if let urlString = webView.url?.absoluteString, urlString.contains(successfulLoginString) {
             setupAccount { [weak self] result in
                 if case .failure(let error) = result {
+                    self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
                     print(error) //handle this
                     return
                 }
