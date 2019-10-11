@@ -37,4 +37,12 @@ public struct VPNServer: Codable {
         case ipv4Gateway = "ipv4_gateway"
         case ipv6Gateway = "ipv6_gateway"
     }
+
+    var randomPort: Int? {
+        guard let range = portRanges.randomElement(),
+            let first = range.first,
+            let last = range.last
+            else { return nil }
+        return (first...last).randomElement()
+    }
 }

@@ -2,18 +2,16 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import Foundation
+import Network
 
 struct TunnelConfigurationBuilder {
-    public static func createTunnelConfiguration(device: Device, city: VPNCity) -> TunnelConfiguration {
-        let privateKey = Curve25519.generatePrivateKey()
-
+    public static func createTunnelConfiguration(device: Device, city: VPNCity, privateKey: Data) -> TunnelConfiguration? {
         // name
         let name = city.name
 
         // interface
         var interface = InterfaceConfiguration(privateKey: privateKey)
-        interface.listenPort = 53 // Does this come from the server?
-        let ipv4Address = IPAddressRange(from: device.ipv4Address)!
+        let ipv4Address = IPAddressRange(from: device.ipv4Address)! // TODO: Handle force unwrap, return nils
         let ipv6Address = IPAddressRange(from: device.ipv6Address)!
         interface.addresses = [ipv4Address, ipv6Address]
 
@@ -21,12 +19,16 @@ struct TunnelConfigurationBuilder {
         var peerConfigurations: [PeerConfiguration] = []
 
         for server in city.servers {
-            var peerConfiguration = PeerConfiguration(publicKey: server.publicKey.data(using: .utf8)!)
-            peerConfiguration.endpoint = Endpoint(from: server.ipv4AddrIn)
-            let serverIpv4Address = IPAddressRange(from: server.ipv4Gateway)!
-            let serverIpv6Address = IPAddressRange(from: server.ipv6Gateway)!
-            peerConfiguration.allowedIPs = [serverIpv4Address, serverIpv6Address]
+            var peerConfiguration = PeerConfiguration(publicKey: Data(base64Key: server.publicKey)!) // TODO: dont force unwrap
+            let endpoint = Endpoint(from: server.ipv4AddrIn + ":\(server.randomPort ?? 53)")
+            peerConfiguration.endpoint = endpoint
+            peerConfiguration.allowedIPs = [
+                IPAddressRange(address: IPv4Address("0.0.0.0")!, networkPrefixLength: 0),
+                IPAddressRange(address: IPv6Address("::")!, networkPrefixLength: 0)
+            ]
             peerConfigurations.append(peerConfiguration)
+            interface.dns = [ DNSServer(address: IPv4Address(server.ipv4Gateway)!),
+                              DNSServer(address: IPv6Address(server.ipv6Gateway)!) ]
         }
 
         return TunnelConfiguration(name: name, interface: interface, peers: peerConfigurations)

@@ -2,15 +2,38 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
+import NetworkExtension
 
 class LocationsVPNDataSourceAndDelegate: NSObject {
     let countries: [VPNCountry]
     private var selectedIndexPath: IndexPath?
 
+    // TODO: Dependency Inject
+    private var accountManager = AccountManager.sharedManager
+    private let tunnelsManager = GuardianTunnelManager()
+
     init(countries: [VPNCountry], tableView: UITableView) {
         self.countries = countries
         super.init()
         setup(with: tableView)
+
+        // TODO: Should we load tunnels here?
+
+//        tunnelsManager.loadTunnels()
+
+//        if tunnelsManager == nil {
+//            TunnelsManager.create { [weak self] result in
+//                guard let self = self else { return }
+//
+//                switch result {
+//                case .failure(let error):
+//                    print("fail")
+//                case .success(let tunnelsManager):
+//                    self.tunnelsManager = tunnelsManager
+//                    print("success")
+//                }
+//            }
+//        }
     }
 
     private func setup(with tableView: UITableView) {
@@ -50,6 +73,11 @@ extension LocationsVPNDataSourceAndDelegate: UITableViewDataSource {
         if indexPath != selectedIndexPath {
             selectedIndexPath = indexPath
 
+            if let device = accountManager.account?.currentDevice {
+                let city = countries[indexPath.section].cities[indexPath.row]
+                let privateKey = accountManager.credentialsStore.deviceKeys.devicePrivateKey
+                tunnelsManager.createTunnel(device: device, city: city, privateKey: privateKey)
+            }
             tableView.reloadData()
         }
     }

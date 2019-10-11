@@ -34,6 +34,7 @@ class LocationVPNViewController: UIViewController {
     }
 
     func styleViews() {
+        view.backgroundColor = UIColor.backgroundOffWhite
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.backgroundColor = UIColor.backgroundOffWhite
     }

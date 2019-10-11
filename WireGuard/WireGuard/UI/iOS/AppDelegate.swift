@@ -28,15 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainVC = MainViewController()
         let dependencyProvider = DependencyFactory()
         navigationCoordinator = NavigationCoordinator(dependencyProvider: dependencyProvider)
-        window.rootViewController = navigationCoordinator!.rootViewController()
+        window.rootViewController = navigationCoordinator?.rootViewController()
         window.makeKeyAndVisible()
 
         self.mainVC = mainVC
-
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Family: \(family) Font names: \(names)")
-        }
 
         return true
     }
