@@ -660,16 +660,16 @@
 		5F4541A721C44F5B00994C13 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5F45419F21C2D6B700994C13 /* TunnelListCell.swift */,
-				5F45418B21C2D48200994C13 /* TunnelEditKeyValueCell.swift */,
-				5F45418F21C2D53800994C13 /* SwitchCell.swift */,
-				5F45419721C2D60500994C13 /* KeyValueCell.swift */,
+				5F4541A121C2D6DF00994C13 /* BorderedTextButton.swift */,
 				5F4541A521C4449E00994C13 /* ButtonCell.swift */,
 				5F45419121C2D55800994C13 /* CheckmarkCell.swift */,
-				5F4541A121C2D6DF00994C13 /* BorderedTextButton.swift */,
 				6F8F0D7322267AD2000E8335 /* ChevronCell.swift */,
-				6F0F44C8222D55BB00B0FF04 /* TextCell.swift */,
 				6F0F44CA222D55FD00B0FF04 /* EditableTextCell.swift */,
+				5F45419721C2D60500994C13 /* KeyValueCell.swift */,
+				5F45418F21C2D53800994C13 /* SwitchCell.swift */,
+				6F0F44C8222D55BB00B0FF04 /* TextCell.swift */,
+				5F45418B21C2D48200994C13 /* TunnelEditKeyValueCell.swift */,
+				5F45419F21C2D6B700994C13 /* TunnelListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -677,15 +677,15 @@
 		5F4541AC21C4720B00994C13 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6F7774E321718281006A79B3 /* TunnelsListTableViewController.swift */,
-				6F7774F221774263006A79B3 /* TunnelEditTableViewController.swift */,
-				6FDEF7E52185EFAF00D8FBF6 /* QRScanViewController.swift */,
-				6F628C40217F47DB003482A3 /* TunnelDetailTableViewController.swift */,
-				6FDEF805218725D200D8FBF6 /* SettingsTableViewController.swift */,
-				6F7774DF217181B1006A79B3 /* MainViewController.swift */,
-				6F8F0D7622267C57000E8335 /* SSIDOptionEditTableViewController.swift */,
-				6F9B8A8D223398610041B9C4 /* SSIDOptionDetailTableViewController.swift */,
 				6FDB6D16224CC04E00EE4BC3 /* LogViewController.swift */,
+				6F7774DF217181B1006A79B3 /* MainViewController.swift */,
+				6FDEF7E52185EFAF00D8FBF6 /* QRScanViewController.swift */,
+				6FDEF805218725D200D8FBF6 /* SettingsTableViewController.swift */,
+				6F9B8A8D223398610041B9C4 /* SSIDOptionDetailTableViewController.swift */,
+				6F8F0D7622267C57000E8335 /* SSIDOptionEditTableViewController.swift */,
+				6F628C40217F47DB003482A3 /* TunnelDetailTableViewController.swift */,
+				6F7774F221774263006A79B3 /* TunnelEditTableViewController.swift */,
+				6F7774E321718281006A79B3 /* TunnelsListTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -711,14 +711,14 @@
 		6F5D0C1B218352EF000F85AD /* WireGuardNetworkExtension */ = {
 			isa = PBXGroup;
 			children = (
+				6F5D0C1421832391000F85AD /* DNSResolver.swift */,
+				6FFA5D9F21958ECC0001E2F7 /* ErrorNotifier.swift */,
+				6F5D0C1E218352EF000F85AD /* Info.plist */,
 				6F5D0C1C218352EF000F85AD /* PacketTunnelProvider.swift */,
 				6F5D0C472183C6A3000F85AD /* PacketTunnelSettingsGenerator.swift */,
-				6F5D0C1421832391000F85AD /* DNSResolver.swift */,
-				6F5D0C1E218352EF000F85AD /* Info.plist */,
 				6F5D0C1F218352EF000F85AD /* WireGuardNetworkExtension_iOS.entitlements */,
 				6FB1BD9621D4BFE700A991BF /* WireGuardNetworkExtension_macOS.entitlements */,
 				6F5D0C3421839E37000F85AD /* WireGuardNetworkExtension-Bridging-Header.h */,
-				6FFA5D9F21958ECC0001E2F7 /* ErrorNotifier.swift */,
 			);
 			path = WireGuardNetworkExtension;
 			sourceTree = "<group>";
@@ -757,14 +757,14 @@
 		6F7774DD217181B1006A79B3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				6FB1BD5E21D2607A00A991BF /* macOS */,
-				6F7774DE217181B1006A79B3 /* iOS */,
-				6F628C3C217F09E9003482A3 /* TunnelViewModel.swift */,
 				6F8F0D7022258153000E8335 /* ActivateOnDemandViewModel.swift */,
-				6FBA103D21D6B6D70051C35F /* TunnelImporter.swift */,
 				6FBA103A21D6B4280051C35F /* ErrorPresenterProtocol.swift */,
-				6B62E45E220A6FA900EF34A6 /* PrivateDataConfirmation.swift */,
+				6F7774DE217181B1006A79B3 /* iOS */,
 				6F907C9B224663A2003CED21 /* LogViewHelper.swift */,
+				6FB1BD5E21D2607A00A991BF /* macOS */,
+				6B62E45E220A6FA900EF34A6 /* PrivateDataConfirmation.swift */,
+				6FBA103D21D6B6D70051C35F /* TunnelImporter.swift */,
+				6F628C3C217F09E9003482A3 /* TunnelViewModel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -772,26 +772,26 @@
 		6F7774DE217181B1006A79B3 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				F43DFC0C234D1356003EA64A /* Devices */,
-				F45D70FA23428DA900871447 /* LocationVPN */,
-				F45D709F233D3BB000871447 /* Navigation */,
-				F45D709C233D385D00871447 /* Home */,
-				F45D7099233D380A00871447 /* User */,
-				F4658549233BE9F50081D7D7 /* Extensions */,
-				F465853F233BB39C0081D7D7 /* Networking */,
-				F40831D2233D049F00A60FCA /* Common */,
-				F4658539233BB23D0081D7D7 /* Login */,
+				6F7774E0217181B1006A79B3 /* AppDelegate.swift */,
 				6FF4AC1E211EC472002C96EB /* Assets.xcassets */,
+				F40831D2233D049F00A60FCA /* Common */,
+				6F19D30322402B8700A126F2 /* ConfirmationAlertPresenter.swift */,
+				F43DFC0C234D1356003EA64A /* Devices */,
+				6F919EC2218A2AE90023B400 /* ErrorPresenter.swift */,
+				F4658549233BE9F50081D7D7 /* Extensions */,
+				F45D709C233D385D00871447 /* Home */,
+				6FF4AC23211EC472002C96EB /* Info.plist */,
 				6FF4AC20211EC472002C96EB /* LaunchScreen.storyboard */,
+				F45D70FA23428DA900871447 /* LocationVPN */,
+				F4658539233BB23D0081D7D7 /* Login */,
+				F45D709F233D3BB000871447 /* Navigation */,
+				F465853F233BB39C0081D7D7 /* Networking */,
+				6F29A94622787B1600DC6A6B /* QuickActionItem.swift */,
+				6F29A9422278518D00DC6A6B /* RecentTunnelsTracker.swift */,
+				5F45417C21C1B23600994C13 /* UITableViewCell+Reuse.swift */,
+				F45D7099233D380A00871447 /* User */,
 				5F4541A721C44F5B00994C13 /* View */,
 				5F4541AC21C4720B00994C13 /* ViewController */,
-				6F7774E0217181B1006A79B3 /* AppDelegate.swift */,
-				6F919EC2218A2AE90023B400 /* ErrorPresenter.swift */,
-				6F19D30322402B8700A126F2 /* ConfirmationAlertPresenter.swift */,
-				5F45417C21C1B23600994C13 /* UITableViewCell+Reuse.swift */,
-				6F29A9422278518D00DC6A6B /* RecentTunnelsTracker.swift */,
-				6F29A94622787B1600DC6A6B /* QuickActionItem.swift */,
-				6FF4AC23211EC472002C96EB /* Info.plist */,
 				6FF4AC482120B9E0002C96EB /* WireGuard.entitlements */,
 			);
 			path = iOS;
@@ -819,13 +819,13 @@
 		6F7774ED21722D0C006A79B3 /* Tunnel */ = {
 			isa = PBXGroup;
 			children = (
-				6F7774EE21722D97006A79B3 /* TunnelsManager.swift */,
-				6B707D8321F918D4000A8F73 /* TunnelConfiguration+UapiConfig.swift */,
 				6FFA5DA32197085D0001E2F7 /* ActivateOnDemandOption.swift */,
-				5F4541A821C451D100994C13 /* TunnelStatus.swift */,
-				6FB1017821C57DE600766195 /* MockTunnels.swift */,
-				6F7F7E5E21C7D74B00527607 /* TunnelErrors.swift */,
 				F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */,
+				6FB1017821C57DE600766195 /* MockTunnels.swift */,
+				6B707D8321F918D4000A8F73 /* TunnelConfiguration+UapiConfig.swift */,
+				6F7F7E5E21C7D74B00527607 /* TunnelErrors.swift */,
+				6F7774EE21722D97006A79B3 /* TunnelsManager.swift */,
+				5F4541A821C451D100994C13 /* TunnelStatus.swift */,
 			);
 			path = Tunnel;
 			sourceTree = "<group>";
@@ -995,12 +995,12 @@
 		F40831D2233D049F00A60FCA /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
+				F43DFC11234E4230003EA64A /* CredentialsStore.swift */,
 				F42A23022347D20800763B0D /* DependencyFactory.swift */,
 				F42A23042347D22100763B0D /* DependencyProviding.swift */,
-				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
-				F43DFC11234E4230003EA64A /* CredentialsStore.swift */,
 				F43DFC13234E436E003EA64A /* DeviceKeys.swift */,
+				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
+				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1016,13 +1016,13 @@
 			isa = PBXGroup;
 			children = (
 				F43DFC0D234D1361003EA64A /* Device.swift */,
-				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
-				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
+				F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */,
+				F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */,
+				F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */,
 				F499C0F4234E301900126CDA /* DeviceManagementCell.swift */,
 				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
-				F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */,
-				F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */,
-				F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */,
+				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
+				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -1030,11 +1030,11 @@
 		F45D7099233D380A00871447 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				F499C0FE234E644600126CDA /* Account.swift */,
 				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
+				F42A23062347D37F00763B0D /* AccountManaging.swift */,
 				F40831D0233CFD5600A60FCA /* User.swift */,
 				F45D7097233D34B100871447 /* VerifyResponse.swift */,
-				F42A23062347D37F00763B0D /* AccountManaging.swift */,
-				F499C0FE234E644600126CDA /* Account.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1042,9 +1042,9 @@
 		F45D709C233D385D00871447 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F45D70AC23423C6F00871447 /* Views */,
 				F45D70A2233D3D6C00871447 /* HomeVPNViewController.swift */,
 				F45D70A3233D3D6C00871447 /* HomeVPNViewController.xib */,
+				F45D70AC23423C6F00871447 /* Views */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1052,9 +1052,9 @@
 		F45D709F233D3BB000871447 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F45D70AA233E921900871447 /* GuardianTabBarController.swift */,
 				F45D70A0233D3BC000871447 /* Navigating.swift */,
 				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
-				F45D70AA233E921900871447 /* GuardianTabBarController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1062,10 +1062,10 @@
 		F45D70AC23423C6F00871447 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F45D70AD23423C8C00871447 /* VPNToggleView.swift */,
-				F45D70AF23423C9800871447 /* VPNToggleView.xib */,
 				F45D70F423427D1F00871447 /* CurrentVPNSelectorView.swift */,
 				F45D70F723427D2F00871447 /* CurrentVPNSelectorView.xib */,
+				F45D70AD23423C8C00871447 /* VPNToggleView.swift */,
+				F45D70AF23423C9800871447 /* VPNToggleView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1101,11 +1101,11 @@
 		F45D70FA23428DA900871447 /* LocationVPN */ = {
 			isa = PBXGroup;
 			children = (
-				F4D150C623467C9900739CDA /* Models */,
-				F4D150C523467C8B00739CDA /* Views */,
+				F4D150B92345438500739CDA /* LocationsVPNDataSourceAndDelegate.swift */,
 				F45D70FB23428DCE00871447 /* LocationVPNViewController.swift */,
 				F45D70FC23428DCE00871447 /* LocationVPNViewController.xib */,
-				F4D150B92345438500739CDA /* LocationsVPNDataSourceAndDelegate.swift */,
+				F4D150C623467C9900739CDA /* Models */,
+				F4D150C523467C8B00739CDA /* Views */,
 			);
 			path = LocationVPN;
 			sourceTree = "<group>";
@@ -1122,10 +1122,10 @@
 		F465853A233BB2470081D7D7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F465853B233BB2CB0081D7D7 /* LoginViewController.swift */,
-				F465853C233BB2CB0081D7D7 /* LoginViewController.xib */,
 				F43DFC05234BB32C003EA64A /* LoadingViewController.swift */,
 				F43DFC06234BB32C003EA64A /* LoadingViewController.xib */,
+				F465853B233BB2CB0081D7D7 /* LoginViewController.swift */,
+				F465853C233BB2CB0081D7D7 /* LoginViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1133,10 +1133,10 @@
 		F465853F233BB39C0081D7D7 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */,
-				F4658542233BB44A0081D7D7 /* NetworkLayer.swift */,
 				F4658544233BB7690081D7D7 /* GuardianAPI.swift */,
 				F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */,
+				F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */,
+				F4658542233BB44A0081D7D7 /* NetworkLayer.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1152,9 +1152,9 @@
 		F4658549233BE9F50081D7D7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F4D150B0234517D800739CDA /* Data+JSON.swift */,
 				F45D70A6233E87E700871447 /* UIColor+GuardianBranding.swift */,
 				F45D70A8233E8DBF00871447 /* UIFont+GuardianBranding.swift */,
-				F4D150B0234517D800739CDA /* Data+JSON.swift */,
 				F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */,
 			);
 			path = Extensions;
@@ -1165,8 +1165,8 @@
 			children = (
 				F4D150B423453F9900739CDA /* CityVPNCell.swift */,
 				F4D150B523453F9900739CDA /* CityVPNCell.xib */,
-				F4D150BD2346422000739CDA /* CountryVPNHeaderView.xib */,
 				F4D150BF23464DE300739CDA /* CountryVPNHeaderView.swift */,
+				F4D150BD2346422000739CDA /* CountryVPNHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";

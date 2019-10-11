@@ -4,7 +4,7 @@
 import Foundation
 import NetworkExtension
 
-class GuardianTunnelManager /* Jason's Tunnel */ {
+class GuardianTunnelManager {
     var tunnelProviderManagers = [NETunnelProviderManager]()
 
     init() {
@@ -26,30 +26,31 @@ class GuardianTunnelManager /* Jason's Tunnel */ {
     }
 
     func createTunnel(device: Device, city: VPNCity, privateKey: Data) {
-        let tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: privateKey)
+        guard let tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: privateKey) else { return }
 
         let tunnelProviderManager = NETunnelProviderManager()
-        let tunnelProviderProtocol = NETunnelProviderProtocol()
+        let tunnelProviderProtocol = NETunnelProviderProtocol(tunnelConfiguration: tunnelConfiguration)!
 
-        guard let ipv4Address = city.servers.randomElement()?.ipv4AddrIn else { return } // UNSURE
-
-        tunnelProviderProtocol.providerBundleIdentifier = "Connected.Guardian" // TODO: Change this
-        tunnelProviderProtocol.serverAddress = ipv4Address
-        tunnelProviderProtocol.providerConfiguration?["WgQuickConfig"] = tunnelConfiguration.asWgQuickConfig()
         tunnelProviderManager.protocolConfiguration = tunnelProviderProtocol
-        tunnelProviderManager.localizedDescription = "Firefox Guardian"
+        tunnelProviderManager.localizedDescription = city.name
         tunnelProviderManager.isEnabled = true
+
+        // TODO: Do we want this on demand connect?
+        let rule = NEOnDemandRuleConnect()
+        rule.interfaceTypeMatch = .any
+        rule.ssidMatch = nil
+        tunnelProviderManager.onDemandRules = [rule]
+        tunnelProviderManager.isOnDemandEnabled = false
 
         tunnelProviderManager.saveToPreferences { error in
             guard error == nil else {
                 print("Error: \(error!)")
                 return
             }
-            //                    guard let self = self else { return }
             do {
                 try (tunnelProviderManager.connection as? NETunnelProviderSession)?.startTunnel()
             } catch let error {
-                print("Error: \(error)")
+                print("Start Tunnel Error: \(error)")
             }
         }
     }
@@ -66,7 +67,7 @@ class GuardianTunnelManager /* Jason's Tunnel */ {
         }
     }
 
-    func annihilateTunnel() {
+    func stopTunnel() {
         guard let connectedTunnelProvider = self.tunnelProviderManagers.first(where: { $0.connection.status == .connected }) else {
             print("No tunnel is connected")
             return

@@ -64,7 +64,7 @@ class HomeVPNViewController: UIViewController {
 
     @objc func toggleVPN() {
         if vpnToggleView.vpnSwitch.isOn {
-
+            // TODO: Implement this switch
         }
     }
 

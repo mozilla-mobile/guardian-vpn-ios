@@ -12,6 +12,7 @@ class AccountManager: AccountManaging {
 
     func set(with account: Account) {
         self.account = account
+        addDevice { _ in } // TODO: Remove this once login / dev management is done
         retrieveVPNServers { _ in }
     }
 
@@ -65,7 +66,7 @@ class AccountManager: AccountManaging {
         }
 
         let deviceBody: [String: Any] = ["name": UIDevice.current.name,
-                                         "pubkey":  credentialsStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
+                                         "pubkey": credentialsStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
 
         do {
             let body = try JSONSerialization.data(withJSONObject: deviceBody)
