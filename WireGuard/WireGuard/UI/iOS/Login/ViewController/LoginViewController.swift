@@ -43,11 +43,13 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let urlString = webView.url?.absoluteString, urlString.contains(successfulLoginString) {
             setupAccount { [weak self] result in
-                if case .failure(let error) = result {
-                    print(error) //handle this
-                    return
-                }
                 DispatchQueue.main.async {
+                    if case .failure(let error) = result {
+                        self?.coordinatorDelegate?.navigate(after: .loginFailed)
+                        print(error) //handle this
+                        return
+                    }
+                    self?.accountManager.retrieveVPNServers { _ in }
                     self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
                 }
             }
