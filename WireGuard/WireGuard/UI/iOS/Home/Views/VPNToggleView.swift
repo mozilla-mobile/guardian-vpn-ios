@@ -2,6 +2,8 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum VPNState {
     case off
@@ -17,11 +19,15 @@ class VPNToggleView: UIView {
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var vpnSwitch: UISwitch!
 
+    public var vpnSwitchEvent: ControlProperty<Bool>?
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         Bundle.main.loadNibNamed(String(describing: VPNToggleView.self), owner: self, options: nil)
         self.view.frame = self.bounds
         self.addSubview(self.view)
+
+        vpnSwitchEvent = vpnSwitch.rx.isOn
     }
 
     override func awakeFromNib() {

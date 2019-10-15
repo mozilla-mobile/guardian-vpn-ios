@@ -215,8 +215,8 @@
 		F45D7098233D34B100871447 /* VerifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D7097233D34B100871447 /* VerifyResponse.swift */; };
 		F45D709B233D384E00871447 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D709A233D384E00871447 /* NavigationCoordinator.swift */; };
 		F45D70A1233D3BC000871447 /* Navigating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A0233D3BC000871447 /* Navigating.swift */; };
-		F45D70A4233D3D6C00871447 /* HomeVPNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A2233D3D6C00871447 /* HomeVPNViewController.swift */; };
-		F45D70A5233D3D6C00871447 /* HomeVPNViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70A3233D3D6C00871447 /* HomeVPNViewController.xib */; };
+		F45D70A4233D3D6C00871447 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A2233D3D6C00871447 /* HomeViewController.swift */; };
+		F45D70A5233D3D6C00871447 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70A3233D3D6C00871447 /* HomeViewController.xib */; };
 		F45D70A7233E87E700871447 /* UIColor+GuardianBranding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A6233E87E700871447 /* UIColor+GuardianBranding.swift */; };
 		F45D70A9233E8DC000871447 /* UIFont+GuardianBranding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A8233E8DBF00871447 /* UIFont+GuardianBranding.swift */; };
 		F45D70AB233E921900871447 /* GuardianTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70AA233E921900871447 /* GuardianTabBarController.swift */; };
@@ -268,8 +268,8 @@
 		F45D70F623427D1F00871447 /* CurrentVPNSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70F423427D1F00871447 /* CurrentVPNSelectorView.swift */; };
 		F45D70F823427D2F00871447 /* CurrentVPNSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70F723427D2F00871447 /* CurrentVPNSelectorView.xib */; };
 		F45D70F923427D2F00871447 /* CurrentVPNSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70F723427D2F00871447 /* CurrentVPNSelectorView.xib */; };
-		F45D70FD23428DCE00871447 /* LocationVPNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70FB23428DCE00871447 /* LocationVPNViewController.swift */; };
-		F45D70FE23428DCE00871447 /* LocationVPNViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70FC23428DCE00871447 /* LocationVPNViewController.xib */; };
+		F45D70FD23428DCE00871447 /* ServersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70FB23428DCE00871447 /* ServersViewController.swift */; };
+		F45D70FE23428DCE00871447 /* ServersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70FC23428DCE00871447 /* ServersViewController.xib */; };
 		F465853D233BB2CB0081D7D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465853B233BB2CB0081D7D7 /* LoginViewController.swift */; };
 		F465853E233BB2CB0081D7D7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F465853C233BB2CB0081D7D7 /* LoginViewController.xib */; };
 		F4658541233BB3D00081D7D7 /* NetworkingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */; };
@@ -277,6 +277,10 @@
 		F4658545233BB7690081D7D7 /* GuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658544233BB7690081D7D7 /* GuardianAPI.swift */; };
 		F4658548233BBBF30081D7D7 /* LoginCheckpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */; };
 		F465854D233BF0860081D7D7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F465854C233BF0850081D7D7 /* WebKit.framework */; };
+		F48ED2B923561BC200F6D0C5 /* RxSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4A0EFF32356111A00A06D7B /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F48ED2BA23561BC900F6D0C5 /* RxCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4A0EFF5235612F500A06D7B /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F48ED2BC23561C4900F6D0C5 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */; };
+		F48ED2BD23561C4F00F6D0C5 /* RxRelay.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F499C0F2234E29B300126CDA /* DeviceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */; };
 		F499C0F3234E29B300126CDA /* DeviceManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */; };
 		F499C0F6234E301900126CDA /* DeviceManagementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F4234E301900126CDA /* DeviceManagementCell.swift */; };
@@ -285,11 +289,13 @@
 		F499C0FB234E41B800126CDA /* DeviceLimitReachedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */; };
 		F499C0FD234E490600126CDA /* DeviceLimitReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */; };
 		F499C0FF234E644600126CDA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0FE234E644600126CDA /* Account.swift */; };
+		F4A0EFF42356111A00A06D7B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF32356111A00A06D7B /* RxSwift.framework */; };
+		F4A0EFF6235612F500A06D7B /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF5235612F500A06D7B /* RxCocoa.framework */; };
 		F4D150B1234517D800739CDA /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B0234517D800739CDA /* Data+JSON.swift */; };
 		F4D150B323451DC900739CDA /* GuardianURLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */; };
 		F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B423453F9900739CDA /* CityVPNCell.swift */; };
 		F4D150B723453F9900739CDA /* CityVPNCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D150B523453F9900739CDA /* CityVPNCell.xib */; };
-		F4D150BA2345438500739CDA /* LocationsVPNDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B92345438500739CDA /* LocationsVPNDataSourceAndDelegate.swift */; };
+		F4D150BA2345438500739CDA /* ServersDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B92345438500739CDA /* ServersDataSourceAndDelegate.swift */; };
 		F4D150BE2346422000739CDA /* CountryVPNHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D150BD2346422000739CDA /* CountryVPNHeaderView.xib */; };
 		F4D150C023464DE300739CDA /* CountryVPNHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150BF23464DE300739CDA /* CountryVPNHeaderView.swift */; };
 		F4D150D9234797F700739CDA /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D150D5234797B700739CDA /* Nimble.framework */; };
@@ -377,6 +383,18 @@
 				6FB1BD9921D4BFE700A991BF /* WireGuardNetworkExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F48ED2B823561BAB00F6D0C5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F48ED2BD23561C4F00F6D0C5 /* RxRelay.framework in CopyFiles */,
+				F48ED2BA23561BC900F6D0C5 /* RxCocoa.framework in CopyFiles */,
+				F48ED2B923561BC200F6D0C5 /* RxSwift.framework in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F4D150DB2347982600739CDA /* CopyFiles */ = {
@@ -546,8 +564,8 @@
 		F45D7097233D34B100871447 /* VerifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyResponse.swift; sourceTree = "<group>"; };
 		F45D709A233D384E00871447 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		F45D70A0233D3BC000871447 /* Navigating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigating.swift; sourceTree = "<group>"; };
-		F45D70A2233D3D6C00871447 /* HomeVPNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVPNViewController.swift; sourceTree = "<group>"; };
-		F45D70A3233D3D6C00871447 /* HomeVPNViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVPNViewController.xib; sourceTree = "<group>"; };
+		F45D70A2233D3D6C00871447 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F45D70A3233D3D6C00871447 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		F45D70A6233E87E700871447 /* UIColor+GuardianBranding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+GuardianBranding.swift"; sourceTree = "<group>"; };
 		F45D70A8233E8DBF00871447 /* UIFont+GuardianBranding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+GuardianBranding.swift"; sourceTree = "<group>"; };
 		F45D70AA233E921900871447 /* GuardianTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianTabBarController.swift; sourceTree = "<group>"; };
@@ -576,8 +594,8 @@
 		F45D70EB2342775000871447 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
 		F45D70F423427D1F00871447 /* CurrentVPNSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentVPNSelectorView.swift; sourceTree = "<group>"; };
 		F45D70F723427D2F00871447 /* CurrentVPNSelectorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentVPNSelectorView.xib; sourceTree = "<group>"; };
-		F45D70FB23428DCE00871447 /* LocationVPNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVPNViewController.swift; sourceTree = "<group>"; };
-		F45D70FC23428DCE00871447 /* LocationVPNViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationVPNViewController.xib; sourceTree = "<group>"; };
+		F45D70FB23428DCE00871447 /* ServersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersViewController.swift; sourceTree = "<group>"; };
+		F45D70FC23428DCE00871447 /* ServersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServersViewController.xib; sourceTree = "<group>"; };
 		F465853B233BB2CB0081D7D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F465853C233BB2CB0081D7D7 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingEnums.swift; sourceTree = "<group>"; };
@@ -585,6 +603,7 @@
 		F4658544233BB7690081D7D7 /* GuardianAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPI.swift; sourceTree = "<group>"; };
 		F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckpointModel.swift; sourceTree = "<group>"; };
 		F465854C233BF0850081D7D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewController.swift; sourceTree = "<group>"; };
 		F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceManagementViewController.xib; sourceTree = "<group>"; };
 		F499C0F4234E301900126CDA /* DeviceManagementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementCell.swift; sourceTree = "<group>"; };
@@ -593,11 +612,13 @@
 		F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceLimitReachedView.xib; sourceTree = "<group>"; };
 		F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLimitReachedView.swift; sourceTree = "<group>"; };
 		F499C0FE234E644600126CDA /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		F4A0EFF32356111A00A06D7B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		F4A0EFF5235612F500A06D7B /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		F4D150B0234517D800739CDA /* Data+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JSON.swift"; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
 		F4D150B523453F9900739CDA /* CityVPNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityVPNCell.xib; sourceTree = "<group>"; };
-		F4D150B92345438500739CDA /* LocationsVPNDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsVPNDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		F4D150B92345438500739CDA /* ServersDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		F4D150BD2346422000739CDA /* CountryVPNHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryVPNHeaderView.xib; sourceTree = "<group>"; };
 		F4D150BF23464DE300739CDA /* CountryVPNHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryVPNHeaderView.swift; sourceTree = "<group>"; };
 		F4D150CB2347975C00739CDA /* WireGuardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WireGuardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -639,6 +660,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48ED2BC23561C4900F6D0C5 /* RxRelay.framework in Frameworks */,
+				F4A0EFF6235612F500A06D7B /* RxCocoa.framework in Frameworks */,
+				F4A0EFF42356111A00A06D7B /* RxSwift.framework in Frameworks */,
 				F40831CC233CF5BF00A60FCA /* SafariServices.framework in Frameworks */,
 				F465854D233BF0860081D7D7 /* WebKit.framework in Frameworks */,
 				6B653B86220DE2960050E69C /* NetworkExtension.framework in Frameworks */,
@@ -782,7 +806,7 @@
 				F45D709C233D385D00871447 /* Home */,
 				6FF4AC23211EC472002C96EB /* Info.plist */,
 				6FF4AC20211EC472002C96EB /* LaunchScreen.storyboard */,
-				F45D70FA23428DA900871447 /* LocationVPN */,
+				F45D70FA23428DA900871447 /* Servers */,
 				F4658539233BB23D0081D7D7 /* Login */,
 				F45D709F233D3BB000871447 /* Navigation */,
 				F465853F233BB39C0081D7D7 /* Networking */,
@@ -980,14 +1004,17 @@
 		6FF4AC452120B9E0002C96EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F4D150D7234797C700739CDA /* Quick.framework */,
+				F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */,
+				F4A0EFF5235612F500A06D7B /* RxCocoa.framework */,
+				6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */,
+				6FB1BDB621D4F8B800A991BF /* NetworkExtension.framework */,
+				6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */,
 				F4D150D5234797B700739CDA /* Nimble.framework */,
+				F4D150D7234797C700739CDA /* Quick.framework */,
+				F4A0EFF32356111A00A06D7B /* RxSwift.framework */,
 				F40831CB233CF5BE00A60FCA /* SafariServices.framework */,
 				F465854C233BF0850081D7D7 /* WebKit.framework */,
-				6FB1BDB621D4F8B800A991BF /* NetworkExtension.framework */,
-				6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */,
 				6FB1BDA021D4E00A00A991BF /* libwg-go.a */,
-				6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1042,8 +1069,8 @@
 		F45D709C233D385D00871447 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F45D70A2233D3D6C00871447 /* HomeVPNViewController.swift */,
-				F45D70A3233D3D6C00871447 /* HomeVPNViewController.xib */,
+				F45D70A2233D3D6C00871447 /* HomeViewController.swift */,
+				F45D70A3233D3D6C00871447 /* HomeViewController.xib */,
 				F45D70AC23423C6F00871447 /* Views */,
 			);
 			path = Home;
@@ -1098,16 +1125,16 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		F45D70FA23428DA900871447 /* LocationVPN */ = {
+		F45D70FA23428DA900871447 /* Servers */ = {
 			isa = PBXGroup;
 			children = (
-				F4D150B92345438500739CDA /* LocationsVPNDataSourceAndDelegate.swift */,
-				F45D70FB23428DCE00871447 /* LocationVPNViewController.swift */,
-				F45D70FC23428DCE00871447 /* LocationVPNViewController.xib */,
+				F4D150B92345438500739CDA /* ServersDataSourceAndDelegate.swift */,
+				F45D70FB23428DCE00871447 /* ServersViewController.swift */,
+				F45D70FC23428DCE00871447 /* ServersViewController.xib */,
 				F4D150C623467C9900739CDA /* Models */,
 				F4D150C523467C8B00739CDA /* Views */,
 			);
-			path = LocationVPN;
+			path = Servers;
 			sourceTree = "<group>";
 		};
 		F4658539233BB23D0081D7D7 /* Login */ = {
@@ -1312,6 +1339,7 @@
 				6FF4AC11211EC46F002C96EB /* Frameworks */,
 				6FF4AC12211EC46F002C96EB /* Resources */,
 				6F5D0C26218352EF000F85AD /* Embed App Extensions */,
+				F48ED2B823561BAB00F6D0C5 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1511,7 +1539,7 @@
 				F45D70DA2342431F00871447 /* Metropolis-MediumItalic.otf in Resources */,
 				F45D70CA2342431F00871447 /* Metropolis-SemiBoldItalic.otf in Resources */,
 				F45D70D62342431F00871447 /* Metropolis-ExtraBoldItalic.otf in Resources */,
-				F45D70A5233D3D6C00871447 /* HomeVPNViewController.xib in Resources */,
+				F45D70A5233D3D6C00871447 /* HomeViewController.xib in Resources */,
 				6F919EDA218C65C50023B400 /* wireguard_doc_logo_44x58.png in Resources */,
 				6FF4AC1F211EC472002C96EB /* Assets.xcassets in Resources */,
 				F45D70E62342431F00871447 /* Metropolis-Thin.otf in Resources */,
@@ -1523,7 +1551,7 @@
 				6F919EDC218C65C50023B400 /* wireguard_doc_logo_320x320.png in Resources */,
 				F465853E233BB2CB0081D7D7 /* LoginViewController.xib in Resources */,
 				F45D70F823427D2F00871447 /* CurrentVPNSelectorView.xib in Resources */,
-				F45D70FE23428DCE00871447 /* LocationVPNViewController.xib in Resources */,
+				F45D70FE23428DCE00871447 /* ServersViewController.xib in Resources */,
 				F499C0F7234E301900126CDA /* DeviceManagementCell.xib in Resources */,
 				F43DFC08234BB32C003EA64A /* LoadingViewController.xib in Resources */,
 				F45D70DC2342431F00871447 /* Metropolis-ExtraBold.otf in Resources */,
@@ -1873,7 +1901,7 @@
 				F499C0F6234E301900126CDA /* DeviceManagementCell.swift in Sources */,
 				6FF3527221C2616C0008484E /* ringlogger.c in Sources */,
 				F43DFC16234FBBB5003EA64A /* GuardianTunnelManager.swift in Sources */,
-				F45D70FD23428DCE00871447 /* LocationVPNViewController.swift in Sources */,
+				F45D70FD23428DCE00871447 /* ServersViewController.swift in Sources */,
 				6F0F44CB222D55FD00B0FF04 /* EditableTextCell.swift in Sources */,
 				6FF3527321C2616C0008484E /* Logger.swift in Sources */,
 				6F7774E421718281006A79B3 /* TunnelsListTableViewController.swift in Sources */,
@@ -1883,7 +1911,7 @@
 				5F45419221C2D55800994C13 /* CheckmarkCell.swift in Sources */,
 				6FE254FF219C60290028284D /* ZipExporter.swift in Sources */,
 				6F8F0D7122258153000E8335 /* ActivateOnDemandViewModel.swift in Sources */,
-				F4D150BA2345438500739CDA /* LocationsVPNDataSourceAndDelegate.swift in Sources */,
+				F4D150BA2345438500739CDA /* ServersDataSourceAndDelegate.swift in Sources */,
 				6F8F0D7722267C57000E8335 /* SSIDOptionEditTableViewController.swift in Sources */,
 				F4F25E112343F7D3004BA245 /* VPNLocations.swift in Sources */,
 				6B586C53220CBA6D00427C51 /* Data+KeyEncoding.swift in Sources */,
@@ -1924,7 +1952,7 @@
 				F43DFC0E234D1361003EA64A /* Device.swift in Sources */,
 				F43DFC0B234D0B5C003EA64A /* TunnelConfigurationBuilder.swift in Sources */,
 				F42A23032347D20800763B0D /* DependencyFactory.swift in Sources */,
-				F45D70A4233D3D6C00871447 /* HomeVPNViewController.swift in Sources */,
+				F45D70A4233D3D6C00871447 /* HomeViewController.swift in Sources */,
 				6B62E45F220A6FA900EF34A6 /* PrivateDataConfirmation.swift in Sources */,
 				6F5A2B4821AFF49A0081EDD8 /* FileManager+Extension.swift in Sources */,
 				5F45418C21C2D48200994C13 /* TunnelEditKeyValueCell.swift in Sources */,
@@ -2381,6 +2409,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.20190610;
 				PRODUCT_BUNDLE_IDENTIFIER = com.connectedLab.Guardian;
 				PRODUCT_NAME = WireGuard;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2405,6 +2434,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.20190610;
 				PRODUCT_BUNDLE_IDENTIFIER = com.connectedLab.Guardian;
 				PRODUCT_NAME = WireGuard;
 				PROVISIONING_PROFILE_SPECIFIER = "";

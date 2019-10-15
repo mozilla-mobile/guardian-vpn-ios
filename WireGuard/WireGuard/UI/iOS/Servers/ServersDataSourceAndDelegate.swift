@@ -4,13 +4,13 @@
 import UIKit
 import NetworkExtension
 
-class LocationsVPNDataSourceAndDelegate: NSObject {
+class ServersDataSourceAndDelegate: NSObject {
     let countries: [VPNCountry]
     private var selectedIndexPath: IndexPath?
 
     // TODO: Dependency Inject
     private var accountManager = AccountManager.sharedManager
-    private let tunnelsManager = GuardianTunnelManager()
+    private let tunnelsManager = GuardianTunnelManager.sharedTunnelManager
 
     init(countries: [VPNCountry], tableView: UITableView) {
         self.countries = countries
@@ -48,7 +48,7 @@ class LocationsVPNDataSourceAndDelegate: NSObject {
     }
 }
 
-extension LocationsVPNDataSourceAndDelegate: UITableViewDataSource {
+extension ServersDataSourceAndDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CityVPNCell.self), for: indexPath) as? CityVPNCell else {
             return UITableViewCell(frame: .zero)
@@ -70,6 +70,31 @@ extension LocationsVPNDataSourceAndDelegate: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+
+
+
+        // Save selected city to defaults ? Archive to cache?
+        // Should just be JSON.
+        // Do we need to save the city or can we retrieve it from the network extension itself ?
+
+
+
+
+        let currentCity = countries[indexPath.section].cities[indexPath.row]
+        currentCity.saveToUserDefaults()
+        // Can't save to defaults (non property list object?)
+        // Make it a plist object? Or use NSKeyedArchiver to store to caches instead of defaults?
+
+
+
+
+
+
+
+
+
+
         if indexPath != selectedIndexPath {
             selectedIndexPath = indexPath
 
@@ -83,7 +108,7 @@ extension LocationsVPNDataSourceAndDelegate: UITableViewDataSource {
     }
 }
 
-extension LocationsVPNDataSourceAndDelegate: UITableViewDelegate {
+extension ServersDataSourceAndDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: CountryVPNHeaderView.self)) as? CountryVPNHeaderView else {
             return nil

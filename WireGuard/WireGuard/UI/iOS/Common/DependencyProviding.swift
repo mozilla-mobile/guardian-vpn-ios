@@ -5,4 +5,5 @@ import Foundation
 
 protocol DependencyProviding: class {
     var accountManager: AccountManaging { get }
+    var tunnelManager: GuardianTunnelManager { get }
 }

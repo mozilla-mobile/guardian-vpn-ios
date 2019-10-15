@@ -3,16 +3,16 @@
 
 import UIKit
 
-class LocationVPNViewController: UIViewController {
+class ServersViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
     private let accountManager: AccountManaging
-    private var dataSource: LocationsVPNDataSourceAndDelegate?
+    private var dataSource: ServersDataSourceAndDelegate?
 
     init(accountManager: AccountManaging = AccountManager.sharedManager) {
         self.accountManager = accountManager
-        super.init(nibName: String(describing: LocationVPNViewController.self), bundle: Bundle.main)
+        super.init(nibName: String(describing: ServersViewController.self), bundle: Bundle.main)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -28,7 +28,7 @@ class LocationVPNViewController: UIViewController {
             getVPNServerList()
             return
         }
-        self.dataSource = LocationsVPNDataSourceAndDelegate(countries: countries, tableView: self.tableView)
+        self.dataSource = ServersDataSourceAndDelegate(countries: countries, tableView: self.tableView)
         self.tableView.reloadData()
 
     }
@@ -55,7 +55,7 @@ class LocationVPNViewController: UIViewController {
                 guard let self = self else { return }
                 do {
                     let countries = try result.get()
-                    self.dataSource = LocationsVPNDataSourceAndDelegate(countries: countries, tableView: self.tableView)
+                    self.dataSource = ServersDataSourceAndDelegate(countries: countries, tableView: self.tableView)
                     self.tableView.reloadData()
                 } catch {
                     print(error)

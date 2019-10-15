@@ -5,9 +5,11 @@ import Foundation
 import NetworkExtension
 
 class GuardianTunnelManager {
+    static let sharedTunnelManager = GuardianTunnelManager()
+
     var tunnelProviderManagers = [NETunnelProviderManager]()
 
-    init() {
+    private init() {
         loadTunnels()
     }
 
@@ -23,6 +25,17 @@ class GuardianTunnelManager {
             }
             print("\(self.tunnelProviderManagers.count) tunnels available")
         }
+    }
+
+    func createTunnel(accountManager: AccountManaging?) { // Inject Account Manager or pass in device?
+        guard let device = accountManager?.account?.currentDevice,
+            let privateKey = (accountManager as? AccountManager)?.credentialsStore.deviceKeys.devicePrivateKey
+            else { return }
+        // get current city / config
+        // TODO: Save city somewhere, and retrieve it here.
+        guard let currentCity = VPNCity.fetchFromUserDefaults() else { return }
+
+        createTunnel(device: device, city: currentCity, privateKey: privateKey)
     }
 
     func createTunnel(device: Device, city: VPNCity, privateKey: Data) {
@@ -42,15 +55,17 @@ class GuardianTunnelManager {
         tunnelProviderManager.onDemandRules = [rule]
         tunnelProviderManager.isOnDemandEnabled = false
 
-        tunnelProviderManager.saveToPreferences { error in
-            guard error == nil else {
-                print("Error: \(error!)")
-                return
-            }
-            do {
-                try (tunnelProviderManager.connection as? NETunnelProviderSession)?.startTunnel()
-            } catch let error {
-                print("Start Tunnel Error: \(error)")
+        tunnelProviderManager.saveToPreferences { _ in
+            tunnelProviderManager.loadFromPreferences { error in
+                guard error == nil else {
+                    print("Error: \(error!)")
+                    return
+                }
+                do {
+                    try (tunnelProviderManager.connection as? NETunnelProviderSession)?.startTunnel()
+                } catch let error {
+                    print("Start Tunnel Error: \(error)")
+                }
             }
         }
     }

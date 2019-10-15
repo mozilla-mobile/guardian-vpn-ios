@@ -6,13 +6,11 @@ import Foundation
 class DependencyFactory: DependencyProviding {
     static let sharedFactory = DependencyFactory()
 
-    var accountManager: AccountManaging {
-        return user
+    var tunnelManager: GuardianTunnelManager {
+        return GuardianTunnelManager.sharedTunnelManager
     }
 
-    private let user: AccountManaging
-
-    init() {
-        self.user = AccountManager.sharedManager
+    var accountManager: AccountManaging {
+        return AccountManager.sharedManager
     }
 }
