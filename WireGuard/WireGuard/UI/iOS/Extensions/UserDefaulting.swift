@@ -17,7 +17,6 @@ extension UserDefaulting {
     }
 
     func saveToUserDefaults() {
-//        let encoder = JSONEncoder()
         do {
             let encoded = try JSONEncoder().encode(self)
             let defaults = UserDefaults.standard

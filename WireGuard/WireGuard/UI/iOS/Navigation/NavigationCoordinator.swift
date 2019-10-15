@@ -54,7 +54,7 @@ class NavigationCoordinator: Navigating {
     }
 
     private func presentVPNLocationSelection() {
-        let locationVPNVC = LocationVPNViewController(accountManager: dependencyProvider.accountManager)
+        let locationVPNVC = ServersViewController(accountManager: dependencyProvider.accountManager)
         let navController = UINavigationController(rootViewController: locationVPNVC)
         navController.navigationBar.barTintColor = UIColor.backgroundOffWhite
         navController.navigationBar.tintColor = UIColor.guardianBlack
@@ -62,7 +62,10 @@ class NavigationCoordinator: Navigating {
     }
 
     private var tabBarViewControllers: [UIViewController] {
-        let homeViewController = HomeVPNViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
+        let homeViewController = HomeViewController(
+            accountManager: dependencyProvider.accountManager,
+            tunnelManager: dependencyProvider.tunnelManager,
+            coordinatorDelegate: self)
         return [homeViewController]
     }
 

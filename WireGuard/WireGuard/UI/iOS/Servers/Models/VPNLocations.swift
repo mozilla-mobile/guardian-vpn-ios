@@ -9,12 +9,14 @@ public struct VPNCountry: Codable {
     let cities: [VPNCity]
 }
 
-public struct VPNCity: Codable {
+public struct VPNCity: Codable, UserDefaulting {
     let name: String
     let code: String
     let latitude: Float
     let longitude: Float
     let servers: [VPNServer]
+
+    static var userDefaultsKey = "savedCity"
 }
 
 public struct VPNServer: Codable {

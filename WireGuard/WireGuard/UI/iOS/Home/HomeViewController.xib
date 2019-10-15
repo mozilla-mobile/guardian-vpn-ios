@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVPNViewController" customModule="WireGuard" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="WireGuard" customModuleProvider="target">
             <connections>
                 <outlet property="navigationTitleLabel" destination="Rpo-Dd-s6i" id="iLn-NZ-4zI"/>
                 <outlet property="selectConnectionLabel" destination="oGq-Iz-V78" id="kph-nE-1mz"/>
@@ -24,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b76-ij-pGQ">
-                    <rect key="frame" x="153" y="30" width="69" height="24"/>
+                    <rect key="frame" x="153" y="10" width="69" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpo-Dd-s6i">
                             <rect key="frame" x="29" y="0.0" width="40" height="24"/>
@@ -48,21 +47,21 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRl-G2-VBt" customClass="VPNToggleView" customModule="WireGuard" customModuleProvider="target">
-                    <rect key="frame" x="12" y="74" width="351" height="319"/>
+                    <rect key="frame" x="12" y="54" width="351" height="319"/>
                     <color key="backgroundColor" red="0.19513062310000001" green="1" blue="0.63913527680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="mRl-G2-VBt" secondAttribute="height" multiplier="1.1" id="7IV-UW-Rxj"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xU-vI-Kl7" customClass="CurrentVPNSelectorView" customModule="WireGuard" customModuleProvider="target">
-                    <rect key="frame" x="35" y="428" width="305" height="48"/>
+                    <rect key="frame" x="35" y="408" width="305" height="48"/>
                     <color key="backgroundColor" red="1" green="0.48642666810000001" blue="0.94866628779999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="ndc-R3-Wir"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_Select connection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGq-Iz-V78">
-                    <rect key="frame" x="115" y="486" width="145" height="21"/>
+                    <rect key="frame" x="115" y="466" width="145" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>

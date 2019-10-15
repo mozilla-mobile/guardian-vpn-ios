@@ -7,8 +7,12 @@ import UIKit
 
 class AccountManager: AccountManaging {
     static let sharedManager = AccountManager()
-    let credentialsStore = CredentialsStore.sharedStore
+    let credentialsStore = CredentialsStore.sharedStore // Should this be on the protocol?
     private(set) var account: Account?
+
+    private init() {
+        //
+    }
 
     func set(with account: Account) {
         self.account = account

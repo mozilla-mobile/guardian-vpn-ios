@@ -3,20 +3,24 @@
 
 import UIKit
 import NetworkExtension
+import RxSwift
 
-class HomeVPNViewController: UIViewController {
+class HomeViewController: UIViewController {
     @IBOutlet var navigationTitleLabel: UILabel!
     @IBOutlet var vpnToggleView: VPNToggleView!
     @IBOutlet var selectConnectionLabel: UILabel!
     @IBOutlet var vpnSelectionView: CurrentVPNSelectorView!
 
     private let accountManager: AccountManaging
+    private let tunnelManager: GuardianTunnelManager
     private weak var coordinatorDelegate: Navigating?
+    private var disposeBag = DisposeBag()
 
-    init(accountManager: AccountManaging, coordinatorDelegate: Navigating) {
+    init(accountManager: AccountManaging, tunnelManager: GuardianTunnelManager, coordinatorDelegate: Navigating) {
         self.accountManager = accountManager
         self.coordinatorDelegate = coordinatorDelegate
-        super.init(nibName: String(describing: HomeVPNViewController.self), bundle: Bundle.main)
+        self.tunnelManager = tunnelManager
+        super.init(nibName: String(describing: HomeViewController.self), bundle: Bundle.main)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -30,6 +34,16 @@ class HomeVPNViewController: UIViewController {
         styleViews()
         addTapGesture()
         addToggleGesture()
+
+        vpnToggleView.vpnSwitchEvent?.subscribe(onNext: { [weak self] isOn in
+            if isOn {
+                self?.tunnelManager.createTunnel(accountManager: self?.accountManager)
+            } else {
+                self?.tunnelManager.stopTunnel()
+            }
+        }).disposed(by: disposeBag)
+
+
     }
 
     private func setupTabBar() {

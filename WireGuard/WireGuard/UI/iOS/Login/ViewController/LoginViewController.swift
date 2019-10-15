@@ -8,7 +8,7 @@ import SafariServices
 class LoginViewController: UIViewController, WKNavigationDelegate {
     let successfulLoginString = "/vpn/client/login/success"
 
-    @IBOutlet var webView: WKWebView!
+    @IBOutlet var webView: WKWebView! // TODO: Replace with a SFSafariViewController ??
     private weak var coordinatorDelegate: Navigating?
     private let accountManager: AccountManaging
     private var verificationURL: URL?

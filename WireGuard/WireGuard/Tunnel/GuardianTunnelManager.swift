@@ -5,10 +5,16 @@ import Foundation
 import NetworkExtension
 
 class GuardianTunnelManager {
-    var tunnelProviderManagers = [NETunnelProviderManager]()
+    static let sharedTunnelManager = GuardianTunnelManager()
 
-    init() {
+    var tunnelProviderManager: NETunnelProviderManager?
+    var tunnelConfiguration: TunnelConfiguration?
+
+    private init() {
         loadTunnels()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
+
     }
 
     func loadTunnels() {
@@ -18,21 +24,41 @@ class GuardianTunnelManager {
                 return
             }
             guard let self = self else { return }
-            if let managers = managers {
-                self.tunnelProviderManagers = managers
+            if let first = managers?.first {
+                self.tunnelProviderManager = first
+            } else {
+                self.tunnelProviderManager = NETunnelProviderManager()
             }
-            print("\(self.tunnelProviderManagers.count) tunnels available")
         }
     }
 
-    func createTunnel(device: Device, city: VPNCity, privateKey: Data) {
-        guard let tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: privateKey) else { return }
+    func createTunnel(accountManager: AccountManaging?) { // Inject Account Manager or pass in device?
+        guard let device = accountManager?.account?.currentDevice,
+            let privateKey = (accountManager as? AccountManager)?.credentialsStore.deviceKeys.devicePrivateKey
+            else { return }
+        // get current city / config
+        // TODO: Save city somewhere, and retrieve it here.
+        guard let currentCity = VPNCity.fetchFromUserDefaults() else { return }
 
-        let tunnelProviderManager = NETunnelProviderManager()
-        let tunnelProviderProtocol = NETunnelProviderProtocol(tunnelConfiguration: tunnelConfiguration)!
+        createTunnel(device: device, city: currentCity, privateKey: privateKey)
+    }
+
+    func createTunnel(device: Device, city: VPNCity, privateKey: Data) {
+        tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: privateKey)
+        if tunnelProviderManager?.connection.status == .connected || tunnelProviderManager?.connection.status == .connecting {
+            stopTunnel()
+        } else {
+            guard let tunnelConfiguration = tunnelConfiguration else { return }
+            createTunnel(from: tunnelConfiguration)
+        }
+    }
+
+    private func createTunnel(from configuration: TunnelConfiguration) {
+        guard let tunnelProviderManager = tunnelProviderManager else { return }
+        let tunnelProviderProtocol = NETunnelProviderProtocol(tunnelConfiguration: configuration)
 
         tunnelProviderManager.protocolConfiguration = tunnelProviderProtocol
-        tunnelProviderManager.localizedDescription = city.name
+        tunnelProviderManager.localizedDescription = tunnelConfiguration?.name ?? "My Tunnel"
         tunnelProviderManager.isEnabled = true
 
         // TODO: Do we want this on demand connect?
@@ -42,24 +68,36 @@ class GuardianTunnelManager {
         tunnelProviderManager.onDemandRules = [rule]
         tunnelProviderManager.isOnDemandEnabled = false
 
-        tunnelProviderManager.saveToPreferences { error in
-            guard error == nil else {
-                print("Error: \(error!)")
-                return
-            }
-            do {
-                try (tunnelProviderManager.connection as? NETunnelProviderSession)?.startTunnel()
-            } catch let error {
-                print("Start Tunnel Error: \(error)")
+        tunnelProviderManager.saveToPreferences { _ in
+            tunnelProviderManager.loadFromPreferences { error in
+                guard error == nil else {
+                    print("Error: \(error!)")
+                    return
+                }
+                do {
+                    try (tunnelProviderManager.connection as? NETunnelProviderSession)?.startTunnel()
+                } catch let error {
+                    print("Start Tunnel Error: \(error)")
+                }
             }
         }
     }
 
-    func startTunnel() {
-        guard let tunnelProviderManager = tunnelProviderManagers.first else {
-            print("No tunnels to start")
-            return
+    @objc func vpnStatusDidChange(notification: Notification) {
+        guard let tunnelConfiguration = tunnelConfiguration else { return }
+        guard let status = (notification.object as? NETunnelProviderSession)?.status else { return }
+
+        print("#### STATUS: \(status.rawValue)")
+        switch status {
+        case .disconnected:
+            createTunnel(from: tunnelConfiguration)
+        default:
+            break
         }
+    }
+
+    func startTunnel() {
+        guard let tunnelProviderManager = tunnelProviderManager else { return }
         do {
             try (tunnelProviderManager.connection as? NETunnelProviderSession)?.startTunnel()
         } catch let error {
@@ -68,10 +106,7 @@ class GuardianTunnelManager {
     }
 
     func stopTunnel() {
-        guard let connectedTunnelProvider = self.tunnelProviderManagers.first(where: { $0.connection.status == .connected }) else {
-            print("No tunnel is connected")
-            return
-        }
-        (connectedTunnelProvider.connection as? NETunnelProviderSession)?.stopTunnel()
+        guard let tunnelProviderManager = tunnelProviderManager else { return }
+        (tunnelProviderManager.connection as? NETunnelProviderSession)?.stopTunnel()
     }
 }
