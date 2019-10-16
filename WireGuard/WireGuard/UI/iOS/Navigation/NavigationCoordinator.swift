@@ -9,13 +9,13 @@ class NavigationCoordinator: Navigating {
     let dependencyProvider: DependencyProviding
     var currentViewController: UIViewController?
 
-    var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     init(dependencyProvider: DependencyProviding) {
         self.dependencyProvider = dependencyProvider
         setupHeartbeat()
     }
-    
+
     private func setupHeartbeat() {
         dependencyProvider.accountManager.heartbeatFailedEvent
             .subscribe { _ in

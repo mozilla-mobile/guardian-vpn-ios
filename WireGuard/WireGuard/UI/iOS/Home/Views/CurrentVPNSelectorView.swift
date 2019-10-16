@@ -2,6 +2,7 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
+import RxSwift
 
 class CurrentVPNSelectorView: UIView {
     @IBOutlet var view: UIView!
@@ -9,12 +10,28 @@ class CurrentVPNSelectorView: UIView {
     @IBOutlet var countryTitleLabel: UILabel!
 
     var selectedCountry: VPNCountry?
+    private let disposeBag = DisposeBag()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         Bundle.main.loadNibNamed(String(describing: CurrentVPNSelectorView.self), owner: self, options: nil)
         self.view.frame = self.bounds
         self.addSubview(self.view)
+
+        // VPNCity... get observable of when we change cities...
+        // first event from VPNCity from user defaults
+
+        DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent
+            .map { Optional($0) }
+            .startWith(VPNCity.fetchFromUserDefaults())
+            .compactMap { $0 }
+            .subscribe { cityEvent in
+                guard let city = cityEvent.element?.name else { return }
+                DispatchQueue.main.async { [weak self] in
+                    self?.countryTitleLabel.text = city
+                    self?.countryFlagImageView.image = nil // TODO: Need the country as well in order to set the flag
+                }
+        }.disposed(by: disposeBag)
     }
 
     override func awakeFromNib() {

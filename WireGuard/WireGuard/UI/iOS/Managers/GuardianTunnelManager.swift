@@ -3,6 +3,7 @@
 
 import Foundation
 import NetworkExtension
+import RxSwift
 
 class GuardianTunnelManager {
     static let sharedTunnelManager = GuardianTunnelManager()
@@ -10,6 +11,8 @@ class GuardianTunnelManager {
     var tunnelProviderManager: NETunnelProviderManager?
     var tunnelConfiguration: TunnelConfiguration?
     var vpnStoppedSemaphore: DispatchSemaphore?
+
+    var cityChangedEvent = PublishSubject<VPNCity>()
 
 
     private init() {
