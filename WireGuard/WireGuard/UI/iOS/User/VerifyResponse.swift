@@ -3,10 +3,9 @@
 
 import Foundation
 
-struct VerifyResponse: UserDefaulting {
-    static let userDefaultsKey = "verifyResponse"
+struct VerifyResponse: Codable {
     let user: User
-    let token: String
+    let token: Token
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -18,4 +17,12 @@ struct VerifyResponse: UserDefaulting {
         case user
         case token
     }
+}
+
+struct Token: Codable, UserDefaulting {
+    let value: String
+    static var userDefaultsKey: String {
+        return "token"
+    }
+
 }

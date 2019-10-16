@@ -49,7 +49,6 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
                         print(error) //handle this
                         return
                     }
-                    self?.accountManager.retrieveVPNServers { _ in }
                     self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
                 }
             }

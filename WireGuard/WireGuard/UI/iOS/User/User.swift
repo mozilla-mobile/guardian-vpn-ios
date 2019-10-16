@@ -3,14 +3,13 @@
 
 import Foundation
 
-struct User: UserDefaulting {
+struct User: Codable {
     let email: String
     let displayName: String
     let avatarUrlString: String
     let vpnSubscription: Subscription
     let devices: [Device]
     let maxDevices: Int
-    static var userDefaultsKey = "currentUserUserDefaults"
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
