@@ -56,7 +56,7 @@ class AccountManager: AccountManaging {
     func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
         GuardianAPI.verify(urlString: url.absoluteString) { result in
             completion(result.map { verifyResponse in
-                verifyResponse.token.saveToUserDefaults()
+                UserDefaults.standard.set(verifyResponse.token, forKey: "token")
                 return verifyResponse
             })
         }

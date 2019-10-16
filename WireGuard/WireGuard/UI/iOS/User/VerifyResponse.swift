@@ -5,7 +5,7 @@ import Foundation
 
 struct VerifyResponse: Codable {
     let user: User
-    let token: Token
+    let token: String
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -17,12 +17,4 @@ struct VerifyResponse: Codable {
         case user
         case token
     }
-}
-
-struct Token: Codable, UserDefaulting {
-    let value: String
-    static var userDefaultsKey: String {
-        return "token"
-    }
-
 }
