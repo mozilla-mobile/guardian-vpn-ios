@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     private let accountManager: AccountManaging
     private let tunnelManager: GuardianTunnelManager
     private weak var coordinatorDelegate: Navigating?
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     init(accountManager: AccountManaging, tunnelManager: GuardianTunnelManager, coordinatorDelegate: Navigating) {
         self.accountManager = accountManager

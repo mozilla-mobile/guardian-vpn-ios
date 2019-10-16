@@ -21,7 +21,7 @@ class VPNToggleView: UIView {
     @IBOutlet var vpnSwitch: UISwitch!
 
     public var vpnSwitchEvent: ControlProperty<Bool>?
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
