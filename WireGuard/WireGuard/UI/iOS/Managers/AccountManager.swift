@@ -2,6 +2,7 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
+import RxSwift
 
 // TODO: This class is getting too big. We need to break it up among it's responsibilities.
 
@@ -9,6 +10,8 @@ class AccountManager: AccountManaging {
     static let sharedManager = AccountManager()
     var credentialsStore = CredentialsStore.sharedStore
     private(set) var account: Account?
+
+    public var heartbeatFailedEvent = PublishSubject<Void>()
 
     private init() {
         //
@@ -62,12 +65,20 @@ class AccountManager: AccountManaging {
         }
     }
 
+    @objc func pollUser() {
+        retrieveUser { _ in }
+    }
+
     func retrieveUser(completion: @escaping (Result<User, Error>) -> Void) {
         guard let account = account else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return // TODO: Handle this case?
         }
-        GuardianAPI.accountInfo(token: account.token) { result in
+        GuardianAPI.accountInfo(token: account.token) { [weak self] result in
+            if case .failure = result {
+                self?.heartbeatFailedEvent.onNext(())
+            }
+
             completion(result.map { user in
                 account.user = user
                 return user
@@ -113,5 +124,13 @@ class AccountManager: AccountManaging {
         } catch {
             completion(Result.failure(GuardianFailReason.couldNotCreateBody))
         }
+    }
+
+    func startHeartbeat() {
+        Timer(timeInterval: 3600,
+              target: self,
+              selector: #selector(pollUser),
+              userInfo: nil,
+              repeats: true)
     }
 }
