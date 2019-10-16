@@ -9,7 +9,7 @@ class GuardianTunnelManager {
 
     var tunnelProviderManager: NETunnelProviderManager?
     var tunnelConfiguration: TunnelConfiguration?
-    let vpnStoppedSemaphore = DispatchSemaphore(value: 1)
+    var vpnStoppedSemaphore: DispatchSemaphore?
 
 
     private init() {
@@ -43,12 +43,15 @@ class GuardianTunnelManager {
 
         tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: privateKey)
 
-        if tunnelProviderManager?.connection.status == .connected || tunnelProviderManager?.connection.status == .connecting {
-            stopTunnel()
-            _ = vpnStoppedSemaphore.wait(timeout: DispatchTime.now() + 2.0)
+        DispatchQueue.global().async { [weak self] in
+            if self?.tunnelProviderManager?.connection.status == .connected || self?.tunnelProviderManager?.connection.status == .connecting {
+                self?.stopTunnel()
+                self?.vpnStoppedSemaphore = DispatchSemaphore(value: 0)
+                _ = self?.vpnStoppedSemaphore?.wait(timeout: DispatchTime.now() + DispatchTimeInterval.milliseconds(2 * 1000))
+            }
+            guard let tunnelConfiguration = self?.tunnelConfiguration else { return }
+            self?.createTunnel(from: tunnelConfiguration)
         }
-        guard let tunnelConfiguration = tunnelConfiguration else { return }
-        createTunnel(from: tunnelConfiguration)
     }
 
     private func createTunnel(from configuration: TunnelConfiguration) {
@@ -86,7 +89,7 @@ class GuardianTunnelManager {
 
         switch status {
         case .disconnected:
-            vpnStoppedSemaphore.signal()
+            vpnStoppedSemaphore?.signal()
         default:
             break
         }
