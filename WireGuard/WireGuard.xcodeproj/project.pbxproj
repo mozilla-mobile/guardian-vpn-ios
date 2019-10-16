@@ -806,12 +806,13 @@
 				F45D709C233D385D00871447 /* Home */,
 				6FF4AC23211EC472002C96EB /* Info.plist */,
 				6FF4AC20211EC472002C96EB /* LaunchScreen.storyboard */,
-				F45D70FA23428DA900871447 /* Servers */,
 				F4658539233BB23D0081D7D7 /* Login */,
+				F43BB3C52357565F00D4D21A /* Managers */,
 				F45D709F233D3BB000871447 /* Navigation */,
 				F465853F233BB39C0081D7D7 /* Networking */,
 				6F29A94622787B1600DC6A6B /* QuickActionItem.swift */,
 				6F29A9422278518D00DC6A6B /* RecentTunnelsTracker.swift */,
+				F45D70FA23428DA900871447 /* Servers */,
 				5F45417C21C1B23600994C13 /* UITableViewCell+Reuse.swift */,
 				F45D7099233D380A00871447 /* User */,
 				5F4541A721C44F5B00994C13 /* View */,
@@ -844,7 +845,6 @@
 			isa = PBXGroup;
 			children = (
 				6FFA5DA32197085D0001E2F7 /* ActivateOnDemandOption.swift */,
-				F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */,
 				6FB1017821C57DE600766195 /* MockTunnels.swift */,
 				6B707D8321F918D4000A8F73 /* TunnelConfiguration+UapiConfig.swift */,
 				6F7F7E5E21C7D74B00527607 /* TunnelErrors.swift */,
@@ -1032,6 +1032,16 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		F43BB3C52357565F00D4D21A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
+				F42A23062347D37F00763B0D /* AccountManaging.swift */,
+				F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		F43DFC09234CD586003EA64A /* Guardian Tunnel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1058,8 +1068,6 @@
 			isa = PBXGroup;
 			children = (
 				F499C0FE234E644600126CDA /* Account.swift */,
-				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
-				F42A23062347D37F00763B0D /* AccountManaging.swift */,
 				F40831D0233CFD5600A60FCA /* User.swift */,
 				F45D7097233D34B100871447 /* VerifyResponse.swift */,
 			);

@@ -9,6 +9,8 @@ class GuardianTunnelManager {
 
     var tunnelProviderManager: NETunnelProviderManager?
     var tunnelConfiguration: TunnelConfiguration?
+    let vpnStoppedSemaphore = DispatchSemaphore(value: 1)
+
 
     private init() {
         loadTunnels()
@@ -32,25 +34,21 @@ class GuardianTunnelManager {
         }
     }
 
-    func createTunnel(accountManager: AccountManaging?) { // Inject Account Manager or pass in device?
-        guard let device = accountManager?.account?.currentDevice,
-            let privateKey = (accountManager as? AccountManager)?.credentialsStore.deviceKeys.devicePrivateKey
+    func createTunnel(accountManager: AccountManaging?) {
+        guard let device = accountManager?.account?.currentDevice, // current device is nil on first launch.
+            let privateKey = accountManager?.credentialsStore.deviceKeys.devicePrivateKey
             else { return }
-        // get current city / config
-        // TODO: Save city somewhere, and retrieve it here.
-        guard let currentCity = VPNCity.fetchFromUserDefaults() else { return }
 
-        createTunnel(device: device, city: currentCity, privateKey: privateKey)
-    }
+        guard let city = VPNCity.fetchFromUserDefaults() else { return }
 
-    func createTunnel(device: Device, city: VPNCity, privateKey: Data) {
         tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: privateKey)
+
         if tunnelProviderManager?.connection.status == .connected || tunnelProviderManager?.connection.status == .connecting {
             stopTunnel()
-        } else {
-            guard let tunnelConfiguration = tunnelConfiguration else { return }
-            createTunnel(from: tunnelConfiguration)
+            _ = vpnStoppedSemaphore.wait(timeout: DispatchTime.now() + 2.0)
         }
+        guard let tunnelConfiguration = tunnelConfiguration else { return }
+        createTunnel(from: tunnelConfiguration)
     }
 
     private func createTunnel(from configuration: TunnelConfiguration) {
@@ -84,13 +82,11 @@ class GuardianTunnelManager {
     }
 
     @objc func vpnStatusDidChange(notification: Notification) {
-        guard let tunnelConfiguration = tunnelConfiguration else { return }
         guard let status = (notification.object as? NETunnelProviderSession)?.status else { return }
 
-        print("#### STATUS: \(status.rawValue)")
         switch status {
         case .disconnected:
-            createTunnel(from: tunnelConfiguration)
+            vpnStoppedSemaphore.signal()
         default:
             break
         }
