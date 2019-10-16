@@ -35,7 +35,8 @@ class HomeViewController: UIViewController {
         addTapGesture()
         addToggleGesture()
 
-        vpnToggleView.vpnSwitchEvent?.subscribe(onNext: { [weak self] isOn in
+        vpnToggleView.vpnSwitchEvent?
+            .subscribe(onNext: { [weak self] isOn in
             if isOn {
                 self?.tunnelManager.createTunnel(accountManager: self?.accountManager)
             } else {
