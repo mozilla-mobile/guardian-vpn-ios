@@ -10,20 +10,9 @@ class NavigationCoordinator: Navigating {
 
     init(dependencyProvider: DependencyProviding) {
         self.dependencyProvider = dependencyProvider
-        if let verification = VerifyResponse.fetchFromUserDefaults() {
-            dependencyProvider.accountManager.set(with: Account(user: verification.user,
-                                                                token: verification.token,
-                                                                device: Device.fetchFromUserDefaults())) { _ in }
-        }
     }
 
     func rootViewController() -> UIViewController {
-        guard dependencyProvider.accountManager.account != nil else {
-            let loginViewController = LoginViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
-            currentViewController = loginViewController
-            return loginViewController
-        }
-
         let loadingViewController = LoadingViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
         currentViewController = loadingViewController
         return loadingViewController

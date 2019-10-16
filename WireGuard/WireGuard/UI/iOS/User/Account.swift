@@ -6,10 +6,10 @@ import Foundation
 class Account {
     var currentDevice: Device?
     var user: User
-    var token: String
+    var token: Token
     var availableServers: [VPNCountry]?
 
-    init(user: User, token: String, device: Device? = nil) {
+    init(user: User, token: Token, device: Device? = nil) {
         self.user = user
         self.token = token
         self.currentDevice = device
@@ -18,6 +18,6 @@ class Account {
 
 extension Account: CustomStringConvertible {
     var description: String {
-        "" // TODO:
+        return "" // TODO:
     }
 }

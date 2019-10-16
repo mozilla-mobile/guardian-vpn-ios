@@ -13,8 +13,8 @@ class GuardianAPI {
         }
     }
 
-    static func accountInfo(token: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .account, type: .GET, httpHeaderParams: headers(with: token))
+    static func accountInfo(token: Token, completion: @escaping (Result<User, Error>) -> Void) {
+        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .account, type: .GET, httpHeaderParams: headers(with: token.value))
         NetworkLayer.fireURLRequest(with: urlRequest) { result in
             completion(result.flatMap { data in
                 Result { try data.convert(to: User.self) }
@@ -31,8 +31,8 @@ class GuardianAPI {
         }
     }
 
-    static func availableServers(with token: String, completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .retrieveServers, type: .GET, httpHeaderParams: headers(with: token))
+    static func availableServers(with token: Token, completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
+        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .retrieveServers, type: .GET, httpHeaderParams: headers(with: token.value))
         NetworkLayer.fireURLRequest(with: urlRequest) { result in
             completion(result.flatMap { data in
                 Result {
@@ -45,8 +45,8 @@ class GuardianAPI {
         }
     }
 
-    static func addDevice(with token: String, body: Data, completion: @escaping (Result<Device, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token), body: body)
+    static func addDevice(with token: Token, body: Data, completion: @escaping (Result<Device, Error>) -> Void) {
+        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token.value), body: body)
         NetworkLayer.fireURLRequest(with: urlRequest) { result in
             completion(result.flatMap { data in
                 Result { try data.convert(to: Device.self) }
