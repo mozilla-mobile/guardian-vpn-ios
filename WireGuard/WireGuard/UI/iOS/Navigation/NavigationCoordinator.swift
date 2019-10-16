@@ -2,14 +2,26 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
+import RxSwift
 
 class NavigationCoordinator: Navigating {
 
     let dependencyProvider: DependencyProviding
     var currentViewController: UIViewController?
 
+    var disposeBag = DisposeBag()
+
     init(dependencyProvider: DependencyProviding) {
         self.dependencyProvider = dependencyProvider
+        setupHeartbeat()
+    }
+    
+    private func setupHeartbeat() {
+        dependencyProvider.accountManager.heartbeatFailedEvent
+            .subscribe { _ in
+                self.navigateToLogin()
+        }.disposed(by: disposeBag)
+        dependencyProvider.accountManager.startHeartbeat() // TODO: Should this be here?
     }
 
     func rootViewController() -> UIViewController {
