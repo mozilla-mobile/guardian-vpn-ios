@@ -57,7 +57,7 @@ class NavigationCoordinator: Navigating {
     }
 
     private func setKeyWindow(with viewController: UIViewController) {
-        if let window = UIApplication.shared.keyWindow {
+        if let window = UIApplication.shared.windows.first {
             window.rootViewController = viewController
             window.makeKeyAndVisible()
         }

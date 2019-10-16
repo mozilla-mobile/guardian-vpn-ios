@@ -20,7 +20,7 @@ class LoadingViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        guard let token = Token.fetchFromUserDefaults() else {
+        guard let token = UserDefaults.standard.string(forKey: "token") else {
             coordinatorDelegate?.navigate(after: .loginFailed)
             return
         }
