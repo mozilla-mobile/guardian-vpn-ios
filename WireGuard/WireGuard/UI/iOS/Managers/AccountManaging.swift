@@ -5,8 +5,9 @@ import Foundation
 
 protocol AccountManaging {
     var account: Account? { get }
+    var credentialsStore: CredentialsStore { get }
 
-    func set(with: Account)
+    func set(with: Account, completion: ((Result<Void, Error>) -> Void))
     func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
     func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void)
     func retrieveUser(completion: @escaping (Result<User, Error>) -> Void)

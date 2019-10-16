@@ -70,39 +70,14 @@ extension ServersDataSourceAndDelegate: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-
-
-
-        // Save selected city to defaults ? Archive to cache?
-        // Should just be JSON.
-        // Do we need to save the city or can we retrieve it from the network extension itself ?
-
-
-
-
         let currentCity = countries[indexPath.section].cities[indexPath.row]
         currentCity.saveToUserDefaults()
-        // Can't save to defaults (non property list object?)
-        // Make it a plist object? Or use NSKeyedArchiver to store to caches instead of defaults?
-
-
-
-
-
-
-
-
-
 
         if indexPath != selectedIndexPath {
             selectedIndexPath = indexPath
+            let city = countries[indexPath.section].cities[indexPath.row]
+            tunnelsManager.createTunnel(accountManager: accountManager)
 
-            if let device = accountManager.account?.currentDevice {
-                let city = countries[indexPath.section].cities[indexPath.row]
-                let privateKey = accountManager.credentialsStore.deviceKeys.devicePrivateKey
-                tunnelsManager.createTunnel(device: device, city: city, privateKey: privateKey)
-            }
             tableView.reloadData()
         }
     }

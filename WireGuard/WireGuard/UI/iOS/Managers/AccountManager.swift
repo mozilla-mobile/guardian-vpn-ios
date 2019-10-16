@@ -7,17 +7,46 @@ import UIKit
 
 class AccountManager: AccountManaging {
     static let sharedManager = AccountManager()
-    let credentialsStore = CredentialsStore.sharedStore // Should this be on the protocol?
+    var credentialsStore = CredentialsStore.sharedStore
     private(set) var account: Account?
 
     private init() {
         //
     }
 
-    func set(with account: Account) {
+    func set(with account: Account, completion: ((Result<Void, Error>) -> Void)) {
         self.account = account
-        addDevice { _ in } // TODO: Remove this once login / dev management is done
-        retrieveVPNServers { _ in }
+        retrieveDeviceAndVPNServers(completion: completion)
+    }
+
+    private func retrieveDeviceAndVPNServers(completion: (Result<Void, Error>) -> Void) {
+        let dispatchGroup = DispatchGroup()
+
+        var error: Error?
+        if account?.currentDevice == nil {
+            dispatchGroup.enter()
+
+            addDevice { result in
+                if case .failure(let deviceError) = result {
+                    error = deviceError
+                }
+                dispatchGroup.leave()
+            }
+        }
+
+        dispatchGroup.enter()
+        retrieveVPNServers { result in
+            if case .failure(let vpnError) = result {
+                error = vpnError
+            }
+            dispatchGroup.leave()
+        }
+
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+        completion(.success(()))
     }
 
     func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {

@@ -9,8 +9,15 @@ class Account {
     var token: String
     var availableServers: [VPNCountry]?
 
-    init(user: User, token: String) {
+    init(user: User, token: String, device: Device? = nil) {
         self.user = user
         self.token = token
+        self.currentDevice = device
+    }
+}
+
+extension Account: CustomStringConvertible {
+    var description: String {
+        "" // TODO:
     }
 }

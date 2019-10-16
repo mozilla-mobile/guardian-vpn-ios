@@ -62,15 +62,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
         accountManager.verify(url: verificationURL) { [weak self] result in
             do {
                 let verification = try result.get()
-                self?.accountManager.set(with: Account.init(user: verification.user, token: verification.token))
-                self?.accountManager.addDevice { deviceResult in
-                    switch deviceResult {
-                    case .success(let device):
-                        completion(.success(()))
-                    case .failure(let deviceError):
-                        completion(.failure(deviceError))
-                    }
-                }
+                self?.accountManager.set(with: Account(user: verification.user, token: verification.token), completion: completion)
             } catch {
                 completion(.failure(error))
             }
