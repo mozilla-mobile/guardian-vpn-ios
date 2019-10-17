@@ -133,15 +133,15 @@ class AccountManager: AccountManaging {
     func retrieveUser(completion: @escaping (Result<User, Error>) -> Void) {
         guard let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
-            return // TODO: Handle this case?
+            return
         }
-        GuardianAPI.accountInfo(token: token) { [weak self] result in
+        GuardianAPI.accountInfo(token: token) { [unowned self] result in
             if case .failure = result {
-                self?.heartbeatFailedEvent.onNext(())
+                self.heartbeatFailedEvent.onNext(())
             }
 
             completion(result.map { user in
-                self?.user = user
+                self.user = user
                 return user
             })
         }
@@ -150,7 +150,7 @@ class AccountManager: AccountManaging {
     private func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
         guard let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
-            return // TODO: Handle this case?
+            return
         }
         GuardianAPI.availableServers(with: token) { result in
             completion(result.map { [unowned self] servers in
@@ -163,7 +163,7 @@ class AccountManager: AccountManaging {
     private func addDevice(completion: @escaping (Result<Device, Error>) -> Void) {
         guard let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
-            return // TODO: Handle this case?
+            return
         }
 
         let deviceBody: [String: Any] = ["name": UIDevice.current.name,
@@ -171,9 +171,9 @@ class AccountManager: AccountManaging {
 
         do {
             let body = try JSONSerialization.data(withJSONObject: deviceBody)
-            GuardianAPI.addDevice(with: token, body: body) { [weak self] result in
+            GuardianAPI.addDevice(with: token, body: body) { [unowned self] result in
                 completion(result.map { device in
-                    self?.currentDevice = device
+                    self.currentDevice = device
                     device.saveToUserDefaults()
                     return device
                 })
