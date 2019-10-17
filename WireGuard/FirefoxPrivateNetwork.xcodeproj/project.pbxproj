@@ -113,7 +113,7 @@
 		F43DFC0B234D0B5C003EA64A /* TunnelConfigurationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */; };
 		F43DFC0E234D1361003EA64A /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC0D234D1361003EA64A /* Device.swift */; };
 		F43DFC10234D1EE4003EA64A /* UserDefaulting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */; };
-		F43DFC12234E4230003EA64A /* CredentialsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC11234E4230003EA64A /* CredentialsStore.swift */; };
+		F43DFC12234E4230003EA64A /* KeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC11234E4230003EA64A /* KeyStore.swift */; };
 		F43DFC14234E436E003EA64A /* DeviceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC13234E436E003EA64A /* DeviceKeys.swift */; };
 		F43DFC16234FBBB5003EA64A /* GuardianTunnelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */; };
 		F45D7098233D34B100871447 /* VerifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D7097233D34B100871447 /* VerifyResponse.swift */; };
@@ -151,8 +151,6 @@
 		F45D70F823427D2F00871447 /* CurrentVPNSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70F723427D2F00871447 /* CurrentVPNSelectorView.xib */; };
 		F45D70FD23428DCE00871447 /* ServersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70FB23428DCE00871447 /* ServersViewController.swift */; };
 		F45D70FE23428DCE00871447 /* ServersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70FC23428DCE00871447 /* ServersViewController.xib */; };
-		F465853D233BB2CB0081D7D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465853B233BB2CB0081D7D7 /* LoginViewController.swift */; };
-		F465853E233BB2CB0081D7D7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F465853C233BB2CB0081D7D7 /* LoginViewController.xib */; };
 		F4658541233BB3D00081D7D7 /* NetworkingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */; };
 		F4658543233BB44A0081D7D7 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658542233BB44A0081D7D7 /* NetworkLayer.swift */; };
 		F4658545233BB7690081D7D7 /* GuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658544233BB7690081D7D7 /* GuardianAPI.swift */; };
@@ -166,7 +164,6 @@
 		F499C0F9234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */; };
 		F499C0FB234E41B800126CDA /* DeviceLimitReachedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */; };
 		F499C0FD234E490600126CDA /* DeviceLimitReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */; };
-		F499C0FF234E644600126CDA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0FE234E644600126CDA /* Account.swift */; };
 		F4A0EFF42356111A00A06D7B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF32356111A00A06D7B /* RxSwift.framework */; };
 		F4A0EFF6235612F500A06D7B /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF5235612F500A06D7B /* RxCocoa.framework */; };
 		F4D150B1234517D800739CDA /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B0234517D800739CDA /* Data+JSON.swift */; };
@@ -181,6 +178,8 @@
 		F4D150DC2347983A00739CDA /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4D150D7234797C700739CDA /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4D150DD2347984000739CDA /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4D150D5234797B700739CDA /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4D150DF2347A3EE00739CDA /* WireGuardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150CD2347975C00739CDA /* WireGuardTests.swift */; };
+		F4E33D7D2358106800B2003A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E33D7B2358106800B2003A /* LoginViewController.swift */; };
+		F4E33D7E2358106800B2003A /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4E33D7C2358106800B2003A /* LoginViewController.xib */; };
 		F4F25E112343F7D3004BA245 /* VPNLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F25E102343F7D3004BA245 /* VPNLocations.swift */; };
 /* End PBXBuildFile section */
 
@@ -378,7 +377,7 @@
 		F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfigurationBuilder.swift; sourceTree = "<group>"; };
 		F43DFC0D234D1361003EA64A /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaulting.swift; sourceTree = "<group>"; };
-		F43DFC11234E4230003EA64A /* CredentialsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsStore.swift; sourceTree = "<group>"; };
+		F43DFC11234E4230003EA64A /* KeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStore.swift; sourceTree = "<group>"; };
 		F43DFC13234E436E003EA64A /* DeviceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceKeys.swift; sourceTree = "<group>"; };
 		F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianTunnelManager.swift; sourceTree = "<group>"; };
 		F45D7097233D34B100871447 /* VerifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyResponse.swift; sourceTree = "<group>"; };
@@ -416,8 +415,6 @@
 		F45D70F723427D2F00871447 /* CurrentVPNSelectorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentVPNSelectorView.xib; sourceTree = "<group>"; };
 		F45D70FB23428DCE00871447 /* ServersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersViewController.swift; sourceTree = "<group>"; };
 		F45D70FC23428DCE00871447 /* ServersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServersViewController.xib; sourceTree = "<group>"; };
-		F465853B233BB2CB0081D7D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		F465853C233BB2CB0081D7D7 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingEnums.swift; sourceTree = "<group>"; };
 		F4658542233BB44A0081D7D7 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		F4658544233BB7690081D7D7 /* GuardianAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPI.swift; sourceTree = "<group>"; };
@@ -431,7 +428,6 @@
 		F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceLimitReachedView.xib; sourceTree = "<group>"; };
 		F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLimitReachedView.swift; sourceTree = "<group>"; };
-		F499C0FE234E644600126CDA /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		F4A0EFF32356111A00A06D7B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		F4A0EFF5235612F500A06D7B /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		F4D150B0234517D800739CDA /* Data+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JSON.swift"; sourceTree = "<group>"; };
@@ -446,6 +442,8 @@
 		F4D150CF2347975C00739CDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4D150D5234797B700739CDA /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		F4D150D7234797C700739CDA /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		F4E33D7B2358106800B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F4E33D7C2358106800B2003A /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -822,7 +820,7 @@
 		F40831D2233D049F00A60FCA /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				F43DFC11234E4230003EA64A /* CredentialsStore.swift */,
+				F43DFC11234E4230003EA64A /* KeyStore.swift */,
 				F42A23022347D20800763B0D /* DependencyFactory.swift */,
 				F42A23042347D22100763B0D /* DependencyProviding.swift */,
 				F43DFC13234E436E003EA64A /* DeviceKeys.swift */,
@@ -867,7 +865,6 @@
 		F45D7099233D380A00871447 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				F499C0FE234E644600126CDA /* Account.swift */,
 				F40831D0233CFD5600A60FCA /* User.swift */,
 				F45D7097233D34B100871447 /* VerifyResponse.swift */,
 			);
@@ -959,8 +956,8 @@
 			children = (
 				F43DFC05234BB32C003EA64A /* LoadingViewController.swift */,
 				F43DFC06234BB32C003EA64A /* LoadingViewController.xib */,
-				F465853B233BB2CB0081D7D7 /* LoginViewController.swift */,
-				F465853C233BB2CB0081D7D7 /* LoginViewController.xib */,
+				F4E33D7B2358106800B2003A /* LoginViewController.swift */,
+				F4E33D7C2358106800B2003A /* LoginViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1176,6 +1173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4E33D7E2358106800B2003A /* LoginViewController.xib in Resources */,
 				F4D150B723453F9900739CDA /* CityVPNCell.xib in Resources */,
 				F45D70CE2342431F00871447 /* Metropolis-Light.otf in Resources */,
 				F45D70C62342431F00871447 /* Metropolis-Medium.otf in Resources */,
@@ -1210,7 +1208,6 @@
 				F45D70F22342775000871447 /* Inter-Regular.otf in Resources */,
 				F45D70D82342431F00871447 /* Metropolis-BlackItalic.otf in Resources */,
 				6F919EDC218C65C50023B400 /* wireguard_doc_logo_320x320.png in Resources */,
-				F465853E233BB2CB0081D7D7 /* LoginViewController.xib in Resources */,
 				F45D70F823427D2F00871447 /* CurrentVPNSelectorView.xib in Resources */,
 				F45D70FE23428DCE00871447 /* ServersViewController.xib in Resources */,
 				F499C0F7234E301900126CDA /* DeviceManagementCell.xib in Resources */,
@@ -1399,7 +1396,6 @@
 				F4D150C023464DE300739CDA /* CountryVPNHeaderView.swift in Sources */,
 				F45D70AE23423C8C00871447 /* VPNToggleView.swift in Sources */,
 				6F693A562179E556008551C1 /* Endpoint.swift in Sources */,
-				F499C0FF234E644600126CDA /* Account.swift in Sources */,
 				6FDEF7E62185EFB200D8FBF6 /* QRScanViewController.swift in Sources */,
 				6FDB6D18224CC05A00EE4BC3 /* LogViewController.swift in Sources */,
 				6FFA5D952194454A0001E2F7 /* NETunnelProviderProtocol+Extension.swift in Sources */,
@@ -1411,6 +1407,7 @@
 				F45D70A1233D3BC000871447 /* Navigating.swift in Sources */,
 				6F61F1E921B932F700483816 /* WireGuardAppError.swift in Sources */,
 				6F6899A62180447E0012E523 /* x25519.c in Sources */,
+				F4E33D7D2358106800B2003A /* LoginViewController.swift in Sources */,
 				F4658548233BBBF30081D7D7 /* LoginCheckpointModel.swift in Sources */,
 				6F7774E2217181B1006A79B3 /* AppDelegate.swift in Sources */,
 				6FDEF80021863C0100D8FBF6 /* ioapi.c in Sources */,
@@ -1443,7 +1440,6 @@
 				6FDEF7FB21863B6100D8FBF6 /* unzip.c in Sources */,
 				6F29A9432278518D00DC6A6B /* RecentTunnelsTracker.swift in Sources */,
 				6F6899A8218044FC0012E523 /* Curve25519.swift in Sources */,
-				F465853D233BB2CB0081D7D7 /* LoginViewController.swift in Sources */,
 				F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */,
 				F43DFC07234BB32C003EA64A /* LoadingViewController.swift in Sources */,
 				F499C0F2234E29B300126CDA /* DeviceManagementViewController.swift in Sources */,
@@ -1464,7 +1460,7 @@
 				5F45419021C2D53800994C13 /* SwitchCell.swift in Sources */,
 				F40831CF233CFA2000A60FCA /* AccountManager.swift in Sources */,
 				6BD5C97B220D1AE200784E08 /* key.c in Sources */,
-				F43DFC12234E4230003EA64A /* CredentialsStore.swift in Sources */,
+				F43DFC12234E4230003EA64A /* KeyStore.swift in Sources */,
 				F4D150B323451DC900739CDA /* GuardianURLRequestBuilder.swift in Sources */,
 				6FB1017921C57DE600766195 /* MockTunnels.swift in Sources */,
 				6B707D8421F918D4000A8F73 /* TunnelConfiguration+UapiConfig.swift in Sources */,

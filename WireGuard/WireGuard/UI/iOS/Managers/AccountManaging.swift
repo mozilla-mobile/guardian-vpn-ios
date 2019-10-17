@@ -5,15 +5,26 @@ import Foundation
 import RxSwift
 
 protocol AccountManaging {
-    var account: Account? { get }
-    var credentialsStore: CredentialsStore { get }
+    var user: User? { get }
+    var token: String? { get }
+    var currentDevice: Device? { get }
+    var availableServers: [VPNCountry]? { get }
     var heartbeatFailedEvent: PublishSubject<Void> { get }
 
-    func set(with: Account, completion: ((Result<Void, Error>) -> Void))
+    /**
+     This call is used to retrieve the link to the login page.
+     */
     func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
-    func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void)
-    func retrieveUser(completion: @escaping (Result<User, Error>) -> Void)
-    func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void)
-    func addDevice(completion: @escaping (Result<Device, Error>) -> Void)
+
+    /**
+     This should only be called from the initial login flow.
+     */
+    func setupFromVerify(url: URL, completion: @escaping (Result<Void, Error>) -> Void)
+
+    /**
+     This should be called when the app is returned from foreground/launch and we've already logged in.
+     */
+    func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void)
+
     func startHeartbeat()
 }

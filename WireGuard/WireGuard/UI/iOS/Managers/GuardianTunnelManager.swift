@@ -7,19 +7,16 @@ import RxSwift
 
 class GuardianTunnelManager {
     static let sharedTunnelManager = GuardianTunnelManager()
+    let keyStore = KeyStore.sharedStore
 
     var tunnelProviderManager: NETunnelProviderManager?
     var tunnelConfiguration: TunnelConfiguration?
     var vpnStoppedSemaphore: DispatchSemaphore?
-
     var cityChangedEvent = PublishSubject<VPNCity>()
-
 
     private init() {
         loadTunnels()
-
         NotificationCenter.default.addObserver(self, selector: #selector(vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
-
     }
 
     func loadTunnels() {
@@ -37,14 +34,11 @@ class GuardianTunnelManager {
         }
     }
 
-    func createTunnel(accountManager: AccountManaging?) {
-        guard let device = accountManager?.account?.currentDevice, // current device is nil on first launch.
-            let privateKey = accountManager?.credentialsStore.deviceKeys.devicePrivateKey
-            else { return }
+    func createTunnel(device: Device?) {
+        guard let device = device,
+            let city = VPNCity.fetchFromUserDefaults() else { return }
 
-        guard let city = VPNCity.fetchFromUserDefaults() else { return }
-
-        tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: privateKey)
+        tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: keyStore.deviceKeys.devicePrivateKey)
 
         DispatchQueue.global().async { [weak self] in
             if self?.tunnelProviderManager?.connection.status == .connected || self?.tunnelProviderManager?.connection.status == .connecting {

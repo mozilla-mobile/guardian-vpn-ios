@@ -24,10 +24,7 @@ class ServersViewController: UIViewController {
         setupNavigationBar()
         styleViews()
 
-        guard let countries = accountManager.account?.availableServers else {
-            getVPNServerList()
-            return
-        }
+        let countries = accountManager.availableServers ?? []
         self.dataSource = ServersDataSourceAndDelegate(countries: countries, tableView: self.tableView)
         self.tableView.reloadData()
 
@@ -47,20 +44,5 @@ class ServersViewController: UIViewController {
 
     @objc func close() {
         self.dismiss(animated: true, completion: nil)
-    }
-
-    private func getVPNServerList() {
-        accountManager.retrieveVPNServers { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                do {
-                    let countries = try result.get()
-                    self.dataSource = ServersDataSourceAndDelegate(countries: countries, tableView: self.tableView)
-                    self.tableView.reloadData()
-                } catch {
-                    print(error)
-                }
-            }
-        }
     }
 }

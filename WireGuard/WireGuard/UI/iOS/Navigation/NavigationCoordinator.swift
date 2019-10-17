@@ -5,7 +5,6 @@ import UIKit
 import RxSwift
 
 class NavigationCoordinator: Navigating {
-
     let dependencyProvider: DependencyProviding
     var currentViewController: UIViewController?
 
@@ -16,6 +15,13 @@ class NavigationCoordinator: Navigating {
         setupHeartbeat()
     }
 
+    var rootViewController: UIViewController {
+        let accountManager = dependencyProvider.accountManager
+        let loadingViewController = LoadingViewController(accountManager: accountManager, coordinatorDelegate: self)
+        currentViewController = loadingViewController
+        return loadingViewController
+    }
+
     private func setupHeartbeat() {
         dependencyProvider.accountManager.heartbeatFailedEvent
             .subscribe { _ in
@@ -24,14 +30,8 @@ class NavigationCoordinator: Navigating {
         dependencyProvider.accountManager.startHeartbeat() // TODO: Should this be here?
     }
 
-    func rootViewController() -> UIViewController {
-        let loadingViewController = LoadingViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
-        currentViewController = loadingViewController
-        return loadingViewController
-    }
-
     // MARK: <NavigationProtocol>
-    func navigate(after action: NavigationAction) {
+    internal func navigate(after action: NavigationAction) {
         switch action {
         case .loginSucceeded:
             navigateToHomeVPN()
@@ -48,7 +48,7 @@ class NavigationCoordinator: Navigating {
     }
 
     private func navigateToLogin() {
-        currentViewController = LoginViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
+        currentViewController = LoginViewController(accountManager: dependencyProvider.accountManager, navigatingDelegate: self)
         setKeyWindow(with: currentViewController!)
     }
 

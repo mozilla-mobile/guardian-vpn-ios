@@ -3,19 +3,18 @@
 
 import UIKit
 import WebKit
-import SafariServices
 
 class LoginViewController: UIViewController, WKNavigationDelegate {
     let successfulLoginString = "/vpn/client/login/success"
 
-    @IBOutlet var webView: WKWebView! // TODO: Replace with a SFSafariViewController ??
-    private weak var coordinatorDelegate: Navigating?
     private let accountManager: AccountManaging
+    private weak var navigatingDelegate: Navigating?
     private var verificationURL: URL?
+    @IBOutlet var webView: WKWebView!
 
-    init(accountManager: AccountManaging, coordinatorDelegate: Navigating) {
+    init(accountManager: AccountManaging, navigatingDelegate: Navigating) {
         self.accountManager = accountManager
-        self.coordinatorDelegate = coordinatorDelegate
+        self.navigatingDelegate = navigatingDelegate
         super.init(nibName: String(describing: LoginViewController.self), bundle: Bundle.main)
     }
 
@@ -27,12 +26,13 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         webView.navigationDelegate = self
         accountManager.login { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let checkPointModel):
                 DispatchQueue.main.async {
-                    self?.verificationURL = checkPointModel.verificationUrl
+                    self.verificationURL = checkPointModel.verificationUrl
                     let urlRequest = URLRequest(url: checkPointModel.loginUrl)
-                    self?.webView.load(urlRequest)
+                    self.webView.load(urlRequest)
                 }
             case .failure(let error):
                 print(error)
@@ -40,32 +40,20 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
         }
     }
 
+    // MARK: WKNavigationDelegate
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if let urlString = webView.url?.absoluteString, urlString.contains(successfulLoginString) {
-            setupAccount { [weak self] result in
-                DispatchQueue.main.async {
-                    if case .failure(let error) = result {
-                        self?.coordinatorDelegate?.navigate(after: .loginFailed)
-                        print(error) //handle this
-                        return
-                    }
-                    self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
+        guard let verificationUrl = verificationURL else { return }
+        let isSuccessfulLogin = webView.url?.absoluteString.contains(successfulLoginString) ?? false
+        if isSuccessfulLogin {
+            accountManager.setupFromVerify(url: verificationUrl) { [unowned self] result in
+                switch result {
+                case .success:
+                    self.navigatingDelegate?.navigate(after: .loginSucceeded)
+                case .failure(let error):
+                    self.navigatingDelegate?.navigate(after: .loginFailed)
+                    print("Failure: Could not verify login page")
+                    print(error)
                 }
-            }
-        }
-    }
-
-    private func setupAccount(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let verificationURL = verificationURL else {
-            completion(.failure(GuardianFailReason.loginError))
-            return
-        }
-        accountManager.verify(url: verificationURL) { [weak self] result in
-            do {
-                let verification = try result.get()
-                self?.accountManager.set(with: Account(user: verification.user, token: verification.token), completion: completion)
-            } catch {
-                completion(.failure(error))
             }
         }
     }
