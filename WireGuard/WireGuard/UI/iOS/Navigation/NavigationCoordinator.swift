@@ -17,15 +17,9 @@ class NavigationCoordinator: Navigating {
 
     var rootViewController: UIViewController {
         let accountManager = dependencyProvider.accountManager
-        if accountManager.token == nil || accountManager.currentDevice == nil {
-            let loginViewController = LoginViewController(accountManager: accountManager, navigatingDelegate: self)
-            currentViewController = loginViewController
-            return loginViewController
-        } else {
-            let loadingViewController = LoadingViewController(accountManager: accountManager, coordinatorDelegate: self)
-            currentViewController = loadingViewController
-            return loadingViewController
-        }
+        let loadingViewController = LoadingViewController(accountManager: accountManager, coordinatorDelegate: self)
+        currentViewController = loadingViewController
+        return loadingViewController
     }
 
     private func setupHeartbeat() {

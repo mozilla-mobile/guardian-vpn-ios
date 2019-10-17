@@ -26,12 +26,13 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         webView.navigationDelegate = self
         accountManager.login { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let checkPointModel):
                 DispatchQueue.main.async {
-                    self?.verificationURL = checkPointModel.verificationUrl
+                    self.verificationURL = checkPointModel.verificationUrl
                     let urlRequest = URLRequest(url: checkPointModel.loginUrl)
-                    self?.webView.load(urlRequest)
+                    self.webView.load(urlRequest)
                 }
             case .failure(let error):
                 print(error)
@@ -44,8 +45,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
         guard let verificationUrl = verificationURL else { return }
         let isSuccessfulLogin = webView.url?.absoluteString.contains(successfulLoginString) ?? false
         if isSuccessfulLogin {
-            accountManager.setupFromVerify(url: verificationUrl) { [weak self] result in
-                guard let self = self else { return }
+            accountManager.setupFromVerify(url: verificationUrl) { [unowned self] result in
                 switch result {
                 case .success:
                     self.navigatingDelegate?.navigate(after: .loginSucceeded)

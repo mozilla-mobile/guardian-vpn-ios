@@ -6,7 +6,7 @@ import RxSwift
 
 class AccountManager: AccountManaging {
     static let sharedManager = AccountManager()
-    private let keysStore: KeysStore
+    private let keyStore: KeyStore
 
     private(set) var user: User?
     private(set) var token: String? // Save to user defaults
@@ -17,7 +17,7 @@ class AccountManager: AccountManaging {
     public var heartbeatFailedEvent = PublishSubject<Void>()
 
     private init() {
-        keysStore = KeysStore.sharedStore
+        keyStore = KeyStore.sharedStore
         token = UserDefaults.standard.string(forKey: tokenUserDefaultsKey)
         currentDevice = Device.fetchFromUserDefaults()
     }
@@ -117,8 +117,7 @@ class AccountManager: AccountManaging {
 
     private func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
         GuardianAPI.verify(urlString: url.absoluteString) { result in
-            completion(result.map { [weak self] verifyResponse in
-                guard let self = self else { return verifyResponse }
+            completion(result.map { [unowned self] verifyResponse in
                 UserDefaults.standard.set(verifyResponse.token, forKey: self.tokenUserDefaultsKey)
                 self.user = verifyResponse.user
                 self.token = verifyResponse.token
@@ -154,8 +153,8 @@ class AccountManager: AccountManaging {
             return // TODO: Handle this case?
         }
         GuardianAPI.availableServers(with: token) { result in
-            completion(result.map { [weak self] servers in
-                self?.availableServers = servers
+            completion(result.map { [unowned self] servers in
+                self.availableServers = servers
                 return servers
             })
         }
@@ -168,7 +167,7 @@ class AccountManager: AccountManaging {
         }
 
         let deviceBody: [String: Any] = ["name": UIDevice.current.name,
-                                         "pubkey": keysStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
+                                         "pubkey": keyStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
 
         do {
             let body = try JSONSerialization.data(withJSONObject: deviceBody)
