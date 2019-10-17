@@ -5,20 +5,37 @@ import UIKit
 import RxSwift
 
 class AccountManager: AccountManaging {
-    static let sharedManager = AccountManager()
+    private static let tokenUserDefaultsKey = "token"
     private let keyStore: KeyStore
-
-    private(set) var user: User?
-    private(set) var token: String? // Save to user defaults
-    private(set) var currentDevice: Device? // Save to user defaults
     private(set) var availableServers: [VPNCountry]?
+    private(set) var user: User?
 
-    private let tokenUserDefaultsKey = "token"
+    private(set) var token: String? {
+        didSet {
+            if let token = token {
+                UserDefaults.standard.set(token, forKey: AccountManager.tokenUserDefaultsKey)
+            } else {
+                UserDefaults.standard.removeObject(forKey: AccountManager.tokenUserDefaultsKey)
+            }
+        }
+    }
+
+    private(set) var currentDevice: Device? {
+        didSet {
+            if let currentDevice = currentDevice {
+                currentDevice.saveToUserDefaults()
+            } else {
+                UserDefaults.standard.removeObject(forKey: Device.userDefaultsKey)
+            }
+        }
+    }
+
+    public static let sharedManager = AccountManager()
     public var heartbeatFailedEvent = PublishSubject<Void>()
 
     private init() {
         keyStore = KeyStore.sharedStore
-        token = UserDefaults.standard.string(forKey: tokenUserDefaultsKey)
+        token = UserDefaults.standard.string(forKey: AccountManager.tokenUserDefaultsKey)
         currentDevice = Device.fetchFromUserDefaults()
     }
 
@@ -68,18 +85,15 @@ class AccountManager: AccountManaging {
         let dispatchGroup = DispatchGroup()
         var error: Error?
 
-        guard let userDefaultsToken = UserDefaults.standard.string(forKey: tokenUserDefaultsKey) else {
+        guard token != nil else {
             completion(.failure(GuardianFailReason.emptyToken))
             return
         }
 
-        guard let userDefaultsDevice = Device.fetchFromUserDefaults() else {
+        guard currentDevice != nil else {
             completion(.failure(GuardianFailReason.couldNotFetchDevice))
             return
         }
-
-        token = userDefaultsToken
-        currentDevice = userDefaultsDevice
 
         dispatchGroup.enter()
         retrieveUser { result in
@@ -118,7 +132,6 @@ class AccountManager: AccountManaging {
     private func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
         GuardianAPI.verify(urlString: url.absoluteString) { result in
             completion(result.map { [unowned self] verifyResponse in
-                UserDefaults.standard.set(verifyResponse.token, forKey: self.tokenUserDefaultsKey)
                 self.user = verifyResponse.user
                 self.token = verifyResponse.token
                 return verifyResponse
