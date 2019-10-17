@@ -2,20 +2,20 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
-import WebKit
+import SafariServices
 
-class LoginViewController: UIViewController, WKNavigationDelegate {
-    let successfulLoginString = "/vpn/client/login/success"
-
+class LoginWebViewController: UIViewController, SFSafariViewControllerDelegate {
+    private let successfulLoginString = "/vpn/client/login/success"
     private let accountManager: AccountManaging
     private weak var navigatingDelegate: Navigating?
-    private var verificationURL: URL?
-    @IBOutlet var webView: WKWebView!
+
+    private var safariViewController: SFSafariViewController?
+    private var verificationUrl: URL?
 
     init(accountManager: AccountManaging, navigatingDelegate: Navigating) {
         self.accountManager = accountManager
         self.navigatingDelegate = navigatingDelegate
-        super.init(nibName: String(describing: LoginViewController.self), bundle: Bundle.main)
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -24,26 +24,36 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.navigationDelegate = self
+
         accountManager.login { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let checkPointModel):
                 DispatchQueue.main.async {
-                    self?.verificationURL = checkPointModel.verificationUrl
-                    let urlRequest = URLRequest(url: checkPointModel.loginUrl)
-                    self?.webView.load(urlRequest)
+                    self.verificationUrl = checkPointModel.verificationUrl
+
+                    let safariVc = SFSafariViewController(url: checkPointModel.loginUrl)
+                    self.addChild(safariVc)
+                    self.view.addSubview(safariVc.view)
+                    safariVc.view.frame = self.view.bounds
+                    safariVc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                    safariVc.didMove(toParent: self)
+                    safariVc.delegate = self
+                    self.safariViewController = safariVc
                 }
             case .failure(let error):
+                // TODO: Handle failure here
+                print("Failure: Could not retrieve login page")
                 print(error)
             }
         }
     }
 
-    // MARK: WKNavigationDelegate
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        guard let verificationUrl = verificationURL else { return }
-        let isSuccessfulLogin = webView.url?.absoluteString.contains(successfulLoginString) ?? false
-        if isSuccessfulLogin {
+    // MARK: SFSafariViewControllerDelegate
+    func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo URL: URL) {
+        guard let verificationUrl = verificationUrl else { return }
+
+        if URL.absoluteString.contains(successfulLoginString) {
             accountManager.setupFromVerify(url: verificationUrl) { [weak self] result in
                 guard let self = self else { return }
                 switch result {

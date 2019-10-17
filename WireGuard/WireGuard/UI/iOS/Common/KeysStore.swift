@@ -3,8 +3,8 @@
 
 import Foundation
 
-class CredentialsStore {
-    static let sharedStore = CredentialsStore()
+class KeysStore {
+    static let sharedStore = KeysStore()
     let deviceKeys: DeviceKeys
 
     init() {

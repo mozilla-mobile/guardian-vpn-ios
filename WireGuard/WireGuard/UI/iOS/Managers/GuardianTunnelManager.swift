@@ -11,12 +11,9 @@ class GuardianTunnelManager {
     var tunnelConfiguration: TunnelConfiguration?
     var vpnStoppedSemaphore: DispatchSemaphore?
 
-
     private init() {
         loadTunnels()
-
         NotificationCenter.default.addObserver(self, selector: #selector(vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
-
     }
 
     func loadTunnels() {
@@ -35,7 +32,7 @@ class GuardianTunnelManager {
     }
 
     func createTunnel(accountManager: AccountManaging?) {
-        guard let device = accountManager?.account?.currentDevice, // current device is nil on first launch.
+        guard let device = accountManager?.currentDevice, // current device is nil on first launch.
             let privateKey = accountManager?.credentialsStore.deviceKeys.devicePrivateKey
             else { return }
 

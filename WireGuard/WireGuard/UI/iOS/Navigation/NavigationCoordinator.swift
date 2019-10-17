@@ -4,33 +4,24 @@
 import UIKit
 
 class NavigationCoordinator: Navigating {
-
     let dependencyProvider: DependencyProviding
     var currentViewController: UIViewController?
 
     init(dependencyProvider: DependencyProviding) {
         self.dependencyProvider = dependencyProvider
-        if let verification = VerifyResponse.fetchFromUserDefaults() {
-            dependencyProvider.accountManager.set(with: Account(user: verification.user,
-                                                                token: verification.token,
-                                                                device: Device.fetchFromUserDefaults())) { _ in }
-        }
     }
 
-    func rootViewController() -> UIViewController {
-        guard dependencyProvider.accountManager.account != nil else {
-            let loginViewController = LoginViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
-            currentViewController = loginViewController
-            return loginViewController
+    var rootViewController: UIViewController {
+        let accountManager = dependencyProvider.accountManager
+        if accountManager.token == nil || accountManager.currentDevice == nil {
+            return LoginViewController(accountManager: accountManager, navigatingDelegate: self)
+        } else {
+            return LoadingViewController(accountManager: accountManager, coordinatorDelegate: self)
         }
-
-        let loadingViewController = LoadingViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
-        currentViewController = loadingViewController
-        return loadingViewController
     }
 
     // MARK: <NavigationProtocol>
-    func navigate(after action: NavigationAction) {
+    internal func navigate(after action: NavigationAction) {
         switch action {
         case .loginSucceeded:
             navigateToHomeVPN()
@@ -47,7 +38,7 @@ class NavigationCoordinator: Navigating {
     }
 
     private func navigateToLogin() {
-        currentViewController = LoginViewController(accountManager: dependencyProvider.accountManager, coordinatorDelegate: self)
+        currentViewController = LoginViewController(accountManager: dependencyProvider.accountManager, navigatingDelegate: self)
         setKeyWindow(with: currentViewController!)
     }
 

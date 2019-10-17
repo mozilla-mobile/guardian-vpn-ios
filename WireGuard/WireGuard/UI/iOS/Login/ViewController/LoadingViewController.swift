@@ -15,7 +15,7 @@ class LoadingViewController: UIViewController {
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: LoadingViewController.self), bundle: Bundle.main)
 
-        accountManager.retrieveUser { [weak self] result in
+        accountManager.setupFromHeartbeat { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:

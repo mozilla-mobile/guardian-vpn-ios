@@ -3,7 +3,7 @@
 
 import Foundation
 
-struct User: UserDefaulting {
+struct User: Codable {
     let email: String
     let displayName: String
     let avatarUrlString: String

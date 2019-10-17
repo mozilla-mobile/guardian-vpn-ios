@@ -4,13 +4,13 @@
 import Foundation
 
 protocol AccountManaging {
-    var account: Account? { get }
-    var credentialsStore: CredentialsStore { get }
+    var credentialsStore: KeysStore { get }
+    var user: User? { get }
+    var token: String? { get }
+    var currentDevice: Device? { get }
+    var availableServers: [VPNCountry]? { get }
 
-    func set(with: Account, completion: ((Result<Void, Error>) -> Void))
     func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
-    func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void)
-    func retrieveUser(completion: @escaping (Result<User, Error>) -> Void)
-    func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void)
-    func addDevice(completion: @escaping (Result<Device, Error>) -> Void)
+    func setupFromVerify(url: URL, completion: @escaping (Result<Void, Error>) -> Void)
+    func setupFromHeartbeat(completion: @escaping (Result<Void, Error>) -> Void)
 }
