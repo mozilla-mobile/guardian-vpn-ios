@@ -10,7 +10,6 @@ struct User: Codable {
     let vpnSubscription: Subscription
     let devices: [Device]
     let maxDevices: Int
-    static var userDefaultsKey = "currentUserUserDefaults"
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

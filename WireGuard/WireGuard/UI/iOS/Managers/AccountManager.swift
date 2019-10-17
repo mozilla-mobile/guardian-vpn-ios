@@ -2,6 +2,7 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
+import RxSwift
 
 class AccountManager: AccountManaging {
     static let sharedManager = AccountManager()
@@ -13,6 +14,8 @@ class AccountManager: AccountManaging {
     private(set) var availableServers: [VPNCountry]?
 
     private let tokenUserDefaultsKey = "token"
+
+    public var heartbeatFailedEvent = PublishSubject<Void>()
 
     private init() {
         token = UserDefaults.standard.string(forKey: tokenUserDefaultsKey)
@@ -61,9 +64,9 @@ class AccountManager: AccountManaging {
     }
 
     /**
-     This should be called when the app is returned from foreground and we've already logged in.
+     This should be called when the app is returned from foreground/launch and we've already logged in.
      */
-    func setupFromHeartbeat(completion: @escaping (Result<Void, Error>) -> Void) {
+    func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var error: Error?
 
@@ -122,13 +125,21 @@ class AccountManager: AccountManaging {
         }
     }
 
-    private func retrieveUser(completion: @escaping (Result<User, Error>) -> Void) {
+    @objc func pollUser() {
+        retrieveUser { _ in }
+    }
+
+    func retrieveUser(completion: @escaping (Result<User, Error>) -> Void) {
         guard let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return // TODO: Handle this case?
         }
-        GuardianAPI.accountInfo(token: token) { result in
-            completion(result.map { [weak self] user in
+        GuardianAPI.accountInfo(token: token) { [weak self] result in
+            if case .failure = result {
+                self?.heartbeatFailedEvent.onNext(())
+            }
+
+            completion(result.map { user in
                 self?.user = user
                 return user
             })
@@ -169,5 +180,13 @@ class AccountManager: AccountManaging {
         } catch {
             completion(Result.failure(GuardianFailReason.couldNotCreateBody))
         }
+    }
+
+    func startHeartbeat() {
+        Timer(timeInterval: 3600,
+              target: self,
+              selector: #selector(pollUser),
+              userInfo: nil,
+              repeats: true)
     }
 }

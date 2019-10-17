@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Device: UserDefaulting {
+public struct Device: Codable, UserDefaulting {
     let name: String
     let publicKey: String
     let ipv4Address: String

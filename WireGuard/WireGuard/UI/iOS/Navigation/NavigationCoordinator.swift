@@ -2,22 +2,38 @@
 // Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
 
 import UIKit
+import RxSwift
 
 class NavigationCoordinator: Navigating {
     let dependencyProvider: DependencyProviding
     var currentViewController: UIViewController?
 
+    private let disposeBag = DisposeBag()
+
     init(dependencyProvider: DependencyProviding) {
         self.dependencyProvider = dependencyProvider
+        setupHeartbeat()
     }
 
     var rootViewController: UIViewController {
         let accountManager = dependencyProvider.accountManager
         if accountManager.token == nil || accountManager.currentDevice == nil {
-            return LoginViewController(accountManager: accountManager, navigatingDelegate: self)
+            let loginViewController = LoginViewController(accountManager: accountManager, navigatingDelegate: self)
+            currentViewController = loginViewController
+            return loginViewController
         } else {
-            return LoadingViewController(accountManager: accountManager, coordinatorDelegate: self)
+            let loadingViewController = LoadingViewController(accountManager: accountManager, coordinatorDelegate: self)
+            currentViewController = loadingViewController
+            return loadingViewController
         }
+    }
+
+    private func setupHeartbeat() {
+        dependencyProvider.accountManager.heartbeatFailedEvent
+            .subscribe { _ in
+                self.navigateToLogin()
+        }.disposed(by: disposeBag)
+        dependencyProvider.accountManager.startHeartbeat() // TODO: Should this be here?
     }
 
     // MARK: <NavigationProtocol>
@@ -59,7 +75,7 @@ class NavigationCoordinator: Navigating {
     }
 
     private func setKeyWindow(with viewController: UIViewController) {
-        if let window = UIApplication.shared.keyWindow {
+        if let window = UIApplication.shared.windows.first {
             window.rootViewController = viewController
             window.makeKeyAndVisible()
         }

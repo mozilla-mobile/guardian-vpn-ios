@@ -4,7 +4,6 @@
 import Foundation
 
 struct VerifyResponse: Codable {
-    static let userDefaultsKey = "verifyResponse"
     let user: User
     let token: String
 

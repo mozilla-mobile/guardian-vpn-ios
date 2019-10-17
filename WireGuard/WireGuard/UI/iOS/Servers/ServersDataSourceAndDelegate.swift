@@ -72,12 +72,11 @@ extension ServersDataSourceAndDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCity = countries[indexPath.section].cities[indexPath.row]
         currentCity.saveToUserDefaults()
+        tunnelsManager.cityChangedEvent.onNext(currentCity)
 
         if indexPath != selectedIndexPath {
             selectedIndexPath = indexPath
-            let city = countries[indexPath.section].cities[indexPath.row]
             tunnelsManager.createTunnel(accountManager: accountManager)
-
             tableView.reloadData()
         }
     }

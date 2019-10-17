@@ -6,7 +6,6 @@ import UIKit
 class LoadingViewController: UIViewController {
 
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
-
     let accountManager: AccountManaging
     weak var coordinatorDelegate: Navigating?
 
@@ -14,8 +13,7 @@ class LoadingViewController: UIViewController {
         self.accountManager = accountManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: LoadingViewController.self), bundle: Bundle.main)
-
-        accountManager.setupFromHeartbeat { [weak self] result in
+        self.accountManager.setupFromAppLaunch { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:

@@ -4,6 +4,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NetworkExtension
 
 enum VPNState {
     case off
@@ -20,6 +21,7 @@ class VPNToggleView: UIView {
     @IBOutlet var vpnSwitch: UISwitch!
 
     public var vpnSwitchEvent: ControlProperty<Bool>?
+    private let disposeBag = DisposeBag()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,18 +30,54 @@ class VPNToggleView: UIView {
         self.addSubview(self.view)
 
         vpnSwitchEvent = vpnSwitch.rx.isOn
+
+        NotificationCenter.default.rx
+            .notification(Notification.Name.NEVPNStatusDidChange)
+            .compactMap { ($0.object as? NETunnelProviderSession)?.status }
+            .startWith(DependencyFactory.sharedFactory.tunnelManager.tunnelProviderManager?.connection.status ?? .disconnected)
+            .subscribe { [weak self] statusEvent in
+                guard let status = statusEvent.element else { return }
+                DispatchQueue.main.async { [weak self] in
+                    switch status {
+                    case .invalid:
+                        self?.titleLabel.text = "VPN is invalid"
+                        self?.subtitleLabel.text = "Placeholder Text"
+                        self?.vpnSwitch.isOn = false
+                    case .disconnected:
+                        self?.titleLabel.text = "VPN is off"
+                        self?.subtitleLabel.text = "Turn it on to protect your entire device"
+                        self?.vpnSwitch.isOn = false
+                    case .connecting:
+                        self?.titleLabel.text = "VPN is connecting"
+                        self?.subtitleLabel.text = "Placeholder Text"
+                        self?.vpnSwitch.isOn = true
+                    case .connected:
+                        self?.titleLabel.text = "VPN is on"
+                        self?.subtitleLabel.text = "Your entire device is protected"
+                        self?.vpnSwitch.isOn = true
+                    case .reasserting:
+                        self?.titleLabel.text = "VPN is reasserting"
+                        self?.subtitleLabel.text = "Placeholder Text"
+                        self?.vpnSwitch.isOn = true
+                    case .disconnecting:
+                        self?.titleLabel.text = "VPN is disconnecting"
+                        self?.subtitleLabel.text = "Placeholder Text"
+                        self?.vpnSwitch.isOn = false
+                    @unknown default:
+                        self?.titleLabel.text = "VPN status is unknown"
+                        self?.subtitleLabel.text = "Placeholder Text."
+                        self?.vpnSwitch.isOn = false
+                    }
+                }
+        }.disposed(by: disposeBag)
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        vpnSwitch.isOn = false
         styleViews()
     }
 
     func styleViews() {
-        titleLabel.text = "VPN is off"
-        subtitleLabel.text = "Turn it on to protect your entire device"
-
         titleLabel.font = UIFont.vpnTitleFont
         titleLabel.textColor = UIColor.guardianBlack
         subtitleLabel.font = UIFont.vpnSubtitleFont
