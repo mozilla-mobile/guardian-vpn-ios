@@ -15,16 +15,16 @@ protocol AccountManaging {
      This call is used to retrieve the link to the login page.
      */
     func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
-    
+
     /**
      This should only be called from the initial login flow.
      */
     func setupFromVerify(url: URL, completion: @escaping (Result<Void, Error>) -> Void)
-    
+
     /**
      This should be called when the app is returned from foreground/launch and we've already logged in.
      */
     func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void)
-    
+
     func startHeartbeat()
 }

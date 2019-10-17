@@ -181,7 +181,6 @@
 		F4D150DC2347983A00739CDA /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4D150D7234797C700739CDA /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4D150DD2347984000739CDA /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4D150D5234797B700739CDA /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4D150DF2347A3EE00739CDA /* WireGuardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150CD2347975C00739CDA /* WireGuardTests.swift */; };
-		F4E33D792357EB2900B2003A /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E33D772357EB2900B2003A /* LoginWebViewController.swift */; };
 		F4E33D7D2358106800B2003A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E33D7B2358106800B2003A /* LoginViewController.swift */; };
 		F4E33D7E2358106800B2003A /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4E33D7C2358106800B2003A /* LoginViewController.xib */; };
 		F4F25E112343F7D3004BA245 /* VPNLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F25E102343F7D3004BA245 /* VPNLocations.swift */; };
@@ -458,7 +457,6 @@
 		F4D150CF2347975C00739CDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4D150D5234797B700739CDA /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		F4D150D7234797C700739CDA /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
-		F4E33D772357EB2900B2003A /* LoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
 		F4E33D7B2358106800B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4E33D7C2358106800B2003A /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
@@ -973,7 +971,6 @@
 			children = (
 				F43DFC05234BB32C003EA64A /* LoadingViewController.swift */,
 				F43DFC06234BB32C003EA64A /* LoadingViewController.xib */,
-				F4E33D772357EB2900B2003A /* LoginWebViewController.swift */,
 				F4E33D7B2358106800B2003A /* LoginViewController.swift */,
 				F4E33D7C2358106800B2003A /* LoginViewController.xib */,
 			);
@@ -1428,7 +1425,6 @@
 				F45D70A4233D3D6C00871447 /* HomeViewController.swift in Sources */,
 				6B62E45F220A6FA900EF34A6 /* PrivateDataConfirmation.swift in Sources */,
 				6F5A2B4821AFF49A0081EDD8 /* FileManager+Extension.swift in Sources */,
-				F4E33D792357EB2900B2003A /* LoginWebViewController.swift in Sources */,
 				5F45418C21C2D48200994C13 /* TunnelEditKeyValueCell.swift in Sources */,
 				6FE254FB219C10800028284D /* ZipImporter.swift in Sources */,
 				F45D70A9233E8DC000871447 /* UIFont+GuardianBranding.swift in Sources */,
