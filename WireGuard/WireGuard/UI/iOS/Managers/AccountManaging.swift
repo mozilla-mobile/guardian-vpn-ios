@@ -27,4 +27,5 @@ protocol AccountManaging {
     func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void)
 
     func startHeartbeat()
+    func pollUser()
 }
