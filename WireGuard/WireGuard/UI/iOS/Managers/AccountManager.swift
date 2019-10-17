@@ -137,7 +137,7 @@ class AccountManager: AccountManaging {
         }
     }
 
-    @objc private func pollUser() {
+    @objc func pollUser() {
         retrieveUser { _ in }
     }
 

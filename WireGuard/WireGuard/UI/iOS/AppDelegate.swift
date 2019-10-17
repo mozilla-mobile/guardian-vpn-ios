@@ -57,6 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainVC?.showTunnelDetailForTunnel(named: tunnelName, animated: false, shouldToggleStatus: true)
         completionHandler(true)
     }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        DependencyFactory.sharedFactory.accountManager.pollUser()
+    }
 }
 
 extension AppDelegate {
