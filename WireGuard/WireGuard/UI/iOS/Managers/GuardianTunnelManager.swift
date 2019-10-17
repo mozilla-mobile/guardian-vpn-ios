@@ -7,6 +7,7 @@ import RxSwift
 
 class GuardianTunnelManager {
     static let sharedTunnelManager = GuardianTunnelManager()
+    let keysStore = KeysStore.sharedStore
 
     var tunnelProviderManager: NETunnelProviderManager?
     var tunnelConfiguration: TunnelConfiguration?
@@ -33,14 +34,13 @@ class GuardianTunnelManager {
         }
     }
 
-    func createTunnel(accountManager: AccountManaging?) {
-        guard let device = accountManager?.currentDevice, // current device is nil on first launch.
-            let privateKey = accountManager?.credentialsStore.deviceKeys.devicePrivateKey
-            else { return }
+    func createTunnel(device: Device?) {
+        guard let device = device,
+            let city = VPNCity.fetchFromUserDefaults() else {
+                return
+        }
 
-        guard let city = VPNCity.fetchFromUserDefaults() else { return }
-
-        tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: privateKey)
+        tunnelConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: keysStore.deviceKeys.devicePrivateKey)
 
         DispatchQueue.global().async { [weak self] in
             if self?.tunnelProviderManager?.connection.status == .connected || self?.tunnelProviderManager?.connection.status == .connecting {

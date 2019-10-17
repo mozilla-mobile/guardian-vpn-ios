@@ -6,7 +6,7 @@ import RxSwift
 
 class AccountManager: AccountManaging {
     static let sharedManager = AccountManager()
-    var credentialsStore = KeysStore.sharedStore
+    private let keysStore: KeysStore
 
     private(set) var user: User?
     private(set) var token: String? // Save to user defaults
@@ -14,17 +14,18 @@ class AccountManager: AccountManaging {
     private(set) var availableServers: [VPNCountry]?
 
     private let tokenUserDefaultsKey = "token"
-
     public var heartbeatFailedEvent = PublishSubject<Void>()
 
     private init() {
+        keysStore = KeysStore.sharedStore
         token = UserDefaults.standard.string(forKey: tokenUserDefaultsKey)
         currentDevice = Device.fetchFromUserDefaults()
     }
 
-    /**
-     This should only be called from the initial login flow.
-     */
+    func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
+        GuardianAPI.initiateUserLogin(completion: completion)
+    }
+
     func setupFromVerify(url: URL, completion: @escaping (Result<Void, Error>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var error: Error?
@@ -63,9 +64,6 @@ class AccountManager: AccountManaging {
         }
     }
 
-    /**
-     This should be called when the app is returned from foreground/launch and we've already logged in.
-     */
     func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var error: Error?
@@ -109,8 +107,12 @@ class AccountManager: AccountManaging {
         }
     }
 
-    func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
-        GuardianAPI.initiateUserLogin(completion: completion)
+    func startHeartbeat() {
+        Timer(timeInterval: 3600,
+              target: self,
+              selector: #selector(pollUser),
+              userInfo: nil,
+              repeats: true)
     }
 
     private func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
@@ -125,7 +127,7 @@ class AccountManager: AccountManaging {
         }
     }
 
-    @objc func pollUser() {
+    @objc private func pollUser() {
         retrieveUser { _ in }
     }
 
@@ -166,7 +168,7 @@ class AccountManager: AccountManaging {
         }
 
         let deviceBody: [String: Any] = ["name": UIDevice.current.name,
-                                         "pubkey": credentialsStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
+                                         "pubkey": keysStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
 
         do {
             let body = try JSONSerialization.data(withJSONObject: deviceBody)
@@ -180,13 +182,5 @@ class AccountManager: AccountManaging {
         } catch {
             completion(Result.failure(GuardianFailReason.couldNotCreateBody))
         }
-    }
-
-    func startHeartbeat() {
-        Timer(timeInterval: 3600,
-              target: self,
-              selector: #selector(pollUser),
-              userInfo: nil,
-              repeats: true)
     }
 }

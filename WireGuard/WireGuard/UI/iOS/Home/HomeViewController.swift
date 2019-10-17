@@ -33,15 +33,7 @@ class HomeViewController: UIViewController {
         applyLabelTexts()
         styleViews()
         addTapGesture()
-        addToggleGesture()
-
-        vpnToggleView.vpnSwitchEvent?.subscribe(onNext: { [weak self] isOn in
-            if isOn {
-                self?.tunnelManager.createTunnel(accountManager: self?.accountManager)
-            } else {
-                self?.tunnelManager.stopTunnel()
-            }
-        }).disposed(by: disposeBag)
+        subscribeToToggle()
     }
 
     private func setupTabBar() {
@@ -69,15 +61,15 @@ class HomeViewController: UIViewController {
         vpnSelectionView.addGestureRecognizer(tapGesture)
     }
 
-    private func addToggleGesture() {
-        let toggleGesture = UITapGestureRecognizer(target: self, action: #selector(toggleVPN))
-        vpnToggleView.vpnSwitch.addGestureRecognizer(toggleGesture)
-    }
-
-    @objc func toggleVPN() {
-        if vpnToggleView.vpnSwitch.isOn {
-            // TODO: Implement this switch
-        }
+    private func subscribeToToggle() {
+        vpnToggleView.vpnSwitchEvent?.subscribe(onNext: { [weak self] isOn in
+            guard let self = self else { return }
+            if isOn {
+                self.tunnelManager.createTunnel(device: self.accountManager.currentDevice)
+            } else {
+                self.tunnelManager.stopTunnel()
+            }
+        }).disposed(by: disposeBag)
     }
 
     // MARK: Tap Gesture

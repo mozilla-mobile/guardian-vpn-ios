@@ -76,7 +76,7 @@ extension ServersDataSourceAndDelegate: UITableViewDataSource {
 
         if indexPath != selectedIndexPath {
             selectedIndexPath = indexPath
-            tunnelsManager.createTunnel(accountManager: accountManager)
+            tunnelsManager.createTunnel(device: accountManager.currentDevice)
             tableView.reloadData()
         }
     }
