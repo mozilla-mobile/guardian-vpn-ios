@@ -19,6 +19,7 @@ class VPNToggleView: UIView {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var vpnSwitch: UISwitch!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     public var vpnSwitchEvent: ControlProperty<Bool>?
     private let disposeBag = DisposeBag()
@@ -28,50 +29,23 @@ class VPNToggleView: UIView {
         Bundle.main.loadNibNamed(String(describing: VPNToggleView.self), owner: self, options: nil)
         self.view.frame = self.bounds
         self.addSubview(self.view)
-
+        
         vpnSwitchEvent = vpnSwitch.rx.isOn
-
+        
         NotificationCenter.default.rx
             .notification(Notification.Name.NEVPNStatusDidChange)
             .compactMap { ($0.object as? NETunnelProviderSession)?.status }
             .startWith(DependencyFactory.sharedFactory.tunnelManager.tunnelProviderManager?.connection.status ?? .disconnected)
             .subscribe { [weak self] statusEvent in
-                guard let status = statusEvent.element else { return }
-                DispatchQueue.main.async { [weak self] in
-                    switch status {
-                    case .invalid:
-                        self?.titleLabel.text = "VPN is invalid"
-                        self?.subtitleLabel.text = "Placeholder Text"
-                        self?.vpnSwitch.isOn = false
-                    case .disconnected:
-                        self?.titleLabel.text = "VPN is off"
-                        self?.subtitleLabel.text = "Turn it on to protect your entire device"
-                        self?.vpnSwitch.isOn = false
-                    case .connecting:
-                        self?.titleLabel.text = "VPN is connecting"
-                        self?.subtitleLabel.text = "Placeholder Text"
-                        self?.vpnSwitch.isOn = true
-                    case .connected:
-                        self?.titleLabel.text = "VPN is on"
-                        self?.subtitleLabel.text = "Your entire device is protected"
-                        self?.vpnSwitch.isOn = true
-                    case .reasserting:
-                        self?.titleLabel.text = "VPN is reasserting"
-                        self?.subtitleLabel.text = "Placeholder Text"
-                        self?.vpnSwitch.isOn = true
-                    case .disconnecting:
-                        self?.titleLabel.text = "VPN is disconnecting"
-                        self?.subtitleLabel.text = "Placeholder Text"
-                        self?.vpnSwitch.isOn = false
-                    @unknown default:
-                        self?.titleLabel.text = "VPN status is unknown"
-                        self?.subtitleLabel.text = "Placeholder Text."
-                        self?.vpnSwitch.isOn = false
-                    }
+                guard let status = statusEvent.element,
+                    let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    self.update(with: status)
                 }
-        }.disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         styleViews()
@@ -101,4 +75,104 @@ class VPNToggleView: UIView {
     }
 
     // MARK: State Cha
+    private func update(with status: NEVPNStatus) {
+        titleLabel.text = status.title
+        subtitleLabel.text = status.subtitle
+        titleLabel.textColor = status.textColor
+        subtitleLabel.textColor = status.textColor
+        vpnSwitch.isOn = status.isToggleOn
+        globeImageView.image = status.globeImage
+        view.backgroundColor = status.backgroundColor
+        
+        if status.showActivityIndicator {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
+}
+
+extension NEVPNStatus {
+    var textColor: UIColor {
+        switch self {
+        case .invalid, .disconnected, .reasserting:
+            return UIColor.guardianGrey
+        case .connecting, .connected, .disconnecting:
+            return UIColor.white
+        default:
+            return UIColor.guardianGrey
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .invalid, .disconnected:
+            return "VPN is off"
+        case .connecting, .reasserting:
+            return "Connecting"
+        case .connected:
+            return "VPN is on"
+        case .disconnecting:
+            return "Switching"
+        default:
+            return "Unknown"
+        }
+    }
+
+    var subtitle: String {
+        switch self {
+        case .invalid, .disconnected:
+            return "Turn it on to protect your entire device"
+        case .connecting, .reasserting:
+            return "You will be protected shortly"
+        case .connected:
+            return "Secure and protected"
+        default:
+            return ""
+        }
+    }
+
+    var globeImage: UIImage? {
+        switch self {
+        case .invalid, .disconnected:
+            return UIImage(named: "globe_off")
+        case .connecting, .reasserting:
+            return UIImage(named: "globe_connecting")
+        case .connected:
+            return UIImage(named: "globe_on")
+        case .disconnecting:
+            return UIImage(named: "globe_switching")
+        default:
+            return UIImage(named: "globe_off")
+        }
+    }
+
+    var backgroundColor: UIColor {
+        switch self {
+        case .invalid, .disconnected, .reasserting:
+            return UIColor.backgroundOffWhite
+        case .connecting, .connected, .disconnecting:
+            return UIColor.backgroundPurple
+        default:
+            return UIColor.backgroundOffWhite
+        }
+    }
+
+    var showActivityIndicator: Bool {
+        switch self {
+        case .connecting:
+            return true
+        default:
+            return false
+        }
+    }
+
+    var isToggleOn: Bool {
+        switch self {
+        case .connected, .connecting, .reasserting:
+            return true
+        default:
+            return false
+        }
+    }
 }
