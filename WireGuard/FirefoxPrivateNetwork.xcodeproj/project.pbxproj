@@ -158,10 +158,7 @@
 		F4658545233BB7690081D7D7 /* GuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658544233BB7690081D7D7 /* GuardianAPI.swift */; };
 		F4658548233BBBF30081D7D7 /* LoginCheckpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */; };
 		F465854D233BF0860081D7D7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F465854C233BF0850081D7D7 /* WebKit.framework */; };
-		F48ED2B923561BC200F6D0C5 /* RxSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4A0EFF32356111A00A06D7B /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F48ED2BA23561BC900F6D0C5 /* RxCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4A0EFF5235612F500A06D7B /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F48ED2BC23561C4900F6D0C5 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */; };
-		F48ED2BD23561C4F00F6D0C5 /* RxRelay.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F499C0F2234E29B300126CDA /* DeviceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */; };
 		F499C0F3234E29B300126CDA /* DeviceManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */; };
 		F499C0F6234E301900126CDA /* DeviceManagementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F4234E301900126CDA /* DeviceManagementCell.swift */; };
@@ -221,18 +218,6 @@
 				6F5D0C22218352EF000F85AD /* FirefoxVPNNetworkExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F48ED2B823561BAB00F6D0C5 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				F48ED2BD23561C4F00F6D0C5 /* RxRelay.framework in CopyFiles */,
-				F48ED2BA23561BC900F6D0C5 /* RxCocoa.framework in CopyFiles */,
-				F48ED2B923561BC200F6D0C5 /* RxSwift.framework in CopyFiles */,
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F4D150DB2347982600739CDA /* CopyFiles */ = {
@@ -1089,7 +1074,7 @@
 				6FF4AC11211EC46F002C96EB /* Frameworks */,
 				6FF4AC12211EC46F002C96EB /* Resources */,
 				6F5D0C26218352EF000F85AD /* Embed App Extensions */,
-				F48ED2B823561BAB00F6D0C5 /* CopyFiles */,
+				F41310902358A276000CE779 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1335,6 +1320,27 @@
 			shellPath = /bin/sh;
 			shellScript = "exec make -C \"$PROJECT_DIR/../wireguard-go-bridge\" version-header\n";
 			showEnvVarsInLog = 0;
+		};
+		F41310902358A276000CE779 /* Carthage Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxRelay.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+			);
+			name = "Carthage Copy Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1727,8 +1733,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WireGuard/UI/iOS/WireGuard.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1752,8 +1759,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WireGuard/UI/iOS/WireGuard.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
