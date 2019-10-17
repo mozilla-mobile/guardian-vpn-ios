@@ -71,13 +71,12 @@ class AccountManager: AccountManaging {
             dispatchGroup.leave()
         }
 
-        if let error = error {
-            completion(.failure(error))
-            return
-        }
-
         dispatchGroup.notify(queue: .main) {
-            completion(.success(()))
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
         }
     }
 
@@ -111,13 +110,12 @@ class AccountManager: AccountManaging {
             dispatchGroup.leave()
         }
 
-        if let error = error {
-            completion(.failure(error))
-            return
-        }
-
         dispatchGroup.notify(queue: .main) {
-            completion(.success(()))
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
         }
     }
 
