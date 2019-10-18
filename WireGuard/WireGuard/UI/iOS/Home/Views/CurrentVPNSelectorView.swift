@@ -23,10 +23,10 @@ class CurrentVPNSelectorView: UIView {
 
         DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent
             .map { Optional($0) }
-            .startWith((VPNCity.fetchFromUserDefaults(), UserDefaults.standard.object(forKey: "countryCode") as? String ?? ""))
+            .startWith(VPNCity.fetchFromUserDefaults())
             .compactMap { $0 }
             .subscribe { cityEvent in
-                guard let city = cityEvent.element?.0?.name else { return }
+                guard let city = cityEvent.element?.name else { return }
                 DispatchQueue.main.async { [weak self] in
                     self?.countryTitleLabel.text = city
                     if let countryCode = DependencyFactory.sharedFactory.accountManager.countryCodeForCity(city) {
