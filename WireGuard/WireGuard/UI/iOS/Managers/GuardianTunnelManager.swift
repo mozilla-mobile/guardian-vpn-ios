@@ -12,7 +12,7 @@ class GuardianTunnelManager {
     var tunnelProviderManager: NETunnelProviderManager?
     var tunnelConfiguration: TunnelConfiguration?
     var vpnStoppedSemaphore: DispatchSemaphore?
-    var cityChangedEvent = PublishSubject<VPNCity>()
+    var cityChangedEvent = PublishSubject<(VPNCity?, String?)>()
 
     private init() {
         loadTunnels()
