@@ -6,13 +6,6 @@ import RxSwift
 import RxCocoa
 import NetworkExtension
 
-enum VPNState {
-    case off
-    case connecting
-    case connected
-    case switching
-}
-
 class VPNToggleView: UIView {
     @IBOutlet var view: UIView!
     @IBOutlet var globeImageView: UIImageView!
@@ -29,9 +22,9 @@ class VPNToggleView: UIView {
         Bundle.main.loadNibNamed(String(describing: VPNToggleView.self), owner: self, options: nil)
         self.view.frame = self.bounds
         self.addSubview(self.view)
-        
+
         vpnSwitchEvent = vpnSwitch.rx.isOn
-        
+
         NotificationCenter.default.rx
             .notification(Notification.Name.NEVPNStatusDidChange)
             .compactMap { ($0.object as? NETunnelProviderSession)?.status }
@@ -39,13 +32,13 @@ class VPNToggleView: UIView {
             .subscribe { [weak self] statusEvent in
                 guard let status = statusEvent.element,
                     let self = self else { return }
-                
+                print(status)
                 DispatchQueue.main.async {
-                    self.update(with: status)
+                    self.update(with: VPNState(with: status))
                 }
             }.disposed(by: disposeBag)
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         styleViews()
@@ -75,16 +68,16 @@ class VPNToggleView: UIView {
     }
 
     // MARK: State Cha
-    private func update(with status: NEVPNStatus) {
-        titleLabel.text = status.title
-        subtitleLabel.text = status.subtitle
-        titleLabel.textColor = status.textColor
-        subtitleLabel.textColor = status.textColor
-        vpnSwitch.isOn = status.isToggleOn
-        globeImageView.image = status.globeImage
-        view.backgroundColor = status.backgroundColor
-        
-        if status.showActivityIndicator {
+    private func update(with state: VPNState) {
+        titleLabel.text = state.title
+        subtitleLabel.text = state.subtitle
+        titleLabel.textColor = state.textColor
+        subtitleLabel.textColor = state.textColor
+        vpnSwitch.isOn = state.isToggleOn
+        globeImageView.image = state.globeImage
+        view.backgroundColor = state.backgroundColor
+
+        if state.showActivityIndicator {
             activityIndicator.startAnimating()
         } else {
             activityIndicator.stopAnimating()
@@ -92,7 +85,109 @@ class VPNToggleView: UIView {
     }
 }
 
+enum VPNState {
+    case on
+    case off
+    case connecting
+    case switching
+
+    init(with status: NEVPNStatus) {
+        switch status {
+        case .invalid, .disconnected, .disconnecting:
+            self = .off
+        case .connecting, .reasserting:
+            self = .connecting
+        case .connected:
+            self = .on
+        default:
+            self = .off
+        }
+    }
+}
+
+extension VPNState {
+    var textColor: UIColor {
+        switch self {
+        case .off:
+            return UIColor.guardianGrey
+        default:
+            return UIColor.white
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .off:
+            return "VPN is off"
+        case .connecting:
+            return "Connecting"
+        case .on:
+            return "VPN is on"
+        case .switching:
+            return "Switching"
+        default:
+            return "Unknown"
+        }
+    }
+
+    var subtitle: String {
+        switch self {
+        case .off:
+            return "Turn it on to protect your entire device"
+        case .connecting, .switching:
+            return "You will be protected shortly"
+        case .on:
+            return "Secure and protected"
+        default:
+            return ""
+        }
+    }
+
+    var globeImage: UIImage? {
+        switch self {
+        case .off:
+            return UIImage(named: "globe_off")
+        case .connecting:
+            return UIImage(named: "globe_connecting")
+        case .on:
+            return UIImage(named: "globe_on")
+        case .switching:
+            return UIImage(named: "globe_switching")
+        default:
+            return UIImage(named: "globe_off")
+        }
+    }
+
+    var backgroundColor: UIColor {
+        switch self {
+        case .off:
+            return UIColor.backgroundOffWhite
+        default:
+            return UIColor.backgroundPurple
+        }
+    }
+
+    var showActivityIndicator: Bool {
+        switch self {
+        case .connecting:
+            return true
+        default:
+            return false
+        }
+    }
+
+    var isToggleOn: Bool {
+        switch self {
+        case .on, .connecting, .switching:
+            return true
+        default:
+            return false
+        }
+    }
+}
+
 extension NEVPNStatus {
+
     var textColor: UIColor {
         switch self {
         case .invalid, .disconnected, .reasserting:

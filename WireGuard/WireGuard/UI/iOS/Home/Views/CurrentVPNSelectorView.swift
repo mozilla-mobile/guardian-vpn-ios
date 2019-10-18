@@ -23,15 +23,17 @@ class CurrentVPNSelectorView: UIView {
 
         DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent
             .map { Optional($0) }
-            .startWith(VPNCity.fetchFromUserDefaults())
+            .startWith((VPNCity.fetchFromUserDefaults(), UserDefaults.standard.object(forKey: "countryCode") as? String ?? ""))
             .compactMap { $0 }
             .subscribe { cityEvent in
-                guard let city = cityEvent.element?.name else { return }
+                guard let city = cityEvent.element?.0?.name else { return }
                 DispatchQueue.main.async { [weak self] in
                     self?.countryTitleLabel.text = city
-                    self?.countryFlagImageView.image = nil // TODO: Need the country as well in order to set the flag
+                    if let countryCode = cityEvent.element?.1 {
+                        self?.countryFlagImageView.image = UIImage(named: countryCode)// TODO: Need the country as well in order to set the flag
+                    }
                 }
-        }.disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
     }
 
     override func awakeFromNib() {
