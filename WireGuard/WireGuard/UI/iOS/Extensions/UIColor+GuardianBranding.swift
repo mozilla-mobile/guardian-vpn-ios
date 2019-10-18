@@ -21,6 +21,10 @@ extension UIColor {
         return UIColor(displayP3Red: 249.0/255.0, green: 249.0/255.0, blue: 250.0/255.0, alpha: 1)
     }
 
+    static var backgroundPurple: UIColor {
+        return UIColor(red: 0.2, green: 0.11, blue: 0.39, alpha: 1)
+    }
+
     static var toggleColor: UIColor {
         return UIColor(displayP3Red: 63.0/255.0, green: 225.0/255.0, blue: 176.0/255.0, alpha: 1)
     }

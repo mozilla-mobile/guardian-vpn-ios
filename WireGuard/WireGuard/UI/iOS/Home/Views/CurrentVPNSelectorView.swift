@@ -35,7 +35,7 @@ class CurrentVPNSelectorView: UIView {
                         self?.countryFlagImageView.image = nil
                     }
                 }
-        }.disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
     }
 
     override func awakeFromNib() {
