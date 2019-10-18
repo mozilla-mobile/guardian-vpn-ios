@@ -34,7 +34,7 @@ class NavigationCoordinator: Navigating {
     private func setupServerList() {
         dependencyProvider.tunnelManager.cityChangedEvent
             .subscribe { [weak self] _ in
-                self?.navigateToHomeVPN()
+                self?.currentViewController?.dismiss(animated: true, completion: nil)
         }.disposed(by: disposeBag)
     }
 
