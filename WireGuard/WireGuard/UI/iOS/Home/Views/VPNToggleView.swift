@@ -16,6 +16,9 @@ class VPNToggleView: UIView {
 
     public var vpnSwitchEvent: ControlProperty<Bool>?
     private let disposeBag = DisposeBag()
+    private var smallLayer = CAShapeLayer()
+    private var mediumLayer = CAShapeLayer()
+    private var largeLayer = CAShapeLayer()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -82,6 +85,58 @@ class VPNToggleView: UIView {
         } else {
             activityIndicator.stopAnimating()
         }
+
+        if state == .on {
+            smallLayer.position = globeImageView.center
+            mediumLayer.position = globeImageView.center
+            largeLayer.position = globeImageView.center
+            smallLayer.addPulse(delay: 0.0)
+            mediumLayer.addPulse(delay: 2.0)
+            largeLayer.addPulse(delay: 4.0)
+            view.layer.addSublayer(smallLayer)
+            view.layer.addSublayer(mediumLayer)
+            view.layer.addSublayer(largeLayer)
+        }
+    }
+}
+
+private extension CAShapeLayer {
+    func addPulse(delay: CFTimeInterval) {
+    let circlePath = UIBezierPath(arcCenter: .zero,
+                                   radius: 60,
+                                   startAngle: 0,
+                                   endAngle: 2 * CGFloat.pi,
+                                   clockwise: true)
+
+        fillColor = UIColor.clear.cgColor
+        strokeColor = UIColor.white.cgColor
+        lineWidth = 5
+        opacity = 0.0
+        path = circlePath.cgPath
+
+        let expandAnimation = CABasicAnimation(keyPath: "transform.scale")
+        expandAnimation.duration = 6
+        expandAnimation.toValue = 2.07
+        expandAnimation.beginTime = CACurrentMediaTime() + delay
+        expandAnimation.repeatCount = .infinity
+
+        let lineWidthAnimation = CABasicAnimation(keyPath: "lineWidth")
+        lineWidthAnimation.duration = 6
+        lineWidthAnimation.toValue = 1
+        lineWidthAnimation.beginTime = CACurrentMediaTime() + delay
+        lineWidthAnimation.repeatCount = .infinity
+
+        let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+        opacityAnimation.duration = 6
+        opacityAnimation.fromValue = 0.12
+        opacityAnimation.toValue = 0.0
+        opacityAnimation.timingFunction = CAMediaTimingFunction(name: .easeIn)
+        opacityAnimation.beginTime = CACurrentMediaTime() + delay
+        opacityAnimation.repeatCount = .infinity
+
+        add(expandAnimation, forKey: "expand")
+        add(opacityAnimation, forKey: "opacity")
+        add(lineWidthAnimation, forKey: "linewidth")
     }
 }
 
