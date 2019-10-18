@@ -196,4 +196,11 @@ class AccountManager: AccountManaging {
             completion(Result.failure(GuardianFailReason.couldNotCreateBody))
         }
     }
+
+    func countryCodeForCity(_ city: String) -> String? {
+        return availableServers?
+            .first { country -> Bool in
+                country.cities.map { $0.name }.contains(city)
+            }?.code.uppercased()
+    }
 }

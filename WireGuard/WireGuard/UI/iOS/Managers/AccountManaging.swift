@@ -28,4 +28,5 @@ protocol AccountManaging {
 
     func startHeartbeat()
     func pollUser()
+    func countryCodeForCity(_ city: String) -> String?
 }
