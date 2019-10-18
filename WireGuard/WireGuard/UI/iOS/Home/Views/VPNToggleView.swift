@@ -216,7 +216,7 @@ extension VPNState {
     var backgroundColor: UIColor {
         switch self {
         case .off:
-            return UIColor.backgroundOffWhite
+            return UIColor.white
         default:
             return UIColor.backgroundPurple
         }
