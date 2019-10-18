@@ -13,6 +13,7 @@ class NavigationCoordinator: Navigating {
     init(dependencyProvider: DependencyProviding) {
         self.dependencyProvider = dependencyProvider
         setupHeartbeat()
+        setupServerList()
     }
 
     var rootViewController: UIViewController {
@@ -24,10 +25,17 @@ class NavigationCoordinator: Navigating {
 
     private func setupHeartbeat() {
         dependencyProvider.accountManager.heartbeatFailedEvent
-            .subscribe { _ in
-                self.navigateToLogin()
+            .subscribe { [weak self] _ in
+                self?.navigateToLogin()
         }.disposed(by: disposeBag)
         dependencyProvider.accountManager.startHeartbeat() // TODO: Should this be here?
+    }
+
+    private func setupServerList() {
+        dependencyProvider.tunnelManager.cityChangedEvent
+            .subscribe { [weak self] _ in
+                self?.currentViewController?.dismiss(animated: true, completion: nil)
+        }.disposed(by: disposeBag)
     }
 
     // MARK: <NavigationProtocol>
