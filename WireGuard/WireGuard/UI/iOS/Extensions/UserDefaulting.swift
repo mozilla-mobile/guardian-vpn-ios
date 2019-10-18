@@ -16,6 +16,10 @@ extension UserDefaulting {
         return response
     }
 
+    static var existsInDefaults: Bool {
+        return UserDefaults.standard.object(forKey: Self.userDefaultsKey) != nil
+    }
+
     func saveToUserDefaults() {
         do {
             let encoded = try JSONEncoder().encode(self)

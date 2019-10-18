@@ -120,11 +120,11 @@ class AccountManager: AccountManaging {
     }
 
     func startHeartbeat() {
-        Timer(timeInterval: 3600,
-              target: self,
-              selector: #selector(pollUser),
-              userInfo: nil,
-              repeats: true)
+        _ = Timer(timeInterval: 3600,
+                  target: self,
+                  selector: #selector(pollUser),
+                  userInfo: nil,
+                  repeats: true)
     }
 
     private func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
@@ -166,6 +166,9 @@ class AccountManager: AccountManaging {
         GuardianAPI.availableServers(with: token) { result in
             completion(result.map { [unowned self] servers in
                 self.availableServers = servers
+                if !VPNCity.existsInDefaults, let randomUSServer = servers.first(where: { $0.code.uppercased() == "US" })?.cities.randomElement() {
+                    randomUSServer.saveToUserDefaults()
+                }
                 return servers
             })
         }
