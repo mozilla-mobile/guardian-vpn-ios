@@ -43,7 +43,7 @@ class NavigationCoordinator: Navigating {
         switch action {
         case .loginSucceeded:
             navigateToHomeVPN()
-        case .loginFailed:
+        case .loginFailed, .logout:
             navigateToLogin()
         case .vpnNewSelection:
             presentVPNLocationSelection()
@@ -73,7 +73,12 @@ class NavigationCoordinator: Navigating {
             accountManager: dependencyProvider.accountManager,
             tunnelManager: dependencyProvider.tunnelManager,
             coordinatorDelegate: self)
-        return [homeViewController]
+
+        let settingsViewController = SettingsViewController(
+            accountManager: dependencyProvider.accountManager,
+            navigationCoordinator: self)
+
+        return [homeViewController, settingsViewController]
     }
 
     private func setKeyWindow(with viewController: UIViewController) {
