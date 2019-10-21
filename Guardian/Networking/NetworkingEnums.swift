@@ -15,6 +15,7 @@ public enum GuardianFailReason: String, Error {
 enum HTTPMethod: String {
     case GET
     case POST
+    case DELETE
 }
 
 enum GuardianRelativeRequest {
@@ -23,6 +24,7 @@ enum GuardianRelativeRequest {
     case retrieveServers
     case account
     case addDevice
+    case removeDevice(String)
 
     var endpoint: String {
         switch self {
@@ -33,9 +35,11 @@ enum GuardianRelativeRequest {
         case .retrieveServers:
             return "/api/v1/vpn/servers/"
         case .account:
-            return "/api/v1/vpn/account"
+            return "/api/v1/vpn/account/"
         case .addDevice:
-            return "/api/v1/vpn/device"
+            return "/api/v1/vpn/device/"
+        case .removeDevice(let token):
+            return "/api/v1/vpn/device/" + token
         }
     }
 }
