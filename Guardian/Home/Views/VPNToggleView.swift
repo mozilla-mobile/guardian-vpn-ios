@@ -19,6 +19,8 @@ class VPNToggleView: UIView {
     private var smallLayer = CAShapeLayer()
     private var mediumLayer = CAShapeLayer()
     private var largeLayer = CAShapeLayer()
+    private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
+    private var connectedTimer: Timer?
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -31,7 +33,7 @@ class VPNToggleView: UIView {
         NotificationCenter.default.rx
             .notification(Notification.Name.NEVPNStatusDidChange)
             .compactMap { ($0.object as? NETunnelProviderSession)?.status }
-            .startWith(DependencyFactory.sharedFactory.tunnelManager.tunnelProviderManager?.connection.status ?? .disconnected)
+            .startWith(tunnelManager.tunnelProviderManager?.connection.status ?? .disconnected)
             .subscribe { [weak self] statusEvent in
                 guard let status = statusEvent.element,
                     let self = self else { return }
@@ -45,6 +47,21 @@ class VPNToggleView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         styleViews()
+    }
+
+    private func showConnectedTime(state: VPNState) {
+        let format = DateComponentsFormatter()
+        format.zeroFormattingBehavior = .pad
+        format.allowedUnits = [.hour, .minute, .second]
+        format.unitsStyle = .positional
+
+        connectedTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            let time = Date().timeIntervalSince(self?.tunnelManager.tunnelProviderManager?.connection.connectedDate ?? Date())
+            guard let timeString = format.string(from: time) else { return }
+            DispatchQueue.main.async { [weak self] in
+                self?.subtitleLabel.text = "\(state.subtitle) • \(timeString)"
+            }
+        }
     }
 
     func styleViews() {
@@ -73,12 +90,15 @@ class VPNToggleView: UIView {
     // MARK: State Cha
     private func update(with state: VPNState) {
         titleLabel.text = state.title
-        subtitleLabel.text = state.subtitle
         titleLabel.textColor = state.textColor
         subtitleLabel.textColor = state.textColor
         vpnSwitch.isOn = state.isToggleOn
         globeImageView.image = state.globeImage
         view.backgroundColor = state.backgroundColor
+        if state != .on {
+            connectedTimer?.invalidate()
+            subtitleLabel.text = state.subtitle
+        }
 
         if state.showActivityIndicator {
             activityIndicator.startAnimating()
@@ -96,6 +116,8 @@ class VPNToggleView: UIView {
             view.layer.addSublayer(smallLayer)
             view.layer.addSublayer(mediumLayer)
             view.layer.addSublayer(largeLayer)
+
+            showConnectedTime(state: state)
         }
     }
 }
