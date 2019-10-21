@@ -114,6 +114,8 @@ class AccountManager: AccountManaging {
             if let error = error {
                 completion(.failure(error))
             } else {
+                self.token = nil
+                self.currentDevice = nil
                 completion(.success(()))
             }
         }
@@ -158,6 +160,24 @@ class AccountManager: AccountManaging {
         }
     }
 
+    func logoutUser(completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let device = currentDevice else {
+            completion(Result.failure(GuardianFailReason.emptyToken))
+            return
+        }
+        GuardianAPI.removeDevice(with: device.publicKey) { [unowned self] result in
+            print(result)
+            if case .failure(let error) = result {
+                completion(.failure(error))
+                return
+            }
+            self.token = nil
+            self.currentDevice = nil
+            completion(.success(()))
+            return
+        }
+    }
+
     private func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
         guard let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
@@ -188,7 +208,6 @@ class AccountManager: AccountManaging {
             GuardianAPI.addDevice(with: token, body: body) { [unowned self] result in
                 completion(result.map { device in
                     self.currentDevice = device
-                    device.saveToUserDefaults()
                     return device
                 })
             }
