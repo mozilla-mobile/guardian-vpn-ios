@@ -10,11 +10,13 @@ public enum GuardianFailReason: String, Error {
     case emptyToken = "User could not be verified"
     case couldNotCreateBody = "Could not create body"
     case couldNotFetchDevice = "Could not fetch device from user defaults"
+    case deviceKeyFailure = "Could not generate device key"
 }
 
 enum HTTPMethod: String {
     case GET
     case POST
+    case DELETE
 }
 
 enum GuardianRelativeRequest {
@@ -23,6 +25,7 @@ enum GuardianRelativeRequest {
     case retrieveServers
     case account
     case addDevice
+    case removeDevice(String)
 
     var endpoint: String {
         switch self {
@@ -33,9 +36,11 @@ enum GuardianRelativeRequest {
         case .retrieveServers:
             return "/api/v1/vpn/servers/"
         case .account:
-            return "/api/v1/vpn/account"
+            return "/api/v1/vpn/account/"
         case .addDevice:
-            return "/api/v1/vpn/device"
+            return "/api/v1/vpn/device/"
+        case .removeDevice(let deviceKey):
+            return "/api/v1/vpn/device/" + deviceKey
         }
     }
 }
