@@ -43,23 +43,35 @@ class GuardianAPI {
         }
     }
 
-    static func addDevice(with token: String, body: Data, completion: @escaping (Result<Device, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token), body: body)
-        NetworkLayer.fireURLRequest(with: urlRequest) { result in
-            completion(result.flatMap { data in
-                Result { try data.convert(to: Device.self) }
-            })
+    static func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, Error>) -> Void) {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: body)
+            let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token), body: data)
+
+            NetworkLayer.fireURLRequest(with: urlRequest) { result in
+                completion(result.flatMap { data in
+                    Result { try data.convert(to: Device.self) }
+                })
+            }
+        } catch {
+            completion(Result.failure(GuardianFailReason.couldNotCreateBody))
         }
     }
 
-    static func removeDevice(with token: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .removeDevice(token), type: .DELETE)
-        NetworkLayer.fireURLRequest(with: urlRequest) { result in
-            if case .failure(let error) = result {
-                completion(.failure(error))
-                return
+    static func removeDevice(with deviceKey: String, body: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: body)
+            let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .removeDevice(deviceKey), type: .DELETE, body: data)
+
+            NetworkLayer.fireURLRequest(with: urlRequest) { result in
+                if case .failure(let error) = result {
+                    completion(.failure(error))
+                    return
+                }
+                completion(.success(()))
             }
-            completion(.success(()))
+        } catch {
+            completion(Result.failure(GuardianFailReason.couldNotCreateBody))
         }
     }
 

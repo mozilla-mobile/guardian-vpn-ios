@@ -161,20 +161,19 @@ class AccountManager: AccountManaging {
     }
 
     func logoutUser(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let device = currentDevice else {
+        guard let device = currentDevice, let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return
         }
-        GuardianAPI.removeDevice(with: device.publicKey) { [unowned self] result in
-            print(result)
-            if case .failure(let error) = result {
-                completion(.failure(error))
+
+        let body: [String: Any] = ["pubkey": token]
+
+        GuardianAPI.removeDevice(with: device.publicKey, body: body) { [unowned self] result in
+            completion(result.map { [unowned self] _ in
+                self.token = nil
+                self.currentDevice = nil
                 return
-            }
-            self.token = nil
-            self.currentDevice = nil
-            completion(.success(()))
-            return
+            })
         }
     }
 
@@ -200,19 +199,18 @@ class AccountManager: AccountManaging {
             return
         }
 
-        let deviceBody: [String: Any] = ["name": UIDevice.current.name,
-                                         "pubkey": keyStore.deviceKeys.devicePublicKey.base64Key() ?? ""]
+        guard let devicePublicKey = keyStore.deviceKeys.devicePublicKey.base64Key() else {
+            completion(Result.failure(GuardianFailReason.keyGenerationFailure))
+            return
+        }
+        let body: [String: Any] = ["name": UIDevice.current.name,
+                                   "pubkey": devicePublicKey]
 
-        do {
-            let body = try JSONSerialization.data(withJSONObject: deviceBody)
-            GuardianAPI.addDevice(with: token, body: body) { [unowned self] result in
-                completion(result.map { device in
-                    self.currentDevice = device
-                    return device
-                })
-            }
-        } catch {
-            completion(Result.failure(GuardianFailReason.couldNotCreateBody))
+        GuardianAPI.addDevice(with: token, body: body) { [unowned self] result in
+            completion(result.map { device in
+                self.currentDevice = device
+                return device
+            })
         }
     }
 

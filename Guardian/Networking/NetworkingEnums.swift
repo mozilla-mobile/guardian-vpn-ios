@@ -10,6 +10,7 @@ public enum GuardianFailReason: String, Error {
     case emptyToken = "User could not be verified"
     case couldNotCreateBody = "Could not create body"
     case couldNotFetchDevice = "Could not fetch device from user defaults"
+    case keyGenerationFailure = "Could not add device"
 }
 
 enum HTTPMethod: String {
