@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/cl-dev/Repos/Guardian-iOS/WireGuard/FirefoxPrivateNetwork.xcodeproj">
+      location = "self:../WireGuard/WireGuard/WireGuardNetworkExtension">
    </FileRef>
 </Workspace>
