@@ -17,6 +17,8 @@
 		F40831CF233CFA2000A60FCA /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40831CE233CFA2000A60FCA /* AccountManager.swift */; };
 		F40831D1233CFD5600A60FCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40831D0233CFD5600A60FCA /* User.swift */; };
 		F40831D4233D04B600A60FCA /* GuardianAPIDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */; };
+		F41FE9E8235F98E400CD05C4 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */; };
+		F41FE9E9235F98E400CD05C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41FE9E7235F98E400CD05C4 /* SettingsViewController.swift */; };
 		F42A23032347D20800763B0D /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23022347D20800763B0D /* DependencyFactory.swift */; };
 		F42A23052347D22100763B0D /* DependencyProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23042347D22100763B0D /* DependencyProviding.swift */; };
 		F42A23072347D37F00763B0D /* AccountManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23062347D37F00763B0D /* AccountManaging.swift */; };
@@ -201,6 +203,8 @@
 		F40831CE233CFA2000A60FCA /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		F40831D0233CFD5600A60FCA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPIDateFormatter.swift; sourceTree = "<group>"; };
+		F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		F41FE9E7235F98E400CD05C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F42A23022347D20800763B0D /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
 		F42A23062347D37F00763B0D /* AccountManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManaging.swift; sourceTree = "<group>"; };
@@ -375,6 +379,7 @@
 				F45D709F233D3BB000871447 /* Navigation */,
 				F465853F233BB39C0081D7D7 /* Networking */,
 				F45D70FA23428DA900871447 /* Servers */,
+				F41FE9E5235F98E400CD05C4 /* Settings */,
 				F45D7099233D380A00871447 /* User */,
 				F4D150CC2347975C00739CDA /* GuardianTests */,
 				F4AED107235F450D00F80ABF /* WireGuard */,
@@ -422,6 +427,15 @@
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		F41FE9E5235F98E400CD05C4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */,
+				F41FE9E7235F98E400CD05C4 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F43BB3C52357565F00D4D21A /* Managers */ = {
@@ -896,6 +910,7 @@
 				F45D70C42342431F00871447 /* Metropolis-SemiBold.otf in Resources */,
 				F45D70DE2342431F00871447 /* Metropolis-RegularItalic.otf in Resources */,
 				F45D70D42342431F00871447 /* Metropolis-ExtraLight.otf in Resources */,
+				F41FE9E8235F98E400CD05C4 /* SettingsViewController.xib in Resources */,
 				F45D70DA2342431F00871447 /* Metropolis-MediumItalic.otf in Resources */,
 				F45D70CA2342431F00871447 /* Metropolis-SemiBoldItalic.otf in Resources */,
 				F45D70D62342431F00871447 /* Metropolis-ExtraBoldItalic.otf in Resources */,
@@ -1082,6 +1097,7 @@
 				F4AED254235F835200F80ABF /* TunnelConfiguration.swift in Sources */,
 				F4F25E112343F7D3004BA245 /* VPNLocations.swift in Sources */,
 				F4AED251235F835200F80ABF /* Data+KeyEncoding.swift in Sources */,
+				F41FE9E9235F98E400CD05C4 /* SettingsViewController.swift in Sources */,
 				F4AED223235F58F400F80ABF /* AppDelegate.swift in Sources */,
 				F45D709B233D384E00871447 /* NavigationCoordinator.swift in Sources */,
 				F4658545233BB7690081D7D7 /* GuardianAPI.swift in Sources */,

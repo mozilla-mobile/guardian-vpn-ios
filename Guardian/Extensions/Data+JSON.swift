@@ -4,13 +4,13 @@
 import Foundation
 
 extension Data {
-    func convert<T>(to type: T.Type) throws -> T where T: Decodable { //overrides error thrown
+    func convert<T>(to type: T.Type) -> Result<T, Error> where T: Decodable { //overrides error thrown
         do {
             let decoder = JSONDecoder()
             let decodedResponse = try decoder.decode(type, from: self)
-            return decodedResponse
+            return .success(decodedResponse)
         } catch {
-            throw GuardianFailReason.couldNotDecodeFromJson
+            return .failure(GuardianFailReason.couldNotDecodeFromJson)
         }
     }
 }

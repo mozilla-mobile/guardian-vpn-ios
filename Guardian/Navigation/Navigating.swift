@@ -7,6 +7,7 @@ enum NavigationAction {
     case loginSucceeded
     case loginFailed
     case vpnNewSelection
+    case logout
 }
 
 protocol Navigating: class {
