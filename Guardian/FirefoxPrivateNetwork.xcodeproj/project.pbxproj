@@ -520,7 +520,7 @@
 				5F4541AC21C4720B00994C13 /* ViewController */,
 				6FF4AC482120B9E0002C96EB /* Guardian.entitlements */,
 				F4D150CC2347975C00739CDA /* GuardianTests */,
-				F431D62F235DF14700C7617D /* Submodules */,
+				F431D630235DF14700C7617D /* WireGuard */,
 				6FF4AC15211EC46F002C96EB /* Products */,
 				6FF4AC452120B9E0002C96EB /* Frameworks */,
 			);
@@ -565,14 +565,6 @@
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		F431D62F235DF14700C7617D /* Submodules */ = {
-			isa = PBXGroup;
-			children = (
-				F431D630235DF14700C7617D /* WireGuard */,
-			);
-			path = Submodules;
 			sourceTree = "<group>";
 		};
 		F431D630235DF14700C7617D /* WireGuard */ = {
@@ -967,7 +959,7 @@
 			buildPhases = (
 			);
 			buildToolPath = make;
-			buildWorkingDirectory = "$(PROJECT_DIR)/Submodules/WireGuard/wireguard-go-bridge";
+			buildWorkingDirectory = "$(PROJECT_DIR)/WireGuard/wireguard-go-bridge";
 			dependencies = (
 			);
 			name = "Firefox VPN Go Bridge (iOS)";
@@ -1231,7 +1223,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "exec make -C \"$PROJECT_DIR/Submodules/WireGuard/wireguard-go-bridge\" version-header\n";
+			shellScript = "exec make -C \"$PROJECT_DIR/WireGuard/wireguard-go-bridge\" version-header\n";
 			showEnvVarsInLog = 0;
 		};
 		6F61F1EC21BA4D4700483816 /* Extract wireguard-go Version */ = {
@@ -1250,7 +1242,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "exec make -C \"$PROJECT_DIR/Submodules/WireGuard/wireguard-go-bridge\" version-header\n";
+			shellScript = "exec make -C \"$PROJECT_DIR/WireGuard/wireguard-go-bridge\" version-header\n";
 			showEnvVarsInLog = 0;
 		};
 		F41310902358A276000CE779 /* Carthage Copy Frameworks */ = {
@@ -1472,10 +1464,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Submodules/WireGuard/WireGuard/WireGuardNetworkExtension/WireGuardNetworkExtension_iOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WireGuard/WireGuard/WireGuardNetworkExtension/WireGuardNetworkExtension_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Submodules/WireGuard/WireGuard/WireGuardNetworkExtension/Info.plist;
+				INFOPLIST_FILE = WireGuard/WireGuard/WireGuardNetworkExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1484,7 +1476,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_ID_IOS).network-extension";
 				PRODUCT_NAME = FirefoxVPNNetworkExtension;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Submodules/WireGuard/WireGuard/WireGuardNetworkExtension/WireGuardNetworkExtension-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "WireGuard/WireGuard/WireGuardNetworkExtension/WireGuardNetworkExtension-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1494,10 +1486,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Submodules/WireGuard/WireGuard/WireGuardNetworkExtension/WireGuardNetworkExtension_iOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WireGuard/WireGuard/WireGuardNetworkExtension/WireGuardNetworkExtension_iOS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Submodules/WireGuard/WireGuard/WireGuardNetworkExtension/Info.plist;
+				INFOPLIST_FILE = WireGuard/WireGuard/WireGuardNetworkExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1506,7 +1498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_ID_IOS).network-extension";
 				PRODUCT_NAME = FirefoxVPNNetworkExtension;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Submodules/WireGuard/WireGuard/WireGuardNetworkExtension/WireGuardNetworkExtension-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "WireGuard/WireGuard/WireGuardNetworkExtension/WireGuardNetworkExtension-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1590,7 +1582,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Submodules/WireGuard/WireGuard/WireGuard/WireGuard-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "WireGuard/WireGuard/WireGuard/WireGuard-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1651,7 +1643,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "Submodules/WireGuard/WireGuard/WireGuard/WireGuard-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "WireGuard/WireGuard/WireGuard/WireGuard-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
