@@ -29,5 +29,5 @@ protocol AccountManaging {
     func startHeartbeat()
     func pollUser()
     func countryCodeForCity(_ city: String) -> String?
-    func logoutUser(completion: @escaping (Result<Void, Error>) -> Void)
+    func logout(completion: @escaping (Result<Void, Error>) -> Void)
 }

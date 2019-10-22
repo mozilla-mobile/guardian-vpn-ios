@@ -160,7 +160,7 @@ class AccountManager: AccountManaging {
         }
     }
 
-    func logoutUser(completion: @escaping (Result<Void, Error>) -> Void) {
+    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let device = currentDevice, let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return
@@ -169,7 +169,7 @@ class AccountManager: AccountManaging {
         let body: [String: Any] = ["pubkey": token]
 
         GuardianAPI.removeDevice(with: device.publicKey, body: body) { [unowned self] result in
-            completion(result.map { [unowned self] _ in
+            completion(result.map { _ in
                 self.token = nil
                 self.currentDevice = nil
                 return

@@ -39,8 +39,8 @@ enum GuardianRelativeRequest {
             return "/api/v1/vpn/account/"
         case .addDevice:
             return "/api/v1/vpn/device/"
-        case .removeDevice(let token):
-            return "/api/v1/vpn/device/" + token
+        case .removeDevice(let deviceKey):
+            return "/api/v1/vpn/device/" + deviceKey
         }
     }
 }
