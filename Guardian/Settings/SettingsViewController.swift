@@ -25,7 +25,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     @IBAction func signOut(_ sender: Any) {
         accountManager.logout { [weak self] result in
             DispatchQueue.main.async {
@@ -40,7 +40,7 @@ class SettingsViewController: UIViewController {
             }
         }
     }
-    
+
     private func setupTabBar() {
         tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 1)
         tabBarController?.selectedIndex = 1

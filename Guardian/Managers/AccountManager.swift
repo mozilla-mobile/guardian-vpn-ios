@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: MIT
-// Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
+// SPDX-License-Identifier: MPL-2.0
+// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
 
 import UIKit
 import RxSwift
@@ -210,7 +210,7 @@ class AccountManager: AccountManaging {
         }
 
         guard let devicePublicKey = keyStore.deviceKeys.devicePublicKey.base64Key() else {
-            completion(Result.failure(GuardianFailReason.keyGenerationFailure))
+            completion(Result.failure(GuardianFailReason.deviceKeyFailure))
             return
         }
         let body: [String: Any] = ["name": UIDevice.current.name,

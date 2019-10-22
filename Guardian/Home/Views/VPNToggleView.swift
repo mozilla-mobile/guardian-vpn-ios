@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: MIT
-// Copyright © 2018-2019 WireGuard LLC. All Rights Reserved.
+// SPDX-License-Identifier: MPL-2.0
+// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
 
 import UIKit
 import RxSwift
