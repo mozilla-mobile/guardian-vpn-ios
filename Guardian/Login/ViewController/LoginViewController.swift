@@ -66,6 +66,7 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
                         DispatchQueue.main.async {
                             switch finishResult {
                             case .failure(let error):
+                                // TODO: Remove print statement
                                 print(error)
                                 self.navigatingDelegate?.navigate(after: .loginFailed)
                             case .success:
@@ -74,6 +75,7 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
                         }
                     }
                 case .failure(let error):
+                    // TODO: Remove print statement
                     print(error)
                     print("Failure: Could not verify")
                 }
