@@ -1209,6 +1209,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 0.0.20191022;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_ID_IOS).network-extension";
 				PRODUCT_NAME = FirefoxVPNNetworkExtension;
 				SKIP_INSTALL = YES;
@@ -1231,6 +1232,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 0.0.20191022;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_ID_IOS).network-extension";
 				PRODUCT_NAME = FirefoxVPNNetworkExtension;
 				SKIP_INSTALL = YES;
@@ -1394,7 +1396,7 @@
 				CODE_SIGN_ENTITLEMENTS = Guardian.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1405,7 +1407,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20190610;
+				MARKETING_VERSION = 0.0.20191022;
 				PRODUCT_BUNDLE_IDENTIFIER = com.connectedLab.Guardian;
 				PRODUCT_NAME = "Firefox Private Network VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1420,7 +1422,7 @@
 				CODE_SIGN_ENTITLEMENTS = Guardian.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1431,7 +1433,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20190610;
+				MARKETING_VERSION = 0.0.20191022;
 				PRODUCT_BUNDLE_IDENTIFIER = com.connectedLab.Guardian;
 				PRODUCT_NAME = "Firefox Private Network VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
