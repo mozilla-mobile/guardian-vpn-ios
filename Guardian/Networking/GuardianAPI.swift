@@ -47,14 +47,14 @@ class GuardianAPI {
             completion(result.flatMap { $0.convert(to: Device.self) })
         }
     }
-
-    static func removeDevice(with deviceKey: String, body: [String: Any], completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let data = try? JSONSerialization.data(withJSONObject: body) else {
-            completion(Result { throw GuardianFailReason.couldNotCreateBody })
+    
+    static func removeDevice(with deviceKey: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        guard let encodedKey = deviceKey.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+            completion(Result { throw GuardianFailReason.emptyToken })
             return
         }
-
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .removeDevice(deviceKey), type: .DELETE, body: data)
+        
+        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .removeDevice(encodedKey), type: .DELETE)
 
         NetworkLayer.fireURLRequest(with: urlRequest, completion: completion)
     }
