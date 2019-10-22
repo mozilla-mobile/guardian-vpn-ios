@@ -52,6 +52,7 @@
 		F42A23052347D22100763B0D /* DependencyProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23042347D22100763B0D /* DependencyProviding.swift */; };
 		F42A23072347D37F00763B0D /* AccountManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23062347D37F00763B0D /* AccountManaging.swift */; };
 		F42AD184235EA28D00E45332 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AD183235EA28D00E45332 /* SettingsViewController.swift */; };
+		F42AD187235F4D2200E45332 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42AD185235EA29800E45332 /* SettingsViewController.xib */; };
 		F431D703235DF14800C7617D /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431D643235DF14800C7617D /* FileManager+Extension.swift */; };
 		F431D704235DF14800C7617D /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431D643235DF14800C7617D /* FileManager+Extension.swift */; };
 		F431D705235DF14800C7617D /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431D644235DF14800C7617D /* Keychain.swift */; };
@@ -1145,6 +1146,7 @@
 				F45D70C42342431F00871447 /* Metropolis-SemiBold.otf in Resources */,
 				F45D70DE2342431F00871447 /* Metropolis-RegularItalic.otf in Resources */,
 				F431D7C1235DF14800C7617D /* Localizable.strings in Resources */,
+				F42AD187235F4D2200E45332 /* SettingsViewController.xib in Resources */,
 				F45D70D42342431F00871447 /* Metropolis-ExtraLight.otf in Resources */,
 				F45D70DA2342431F00871447 /* Metropolis-MediumItalic.otf in Resources */,
 				F45D70CA2342431F00871447 /* Metropolis-SemiBoldItalic.otf in Resources */,
@@ -1678,7 +1680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guardian.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
@@ -1704,7 +1706,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guardian.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
