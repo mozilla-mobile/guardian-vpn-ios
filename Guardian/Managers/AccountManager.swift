@@ -43,18 +43,9 @@ class AccountManager: AccountManaging {
         GuardianAPI.initiateUserLogin(completion: completion)
     }
 
-    func setupFromVerify(url: URL, completion: @escaping (Result<Void, Error>) -> Void) {
+    func finishSetupFromVerify(completion: @escaping (Result<Void, Error>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var error: Error?
-
-        dispatchGroup.enter()
-        verify(url: url) { result in
-            if case .failure(let verifyError) = result {
-                error = verifyError
-            }
-            dispatchGroup.leave()
-        }
-
         dispatchGroup.enter()
         addDevice { result in
             if case .failure(let deviceError) = result {
@@ -73,8 +64,23 @@ class AccountManager: AccountManaging {
 
         dispatchGroup.notify(queue: .main) {
             if let error = error {
+                self.token = nil
+                self.currentDevice = nil
                 completion(.failure(error))
             } else {
+                completion(.success(()))
+            }
+        }
+    }
+
+    func setupFromVerify(url: URL, completion: @escaping (Result<Void, Error>) -> Void) {
+        verify(url: url) { result in
+            switch result {
+            case .failure(let error):
+                self.token = nil
+                self.currentDevice = nil
+                completion(.failure(error))
+            case .success:
                 completion(.success(()))
             }
         }
@@ -85,11 +91,15 @@ class AccountManager: AccountManaging {
         var error: Error?
 
         guard token != nil else {
+            self.token = nil
+            self.currentDevice = nil
             completion(.failure(GuardianFailReason.emptyToken))
             return
         }
 
         guard currentDevice != nil else {
+            self.token = nil
+            self.currentDevice = nil
             completion(.failure(GuardianFailReason.couldNotFetchDevice))
             return
         }
@@ -112,10 +122,10 @@ class AccountManager: AccountManaging {
 
         dispatchGroup.notify(queue: .main) {
             if let error = error {
-                completion(.failure(error))
-            } else {
                 self.token = nil
                 self.currentDevice = nil
+                completion(.failure(error))
+            } else {
                 completion(.success(()))
             }
         }
@@ -145,6 +155,8 @@ class AccountManager: AccountManaging {
 
     func retrieveUser(completion: @escaping (Result<User, Error>) -> Void) {
         guard let token = token else {
+            self.token = nil
+            self.currentDevice = nil
             completion(Result.failure(GuardianFailReason.emptyToken))
             return
         }
@@ -161,14 +173,12 @@ class AccountManager: AccountManaging {
     }
 
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let device = currentDevice, let token = token else {
+        guard let device = currentDevice else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return
         }
 
-        let body: [String: Any] = ["pubkey": token]
-
-        GuardianAPI.removeDevice(with: device.publicKey, body: body) { [unowned self] result in
+        GuardianAPI.removeDevice(with: device.publicKey) { [unowned self] result in
             completion(result.map { _ in
                 self.token = nil
                 self.currentDevice = nil

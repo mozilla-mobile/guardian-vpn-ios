@@ -62,8 +62,19 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
                 switch result {
                 case .success:
                     self.verifyTimer?.invalidate()
-                    self.navigatingDelegate?.navigate(after: .loginSucceeded)
-                case .failure:
+                    self.accountManager.finishSetupFromVerify { finishResult in
+                        DispatchQueue.main.async {
+                            switch finishResult {
+                            case .failure(let error):
+                                print(error)
+                                self.navigatingDelegate?.navigate(after: .loginFailed)
+                            case .success:
+                                self.navigatingDelegate?.navigate(after: .loginSucceeded)
+                            }
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
                     print("Failure: Could not verify")
                 }
             }

@@ -20,6 +20,7 @@ protocol AccountManaging {
      This should only be called from the initial login flow.
      */
     func setupFromVerify(url: URL, completion: @escaping (Result<Void, Error>) -> Void)
+    func finishSetupFromVerify(completion: @escaping (Result<Void, Error>) -> Void)
 
     /**
      This should be called when the app is returned from foreground/launch and we've already logged in.
