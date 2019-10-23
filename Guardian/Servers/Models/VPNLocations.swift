@@ -41,10 +41,6 @@ public struct VPNServer: Codable {
     }
 
     var randomPort: Int? {
-        guard let range = portRanges.randomElement(),
-            let first = range.first,
-            let last = range.last
-            else { return nil }
-        return (first...last).randomElement()
+        return portRanges.flatMap { $0 }.randomElement()
     }
 }
