@@ -50,16 +50,31 @@ class VPNToggleView: UIView {
     }
 
     private func showConnectedTime(state: VPNState) {
-        let format = DateComponentsFormatter()
-        format.zeroFormattingBehavior = .pad
-        format.allowedUnits = [.hour, .minute, .second]
-        format.unitsStyle = .positional
+        let daysFormatter = DateComponentsFormatter()
+        daysFormatter.allowedUnits = [.day]
+        daysFormatter.unitsStyle = .full
+
+        let hoursFormatter = DateComponentsFormatter()
+        hoursFormatter.zeroFormattingBehavior = .pad
+        hoursFormatter.allowedUnits = [.hour, .minute, .second]
+        hoursFormatter.unitsStyle = .positional
 
         connectedTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             let time = Date().timeIntervalSince(self?.tunnelManager.tunnelProviderManager?.connection.connectedDate ?? Date())
-            guard let timeString = format.string(from: time) else { return }
+
+            guard let daysString = daysFormatter.string(from: time),
+                let hoursString = hoursFormatter.string(from: TimeInterval(Int(time) % 86400))
+                else { return }
+
+            let connectedTime: String
+            if time < 86400 {
+                connectedTime = hoursString
+            } else {
+                connectedTime = "\(daysString) \(hoursString)"
+            }
+
             DispatchQueue.main.async { [weak self] in
-                self?.subtitleLabel.text = "\(state.subtitle) • \(timeString)"
+                self?.subtitleLabel.text = "\(state.subtitle) • \(connectedTime)"
             }
         }
     }
