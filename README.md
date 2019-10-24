@@ -19,7 +19,7 @@ $ brew install swiftlint go
 
 ```
 $ cd Guardian
-$ carthage update --platform ios --no-use-binaries
+$ carthage bootstrap --platform ios --no-use-binaries
 ```
 
 ## Releasing
