@@ -3,37 +3,26 @@
 
 import UIKit
 import NetworkExtension
+import RxSwift
 
 class ServersDataSourceAndDelegate: NSObject {
     let countries: [VPNCountry]
     private var selectedIndexPath: IndexPath?
+    private var sectionExpandedStates = [Int : Bool]()
+    private let headerTapPublishSubject = PublishSubject<CountryVPNHeaderView>()
+    private var disposeBag = DisposeBag()
+    private weak var tableView: UITableView?
 
     // TODO: Dependency Inject
     private var accountManager = AccountManager.sharedManager
     private let tunnelsManager = GuardianTunnelManager.sharedTunnelManager
 
     init(countries: [VPNCountry], tableView: UITableView) {
+        self.tableView = tableView
         self.countries = countries
         super.init()
         setup(with: tableView)
-
-        // TODO: Should we load tunnels here?
-
-//        tunnelsManager.loadTunnels()
-
-//        if tunnelsManager == nil {
-//            TunnelsManager.create { [weak self] result in
-//                guard let self = self else { return }
-//
-//                switch result {
-//                case .failure(let error):
-//                    print("fail")
-//                case .success(let tunnelsManager):
-//                    self.tunnelsManager = tunnelsManager
-//                    print("success")
-//                }
-//            }
-//        }
+        listenForHeaderTaps()
     }
 
     private func setup(with tableView: UITableView) {
@@ -45,6 +34,18 @@ class ServersDataSourceAndDelegate: NSObject {
 
         let headerNib = UINib.init(nibName: String(describing: CountryVPNHeaderView.self), bundle: Bundle.main)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: String(describing: CountryVPNHeaderView.self))
+    }
+
+    private func listenForHeaderTaps() {
+        headerTapPublishSubject.subscribe { [weak self] headerEvent in
+            guard let headerView = headerEvent.element,
+                let tableView = self?.tableView
+                else { return }
+            headerView.isExpanded.toggle()
+            let section = headerView.tag
+            self?.sectionExpandedStates[section] = headerView.isExpanded
+            tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+        }.disposed(by: disposeBag)
     }
 }
 
@@ -62,7 +63,7 @@ extension ServersDataSourceAndDelegate: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countries[section].cities.count
+        return (sectionExpandedStates[section] ?? false) ? countries[section].cities.count : 0
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,8 +88,11 @@ extension ServersDataSourceAndDelegate: UITableViewDelegate {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: CountryVPNHeaderView.self)) as? CountryVPNHeaderView else {
             return nil
         }
+        headerView.tag = section
         headerView.flagImageView.image = UIImage(named: countries[section].code.uppercased())
         headerView.nameLabel.text = countries[section].name
+        headerView.tapPublishSubject = headerTapPublishSubject
+        headerView.isExpanded = sectionExpandedStates[section] ?? false
 
         return headerView
     }
