@@ -21,6 +21,14 @@ class VPNToggleView: UIView {
     private var largeLayer = CAShapeLayer()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var connectedTimer: Timer?
+    private var stateChangeTimer: Timer?
+
+    private var delayUIUpdate: TimeInterval {
+        guard let timer = stateChangeTimer, timer.isValid else {
+            return 0
+        }
+        return timer.fireDate.timeIntervalSince(Date())
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -30,18 +38,17 @@ class VPNToggleView: UIView {
 
         vpnSwitchEvent = vpnSwitch.rx.isOn
 
-        NotificationCenter.default.rx
-            .notification(Notification.Name.NEVPNStatusDidChange)
-            .compactMap { ($0.object as? NETunnelProviderSession)?.status }
-            .startWith(tunnelManager.tunnelProviderManager?.connection.status ?? .disconnected)
-            .subscribe { [weak self] statusEvent in
-                guard let status = statusEvent.element,
-                    let self = self else { return }
-                print(status)
-                DispatchQueue.main.async {
-                    self.update(with: VPNState(with: status))
+        tunnelManager.statusChangedEvent
+            .startWith(tunnelManager.currentStatus)
+            .withLatestFrom(tunnelManager.isSwitching.asObservable()) { status, isSwitching in
+                let state = isSwitching ? VPNState.switching : VPNState(with: status)
+                DispatchQueue.main.asyncAfter(deadline: state == .on ? .now() + self.delayUIUpdate : .now()) {
+                    self.update(with: state)
                 }
-            }.disposed(by: disposeBag)
+        }
+        .observeOn(MainScheduler.instance)
+        .subscribe()
+        .disposed(by: disposeBag)
     }
 
     override func awakeFromNib() {
@@ -60,7 +67,8 @@ class VPNToggleView: UIView {
         hoursFormatter.unitsStyle = .positional
 
         connectedTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            let time = Date().timeIntervalSince(self?.tunnelManager.tunnelProviderManager?.connection.connectedDate ?? Date())
+            guard let self = self else { return }
+            let time = self.tunnelManager.timeSinceConnected
 
             guard let daysString = daysFormatter.string(from: time),
                 let hoursString = hoursFormatter.string(from: TimeInterval(Int(time) % 86400))
@@ -102,18 +110,22 @@ class VPNToggleView: UIView {
         layer.rasterizationScale = UIScreen.main.scale
     }
 
-    // MARK: State Cha
+    // MARK: State Change
+
+    private func updateTimer(with delay: TimeInterval) {
+        stateChangeTimer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { _ in }
+    }
+
     private func update(with state: VPNState) {
+        if let delay = state.delay {
+            updateTimer(with: delay)
+        }
         titleLabel.text = state.title
         titleLabel.textColor = state.textColor
         subtitleLabel.textColor = state.textColor
         vpnSwitch.isOn = state.isToggleOn
         globeImageView.image = state.globeImage
         view.backgroundColor = state.backgroundColor
-        if state != .on {
-            connectedTimer?.invalidate()
-            subtitleLabel.text = state.subtitle
-        }
 
         if state.showActivityIndicator {
             activityIndicator.startAnimating()
@@ -133,6 +145,9 @@ class VPNToggleView: UIView {
             view.layer.addSublayer(largeLayer)
 
             showConnectedTime(state: state)
+        } else {
+            connectedTimer?.invalidate()
+            subtitleLabel.text = state.subtitle
         }
     }
 }
