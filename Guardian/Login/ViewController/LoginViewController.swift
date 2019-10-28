@@ -4,7 +4,7 @@
 import UIKit
 import SafariServices
 
-class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
+class LoginViewController: UIViewController {
     private let successfulLoginString = "/vpn/client/login/success"
     private let accountManager: AccountManaging
     private weak var navigatingDelegate: Navigating?
@@ -69,9 +69,9 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
                             case .failure(let error):
                                 // TODO: Remove print statement
                                 print(error)
-                                self.navigatingDelegate?.navigate(after: .loginFailed)
+                                self.navigatingDelegate?.navigate.onNext(.loginFailed)
                             case .success:
-                                self.navigatingDelegate?.navigate(after: .loginSucceeded)
+                                self.navigatingDelegate?.navigate.onNext(.loginSucceeded)
                             }
                         }
                     }
@@ -83,11 +83,18 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
             }
         }
     }
+}
 
-    // MARK: SFSafariViewControllerDelegate
+// MARK: - SFSafariViewControllerDelegate
+extension LoginViewController: SFSafariViewControllerDelegate {
     func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
         if didLoadSuccessfully && verifyTimer == nil {
             verifyTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(verify), userInfo: nil, repeats: true)
         }
+    }
+
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        // TODO: This should animate smoothly
+        self.navigatingDelegate?.navigate.onNext(.loading)
     }
 }

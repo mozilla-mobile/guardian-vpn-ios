@@ -2,14 +2,16 @@
 // Copyright © 2019 Mozilla Corporation. All Rights Reserved.
 
 import Foundation
+import RxSwift
 
 enum NavigationAction {
     case loginSucceeded
     case loginFailed
     case vpnNewSelection
     case logout
+    case loading
 }
 
 protocol Navigating: class {
-    func navigate(after action: NavigationAction)
+    var navigate: PublishSubject<NavigationAction> { get }
 }

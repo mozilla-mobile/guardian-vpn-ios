@@ -8,12 +8,15 @@ class NavigationCoordinator: Navigating {
     let dependencyProvider: DependencyProviding
     var currentViewController: UIViewController?
 
+    var navigate = PublishSubject<NavigationAction>()
+
     private let disposeBag = DisposeBag()
 
     init(dependencyProvider: DependencyProviding) {
         self.dependencyProvider = dependencyProvider
         setupHeartbeat()
         setupServerList()
+        setupNavigationActions()
     }
 
     var rootViewController: UIViewController {
@@ -35,6 +38,13 @@ class NavigationCoordinator: Navigating {
         dependencyProvider.tunnelManager.cityChangedEvent
             .subscribe { [weak self] _ in
                 self?.currentViewController?.dismiss(animated: true, completion: nil)
+        }.disposed(by: disposeBag)
+    }
+
+    private func setupNavigationActions() {
+        navigate.subscribe { [weak self] navActionEvent in
+            guard let navAction = navActionEvent.element else { return }
+            self?.navigate(after: navAction)
         }.disposed(by: disposeBag)
     }
 
