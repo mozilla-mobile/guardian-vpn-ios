@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
         vpnToggleView.vpnSwitchEvent?.subscribe(onNext: { [weak self] isOn in
             guard let self = self else { return }
             if isOn {
-                self.tunnelManager.createTunnel(device: self.accountManager.currentDevice)
+                self.tunnelManager.connect(with: self.accountManager.currentDevice)
             } else {
                 self.tunnelManager.stopTunnel()
             }

@@ -21,6 +21,14 @@ class VPNToggleView: UIView {
     private var largeLayer = CAShapeLayer()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var connectedTimer: Timer?
+    private var stateChangeTimer: Timer?
+
+    private var delayUIUpdate: TimeInterval {
+        guard let timer = stateChangeTimer, timer.isValid else {
+            return 0
+        }
+        return timer.fireDate.timeIntervalSince(Date())
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -30,18 +38,17 @@ class VPNToggleView: UIView {
 
         vpnSwitchEvent = vpnSwitch.rx.isOn
 
-        NotificationCenter.default.rx
-            .notification(Notification.Name.NEVPNStatusDidChange)
-            .compactMap { ($0.object as? NETunnelProviderSession)?.status }
-            .startWith(tunnelManager.tunnelProviderManager?.connection.status ?? .disconnected)
-            .subscribe { [weak self] statusEvent in
-                guard let status = statusEvent.element,
-                    let self = self else { return }
-                print(status)
-                DispatchQueue.main.async {
-                    self.update(with: VPNState(with: status))
+        tunnelManager.statusChangedEvent
+            .startWith(tunnelManager.currentStatus)
+            .withLatestFrom(tunnelManager.isSwitching.asObservable()) { status, isSwitching in
+                let state = isSwitching ? VPNState.switching : VPNState(with: status)
+                DispatchQueue.main.asyncAfter(deadline: state == .on ? .now() + self.delayUIUpdate : .now()) {
+                    self.update(with: state)
                 }
-            }.disposed(by: disposeBag)
+        }
+        .observeOn(MainScheduler.instance)
+        .subscribe()
+        .disposed(by: disposeBag)
     }
 
     override func awakeFromNib() {
@@ -60,7 +67,8 @@ class VPNToggleView: UIView {
         hoursFormatter.unitsStyle = .positional
 
         connectedTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            let time = Date().timeIntervalSince(self?.tunnelManager.tunnelProviderManager?.connection.connectedDate ?? Date())
+            guard let self = self else { return }
+            let time = self.tunnelManager.timeSinceConnected
 
             guard let daysString = daysFormatter.string(from: time),
                 let hoursString = hoursFormatter.string(from: TimeInterval(Int(time) % 86400))
@@ -102,18 +110,22 @@ class VPNToggleView: UIView {
         layer.rasterizationScale = UIScreen.main.scale
     }
 
-    // MARK: State Cha
+    // MARK: State Change
+
+    private func updateTimer(with delay: TimeInterval) {
+        stateChangeTimer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { _ in }
+    }
+
     private func update(with state: VPNState) {
+        if let delay = state.delay {
+            updateTimer(with: delay)
+        }
         titleLabel.text = state.title
         titleLabel.textColor = state.textColor
         subtitleLabel.textColor = state.textColor
         vpnSwitch.isOn = state.isToggleOn
         globeImageView.image = state.globeImage
         view.backgroundColor = state.backgroundColor
-        if state != .on {
-            connectedTimer?.invalidate()
-            subtitleLabel.text = state.subtitle
-        }
 
         if state.showActivityIndicator {
             activityIndicator.startAnimating()
@@ -133,147 +145,9 @@ class VPNToggleView: UIView {
             view.layer.addSublayer(largeLayer)
 
             showConnectedTime(state: state)
-        }
-    }
-}
-
-private extension CAShapeLayer {
-    func addPulse(delay: CFTimeInterval) {
-    let circlePath = UIBezierPath(arcCenter: .zero,
-                                   radius: 60,
-                                   startAngle: 0,
-                                   endAngle: 2 * CGFloat.pi,
-                                   clockwise: true)
-
-        fillColor = UIColor.clear.cgColor
-        strokeColor = UIColor.white.cgColor
-        lineWidth = 5
-        opacity = 0.0
-        path = circlePath.cgPath
-
-        let expandAnimation = CABasicAnimation(keyPath: "transform.scale")
-        expandAnimation.duration = 6
-        expandAnimation.toValue = 2.07
-        expandAnimation.beginTime = CACurrentMediaTime() + delay
-        expandAnimation.repeatCount = .infinity
-
-        let lineWidthAnimation = CABasicAnimation(keyPath: "lineWidth")
-        lineWidthAnimation.duration = 6
-        lineWidthAnimation.toValue = 1
-        lineWidthAnimation.beginTime = CACurrentMediaTime() + delay
-        lineWidthAnimation.repeatCount = .infinity
-
-        let opacityAnimation = CABasicAnimation(keyPath: "opacity")
-        opacityAnimation.duration = 6
-        opacityAnimation.fromValue = 0.12
-        opacityAnimation.toValue = 0.0
-        opacityAnimation.timingFunction = CAMediaTimingFunction(name: .easeIn)
-        opacityAnimation.beginTime = CACurrentMediaTime() + delay
-        opacityAnimation.repeatCount = .infinity
-
-        add(expandAnimation, forKey: "expand")
-        add(opacityAnimation, forKey: "opacity")
-        add(lineWidthAnimation, forKey: "linewidth")
-    }
-}
-
-enum VPNState {
-    case on
-    case off
-    case connecting
-    case switching
-
-    init(with status: NEVPNStatus) {
-        switch status {
-        case .invalid, .disconnected, .disconnecting:
-            self = .off
-        case .connecting, .reasserting:
-            self = .connecting
-        case .connected:
-            self = .on
-        default:
-            self = .off
-        }
-    }
-}
-
-extension VPNState {
-    var textColor: UIColor {
-        switch self {
-        case .off:
-            return UIColor.guardianGrey
-        default:
-            return UIColor.white
-        }
-    }
-
-    var title: String {
-        switch self {
-        case .off:
-            return "VPN is off"
-        case .connecting:
-            return "Connecting"
-        case .on:
-            return "VPN is on"
-        case .switching:
-            return "Switching"
-        default:
-            return "Unknown"
-        }
-    }
-
-    var subtitle: String {
-        switch self {
-        case .off:
-            return "Turn it on to protect your entire device"
-        case .connecting, .switching:
-            return "You will be protected shortly"
-        case .on:
-            return "Secure and protected"
-        default:
-            return ""
-        }
-    }
-
-    var globeImage: UIImage? {
-        switch self {
-        case .off:
-            return UIImage(named: "globe_off")
-        case .connecting:
-            return UIImage(named: "globe_connecting")
-        case .on:
-            return UIImage(named: "globe_on")
-        case .switching:
-            return UIImage(named: "globe_switching")
-        default:
-            return UIImage(named: "globe_off")
-        }
-    }
-
-    var backgroundColor: UIColor {
-        switch self {
-        case .off:
-            return UIColor.white
-        default:
-            return UIColor.backgroundPurple
-        }
-    }
-
-    var showActivityIndicator: Bool {
-        switch self {
-        case .connecting:
-            return true
-        default:
-            return false
-        }
-    }
-
-    var isToggleOn: Bool {
-        switch self {
-        case .on, .connecting, .switching:
-            return true
-        default:
-            return false
+        } else {
+            connectedTimer?.invalidate()
+            subtitleLabel.text = state.subtitle
         }
     }
 }

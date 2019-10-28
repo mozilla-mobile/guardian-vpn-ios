@@ -120,6 +120,8 @@
 		F4AED258235F835300F80ABF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED128235F450D00F80ABF /* Endpoint.swift */; };
 		F4AED259235F838F00F80ABF /* ringlogger.c in Sources */ = {isa = PBXBuildFile; fileRef = F4AED12A235F450D00F80ABF /* ringlogger.c */; };
 		F4AED25A235F838F00F80ABF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED12B235F450D00F80ABF /* Logger.swift */; };
+		F4B21E41236650E700136316 /* CAShapeLayer+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */; };
+		F4B21E432366514700136316 /* VPNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B21E422366514700136316 /* VPNState.swift */; };
 		F4D150B1234517D800739CDA /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B0234517D800739CDA /* Data+JSON.swift */; };
 		F4D150B323451DC900739CDA /* GuardianURLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */; };
 		F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B423453F9900739CDA /* CityVPNCell.swift */; };
@@ -305,6 +307,8 @@
 		F4AED23A235F5B2E00F80ABF /* GuardianNetworkExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuardianNetworkExtension.entitlements; sourceTree = "<group>"; };
 		F4AED248235F7B4900F80ABF /* Guardian-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Guardian-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4AED25B235F83CB00F80ABF /* GuardianNetworkExtension-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GuardianNetworkExtension-Info.plist"; sourceTree = "<group>"; };
+		F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAShapeLayer+Animation.swift"; sourceTree = "<group>"; };
+		F4B21E422366514700136316 /* VPNState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNState.swift; sourceTree = "<group>"; };
 		F4D150B0234517D800739CDA /* Data+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JSON.swift"; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
@@ -425,6 +429,7 @@
 				F43DFC13234E436E003EA64A /* DeviceKeys.swift */,
 				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
+				F4B21E422366514700136316 /* VPNState.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -588,6 +593,7 @@
 				F45D70A6233E87E700871447 /* UIColor+GuardianBranding.swift */,
 				F45D70A8233E8DBF00871447 /* UIFont+GuardianBranding.swift */,
 				F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */,
+				F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1093,6 +1099,7 @@
 				F4AED25A235F838F00F80ABF /* Logger.swift in Sources */,
 				F4D150BA2345438500739CDA /* ServersDataSourceAndDelegate.swift in Sources */,
 				F4AED255235F835300F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */,
+				F4B21E41236650E700136316 /* CAShapeLayer+Animation.swift in Sources */,
 				F4AED257235F835300F80ABF /* IPAddressRange.swift in Sources */,
 				F4AED254235F835200F80ABF /* TunnelConfiguration.swift in Sources */,
 				F4F25E112343F7D3004BA245 /* VPNLocations.swift in Sources */,
@@ -1132,6 +1139,7 @@
 				F45D70AB233E921900871447 /* GuardianTabBarController.swift in Sources */,
 				F4AED258235F835300F80ABF /* Endpoint.swift in Sources */,
 				F42A23072347D37F00763B0D /* AccountManaging.swift in Sources */,
+				F4B21E432366514700136316 /* VPNState.swift in Sources */,
 				F43DFC14234E436E003EA64A /* DeviceKeys.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
 				F45D7098233D34B100871447 /* VerifyResponse.swift in Sources */,
