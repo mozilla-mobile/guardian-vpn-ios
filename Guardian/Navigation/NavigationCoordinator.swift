@@ -49,8 +49,10 @@ class NavigationCoordinator: Navigating {
     }
 
     // MARK: <NavigationProtocol>
-    internal func navigate(after action: NavigationAction) {
+    private func navigate(after action: NavigationAction) {
         switch action {
+        case .loading:
+            navigateToLandingScreen()
         case .loginSucceeded:
             navigateToHomeVPN()
         case .loginFailed, .logout:
@@ -58,6 +60,11 @@ class NavigationCoordinator: Navigating {
         case .vpnNewSelection:
             presentVPNLocationSelection()
         }
+    }
+
+    private func navigateToLandingScreen() {
+        currentViewController = LandingViewController(coordinatorDelegate: self)
+        setKeyWindow(with: currentViewController!)
     }
 
     private func navigateToHomeVPN() {
