@@ -2,6 +2,7 @@
 // Copyright © 2019 Mozilla Corporation. All Rights Reserved.
 
 import UIKit
+import RxSwift
 
 class LoadingViewController: UIViewController {
 
@@ -13,13 +14,15 @@ class LoadingViewController: UIViewController {
         self.accountManager = accountManager
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: String(describing: LoadingViewController.self), bundle: Bundle.main)
+
         self.accountManager.setupFromAppLaunch { [weak self] result in
+
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    self?.coordinatorDelegate?.navigate(after: .loginSucceeded)
+                    self?.coordinatorDelegate?.navigate.onNext(.loginSucceeded)
                 case .failure:
-                    self?.coordinatorDelegate?.navigate(after: .loginFailed)
+                    self?.coordinatorDelegate?.navigate.onNext(.loading)
                 }
             }
         }
