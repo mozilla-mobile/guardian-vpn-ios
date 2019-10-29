@@ -142,14 +142,9 @@ class GuardianTunnelManager {
     @objc func vpnStatusDidChange(notification: Notification) {
         guard let session = (notification.object as? NETunnelProviderSession) else { return }
         let status = session.status
-        guard session == tunnel?.connection else {
-            if case .disconnected = status, isSwitching.value {
-                startTunnel()
-            }
-            return
-        }
-        print("\(status): \(status.rawValue)")
-        if case .connected = status {
+        if case .disconnected = status, isSwitching.value {
+            startTunnel()
+        } else if case .connected = status {
             isSwitching.accept(false)
         }
         statusChangedEvent.onNext(status)

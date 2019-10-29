@@ -12,7 +12,6 @@ class VPNToggleView: UIView {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var vpnSwitch: UISwitch!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     public var vpnSwitchEvent: ControlProperty<Bool>?
     private let disposeBag = DisposeBag()
@@ -42,7 +41,7 @@ class VPNToggleView: UIView {
             .startWith(tunnelManager.currentStatus)
             .withLatestFrom(tunnelManager.isSwitching.asObservable()) { status, isSwitching in
                 let state = isSwitching ? VPNState.switching : VPNState(with: status)
-                DispatchQueue.main.asyncAfter(deadline: state == .on ? .now() + self.delayUIUpdate : .now()) {
+                DispatchQueue.main.asyncAfter(deadline: state == .on || state == .off ? .now() + self.delayUIUpdate : .now()) {
                     self.update(with: state)
                 }
         }
@@ -124,14 +123,9 @@ class VPNToggleView: UIView {
         titleLabel.textColor = state.textColor
         subtitleLabel.textColor = state.textColor
         vpnSwitch.isOn = state.isToggleOn
+        vpnSwitch.isEnabled = state.isEnabled
         globeImageView.image = state.globeImage
         view.backgroundColor = state.backgroundColor
-
-        if state.showActivityIndicator {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
 
         if state == .on {
             smallLayer.position = globeImageView.center
@@ -148,6 +142,9 @@ class VPNToggleView: UIView {
         } else {
             connectedTimer?.invalidate()
             subtitleLabel.text = state.subtitle
+            smallLayer.removeFromSuperlayer()
+            mediumLayer.removeFromSuperlayer()
+            largeLayer.removeFromSuperlayer()
         }
     }
 }
