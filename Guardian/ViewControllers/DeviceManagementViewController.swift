@@ -7,7 +7,7 @@ class DeviceManagementViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    private let dataSourceAndDelegate: DeviceDataSourceAndDelegate
+    private weak var dataSourceAndDelegate: DeviceDataSourceAndDelegate?
 
     init(dataSourceAndDelegate: DeviceDataSourceAndDelegate) {
         self.dataSourceAndDelegate = dataSourceAndDelegate
