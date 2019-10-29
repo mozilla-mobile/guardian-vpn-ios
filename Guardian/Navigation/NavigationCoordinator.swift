@@ -8,12 +8,15 @@ class NavigationCoordinator: Navigating {
     let dependencyProvider: DependencyProviding
     var currentViewController: UIViewController?
 
+    var navigate = PublishSubject<NavigationAction>()
+
     private let disposeBag = DisposeBag()
 
     init(dependencyProvider: DependencyProviding) {
         self.dependencyProvider = dependencyProvider
         setupHeartbeat()
         setupServerList()
+        setupNavigationActions()
     }
 
     var rootViewController: UIViewController {
@@ -38,9 +41,18 @@ class NavigationCoordinator: Navigating {
         }.disposed(by: disposeBag)
     }
 
+    private func setupNavigationActions() {
+        navigate.subscribe { [weak self] navActionEvent in
+            guard let navAction = navActionEvent.element else { return }
+            self?.navigate(after: navAction)
+        }.disposed(by: disposeBag)
+    }
+
     // MARK: <NavigationProtocol>
-    internal func navigate(after action: NavigationAction) {
+    private func navigate(after action: NavigationAction) {
         switch action {
+        case .loading:
+            navigateToLandingScreen()
         case .loginSucceeded:
             navigateToHomeVPN()
         case .loginFailed, .logout:
@@ -48,6 +60,11 @@ class NavigationCoordinator: Navigating {
         case .vpnNewSelection:
             presentVPNLocationSelection()
         }
+    }
+
+    private func navigateToLandingScreen() {
+        currentViewController = LandingViewController(coordinatorDelegate: self)
+        setKeyWindow(with: currentViewController!)
     }
 
     private func navigateToHomeVPN() {

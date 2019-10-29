@@ -98,7 +98,7 @@ class GuardianTunnelManager {
         guard let tunnel = tunnel else { return }
         (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
-    
+
     public func removeTunnel() {
         if let tunnel = tunnel {
             tunnel.removeFromPreferences { _ in

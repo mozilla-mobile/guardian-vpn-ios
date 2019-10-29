@@ -32,9 +32,9 @@ class SettingsViewController: UIViewController {
                 guard let self = self else { return }
                 switch result {
                 case .success:
-                    self.navigationCoordinator.navigate(after: .logout)
+                    self.navigationCoordinator.navigate.onNext(.logout)
                 case .failure(let error):
-                    self.navigationCoordinator.navigate(after: .loginFailed)
+                    self.navigationCoordinator.navigate.onNext(.loginFailed)
                     print(error)
                 }
             }
