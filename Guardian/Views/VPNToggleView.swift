@@ -39,8 +39,8 @@ class VPNToggleView: UIView {
 
         tunnelManager.statusChangedEvent
             .startWith(tunnelManager.currentStatus)
-            .withLatestFrom(tunnelManager.isSwitching.asObservable()) { status, isSwitching in
-                let state = isSwitching ? VPNState.switching : VPNState(with: status)
+            .withLatestFrom(tunnelManager.action.asObservable()) { status, action in
+                let state = action == .switching ? VPNState.switching : VPNState(with: status)
                 DispatchQueue.main.asyncAfter(deadline: state == .on || state == .off ? .now() + self.delayUIUpdate : .now()) {
                     self.update(with: state)
                 }

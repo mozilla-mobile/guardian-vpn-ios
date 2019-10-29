@@ -11,7 +11,7 @@ class GuardianTunnelManager {
     let keyStore = KeyStore.sharedStore
     var cityChangedEvent = PublishSubject<VPNCity>()
     var statusChangedEvent = PublishSubject<NEVPNStatus>()
-    public var isSwitching = BehaviorRelay<Bool>(value: false)
+    public var action = BehaviorRelay<TunnelAction>(value: .none)
     private var tunnel: NETunnelProviderManager?
 
     public var currentStatus: NEVPNStatus {
@@ -40,16 +40,20 @@ class GuardianTunnelManager {
         DispatchQueue.global().async { [weak self] in
             guard let self = self,
                 let tunnel = self.tunnel else { return }
-            if (self.currentStatus != .disconnected) != self.isSwitching.value {
-                self.isSwitching.accept(self.currentStatus != .disconnected)
+
+            if self.currentStatus != .disconnected && self.action.value != .switching {
+                self.action.accept(.switching)
+            } else {
+                self.action.accept(.none)
             }
+
             tunnel.protocolConfiguration = NETunnelProviderProtocol(tunnelConfiguration: newConfiguration)
             tunnel.localizedDescription = newConfiguration.name ?? "My Tunnel"
             tunnel.saveToPreferences { saveError in
                 if let error = saveError {
                     print(error)
-                    if self.isSwitching.value {
-                        self.isSwitching.accept(false)
+                    if self.action.value == .switching {
+                        self.action.accept(.none)
                     }
                     return
                 }
@@ -99,11 +103,15 @@ class GuardianTunnelManager {
         (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
 
-    public func removeTunnel() {
-        if let tunnel = tunnel {
-            tunnel.removeFromPreferences { _ in
-                DispatchQueue.main.async { }
-            }
+    public func signOut() {
+        action.accept(.removing)
+        stopTunnel()
+    }
+
+    private func removeTunnel() {
+        guard let tunnel = tunnel else { return }
+        tunnel.removeFromPreferences { _ in
+            NETunnelProviderManager.loadAllFromPreferences { _, _ in }
         }
     }
 
@@ -113,7 +121,7 @@ class GuardianTunnelManager {
         NETunnelProviderManager.loadAllFromPreferences { [weak self] managers, error in
             guard let self = self, error == nil else { return }
             let lastUsedServer = managers?.filter { manager in
-                //need to fix this once see whats on manager
+                //TODO: need to fix this once see whats on manager
                 return manager.localizedDescription == VPNCity.fetchFromUserDefaults()?.name
             }
             self.tunnel = lastUsedServer?.first
@@ -134,7 +142,7 @@ class GuardianTunnelManager {
     @objc func vpnConfigurationDidChange(notification: Notification) {
         let object = notification.object
         print("\(object ?? "no object:") \(notification)")
-        if isSwitching.value {
+        if action.value == .switching {
             stopTunnel()
         }
     }
@@ -142,10 +150,12 @@ class GuardianTunnelManager {
     @objc func vpnStatusDidChange(notification: Notification) {
         guard let session = (notification.object as? NETunnelProviderSession) else { return }
         let status = session.status
-        if case .disconnected = status, isSwitching.value {
+        if case .disconnected = status, action.value == .switching {
             startTunnel()
+        } else if case .disconnected = status, action.value == .removing {
+            removeTunnel()
         } else if case .connected = status {
-            isSwitching.accept(false)
+            action.accept(.none)
         }
         statusChangedEvent.onNext(status)
     }
