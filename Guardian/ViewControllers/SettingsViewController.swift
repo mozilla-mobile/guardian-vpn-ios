@@ -28,6 +28,7 @@ class SettingsViewController: UIViewController {
 
     @IBAction func signOut(_ sender: Any) {
         accountManager.logout { [weak self] result in
+            DependencyFactory.sharedFactory.tunnelManager.signOut()
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 switch result {

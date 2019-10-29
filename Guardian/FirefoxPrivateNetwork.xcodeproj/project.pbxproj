@@ -136,6 +136,7 @@
 		F4D150DD2347984000739CDA /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4D150D5234797B700739CDA /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4D150DF2347A3EE00739CDA /* GuardianTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150CD2347975C00739CDA /* GuardianTests.swift */; };
 		F4E33D812358BF1500B2003A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E33D802358BF1500B2003A /* LoginViewController.swift */; };
+		F4E8B2352368C39C001CEC8A /* TunnelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8B2342368C39C001CEC8A /* TunnelAction.swift */; };
 		F4F25E112343F7D3004BA245 /* VPNLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F25E102343F7D3004BA245 /* VPNLocations.swift */; };
 /* End PBXBuildFile section */
 
@@ -324,6 +325,7 @@
 		F4D150D5234797B700739CDA /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		F4D150D7234797C700739CDA /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		F4E33D802358BF1500B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F4E8B2342368C39C001CEC8A /* TunnelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelAction.swift; sourceTree = "<group>"; };
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -427,6 +429,7 @@
 				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
 				F4B21E422366514700136316 /* VPNState.swift */,
+				F4E8B2342368C39C001CEC8A /* TunnelAction.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1036,6 +1039,7 @@
 				F45D70FD23428DCE00871447 /* ServersViewController.swift in Sources */,
 				F40831D4233D04B600A60FCA /* GuardianAPIDateFormatter.swift in Sources */,
 				F4AED25A235F838F00F80ABF /* Logger.swift in Sources */,
+				F4E8B2352368C39C001CEC8A /* TunnelAction.swift in Sources */,
 				F4D150BA2345438500739CDA /* ServersDataSourceAndDelegate.swift in Sources */,
 				F4AED255235F835300F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */,
 				F4B21E41236650E700136316 /* CAShapeLayer+Animation.swift in Sources */,
