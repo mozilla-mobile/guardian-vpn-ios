@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicator" destination="daM-Rs-Idg" id="XBU-a5-ekR"/>
                 <outlet property="globeImageView" destination="MYo-vc-qhs" id="HmY-3T-1nv"/>
                 <outlet property="subtitleLabel" destination="2xu-al-pMZ" id="AbW-Or-LaV"/>
                 <outlet property="titleLabel" destination="CVT-rn-kQN" id="Zt6-nx-KJf"/>
@@ -42,13 +41,6 @@
                         <constraint firstAttribute="width" constant="80" id="dgH-Xm-jQM"/>
                     </constraints>
                 </imageView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="daM-Rs-Idg">
-                    <rect key="frame" x="180" y="65" width="30" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="5R8-Gp-xcd"/>
-                        <constraint firstAttribute="width" constant="30" id="WTV-zA-Nvz"/>
-                    </constraints>
-                </activityIndicatorView>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
                     <rect key="frame" x="150.5" y="240.5" width="51" height="31"/>
                 </switch>
@@ -62,8 +54,6 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2xu-al-pMZ" secondAttribute="trailing" constant="30" id="Kxa-ag-gIx"/>
                 <constraint firstItem="CVT-rn-kQN" firstAttribute="top" secondItem="MYo-vc-qhs" secondAttribute="bottom" constant="25" id="LJB-Fz-Q8C"/>
                 <constraint firstItem="2xu-al-pMZ" firstAttribute="top" secondItem="CVT-rn-kQN" secondAttribute="bottom" constant="10" id="YBs-1k-00V"/>
-                <constraint firstItem="daM-Rs-Idg" firstAttribute="centerY" secondItem="MYo-vc-qhs" secondAttribute="centerY" constant="-20" id="ZDH-oC-NXd"/>
-                <constraint firstItem="daM-Rs-Idg" firstAttribute="centerX" secondItem="MYo-vc-qhs" secondAttribute="centerX" constant="20" id="dx1-bP-Ope"/>
                 <constraint firstItem="CVT-rn-kQN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hkb-m2-YNq"/>
                 <constraint firstItem="sYv-xh-0Gx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qHc-yc-UsB"/>
             </constraints>

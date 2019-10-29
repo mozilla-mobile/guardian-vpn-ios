@@ -9,15 +9,18 @@ enum VPNState {
     case off
     case connecting
     case switching
+    case disconnecting
 
     init(with status: NEVPNStatus) {
         switch status {
-        case .invalid, .disconnected, .disconnecting:
+        case .invalid, .disconnected:
             self = .off
         case .connecting, .reasserting:
             self = .connecting
         case .connected:
             self = .on
+        case .disconnecting:
+            self = .disconnecting
         default:
             self = .off
         }
@@ -27,7 +30,7 @@ enum VPNState {
 extension VPNState {
     var textColor: UIColor {
         switch self {
-        case .off, .switching:
+        case .off, .switching, .disconnecting:
             return UIColor.guardianGrey
         default:
             return UIColor.white
@@ -44,6 +47,8 @@ extension VPNState {
             return "VPN is on"
         case .switching:
             return "Switching"
+        case .disconnecting:
+            return "Disconnecting…"
         }
     }
 
@@ -55,25 +60,27 @@ extension VPNState {
             return "You will be protected shortly"
         case .on:
             return "Secure and protected"
+        case .disconnecting:
+            return "You will be disconnected shortly"
         }
     }
 
     var globeImage: UIImage? {
         switch self {
         case .off:
-            return UIImage(named: "globe_off")
+            return #imageLiteral(resourceName: "globe_off")
         case .connecting:
-            return UIImage(named: "globe_connecting")
+            return #imageLiteral(resourceName: "globe_connecting")
         case .on:
-            return UIImage(named: "globe_on")
-        case .switching:
-            return UIImage(named: "globe_switching")
+            return #imageLiteral(resourceName: "globe_on")
+        case .switching, .disconnecting:
+            return #imageLiteral(resourceName: "globe_disconnecting")
         }
     }
 
     var backgroundColor: UIColor {
         switch self {
-        case .off, .switching:
+        case .off, .disconnecting, .switching:
             return UIColor.white
         default:
             return UIColor.backgroundPurple
@@ -91,7 +98,7 @@ extension VPNState {
 
     var isToggleOn: Bool {
         switch self {
-        case .on, .connecting, .switching:
+        case .on, .connecting:
             return true
         default:
             return false
@@ -100,12 +107,21 @@ extension VPNState {
 
     var delay: TimeInterval? {
         switch self {
-        case .connecting:
+        case .connecting, .disconnecting:
             return 1
         case .switching:
             return 1.5
         default:
             return nil
+        }
+    }
+
+    var isEnabled: Bool {
+        switch self {
+        case .connecting, .disconnecting, .switching:
+            return false
+        default:
+            return true
         }
     }
 }
