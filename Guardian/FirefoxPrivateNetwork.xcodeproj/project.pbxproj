@@ -18,6 +18,10 @@
 		F40831D4233D04B600A60FCA /* GuardianAPIDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */; };
 		F41FE9E8235F98E400CD05C4 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */; };
 		F41FE9E9235F98E400CD05C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41FE9E7235F98E400CD05C4 /* SettingsViewController.swift */; };
+		F420F41C2368840A00CD48BF /* CurrentVPNSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F420F4182368840A00CD48BF /* CurrentVPNSelectorView.swift */; };
+		F420F41D2368840A00CD48BF /* VPNToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F420F4192368840A00CD48BF /* VPNToggleView.swift */; };
+		F420F41E2368840A00CD48BF /* VPNToggleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F420F41A2368840A00CD48BF /* VPNToggleView.xib */; };
+		F420F41F2368840A00CD48BF /* CurrentVPNSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F420F41B2368840A00CD48BF /* CurrentVPNSelectorView.xib */; };
 		F42A23032347D20800763B0D /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23022347D20800763B0D /* DependencyFactory.swift */; };
 		F42A23052347D22100763B0D /* DependencyProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23042347D22100763B0D /* DependencyProviding.swift */; };
 		F42A23072347D37F00763B0D /* AccountManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23062347D37F00763B0D /* AccountManaging.swift */; };
@@ -37,8 +41,6 @@
 		F45D70A7233E87E700871447 /* UIColor+GuardianBranding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A6233E87E700871447 /* UIColor+GuardianBranding.swift */; };
 		F45D70A9233E8DC000871447 /* UIFont+GuardianBranding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A8233E8DBF00871447 /* UIFont+GuardianBranding.swift */; };
 		F45D70AB233E921900871447 /* GuardianTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70AA233E921900871447 /* GuardianTabBarController.swift */; };
-		F45D70AE23423C8C00871447 /* VPNToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70AD23423C8C00871447 /* VPNToggleView.swift */; };
-		F45D70B023423C9800871447 /* VPNToggleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70AF23423C9800871447 /* VPNToggleView.xib */; };
 		F45D70C42342431F00871447 /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70B22342431E00871447 /* Metropolis-SemiBold.otf */; };
 		F45D70C62342431F00871447 /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70B32342431E00871447 /* Metropolis-Medium.otf */; };
 		F45D70C82342431F00871447 /* Metropolis-ExtraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70B42342431E00871447 /* Metropolis-ExtraLightItalic.otf */; };
@@ -60,8 +62,6 @@
 		F45D70EE2342775000871447 /* Inter-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70E92342775000871447 /* Inter-Medium.otf */; };
 		F45D70F02342775000871447 /* Inter-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70EA2342775000871447 /* Inter-SemiBold.otf */; };
 		F45D70F22342775000871447 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70EB2342775000871447 /* Inter-Regular.otf */; };
-		F45D70F523427D1F00871447 /* CurrentVPNSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70F423427D1F00871447 /* CurrentVPNSelectorView.swift */; };
-		F45D70F823427D2F00871447 /* CurrentVPNSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70F723427D2F00871447 /* CurrentVPNSelectorView.xib */; };
 		F45D70FD23428DCE00871447 /* ServersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70FB23428DCE00871447 /* ServersViewController.swift */; };
 		F45D70FE23428DCE00871447 /* ServersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70FC23428DCE00871447 /* ServersViewController.xib */; };
 		F4658541233BB3D00081D7D7 /* NetworkingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */; };
@@ -207,6 +207,10 @@
 		F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPIDateFormatter.swift; sourceTree = "<group>"; };
 		F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		F41FE9E7235F98E400CD05C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F420F4182368840A00CD48BF /* CurrentVPNSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentVPNSelectorView.swift; sourceTree = "<group>"; };
+		F420F4192368840A00CD48BF /* VPNToggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNToggleView.swift; sourceTree = "<group>"; };
+		F420F41A2368840A00CD48BF /* VPNToggleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPNToggleView.xib; sourceTree = "<group>"; };
+		F420F41B2368840A00CD48BF /* CurrentVPNSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentVPNSelectorView.xib; sourceTree = "<group>"; };
 		F42A23022347D20800763B0D /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
 		F42A23062347D37F00763B0D /* AccountManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManaging.swift; sourceTree = "<group>"; };
@@ -226,8 +230,6 @@
 		F45D70A6233E87E700871447 /* UIColor+GuardianBranding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+GuardianBranding.swift"; sourceTree = "<group>"; };
 		F45D70A8233E8DBF00871447 /* UIFont+GuardianBranding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+GuardianBranding.swift"; sourceTree = "<group>"; };
 		F45D70AA233E921900871447 /* GuardianTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianTabBarController.swift; sourceTree = "<group>"; };
-		F45D70AD23423C8C00871447 /* VPNToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNToggleView.swift; sourceTree = "<group>"; };
-		F45D70AF23423C9800871447 /* VPNToggleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPNToggleView.xib; sourceTree = "<group>"; };
 		F45D70B22342431E00871447 /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
 		F45D70B32342431E00871447 /* Metropolis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Medium.otf"; sourceTree = "<group>"; };
 		F45D70B42342431E00871447 /* Metropolis-ExtraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-ExtraLightItalic.otf"; sourceTree = "<group>"; };
@@ -249,8 +251,6 @@
 		F45D70E92342775000871447 /* Inter-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.otf"; sourceTree = "<group>"; };
 		F45D70EA2342775000871447 /* Inter-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.otf"; sourceTree = "<group>"; };
 		F45D70EB2342775000871447 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
-		F45D70F423427D1F00871447 /* CurrentVPNSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentVPNSelectorView.swift; sourceTree = "<group>"; };
-		F45D70F723427D2F00871447 /* CurrentVPNSelectorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentVPNSelectorView.xib; sourceTree = "<group>"; };
 		F45D70FB23428DCE00871447 /* ServersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersViewController.swift; sourceTree = "<group>"; };
 		F45D70FC23428DCE00871447 /* ServersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServersViewController.xib; sourceTree = "<group>"; };
 		F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingEnums.swift; sourceTree = "<group>"; };
@@ -369,7 +369,6 @@
 				6FF4AC1E211EC472002C96EB /* Assets.xcassets */,
 				F40831D2233D049F00A60FCA /* Common */,
 				6FF4AC2B211EC776002C96EB /* Config.xcconfig */,
-				F43DFC0C234D1356003EA64A /* Devices */,
 				F4658549233BE9F50081D7D7 /* Extensions */,
 				F45D70B1234242EE00871447 /* Fonts */,
 				6FF4AC452120B9E0002C96EB /* Frameworks */,
@@ -379,18 +378,14 @@
 				F4AED25B235F83CB00F80ABF /* GuardianNetworkExtension-Info.plist */,
 				F4AED23A235F5B2E00F80ABF /* GuardianNetworkExtension.entitlements */,
 				F4D150CC2347975C00739CDA /* GuardianTests */,
-				F45D709C233D385D00871447 /* Home */,
 				6F70E20C221058DF008BDFB4 /* InfoPlist.strings */,
-				F46969782367333400D48617 /* Landing */,
-				F42E6ADA2367492500CB49B3 /* Loading */,
-				F4658539233BB23D0081D7D7 /* Login */,
 				F43BB3C52357565F00D4D21A /* Managers */,
+				F420F41523687A0A00CD48BF /* Models */,
 				F45D709F233D3BB000871447 /* Navigation */,
 				F465853F233BB39C0081D7D7 /* Networking */,
 				6FF4AC15211EC46F002C96EB /* Products */,
-				F45D70FA23428DA900871447 /* Servers */,
-				F41FE9E5235F98E400CD05C4 /* Settings */,
-				F45D7099233D380A00871447 /* User */,
+				F420F41723687A7C00CD48BF /* ViewControllers */,
+				F420F41423687A0100CD48BF /* Views */,
 				F4AED107235F450D00F80ABF /* WireGuard */,
 			);
 			sourceTree = "<group>";
@@ -437,22 +432,57 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		F41FE9E5235F98E400CD05C4 /* Settings */ = {
+		F420F41423687A0100CD48BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */,
-				F41FE9E7235F98E400CD05C4 /* SettingsViewController.swift */,
+				F4D150B423453F9900739CDA /* CityVPNCell.swift */,
+				F4D150B523453F9900739CDA /* CityVPNCell.xib */,
+				F4D150BF23464DE300739CDA /* CountryVPNHeaderView.swift */,
+				F4D150BD2346422000739CDA /* CountryVPNHeaderView.xib */,
+				F420F4182368840A00CD48BF /* CurrentVPNSelectorView.swift */,
+				F420F41B2368840A00CD48BF /* CurrentVPNSelectorView.xib */,
+				F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */,
+				F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */,
+				F499C0F4234E301900126CDA /* DeviceManagementCell.swift */,
+				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
+				F420F4192368840A00CD48BF /* VPNToggleView.swift */,
+				F420F41A2368840A00CD48BF /* VPNToggleView.xib */,
 			);
-			path = Settings;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		F42E6ADA2367492500CB49B3 /* Loading */ = {
+		F420F41523687A0A00CD48BF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F43DFC0D234D1361003EA64A /* Device.swift */,
+				F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */,
+				F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */,
+				F4D150B92345438500739CDA /* ServersDataSourceAndDelegate.swift */,
+				F40831D0233CFD5600A60FCA /* User.swift */,
+				F45D7097233D34B100871447 /* VerifyResponse.swift */,
+				F4F25E102343F7D3004BA245 /* VPNLocations.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F420F41723687A7C00CD48BF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
+				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
+				F45D70A2233D3D6C00871447 /* HomeViewController.swift */,
+				F45D70A3233D3D6C00871447 /* HomeViewController.xib */,
+				F46969792367345100D48617 /* LandingViewController.swift */,
+				F469697A2367345100D48617 /* LandingViewController.xib */,
 				F43DFC05234BB32C003EA64A /* LoadingViewController.swift */,
 				F43DFC06234BB32C003EA64A /* LoadingViewController.xib */,
+				F4E33D802358BF1500B2003A /* LoginViewController.swift */,
+				F45D70FB23428DCE00871447 /* ServersViewController.swift */,
+				F45D70FC23428DCE00871447 /* ServersViewController.xib */,
+				F41FE9E7235F98E400CD05C4 /* SettingsViewController.swift */,
+				F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */,
 			);
-			path = Loading;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		F43BB3C52357565F00D4D21A /* Managers */ = {
@@ -465,40 +495,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		F43DFC0C234D1356003EA64A /* Devices */ = {
-			isa = PBXGroup;
-			children = (
-				F43DFC0D234D1361003EA64A /* Device.swift */,
-				F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */,
-				F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */,
-				F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */,
-				F499C0F4234E301900126CDA /* DeviceManagementCell.swift */,
-				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
-				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
-				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
-			);
-			path = Devices;
-			sourceTree = "<group>";
-		};
-		F45D7099233D380A00871447 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				F40831D0233CFD5600A60FCA /* User.swift */,
-				F45D7097233D34B100871447 /* VerifyResponse.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		F45D709C233D385D00871447 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				F45D70A2233D3D6C00871447 /* HomeViewController.swift */,
-				F45D70A3233D3D6C00871447 /* HomeViewController.xib */,
-				F45D70AC23423C6F00871447 /* Views */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		F45D709F233D3BB000871447 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,17 +503,6 @@
 				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
 			);
 			path = Navigation;
-			sourceTree = "<group>";
-		};
-		F45D70AC23423C6F00871447 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F45D70F423427D1F00871447 /* CurrentVPNSelectorView.swift */,
-				F45D70F723427D2F00871447 /* CurrentVPNSelectorView.xib */,
-				F45D70AD23423C8C00871447 /* VPNToggleView.swift */,
-				F45D70AF23423C9800871447 /* VPNToggleView.xib */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		F45D70B1234242EE00871447 /* Fonts */ = {
@@ -548,35 +533,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		F45D70FA23428DA900871447 /* Servers */ = {
-			isa = PBXGroup;
-			children = (
-				F4D150B92345438500739CDA /* ServersDataSourceAndDelegate.swift */,
-				F45D70FB23428DCE00871447 /* ServersViewController.swift */,
-				F45D70FC23428DCE00871447 /* ServersViewController.xib */,
-				F4D150C623467C9900739CDA /* Models */,
-				F4D150C523467C8B00739CDA /* Views */,
-			);
-			path = Servers;
-			sourceTree = "<group>";
-		};
-		F4658539233BB23D0081D7D7 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				F4658546233BB81B0081D7D7 /* Models */,
-				F465853A233BB2470081D7D7 /* ViewController */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		F465853A233BB2470081D7D7 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				F4E33D802358BF1500B2003A /* LoginViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		F465853F233BB39C0081D7D7 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -586,14 +542,6 @@
 				F4658542233BB44A0081D7D7 /* NetworkLayer.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		F4658546233BB81B0081D7D7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		F4658549233BE9F50081D7D7 /* Extensions */ = {
@@ -606,15 +554,6 @@
 				F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		F46969782367333400D48617 /* Landing */ = {
-			isa = PBXGroup;
-			children = (
-				F46969792367345100D48617 /* LandingViewController.swift */,
-				F469697A2367345100D48617 /* LandingViewController.xib */,
-			);
-			path = Landing;
 			sourceTree = "<group>";
 		};
 		F4AED107235F450D00F80ABF /* WireGuard */ = {
@@ -730,25 +669,6 @@
 				F4AED1B2235F450D00F80ABF /* ErrorNotifier.swift */,
 			);
 			path = WireGuardNetworkExtension;
-			sourceTree = "<group>";
-		};
-		F4D150C523467C8B00739CDA /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F4D150B423453F9900739CDA /* CityVPNCell.swift */,
-				F4D150B523453F9900739CDA /* CityVPNCell.xib */,
-				F4D150BF23464DE300739CDA /* CountryVPNHeaderView.swift */,
-				F4D150BD2346422000739CDA /* CountryVPNHeaderView.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		F4D150C623467C9900739CDA /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F4F25E102343F7D3004BA245 /* VPNLocations.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		F4D150CC2347975C00739CDA /* GuardianTests */ = {
@@ -923,6 +843,7 @@
 				F45D70CC2342431F00871447 /* Metropolis-BoldItalic.otf in Resources */,
 				F45D70E02342431F00871447 /* Metropolis-Bold.otf in Resources */,
 				F45D70D22342431F00871447 /* Metropolis-Regular.otf in Resources */,
+				F420F41E2368840A00CD48BF /* VPNToggleView.xib in Resources */,
 				F45D70F02342775000871447 /* Inter-SemiBold.otf in Resources */,
 				F499C0FB234E41B800126CDA /* DeviceLimitReachedView.xib in Resources */,
 				F45D70E22342431F00871447 /* Metropolis-LightItalic.otf in Resources */,
@@ -941,12 +862,11 @@
 				F45D70D62342431F00871447 /* Metropolis-ExtraBoldItalic.otf in Resources */,
 				F45D70A5233D3D6C00871447 /* HomeViewController.xib in Resources */,
 				6FF4AC1F211EC472002C96EB /* Assets.xcassets in Resources */,
+				F420F41F2368840A00CD48BF /* CurrentVPNSelectorView.xib in Resources */,
 				F45D70E62342431F00871447 /* Metropolis-Thin.otf in Resources */,
 				F45D70EE2342775000871447 /* Inter-Medium.otf in Resources */,
-				F45D70B023423C9800871447 /* VPNToggleView.xib in Resources */,
 				F45D70F22342775000871447 /* Inter-Regular.otf in Resources */,
 				F45D70D82342431F00871447 /* Metropolis-BlackItalic.otf in Resources */,
-				F45D70F823427D2F00871447 /* CurrentVPNSelectorView.xib in Resources */,
 				F45D70FE23428DCE00871447 /* ServersViewController.xib in Resources */,
 				F499C0F7234E301900126CDA /* DeviceManagementCell.xib in Resources */,
 				F43DFC08234BB32C003EA64A /* LoadingViewController.xib in Resources */,
@@ -1129,7 +1049,6 @@
 				F4658545233BB7690081D7D7 /* GuardianAPI.swift in Sources */,
 				F4D150C023464DE300739CDA /* CountryVPNHeaderView.swift in Sources */,
 				F4AED249235F7BB800F80ABF /* WireGuardAppError.swift in Sources */,
-				F45D70AE23423C8C00871447 /* VPNToggleView.swift in Sources */,
 				F4AED259235F838F00F80ABF /* ringlogger.c in Sources */,
 				F4AED250235F835200F80ABF /* TunnelConfiguration+WgQuickConfig.swift in Sources */,
 				F43DFC10234D1EE4003EA64A /* UserDefaulting.swift in Sources */,
@@ -1160,6 +1079,7 @@
 				F42A23072347D37F00763B0D /* AccountManaging.swift in Sources */,
 				F4B21E432366514700136316 /* VPNState.swift in Sources */,
 				F43DFC14234E436E003EA64A /* DeviceKeys.swift in Sources */,
+				F420F41D2368840A00CD48BF /* VPNToggleView.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
 				F45D7098233D34B100871447 /* VerifyResponse.swift in Sources */,
 				F42A23052347D22100763B0D /* DependencyProviding.swift in Sources */,
@@ -1169,9 +1089,9 @@
 				F469697B2367345100D48617 /* LandingViewController.swift in Sources */,
 				F43DFC12234E4230003EA64A /* KeyStore.swift in Sources */,
 				F4D150B323451DC900739CDA /* GuardianURLRequestBuilder.swift in Sources */,
+				F420F41C2368840A00CD48BF /* CurrentVPNSelectorView.swift in Sources */,
 				F4658543233BB44A0081D7D7 /* NetworkLayer.swift in Sources */,
 				F4AED253235F835200F80ABF /* DNSServer.swift in Sources */,
-				F45D70F523427D1F00871447 /* CurrentVPNSelectorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
