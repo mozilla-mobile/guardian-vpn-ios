@@ -42,9 +42,10 @@ class NavigationCoordinator: Navigating {
     }
 
     private func setupNavigationActions() {
-        navigate.subscribe { [weak self] navActionEvent in
-            guard let navAction = navActionEvent.element else { return }
-            self?.navigate(after: navAction)
+        navigate
+            .subscribe { [weak self] navActionEvent in
+                guard let navAction = navActionEvent.element else { return }
+                self?.navigate(after: navAction)
         }.disposed(by: disposeBag)
     }
 
@@ -63,18 +64,27 @@ class NavigationCoordinator: Navigating {
     }
 
     private func navigateToLandingScreen() {
-        currentViewController = LandingViewController(coordinatorDelegate: self)
-        setKeyWindow(with: currentViewController!)
+        let currentViewController = LandingViewController(coordinatorDelegate: self)
+        self.currentViewController = currentViewController
+        DispatchQueue.main.async { [weak self] in
+            self?.setKeyWindow(with: currentViewController)
+        }
     }
 
     private func navigateToHomeVPN() {
-        currentViewController = GuardianTabBarController(viewControllers: tabBarViewControllers)
-        setKeyWindow(with: currentViewController!)
+        let currentViewController = GuardianTabBarController(viewControllers: tabBarViewControllers)
+        self.currentViewController = currentViewController
+        DispatchQueue.main.async { [weak self] in
+            self?.setKeyWindow(with: currentViewController)
+        }
     }
 
     private func navigateToLogin() {
-        currentViewController = LoginViewController(accountManager: dependencyProvider.accountManager, navigatingDelegate: self)
-        setKeyWindow(with: currentViewController!)
+        let currentViewController = LoginViewController(accountManager: dependencyProvider.accountManager, navigatingDelegate: self)
+        self.currentViewController = currentViewController
+        DispatchQueue.main.async { [weak self] in
+            self?.setKeyWindow(with: currentViewController)
+        }
     }
 
     private func presentVPNLocationSelection() {
