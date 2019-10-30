@@ -20,14 +20,7 @@ class VPNToggleView: UIView {
     private var largeLayer = CAShapeLayer()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var connectedTimer: Timer?
-    private var stateChangeTimer: Timer?
-
-    private var delayUIUpdate: TimeInterval {
-        guard let timer = stateChangeTimer, timer.isValid else {
-            return 0
-        }
-        return timer.fireDate.timeIntervalSince(Date())
-    }
+    private var updateUIEvent = PublishSubject<Void>()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,15 +30,16 @@ class VPNToggleView: UIView {
 
         vpnSwitchEvent = vpnSwitch.rx.isOn
 
-        tunnelManager.statusChangedEvent
-            .startWith(tunnelManager.currentStatus)
-            .withLatestFrom(tunnelManager.action.asObservable()) { status, action in
-                let state = action == .switching ? VPNState.switching : VPNState(with: status)
-                DispatchQueue.main.asyncAfter(deadline: state == .on || state == .off ? .now() + self.delayUIUpdate : .now()) {
-                    self.update(with: state)
+        Observable
+            .zip(tunnelManager.stateEvent, updateUIEvent.startWith(())) { [weak self] state, _ in
+                DispatchQueue.main.async {
+                    self?.update(with: state)
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + (state.delay ?? 0)) {
+                    self?.updateUIEvent.onNext(())
                 }
         }
-        .observeOn(MainScheduler.instance)
         .subscribe()
         .disposed(by: disposeBag)
     }
@@ -111,14 +105,7 @@ class VPNToggleView: UIView {
 
     // MARK: State Change
 
-    private func updateTimer(with delay: TimeInterval) {
-        stateChangeTimer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { _ in }
-    }
-
     private func update(with state: VPNState) {
-        if let delay = state.delay {
-            updateTimer(with: delay)
-        }
         titleLabel.text = state.title
         titleLabel.textColor = state.textColor
         subtitleLabel.textColor = state.textColor
@@ -128,6 +115,8 @@ class VPNToggleView: UIView {
         view.backgroundColor = state.backgroundColor
 
         if state == .on {
+            showConnectedTime(state: state)
+
             smallLayer.position = globeImageView.center
             mediumLayer.position = globeImageView.center
             largeLayer.position = globeImageView.center
@@ -137,8 +126,6 @@ class VPNToggleView: UIView {
             view.layer.addSublayer(smallLayer)
             view.layer.addSublayer(mediumLayer)
             view.layer.addSublayer(largeLayer)
-
-            showConnectedTime(state: state)
         } else {
             connectedTimer?.invalidate()
             subtitleLabel.text = state.subtitle

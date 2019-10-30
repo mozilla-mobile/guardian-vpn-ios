@@ -62,14 +62,14 @@ class HomeViewController: UIViewController {
     }
 
     private func subscribeToToggle() {
-        vpnToggleView.vpnSwitchEvent?.subscribe(onNext: { [weak self] isOn in
-            guard let self = self else { return }
+        vpnToggleView.vpnSwitchEvent?.subscribe { [weak self] isOnEvent in
+            guard let self = self, let isOn = isOnEvent.element else { return }
             if isOn {
                 self.tunnelManager.connect(with: self.accountManager.currentDevice)
             } else {
                 self.tunnelManager.stopTunnel()
             }
-        }).disposed(by: disposeBag)
+        }.disposed(by: disposeBag)
     }
 
     // MARK: Tap Gesture

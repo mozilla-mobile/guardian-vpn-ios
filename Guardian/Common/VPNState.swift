@@ -42,11 +42,11 @@ extension VPNState {
         case .off:
             return "VPN is off"
         case .connecting:
-            return "Connecting"
+            return "Connecting…"
         case .on:
             return "VPN is on"
         case .switching:
-            return "Switching"
+            return "Switching…"
         case .disconnecting:
             return "Disconnecting…"
         }

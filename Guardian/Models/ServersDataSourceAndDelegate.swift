@@ -8,7 +8,7 @@ import RxSwift
 class ServersDataSourceAndDelegate: NSObject {
     let countries: [VPNCountry]
     private var selectedIndexPath: IndexPath?
-    private var sectionExpandedStates = [Int : Bool]()
+    private var sectionExpandedStates = [Int: Bool]()
     private let headerTapPublishSubject = PublishSubject<CountryVPNHeaderView>()
     private var disposeBag = DisposeBag()
     private weak var tableView: UITableView?
