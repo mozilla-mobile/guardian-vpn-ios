@@ -7,6 +7,7 @@ import RxSwift
 enum NavigationAction {
     case loginSucceeded
     case loginFailed
+    case logoutFailed
     case vpnNewSelection
     case logout
     case loading

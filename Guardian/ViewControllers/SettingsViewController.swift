@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController {
                 case .success:
                     self.navigationCoordinator.navigate.onNext(.logout)
                 case .failure(let error):
-                    self.navigationCoordinator.navigate.onNext(.loginFailed)
+                    self.navigationCoordinator.navigate.onNext(.logoutFailed)
                     print(error)
                 }
             }

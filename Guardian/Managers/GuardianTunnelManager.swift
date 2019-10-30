@@ -10,14 +10,14 @@ class GuardianTunnelManager {
     static let sharedTunnelManager = GuardianTunnelManager()
     let keyStore = KeyStore.sharedStore
     var cityChangedEvent = PublishSubject<VPNCity>()
-    var statusChangedEvent = PublishSubject<NEVPNStatus>()
-    public var action = BehaviorRelay<TunnelAction>(value: .none)
     private var tunnel: NETunnelProviderManager?
+    var stateEvent = BehaviorRelay<VPNState>(value: .off)
 
-    public var currentStatus: NEVPNStatus {
+    var currentStatus: NEVPNStatus {
         return tunnel?.connection.status ?? .disconnected
     }
-    public var timeSinceConnected: Double {
+
+    var timeSinceConnected: Double {
         return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
     }
 
@@ -32,99 +32,81 @@ class GuardianTunnelManager {
 
     // MARK: Public Functions
 
-    public func switchServer(with device: Device) { //add completion?
-
-        guard let city = VPNCity.fetchFromUserDefaults() else { return }
-        guard let newConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: keyStore.deviceKeys.devicePrivateKey) else { return }
-
-        DispatchQueue.global().async { [weak self] in
-            guard let self = self,
-                let tunnel = self.tunnel else { return }
-
-            if self.currentStatus != .disconnected && self.action.value != .switching {
-                self.action.accept(.switching)
-            } else {
-                self.action.accept(.none)
-            }
-
-            tunnel.protocolConfiguration = NETunnelProviderProtocol(tunnelConfiguration: newConfiguration)
-            tunnel.localizedDescription = newConfiguration.name ?? "My Tunnel"
-            tunnel.saveToPreferences { saveError in
-                if let error = saveError {
-                    print(error)
-                    if self.action.value == .switching {
-                        self.action.accept(.none)
-                    }
-                    return
-                }
-
-                tunnel.loadFromPreferences { error in
-                    if let error = error { print(error) }
-                }
-            }
-        }
-    }
-
-    public func connect(with device: Device?) {
-        if tunnel != nil {
-            startTunnel()
+    func switchServer(with device: Device) {
+        guard let tunnel = self.tunnel else {
+            connect(with: device)
             return
         }
 
-        guard let device = device,
-            let city = VPNCity.fetchFromUserDefaults() else { return }
+        if self.stateEvent.value != .off {
+            self.stateEvent.accept(.switching)
+        }
 
-        guard let configuration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: keyStore.deviceKeys.devicePrivateKey) else { return }
+        tunnel.setNewConfiguration(for: device, key: keyStore.deviceKeys.devicePrivateKey)
 
-        let tunnelProviderProtocol = NETunnelProviderProtocol(tunnelConfiguration: configuration)
-        let tunnelProviderManager = NETunnelProviderManager()
-        tunnelProviderManager.protocolConfiguration = tunnelProviderProtocol
-        tunnelProviderManager.localizedDescription = configuration.name ?? "My Tunnel"
-        tunnelProviderManager.isEnabled = true
+        tunnel.saveToPreferences { saveError in
+            guard saveError == nil else {
+                if self.stateEvent.value == .switching {
+                    self.stateEvent.accept(.on)
+                }
+                return
+            }
 
-        let rule = NEOnDemandRuleConnect()
-        rule.interfaceTypeMatch = .any
-        rule.ssidMatch = nil
-        tunnelProviderManager.onDemandRules = [rule]
-        tunnelProviderManager.isOnDemandEnabled = false
-
-        tunnelProviderManager.saveToPreferences { [unowned self] saveError in
-            if saveError != nil { return }
-            self.tunnel = tunnelProviderManager
-            self.tunnel?.loadFromPreferences { error in
-                guard error == nil else { return }
-                self.startTunnel()
+            tunnel.loadFromPreferences { error in
+                // TODO: Handle errors, don't print
+                if let error = error { print(error) }
             }
         }
     }
 
-    public func stopTunnel() {
+    func connect(with device: Device?) {
+        loadTunnel { [weak self] in
+            guard let self = self else { return }
+
+            let tunnelProviderManager = self.tunnel ?? NETunnelProviderManager()
+            guard let device = device else { return }
+
+            tunnelProviderManager.setNewConfiguration(for: device, key: self.keyStore.deviceKeys.devicePrivateKey)
+            tunnelProviderManager.isEnabled = true
+
+            tunnelProviderManager.saveToPreferences { [unowned self] saveError in
+                guard saveError == nil else {
+                    self.tunnel = nil
+                    return
+                }
+                self.tunnel = tunnelProviderManager
+                self.tunnel?.loadFromPreferences { error in
+                    guard error == nil else { return }
+                    self.startTunnel()
+                }
+            }
+        }
+    }
+
+    func stopTunnel() {
         guard let tunnel = tunnel else { return }
         (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
 
-    public func signOut() {
-        action.accept(.removing)
+    func signOut() {
         stopTunnel()
     }
 
     private func removeTunnel() {
         guard let tunnel = tunnel else { return }
         tunnel.removeFromPreferences { _ in
+            self.tunnel = nil
             NETunnelProviderManager.loadAllFromPreferences { _, _ in }
         }
     }
 
-    // MARK: Private Helper Fuctions
+    // MARK: Private Helper Functions
 
-    private func loadTunnel() {
+    private func loadTunnel(completion: (() -> Void)? = nil) {
         NETunnelProviderManager.loadAllFromPreferences { [weak self] managers, error in
             guard let self = self, error == nil else { return }
-            let lastUsedServer = managers?.filter { manager in
-                //TODO: need to fix this once see whats on manager
-                return manager.localizedDescription == VPNCity.fetchFromUserDefaults()?.name
-            }
-            self.tunnel = lastUsedServer?.first
+            self.tunnel = managers?.first { $0.localizedDescription == VPNCity.fetchFromUserDefaults()?.name }
+            completion?()
         }
     }
 
@@ -142,21 +124,35 @@ class GuardianTunnelManager {
     @objc func vpnConfigurationDidChange(notification: Notification) {
         let object = notification.object
         print("\(object ?? "no object:") \(notification)")
-        if action.value == .switching {
+        if stateEvent.value == .switching {
             stopTunnel()
         }
     }
 
     @objc func vpnStatusDidChange(notification: Notification) {
-        guard let session = (notification.object as? NETunnelProviderSession) else { return }
-        let status = session.status
-        if case .disconnected = status, action.value == .switching {
-            startTunnel()
-        } else if case .disconnected = status, action.value == .removing {
-            removeTunnel()
-        } else if case .connected = status {
-            action.accept(.none)
+        guard let session = (notification.object as? NETunnelProviderSession), tunnel?.connection == session else { return }
+
+        if stateEvent.value == .switching {
+            switch session.status {
+            case .disconnecting, .connecting:
+                return
+            case .disconnected:
+                startTunnel()
+                return
+            default:
+                break
+            }
         }
-        statusChangedEvent.onNext(status)
+        stateEvent.accept(VPNState(with: session.status))
+    }
+}
+
+private extension NETunnelProviderManager {
+    func setNewConfiguration(for device: Device, key: Data) {
+        guard let city = VPNCity.fetchFromUserDefaults() else { return }
+        guard let newConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: key) else { return }
+
+        self.protocolConfiguration = NETunnelProviderProtocol(tunnelConfiguration: newConfiguration)
+        self.localizedDescription = newConfiguration.name ?? city.name
     }
 }

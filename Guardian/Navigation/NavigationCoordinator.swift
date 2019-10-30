@@ -52,11 +52,11 @@ class NavigationCoordinator: Navigating {
     // MARK: <NavigationProtocol>
     private func navigate(after action: NavigationAction) {
         switch action {
-        case .loading:
+        case .loading, .logout, .logoutFailed:
             navigateToLandingScreen()
         case .loginSucceeded:
             navigateToHomeVPN()
-        case .loginFailed, .logout:
+        case .loginFailed:
             navigateToLogin()
         case .vpnNewSelection:
             presentVPNLocationSelection()
