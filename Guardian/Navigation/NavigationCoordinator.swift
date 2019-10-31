@@ -60,6 +60,12 @@ class NavigationCoordinator: Navigating {
             navigateToLogin()
         case .vpnNewSelection:
             presentVPNLocationSelection()
+        case .devicesSelection:
+            navigateToDeviceManagement()
+        case .aboutSelection:
+            break
+        case .helpSelection:
+            break
         }
     }
 
@@ -87,6 +93,17 @@ class NavigationCoordinator: Navigating {
         }
     }
 
+    private func navigateToDeviceManagement() {
+        guard let user = dependencyProvider.accountManager.user else { return }
+        let dataSoureAndDelegate = DeviceDataSourceAndDelegate(devices: user.devices)
+        let deviceManagementVC = DeviceManagementViewController(nibName: String(describing: DeviceManagementViewController.self), bundle: Bundle.main)
+        deviceManagementVC.setup(dataSourceAndDelegate: dataSoureAndDelegate)
+
+        if let navigationController = currentViewController?.children[1] as? UINavigationController {
+            navigationController.pushViewController(deviceManagementVC, animated: true)
+        }
+    }
+
     private func presentVPNLocationSelection() {
         let locationVPNVC = ServersViewController(accountManager: dependencyProvider.accountManager)
         let navController = UINavigationController(rootViewController: locationVPNVC)
@@ -105,7 +122,9 @@ class NavigationCoordinator: Navigating {
             accountManager: dependencyProvider.accountManager,
             navigationCoordinator: self)
 
-        return [homeViewController, settingsViewController]
+        let navigationViewController = UINavigationController(rootViewController: settingsViewController)
+
+        return [homeViewController, navigationViewController]
     }
 
     private func setKeyWindow(with viewController: UIViewController) {

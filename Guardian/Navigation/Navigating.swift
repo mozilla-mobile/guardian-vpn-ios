@@ -11,6 +11,9 @@ enum NavigationAction {
     case vpnNewSelection
     case logout
     case loading
+    case devicesSelection
+    case aboutSelection
+    case helpSelection
 }
 
 protocol Navigating: class {

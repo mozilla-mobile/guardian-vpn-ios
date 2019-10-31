@@ -5,6 +5,8 @@ import UIKit
 
 class CityVPNCell: UITableViewCell {
 
+    static let height: CGFloat = 55.0
+
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var radioImageView: UIImageView!
 
@@ -17,9 +19,5 @@ class CityVPNCell: UITableViewCell {
         contentView.backgroundColor = UIColor.backgroundOffWhite
         cityLabel.font = UIFont.connectionCityCellFont
         cityLabel.textColor = UIColor.guardianBlack
-    }
-
-    static func height() -> CGFloat {
-        return 50.0
     }
 }
