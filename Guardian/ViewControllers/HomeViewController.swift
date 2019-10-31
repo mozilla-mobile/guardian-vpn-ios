@@ -67,7 +67,7 @@ class HomeViewController: UIViewController {
             if isOn {
                 self.tunnelManager.connect(with: self.accountManager.currentDevice)
             } else {
-                self.tunnelManager.stopTunnel()
+                self.tunnelManager.stop()
             }
         }.disposed(by: disposeBag)
     }

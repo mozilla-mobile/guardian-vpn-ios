@@ -83,13 +83,9 @@ class GuardianTunnelManager {
         }
     }
 
-    func stopTunnel() {
+    func stop() {
         guard let tunnel = tunnel else { return }
         (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
-    }
-
-    func signOut() {
-        stopTunnel()
     }
 
     private func removeTunnel() {
@@ -125,7 +121,7 @@ class GuardianTunnelManager {
         let object = notification.object
         print("\(object ?? "no object:") \(notification)")
         if stateEvent.value == .switching {
-            stopTunnel()
+            stop()
         }
     }
 
