@@ -25,7 +25,7 @@ class AccountManager: AccountManaging {
             if let currentDevice = currentDevice {
                 currentDevice.saveToUserDefaults()
             } else {
-                UserDefaults.standard.removeObject(forKey: Device.userDefaultsKey)
+                Device.removeFromUserDefaults()
             }
         }
     }
@@ -179,11 +179,15 @@ class AccountManager: AccountManaging {
         }
 
         GuardianAPI.removeDevice(with: device.publicKey) { [unowned self] result in
-            completion(result.map { _ in
+            switch result {
+            case .success:
                 self.token = nil
                 self.currentDevice = nil
-                return
-            })
+                DeviceKeys.removeFromUserDefaults()
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 

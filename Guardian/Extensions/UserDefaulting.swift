@@ -20,6 +20,10 @@ extension UserDefaulting {
         return UserDefaults.standard.object(forKey: Self.userDefaultsKey) != nil
     }
 
+    static func removeFromUserDefaults() {
+        UserDefaults.standard.removeObject(forKey: Self.userDefaultsKey)
+    }
+
     func saveToUserDefaults() {
         do {
             let encoded = try JSONEncoder().encode(self)
@@ -31,4 +35,5 @@ extension UserDefaulting {
             print(error) // TODO: Handle this
         }
     }
+
 }
