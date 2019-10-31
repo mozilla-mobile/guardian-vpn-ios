@@ -49,6 +49,7 @@ class ServersDataSourceAndDelegate: NSObject {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension ServersDataSourceAndDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CityVPNCell.self), for: indexPath) as? CityVPNCell else {
@@ -83,6 +84,7 @@ extension ServersDataSourceAndDelegate: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension ServersDataSourceAndDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: CountryVPNHeaderView.self)) as? CountryVPNHeaderView else {
@@ -98,10 +100,10 @@ extension ServersDataSourceAndDelegate: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CityVPNCell.height()
+        return CityVPNCell.height
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CountryVPNHeaderView.height()
+        return CountryVPNHeaderView.height
     }
 }

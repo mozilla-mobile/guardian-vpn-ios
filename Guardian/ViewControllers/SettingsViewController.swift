@@ -6,6 +6,7 @@ import UIKit
 class SettingsViewController: UIViewController {
     private let accountManager: AccountManaging
     private let navigationCoordinator: Navigating
+    private var dataSource: SettingsDataSourceAndDelegate?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var signOutButton: UIButton!
@@ -24,6 +25,10 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSource = SettingsDataSourceAndDelegate(tableView: tableView, navigationCoordinator: navigationCoordinator)
+        tableView.tableFooterView = UIView()
+        tableView.reloadData()
+        self.navigationController?.navigationBar.isHidden = true
     }
 
     @IBAction func signOut(_ sender: Any) {

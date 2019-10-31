@@ -5,6 +5,8 @@ import UIKit
 import RxSwift
 
 class CountryVPNHeaderView: UITableViewHeaderFooterView {
+    static let height: CGFloat = 56.0
+
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var flagImageView: UIImageView!
     @IBOutlet var backdropView: UIView!
@@ -43,9 +45,5 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
     private func setupTaps() {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         addGestureRecognizer(tapRecognizer)
-    }
-
-    static func height() -> CGFloat {
-        return 56.0
     }
 }

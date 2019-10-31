@@ -135,6 +135,11 @@
 		F4D150DC2347983A00739CDA /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4D150D7234797C700739CDA /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4D150DD2347984000739CDA /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4D150D5234797B700739CDA /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4D150DF2347A3EE00739CDA /* GuardianTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150CD2347975C00739CDA /* GuardianTests.swift */; };
+		F4D8D94C236A207600BE5FFC /* AccountInformationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D8D94A236A207600BE5FFC /* AccountInformationHeader.swift */; };
+		F4D8D94D236A207600BE5FFC /* AccountInformationHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D8D94B236A207600BE5FFC /* AccountInformationHeader.xib */; };
+		F4D8D950236A259400BE5FFC /* AccountInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */; };
+		F4D8D951236A259400BE5FFC /* AccountInformationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D8D94F236A259400BE5FFC /* AccountInformationCell.xib */; };
+		F4D8D953236A2BA000BE5FFC /* SettingsDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D8D952236A2BA000BE5FFC /* SettingsDataSourceAndDelegate.swift */; };
 		F4E33D812358BF1500B2003A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E33D802358BF1500B2003A /* LoginViewController.swift */; };
 		F4E8B2352368C39C001CEC8A /* TunnelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8B2342368C39C001CEC8A /* TunnelAction.swift */; };
 		F4F25E112343F7D3004BA245 /* VPNLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F25E102343F7D3004BA245 /* VPNLocations.swift */; };
@@ -324,6 +329,11 @@
 		F4D150CF2347975C00739CDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4D150D5234797B700739CDA /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		F4D150D7234797C700739CDA /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		F4D8D94A236A207600BE5FFC /* AccountInformationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationHeader.swift; sourceTree = "<group>"; };
+		F4D8D94B236A207600BE5FFC /* AccountInformationHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInformationHeader.xib; sourceTree = "<group>"; };
+		F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationCell.swift; sourceTree = "<group>"; };
+		F4D8D94F236A259400BE5FFC /* AccountInformationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInformationCell.xib; sourceTree = "<group>"; };
+		F4D8D952236A2BA000BE5FFC /* SettingsDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		F4E33D802358BF1500B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4E8B2342368C39C001CEC8A /* TunnelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelAction.swift; sourceTree = "<group>"; };
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
@@ -437,6 +447,10 @@
 		F420F41423687A0100CD48BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */,
+				F4D8D94F236A259400BE5FFC /* AccountInformationCell.xib */,
+				F4D8D94A236A207600BE5FFC /* AccountInformationHeader.swift */,
+				F4D8D94B236A207600BE5FFC /* AccountInformationHeader.xib */,
 				F4D150B423453F9900739CDA /* CityVPNCell.swift */,
 				F4D150B523453F9900739CDA /* CityVPNCell.xib */,
 				F4D150BF23464DE300739CDA /* CountryVPNHeaderView.swift */,
@@ -463,6 +477,7 @@
 				F40831D0233CFD5600A60FCA /* User.swift */,
 				F45D7097233D34B100871447 /* VerifyResponse.swift */,
 				F4F25E102343F7D3004BA245 /* VPNLocations.swift */,
+				F4D8D952236A2BA000BE5FFC /* SettingsDataSourceAndDelegate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -867,12 +882,14 @@
 				6FF4AC1F211EC472002C96EB /* Assets.xcassets in Resources */,
 				F420F41F2368840A00CD48BF /* CurrentVPNSelectorView.xib in Resources */,
 				F45D70E62342431F00871447 /* Metropolis-Thin.otf in Resources */,
+				F4D8D951236A259400BE5FFC /* AccountInformationCell.xib in Resources */,
 				F41B9C80236894CB00ACC414 /* LoadingViewController.xib in Resources */,
 				F45D70EE2342775000871447 /* Inter-Medium.otf in Resources */,
 				F45D70F22342775000871447 /* Inter-Regular.otf in Resources */,
 				F45D70D82342431F00871447 /* Metropolis-BlackItalic.otf in Resources */,
 				F45D70FE23428DCE00871447 /* ServersViewController.xib in Resources */,
 				F499C0F7234E301900126CDA /* DeviceManagementCell.xib in Resources */,
+				F4D8D94D236A207600BE5FFC /* AccountInformationHeader.xib in Resources */,
 				F45D70DC2342431F00871447 /* Metropolis-ExtraBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1039,10 +1056,12 @@
 				F45D70FD23428DCE00871447 /* ServersViewController.swift in Sources */,
 				F40831D4233D04B600A60FCA /* GuardianAPIDateFormatter.swift in Sources */,
 				F4AED25A235F838F00F80ABF /* Logger.swift in Sources */,
+				F4D8D953236A2BA000BE5FFC /* SettingsDataSourceAndDelegate.swift in Sources */,
 				F4E8B2352368C39C001CEC8A /* TunnelAction.swift in Sources */,
 				F4D150BA2345438500739CDA /* ServersDataSourceAndDelegate.swift in Sources */,
 				F4AED255235F835300F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */,
 				F4B21E41236650E700136316 /* CAShapeLayer+Animation.swift in Sources */,
+				F4D8D94C236A207600BE5FFC /* AccountInformationHeader.swift in Sources */,
 				F4AED257235F835300F80ABF /* IPAddressRange.swift in Sources */,
 				F4AED254235F835200F80ABF /* TunnelConfiguration.swift in Sources */,
 				F4F25E112343F7D3004BA245 /* VPNLocations.swift in Sources */,
@@ -1085,6 +1104,7 @@
 				F43DFC14234E436E003EA64A /* DeviceKeys.swift in Sources */,
 				F420F41D2368840A00CD48BF /* VPNToggleView.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
+				F4D8D950236A259400BE5FFC /* AccountInformationCell.swift in Sources */,
 				F45D7098233D34B100871447 /* VerifyResponse.swift in Sources */,
 				F42A23052347D22100763B0D /* DependencyProviding.swift in Sources */,
 				F4AED1ED235F50D200F80ABF /* key.c in Sources */,

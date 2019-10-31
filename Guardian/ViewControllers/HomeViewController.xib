@@ -31,27 +31,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRl-G2-VBt" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
-                    <rect key="frame" x="16" y="116" width="343" height="311.5"/>
+                    <rect key="frame" x="16" y="72" width="343" height="311.5"/>
                     <color key="backgroundColor" red="0.19513062310000001" green="1" blue="0.63913527680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="mRl-G2-VBt" secondAttribute="height" multiplier="351:319" id="5wY-QI-AsR"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xU-vI-Kl7" customClass="CurrentVPNSelectorView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
-                    <rect key="frame" x="32" y="459.5" width="311" height="48"/>
+                    <rect key="frame" x="32" y="415.5" width="311" height="48"/>
                     <color key="backgroundColor" red="1" green="0.48642666810000001" blue="0.94866628779999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="oBJ-9e-Xre"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select connection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGq-Iz-V78">
-                    <rect key="frame" x="140.5" y="515.5" width="94" height="14"/>
+                    <rect key="frame" x="140.5" y="471.5" width="94" height="14"/>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="b76-ij-pGQ">
-                    <rect key="frame" x="113.5" y="68" width="148" height="24"/>
+                    <rect key="frame" x="113.5" y="24" width="148" height="24"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="bGv-w5-bfc">
                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -86,7 +86,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mRl-G2-VBt" secondAttribute="trailing" constant="16" id="Pfp-bk-cVP"/>
                 <constraint firstItem="6xU-vI-Kl7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="ZHd-Vl-qgN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6xU-vI-Kl7" secondAttribute="trailing" constant="32" id="au5-FB-lUD"/>
-                <constraint firstItem="b76-ij-pGQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="68" id="jvJ-oH-Lk4"/>
+                <constraint firstItem="b76-ij-pGQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="jvJ-oH-Lk4"/>
                 <constraint firstItem="6xU-vI-Kl7" firstAttribute="top" secondItem="mRl-G2-VBt" secondAttribute="bottom" constant="32" id="pdJ-Bk-Npo"/>
                 <constraint firstItem="oGq-Iz-V78" firstAttribute="top" secondItem="6xU-vI-Kl7" secondAttribute="bottom" constant="8" id="vHf-1B-DOZ"/>
                 <constraint firstItem="mRl-G2-VBt" firstAttribute="top" secondItem="b76-ij-pGQ" secondAttribute="bottom" constant="24" id="z8M-2k-CPC"/>
