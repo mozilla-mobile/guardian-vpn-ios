@@ -55,11 +55,8 @@ extension ServersDataSourceAndDelegate: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CityVPNCell.self), for: indexPath) as? CityVPNCell else {
             return UITableViewCell(frame: .zero)
         }
-
         let city = countries[indexPath.section].cities[indexPath.row]
-        cell.cityLabel.text = city.name
-        cell.radioImageView.image = (indexPath == selectedIndexPath) ? UIImage(named: "On") : UIImage(named: "Off")
-
+        cell.setup(city: city)
         return cell
     }
 
@@ -91,8 +88,7 @@ extension ServersDataSourceAndDelegate: UITableViewDelegate {
             return nil
         }
         headerView.tag = section
-        headerView.flagImageView.image = UIImage(named: countries[section].code.uppercased())
-        headerView.nameLabel.text = countries[section].name
+        headerView.setup(country: countries[section])
         headerView.tapPublishSubject = headerTapPublishSubject
         headerView.isExpanded = sectionExpandedStates[section] ?? false
 

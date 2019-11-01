@@ -7,13 +7,14 @@ import RxSwift
 class CountryVPNHeaderView: UITableViewHeaderFooterView {
     static let height: CGFloat = 56.0
 
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var flagImageView: UIImageView!
-    @IBOutlet var backdropView: UIView!
-    @IBOutlet var chevronImageView: UIImageView!
-    @IBOutlet var underlineView: UIView! // TODO: Move this to the bottom of sections (or maybe just to top of the header, and then hide it if its the first section?)
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var flagImageView: UIImageView!
+    @IBOutlet weak var backdropView: UIView!
+    @IBOutlet weak var chevronImageView: UIImageView!
+    @IBOutlet weak var topLineView: UIView!
 
     weak var tapPublishSubject: PublishSubject<CountryVPNHeaderView>?
+
     var isExpanded: Bool = false {
         willSet {
             DispatchQueue.main.async { [weak self] in
@@ -28,6 +29,12 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
         setupTaps()
     }
 
+    func setup(country: VPNCountry) {
+        flagImageView.image = UIImage(named: country.code.uppercased())
+        nameLabel.text = country.name
+        topLineView.isHidden = tag == 0
+    }
+
     @objc private func handleTap(sender: UITapGestureRecognizer) {
         tapPublishSubject?.onNext(self)
     }
@@ -38,8 +45,7 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
 
         nameLabel.font = UIFont.connectionCountryFont
         nameLabel.textColor = UIColor.guardianBlack
-
-        underlineView.backgroundColor = UIColor.guardianBorderGrey
+        topLineView.backgroundColor = UIColor.guardianBorderGrey
     }
 
     private func setupTaps() {

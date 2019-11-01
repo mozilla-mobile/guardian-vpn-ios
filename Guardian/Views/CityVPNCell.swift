@@ -15,6 +15,11 @@ class CityVPNCell: UITableViewCell {
         styleViews()
     }
 
+    func setup(city: VPNCity) {
+        cityLabel.text = city.name
+        radioImageView.image = city.isCurrentCity ? UIImage(named: "On") : UIImage(named: "Off")
+    }
+
     private func styleViews() {
         contentView.backgroundColor = UIColor.backgroundOffWhite
         cityLabel.font = UIFont.connectionCityCellFont
