@@ -27,7 +27,6 @@ class ServersViewController: UIViewController {
         let countries = accountManager.availableServers ?? []
         dataSource = ServersDataSourceAndDelegate(countries: countries, tableView: tableView)
         tableView.reloadData()
-
     }
 
     func styleViews() {

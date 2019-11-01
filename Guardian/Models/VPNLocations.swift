@@ -47,6 +47,10 @@ struct VPNCity: Codable, UserDefaulting {
     let servers: [VPNServer]
 
     static var userDefaultsKey = "savedCity"
+
+    var isCurrentCity: Bool {
+        return name == VPNCity.fetchFromUserDefaults()?.name
+    }
 }
 
 struct VPNServer: Codable {
