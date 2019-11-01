@@ -32,9 +32,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please remove 1 device below to use Private Network on this device" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaB-Ys-XcF">
-                    <rect key="frame" x="46.5" y="176" width="282" height="44"/>
+                    <rect key="frame" x="46.5" y="176" width="282" height="66"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="afD-vs-xv1"/>
+                        <constraint firstAttribute="height" constant="66" id="afD-vs-xv1"/>
                         <constraint firstAttribute="width" constant="282" id="g60-Lo-Buw"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
