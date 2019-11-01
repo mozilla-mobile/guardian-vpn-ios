@@ -24,12 +24,23 @@ class DeviceManagementViewController: UIViewController {
         guard let devices = devices else { return }
         dataSource = DeviceDataSourceAndDelegate(devices: devices, tableView: tableView)
         tableView.tableFooterView = UIView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupNavigationBar()
     }
 
     func setupNavigationBar() {
-        // TODO: Set up the navigation on this screen
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+
+        var deviceCountLabel = ""
+        if let count = devices?.count {
+            deviceCountLabel = "\(count) of 5"
+        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: deviceCountLabel, style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 0.047, green: 0.047, blue: 0.051, alpha: 0.6)
+        navigationItem.title = "My devices"
+        navigationItem.titleView?.tintColor = UIColor(red: 0.047, green: 0.047, blue: 0.051, alpha: 0.8)
     }
 }
