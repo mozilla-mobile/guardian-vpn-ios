@@ -17,7 +17,10 @@ class DeviceLimitReachedView: UITableViewHeaderFooterView {
     }
 
     private func styleViews() {
-        title.text = "Device limit reached"
-        subtitle.text = "Please remove 1 device below to use Private Network on this device"
+        title.text = "Remove a device"
+        // TODO: Figure out how many devices they need to remove based on max devices in JSON response
+        subtitle.text = "You've reached your limit. To install the VPN on this device, you'll need to remove one."
+        backgroundView = UIView()
+        backgroundView?.backgroundColor = .white
     }
 }

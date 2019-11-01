@@ -36,6 +36,11 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="mRl-G2-VBt" secondAttribute="height" multiplier="351:319" id="5wY-QI-AsR"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xU-vI-Kl7" customClass="CurrentVPNSelectorView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
                     <rect key="frame" x="32" y="415.5" width="311" height="48"/>

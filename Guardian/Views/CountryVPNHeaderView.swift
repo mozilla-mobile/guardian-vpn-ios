@@ -11,7 +11,7 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
     @IBOutlet var flagImageView: UIImageView!
     @IBOutlet var backdropView: UIView!
     @IBOutlet var chevronImageView: UIImageView!
-    @IBOutlet var underlineView: UIView!
+    @IBOutlet var underlineView: UIView! // TODO: Move this to the bottom of sections (or maybe just to top of the header, and then hide it if its the first section?)
 
     weak var tapPublishSubject: PublishSubject<CountryVPNHeaderView>?
     var isExpanded: Bool = false {
