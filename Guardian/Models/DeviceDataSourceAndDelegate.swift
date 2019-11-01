@@ -34,15 +34,11 @@ class DeviceDataSourceAndDelegate: NSObject {
 // MARK: - UITableViewDelegate
 extension DeviceDataSourceAndDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard canAddDevice else {
-            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
-            return view
-        }
-        return nil
+        return canAddDevice ? nil : tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sectionHeight
+        return canAddDevice ? 0 : sectionHeight
     }
 }
 
