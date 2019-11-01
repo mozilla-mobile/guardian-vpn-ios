@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController {
     private func setupNavigationBar() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem?.tintColor = UIColor(red: 0.047, green: 0.047, blue: 0.051, alpha: 0.6)
+        navigationItem.backBarButtonItem?.tintColor = .guardianGrey
     }
 
     @IBAction func signOut(_ sender: Any) {

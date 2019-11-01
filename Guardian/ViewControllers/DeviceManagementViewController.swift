@@ -33,14 +33,11 @@ class DeviceManagementViewController: UIViewController {
 
     func setupNavigationBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
-
-        var deviceCountLabel = ""
-        if let count = devices?.count {
-            deviceCountLabel = "\(count) of 5"
-        }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: deviceCountLabel, style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 0.047, green: 0.047, blue: 0.051, alpha: 0.6)
+        let count = devices != nil ? devices!.count : 0
+        let countTitle = "\(count) of 5"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: countTitle, style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem?.tintColor = .guardianGrey
         navigationItem.title = "My devices"
-        navigationItem.titleView?.tintColor = UIColor(red: 0.047, green: 0.047, blue: 0.051, alpha: 0.8)
+        navigationItem.titleView?.tintColor = .guardianBlack
     }
 }
