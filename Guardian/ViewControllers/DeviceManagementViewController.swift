@@ -7,14 +7,12 @@ class DeviceManagementViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    private weak var dataSourceAndDelegate: DeviceDataSourceAndDelegate?
+    private var dataSource: DeviceDataSourceAndDelegate?
+    private var devices: [Device]?
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    func setup(dataSourceAndDelegate: DeviceDataSourceAndDelegate) {
-        self.dataSourceAndDelegate = dataSourceAndDelegate
+    init(devices: [Device]) {
+        self.devices = devices
+        super.init(nibName: String(describing: DeviceManagementViewController.self), bundle: Bundle.main)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -23,21 +21,15 @@ class DeviceManagementViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let nib = UINib.init(nibName: String(describing: DeviceManagementCell.self), bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: String(describing: DeviceManagementCell.self))
-        let headerNib = UINib.init(nibName: "DeviceLimitReachedView", bundle: Bundle.main)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "DeviceLimitReachedView")
-        tableView.dataSource = dataSourceAndDelegate
-        tableView.delegate = dataSourceAndDelegate
-
+        guard let devices = devices else { return }
+        dataSource = DeviceDataSourceAndDelegate(devices: devices, tableView: tableView)
+        tableView.tableFooterView = UIView()
         setupNavigationBar()
     }
 
     func setupNavigationBar() {
         // TODO: Set up the navigation on this screen
         navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationItem.title = "My devices"
-        navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
     }
 }

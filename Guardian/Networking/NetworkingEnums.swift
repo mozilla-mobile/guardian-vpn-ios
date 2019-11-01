@@ -3,7 +3,7 @@
 
 import Foundation
 
-public enum GuardianFailReason: String, Error {
+enum GuardianFailReason: String, Error {
     case no200 = "Response status code not 200"
     case couldNotDecodeFromJson = "Could not decode from JSON"
     case loginError = "Login error"

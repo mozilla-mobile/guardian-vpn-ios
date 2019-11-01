@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         dataSource = SettingsDataSourceAndDelegate(tableView: tableView, navigationCoordinator: navigationCoordinator)
         tableView.tableFooterView = UIView()
-        tableView.reloadData()
+        tableView.reloadData() // TODO: Needed ??
         self.navigationController?.navigationBar.isHidden = true
     }
 
@@ -50,5 +50,10 @@ class SettingsViewController: UIViewController {
     private func setupTabBar() {
         tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 1)
         tabBarController?.selectedIndex = 1
+
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        backItem.tintColor = UIColor(red: 0.047, green: 0.047, blue: 0.051, alpha: 0.6)
+        navigationItem.backBarButtonItem = backItem
     }
 }

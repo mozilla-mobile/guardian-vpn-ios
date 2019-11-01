@@ -13,7 +13,7 @@ class VPNToggleView: UIView {
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var vpnSwitch: UISwitch!
 
-    public var vpnSwitchEvent: ControlProperty<Bool>?
+    var vpnSwitchEvent: ControlProperty<Bool>?
     private let disposeBag = DisposeBag()
     private var smallLayer = CAShapeLayer()
     private var mediumLayer = CAShapeLayer()
@@ -89,7 +89,7 @@ class VPNToggleView: UIView {
         vpnSwitch.onTintColor = UIColor.toggleColor
     }
 
-    public func applyDropShadow() {
+    func applyDropShadow() {
         view.layer.cornerRadius = 4
         view.clipsToBounds = true
         backgroundColor = UIColor.clear

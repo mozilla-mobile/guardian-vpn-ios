@@ -95,9 +95,7 @@ class NavigationCoordinator: Navigating {
 
     private func navigateToDeviceManagement() {
         guard let user = dependencyProvider.accountManager.user else { return }
-        let dataSoureAndDelegate = DeviceDataSourceAndDelegate(devices: user.devices)
-        let deviceManagementVC = DeviceManagementViewController(nibName: String(describing: DeviceManagementViewController.self), bundle: Bundle.main)
-        deviceManagementVC.setup(dataSourceAndDelegate: dataSoureAndDelegate)
+        let deviceManagementVC = DeviceManagementViewController(devices: user.devices)
 
         if let navigationController = currentViewController?.children[1] as? UINavigationController {
             navigationController.pushViewController(deviceManagementVC, animated: true)

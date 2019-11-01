@@ -4,7 +4,7 @@
 import UIKit
 
 class SettingsDataSourceAndDelegate: NSObject {
-    private weak var tableView: UITableView?
+    private var tableView: UITableView
     let settings: [SettingsItem] = [.device,
                                     .help,
                                     .about]
@@ -18,7 +18,6 @@ class SettingsDataSourceAndDelegate: NSObject {
     }
 
     private func setup() {
-        guard let tableView = tableView else { return }
         tableView.dataSource = self
         tableView.delegate = self
 

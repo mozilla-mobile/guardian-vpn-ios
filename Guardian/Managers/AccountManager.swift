@@ -30,8 +30,8 @@ class AccountManager: AccountManaging {
         }
     }
 
-    public static let sharedManager = AccountManager()
-    public var heartbeatFailedEvent = PublishSubject<Void>()
+    static let sharedManager = AccountManager()
+    var heartbeatFailedEvent = PublishSubject<Void>()
 
     private init() {
         keyStore = KeyStore.sharedStore

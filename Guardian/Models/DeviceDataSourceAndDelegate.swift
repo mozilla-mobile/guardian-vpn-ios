@@ -5,6 +5,7 @@ import UIKit
 
 class DeviceDataSourceAndDelegate: NSObject {
     private var devices: [Device]
+    private var tableView: UITableView
 
     private var canAddDevice: Bool {
         return devices.count < 5
@@ -14,16 +15,28 @@ class DeviceDataSourceAndDelegate: NSObject {
         return canAddDevice ? 0 : DeviceLimitReachedView.height
     }
 
-    init(devices: [Device]) {
+    init(devices: [Device], tableView: UITableView) {
         self.devices = devices
+        self.tableView = tableView
         super.init()
+
+        tableView.dataSource = self
+        tableView.delegate = self
+
+        let headerNib = UINib.init(nibName: String(describing: DeviceLimitReachedView.self), bundle: Bundle.main)
+        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: String(describing: DeviceLimitReachedView.self))
+
+        let nib = UINib.init(nibName: String(describing: DeviceManagementCell.self), bundle: Bundle.main)
+        tableView.register(nib, forCellReuseIdentifier: String(describing: DeviceManagementCell.self))
     }
 }
 
+// MARK: - UITableViewDelegate
 extension DeviceDataSourceAndDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard canAddDevice else {
-            return tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
+            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
+            return view
         }
         return nil
     }
@@ -33,6 +46,7 @@ extension DeviceDataSourceAndDelegate: UITableViewDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension DeviceDataSourceAndDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devices.count
@@ -42,7 +56,7 @@ extension DeviceDataSourceAndDelegate: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DeviceManagementCell.self), for: indexPath) as? DeviceManagementCell else {
             return UITableViewCell(frame: .zero)
         }
-        cell.nameLabel.text = devices[indexPath.row].name
+        cell.setup(with: devices[indexPath.row])
 
         return cell
     }

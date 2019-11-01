@@ -5,7 +5,7 @@ import Foundation
 import Network
 
 struct TunnelConfigurationBuilder {
-    public static func createTunnelConfiguration(device: Device, city: VPNCity, privateKey: Data) -> TunnelConfiguration? {
+    static func createTunnelConfiguration(device: Device, city: VPNCity, privateKey: Data) -> TunnelConfiguration? {
         // name
         let name = city.name
 

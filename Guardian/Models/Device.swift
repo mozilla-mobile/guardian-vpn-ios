@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Device: Codable, UserDefaulting {
+struct Device: Codable, UserDefaulting {
     let name: String
     let publicKey: String
     let ipv4Address: String
@@ -13,7 +13,11 @@ public struct Device: Codable, UserDefaulting {
 
     private let createdAtDateString: String
 
-    public init(from decoder: Decoder) throws {
+    var isCurrentDevice: Bool {
+        return publicKey == Device.fetchFromUserDefaults()?.publicKey
+    }
+
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         publicKey = try container.decode(String.self, forKey: .pubkey)
@@ -25,7 +29,7 @@ public struct Device: Codable, UserDefaulting {
         createdAtDate = dateFormatter.date(from: createdAtDateString)!
     }
 
-    public func encode(to encoder: Encoder) throws {
+    func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encode(publicKey, forKey: .pubkey)

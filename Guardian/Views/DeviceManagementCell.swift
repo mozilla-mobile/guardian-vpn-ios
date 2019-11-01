@@ -10,6 +10,32 @@ class DeviceManagementCell: UITableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
 
+    func setup(with device: Device) {
+        nameLabel.text = device.name
+
+        if device.isCurrentDevice {
+            subtitleLabel.text = "Current device"
+            subtitleLabel.textColor = #colorLiteral(red: 0, green: 0.3839950562, blue: 0.9068421125, alpha: 1)
+        } else {
+            subtitleLabel.text = dateAddedString(from: device.createdAtDate)
+            subtitleLabel.textColor = #colorLiteral(red: 0.04704938084, green: 0.0470656082, blue: 0.05134283006, alpha: 0.6)
+        }
+    }
+
+    private func dateAddedString(from date: Date) -> String? {
+        let formatter = DateComponentsFormatter()
+
+        formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
+        formatter.unitsStyle = .full
+        formatter.maximumUnitCount = 1
+
+        if let dateString = formatter.string(from: date, to: Date()) {
+            return "About \(dateString) ago"
+        } else {
+            return nil
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
