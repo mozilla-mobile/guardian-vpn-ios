@@ -14,7 +14,7 @@ struct User: Codable {
     let vpnSubscription: Subscription
     let devices: [Device]
     let maxDevices: Int
-    
+
     private let avatarUrlString: String
 
     init(from decoder: Decoder) throws {
@@ -24,7 +24,7 @@ struct User: Codable {
         displayName = try container.decode(String.self, forKey: .displayName)
         devices = try container.decode([Device].self, forKey: .devices)
         maxDevices = try container.decode(Int.self, forKey: .maxDevices)
-        
+
         avatarUrlString = try container.decode(String.self, forKey: .avatar)
         avatarURL = URL(string: avatarUrlString)
 
@@ -34,7 +34,7 @@ struct User: Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         try container.encode(email, forKey: .email)
         try container.encode(displayName, forKey: .displayName)
         try container.encode(avatarUrlString, forKey: .avatar)
@@ -61,7 +61,7 @@ struct Subscription: Codable {
     let isActive: Bool
     let createdAtDate: Date?
     let renewsOnDate: Date?
-    
+
     private let createdAtDateString: String?
     private let renewsOnDateString: String?
 
@@ -92,7 +92,7 @@ struct Subscription: Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         try container.encode(isActive, forKey: .active)
         try container.encodeIfPresent(createdAtDateString, forKey: .createdAt)
         try container.encodeIfPresent(renewsOnDateString, forKey: .renewsOn)

@@ -29,12 +29,12 @@ class VPNToggleView: UIView {
         super.init(coder: coder)
         setup()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     private func setup() {
         vpnSwitchEvent = vpnSwitch.rx.isOn
 

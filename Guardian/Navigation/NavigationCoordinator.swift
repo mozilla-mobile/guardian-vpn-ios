@@ -29,18 +29,18 @@ class NavigationCoordinator: NavigationCoordinating {
         //
         return instance
     }()
-    
+
     private var currentViewController: (UIViewController & Navigating)?
     private let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    
+
     var firstViewController: UIViewController {
         let loadingViewController = LoadingViewController()
         currentViewController = loadingViewController
         return loadingViewController
     }
-    
+
     private init() { }
-    
+
     func navigate(from origin: NavigableItem, to destination: NavigableItem, context: [String: Any?]?) {
         DispatchQueue.main.async { [weak self] in
             switch (origin, destination) {

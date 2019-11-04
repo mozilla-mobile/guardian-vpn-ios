@@ -82,6 +82,14 @@
 		F499C0FD234E490600126CDA /* DeviceLimitReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */; };
 		F4A0EFF42356111A00A06D7B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF32356111A00A06D7B /* RxSwift.framework */; };
 		F4A0EFF6235612F500A06D7B /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF5235612F500A06D7B /* RxCocoa.framework */; };
+		F4A4948123709033007595C3 /* UIColor+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947823709033007595C3 /* UIColor+Named.swift */; };
+		F4A4948223709033007595C3 /* NavigationCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947923709033007595C3 /* NavigationCoordinating.swift */; };
+		F4A4948323709033007595C3 /* TunnelManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947A23709033007595C3 /* TunnelManaging.swift */; };
+		F4A4948423709033007595C3 /* UITabBarItem+Tagging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */; };
+		F4A4948523709033007595C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4A4947C23709033007595C3 /* Localizable.strings */; };
+		F4A4948623709033007595C3 /* UIView+Designing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947D23709033007595C3 /* UIView+Designing.swift */; };
+		F4A4948723709033007595C3 /* NetworkRequesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947E23709033007595C3 /* NetworkRequesting.swift */; };
+		F4A4948823709033007595C3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947F23709033007595C3 /* Strings.swift */; };
 		F4AED1D1235F49EE00F80ABF /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1AD235F450D00F80ABF /* PacketTunnelProvider.swift */; };
 		F4AED1D2235F49FC00F80ABF /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1AE235F450D00F80ABF /* DNSResolver.swift */; };
 		F4AED1D3235F49FF00F80ABF /* PacketTunnelSettingsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1B0235F450D00F80ABF /* PacketTunnelSettingsGenerator.swift */; };
@@ -276,6 +284,14 @@
 		F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLimitReachedView.swift; sourceTree = "<group>"; };
 		F4A0EFF32356111A00A06D7B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		F4A0EFF5235612F500A06D7B /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		F4A4947823709033007595C3 /* UIColor+Named.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Named.swift"; sourceTree = "<group>"; };
+		F4A4947923709033007595C3 /* NavigationCoordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinating.swift; sourceTree = "<group>"; };
+		F4A4947A23709033007595C3 /* TunnelManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunnelManaging.swift; sourceTree = "<group>"; };
+		F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBarItem+Tagging.swift"; sourceTree = "<group>"; };
+		F4A4947C23709033007595C3 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F4A4947D23709033007595C3 /* UIView+Designing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Designing.swift"; sourceTree = "<group>"; };
+		F4A4947E23709033007595C3 /* NetworkRequesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequesting.swift; sourceTree = "<group>"; };
+		F4A4947F23709033007595C3 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		F4AED109235F450D00F80ABF /* go.mod */ = {isa = PBXFileReference; lastKnownFileType = text; path = go.mod; sourceTree = "<group>"; };
 		F4AED10A235F450D00F80ABF /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		F4AED10B235F450D00F80ABF /* api-ios.go */ = {isa = PBXFileReference; lastKnownFileType = text; path = "api-ios.go"; sourceTree = "<group>"; };
@@ -377,6 +393,7 @@
 		6FF4AC0B211EC46F002C96EB = {
 			isa = PBXGroup;
 			children = (
+				F4A4947723708F8B007595C3 /* New */,
 				6F7774E0217181B1006A79B3 /* AppDelegate.swift */,
 				6FF4AC1E211EC472002C96EB /* Assets.xcassets */,
 				F40831D2233D049F00A60FCA /* Common */,
@@ -572,6 +589,21 @@
 				F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F4A4947723708F8B007595C3 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				F4A4947C23709033007595C3 /* Localizable.strings */,
+				F4A4947923709033007595C3 /* NavigationCoordinating.swift */,
+				F4A4947E23709033007595C3 /* NetworkRequesting.swift */,
+				F4A4947F23709033007595C3 /* Strings.swift */,
+				F4A4947A23709033007595C3 /* TunnelManaging.swift */,
+				F4A4947823709033007595C3 /* UIColor+Named.swift */,
+				F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */,
+				F4A4947D23709033007595C3 /* UIView+Designing.swift */,
+			);
+			path = New;
 			sourceTree = "<group>";
 		};
 		F4AED107235F450D00F80ABF /* WireGuard */ = {
@@ -889,6 +921,7 @@
 				F45D70D82342431F00871447 /* Metropolis-BlackItalic.otf in Resources */,
 				F45D70FE23428DCE00871447 /* ServersViewController.xib in Resources */,
 				F499C0F7234E301900126CDA /* DeviceManagementCell.xib in Resources */,
+				F4A4948523709033007595C3 /* Localizable.strings in Resources */,
 				F4D8D94D236A207600BE5FFC /* AccountInformationHeader.xib in Resources */,
 				F45D70DC2342431F00871447 /* Metropolis-ExtraBold.otf in Resources */,
 			);
@@ -1069,6 +1102,7 @@
 				F41FE9E9235F98E400CD05C4 /* SettingsViewController.swift in Sources */,
 				F4AED223235F58F400F80ABF /* AppDelegate.swift in Sources */,
 				F45D709B233D384E00871447 /* NavigationCoordinator.swift in Sources */,
+				F4A4948723709033007595C3 /* NetworkRequesting.swift in Sources */,
 				F4658545233BB7690081D7D7 /* GuardianAPI.swift in Sources */,
 				F4D150C023464DE300739CDA /* CountryVPNHeaderView.swift in Sources */,
 				F4AED249235F7BB800F80ABF /* WireGuardAppError.swift in Sources */,
@@ -1079,6 +1113,7 @@
 				F40831D1233CFD5600A60FCA /* User.swift in Sources */,
 				F45D70A1233D3BC000871447 /* Navigating.swift in Sources */,
 				F4658548233BBBF30081D7D7 /* LoginCheckpointModel.swift in Sources */,
+				F4A4948823709033007595C3 /* Strings.swift in Sources */,
 				F4D150B1234517D800739CDA /* Data+JSON.swift in Sources */,
 				F4658541233BB3D00081D7D7 /* NetworkingEnums.swift in Sources */,
 				F499C0FD234E490600126CDA /* DeviceLimitReachedView.swift in Sources */,
@@ -1091,6 +1126,7 @@
 				F42A23032347D20800763B0D /* DependencyFactory.swift in Sources */,
 				F45D70A4233D3D6C00871447 /* HomeViewController.swift in Sources */,
 				F45D70A9233E8DC000871447 /* UIFont+GuardianBranding.swift in Sources */,
+				F4A4948323709033007595C3 /* TunnelManaging.swift in Sources */,
 				F45D70A7233E87E700871447 /* UIColor+GuardianBranding.swift in Sources */,
 				F4D150B623453F9900739CDA /* CityVPNCell.swift in Sources */,
 				F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */,
@@ -1098,15 +1134,19 @@
 				F43DFC07234BB32C003EA64A /* LoadingViewController.swift in Sources */,
 				F499C0F2234E29B300126CDA /* DeviceManagementViewController.swift in Sources */,
 				F45D70AB233E921900871447 /* GuardianTabBarController.swift in Sources */,
+				F4A4948223709033007595C3 /* NavigationCoordinating.swift in Sources */,
 				F4AED258235F835300F80ABF /* Endpoint.swift in Sources */,
 				F42A23072347D37F00763B0D /* AccountManaging.swift in Sources */,
 				F4B21E432366514700136316 /* VPNState.swift in Sources */,
 				F43DFC14234E436E003EA64A /* DeviceKeys.swift in Sources */,
+				F4A4948423709033007595C3 /* UITabBarItem+Tagging.swift in Sources */,
 				F420F41D2368840A00CD48BF /* VPNToggleView.swift in Sources */,
+				F4A4948123709033007595C3 /* UIColor+Named.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
 				F4D8D950236A259400BE5FFC /* AccountInformationCell.swift in Sources */,
 				F45D7098233D34B100871447 /* VerifyResponse.swift in Sources */,
 				F42A23052347D22100763B0D /* DependencyProviding.swift in Sources */,
+				F4A4948623709033007595C3 /* UIView+Designing.swift in Sources */,
 				F4AED1ED235F50D200F80ABF /* key.c in Sources */,
 				F499C0F9234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift in Sources */,
 				F40831CF233CFA2000A60FCA /* AccountManager.swift in Sources */,

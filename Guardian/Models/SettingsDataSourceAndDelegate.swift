@@ -14,9 +14,9 @@ enum SettingsItem {
 
     var title: String {
         switch self {
-        case .device: return String(.Settings_Item_Devices)
-        case .help: return String(.Settings_Item_Help)
-        case .about: return String(.Settings_Item_About)
+        case .device: return String(.settingsItemDevices)
+        case .help: return String(.settingsItemHelp)
+        case .about: return String(.settingsItemAbout)
         }
     }
 
@@ -56,7 +56,7 @@ class SettingsDataSourceAndDelegate: NSObject {
     private func registerViews() {
         let headerNib = UINib.init(nibName: headerName, bundle: nil)
         tableView?.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
-        
+
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView?.register(cellNib, forCellReuseIdentifier: cellName)
     }

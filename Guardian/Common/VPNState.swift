@@ -44,28 +44,28 @@ extension VPNState {
     var title: String {
         switch self {
         case .off:
-            return String(.Home_Title_Off)
+            return String(.homeTitleOff)
         case .connecting:
-            return String(.Home_Title_Connecting)
+            return String(.homeTitleConnecting)
         case .on:
-            return String(.Home_Title_On)
+            return String(.homeTitleOn)
         case .switching:
-            return String(.Home_Title_Switching)
+            return String(.homeTitleSwitching)
         case .disconnecting:
-            return String(.Home_Title_Disconnecting)
+            return String(.homeTitleDisconnecting)
         }
     }
 
     var subtitle: String {
         switch self {
         case .off:
-            return String(.Home_Subtitle_Off)
+            return String(.homeSubtitleOff)
         case .connecting, .switching:
-            return String(.Home_Subtitle_Connecting)
+            return String(.homeSubtitleConnecting)
         case .on:
-            return String(.Home_Subtitle_On)
+            return String(.homeSubtitleOn)
         case .disconnecting:
-            return String(.Home_Subtitle_Disconnecting)
+            return String(.homeSubtitleDisconnecting)
         }
     }
 
@@ -77,7 +77,7 @@ extension VPNState {
             return #imageLiteral(resourceName: "globe_on")
         }
     }
-    
+
     var globeOpacity: CGFloat {
         switch self {
         case .off, .on:

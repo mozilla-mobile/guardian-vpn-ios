@@ -13,19 +13,19 @@ import RxSwift
 class CurrentVPNSelectorView: UIView {
     @IBOutlet var countryFlagImageView: UIImageView!
     @IBOutlet var countryTitleLabel: UILabel!
-    
+
     private let disposeBag = DisposeBag()
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     private func setup() {
         DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent
             .map { Optional($0) }

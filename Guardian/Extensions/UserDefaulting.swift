@@ -19,22 +19,22 @@ extension UserDefaulting {
         }
         return response
     }
-    
+
     static var existsInDefaults: Bool {
         return UserDefaults.standard.object(forKey: Self.userDefaultsKey) != nil
     }
-    
+
     static func removeFromUserDefaults() {
         UserDefaults.standard.removeObject(forKey: Self.userDefaultsKey)
     }
-    
+
     func saveToUserDefaults() {
         do {
             let encoded = try JSONEncoder().encode(self)
             let defaults = UserDefaults.standard
             defaults.set(encoded, forKey: Self.userDefaultsKey)
             defaults.synchronize()
-            
+
         } catch {
             print(error) // TODO: Handle this
         }

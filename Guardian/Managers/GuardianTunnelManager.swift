@@ -16,7 +16,7 @@ class GuardianTunnelManager: TunnelManaging {
         //
         return instance
     }()
-    
+
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
     var timeSinceConnected: Double {
@@ -24,7 +24,7 @@ class GuardianTunnelManager: TunnelManaging {
     }
     private let keyStore = KeyStore.sharedStore
     private var tunnel: NETunnelProviderManager?
-    
+
     private init() {
         loadTunnel()
         DispatchQueue.main.async {
@@ -33,7 +33,7 @@ class GuardianTunnelManager: TunnelManaging {
             NotificationCenter.default.addObserver(self, selector: #selector(self.vpnConfigurationDidChange(notification:)), name: Notification.Name.NEVPNConfigurationChange, object: nil)
         }
     }
-    
+
     func connect(with device: Device?) {
         loadTunnel { [weak self] in
             guard let self = self else { return }
@@ -62,7 +62,7 @@ class GuardianTunnelManager: TunnelManaging {
         guard let tunnel = tunnel else { return }
         (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
-    
+
     func switchServer(with device: Device) {
         guard let tunnel = self.tunnel else {
             connect(with: device)
@@ -98,7 +98,7 @@ class GuardianTunnelManager: TunnelManaging {
             print("Error: \(error)")
         }
     }
-    
+
     private func loadTunnel(completion: (() -> Void)? = nil) {
         NETunnelProviderManager.loadAllFromPreferences { [weak self] managers, error in
             guard let self = self, error == nil else { return }
@@ -106,7 +106,7 @@ class GuardianTunnelManager: TunnelManaging {
             completion?()
         }
     }
-    
+
     private func removeTunnel() {
         guard let tunnel = tunnel else { return }
         tunnel.removeFromPreferences { _ in
@@ -114,7 +114,7 @@ class GuardianTunnelManager: TunnelManaging {
             NETunnelProviderManager.loadAllFromPreferences { _, _ in }
         }
     }
-    
+
     @objc private func vpnConfigurationDidChange(notification: Notification) {
         if stateEvent.value == .switching {
             stop()

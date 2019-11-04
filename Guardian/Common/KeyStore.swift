@@ -13,7 +13,7 @@ class KeyStore {
         //
         return instance
     }()
-    
+
     let deviceKeys: DeviceKeys
 
     private init() {

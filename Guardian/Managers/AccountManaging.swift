@@ -14,8 +14,8 @@ protocol AccountManaging {
     var currentDevice: Device? { get }
     var availableServers: [VPNCountry]? { get }
     var heartbeatFailedEvent: PublishSubject<Void> { get }
-    
-    
+
+
     func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
     func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void)

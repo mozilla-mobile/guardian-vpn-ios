@@ -32,7 +32,7 @@ class ServersDataSourceAndDelegate: NSObject {
     private func registerViews() {
         let headerNib = UINib.init(nibName: headerName, bundle: nil)
         tableView?.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
-        
+
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView?.register(cellNib, forCellReuseIdentifier: cellName)
     }
@@ -79,7 +79,7 @@ extension ServersDataSourceAndDelegate: UITableViewDataSource {
         currentCity.saveToUserDefaults()
         let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
         tunnelManager.cityChangedEvent.onNext(currentCity)
-        
+
         if indexPath != selectedIndexPath,
             let device = DependencyFactory.sharedFactory.accountManager.currentDevice {
             selectedIndexPath = indexPath
@@ -87,7 +87,7 @@ extension ServersDataSourceAndDelegate: UITableViewDataSource {
             tableView.reloadData()
         }
     }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return countries.count
     }

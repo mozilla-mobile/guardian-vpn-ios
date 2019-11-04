@@ -9,7 +9,7 @@ import Foundation
 
 struct DeviceKeys: UserDefaulting {
     static var userDefaultsKey = "devicePrivateKeyUserDefaults"
-    
+
     let devicePrivateKey: Data
     let devicePublicKey: Data
 

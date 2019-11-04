@@ -13,7 +13,7 @@ struct VerifyResponse: Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         try container.encode(user, forKey: .user)
         try container.encode(token, forKey: .token)
     }

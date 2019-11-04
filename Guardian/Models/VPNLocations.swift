@@ -45,7 +45,7 @@ struct VPNCountry: Codable {
 
 struct VPNCity: UserDefaulting {
     static var userDefaultsKey = "savedCity"
-    
+
     let name: String
     let code: String
     let latitude: Float

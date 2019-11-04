@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  FirefoxPrivateNetworkVPN
+
+  Created by Corby Ziesman on 2019-11-02.
+  Copyright © 2019 Mozilla Corporation. All rights reserved.
+*/
+
+// MARK: - Loading Screen
+"LoadingViewControllerName" = "Loading";
+
+// MARK: - Landing Screen
+"LandingViewControllerName" = "Landing";
+
+// MARK: - VPN Home
+"homeTitleOff" = "VPN is off";
+"homeTitleConnecting" = "Connecting…";
+"homeTitleOn" = "VPN is on";
+"homeTitleSwitching" = "Switching…";
+"homeTitleDisconnecting" = "Disconnecting…";
+
+"homeSubtitleOff" = "Turn it on to protect your entire device";
+"homeSubtitleConnecting" = "You will be protected shortly";
+"homeSubtitleOn" = "Secure and protected • %@";
+"homeSubtitleSwitching" = "From %1$@ to %2$@";
+"homeSubtitleDisconnecting" = "You will be disconnected shortly";
+"homeSubtitleCheckConnection" = "%@ • Check connection";
+"homeSubtitleUnstable" = "Unstable";
+"homeSubtitleNoSignal" = "No signal";
+
+// MARK: - Server Selection
+"ServersViewControllerName" = "Servers";
+
+// MARK: - Settings
+"settingsTabName" = "Settings";
+"settingsItemDevices" = "My devices";
+"settingsItemHelp" = "Get help";
+"settingsItemAbout" = "About";
+
+// MARK: - Device Management
+"DeviceManagementViewControllerName" = "Devices";
