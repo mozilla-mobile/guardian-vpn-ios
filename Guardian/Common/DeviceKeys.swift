@@ -1,10 +1,15 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  DeviceKeys
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import Foundation
 
 struct DeviceKeys: UserDefaulting {
     static var userDefaultsKey = "devicePrivateKeyUserDefaults"
+    
     let devicePrivateKey: Data
     let devicePublicKey: Data
 

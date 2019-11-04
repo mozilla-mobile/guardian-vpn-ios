@@ -1,24 +1,26 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  Device
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import Foundation
 
-struct Device: Codable, UserDefaulting {
+struct Device: UserDefaulting {
+    static var userDefaultsKey = "currentDevice"
+    
     let name: String
     let publicKey: String
     let ipv4Address: String
     let ipv6Address: String
     let createdAtDate: Date
-    static var userDefaultsKey = "currentDevice"
-
+    
     private let createdAtDateString: String
-
-    var isCurrentDevice: Bool {
-        return publicKey == Device.fetchFromUserDefaults()?.publicKey
-    }
-
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        
         name = try container.decode(String.self, forKey: .name)
         publicKey = try container.decode(String.self, forKey: .pubkey)
         ipv4Address = try container.decode(String.self, forKey: .ipv4Address)
@@ -44,5 +46,9 @@ struct Device: Codable, UserDefaulting {
         case ipv4Address = "ipv4_address"
         case ipv6Address = "ipv6_address"
         case createAtDate = "created_at"
+    }
+    
+    var isCurrentDevice: Bool {
+        return publicKey == Device.fetchFromUserDefaults()?.publicKey
     }
 }

@@ -1,5 +1,9 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  VPNToggleView
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import UIKit
 import RxSwift
@@ -7,7 +11,6 @@ import RxCocoa
 import NetworkExtension
 
 class VPNToggleView: UIView {
-    @IBOutlet var view: UIView!
     @IBOutlet var globeImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
@@ -22,12 +25,17 @@ class VPNToggleView: UIView {
     private var connectedTimer: Timer?
     private var updateUIEvent = PublishSubject<Void>()
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        Bundle.main.loadNibNamed(String(describing: VPNToggleView.self), owner: self, options: nil)
-        self.view.frame = self.bounds
-        self.addSubview(self.view)
-
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    private func setup() {
         vpnSwitchEvent = vpnSwitch.rx.isOn
 
         Observable
@@ -42,11 +50,6 @@ class VPNToggleView: UIView {
         }
         .subscribe()
         .disposed(by: disposeBag)
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        styleViews()
     }
 
     private func showConnectedTime(state: VPNState) {
@@ -80,29 +83,6 @@ class VPNToggleView: UIView {
         }
     }
 
-    func styleViews() {
-        titleLabel.font = UIFont.vpnTitleFont
-        titleLabel.textColor = UIColor.guardianBlack
-        subtitleLabel.font = UIFont.vpnSubtitleFont
-        subtitleLabel.textColor = UIColor.guardianGrey
-
-        vpnSwitch.onTintColor = UIColor.toggleColor
-    }
-
-    func applyDropShadow() {
-        view.layer.cornerRadius = 4
-        view.clipsToBounds = true
-        backgroundColor = UIColor.clear
-
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 1)
-        layer.shadowOpacity = 0.2
-        layer.shadowRadius = 2.0
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 4).cgPath
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.main.scale
-    }
-
     // MARK: State Change
 
     private func update(with state: VPNState) {
@@ -112,7 +92,8 @@ class VPNToggleView: UIView {
         vpnSwitch.isOn = state.isToggleOn
         vpnSwitch.isEnabled = state.isEnabled
         globeImageView.image = state.globeImage
-        view.backgroundColor = state.backgroundColor
+        globeImageView.alpha = state.globeOpacity
+        backgroundColor = state.backgroundColor
 
         if state == .on {
             showConnectedTime(state: state)
@@ -123,9 +104,9 @@ class VPNToggleView: UIView {
             smallLayer.addPulse(delay: 0.0)
             mediumLayer.addPulse(delay: 2.0)
             largeLayer.addPulse(delay: 4.0)
-            view.layer.addSublayer(smallLayer)
-            view.layer.addSublayer(mediumLayer)
-            view.layer.addSublayer(largeLayer)
+            layer.addSublayer(smallLayer)
+            layer.addSublayer(mediumLayer)
+            layer.addSublayer(largeLayer)
         } else {
             connectedTimer?.invalidate()
             subtitleLabel.text = state.subtitle

@@ -1,5 +1,9 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  CountryVPNHeaderView
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import UIKit
 import RxSwift
@@ -9,7 +13,6 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var flagImageView: UIImageView!
-    @IBOutlet weak var backdropView: UIView!
     @IBOutlet weak var chevronImageView: UIImageView!
     @IBOutlet weak var topLineView: UIView!
 
@@ -25,7 +28,6 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        styleViews()
         setupTaps()
     }
 
@@ -37,15 +39,6 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
 
     @objc private func handleTap(sender: UITapGestureRecognizer) {
         tapPublishSubject?.onNext(self)
-    }
-
-    private func styleViews() {
-        backgroundView = backdropView
-        backgroundView?.backgroundColor = UIColor.backgroundOffWhite
-
-        nameLabel.font = UIFont.connectionCountryFont
-        nameLabel.textColor = UIColor.guardianBlack
-        topLineView.backgroundColor = UIColor.guardianBorderGrey
     }
 
     private func setupTaps() {

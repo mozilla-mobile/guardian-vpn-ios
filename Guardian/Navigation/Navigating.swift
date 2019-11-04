@@ -1,21 +1,18 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  Navigating
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import Foundation
-import RxSwift
 
-enum NavigationAction {
-    case loginSucceeded
-    case loginFailed
-    case logoutFailed
-    case vpnNewSelection
-    case logout
-    case loading
-    case devicesSelection
-    case aboutSelection
-    case helpSelection
+protocol Navigating {
+    static var navigableItem: NavigableItem { get }
 }
 
-protocol Navigating: class {
-    var navigate: PublishSubject<NavigationAction> { get }
+extension Navigating {
+    func navigate(to screen: NavigableItem, context: [String: Any?]? = nil) {
+        DependencyFactory.sharedFactory.navigationCoordinator.navigate(from: Self.navigableItem, to: screen, context: context)
+    }
 }

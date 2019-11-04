@@ -1,5 +1,9 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  AccountManaging
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import Foundation
 import RxSwift
@@ -10,25 +14,13 @@ protocol AccountManaging {
     var currentDevice: Device? { get }
     var availableServers: [VPNCountry]? { get }
     var heartbeatFailedEvent: PublishSubject<Void> { get }
-
-    /**
-     This call is used to retrieve the link to the login page.
-     */
+    
+    
     func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
-
-    /**
-     This should only be called from the initial login flow.
-     */
+    func logout(completion: @escaping (Result<Void, Error>) -> Void)
+    func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void)
     func setupFromVerify(url: URL, completion: @escaping (Result<Void, Error>) -> Void)
     func finishSetupFromVerify(completion: @escaping (Result<Void, Error>) -> Void)
-
-    /**
-     This should be called when the app is returned from foreground/launch and we've already logged in.
-     */
-    func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void)
-
     func startHeartbeat()
-    func pollUser()
     func countryCodeForCity(_ city: String) -> String?
-    func logout(completion: @escaping (Result<Void, Error>) -> Void)
 }

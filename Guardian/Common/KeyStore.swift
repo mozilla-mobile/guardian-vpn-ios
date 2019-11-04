@@ -1,13 +1,22 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  KeyStore
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import Foundation
 
 class KeyStore {
-    static let sharedStore = KeyStore()
+    static let sharedStore: KeyStore = {
+        let instance = KeyStore()
+        //
+        return instance
+    }()
+    
     let deviceKeys: DeviceKeys
 
-    init() {
+    private init() {
         if let keys = DeviceKeys.fetchFromUserDefaults() {
             deviceKeys = keys
         } else {

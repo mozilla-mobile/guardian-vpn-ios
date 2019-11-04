@@ -1,3 +1,4 @@
 github "Quick/Quick"
-gitHub "Quick/Nimble"
-github "ReactiveX/RxSwift"
+github "Quick/Nimble"
+github "ReactiveX/RxSwift" ~> 5.0
+github "airbnb/lottie-ios" "master"

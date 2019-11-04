@@ -1,39 +1,40 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  ServersDataSourceAndDelegate
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import UIKit
 import NetworkExtension
 import RxSwift
 
 class ServersDataSourceAndDelegate: NSObject {
-    let countries: [VPNCountry]
+    private var countries: [VPNCountry]
     private var selectedIndexPath: IndexPath?
     private var sectionExpandedStates = [Int: Bool]()
     private let headerTapPublishSubject = PublishSubject<CountryVPNHeaderView>()
     private var disposeBag = DisposeBag()
     private weak var tableView: UITableView?
+    private let headerName = String(describing: CountryVPNHeaderView.self)
+    private let cellName = String(describing: CityVPNCell.self)
 
-    // TODO: Dependency Inject
-    private var accountManager = AccountManager.sharedManager
-    private let tunnelsManager = GuardianTunnelManager.sharedTunnelManager
-
-    init(countries: [VPNCountry], tableView: UITableView) {
+    init(tableView: UITableView) {
         self.tableView = tableView
-        self.countries = countries
+        countries = DependencyFactory.sharedFactory.accountManager.availableServers ?? []
         super.init()
-        setup(with: tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        registerViews()
         listenForHeaderTaps()
     }
 
-    private func setup(with tableView: UITableView) {
-        tableView.dataSource = self
-        tableView.delegate = self
-
-        let nib = UINib.init(nibName: String(describing: CityVPNCell.self), bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: String(describing: CityVPNCell.self))
-
-        let headerNib = UINib.init(nibName: String(describing: CountryVPNHeaderView.self), bundle: Bundle.main)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: String(describing: CountryVPNHeaderView.self))
+    private func registerViews() {
+        let headerNib = UINib.init(nibName: headerName, bundle: nil)
+        tableView?.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
+        
+        let cellNib = UINib.init(nibName: cellName, bundle: nil)
+        tableView?.register(cellNib, forCellReuseIdentifier: cellName)
     }
 
     private func listenForHeaderTaps() {
@@ -51,8 +52,11 @@ class ServersDataSourceAndDelegate: NSObject {
 
 // MARK: - UITableViewDataSource
 extension ServersDataSourceAndDelegate: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CityVPNCell.self), for: indexPath) as? CityVPNCell else {
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? CityVPNCell else {
             return UITableViewCell(frame: .zero)
         }
         let city = countries[indexPath.section].cities[indexPath.row]
@@ -60,31 +64,42 @@ extension ServersDataSourceAndDelegate: UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
         return (sectionExpandedStates[section] ?? false) ? countries[section].cities.count : 0
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return countries.count
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
         let currentCity = countries[indexPath.section].cities[indexPath.row]
         currentCity.saveToUserDefaults()
-        tunnelsManager.cityChangedEvent.onNext(currentCity)
-
-        if indexPath != selectedIndexPath {
+        let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
+        tunnelManager.cityChangedEvent.onNext(currentCity)
+        
+        if indexPath != selectedIndexPath,
+            let device = DependencyFactory.sharedFactory.accountManager.currentDevice {
             selectedIndexPath = indexPath
-            tunnelsManager.switchServer(with: accountManager.currentDevice!)
+            tunnelManager.switchServer(with: device)
             tableView.reloadData()
         }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return countries.count
     }
 }
 
 // MARK: - UITableViewDelegate
 extension ServersDataSourceAndDelegate: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: CountryVPNHeaderView.self)) as? CountryVPNHeaderView else {
+    func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName) as? CountryVPNHeaderView else {
             return nil
         }
         headerView.tag = section
@@ -95,11 +110,17 @@ extension ServersDataSourceAndDelegate: UITableViewDelegate {
         return headerView
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
         return CityVPNCell.height
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(
+        _ tableView: UITableView,
+        heightForHeaderInSection section: Int
+    ) -> CGFloat {
         return CountryVPNHeaderView.height
     }
 }

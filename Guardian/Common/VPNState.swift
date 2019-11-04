@@ -1,5 +1,9 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  VPNState
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import UIKit
 import NetworkExtension
@@ -31,7 +35,7 @@ extension VPNState {
     var textColor: UIColor {
         switch self {
         case .off, .switching, .disconnecting:
-            return UIColor.guardianGrey
+            return UIColor.custom(.grey50)
         default:
             return UIColor.white
         }
@@ -40,41 +44,46 @@ extension VPNState {
     var title: String {
         switch self {
         case .off:
-            return "VPN is off"
+            return String(.Home_Title_Off)
         case .connecting:
-            return "Connecting…"
+            return String(.Home_Title_Connecting)
         case .on:
-            return "VPN is on"
+            return String(.Home_Title_On)
         case .switching:
-            return "Switching…"
+            return String(.Home_Title_Switching)
         case .disconnecting:
-            return "Disconnecting…"
+            return String(.Home_Title_Disconnecting)
         }
     }
 
     var subtitle: String {
         switch self {
         case .off:
-            return "Turn it on to protect your entire device"
+            return String(.Home_Subtitle_Off)
         case .connecting, .switching:
-            return "You will be protected shortly"
+            return String(.Home_Subtitle_Connecting)
         case .on:
-            return "Secure and protected"
+            return String(.Home_Subtitle_On)
         case .disconnecting:
-            return "You will be disconnected shortly"
+            return String(.Home_Subtitle_Disconnecting)
         }
     }
 
     var globeImage: UIImage? {
         switch self {
-        case .off:
+        case .off, .switching, .disconnecting:
             return #imageLiteral(resourceName: "globe_off")
-        case .connecting:
-            return #imageLiteral(resourceName: "globe_connecting")
-        case .on:
+        case .on, .connecting:
             return #imageLiteral(resourceName: "globe_on")
-        case .switching, .disconnecting:
-            return #imageLiteral(resourceName: "globe_disconnecting")
+        }
+    }
+    
+    var globeOpacity: CGFloat {
+        switch self {
+        case .off, .on:
+            return 1.0
+        case .connecting, .switching, .disconnecting:
+            return 0.5
         }
     }
 
@@ -83,7 +92,7 @@ extension VPNState {
         case .off, .disconnecting, .switching:
             return UIColor.white
         default:
-            return UIColor.backgroundPurple
+            return UIColor.custom(.purple90)
         }
     }
 

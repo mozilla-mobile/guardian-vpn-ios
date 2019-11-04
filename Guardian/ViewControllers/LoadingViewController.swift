@@ -1,49 +1,60 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  LoadingViewController
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import UIKit
 import RxSwift
+import RxRelay
 
-class LoadingViewController: UIViewController {
-
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
-
-    let accountManager: AccountManaging
-    weak var coordinatorDelegate: Navigating?
-
-    var disposeBag = DisposeBag()
-    let navigateSubject = PublishSubject<NavigationAction>()
-
-    required init?(coder aDecoder: NSCoder) {
+class LoadingViewController: UIViewController, Navigating {
+    static var navigableItem: NavigableItem = .loading
+    static let navigationDelay: DispatchTimeInterval = .seconds(1)
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    private let navigateRelay = PublishRelay<NavigableItem>()
+    private let disposeBag = DisposeBag()
+    
+    init() {
+        super.init(nibName: String(describing: Self.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    init(accountManager: AccountManaging, coordinatorDelegate: Navigating) {
-        self.accountManager = accountManager
-        self.coordinatorDelegate = coordinatorDelegate
-        super.init(nibName: String(describing: LoadingViewController.self), bundle: Bundle.main)
-
-        handleNavigationWithDelay(1)
-
-        self.accountManager.setupFromAppLaunch { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    self?.navigateSubject.onNext(.loginSucceeded)
-                case .failure:
-                    self?.navigateSubject.onNext(.loading)
-                }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setStrings()
+        
+        delayNavigation(timeInterval: Self.navigationDelay)
+        
+        let accountManager = DependencyFactory.sharedFactory.accountManager
+        accountManager.setupFromAppLaunch(completion: { [weak self] result in
+            switch result {
+            case .success:
+                self?.navigateRelay.accept(.home)
+            case .failure:
+                self?.navigateRelay.accept(.landing)
             }
-        }
+        })
     }
-
-    private func handleNavigationWithDelay(_ delay: Int) {
+    
+    private func delayNavigation(timeInterval: DispatchTimeInterval) {
         Observable.combineLatest(
-            Observable.just(()).delay(.seconds(delay), scheduler: MainScheduler.instance),
-            navigateSubject.asObservable()
+            Observable.just(()).delay(timeInterval, scheduler: MainScheduler.instance),
+            navigateRelay.asObservable()
         ).subscribe { [weak self] event in
-            guard let (_, navAction) = event.element else { return }
-            self?.coordinatorDelegate?.navigate.onNext(navAction)
+            guard let (_, destination) = event.element else { return }
+            self?.navigate(to: destination)
         }.disposed(by: disposeBag)
+    }
+    
+    private func setStrings() {
+        nameLabel.accessibilityLabel = "LoadingViewController_Name"
+        nameLabel.text = NSLocalizedString(nameLabel.accessibilityLabel!, comment: "")
     }
 }

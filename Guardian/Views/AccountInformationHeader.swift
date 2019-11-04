@@ -1,5 +1,9 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  AccountInformationHeader
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import UIKit
 
@@ -19,7 +23,7 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
         nameLabel.text = user.displayName.isEmpty ? "User" : user.displayName
         emailLabel.text = user.email
 
-        if let url = URL(string: user.avatarUrlString) {
+        if let url = user.avatarURL {
             downloadAvatar(url)
         }
 

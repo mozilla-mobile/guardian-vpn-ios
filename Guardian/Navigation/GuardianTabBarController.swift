@@ -1,25 +1,42 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  GuardianTabBarController
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import UIKit
 
-class GuardianTabBarController: UITabBarController {
+class GuardianTabBarController: UITabBarController, Navigating {
+    static var navigableItem: NavigableItem = .tab
+    
+    private let tabs: [NavigableItem: (UIViewController & Navigating)]
+
+    init() {
+        tabs = [.home: HomeViewController(),
+                .settings: SettingsViewController()]
+        super.init(nibName: nil, bundle: nil)
+        viewControllers = [tabs[.home]!, tabs[.settings]!]
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         styleViews()
     }
-
-    init(viewControllers: [UIViewController]) {
-        super.init(nibName: nil, bundle: Bundle.main)
-        self.viewControllers = viewControllers
+    
+    func displayTab(_ item: NavigableItem) {
+        if let tab = tabs[item] {
+            selectedViewController = tab
+        }
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    
     private func styleViews() {
-        tabBar.tintColor = UIColor.buttonBlue
+        tabBar.tintColor = UIColor.custom(.blue50)
+        tabBar.unselectedItemTintColor = UIColor.custom(.grey30)
         tabBar.isTranslucent = true
     }
 }

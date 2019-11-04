@@ -1,134 +1,69 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  NavigationCoordinator
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
+
+// TODO: Add back heartbeat.
 
 import UIKit
-import RxSwift
 
-class NavigationCoordinator: Navigating {
-    let dependencyProvider: DependencyProviding
-    var currentViewController: UIViewController?
+enum NavigableItem {
+    case about
+    case carousel
+    case devices
+    case help
+    case home
+    case landing
+    case loading
+    case login
+    case servers
+    case settings
+    case tab
+}
 
-    var navigate = PublishSubject<NavigationAction>()
-
-    private let disposeBag = DisposeBag()
-
-    init(dependencyProvider: DependencyProviding) {
-        self.dependencyProvider = dependencyProvider
-        setupHeartbeat()
-        setupServerList()
-        setupNavigationActions()
-    }
-
-    var rootViewController: UIViewController {
-        let accountManager = dependencyProvider.accountManager
-        let loadingViewController = LoadingViewController(accountManager: accountManager, coordinatorDelegate: self)
+class NavigationCoordinator: NavigationCoordinating {
+    static let sharedCoordinator: NavigationCoordinating = {
+        let instance = NavigationCoordinator()
+        //
+        return instance
+    }()
+    
+    private var currentViewController: (UIViewController & Navigating)?
+    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    
+    var firstViewController: UIViewController {
+        let loadingViewController = LoadingViewController()
         currentViewController = loadingViewController
         return loadingViewController
     }
-
-    private func setupHeartbeat() {
-        dependencyProvider.accountManager.heartbeatFailedEvent
-            .subscribe { [weak self] _ in
-                self?.navigateToLogin()
-        }.disposed(by: disposeBag)
-        dependencyProvider.accountManager.startHeartbeat() // TODO: Should this be here?
-    }
-
-    private func setupServerList() {
-        dependencyProvider.tunnelManager.cityChangedEvent
-            .subscribe { [weak self] _ in
-                self?.currentViewController?.dismiss(animated: true, completion: nil)
-        }.disposed(by: disposeBag)
-    }
-
-    private func setupNavigationActions() {
-        navigate
-            .subscribe { [weak self] navActionEvent in
-                guard let navAction = navActionEvent.element else { return }
-                self?.navigate(after: navAction)
-        }.disposed(by: disposeBag)
-    }
-
-    // MARK: <NavigationProtocol>
-    private func navigate(after action: NavigationAction) {
-        switch action {
-        case .loading, .logout, .logoutFailed:
-            navigateToLandingScreen()
-        case .loginSucceeded:
-            navigateToHomeVPN()
-        case .loginFailed:
-            navigateToLogin()
-        case .vpnNewSelection:
-            presentVPNLocationSelection()
-        case .devicesSelection:
-            navigateToDeviceManagement()
-        case .aboutSelection:
-            break
-        case .helpSelection:
-            break
-        }
-    }
-
-    private func navigateToLandingScreen() {
-        let currentViewController = LandingViewController(coordinatorDelegate: self)
-        self.currentViewController = currentViewController
+    
+    private init() { }
+    
+    func navigate(from origin: NavigableItem, to destination: NavigableItem, context: [String: Any?]?) {
         DispatchQueue.main.async { [weak self] in
-            self?.setKeyWindow(with: currentViewController)
-        }
-    }
-
-    private func navigateToHomeVPN() {
-        let currentViewController = GuardianTabBarController(viewControllers: tabBarViewControllers)
-        self.currentViewController = currentViewController
-        DispatchQueue.main.async { [weak self] in
-            self?.setKeyWindow(with: currentViewController)
-        }
-    }
-
-    private func navigateToLogin() {
-        let currentViewController = LoginViewController(accountManager: dependencyProvider.accountManager, navigatingDelegate: self)
-        self.currentViewController = currentViewController
-        DispatchQueue.main.async { [weak self] in
-            self?.setKeyWindow(with: currentViewController)
-        }
-    }
-
-    private func navigateToDeviceManagement() {
-        guard let user = dependencyProvider.accountManager.user else { return }
-        let deviceManagementVC = DeviceManagementViewController(devices: user.devices)
-
-        if let navigationController = currentViewController?.children[1] as? UINavigationController {
-            navigationController.pushViewController(deviceManagementVC, animated: true)
-        }
-    }
-
-    private func presentVPNLocationSelection() {
-        let locationVPNVC = ServersViewController(accountManager: dependencyProvider.accountManager)
-        let navController = UINavigationController(rootViewController: locationVPNVC)
-        navController.navigationBar.barTintColor = UIColor.backgroundOffWhite
-        navController.navigationBar.tintColor = UIColor.guardianBlack
-        currentViewController?.present(navController, animated: true, completion: nil)
-    }
-
-    private var tabBarViewControllers: [UIViewController] {
-        let homeViewController = HomeViewController(
-            accountManager: dependencyProvider.accountManager,
-            tunnelManager: dependencyProvider.tunnelManager,
-            coordinatorDelegate: self)
-
-        let settingsViewController = SettingsViewController(
-            accountManager: dependencyProvider.accountManager,
-            navigationCoordinator: self)
-
-        let navigationViewController = UINavigationController(rootViewController: settingsViewController)
-
-        return [homeViewController, navigationViewController]
-    }
-
-    private func setKeyWindow(with viewController: UIViewController) {
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = viewController
-            window.makeKeyAndVisible()
+            switch (origin, destination) {
+            case (.loading, .landing):
+                let landingViewController = LandingViewController()
+                self?.appDelegate?.window?.rootViewController = landingViewController
+                self?.currentViewController = landingViewController
+            case (.loading, .home), (.landing, .home):
+                let tabBarController = GuardianTabBarController()
+                tabBarController.displayTab(.home)
+                self?.appDelegate?.window?.rootViewController = tabBarController
+                self?.currentViewController = tabBarController
+            case (.home, .servers):
+                let serversViewController = ServersViewController()
+                self?.currentViewController?.present(serversViewController, animated: true, completion: nil)
+            case (.home, .settings), (.tab, .settings):
+                (self?.currentViewController as? GuardianTabBarController)?.displayTab(.settings)
+            case (.settings, .home), (.tab, .home):
+                (self?.currentViewController as? GuardianTabBarController)?.displayTab(.home)
+            default:
+                // Breakpoint here to catch unhandled transitions
+                return
+            }
         }
     }
 }

@@ -1,9 +1,13 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  GuardianAPI
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import Foundation
 
-class GuardianAPI {
+class GuardianAPI: NetworkRequesting {
 
     static func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
         let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .login, type: .POST)

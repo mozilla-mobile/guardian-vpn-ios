@@ -1,24 +1,32 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  User
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import Foundation
 
 struct User: Codable {
     let email: String
     let displayName: String
-    let avatarUrlString: String
+    let avatarURL: URL?
     let vpnSubscription: Subscription
     let devices: [Device]
     let maxDevices: Int
+    
+    private let avatarUrlString: String
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         email = try container.decode(String.self, forKey: .email)
         displayName = try container.decode(String.self, forKey: .displayName)
-        avatarUrlString = try container.decode(String.self, forKey: .avatar)
         devices = try container.decode([Device].self, forKey: .devices)
         maxDevices = try container.decode(Int.self, forKey: .maxDevices)
+        
+        avatarUrlString = try container.decode(String.self, forKey: .avatar)
+        avatarURL = URL(string: avatarUrlString)
 
         let subscriptionsContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .subscriptions)
         vpnSubscription = try subscriptionsContainer.decode(Subscription.self, forKey: .vpn)
@@ -26,6 +34,7 @@ struct User: Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        
         try container.encode(email, forKey: .email)
         try container.encode(displayName, forKey: .displayName)
         try container.encode(avatarUrlString, forKey: .avatar)
@@ -47,13 +56,14 @@ struct User: Codable {
     }
 }
 
+// MARK: -
 struct Subscription: Codable {
     let isActive: Bool
     let createdAtDate: Date?
     let renewsOnDate: Date?
-
-    let createdAtDateString: String?
-    let renewsOnDateString: String?
+    
+    private let createdAtDateString: String?
+    private let renewsOnDateString: String?
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -82,6 +92,7 @@ struct Subscription: Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        
         try container.encode(isActive, forKey: .active)
         try container.encodeIfPresent(createdAtDateString, forKey: .createdAt)
         try container.encodeIfPresent(renewsOnDateString, forKey: .renewsOn)

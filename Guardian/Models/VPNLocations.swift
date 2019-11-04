@@ -1,5 +1,9 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  VPNLocations
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import Foundation
 
@@ -39,14 +43,14 @@ struct VPNCountry: Codable {
     }
 }
 
-struct VPNCity: Codable, UserDefaulting {
+struct VPNCity: UserDefaulting {
+    static var userDefaultsKey = "savedCity"
+    
     let name: String
     let code: String
     let latitude: Float
     let longitude: Float
     let servers: [VPNServer]
-
-    static var userDefaultsKey = "savedCity"
 
     var isCurrentCity: Bool {
         return name == VPNCity.fetchFromUserDefaults()?.name

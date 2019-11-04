@@ -1,5 +1,9 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  CityVPNCell
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import UIKit
 
@@ -12,17 +16,10 @@ class CityVPNCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        styleViews()
     }
 
     func setup(city: VPNCity) {
         cityLabel.text = city.name
         radioImageView.image = city.isCurrentCity ? UIImage(named: "On") : UIImage(named: "Off")
-    }
-
-    private func styleViews() {
-        contentView.backgroundColor = UIColor.backgroundOffWhite
-        cityLabel.font = UIFont.connectionCityCellFont
-        cityLabel.textColor = UIColor.guardianBlack
     }
 }

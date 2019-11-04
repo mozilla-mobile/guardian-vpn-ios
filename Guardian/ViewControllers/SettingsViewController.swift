@@ -1,64 +1,61 @@
-// SPDX-License-Identifier: MPL-2.0
-// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
+//
+//  SettingsViewController
+//  FirefoxPrivateNetworkVPN
+//
+//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-    private let accountManager: AccountManaging
-    private let navigationCoordinator: Navigating
-    private var dataSource: SettingsDataSourceAndDelegate?
+class SettingsViewController: UIViewController, Navigating {
+    static var navigableItem: NavigableItem = .settings
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var signOutButton: UIButton!
-
-    init(accountManager: AccountManaging, navigationCoordinator: Navigating) {
-        self.accountManager = accountManager
-        self.navigationCoordinator = navigationCoordinator
-        super.init(nibName: String(describing: SettingsViewController.self), bundle: Bundle.main)
-
-        setupTabBar()
+    
+    private var dataSource: SettingsDataSourceAndDelegate?
+    
+    init() {
+        super.init(nibName: String(describing: Self.self), bundle: nil)
     }
-
-    required init?(coder aDecoder: NSCoder) {
+    
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = SettingsDataSourceAndDelegate(tableView: tableView, navigationCoordinator: navigationCoordinator)
+        setStrings()
+        
+        dataSource = SettingsDataSourceAndDelegate(tableView: tableView)
         tableView.tableFooterView = UIView()
-        tableView.reloadData() // TODO: Needed ??
+        tableView.reloadData()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
     }
-
-    private func setupNavigationBar() {
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem?.tintColor = .guardianGrey
-    }
-
-    @IBAction func signOut(_ sender: Any) {
+    
+    @IBAction func signOut() {
         DependencyFactory.sharedFactory.tunnelManager.stop()
-        accountManager.logout { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                switch result {
-                case .success:
-                    self.navigationCoordinator.navigate.onNext(.logout)
-                case .failure(let error):
-                    self.navigationCoordinator.navigate.onNext(.logoutFailed)
-                    print(error)
-                }
-            }
+        DependencyFactory.sharedFactory.accountManager.logout { [weak self] result in
+            self?.navigate(to: .landing, context: ["Result": result])
         }
     }
-
+    
     private func setupTabBar() {
-        tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 1)
-        tabBarController?.selectedIndex = 1
+        let tag: TabTag = .settings
+        tabBarItem = UITabBarItem(title: String(.Settings_Tab_Name), image: UIImage(named: "tab_settings"), tag: tag)
+        tabBarController?.selectedIndex = tag.rawValue
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationItem.backBarButtonItem = nil
+    }
+    
+    private func setStrings() {
+        //
     }
 }
