@@ -10,11 +10,11 @@ import UIKit
 class GuardianTabBarController: UITabBarController, Navigating {
     static var navigableItem: NavigableItem = .tab
 
-    private let tabs: [NavigableItem: (UIViewController & Navigating)]
+    private let tabs: [NavigableItem: UIViewController]
 
     init() {
         tabs = [.home: HomeViewController(),
-                .settings: SettingsViewController()]
+                .settings: UINavigationController(rootViewController: SettingsViewController())]
         super.init(nibName: nil, bundle: nil)
         viewControllers = [tabs[.home]!, tabs[.settings]!]
     }
@@ -32,6 +32,10 @@ class GuardianTabBarController: UITabBarController, Navigating {
         if let tab = tabs[item] {
             selectedViewController = tab
         }
+    }
+
+    func tab(_ item: NavigableItem) -> UIViewController? {
+        return tabs[item]
     }
 
     private func styleViews() {

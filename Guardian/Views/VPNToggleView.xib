@@ -17,17 +17,17 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
-                <outlet property="globeImageView" destination="MYo-vc-qhs" id="HmY-3T-1nv"/>
-                <outlet property="subtitleLabel" destination="2xu-al-pMZ" id="AbW-Or-LaV"/>
-                <outlet property="titleLabel" destination="CVT-rn-kQN" id="Zt6-nx-KJf"/>
-                <outlet property="view" destination="iN0-l3-epB" id="mTY-WC-AnF"/>
-                <outlet property="vpnSwitch" destination="sYv-xh-0Gx" id="Fui-1p-Z4n"/>
+                <outlet property="globeImageView" destination="MYo-vc-qhs" id="nCZ-ly-CL2"/>
+                <outlet property="subtitleLabel" destination="2xu-al-pMZ" id="Va5-yw-5W8"/>
+                <outlet property="titleLabel" destination="CVT-rn-kQN" id="DGC-lR-th3"/>
+                <outlet property="view" destination="iN0-l3-epB" id="lsA-1R-49L"/>
+                <outlet property="vpnSwitch" destination="sYv-xh-0Gx" id="Qae-Ma-lwG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VPNToggleView" customModule="Firefox_VPN" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -53,7 +53,6 @@
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
                     <rect key="frame" x="150.5" y="240.5" width="51" height="31"/>
                     <color key="onTintColor" name="custom_green50"/>
-                    <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </switch>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -84,12 +83,6 @@
                     <real key="value" value="2"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <connections>
-                <outlet property="globeImageView" destination="MYo-vc-qhs" id="2mo-c7-AEl"/>
-                <outlet property="subtitleLabel" destination="2xu-al-pMZ" id="z1g-r4-xXx"/>
-                <outlet property="titleLabel" destination="CVT-rn-kQN" id="hjb-eH-fNI"/>
-                <outlet property="vpnSwitch" destination="sYv-xh-0Gx" id="I7g-BK-MpF"/>
-            </connections>
             <point key="canvasLocation" x="35.200000000000003" y="-137.18140929535232"/>
         </view>
     </objects>

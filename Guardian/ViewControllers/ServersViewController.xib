@@ -4,13 +4,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ServersViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="3l1-VX-gNY" id="Ah3-IV-k1Q"/>
+                <outlet property="tableView" destination="3l1-VX-gNY" id="jFm-J9-33e"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,11 +22,11 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" estimatedSectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l1-VX-gNY">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="custom_grey5"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.20246907619999999" green="0.86315717690000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="custom_grey5"/>
             <constraints>
                 <constraint firstAttribute="topMargin" secondItem="3l1-VX-gNY" secondAttribute="top" id="AfB-KW-dYM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3l1-VX-gNY" secondAttribute="trailing" id="N8a-Gh-m6E"/>
@@ -36,4 +37,9 @@
             <point key="canvasLocation" x="37.681159420289859" y="34.821428571428569"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="custom_grey5">
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
 </document>

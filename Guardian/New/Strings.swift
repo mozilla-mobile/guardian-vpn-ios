@@ -7,11 +7,13 @@
 
 import Foundation
 
-enum LocalizableString: String {
-    case settingsTabName
-    case settingsItemDevices
-    case settingsItemHelp
-    case settingsItemAbout
+enum LocalizedString: String {
+    case landingTitle
+    case landingSubtitle
+    case landingGetStarted
+    case landingLearnMore
+
+    case homeTabName
 
     case homeTitleOff
     case homeTitleConnecting
@@ -27,10 +29,27 @@ enum LocalizableString: String {
     case homeSubtitleCheckConnection
     case homeSubtitleUnstable
     case homeSubtitleNoSignal
-}
 
-extension String {
-    init(_ string: LocalizableString) {
-        self.init(string.rawValue)
+    case homeApplicationName
+    case homeSelectConnection
+
+    case serversNavTitle
+
+    case settingsTabName
+    case settingsItemDevices
+    case settingsItemHelp
+    case settingsItemAbout
+    case settingsSignOut
+
+    case settingsDefaultName
+    case settingsManageAccount
+
+    case devicesNavTitle
+    case devicesCount
+    case devicesCurrentDevice
+    case devicesAddedDate
+
+    var value: String {
+        NSLocalizedString(rawValue, comment: "")
     }
 }

@@ -26,6 +26,9 @@ class GuardianAPI: NetworkRequesting {
     static func verify(urlString: String, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
         let urlRequest = GuardianURLRequestBuilder.urlRequest(fullUrlString: urlString, type: .GET)
         NetworkLayer.fireURLRequest(with: urlRequest) { result in
+            if case let .failure(error) = result {
+                print(error)
+            }
             completion(result.flatMap { $0.convert(to: VerifyResponse.self) })
         }
     }

@@ -6,14 +6,22 @@
 //
 
 import UIKit
+import RxSwift
 
 class ServersViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .servers
 
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+
+    private var dataSource: ServersDataSourceAndDelegate?
+    private var disposeBag = DisposeBag()
 
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
+
+        DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.subscribe { [weak self] event in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -22,11 +30,19 @@ class ServersViewController: UIViewController, Navigating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setStrings()
+        tableView.contentInsetAdjustmentBehavior = .never
+        setupNavigationBar()
+        dataSource = ServersDataSourceAndDelegate(tableView: tableView)
+        tableView.reloadData()
     }
 
-    private func setStrings() {
-        nameLabel.accessibilityLabel = "ServersViewController_Name"
-        nameLabel.text = NSLocalizedString(nameLabel.accessibilityLabel!, comment: "")
+    private func setupNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
+        navigationItem.title = LocalizedString.serversNavTitle.value
+    }
+
+    @objc func close() {
+        self.dismiss(animated: true, completion: nil)
     }
 }

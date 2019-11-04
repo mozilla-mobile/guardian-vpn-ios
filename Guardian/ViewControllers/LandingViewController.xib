@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,10 +17,12 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LandingViewController" customModule="Firefox_VPN" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LandingViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
-                <outlet property="getStartedButton" destination="E5n-2e-PN9" id="hQf-jw-9em"/>
+                <outlet property="getStartedButton" destination="E5n-2e-PN9" id="k56-bw-3KQ"/>
                 <outlet property="learnMoreButton" destination="Xsj-jW-6dB" id="laE-Qs-Gxc"/>
+                <outlet property="subtitleLabel" destination="aKt-Ai-EeU" id="lrz-a2-dYk"/>
+                <outlet property="titleLabel" destination="hn5-H4-ufw" id="gAC-dd-InD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,52 +32,49 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBV-6t-Eg4">
-                    <rect key="frame" x="0.0" y="313" width="414" height="170.5"/>
+                    <rect key="frame" x="0.0" y="311.5" width="414" height="173"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xtd-yb-bAs">
                             <rect key="frame" x="167" y="0.0" width="80" height="80"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Xtd-yb-bAs" secondAttribute="height" multiplier="1:1" id="0NK-ne-pSN"/>
-                                <constraint firstAttribute="height" constant="80" id="9ah-6o-3m6"/>
+                                <constraint firstAttribute="width" constant="80" id="9ah-6o-3m6"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firefox Private Network" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn5-H4-ufw">
-                            <rect key="frame" x="32" y="104" width="350" height="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum Dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn5-H4-ufw">
+                            <rect key="frame" x="32" y="104" width="350" height="26"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A fast, secure and easy to use VPN (Virtual Private Network)." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKt-Ai-EeU">
-                            <rect key="frame" x="32" y="134" width="350" height="36.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKt-Ai-EeU">
+                            <rect key="frame" x="32" y="138" width="350" height="35"/>
                             <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" name="custom_grey40"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="aKt-Ai-EeU" firstAttribute="centerX" secondItem="sBV-6t-Eg4" secondAttribute="centerX" id="50T-Hn-SeL"/>
                         <constraint firstItem="aKt-Ai-EeU" firstAttribute="top" secondItem="hn5-H4-ufw" secondAttribute="bottom" constant="8" id="6Jn-Pp-V41"/>
                         <constraint firstItem="hn5-H4-ufw" firstAttribute="leading" secondItem="sBV-6t-Eg4" secondAttribute="leading" constant="32" id="GET-wS-OID"/>
-                        <constraint firstAttribute="trailing" secondItem="aKt-Ai-EeU" secondAttribute="trailing" constant="32" id="QYr-75-BjK"/>
                         <constraint firstItem="Xtd-yb-bAs" firstAttribute="top" secondItem="sBV-6t-Eg4" secondAttribute="top" id="R7p-XJ-gsn"/>
                         <constraint firstItem="hn5-H4-ufw" firstAttribute="centerX" secondItem="sBV-6t-Eg4" secondAttribute="centerX" id="ZXg-Ra-Znn"/>
                         <constraint firstItem="hn5-H4-ufw" firstAttribute="top" secondItem="Xtd-yb-bAs" secondAttribute="bottom" constant="24" id="aqP-di-Zoq"/>
                         <constraint firstItem="Xtd-yb-bAs" firstAttribute="centerX" secondItem="sBV-6t-Eg4" secondAttribute="centerX" id="cQv-3u-fiw"/>
-                        <constraint firstAttribute="trailing" secondItem="hn5-H4-ufw" secondAttribute="trailing" constant="32" id="e0X-Wj-AmJ"/>
                         <constraint firstAttribute="bottom" secondItem="aKt-Ai-EeU" secondAttribute="bottom" id="suo-Xo-WXf"/>
                         <constraint firstItem="aKt-Ai-EeU" firstAttribute="leading" secondItem="sBV-6t-Eg4" secondAttribute="leading" constant="32" id="xc6-ni-Dm5"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-2e-PN9">
-                    <rect key="frame" x="32" y="709" width="350" height="40"/>
-                    <color key="backgroundColor" red="0.0" green="0.37647058823529411" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <rect key="frame" x="32" y="700" width="350" height="40"/>
+                    <color key="backgroundColor" name="custom_blue50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="jST-kX-YVJ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="15"/>
-                    <state key="normal" title="Get Started">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" title="Lorum Ipsum">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -82,27 +82,38 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="getStarted:" destination="-1" eventType="touchUpInside" id="Q9u-vF-pcT"/>
+                        <action selector="getStarted" destination="-1" eventType="touchUpInside" id="sEg-qK-jzG"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsj-jW-6dB">
-                    <rect key="frame" x="166.5" y="773" width="81" height="31"/>
+                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsj-jW-6dB">
+                    <rect key="frame" x="32" y="764" width="350" height="40"/>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
-                    <state key="normal" title="Learn more"/>
+                    <state key="normal" title="Sit ametdcsdcsadcsadcsadc">
+                        <color key="titleColor" name="custom_blue50"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="learnMore:" destination="-1" eventType="touchUpInside" id="jid-Fp-7Zj"/>
+                        <action selector="learnMore" destination="-1" eventType="touchUpInside" id="xr8-fc-ciq"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="custom_grey5"/>
             <constraints>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0ce-vF-XyJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sBV-6t-Eg4" secondAttribute="trailing" id="2F6-EW-b1R"/>
                 <constraint firstItem="Xsj-jW-6dB" firstAttribute="top" secondItem="E5n-2e-PN9" secondAttribute="bottom" constant="24" id="9A0-1e-dCx"/>
                 <constraint firstItem="E5n-2e-PN9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="ERA-n3-2Vc"/>
                 <constraint firstItem="Xsj-jW-6dB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qha-e9-7kA"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="E5n-2e-PN9" secondAttribute="trailing" constant="32" id="Xkq-MY-6jw"/>
+                <constraint firstItem="Xsj-jW-6dB" firstAttribute="height" secondItem="E5n-2e-PN9" secondAttribute="height" id="Rk0-HP-non"/>
+                <constraint firstItem="Xsj-jW-6dB" firstAttribute="leading" secondItem="E5n-2e-PN9" secondAttribute="leading" id="Wff-Ng-R61"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aT5-lV-kfi"/>
+                <constraint firstItem="E5n-2e-PN9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bLa-bL-nnR"/>
+                <constraint firstItem="Xsj-jW-6dB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kfV-OA-6iN"/>
+                <constraint firstItem="E5n-2e-PN9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="udU-A4-TFc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Xsj-jW-6dB" secondAttribute="bottom" constant="58" id="vSE-Jk-oZf"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-50" id="wgH-oM-zTo"/>
             </constraints>
@@ -112,5 +123,17 @@
     </objects>
     <resources>
         <image name="logo" width="80" height="80"/>
+        <namedColor name="custom_blue50">
+            <color red="0.0" green="0.37647058823529411" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="custom_grey40">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="custom_grey5">
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="custom_grey50">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>

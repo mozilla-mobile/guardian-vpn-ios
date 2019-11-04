@@ -44,28 +44,28 @@ extension VPNState {
     var title: String {
         switch self {
         case .off:
-            return String(.homeTitleOff)
+            return LocalizedString.homeTitleOff.value
         case .connecting:
-            return String(.homeTitleConnecting)
+            return LocalizedString.homeTitleConnecting.value
         case .on:
-            return String(.homeTitleOn)
+            return LocalizedString.homeTitleOn.value
         case .switching:
-            return String(.homeTitleSwitching)
+            return LocalizedString.homeTitleSwitching.value
         case .disconnecting:
-            return String(.homeTitleDisconnecting)
+            return LocalizedString.homeTitleDisconnecting.value
         }
     }
 
     var subtitle: String {
         switch self {
         case .off:
-            return String(.homeSubtitleOff)
+            return LocalizedString.homeSubtitleOff.value
         case .connecting, .switching:
-            return String(.homeSubtitleConnecting)
+            return LocalizedString.homeSubtitleConnecting.value
         case .on:
-            return String(.homeSubtitleOn)
+            return LocalizedString.homeSubtitleOn.value
         case .disconnecting:
-            return String(.homeSubtitleDisconnecting)
+            return LocalizedString.homeSubtitleDisconnecting.value
         }
     }
 

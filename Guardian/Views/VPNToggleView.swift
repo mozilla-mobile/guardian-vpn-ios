@@ -11,6 +11,7 @@ import RxCocoa
 import NetworkExtension
 
 class VPNToggleView: UIView {
+    @IBOutlet var view: UIView!
     @IBOutlet var globeImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
@@ -27,17 +28,9 @@ class VPNToggleView: UIView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setup()
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    private func setup() {
-        vpnSwitchEvent = vpnSwitch.rx.isOn
-
+        Bundle.main.loadNibNamed(String(describing: VPNToggleView.self), owner: self, options: nil)
+        view.frame = bounds
+        addSubview(view)
         Observable
             .zip(tunnelManager.stateEvent, updateUIEvent.startWith(())) { [weak self] state, _ in
                 DispatchQueue.main.async {
@@ -50,6 +43,10 @@ class VPNToggleView: UIView {
         }
         .subscribe()
         .disposed(by: disposeBag)
+    }
+
+    override func awakeFromNib() {
+        vpnSwitchEvent = vpnSwitch.rx.isOn
     }
 
     private func showConnectedTime(state: VPNState) {
@@ -78,7 +75,7 @@ class VPNToggleView: UIView {
             }
 
             DispatchQueue.main.async { [weak self] in
-                self?.subtitleLabel.text = "\(state.subtitle) • \(connectedTime)"
+                self?.subtitleLabel.text = String(format: state.subtitle, connectedTime)
             }
         }
     }
@@ -93,7 +90,7 @@ class VPNToggleView: UIView {
         vpnSwitch.isEnabled = state.isEnabled
         globeImageView.image = state.globeImage
         globeImageView.alpha = state.globeOpacity
-        backgroundColor = state.backgroundColor
+        view.backgroundColor = state.backgroundColor
 
         if state == .on {
             showConnectedTime(state: state)

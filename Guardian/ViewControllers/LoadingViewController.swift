@@ -28,19 +28,18 @@ class LoadingViewController: UIViewController, Navigating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setStrings()
 
         delayNavigation(timeInterval: Self.navigationDelay)
 
         let accountManager = DependencyFactory.sharedFactory.accountManager
-        accountManager.setupFromAppLaunch(completion: { [weak self] result in
+        accountManager.setupFromAppLaunch { [weak self] result in
             switch result {
             case .success:
                 self?.navigateRelay.accept(.home)
             case .failure:
                 self?.navigateRelay.accept(.landing)
             }
-        })
+        }
     }
 
     private func delayNavigation(timeInterval: DispatchTimeInterval) {
@@ -51,10 +50,5 @@ class LoadingViewController: UIViewController, Navigating {
             guard let (_, destination) = event.element else { return }
             self?.navigate(to: destination)
         }.disposed(by: disposeBag)
-    }
-
-    private func setStrings() {
-        nameLabel.accessibilityLabel = "LoadingViewController_Name"
-        nameLabel.text = NSLocalizedString(nameLabel.accessibilityLabel!, comment: "")
     }
 }

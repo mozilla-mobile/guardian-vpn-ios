@@ -14,9 +14,9 @@ enum SettingsItem {
 
     var title: String {
         switch self {
-        case .device: return String(.settingsItemDevices)
-        case .help: return String(.settingsItemHelp)
-        case .about: return String(.settingsItemAbout)
+        case .device: return LocalizedString.settingsItemDevices.value
+        case .help: return LocalizedString.settingsItemHelp.value
+        case .about: return LocalizedString.settingsItemAbout.value
         }
     }
 
@@ -67,7 +67,7 @@ extension SettingsDataSourceAndDelegate: UITableViewDelegate {
     func tableView(
         _ tableView: UITableView,
         viewForHeaderInSection section: Int
-    )-> UIView? {
+    ) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName) as? AccountInformationHeader,
             let user = DependencyFactory.sharedFactory.accountManager.user
             else { return nil }

@@ -168,7 +168,7 @@ class AccountManager: AccountManaging {
         return availableServers?
             .first { country -> Bool in
                 country.cities.map { $0.name }.contains(city)
-            }?.code.uppercased()
+            }?.code.lowercased()
     }
 
     @objc private func pollUser() {

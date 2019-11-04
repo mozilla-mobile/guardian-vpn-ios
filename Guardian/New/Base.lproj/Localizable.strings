@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   FirefoxPrivateNetworkVPN
 
@@ -10,9 +10,14 @@
 "LoadingViewControllerName" = "Loading";
 
 // MARK: - Landing Screen
-"LandingViewControllerName" = "Landing";
+"landingTitle" = "Firefox Private Network";
+"landingSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
+"landingGetStarted" = "Get started";
+"landingLearnMore" = "Learn more";
 
 // MARK: - VPN Home
+"homeTabName" = "VPN";
+
 "homeTitleOff" = "VPN is off";
 "homeTitleConnecting" = "Connecting…";
 "homeTitleOn" = "VPN is on";
@@ -28,14 +33,24 @@
 "homeSubtitleUnstable" = "Unstable";
 "homeSubtitleNoSignal" = "No signal";
 
+"homeApplicationName" = "Private Network";
+"homeSelectConnection" = "Select connection";
+
 // MARK: - Server Selection
-"ServersViewControllerName" = "Servers";
+"serversNavTitle" = "Connection";
 
 // MARK: - Settings
 "settingsTabName" = "Settings";
 "settingsItemDevices" = "My devices";
 "settingsItemHelp" = "Get help";
 "settingsItemAbout" = "About";
+"settingsSignOut" = "Sign out";
+
+"settingsDefaultName" = "VPN User";
+"settingsManageAccount" = "Manage account";
 
 // MARK: - Device Management
-"DeviceManagementViewControllerName" = "Devices";
+"devicesNavTitle" = "My devices";
+"devicesCount" = "%1$@ of %2$@";
+"devicesCurrentDevice" = "Current device";
+"devicesAddedDate" = "Added %@ ago";

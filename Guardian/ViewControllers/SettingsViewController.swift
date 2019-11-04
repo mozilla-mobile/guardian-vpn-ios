@@ -17,6 +17,7 @@ class SettingsViewController: UIViewController, Navigating {
 
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
+        setupTabBar()
     }
 
     required init?(coder: NSCoder) {
@@ -46,8 +47,7 @@ class SettingsViewController: UIViewController, Navigating {
 
     private func setupTabBar() {
         let tag: TabTag = .settings
-        tabBarItem = UITabBarItem(title: String(.Settings_Tab_Name), image: UIImage(named: "tab_settings"), tag: tag)
-        tabBarController?.selectedIndex = tag.rawValue
+        tabBarItem = UITabBarItem(title: LocalizedString.settingsTabName.value, image: UIImage(named: "tab_settings"), tag: tag)
     }
 
     private func setupNavigationBar() {
@@ -56,6 +56,6 @@ class SettingsViewController: UIViewController, Navigating {
     }
 
     private func setStrings() {
-        //
+        signOutButton.setTitle(LocalizedString.settingsSignOut.value, for: .normal)
     }
 }

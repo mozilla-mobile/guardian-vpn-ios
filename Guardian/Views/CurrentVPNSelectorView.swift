@@ -8,9 +8,8 @@
 import UIKit
 import RxSwift
 
-// TODO: Redo THIS XIB ENTIRELY
-
 class CurrentVPNSelectorView: UIView {
+    @IBOutlet var view: UIView!
     @IBOutlet var countryFlagImageView: UIImageView!
     @IBOutlet var countryTitleLabel: UILabel!
 
@@ -18,15 +17,9 @@ class CurrentVPNSelectorView: UIView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setup()
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    private func setup() {
+        Bundle.main.loadNibNamed(String(describing: CurrentVPNSelectorView.self), owner: self, options: nil)
+        view.frame = bounds
+        addSubview(view)
         DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent
             .map { Optional($0) }
             .startWith(VPNCity.fetchFromUserDefaults())
@@ -36,7 +29,7 @@ class CurrentVPNSelectorView: UIView {
                 DispatchQueue.main.async { [weak self] in
                     self?.countryTitleLabel.text = city
                     if let countryCode = DependencyFactory.sharedFactory.accountManager.countryCodeForCity(city) {
-                        self?.countryFlagImageView.image = UIImage(named: countryCode)
+                        self?.countryFlagImageView.image = UIImage(named: "flag_\(countryCode)")
                     } else {
                         self?.countryFlagImageView.image = nil
                     }

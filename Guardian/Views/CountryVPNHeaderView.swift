@@ -21,7 +21,7 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
     var isExpanded: Bool = false {
         willSet {
             DispatchQueue.main.async { [weak self] in
-                self?.chevronImageView.image = newValue ? #imageLiteral(resourceName: "down_chevron") : #imageLiteral(resourceName: "right_chevron")
+                self?.chevronImageView.image = newValue ? #imageLiteral(resourceName: "icon_sectionOpen") : #imageLiteral(resourceName: "icon_sectionClosed")
             }
         }
     }
@@ -32,7 +32,7 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
     }
 
     func setup(country: VPNCountry) {
-        flagImageView.image = UIImage(named: country.code.uppercased())
+        flagImageView.image = UIImage(named: "flag_\(country.code.lowercased())")
         nameLabel.text = country.name
         topLineView.isHidden = tag == 0
     }

@@ -18,12 +18,12 @@ class DeviceManagementCell: UITableViewCell {
         nameLabel.text = device.name
 
         if device.isCurrentDevice {
-            subtitleLabel.text = "Current device"
-            subtitleLabel.textColor = #colorLiteral(red: 0, green: 0.3839950562, blue: 0.9068421125, alpha: 1)
+            subtitleLabel.text = LocalizedString.devicesCurrentDevice.value
+            subtitleLabel.textColor = UIColor.custom(.blue50)
             deleteButton.isHidden = true
         } else {
             subtitleLabel.text = dateAddedString(from: device.createdAtDate)
-            subtitleLabel.textColor = #colorLiteral(red: 0.04704938084, green: 0.0470656082, blue: 0.05134283006, alpha: 0.6)
+            subtitleLabel.textColor = UIColor.custom(.grey40)
             deleteButton.isHidden = false
         }
     }
@@ -36,7 +36,7 @@ class DeviceManagementCell: UITableViewCell {
         formatter.maximumUnitCount = 1
 
         if let dateString = formatter.string(from: date, to: Date()) {
-            return "About \(dateString) ago"
+            return String(format: LocalizedString.devicesAddedDate.value, dateString)
         } else {
             return nil
         }

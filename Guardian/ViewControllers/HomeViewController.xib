@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Firefox_VPN" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
                 <outlet property="navigationTitleLabel" destination="Rpo-Dd-s6i" id="iLn-NZ-4zI"/>
                 <outlet property="selectConnectionLabel" destination="oGq-Iz-V78" id="kph-nE-1mz"/>
@@ -30,11 +31,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRl-G2-VBt" customClass="VPNToggleView" customModule="Firefox_VPN" customModuleProvider="target">
-                    <rect key="frame" x="16" y="72" width="343" height="311.5"/>
-                    <color key="backgroundColor" red="0.19513062310000001" green="1" blue="0.63913527680000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="b76-ij-pGQ">
+                    <rect key="frame" x="127.5" y="24" width="120.5" height="24"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="bGv-w5-bfc">
+                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="qI3-8P-eOY"/>
+                                <constraint firstAttribute="width" secondItem="bGv-w5-bfc" secondAttribute="height" multiplier="1:1" id="qxY-kM-ig7"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpo-Dd-s6i">
+                            <rect key="frame" x="32" y="3.5" width="88.5" height="17.5"/>
+                            <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="15"/>
+                            <color key="textColor" name="custom_grey50"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="mRl-G2-VBt" secondAttribute="height" multiplier="351:319" id="5wY-QI-AsR"/>
+                        <constraint firstItem="Rpo-Dd-s6i" firstAttribute="centerY" secondItem="bGv-w5-bfc" secondAttribute="centerY" id="1XE-0C-tUA"/>
+                        <constraint firstItem="Rpo-Dd-s6i" firstAttribute="centerY" secondItem="b76-ij-pGQ" secondAttribute="centerY" id="49f-UG-gP2"/>
+                        <constraint firstAttribute="trailing" secondItem="Rpo-Dd-s6i" secondAttribute="trailing" id="DXq-24-Py9"/>
+                        <constraint firstAttribute="height" constant="24" id="beC-CC-S76"/>
+                        <constraint firstItem="Rpo-Dd-s6i" firstAttribute="leading" secondItem="bGv-w5-bfc" secondAttribute="trailing" constant="8" id="enn-Id-gwe"/>
+                        <constraint firstItem="bGv-w5-bfc" firstAttribute="leading" secondItem="b76-ij-pGQ" secondAttribute="leading" id="npb-BY-4VZ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mRl-G2-VBt" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+                    <rect key="frame" x="16" y="72" width="343" height="311.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="249" constant="311.5" id="3gJ-NP-1EL"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -42,59 +69,31 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xU-vI-Kl7" customClass="CurrentVPNSelectorView" customModule="Firefox_VPN" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xU-vI-Kl7" customClass="CurrentVPNSelectorView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
                     <rect key="frame" x="32" y="415.5" width="311" height="48"/>
-                    <color key="backgroundColor" red="1" green="0.48642666810000001" blue="0.94866628779999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="oBJ-9e-Xre"/>
+                        <constraint firstAttribute="height" constant="48" id="ru6-oW-6SW"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select connection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGq-Iz-V78">
-                    <rect key="frame" x="140.5" y="471.5" width="94" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGq-Iz-V78">
+                    <rect key="frame" x="155.5" y="471.5" width="64.5" height="13"/>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" name="custom_grey40"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="b76-ij-pGQ">
-                    <rect key="frame" x="113.5" y="24" width="148" height="24"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="bGv-w5-bfc">
-                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="bGv-w5-bfc" secondAttribute="height" multiplier="1:1" id="0pm-WR-zFM"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Private Network" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpo-Dd-s6i">
-                            <rect key="frame" x="32" y="4.5" width="116" height="15"/>
-                            <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="Rpo-Dd-s6i" firstAttribute="leading" secondItem="bGv-w5-bfc" secondAttribute="trailing" constant="8" symbolic="YES" id="6N2-Nz-u0Q"/>
-                        <constraint firstAttribute="height" constant="24" id="D7b-Eg-83X"/>
-                        <constraint firstAttribute="bottom" secondItem="bGv-w5-bfc" secondAttribute="bottom" id="W1C-aU-YNz"/>
-                        <constraint firstItem="Rpo-Dd-s6i" firstAttribute="centerY" secondItem="bGv-w5-bfc" secondAttribute="centerY" id="YLw-kd-ASp"/>
-                        <constraint firstItem="bGv-w5-bfc" firstAttribute="top" secondItem="b76-ij-pGQ" secondAttribute="top" id="kc6-07-oQR"/>
-                        <constraint firstAttribute="trailing" secondItem="Rpo-Dd-s6i" secondAttribute="trailing" id="lO5-Ec-96L"/>
-                        <constraint firstItem="bGv-w5-bfc" firstAttribute="leading" secondItem="b76-ij-pGQ" secondAttribute="leading" id="twB-rF-jRq"/>
-                    </constraints>
-                </view>
             </subviews>
-            <color key="backgroundColor" red="0.92941176469999998" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="custom_grey5"/>
             <constraints>
-                <constraint firstItem="oGq-Iz-V78" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="79Q-xS-Ago"/>
-                <constraint firstItem="mRl-G2-VBt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="AY5-gC-EiR"/>
-                <constraint firstItem="b76-ij-pGQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HeF-S4-8G9"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mRl-G2-VBt" secondAttribute="trailing" constant="16" id="Pfp-bk-cVP"/>
-                <constraint firstItem="6xU-vI-Kl7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="ZHd-Vl-qgN"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6xU-vI-Kl7" secondAttribute="trailing" constant="32" id="au5-FB-lUD"/>
-                <constraint firstItem="b76-ij-pGQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="jvJ-oH-Lk4"/>
-                <constraint firstItem="6xU-vI-Kl7" firstAttribute="top" secondItem="mRl-G2-VBt" secondAttribute="bottom" constant="32" id="pdJ-Bk-Npo"/>
-                <constraint firstItem="oGq-Iz-V78" firstAttribute="top" secondItem="6xU-vI-Kl7" secondAttribute="bottom" constant="8" id="vHf-1B-DOZ"/>
-                <constraint firstItem="mRl-G2-VBt" firstAttribute="top" secondItem="b76-ij-pGQ" secondAttribute="bottom" constant="24" id="z8M-2k-CPC"/>
+                <constraint firstItem="b76-ij-pGQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Aye-h4-0R0"/>
+                <constraint firstItem="mRl-G2-VBt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Bw1-0n-kd1"/>
+                <constraint firstItem="oGq-Iz-V78" firstAttribute="top" secondItem="6xU-vI-Kl7" secondAttribute="bottom" constant="8" id="Opz-5b-41I"/>
+                <constraint firstItem="6xU-vI-Kl7" firstAttribute="top" secondItem="mRl-G2-VBt" secondAttribute="bottom" constant="32" id="Qr1-9s-uNH"/>
+                <constraint firstItem="oGq-Iz-V78" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="apr-3l-aqJ"/>
+                <constraint firstItem="mRl-G2-VBt" firstAttribute="top" secondItem="b76-ij-pGQ" secondAttribute="bottom" constant="24" id="eyk-pi-yGr"/>
+                <constraint firstItem="6xU-vI-Kl7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gbZ-Uy-Rtm"/>
+                <constraint firstItem="mRl-G2-VBt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="rNu-IJ-lnM"/>
+                <constraint firstItem="b76-ij-pGQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="wmI-Iq-zeC"/>
+                <constraint firstItem="6xU-vI-Kl7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="yaR-CJ-U1V"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="47.200000000000003" y="39.130434782608695"/>
@@ -102,5 +101,14 @@
     </objects>
     <resources>
         <image name="logo" width="80" height="80"/>
+        <namedColor name="custom_grey40">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="custom_grey5">
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="custom_grey50">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>

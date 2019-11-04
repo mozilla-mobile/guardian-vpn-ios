@@ -14,19 +14,20 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var manageAccountButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        manageAccountButton.setTitle(LocalizedString.settingsManageAccount.value, for: .normal)
     }
 
     func setup(with user: User) {
-        nameLabel.text = user.displayName.isEmpty ? "User" : user.displayName
+        nameLabel.text = user.displayName.isEmpty ? LocalizedString.settingsDefaultName.value : user.displayName
         emailLabel.text = user.email
 
         if let url = user.avatarURL {
             downloadAvatar(url)
         }
-
     }
 
     func downloadAvatar(_ url: URL) {
