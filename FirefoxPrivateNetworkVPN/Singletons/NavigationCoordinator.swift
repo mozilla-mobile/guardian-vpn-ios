@@ -86,7 +86,7 @@ class NavigationCoordinator: NavigationCoordinating {
             // To Devices
             case (.settings, .devices):
                 guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
-                let devicesViewController = DeviceManagementViewController(devices: user.devices)
+                let devicesViewController = DeviceManagementViewController(devices: user.deviceList)
                 let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(devicesViewController, animated: true)
 
