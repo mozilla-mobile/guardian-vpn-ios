@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6FDEF7DD21846BC100D8FBF6"
-               BuildableName = "Firefox VPN Go Bridge (iOS)"
-               BlueprintName = "Firefox VPN Go Bridge (iOS)"
-               ReferencedContainer = "container:FirefoxPrivateNetwork.xcodeproj">
+               BuildableName = "WireGuardGoBridge"
+               BlueprintName = "WireGuardGoBridge"
+               ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -51,9 +51,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6FDEF7DD21846BC100D8FBF6"
-            BuildableName = "Firefox VPN Go Bridge (iOS)"
-            BlueprintName = "Firefox VPN Go Bridge (iOS)"
-            ReferencedContainer = "container:FirefoxPrivateNetwork.xcodeproj">
+            BuildableName = "WireGuardGoBridge"
+            BlueprintName = "WireGuardGoBridge"
+            ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

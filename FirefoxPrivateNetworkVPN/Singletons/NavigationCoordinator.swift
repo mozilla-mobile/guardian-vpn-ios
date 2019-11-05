@@ -31,7 +31,7 @@ class NavigationCoordinator: NavigationCoordinating {
     }()
 
     private var currentViewController: (UIViewController & Navigating)?
-    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
     var firstViewController: UIViewController {
         let loadingViewController = LoadingViewController()

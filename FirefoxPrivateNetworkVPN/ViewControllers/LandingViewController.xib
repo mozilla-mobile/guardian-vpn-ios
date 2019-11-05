@@ -88,7 +88,7 @@
                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsj-jW-6dB">
                     <rect key="frame" x="32" y="764" width="350" height="40"/>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
-                    <state key="normal" title="Sit ametdcsdcsadcsadcsadc">
+                    <state key="normal" title="Sit amet">
                         <color key="titleColor" name="custom_blue50"/>
                     </state>
                     <userDefinedRuntimeAttributes>

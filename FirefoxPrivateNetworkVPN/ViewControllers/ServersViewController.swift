@@ -19,9 +19,9 @@ class ServersViewController: UIViewController, Navigating {
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
 
-        DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.subscribe { [weak self] event in
+        DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.subscribe { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
-        }
+        }.disposed(by: disposeBag)
     }
 
     required init?(coder: NSCoder) {

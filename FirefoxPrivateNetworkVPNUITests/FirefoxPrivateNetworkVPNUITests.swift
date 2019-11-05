@@ -1,9 +1,5 @@
-//
-//  FirefoxPrivateNetworkVPNUITests
-//  FirefoxPrivateNetworkVPNUITests
-//
-//  Copyright © 2019 Mozilla Corporation. All rights reserved.
-//
+// SPDX-License-Identifier: MPL-2.0
+// Copyright © 2019 Mozilla Corporation. All Rights Reserved.
 
 import XCTest
 

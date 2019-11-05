@@ -46,6 +46,6 @@ class DeviceManagementViewController: UIViewController, Navigating {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: countTitle, style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey40)
         navigationItem.title = LocalizedString.devicesNavTitle.value
-        navigationItem.titleView?.tintColor = .guardianBlack
+        navigationItem.titleView?.tintColor = UIColor.custom(.grey40)
     }
 }

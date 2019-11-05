@@ -45,7 +45,7 @@ class MockGuardianAPI: NetworkRequesting {
         completion(Result.success(vpnCountries))
     }
 
-    static func addDevice(with token: String, body: [String : Any], completion: @escaping (Result<Device, Error>) -> Void) {
+    static func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, Error>) -> Void) {
         apiCallObservable.onNext(())
         guard let jsonUserURL = Bundle.main.url(forResource: "device", withExtension: "json"),
             let device = try? JSONDecoder().decode(Device.self, from: Data(contentsOf: jsonUserURL))

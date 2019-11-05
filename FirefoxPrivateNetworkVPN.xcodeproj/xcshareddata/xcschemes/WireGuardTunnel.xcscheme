@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6F5D0C19218352EF000F85AD"
-               BuildableName = "FirefoxVPNNetworkExtension.appex"
-               BlueprintName = "Firefox VPN Network Extension (iOS)"
-               ReferencedContainer = "container:FirefoxPrivateNetwork.xcodeproj">
+               BuildableName = "WireGuardTunnel.appex"
+               BlueprintName = "WireGuardTunnel"
+               ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,8 +31,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6FF4AC13211EC46F002C96EB"
                BuildableName = "Firefox Private Network VPN.app"
-               BlueprintName = "Firefox Private Network VPN (iOS)"
-               ReferencedContainer = "container:FirefoxPrivateNetwork.xcodeproj">
+               BlueprintName = "FirefoxPrivateNetworkVPN"
+               ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6FF4AC13211EC46F002C96EB"
             BuildableName = "Firefox Private Network VPN.app"
-            BlueprintName = "Firefox Private Network VPN (iOS)"
-            ReferencedContainer = "container:FirefoxPrivateNetwork.xcodeproj">
+            BlueprintName = "FirefoxPrivateNetworkVPN"
+            ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6FF4AC13211EC46F002C96EB"
             BuildableName = "Firefox Private Network VPN.app"
-            BlueprintName = "Firefox Private Network VPN (iOS)"
-            ReferencedContainer = "container:FirefoxPrivateNetwork.xcodeproj">
+            BlueprintName = "FirefoxPrivateNetworkVPN"
+            ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
