@@ -49,6 +49,17 @@ enum LocalizedString: String {
     case devicesCurrentDevice
     case devicesAddedDate
 
+    case helpTitle
+    case helpContactUs
+    case helpSupport
+
+    case aboutTitle
+    case aboutTerms
+    case aboutPrivacy
+    case aboutAppName
+    case aboutDescription
+    case aboutReleaseVersion
+
     var value: String {
         NSLocalizedString(rawValue, comment: "")
     }

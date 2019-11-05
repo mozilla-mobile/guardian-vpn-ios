@@ -44,7 +44,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
         // TODO: Get max allowed devices from account.
         let countTitle = String(format: LocalizedString.devicesCount.value, "\(count)", "5")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: countTitle, style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey40)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey50)
         navigationItem.title = LocalizedString.devicesNavTitle.value
         navigationItem.titleView?.tintColor = UIColor.custom(.grey40)
     }
