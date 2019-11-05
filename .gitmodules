@@ -1,3 +1,3 @@
-[submodule "Guardian/WireGuard"]
-	path = Guardian/WireGuard
+[submodule "WireGuard"]
+	path = WireGuard
 	url = https://git.zx2c4.com/wireguard-apple
