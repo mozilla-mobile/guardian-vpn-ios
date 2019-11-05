@@ -50,25 +50,6 @@ class AccountManager: AccountManaging {
         GuardianAPI.initiateUserLogin(completion: completion)
     }
 
-    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let device = currentDevice else {
-            completion(Result.failure(GuardianFailReason.emptyToken))
-            return
-        }
-
-        GuardianAPI.removeDevice(with: device.publicKey) { [unowned self] result in
-            switch result {
-            case .success:
-                self.token = nil
-                self.currentDevice = nil
-                DeviceKeys.removeFromUserDefaults()
-                completion(.success(()))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-
     func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var error: Error?
@@ -243,6 +224,29 @@ class AccountManager: AccountManaging {
             })
         }
     }
+
+    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let token = token else {
+            completion(Result.failure(GuardianFailReason.emptyToken))
+            return
+        }
+        guard let device = currentDevice else {
+            completion(Result.failure(GuardianFailReason.emptyToken))
+            return
+        }
+        GuardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [unowned self] result in
+            switch result {
+            case .success:
+                self.token = nil
+                self.currentDevice = nil
+                DeviceKeys.removeFromUserDefaults()
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func removeDevice(_ device: Device, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
