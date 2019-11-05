@@ -7,16 +7,20 @@
 
 import Foundation
 
-struct Device: UserDefaulting {
-    static var userDefaultsKey = "currentDevice"
-
+struct Device: Codable, UserDefaulting {
+    
+    static let userDefaultsKey = "currentDevice"
     let name: String
     let publicKey: String
     let ipv4Address: String
     let ipv6Address: String
     let createdAtDate: Date
-
     private let createdAtDateString: String
+    var isBeingRemoved: Bool = false
+    
+    var isCurrentDevice: Bool {
+        return self == Device.fetchFromUserDefaults()
+    }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -47,8 +51,10 @@ struct Device: UserDefaulting {
         case ipv6Address = "ipv6_address"
         case createAtDate = "created_at"
     }
+}
 
-    var isCurrentDevice: Bool {
-        return publicKey == Device.fetchFromUserDefaults()?.publicKey
+extension Device: Equatable {
+    static func == (lhs: Device, rhs: Device) -> Bool {
+        return lhs.publicKey == rhs.publicKey
     }
 }
