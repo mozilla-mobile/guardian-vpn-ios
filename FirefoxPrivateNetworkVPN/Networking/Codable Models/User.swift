@@ -12,10 +12,18 @@ struct User: Codable {
     let displayName: String
     let avatarURL: URL?
     let vpnSubscription: Subscription
-    let devices: [Device]
     let maxDevices: Int
-
+    private var devices: [Device]
     private let avatarUrlString: String
+
+    var sortedDevices: [Device] {
+        get {
+            return devices.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice }
+        }
+        set {
+            devices = newValue.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice }
+        }
+    }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -30,6 +38,8 @@ struct User: Codable {
 
         let subscriptionsContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .subscriptions)
         vpnSubscription = try subscriptionsContainer.decode(Subscription.self, forKey: .vpn)
+
+        sortedDevices = devices
     }
 
     func encode(to encoder: Encoder) throws {
