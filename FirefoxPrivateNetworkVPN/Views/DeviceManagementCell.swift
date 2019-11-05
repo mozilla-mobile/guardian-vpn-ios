@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class DeviceManagementCell: UITableViewCell {
 
@@ -13,24 +15,31 @@ class DeviceManagementCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
+    private let disposeBag = DisposeBag()
 
-    func setup(with device: Device) {
+    func setup(with device: Device, indexPath: IndexPath, event: PublishSubject<IndexPath>) {
         nameLabel.text = device.name
 
         if device.isCurrentDevice {
             subtitleLabel.text = LocalizedString.devicesCurrentDevice.value
             subtitleLabel.textColor = UIColor.custom(.blue50)
             deleteButton.isHidden = true
+            deleteButton.isEnabled = false
         } else {
             subtitleLabel.text = dateAddedString(from: device.createdAtDate)
             subtitleLabel.textColor = UIColor.custom(.grey40)
             deleteButton.isHidden = false
+            deleteButton.isEnabled = true
+
+            deleteButton.rx.tap.asControlEvent()
+                .subscribe { _ in
+                    event.onNext(indexPath)
+            }.disposed(by: disposeBag)
         }
     }
 
     private func dateAddedString(from date: Date) -> String? {
         let formatter = DateComponentsFormatter()
-
         formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
         formatter.unitsStyle = .full
         formatter.maximumUnitCount = 1
