@@ -230,6 +230,7 @@
 		F420F4192368840A00CD48BF /* VPNToggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNToggleView.swift; sourceTree = "<group>"; };
 		F420F41A2368840A00CD48BF /* VPNToggleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPNToggleView.xib; sourceTree = "<group>"; };
 		F420F41B2368840A00CD48BF /* CurrentVPNSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentVPNSelectorView.xib; sourceTree = "<group>"; };
+		F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = WireGuardGoBridge.xcconfig; sourceTree = "<group>"; };
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
 		F42A23062347D37F00763B0D /* AccountManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManaging.swift; sourceTree = "<group>"; };
 		F43DFC05234BB32C003EA64A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -408,6 +409,7 @@
 				6FF4AC452120B9E0002C96EB /* Frameworks */,
 				6FF4AC15211EC46F002C96EB /* Products */,
 				F4AED107235F450D00F80ABF /* WireGuard */,
+				F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */,
 				F41CCA32237128F10018DC43 /* WireGuardTunnel */,
 			);
 			sourceTree = "<group>";
@@ -1370,6 +1372,7 @@
 		};
 		6FDEF7DE21846BC100D8FBF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				GO_PATH = "$(HOME)/go";
@@ -1380,6 +1383,7 @@
 		};
 		6FDEF7DF21846BC100D8FBF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				GO_PATH = "$(HOME)/go";
