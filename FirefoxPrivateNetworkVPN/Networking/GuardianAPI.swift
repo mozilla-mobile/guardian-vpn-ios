@@ -55,13 +55,13 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    static func removeDevice(with deviceKey: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    static func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Data, Error>) -> Void) {
         guard let encodedKey = deviceKey.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
             completion(Result { throw GuardianFailReason.emptyToken })
             return
         }
 
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .removeDevice(encodedKey), type: .DELETE)
+        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .removeDevice(encodedKey), type: .DELETE, httpHeaderParams: headers(with: token))
 
         NetworkLayer.fireURLRequest(with: urlRequest, completion: completion)
     }
