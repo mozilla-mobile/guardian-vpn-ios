@@ -152,6 +152,7 @@ class AccountManager: AccountManaging {
                 self.currentDevice = nil
                 completion(.failure(error))
             } else {
+                self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
                 completion(.success(()))
             }
         }
@@ -237,6 +238,7 @@ class AccountManager: AccountManaging {
         GuardianAPI.addDevice(with: token, body: body) { [unowned self] result in
             completion(result.map { device in
                 self.currentDevice = device
+                self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
                 return device
             })
         }
