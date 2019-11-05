@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class DeviceDataSourceAndDelegate: NSObject {
     private var devices: [Device]
     private var tableView: UITableView
+    var removeDeviceEvent = PublishSubject<IndexPath>()
+    private let disposeBag = DisposeBag()
 
     private var canAddDevice: Bool {
         return devices.count < 5
@@ -32,6 +36,20 @@ class DeviceDataSourceAndDelegate: NSObject {
 
         let nib = UINib.init(nibName: String(describing: DeviceManagementCell.self), bundle: Bundle.main)
         tableView.register(nib, forCellReuseIdentifier: String(describing: DeviceManagementCell.self))
+
+        self.removeDeviceEvent.subscribe { event in
+            if let indexPath = event.element {
+                tableView.cellForRow(at: indexPath)?.isUserInteractionEnabled = false
+                tableView.cellForRow(at: indexPath)?.isSelected = true
+                DependencyFactory.sharedFactory.accountManager.remove(device: self.devices[indexPath.row]) { _ in
+                    DispatchQueue.main.async {
+                        tableView.cellForRow(at: indexPath)?.isUserInteractionEnabled = true
+                        tableView.cellForRow(at: indexPath)?.isSelected = false
+                        tableView.reloadData()
+                    }
+                }
+            }
+        }.disposed(by: disposeBag)
     }
 }
 
@@ -56,7 +74,7 @@ extension DeviceDataSourceAndDelegate: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DeviceManagementCell.self), for: indexPath) as? DeviceManagementCell else {
             return UITableViewCell(frame: .zero)
         }
-        cell.setup(with: devices[indexPath.row])
+        cell.setup(with: devices[indexPath.row], indexPath: indexPath, event: removeDeviceEvent)
 
         return cell
     }
