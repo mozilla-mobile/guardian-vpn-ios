@@ -18,6 +18,9 @@ class AccountManager: AccountManaging {
     private(set) var user: User?
     private(set) var availableServers: [VPNCountry]?
     private(set) var heartbeatFailedEvent = PublishSubject<Void>()
+    private let tokenUserDefaultsKey = "token"
+    private let keyStore: KeyStore
+
     private(set) var token: String? {
         didSet {
             if let token = token {
@@ -36,8 +39,6 @@ class AccountManager: AccountManaging {
             }
         }
     }
-    private let tokenUserDefaultsKey = "token"
-    private let keyStore: KeyStore
 
     private init() {
         keyStore = KeyStore.sharedStore
