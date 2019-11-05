@@ -41,7 +41,7 @@ class DeviceDataSourceAndDelegate: NSObject {
             if let indexPath = event.element {
                 tableView.cellForRow(at: indexPath)?.isUserInteractionEnabled = false
                 tableView.cellForRow(at: indexPath)?.isSelected = true
-                DependencyFactory.sharedFactory.accountManager.remove(device: self.devices[indexPath.row]) { _ in
+                DependencyFactory.sharedFactory.accountManager.removeDevice(self.devices[indexPath.row]) { _ in
                     DispatchQueue.main.async {
                         tableView.cellForRow(at: indexPath)?.isUserInteractionEnabled = true
                         tableView.cellForRow(at: indexPath)?.isSelected = false
