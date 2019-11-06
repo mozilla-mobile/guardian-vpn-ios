@@ -8,15 +8,12 @@
 import UIKit
 
 class DeviceManagementViewController: UIViewController, Navigating {
-    static var navigableItem: NavigableItem = .devices
-
+    
     @IBOutlet weak var tableView: UITableView!
-
+    static var navigableItem: NavigableItem = .devices
     private var dataSource: DeviceDataSourceAndDelegate?
-    private var devices: [Device]?
 
-    init(devices: [Device]) {
-        self.devices = devices
+    init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
     }
 
