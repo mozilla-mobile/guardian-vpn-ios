@@ -49,14 +49,23 @@ class NavigationCoordinator: NavigationCoordinating {
                 let landingViewController = LandingViewController()
                 self?.appDelegate?.window?.rootViewController = landingViewController
                 self?.currentViewController = landingViewController
-
-                // To Home
+                
+                // To Home for the first time
             case (.loading, .home), (.landing, .home), (.login, .home):
-                guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
                 let tabBarController = GuardianTabBarController()
-                tabBarController.displayTab(user.canAddDevice ? .home : .devices)
+                tabBarController.displayTab(.home)
                 self?.appDelegate?.window?.rootViewController = tabBarController
                 self?.currentViewController = tabBarController
+                
+                guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
+                if !user.canAddDevice {
+                    self?.navigate(from: .home, to: .settings)
+                    self?.navigate(from: .settings, to: .devices)
+                }
+                
+                // To Home
+            case (.settings, .home), (.tab, .home):
+                (self?.currentViewController as? GuardianTabBarController)?.displayTab(.home)
 
                 // To Servers
             case (.home, .servers):
@@ -70,23 +79,18 @@ class NavigationCoordinator: NavigationCoordinating {
             case (.home, .settings), (.tab, .settings):
                 (self?.currentViewController as? GuardianTabBarController)?.displayTab(.settings)
 
-                // To Home
-            case (.settings, .home), (.tab, .home):
-                (self?.currentViewController as? GuardianTabBarController)?.displayTab(.home)
-
                 // To Login
             case (.landing, .login):
                 let loginViewController = LoginViewController()
                 self?.appDelegate?.window?.rootViewController = loginViewController
                 self?.currentViewController = loginViewController
-
+                
                 // To Devices
             case (.settings, .devices):
-                guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
-                let devicesViewController = DeviceManagementViewController(devices: user.deviceList)
+                let devicesViewController = DeviceManagementViewController()
                 let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(devicesViewController, animated: true)
-
+                 
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
                 return
