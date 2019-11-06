@@ -19,19 +19,19 @@ class DeviceManagementCell: UITableViewCell {
 
     func setup(with device: Device, indexPath: IndexPath, event: PublishSubject<IndexPath>) {
         nameLabel.text = device.name
+        isSelected = device.isBeingRemoved
+        isUserInteractionEnabled = !device.isBeingRemoved
+        deleteButton.isHidden = device.isCurrentDevice
 
         if device.isCurrentDevice {
             subtitleLabel.text = LocalizedString.devicesCurrentDevice.value
             subtitleLabel.textColor = UIColor.custom(.blue50)
-            deleteButton.isHidden = true
-            deleteButton.isEnabled = false
         } else {
             subtitleLabel.text = dateAddedString(from: device.createdAtDate)
             subtitleLabel.textColor = UIColor.custom(.grey40)
-            deleteButton.isHidden = false
-            deleteButton.isEnabled = true
 
             deleteButton.rx.tap.asControlEvent()
+                .throttle(.seconds(2), scheduler: MainScheduler.instance)
                 .subscribe { _ in
                     event.onNext(indexPath)
             }.disposed(by: disposeBag)
@@ -58,8 +58,5 @@ class DeviceManagementCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }
