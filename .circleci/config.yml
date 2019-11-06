@@ -10,7 +10,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - carthage-cache-v1-{{ .Branch }}-{{ checksum "Guardian/Cartfile.resolved" }}
+            - carthage-cache-v1-{{ .Branch }}-{{ checksum "Cartfile.resolved" }}
       - run: 
           name: Install SwiftLint
           command: |
@@ -20,7 +20,7 @@ jobs:
           name: Build Carthage dependencies
           command: ./bootstrap-if-needed
       - save_cache:
-          key: carthage-cache-v1-{{ .Branch }}-{{ checksum "Guardian/Cartfile.resolved" }}
+          key: carthage-cache-v1-{{ .Branch }}-{{ checksum "Cartfile.resolved" }}
           paths:
             - Carthage/
       - run: 
@@ -37,5 +37,5 @@ jobs:
             cd $PROJECT_ROOT/$DERIVED_DATA/Build/Products/Debug-iphonesimulator
             zip -r FirefoxPrivateNetworkVPN.zip Firefox\ Private\ Network\ VPN.app
       - store_artifacts:
-          path: Guardian/DerivedData/Build/Products/Debug-iphonesimulator/FirefoxPrivateNetworkVPN.zip
+          path: DerivedData/Build/Products/Debug-iphonesimulator/FirefoxPrivateNetworkVPN.zip
           destination: /BuildArchive/FirefoxPrivateNetworkVPN.zip
