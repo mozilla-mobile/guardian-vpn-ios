@@ -55,15 +55,11 @@ class AccountManager: AccountManaging {
         var error: Error?
 
         guard token != nil else {
-            self.token = nil
-            self.currentDevice = nil
             completion(.failure(GuardianFailReason.emptyToken))
             return
         }
 
         guard currentDevice != nil else {
-            self.token = nil
-            self.currentDevice = nil
             completion(.failure(GuardianFailReason.couldNotFetchDevice))
             return
         }
@@ -86,8 +82,6 @@ class AccountManager: AccountManaging {
 
         dispatchGroup.notify(queue: .main) {
             if let error = error {
-                self.token = nil
-                self.currentDevice = nil
                 completion(.failure(error))
             } else {
                 completion(.success(()))
@@ -99,8 +93,6 @@ class AccountManager: AccountManaging {
         verify(url: url) { result in
             switch result {
             case .failure(let error):
-                self.token = nil
-                self.currentDevice = nil
                 completion(.failure(error))
             case .success:
                 completion(.success(()))
@@ -129,8 +121,6 @@ class AccountManager: AccountManaging {
 
         dispatchGroup.notify(queue: .main) {
             if let error = error {
-                self.token = nil
-                self.currentDevice = nil
                 completion(.failure(error))
             } else {
                 self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
@@ -170,8 +160,6 @@ class AccountManager: AccountManaging {
 
     private func retrieveUser(completion: @escaping (Result<User, Error>) -> Void) {
         guard let token = token else {
-            self.token = nil
-            self.currentDevice = nil
             completion(Result.failure(GuardianFailReason.emptyToken))
             return
         }
