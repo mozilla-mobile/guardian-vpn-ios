@@ -25,6 +25,10 @@ struct User: Codable {
         }
     }
 
+    var canAddDevice: Bool {
+        return devices.count < 5
+    }
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
