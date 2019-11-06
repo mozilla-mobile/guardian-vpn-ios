@@ -52,8 +52,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 
             // To Home
             case (.loading, .home), (.landing, .home), (.login, .home):
+                guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
                 let tabBarController = GuardianTabBarController()
-                tabBarController.displayTab(.home)
+                tabBarController.displayTab(user.canAddDevice ? .home : .devices)
                 self?.appDelegate?.window?.rootViewController = tabBarController
                 self?.currentViewController = tabBarController
                 
