@@ -27,8 +27,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let devices = devices else { return }
-        dataSource = DeviceDataSourceAndDelegate(devices: devices, tableView: tableView)
+        dataSource = DeviceDataSourceAndDelegate(tableView: tableView)
         tableView.tableFooterView = UIView()
     }
 

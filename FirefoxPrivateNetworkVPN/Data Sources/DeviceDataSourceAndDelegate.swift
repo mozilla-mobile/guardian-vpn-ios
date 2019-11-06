@@ -10,21 +10,20 @@ import RxSwift
 import RxCocoa
 
 class DeviceDataSourceAndDelegate: NSObject {
-    private var devices: [Device]
     private var tableView: UITableView
     var removeDeviceEvent = PublishSubject<IndexPath>()
     private let disposeBag = DisposeBag()
+    let user = DependencyFactory.sharedFactory.accountManager.user!
 
-    private var canAddDevice: Bool {
-        return devices.count < 5
+    private var devices: [Device] {
+        return DependencyFactory.sharedFactory.accountManager.user?.deviceList ?? []
     }
 
     private var sectionHeight: CGFloat {
-        return canAddDevice ? 0 : DeviceLimitReachedView.height
+        return user.canAddDevice ? 0 : DeviceLimitReachedView.height
     }
 
-    init(devices: [Device], tableView: UITableView) {
-        self.devices = devices
+    init(tableView: UITableView) {
         self.tableView = tableView
         super.init()
 
@@ -39,12 +38,8 @@ class DeviceDataSourceAndDelegate: NSObject {
 
         self.removeDeviceEvent.subscribe { event in
             if let indexPath = event.element {
-                tableView.cellForRow(at: indexPath)?.isUserInteractionEnabled = false
-                tableView.cellForRow(at: indexPath)?.isSelected = true
                 DependencyFactory.sharedFactory.accountManager.removeDevice(self.devices[indexPath.row]) { _ in
                     DispatchQueue.main.async {
-                        tableView.cellForRow(at: indexPath)?.isUserInteractionEnabled = true
-                        tableView.cellForRow(at: indexPath)?.isSelected = false
                         tableView.reloadData()
                     }
                 }
@@ -56,11 +51,11 @@ class DeviceDataSourceAndDelegate: NSObject {
 // MARK: - UITableViewDelegate
 extension DeviceDataSourceAndDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return canAddDevice ? nil : tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
+        return user.canAddDevice ? nil : tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return canAddDevice ? 0 : sectionHeight
+        return user.canAddDevice ? 0 : sectionHeight
     }
 }
 
