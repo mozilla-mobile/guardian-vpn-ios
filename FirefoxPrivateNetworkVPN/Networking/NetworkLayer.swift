@@ -24,6 +24,22 @@ class NetworkLayer {
             }
         }
 
+    static func fire(urlRequest: URLRequest, completion: @escaping (Result<Void, Error>) -> Void) {
+        let defaultSession = URLSession(configuration: .default)
+        defaultSession.configuration.timeoutIntervalForRequest = 120
+
+        let dataTask = defaultSession.dataTask(with: urlRequest) { _, response, error in
+            if let error = error {
+                completion(.failure(error))
+            } else if let response = response as? HTTPURLResponse,
+                response.statusCode == 200 || response.statusCode == 201 {
+                completion(.success(()))
+            } else {
+                completion(.failure(GuardianFailReason.no200))
+            }
+        }
         dataTask.resume()
     }
 }
+
+extension Data: Error { }
