@@ -11,7 +11,7 @@ import RxCocoa
 
 class DeviceDataSourceAndDelegate: NSObject {
     private var tableView: UITableView
-    var removeDeviceEvent = PublishSubject<IndexPath>()
+    var removeDeviceEvent = PublishSubject<String>()
     private let disposeBag = DisposeBag()
     let user = DependencyFactory.sharedFactory.accountManager.user!
 
