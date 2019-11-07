@@ -15,51 +15,82 @@ class DeviceManagementCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
-    private let disposeBag = DisposeBag()
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
-    func setup(with device: Device, indexPath: IndexPath, event: PublishSubject<String>) {
-        nameLabel.text = device.name
-        isSelected = device.isBeingRemoved
-//        isUserInteractionEnabled = !device.isBeingRemoved
-//        deleteButton.isUserInteractionEnabled = device.isCurrentDevice ? false : !device.isBeingRemoved
-        deleteButton.isHidden = device.isCurrentDevice
+    private var disposeBag = DisposeBag()
+    private var deviceKey: String?
+    private var removeDeviceEvent: PublishSubject<String>?
 
-        if device.isCurrentDevice {
-            subtitleLabel.text = LocalizedString.devicesCurrentDevice.value
-            subtitleLabel.textColor = UIColor.custom(.blue50)
-        } else {
-            subtitleLabel.text = dateAddedString(from: device.createdAtDate)
-            subtitleLabel.textColor = UIColor.custom(.grey40)
-
-            deleteButton.rx.tap.asControlEvent()
-                .debounce(.seconds(2), scheduler: MainScheduler.instance)
-                .subscribe { _ in
-                    self.isUserInteractionEnabled = false
-                    self.deleteButton.isUserInteractionEnabled = false
-                    event.onNext(device.publicKey)
-            }.disposed(by: disposeBag)
-        }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        deviceKey = nil
+        removeDeviceEvent = nil
+        nameLabel.text = nil
     }
 
+    func setup(with device: Device, event: PublishSubject<String>) {
+        nameLabel.text = device.name
+        deviceKey = device.publicKey
+        removeDeviceEvent = event
+        
+        if device.isCurrentDevice {
+            subtitleLabel.text = LocalizedString.devicesCurrentDevice.value
+            applyCurrentDeviceStyle()
+        } else if device.isBeingRemoved {
+            subtitleLabel.text = dateAddedString(from: device.createdAtDate)
+            applyDisabledStyle()
+        } else {
+            subtitleLabel.text = dateAddedString(from: device.createdAtDate)
+            applyEnabledStyle()
+        }
+    }
+    
+    func applyCurrentDeviceStyle() {
+        isUserInteractionEnabled = true
+        iconImageView.tintColor = UIColor.custom(.grey50)
+        nameLabel.textColor = UIColor.custom(.grey50)
+        subtitleLabel.textColor = UIColor.custom(.blue50)
+        deleteButton.tintColor = UIColor.custom(.red50)
+        deleteButton.isHidden = true
+    }
+    
+    func applyDisabledStyle() {
+        isUserInteractionEnabled = false
+        iconImageView.tintColor = UIColor.custom(.grey20)
+        nameLabel.textColor = UIColor.custom(.grey20)
+        subtitleLabel.textColor = UIColor.custom(.grey20)
+        deleteButton.isHidden = true
+        deleteButton.isUserInteractionEnabled = false
+        activityIndicatorView.startAnimating()
+    }
+
+    func applyEnabledStyle() {
+        isUserInteractionEnabled = true
+        iconImageView.tintColor = UIColor.custom(.grey50)
+        nameLabel.textColor = UIColor.custom(.grey50)
+        subtitleLabel.textColor = UIColor.custom(.grey40)
+        deleteButton.tintColor = UIColor.custom(.red50)
+        deleteButton.isHidden = false
+        activityIndicatorView.stopAnimating()
+    }
+    
     private func dateAddedString(from date: Date) -> String? {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
         formatter.unitsStyle = .full
         formatter.maximumUnitCount = 1
-
-        if let dateString = formatter.string(from: date, to: Date()) {
-            return String(format: LocalizedString.devicesAddedDate.value, dateString)
-        } else {
+        
+        guard let dateString = formatter.string(from: date, to: Date()) else {
             return nil
         }
+        return String(format: LocalizedString.devicesAddedDate.value, dateString)
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    @IBAction func removeDevice() {
+        if let removeDeviceEvent = removeDeviceEvent, let deviceKey = deviceKey {
+            applyDisabledStyle()
+            removeDeviceEvent.onNext(deviceKey)
+        }
     }
 }
