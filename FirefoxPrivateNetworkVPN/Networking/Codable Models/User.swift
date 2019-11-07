@@ -25,8 +25,8 @@ struct User: Codable {
         }
     }
 
-    var canAddDevice: Bool {
-        return devices.count < maxDevices
+    var hasTooManyDevices: Bool {
+        return devices.count > maxDevices
     }
 
     init(from decoder: Decoder) throws {
