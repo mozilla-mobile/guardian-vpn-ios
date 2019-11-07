@@ -49,20 +49,20 @@ class NavigationCoordinator: NavigationCoordinating {
                 let landingViewController = LandingViewController()
                 self?.appDelegate?.window?.rootViewController = landingViewController
                 self?.currentViewController = landingViewController
-                
+
                 // To Home for the first time
             case (.loading, .home), (.landing, .home), (.login, .home):
                 let tabBarController = GuardianTabBarController()
                 tabBarController.displayTab(.home)
                 self?.appDelegate?.window?.rootViewController = tabBarController
                 self?.currentViewController = tabBarController
-                
+
                 guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
-                if !user.canAddDevice {
+                if user.hasTooManyDevices {
                     self?.navigate(from: .home, to: .settings)
                     self?.navigate(from: .settings, to: .devices)
                 }
-                
+
                 // To Home
             case (.settings, .home), (.tab, .home):
                 (self?.currentViewController as? GuardianTabBarController)?.displayTab(.home)
