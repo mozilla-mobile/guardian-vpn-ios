@@ -53,10 +53,10 @@
             <color key="backgroundColor" name="custom_grey5"/>
             <constraints>
                 <constraint firstItem="fpn-Et-fLv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7b7-60-Ius"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cff-mu-kKm" secondAttribute="bottom" constant="32" id="OMg-uy-Eaw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cff-mu-kKm" secondAttribute="bottom" priority="999" constant="32" id="OMg-uy-Eaw"/>
                 <constraint firstItem="fpn-Et-fLv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="SOi-xX-DH9"/>
                 <constraint firstItem="cff-mu-kKm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eGs-Ec-f2N"/>
-                <constraint firstItem="cff-mu-kKm" firstAttribute="top" secondItem="fpn-Et-fLv" secondAttribute="bottom" constant="32" id="hgj-7Y-eRT"/>
+                <constraint firstItem="cff-mu-kKm" firstAttribute="top" secondItem="fpn-Et-fLv" secondAttribute="bottom" priority="999" constant="32" id="hgj-7Y-eRT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fpn-Et-fLv" secondAttribute="trailing" id="twu-Up-SbF"/>
                 <constraint firstItem="cff-mu-kKm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="yAw-gP-b5l"/>
             </constraints>
