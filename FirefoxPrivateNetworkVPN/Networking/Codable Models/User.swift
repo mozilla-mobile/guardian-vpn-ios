@@ -46,6 +46,27 @@ struct User: Codable {
         deviceList = devices
     }
 
+    mutating func deviceIsBeingRemoved(with key: String) {
+        for (index, each) in deviceList.enumerated() where each.publicKey == key {
+            deviceList[index].isBeingRemoved = true
+            return
+        }
+    }
+
+    mutating func deviceFailedRemoval(with key: String) {
+        for (index, each) in deviceList.enumerated() where each.publicKey == key {
+            deviceList[index].isBeingRemoved = false
+            return
+        }
+    }
+
+    mutating func removeDevice(with key: String) {
+        for (index, each) in deviceList.enumerated() where each.publicKey == key {
+            deviceList.remove(at: index)
+            return
+        }
+    }
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
