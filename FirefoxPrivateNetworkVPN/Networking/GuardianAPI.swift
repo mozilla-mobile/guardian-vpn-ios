@@ -42,16 +42,33 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    static func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, Error>) -> Void) {
+    static func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, GuardianAPIError>) -> Void) {
         guard let data = try? JSONSerialization.data(withJSONObject: body) else {
-            completion(Result { throw GuardianFailReason.couldNotCreateBody })
+            completion(.failure(.couldNotCreateBody))
             return
         }
 
         let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token), body: data)
+        NetworkLayer.fire(urlRequest: urlRequest) { someR in
+            //some
+        }
+        NetworkLayer.fire(urlRequest: urlRequest) { result in
+//            completion(result.flatMap { $0.convert(to: Device.self) })
 
-        NetworkLayer.fireURLRequest(with: urlRequest) { result in
-            completion(result.flatMap { $0.convert(to: Device.self) })
+            switch result {
+            case .success(let data):
+                if let device = try? data.convert(to: Device.self).get() {
+                    completion(.success(device))
+                    return
+                }
+                if let dict = try? JSONDecoder().decode([String: String].self, from: data) {
+                    print("Add device error body: \(dict)")
+                }
+                completion(.failure(.addDeviceFailure(data)))
+            case .failure(let error):
+                print(error)
+                completion(.failure(.other(error)))
+            }
         }
     }
 
@@ -70,4 +87,11 @@ class GuardianAPI: NetworkRequesting {
         return ["Authorization": "Bearer \(token)",
                 "Content-Type": "application/json"]
     }
+}
+
+enum GuardianAPIError: Error {
+    case addDeviceFailure(Data?)
+    case couldNotCreateBody
+    case other(Error)
+    case errorWithData(Error, Data)
 }
