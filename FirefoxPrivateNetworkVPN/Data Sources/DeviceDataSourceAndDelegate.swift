@@ -13,16 +13,14 @@ class DeviceDataSourceAndDelegate: NSObject {
     private var tableView: UITableView
     var removeDeviceEvent = PublishSubject<String>()
     private let disposeBag = DisposeBag()
-    let user = DependencyFactory.sharedFactory.accountManager.user!
-
-    private var devices: [Device] {
-        return DependencyFactory.sharedFactory.accountManager.user?.deviceList ?? []
+    private var user: User? { return DependencyFactory.sharedFactory.accountManager.user }
+    private var devices: [Device] { return user?.deviceList ?? [] }
+    
+    private var headerHeight: CGFloat {
+        guard let user = user, user.hasTooManyDevices else { return 0 }
+        return DeviceLimitReachedView.height
     }
-
-    private var sectionHeight: CGFloat {
-        return user.canAddDevice ? 0 : DeviceLimitReachedView.height
-    }
-
+    
     init(tableView: UITableView) {
         self.tableView = tableView
         super.init()
@@ -37,8 +35,8 @@ class DeviceDataSourceAndDelegate: NSObject {
         tableView.register(nib, forCellReuseIdentifier: String(describing: DeviceManagementCell.self))
 
         self.removeDeviceEvent.subscribe { event in
-            if let indexPath = event.element {
-                DependencyFactory.sharedFactory.accountManager.removeDevice(self.devices[indexPath.row]) { _ in
+            if let deviceKey = event.element {
+                DependencyFactory.sharedFactory.accountManager.removeDevice(with: deviceKey) { _ in
                     DispatchQueue.main.async {
                         tableView.reloadData()
                     }
@@ -51,11 +49,12 @@ class DeviceDataSourceAndDelegate: NSObject {
 // MARK: - UITableViewDelegate
 extension DeviceDataSourceAndDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return user.canAddDevice ? nil : tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
+        guard let user = user, user.hasTooManyDevices else { return nil }
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return user.canAddDevice ? 0 : sectionHeight
+        return headerHeight
     }
 }
 
@@ -69,7 +68,7 @@ extension DeviceDataSourceAndDelegate: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DeviceManagementCell.self), for: indexPath) as? DeviceManagementCell else {
             return UITableViewCell(frame: .zero)
         }
-        cell.setup(with: devices[indexPath.row], indexPath: indexPath, event: removeDeviceEvent)
+        cell.setup(with: devices[indexPath.row], event: removeDeviceEvent)
 
         return cell
     }
