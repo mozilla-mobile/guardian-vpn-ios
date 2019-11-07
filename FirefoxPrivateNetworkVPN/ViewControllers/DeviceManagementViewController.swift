@@ -8,9 +8,9 @@
 import UIKit
 
 class DeviceManagementViewController: UIViewController, Navigating {
-    
-    @IBOutlet weak var tableView: UITableView!
     static var navigableItem: NavigableItem = .devices
+
+    @IBOutlet weak var tableView: UITableView!
     private var dataSource: DeviceDataSourceAndDelegate?
 
     init() {
@@ -23,7 +23,6 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         dataSource = DeviceDataSourceAndDelegate(tableView: tableView)
         tableView.tableFooterView = UIView()
     }
@@ -33,14 +32,19 @@ class DeviceManagementViewController: UIViewController, Navigating {
         setupNavigationBar()
     }
 
-    func setupNavigationBar() {
+    @objc func goBack() {
+        navigate(to: .settings)
+    }
+
+    private func setupNavigationBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
-        // TODO: Get max allowed devices from account.
         let countTitle = String(format: LocalizedString.devicesCount.value, "\(user.deviceList.count)", "\(user.maxDevices)")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: countTitle, style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey50)
         navigationItem.title = LocalizedString.devicesNavTitle.value
         navigationItem.titleView?.tintColor = UIColor.custom(.grey40)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_backChevron"), style: .plain, target: self, action: #selector(goBack))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
     }
 }
