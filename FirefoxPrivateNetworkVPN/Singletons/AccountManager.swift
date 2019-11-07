@@ -235,23 +235,20 @@ class AccountManager: AccountManaging {
         }
     }
 
-    func removeDevice(_ device: Device, completion: @escaping (Result<Void, Error>) -> Void) {
+    func removeDevice(with deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return
         }
-        GuardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [unowned self] result in
-            guard let devices = self.user?.deviceList else { return }
-            for (index, each) in devices.enumerated() where each == device {
-                switch result {
-                case .success:
-                    self.user?.deviceList.remove(at: index)
-                    completion(.success(()))
-                case .failure(let error):
-                    self.user?.deviceList[index].isBeingRemoved = false
-                    completion(.failure(error))
-                }
-                break
+        user?.deviceIsBeingRemoved(with: deviceKey)
+        GuardianAPI.removeDevice(with: token, deviceKey: deviceKey) { [unowned self] result in
+            switch result {
+            case .success:
+                self.user?.removeDevice(with: deviceKey)
+                completion(.success(()))
+            case .failure(let error):
+                self.user?.deviceFailedRemoval(with: deviceKey)
+                completion(.failure(error))
             }
         }
     }
