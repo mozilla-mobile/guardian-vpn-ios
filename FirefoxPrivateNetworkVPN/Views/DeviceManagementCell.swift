@@ -33,7 +33,7 @@ class DeviceManagementCell: UITableViewCell {
         nameLabel.text = device.name
         deviceKey = device.publicKey
         removeDeviceEvent = event
-        
+
         if device.isCurrentDevice {
             subtitleLabel.text = LocalizedString.devicesCurrentDevice.value
             applyCurrentDeviceStyle()
@@ -45,7 +45,7 @@ class DeviceManagementCell: UITableViewCell {
             applyEnabledStyle()
         }
     }
-    
+
     func applyCurrentDeviceStyle() {
         isUserInteractionEnabled = true
         iconImageView.tintColor = UIColor.custom(.grey50)
@@ -54,7 +54,7 @@ class DeviceManagementCell: UITableViewCell {
         deleteButton.tintColor = UIColor.custom(.red50)
         deleteButton.isHidden = true
     }
-    
+
     func applyDisabledStyle() {
         isUserInteractionEnabled = false
         iconImageView.tintColor = UIColor.custom(.grey20)
@@ -74,19 +74,19 @@ class DeviceManagementCell: UITableViewCell {
         deleteButton.isHidden = false
         activityIndicatorView.stopAnimating()
     }
-    
+
     private func dateAddedString(from date: Date) -> String? {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
         formatter.unitsStyle = .full
         formatter.maximumUnitCount = 1
-        
+
         guard let dateString = formatter.string(from: date, to: Date()) else {
             return nil
         }
         return String(format: LocalizedString.devicesAddedDate.value, dateString)
     }
-    
+
     @IBAction func removeDevice() {
         if let removeDeviceEvent = removeDeviceEvent, let deviceKey = deviceKey {
             applyDisabledStyle()

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Device: Codable, UserDefaulting {
-    
+
     static let userDefaultsKey = "currentDevice"
     let name: String
     let publicKey: String
@@ -17,7 +17,7 @@ struct Device: Codable, UserDefaulting {
     let createdAtDate: Date
     private let createdAtDateString: String
     var isBeingRemoved: Bool = false
-    
+
     var isCurrentDevice: Bool {
         return self == Device.fetchFromUserDefaults()
     }

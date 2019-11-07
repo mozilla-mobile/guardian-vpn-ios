@@ -15,12 +15,12 @@ class DeviceDataSourceAndDelegate: NSObject {
     private let disposeBag = DisposeBag()
     private var user: User? { return DependencyFactory.sharedFactory.accountManager.user }
     private var devices: [Device] { return user?.deviceList ?? [] }
-    
+
     private var headerHeight: CGFloat {
         guard let user = user, user.hasTooManyDevices else { return 0 }
         return DeviceLimitReachedView.height
     }
-    
+
     init(tableView: UITableView) {
         self.tableView = tableView
         super.init()
@@ -52,7 +52,7 @@ extension DeviceDataSourceAndDelegate: UITableViewDelegate {
         guard let user = user, user.hasTooManyDevices else { return nil }
         return tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DeviceLimitReachedView.self))
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return headerHeight
     }
