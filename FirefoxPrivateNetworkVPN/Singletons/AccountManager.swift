@@ -205,11 +205,15 @@ class AccountManager: AccountManaging {
                                    "pubkey": devicePublicKey]
 
         GuardianAPI.addDevice(with: token, body: body) { [unowned self] result in
-            completion(result.map { device in
+            switch result {
+            case .success(let device):
                 self.currentDevice = device
                 self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
-                return device
-            })
+                completion(.success(device))
+            case .failure(let error):
+                print(error) //TODO: Map to GuardianFailReasonError
+                completion(.failure(GuardianFailReason.no200))
+            }
         }
     }
 
