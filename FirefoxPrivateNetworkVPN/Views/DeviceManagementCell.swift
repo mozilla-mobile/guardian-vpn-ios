@@ -17,10 +17,11 @@ class DeviceManagementCell: UITableViewCell {
     @IBOutlet weak var deleteButton: UIButton!
     private let disposeBag = DisposeBag()
 
-    func setup(with device: Device, indexPath: IndexPath, event: PublishSubject<IndexPath>) {
+    func setup(with device: Device, indexPath: IndexPath, event: PublishSubject<String>) {
         nameLabel.text = device.name
         isSelected = device.isBeingRemoved
-        isUserInteractionEnabled = !device.isBeingRemoved
+//        isUserInteractionEnabled = !device.isBeingRemoved
+//        deleteButton.isUserInteractionEnabled = device.isCurrentDevice ? false : !device.isBeingRemoved
         deleteButton.isHidden = device.isCurrentDevice
 
         if device.isCurrentDevice {
@@ -31,9 +32,11 @@ class DeviceManagementCell: UITableViewCell {
             subtitleLabel.textColor = UIColor.custom(.grey40)
 
             deleteButton.rx.tap.asControlEvent()
-                .throttle(.seconds(2), scheduler: MainScheduler.instance)
+                .debounce(.seconds(2), scheduler: MainScheduler.instance)
                 .subscribe { _ in
-                    event.onNext(indexPath)
+                    self.isUserInteractionEnabled = false
+                    self.deleteButton.isUserInteractionEnabled = false
+                    event.onNext(device.publicKey)
             }.disposed(by: disposeBag)
         }
     }
