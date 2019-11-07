@@ -78,19 +78,22 @@ class NavigationCoordinator: NavigationCoordinating {
                 // To Settings
             case (.home, .settings), (.tab, .settings):
                 (self?.currentViewController as? GuardianTabBarController)?.displayTab(.settings)
+            case (.devices, .settings):
+                let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
+                navController?.popViewController(animated: true)
 
                 // To Login
             case (.landing, .login):
                 let loginViewController = LoginViewController()
                 self?.appDelegate?.window?.rootViewController = loginViewController
                 self?.currentViewController = loginViewController
-                
+
                 // To Devices
             case (.settings, .devices):
                 let devicesViewController = DeviceManagementViewController()
                 let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(devicesViewController, animated: true)
-                 
+
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
                 return
