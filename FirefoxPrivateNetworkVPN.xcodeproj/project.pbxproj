@@ -1372,7 +1372,6 @@
 		};
 		6FDEF7DE21846BC100D8FBF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				GO_PATH = "$(HOME)/go";
@@ -1383,7 +1382,6 @@
 		};
 		6FDEF7DF21846BC100D8FBF6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				GO_PATH = "$(HOME)/go";
@@ -1394,6 +1392,7 @@
 		};
 		6FF4AC24211EC472002C96EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1459,6 +1458,7 @@
 		};
 		6FF4AC25211EC472002C96EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;

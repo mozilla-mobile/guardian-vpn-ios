@@ -1,0 +1,41 @@
+jobs:
+  build:
+    macos:
+      xcode: "11.1.0"
+    environment:
+      GOLANG_INSTALLER_NAME: go1.13.3.darwin-amd64.tar.gz
+      PROJECT_ROOT: /Users/distiller/project
+      DERIVED_DATA: DerivedData/
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - carthage-cache-v1-{{ .Branch }}-{{ checksum "Cartfile.resolved" }}
+      - run: 
+          name: Install SwiftLint
+          command: |
+            echo "HOMEBREW_NO_AUTO_UPDATE=1" >> $BASH_ENV
+            brew install swiftlint
+      - run:
+          name: Build Carthage dependencies
+          command: ./bootstrap-if-needed
+      - save_cache:
+          key: carthage-cache-v1-{{ .Branch }}-{{ checksum "Cartfile.resolved" }}
+          paths:
+            - Carthage/
+      - run: 
+          name: Download and update GoLang, then compile the app
+          command: |
+            curl -O https://dl.google.com/go/$GOLANG_INSTALLER_NAME
+            tar -xzf $GOLANG_INSTALLER_NAME
+            export PATH="$PROJECT_ROOT/go/bin:$PATH"
+            git submodule update --init --remote --recursive
+            xcodebuild clean build -scheme FirefoxPrivateNetworkVPN -destination 'platform=iOS Simulator,name=iPhone 8,OS=latest' -derivedDataPath "$PROJECT_ROOT/$DERIVED_DATA"
+      - run:
+          name: Compress .app file for artifact storage
+          command: |
+            cd $PROJECT_ROOT/$DERIVED_DATA/Build/Products/Debug-iphonesimulator
+            zip -r FirefoxPrivateNetworkVPN.zip Firefox\ Private\ Network\ VPN.app
+      - store_artifacts:
+          path: DerivedData/Build/Products/Debug-iphonesimulator/FirefoxPrivateNetworkVPN.zip
+          destination: /BuildArchive/FirefoxPrivateNetworkVPN.zip
