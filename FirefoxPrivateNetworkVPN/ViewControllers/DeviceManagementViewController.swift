@@ -11,12 +11,9 @@ class DeviceManagementViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .devices
 
     @IBOutlet weak var tableView: UITableView!
-
     private var dataSource: DeviceDataSourceAndDelegate?
-    private var devices: [Device]?
 
-    init(devices: [Device]) {
-        self.devices = devices
+    init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
     }
 
@@ -26,9 +23,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        guard let devices = devices else { return }
-        dataSource = DeviceDataSourceAndDelegate(devices: devices, tableView: tableView)
+        dataSource = DeviceDataSourceAndDelegate(tableView: tableView)
         tableView.tableFooterView = UIView()
     }
 
@@ -37,15 +32,19 @@ class DeviceManagementViewController: UIViewController, Navigating {
         setupNavigationBar()
     }
 
-    func setupNavigationBar() {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        let count = devices != nil ? devices!.count : 0
+    @objc func goBack() {
+        navigate(to: .settings)
+    }
 
-        // TODO: Get max allowed devices from account.
-        let countTitle = String(format: LocalizedString.devicesCount.value, "\(count)", "5")
+    private func setupNavigationBar() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
+        let countTitle = String(format: LocalizedString.devicesCount.value, "\(user.deviceList.count)", "\(user.maxDevices)")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: countTitle, style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey50)
         navigationItem.title = LocalizedString.devicesNavTitle.value
         navigationItem.titleView?.tintColor = UIColor.custom(.grey40)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_backChevron"), style: .plain, target: self, action: #selector(goBack))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
     }
 }

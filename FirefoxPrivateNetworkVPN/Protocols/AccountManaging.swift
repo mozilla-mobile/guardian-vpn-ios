@@ -22,4 +22,5 @@ protocol AccountManaging {
     func finishSetupFromVerify(completion: @escaping (Result<Void, Error>) -> Void)
     func startHeartbeat()
     func countryCodeForCity(_ city: String) -> String?
+    func removeDevice(with deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void)
 }

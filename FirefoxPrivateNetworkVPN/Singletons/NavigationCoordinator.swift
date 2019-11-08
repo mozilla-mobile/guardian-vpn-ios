@@ -56,7 +56,18 @@ class NavigationCoordinator: NavigationCoordinating {
                 tabBarController.displayTab(.home)
                 self?.appDelegate?.window?.rootViewController = tabBarController
                 self?.currentViewController = tabBarController
-                
+
+                guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
+                if user.hasTooManyDevices {
+                    self?.navigate(from: .home, to: .settings)
+                    self?.navigate(from: .settings, to: .devices)
+                    disableHomeTab()
+                }
+
+                // To Home
+            case (.settings, .home), (.tab, .home):
+                (self?.currentViewController as? GuardianTabBarController)?.displayTab(.home)
+
             // To Servers
             case (.home, .servers):
                 let serversViewController = ServersViewController()
@@ -85,8 +96,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             // To Devices
             case (.settings, .devices):
-                guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
-                let devicesViewController = DeviceManagementViewController(devices: user.devices)
+                let devicesViewController = DeviceManagementViewController()
                 let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(devicesViewController, animated: true)
 
@@ -101,11 +111,15 @@ class NavigationCoordinator: NavigationCoordinating {
                 let aboutViewController = AboutViewController()
                 let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
-
+                 
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
                 return
             }
         }
+    }
+    
+    func disableHomeTab() {
+//        tabBarController.tabBar.items?[0].isEnabled = false
     }
 }
