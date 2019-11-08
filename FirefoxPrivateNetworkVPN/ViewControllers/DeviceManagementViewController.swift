@@ -41,7 +41,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
         guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
         let countTitle = String(format: LocalizedString.devicesCount.value, "\(user.deviceList.count)", "\(user.maxDevices)")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: countTitle, style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey40)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey50)
         navigationItem.title = LocalizedString.devicesNavTitle.value
         navigationItem.titleView?.tintColor = UIColor.custom(.grey40)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_backChevron"), style: .plain, target: self, action: #selector(goBack))

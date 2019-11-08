@@ -39,8 +39,8 @@ enum SettingsItem {
 
 class SettingsDataSourceAndDelegate: NSObject {
     private let settings: [SettingsItem] = [.device,
-                                    .help,
-                                    .about]
+                                            .help,
+                                            .about]
     private weak var tableView: UITableView?
     private let headerName = String(describing: AccountInformationHeader.self)
     private let cellName = String(describing: AccountInformationCell.self)
