@@ -28,6 +28,11 @@ struct User: Codable {
     var hasTooManyDevices: Bool {
         return devices.count >= maxDevices
     }
+    
+    var deviceWaitingToBeAdded: Device? {
+        guard let currentDevice = Device.fetchFromUserDefaults() else { return nil }
+        return devices.contains(currentDevice) ? nil : currentDevice
+    }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
