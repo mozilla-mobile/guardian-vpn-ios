@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +14,9 @@
         </array>
         <array key="Metropolis-Regular.otf">
             <string>Metropolis-Regular</string>
+        </array>
+        <array key="Metropolis-SemiBold.otf">
+            <string>Metropolis-SemiBold</string>
         </array>
     </customFonts>
     <objects>
@@ -67,12 +70,12 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-2e-PN9">
-                    <rect key="frame" x="32" y="700" width="350" height="40"/>
+                    <rect key="frame" x="32" y="750" width="350" height="40"/>
                     <color key="backgroundColor" name="custom_blue50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="jST-kX-YVJ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                     <state key="normal" title="Lorum Ipsum">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -86,7 +89,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsj-jW-6dB">
-                    <rect key="frame" x="32" y="764" width="350" height="40"/>
+                    <rect key="frame" x="32" y="806" width="350" height="40"/>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                     <state key="normal" title="Sit amet">
                         <color key="titleColor" name="custom_blue50"/>
@@ -105,7 +108,7 @@
             <constraints>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0ce-vF-XyJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sBV-6t-Eg4" secondAttribute="trailing" id="2F6-EW-b1R"/>
-                <constraint firstItem="Xsj-jW-6dB" firstAttribute="top" secondItem="E5n-2e-PN9" secondAttribute="bottom" constant="24" id="9A0-1e-dCx"/>
+                <constraint firstItem="Xsj-jW-6dB" firstAttribute="top" secondItem="E5n-2e-PN9" secondAttribute="bottom" constant="16" id="9A0-1e-dCx"/>
                 <constraint firstItem="E5n-2e-PN9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="ERA-n3-2Vc"/>
                 <constraint firstItem="Xsj-jW-6dB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qha-e9-7kA"/>
                 <constraint firstItem="Xsj-jW-6dB" firstAttribute="height" secondItem="E5n-2e-PN9" secondAttribute="height" id="Rk0-HP-non"/>
@@ -114,7 +117,7 @@
                 <constraint firstItem="E5n-2e-PN9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bLa-bL-nnR"/>
                 <constraint firstItem="Xsj-jW-6dB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kfV-OA-6iN"/>
                 <constraint firstItem="E5n-2e-PN9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="udU-A4-TFc"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Xsj-jW-6dB" secondAttribute="bottom" constant="58" id="vSE-Jk-oZf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Xsj-jW-6dB" secondAttribute="bottom" constant="16" id="vSE-Jk-oZf"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-50" id="wgH-oM-zTo"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -127,13 +130,13 @@
             <color red="0.0" green="0.37647058823529411" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="custom_grey40">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.42745098039215684" green="0.42745098039215684" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="custom_grey5">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="custom_grey50">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.23921568627450981" green="0.23921568627450981" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

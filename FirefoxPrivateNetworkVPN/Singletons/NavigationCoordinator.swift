@@ -63,7 +63,7 @@ class NavigationCoordinator: NavigationCoordinating {
                     self?.navigate(from: .settings, to: .devices)
                     self?.disableHomeTab()
                 }
-                
+
             // To Home
             case (.settings, .home), (.tab, .home):
                 (self?.currentViewController as? GuardianTabBarController)?.displayTab(.home)

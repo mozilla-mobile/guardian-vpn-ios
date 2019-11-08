@@ -21,5 +21,6 @@ class CityVPNCell: UITableViewCell {
     func setup(city: VPNCity) {
         cityLabel.text = city.name
         radioImageView.image = city.isCurrentCity ? UIImage(named: "icon_radioOn") : UIImage(named: "icon_radioOff")
+        radioImageView.tintColor = city.isCurrentCity ? UIColor.custom(.blue50) : UIColor.custom(.grey40)
     }
 }
