@@ -51,7 +51,7 @@ class NetworkLayer {
             if let error = error {
                 errorHandler(.failure(error))
             } else if let response = response as? HTTPURLResponse,
-                response.statusCode == 200 || response.statusCode == 201 {
+                response.statusCode == 204 || response.statusCode == 200 || response.statusCode == 201 {
                 errorHandler(.success(()))
             } else {
                 errorHandler(.failure(GuardianFailReason.no200))
