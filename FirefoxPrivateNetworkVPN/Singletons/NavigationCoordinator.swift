@@ -49,7 +49,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 let landingViewController = LandingViewController()
                 self?.appDelegate?.window?.rootViewController = landingViewController
                 self?.currentViewController = landingViewController
-                
+
             // To Home
             case (.loading, .home), (.landing, .home), (.login, .home):
                 let tabBarController = GuardianTabBarController()
@@ -61,7 +61,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 if user.hasTooManyDevices {
                     self?.navigate(from: .home, to: .settings)
                     self?.navigate(from: .settings, to: .devices)
-                    disableHomeTab()
+                    self?.homeTab(isEnabled: false)
                 }
 
                 // To Home
@@ -75,7 +75,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 navController.navigationBar.barTintColor = UIColor.custom(.grey5)
                 navController.navigationBar.tintColor = UIColor.custom(.grey50)
                 self?.currentViewController?.present(navController, animated: true, completion: nil)
-                
+
             // To Settings
             case (.home, .settings), (.tab, .settings):
                 (self?.currentViewController as? GuardianTabBarController)?.displayTab(.settings)
@@ -83,10 +83,6 @@ class NavigationCoordinator: NavigationCoordinating {
             case (.devices, .settings), (.about, .settings), (.help, .settings):
                 let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.popViewController(animated: true)
-
-            // To Home
-            case (.settings, .home), (.tab, .home):
-                (self?.currentViewController as? GuardianTabBarController)?.displayTab(.home)
 
             // To Login
             case (.landing, .login):
@@ -111,15 +107,15 @@ class NavigationCoordinator: NavigationCoordinating {
                 let aboutViewController = AboutViewController()
                 let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
-                 
+
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
                 return
             }
         }
     }
-    
-    func disableHomeTab() {
-//        tabBarController.tabBar.items?[0].isEnabled = false
+
+    func homeTab(isEnabled: Bool) {
+        (self.currentViewController as? GuardianTabBarController)?.tabBar.items?[0].isEnabled = isEnabled
     }
 }
