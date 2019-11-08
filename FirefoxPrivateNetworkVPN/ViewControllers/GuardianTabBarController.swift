@@ -40,7 +40,7 @@ class GuardianTabBarController: UITabBarController, Navigating {
 
     private func styleViews() {
         tabBar.tintColor = UIColor.custom(.blue50)
-        tabBar.unselectedItemTintColor = UIColor.custom(.grey30)
+        tabBar.unselectedItemTintColor = UIColor.custom(.grey40)
         tabBar.isTranslucent = true
     }
 }
