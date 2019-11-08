@@ -61,9 +61,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 if user.hasTooManyDevices {
                     self?.navigate(from: .home, to: .settings)
                     self?.navigate(from: .settings, to: .devices)
-//                    if let tabBarController = self?.currentViewController as? GuardianTabBarController {
-//                        tabBarController.tabBar.items?[0].isEnabled = false
-//                    }
+                    disableHomeTab()
                 }
 
                 // To Home
@@ -119,5 +117,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 return
             }
         }
+    }
+    
+    func disableHomeTab() {
+//        tabBarController.tabBar.items?[0].isEnabled = false
     }
 }
