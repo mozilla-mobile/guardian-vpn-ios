@@ -50,3 +50,16 @@
 "devicesCount" = "%1$@ of %2$@";
 "devicesCurrentDevice" = "Current device";
 "devicesAddedDate" = "Added %@ ago";
+
+// MARK: - Get Help
+"helpTitle" = "Get help";
+"helpContactUs" = "Contact us";
+"helpSupport" = "Help & Support";
+
+// MARK: - About
+"aboutTitle" = "About";
+"aboutTerms" = "Terms of Service";
+"aboutPrivacy" = "Privacy Policy";
+"aboutAppName" = "Firefox Private Network";
+"aboutDescription" = "A fast, secure and trusted virtual private network. Built for people not profits.";
+"aboutReleaseVersion" = "Release version";
