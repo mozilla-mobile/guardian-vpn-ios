@@ -53,6 +53,7 @@ class DeviceManagementCell: UITableViewCell {
         subtitleLabel.textColor = UIColor.custom(.blue50)
         deleteButton.tintColor = UIColor.custom(.red50)
         deleteButton.isHidden = true
+        activityIndicatorView.stopAnimating()
     }
 
     func applyDisabledStyle() {
