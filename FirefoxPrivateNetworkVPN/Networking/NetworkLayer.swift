@@ -37,7 +37,7 @@ class NetworkLayer {
                 response.statusCode == 200 || response.statusCode == 201 {
                 dataHandler(.success(data))
             } else {
-                dataHandler(.failure(.other(GuardianFailReason.no200)))
+                dataHandler(.failure(.errorWithData(GuardianFailReason.no200, data)))
             }
         }
         dataTask.resume()

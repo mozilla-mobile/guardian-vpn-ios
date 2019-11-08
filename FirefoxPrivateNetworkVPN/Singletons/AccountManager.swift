@@ -191,7 +191,7 @@ class AccountManager: AccountManaging {
         }
     }
 
-    private func addDevice(completion: @escaping (Result<Device, Error>) -> Void) {
+    func addDevice(completion: @escaping (Result<Device, Error>) -> Void) {
         guard let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return
@@ -211,7 +211,12 @@ class AccountManager: AccountManaging {
                 self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
                 completion(.success(device))
             case .failure(let error):
-                print(error) //TODO: Map to GuardianFailReasonError
+                if case .errorWithData(let errorWithData) = error, let data = errorWithData.1 {
+                    if let errorJson = try? JSONSerialization.jsonObject(with: data, options: []) {
+                        print(errorJson) //TODO: Map to GuardianFailReasonError
+                    }
+                    completion(.failure(errorWithData.0))
+                }
                 completion(.failure(GuardianFailReason.no200))
             }
         }

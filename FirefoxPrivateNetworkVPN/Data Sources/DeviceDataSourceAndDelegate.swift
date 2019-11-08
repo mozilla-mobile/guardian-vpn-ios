@@ -13,7 +13,8 @@ class DeviceDataSourceAndDelegate: NSObject {
     private var tableView: UITableView
     var removeDeviceEvent = PublishSubject<String>()
     private let disposeBag = DisposeBag()
-    private var user: User? { return DependencyFactory.sharedFactory.accountManager.user }
+    private var accountManager: AccountManaging { return DependencyFactory.sharedFactory.accountManager }
+    private var user: User? { return accountManager.user }
     private var devices: [Device] { return user?.deviceList ?? [] }
 
     private var headerHeight: CGFloat {
@@ -27,21 +28,31 @@ class DeviceDataSourceAndDelegate: NSObject {
 
         tableView.dataSource = self
         tableView.delegate = self
-
+        
         let headerNib = UINib.init(nibName: String(describing: DeviceLimitReachedView.self), bundle: Bundle.main)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: String(describing: DeviceLimitReachedView.self))
-
+        
         let nib = UINib.init(nibName: String(describing: DeviceManagementCell.self), bundle: Bundle.main)
         tableView.register(nib, forCellReuseIdentifier: String(describing: DeviceManagementCell.self))
-
-        self.removeDeviceEvent.subscribe { event in
-            if let deviceKey = event.element {
-                DependencyFactory.sharedFactory.accountManager.removeDevice(with: deviceKey) { _ in
-                    DispatchQueue.main.async {
+        
+        removeDeviceEvent
+            .observeOn(MainScheduler.instance)
+            .subscribe { [weak self] event in
+                guard let self = self else { return }
+                guard let deviceKey = event.element else { return }
+                
+                self.accountManager.removeDevice(with: deviceKey) { result in
+                    guard case .success = result, self.user?.deviceWaitingToBeAdded != nil else {
+                        tableView.reloadData()
+                        return
+                    }
+                    self.accountManager.addDevice { addDeviceResult in
+                        if case .success = result {
+                            DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                        }
                         tableView.reloadData()
                     }
                 }
-            }
         }.disposed(by: disposeBag)
     }
 }
