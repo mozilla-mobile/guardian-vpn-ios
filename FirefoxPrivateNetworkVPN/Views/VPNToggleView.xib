@@ -19,6 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
+                <outlet property="containingView" destination="UwE-Bk-tlK" id="bgE-6X-79I"/>
                 <outlet property="globeImageView" destination="MYo-vc-qhs" id="nCZ-ly-CL2"/>
                 <outlet property="subtitleLabel" destination="2xu-al-pMZ" id="Va5-yw-5W8"/>
                 <outlet property="titleLabel" destination="CVT-rn-kQN" id="DGC-lR-th3"/>
@@ -69,7 +70,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HCC-4h-gbe"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UwE-Bk-tlK" secondAttribute="trailing" id="dG3-Rc-Qeg"/>
@@ -90,6 +91,9 @@
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                     <real key="value" value="2"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="8"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="35.200000000000003" y="-137.6311844077961"/>
