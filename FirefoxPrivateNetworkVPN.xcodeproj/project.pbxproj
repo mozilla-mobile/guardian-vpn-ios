@@ -861,6 +861,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F5D0C25218352EF000F85AD /* Build configuration list for PBXNativeTarget "WireGuardTunnel" */;
 			buildPhases = (
+				52B551C42376751E005A2FE3 /* Check WireGuard submodule commit */,
 				5F45417B21C0906F00994C13 /* Swiftlint */,
 				6F61F1EC21BA4D4700483816 /* Extract wireguard-go Version */,
 				6F5D0C16218352EF000F85AD /* Sources */,
@@ -1082,6 +1083,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		52B551C42376751E005A2FE3 /* Check WireGuard submodule commit */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Check WireGuard submodule commit";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "pushd \"$SRCROOT\" > /dev/null\nDIFF=`git diff WireGuard | wc -c`\nif [ $DIFF -ne 0 ]; then\n    echo \"WireGuard submodule commit out of sync with git commit.\"\n    popd > /dev/null\n    exit 1\nfi\npopd > /dev/null\n";
+		};
 		5F45417A21C0902400994C13 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
