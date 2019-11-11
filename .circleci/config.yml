@@ -29,8 +29,8 @@ jobs:
             curl -O https://dl.google.com/go/$GOLANG_INSTALLER_NAME
             tar -xzf $GOLANG_INSTALLER_NAME
             export PATH="$PROJECT_ROOT/go/bin:$PATH"
-            git submodule update --init --remote --recursive
-            xcodebuild clean build -scheme FirefoxPrivateNetworkVPN -destination 'platform=iOS Simulator,name=iPhone 8,OS=latest' -derivedDataPath "$PROJECT_ROOT/$DERIVED_DATA"
+            git submodule update --init --recursive
+            xcodebuild clean build -scheme FirefoxPrivateNetworkVPN -destination 'generic/platform=iOS Simulator' -sdk iphonesimulator13.1 -derivedDataPath "$PROJECT_ROOT/$DERIVED_DATA"
       - run:
           name: Compress .app file for artifact storage
           command: |
