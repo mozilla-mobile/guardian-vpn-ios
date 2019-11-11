@@ -71,7 +71,7 @@ class GuardianAPI: NetworkRequesting {
 
     static func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let encodedKey = deviceKey.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            completion(Result { throw GuardianFailReason.emptyToken })
+            completion(.failure(GuardianFailReason.emptyToken))
             return
         }
 
