@@ -8,6 +8,7 @@
 // TODO: Add back heartbeat.
 
 import UIKit
+import os.log
 
 enum NavigableItem {
     case about
@@ -42,6 +43,7 @@ class NavigationCoordinator: NavigationCoordinating {
     private init() { }
 
     func navigate(from origin: NavigableItem, to destination: NavigableItem, context: [String: Any?]?) {
+        OSLog.logUI(.info, "Navigating from %@ to %@.", args: "\(origin)", "\(destination)")
         DispatchQueue.main.async { [weak self] in
             switch (origin, destination) {
             // To Landing
