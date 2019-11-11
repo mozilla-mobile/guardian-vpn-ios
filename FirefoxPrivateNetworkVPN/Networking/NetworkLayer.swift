@@ -12,57 +12,143 @@
 import Foundation
 
 class NetworkLayer {
-    static func fireURLRequest(with urlRequest: URLRequest, completion: @escaping (Result<Data, Error>) -> Void) {
+
+    static func fire(urlRequest: URLRequest, completion: @escaping (Result<Data?, GuardianAPIError>) -> Void) {
         let defaultSession = URLSession(configuration: .default)
         defaultSession.configuration.timeoutIntervalForRequest = 120
 
         let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-            } else if let data = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200 || response.statusCode == 201 {
+            if let response = response as? HTTPURLResponse, 200 ... 210 ~= response.statusCode {
                 completion(.success(data))
+            } else if error != nil, let data = data {
+                let errorResponse = try? data.convert(to: ErrorResponse.self).get()
+                let guardianAPIError = errorResponse?.guardianError ?? .unknownServer
+                completion(.failure(guardianAPIError))
             } else {
-                completion(.failure(GuardianFailReason.no200))
+                completion(.failure(.unknownServer))
             }
         }
         dataTask.resume()
     }
 
-    static func fire(urlRequest: URLRequest, dataHandler: @escaping (Result<Data, GuardianAPIError>) -> Void) {
-        let defaultSession = URLSession(configuration: .default)
-        defaultSession.configuration.timeoutIntervalForRequest = 120
+//    static func fireURLRequest(with urlRequest: URLRequest, completion: @escaping (Result<Data, Error>) -> Void) {
+//        let defaultSession = URLSession(configuration: .default)
+//        defaultSession.configuration.timeoutIntervalForRequest = 120
+//
+//        let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, error in
+//            if let error = error {
+//                completion(.failure(error))
+//            } else if let data = data,
+//                let response = response as? HTTPURLResponse,
+//                response.statusCode == 200 || response.statusCode == 201 {
+//                completion(.success(data))
+//            } else {
+//                completion(.failure(GuardianFailReason.no200))
+//            }
+//        }
+//        dataTask.resume()
+//    }
+//
+//    static func fire(urlRequest: URLRequest, dataHandler: @escaping (Result<Data, GuardianAPIError>) -> Void) {
+//        let defaultSession = URLSession(configuration: .default)
+//        defaultSession.configuration.timeoutIntervalForRequest = 120
+//
+//        let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, error in
+//            if let error = error {
+//                dataHandler(.failure(GuardianAPIError.errorWithData(error, data)))
+//            } else if let data = data, let response = response as? HTTPURLResponse,
+//                response.statusCode == 200 || response.statusCode == 201 {
+//                dataHandler(.success(data))
+//            } else {
+//                dataHandler(.failure(.other(GuardianFailReason.no200)))
+//            }
+//        }
+//        dataTask.resume()
+//    }
+//
+//    static func fire(urlRequest: URLRequest, errorHandler: @escaping (Result<Void, Error>) -> Void) {
+//        let defaultSession = URLSession(configuration: .default)
+//        defaultSession.configuration.timeoutIntervalForRequest = 120
+//
+//        let dataTask = defaultSession.dataTask(with: urlRequest) { _, response, error in
+//            if let error = error {
+//                errorHandler(.failure(error))
+//            } else if let response = response as? HTTPURLResponse,
+//                response.statusCode == 204 || response.statusCode == 200 || response.statusCode == 201 {
+//                errorHandler(.success(()))
+//            } else {
+//                errorHandler(.failure(GuardianFailReason.no200))
+//            }
+//        }
+//        dataTask.resume()
+//    }
+}
 
-        let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, error in
-            if let error = error {
-                dataHandler(.failure(GuardianAPIError.errorWithData(error, data)))
-            } else if let data = data, let response = response as? HTTPURLResponse,
-                response.statusCode == 200 || response.statusCode == 201 {
-                dataHandler(.success(data))
-            } else {
-                dataHandler(.failure(.other(GuardianFailReason.no200)))
-            }
+//extension Data: Error { }
+
+enum GuardianAPIError: Int, Error {
+    // Add Device
+    case missingPubKey = 100
+    case missingName = 101
+    case invalidPubKey = 102
+    case pubKeyAlreadyInUse = 103
+    case maxDevicesReached = 104
+    // Remove Device
+    case pubKeyNotFound = 105
+    // Authorization
+    case tokenInvalid = 120
+    case userNotFound = 121
+    case deviceNotFound = 122
+    case inactiveSubscription = 123
+    // Authentication
+    case tokenNotFound = 124
+    case tokenExpired = 125
+    case tokenNotVerified = 126
+
+    case unknownClient = 400
+    case unknownServer = 500
+
+    var description: String {
+        switch self {
+        case .missingPubKey:
+            return "Missing key argument"
+        case .missingName:
+            return "Missing name argument"
+        case .invalidPubKey:
+            return "Not a valid WireGuard key"
+        case .pubKeyAlreadyInUse:
+            return "WireGuard key already used by other account"
+        case .maxDevicesReached:
+            return "The account has already reached the maximum allowed devices"
+        case .pubKeyNotFound:
+            return "A device with that key does not exist"
+        case .tokenInvalid:
+            return "Invalid token"
+        case .userNotFound:
+            return "User not found"
+        case .deviceNotFound:
+            return "Device not found"
+        case .inactiveSubscription:
+            return "User doesn’t have an active subscription"
+        case .tokenNotFound:
+            return "Login token not found"
+        case .tokenExpired:
+            return "Login token expired"
+        case .tokenNotVerified:
+            return "Login token isn't verified"
+
+        default:
+            return "Unknown error"
         }
-        dataTask.resume()
-    }
-
-    static func fire(urlRequest: URLRequest, errorHandler: @escaping (Result<Void, Error>) -> Void) {
-        let defaultSession = URLSession(configuration: .default)
-        defaultSession.configuration.timeoutIntervalForRequest = 120
-
-        let dataTask = defaultSession.dataTask(with: urlRequest) { _, response, error in
-            if let error = error {
-                errorHandler(.failure(error))
-            } else if let response = response as? HTTPURLResponse,
-                response.statusCode == 204 || response.statusCode == 200 || response.statusCode == 201 {
-                errorHandler(.success(()))
-            } else {
-                errorHandler(.failure(GuardianFailReason.no200))
-            }
-        }
-        dataTask.resume()
     }
 }
 
-extension Data: Error { }
+struct ErrorResponse: Codable {
+    let code: Int
+    let errorno: Int
+    let error: String
+
+    var guardianError: GuardianAPIError {
+        return GuardianAPIError(rawValue: errorno) ?? .unknownServer
+    }
+}
