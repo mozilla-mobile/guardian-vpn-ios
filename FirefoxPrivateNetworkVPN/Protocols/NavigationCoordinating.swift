@@ -16,6 +16,7 @@ protocol NavigationCoordinating {
 
     func navigate(from: NavigableItem, to: NavigableItem)
     func navigate(from: NavigableItem, to: NavigableItem, context: [String: Any?]?)
+    func homeTab(isEnabled: Bool)
 }
 
 extension NavigationCoordinating {

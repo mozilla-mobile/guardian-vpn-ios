@@ -12,13 +12,15 @@
 import UIKit
 
 class SettingsViewController: UIViewController, Navigating {
+    // MARK: - Properties
     static var navigableItem: NavigableItem = .settings
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var signOutButton: UIButton!
 
-    private var dataSource: SettingsDataSourceAndDelegate?
+    private var dataSource: SettingsDataSource?
 
+    // MARK: - Initialization
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
         setupTabBar()
@@ -28,11 +30,12 @@ class SettingsViewController: UIViewController, Navigating {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setStrings()
 
-        dataSource = SettingsDataSourceAndDelegate(tableView: tableView)
+        dataSource = SettingsDataSource(with: tableView)
         tableView.tableFooterView = UIView()
         tableView.reloadData()
     }
@@ -42,6 +45,7 @@ class SettingsViewController: UIViewController, Navigating {
         setupNavigationBar()
     }
 
+    // MARK: - IBActions
     @IBAction func signOut() {
         DependencyFactory.sharedFactory.tunnelManager.stop()
         DependencyFactory.sharedFactory.accountManager.logout { [weak self] result in
@@ -49,6 +53,7 @@ class SettingsViewController: UIViewController, Navigating {
         }
     }
 
+    // MARK: - Setup
     private func setupTabBar() {
         let tag: TabTag = .settings
         tabBarItem = UITabBarItem(title: LocalizedString.settingsTabName.value, image: UIImage(named: "tab_settings"), tag: tag)

@@ -30,7 +30,17 @@ struct User: Codable {
     }
 
     var hasTooManyDevices: Bool {
-        return devices.count > maxDevices
+        return devices.count >= maxDevices
+    }
+
+    var shouldAddCurrentDevice: Bool {
+        guard let currentDevice = Device.fetchFromUserDefaults() else { return false }
+        return !devices.contains(currentDevice)
+    }
+
+    var deviceWaitingToBeAdded: Device? {
+        guard let currentDevice = Device.fetchFromUserDefaults() else { return nil }
+        return devices.contains(currentDevice) ? nil : currentDevice
     }
 
     init(from decoder: Decoder) throws {

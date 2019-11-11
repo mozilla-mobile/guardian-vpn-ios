@@ -56,7 +56,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 self?.appDelegate?.window?.rootViewController = landingViewController
                 self?.currentViewController = landingViewController
 
-            // To Home for the first time
+            // To Home
             case (.loading, .home), (.landing, .home), (.login, .home):
                 let tabBarController = GuardianTabBarController()
                 tabBarController.displayTab(.home)
@@ -64,10 +64,10 @@ class NavigationCoordinator: NavigationCoordinating {
                 self?.currentViewController = tabBarController
 
                 guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
-                if user.hasTooManyDevices {
+                if user.hasTooManyDevices && Device.fetchFromUserDefaults() == nil {
                     self?.navigate(from: .home, to: .settings)
                     self?.navigate(from: .settings, to: .devices)
-                    self?.disableHomeTab()
+                    self?.homeTab(isEnabled: false)
                 }
 
             // To Home
@@ -104,7 +104,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             // To Help
             case (.settings, .help):
-                let helpViewController = GetHelpViewController()
+                let helpViewController = HelpViewController()
                 let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(helpViewController, animated: true)
 
@@ -121,7 +121,7 @@ class NavigationCoordinator: NavigationCoordinating {
         }
     }
 
-    func disableHomeTab() {
-//        tabBarController.tabBar.items?[0].isEnabled = false
+    func homeTab(isEnabled: Bool) {
+        (self.currentViewController as? GuardianTabBarController)?.tabBar.items?[0].isEnabled = isEnabled
     }
 }
