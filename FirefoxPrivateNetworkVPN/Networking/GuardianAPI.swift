@@ -60,7 +60,7 @@ class GuardianAPI: NetworkRequesting {
             case .failure(let error):
                 print(error)
                 completion(.failure(error))
-//            completion(result.flatMap { try $0.convert(to: Device.self) })
+                //            completion(result.flatMap { try $0.convert(to: Device.self) })
             }
         })
     }
@@ -83,8 +83,7 @@ class GuardianAPI: NetworkRequesting {
 }
 
 enum GuardianAPIError: Error {
-    case addDeviceFailure(Data)
+    case addDeviceFailure(Data?)
     case couldNotCreateBody
     case other(Error)
-    case errorWithData(Error, Data?)
 }

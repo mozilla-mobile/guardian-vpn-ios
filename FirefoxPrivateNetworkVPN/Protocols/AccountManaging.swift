@@ -27,4 +27,5 @@ protocol AccountManaging {
     func startHeartbeat()
     func countryCodeForCity(_ city: String) -> String?
     func removeDevice(with deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func addDevice(completion: @escaping (Result<Device, Error>) -> Void)
 }

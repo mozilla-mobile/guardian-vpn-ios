@@ -110,7 +110,7 @@ class AccountManager: AccountManaging {
         dispatchGroup.enter()
         addDevice { result in
             if case .failure(let deviceError) = result {
-                error = deviceError
+//                error = deviceError
             }
             dispatchGroup.leave()
         }
@@ -195,7 +195,7 @@ class AccountManager: AccountManaging {
         }
     }
 
-    private func addDevice(completion: @escaping (Result<Device, Error>) -> Void) {
+    func addDevice(completion: @escaping (Result<Device, Error>) -> Void) {
         guard let token = token else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return
@@ -215,7 +215,11 @@ class AccountManager: AccountManaging {
                 self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
                 completion(.success(device))
             case .failure(let error):
-                print(error) //TODO: Map to GuardianFailReasonError
+                if case .addDeviceFailure(let data) = error, let failureData = data {
+                    if let errorJson = try? JSONSerialization.jsonObject(with: failureData, options: []) {
+                        print(errorJson) //TODO: Map to GuardianFailReasonError
+                    }
+                }
                 completion(.failure(GuardianFailReason.no200))
             }
         }
