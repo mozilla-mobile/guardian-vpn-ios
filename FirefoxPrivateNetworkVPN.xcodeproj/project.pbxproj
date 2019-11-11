@@ -9,20 +9,21 @@
 /* Begin PBXBuildFile section */
 		527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB123752DCA00368965 /* AboutViewController.swift */; };
 		527C7EB423752DCA00368965 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527C7EB223752DCA00368965 /* AboutViewController.xib */; };
-		527C7EB623752E9300368965 /* AboutDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB523752E9300368965 /* AboutDataSourceAndDelegate.swift */; };
+		527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB523752E9300368965 /* AboutDataSource.swift */; };
 		527C7EB823752F6500368965 /* AboutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB723752F6500368965 /* AboutHeaderView.swift */; };
 		527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527C7EB923752FBB00368965 /* AboutHeaderView.xib */; };
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
-		F4230483237209B000572A93 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4230481237209B000572A93 /* GetHelpViewController.swift */; };
-		F4230484237209B000572A93 /* GetHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4230482237209B000572A93 /* GetHelpViewController.xib */; };
-		F423048623720A7400572A93 /* HelpDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423048523720A7400572A93 /* HelpDataSourceAndDelegate.swift */; };
+		F4230483237209B000572A93 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4230481237209B000572A93 /* HelpViewController.swift */; };
+		F4230484237209B000572A93 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4230482237209B000572A93 /* HelpViewController.xib */; };
+		F423048623720A7400572A93 /* HelpDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423048523720A7400572A93 /* HelpDataSource.swift */; };
 		F42304892372101000572A93 /* HyperlinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42304872372101000572A93 /* HyperlinkCell.swift */; };
 		F423048A2372101000572A93 /* HyperlinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42304882372101000572A93 /* HyperlinkCell.xib */; };
 		F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
 		F43DCC7C2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
+		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
 		F4AED1D1235F49EE00F80ABF /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1AD235F450D00F80ABF /* PacketTunnelProvider.swift */; };
 		F4AED1D2235F49FC00F80ABF /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1AE235F450D00F80ABF /* DNSResolver.swift */; };
 		F4AED1D3235F49FF00F80ABF /* PacketTunnelSettingsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1B0235F450D00F80ABF /* PacketTunnelSettingsGenerator.swift */; };
@@ -71,9 +72,9 @@
 		F4E908BF2371C49300EB9FE6 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40831CB233CF5BE00A60FCA /* SafariServices.framework */; };
 		F4E908C02371C8C500EB9FE6 /* WireGuardTunnel.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F5D0C1A218352EF000F85AD /* WireGuardTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA2423711C7A0018DC43 /* AppDelegate.swift */; };
-		F4E908C22371CAAD00EB9FE6 /* DeviceDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */; };
-		F4E908C32371CAAD00EB9FE6 /* ServersDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B92345438500739CDA /* ServersDataSourceAndDelegate.swift */; };
-		F4E908C42371CAAD00EB9FE6 /* SettingsDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D8D952236A2BA000BE5FFC /* SettingsDataSourceAndDelegate.swift */; };
+		F4E908C22371CAAD00EB9FE6 /* DeviceManagementDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */; };
+		F4E908C32371CAAD00EB9FE6 /* ServersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D150B92345438500739CDA /* ServersDataSource.swift */; };
+		F4E908C42371CAAD00EB9FE6 /* SettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D8D952236A2BA000BE5FFC /* SettingsDataSource.swift */; };
 		F4E908C52371CAAD00EB9FE6 /* DeviceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC13234E436E003EA64A /* DeviceKeys.swift */; };
 		F4E908C62371CAAD00EB9FE6 /* TunnelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8B2342368C39C001CEC8A /* TunnelAction.swift */; };
 		F4E908C72371CAAD00EB9FE6 /* VPNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B21E422366514700136316 /* VPNState.swift */; };
@@ -215,7 +216,7 @@
 /* Begin PBXFileReference section */
 		527C7EB123752DCA00368965 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		527C7EB223752DCA00368965 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
-		527C7EB523752E9300368965 /* AboutDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		527C7EB523752E9300368965 /* AboutDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDataSource.swift; sourceTree = "<group>"; };
 		527C7EB723752F6500368965 /* AboutHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHeaderView.swift; sourceTree = "<group>"; };
 		527C7EB923752FBB00368965 /* AboutHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutHeaderView.xib; sourceTree = "<group>"; };
 		6F5D0C1A218352EF000F85AD /* WireGuardTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WireGuardTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,9 +250,9 @@
 		F420F41A2368840A00CD48BF /* VPNToggleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPNToggleView.xib; sourceTree = "<group>"; };
 		F420F41B2368840A00CD48BF /* CurrentVPNSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentVPNSelectorView.xib; sourceTree = "<group>"; };
 		F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = WireGuardGoBridge.xcconfig; sourceTree = "<group>"; };
-		F4230481237209B000572A93 /* GetHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHelpViewController.swift; sourceTree = "<group>"; };
-		F4230482237209B000572A93 /* GetHelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GetHelpViewController.xib; sourceTree = "<group>"; };
-		F423048523720A7400572A93 /* HelpDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		F4230481237209B000572A93 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		F4230482237209B000572A93 /* HelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		F423048523720A7400572A93 /* HelpDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpDataSource.swift; sourceTree = "<group>"; };
 		F42304872372101000572A93 /* HyperlinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkCell.swift; sourceTree = "<group>"; };
 		F42304882372101000572A93 /* HyperlinkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HyperlinkCell.xib; sourceTree = "<group>"; };
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
@@ -303,11 +304,12 @@
 		F46969792367345100D48617 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		F469697A2367345100D48617 /* LandingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
 		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
+		F49090BD2379D43200C8430A /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewController.swift; sourceTree = "<group>"; };
 		F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceManagementViewController.xib; sourceTree = "<group>"; };
 		F499C0F4234E301900126CDA /* DeviceManagementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementCell.swift; sourceTree = "<group>"; };
 		F499C0F5234E301900126CDA /* DeviceManagementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceManagementCell.xib; sourceTree = "<group>"; };
-		F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementDataSource.swift; sourceTree = "<group>"; };
 		F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceLimitReachedView.xib; sourceTree = "<group>"; };
 		F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLimitReachedView.swift; sourceTree = "<group>"; };
 		F4A0EFF32356111A00A06D7B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -364,7 +366,7 @@
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
 		F4D150B523453F9900739CDA /* CityVPNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityVPNCell.xib; sourceTree = "<group>"; };
-		F4D150B92345438500739CDA /* ServersDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		F4D150B92345438500739CDA /* ServersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersDataSource.swift; sourceTree = "<group>"; };
 		F4D150BD2346422000739CDA /* CountryVPNHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryVPNHeaderView.xib; sourceTree = "<group>"; };
 		F4D150BF23464DE300739CDA /* CountryVPNHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryVPNHeaderView.swift; sourceTree = "<group>"; };
 		F4D150CD2347975C00739CDA /* FirefoxPrivateNetworkVPNTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirefoxPrivateNetworkVPNTests.swift; sourceTree = "<group>"; };
@@ -375,7 +377,7 @@
 		F4D8D94B236A207600BE5FFC /* AccountInformationHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInformationHeader.xib; sourceTree = "<group>"; };
 		F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationCell.swift; sourceTree = "<group>"; };
 		F4D8D94F236A259400BE5FFC /* AccountInformationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInformationCell.xib; sourceTree = "<group>"; };
-		F4D8D952236A2BA000BE5FFC /* SettingsDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		F4D8D952236A2BA000BE5FFC /* SettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
 		F4E33D802358BF1500B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4E8B2342368C39C001CEC8A /* TunnelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelAction.swift; sourceTree = "<group>"; };
 		F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkItem.swift; sourceTree = "<group>"; };
@@ -477,7 +479,6 @@
 			isa = PBXGroup;
 			children = (
 				F41CCA2423711C7A0018DC43 /* AppDelegate.swift */,
-				F41CCA2523711C7A0018DC43 /* Data Sources */,
 				F41CCA1E23711C7A0018DC43 /* Models */,
 				F41CCA1B23711C7A0018DC43 /* Networking */,
 				F41CCA1F23711C7A0018DC43 /* Project Files */,
@@ -532,6 +533,7 @@
 				F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */,
 				F4E8B2342368C39C001CEC8A /* TunnelAction.swift */,
 				F4B21E422366514700136316 /* VPNState.swift */,
+				F49090BD2379D43200C8430A /* SettingsItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -565,13 +567,16 @@
 		F41CCA2123711C7A0018DC43 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				527C7EB523752E9300368965 /* AboutDataSource.swift */,
 				527C7EB123752DCA00368965 /* AboutViewController.swift */,
 				527C7EB223752DCA00368965 /* AboutViewController.xib */,
+				F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */,
 				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
 				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
-				F4230481237209B000572A93 /* GetHelpViewController.swift */,
-				F4230482237209B000572A93 /* GetHelpViewController.xib */,
 				F45D70AA233E921900871447 /* GuardianTabBarController.swift */,
+				F423048523720A7400572A93 /* HelpDataSource.swift */,
+				F4230481237209B000572A93 /* HelpViewController.swift */,
+				F4230482237209B000572A93 /* HelpViewController.xib */,
 				F45D70A2233D3D6C00871447 /* HomeViewController.swift */,
 				F45D70A3233D3D6C00871447 /* HomeViewController.xib */,
 				F46969792367345100D48617 /* LandingViewController.swift */,
@@ -580,24 +585,14 @@
 				F43DFC05234BB32C003EA64A /* LoadingViewController.swift */,
 				F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */,
 				F4E33D802358BF1500B2003A /* LoginViewController.swift */,
+				F4D150B92345438500739CDA /* ServersDataSource.swift */,
 				F45D70FB23428DCE00871447 /* ServersViewController.swift */,
 				F45D70FC23428DCE00871447 /* ServersViewController.xib */,
+				F4D8D952236A2BA000BE5FFC /* SettingsDataSource.swift */,
 				F41FE9E7235F98E400CD05C4 /* SettingsViewController.swift */,
 				F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		F41CCA2523711C7A0018DC43 /* Data Sources */ = {
-			isa = PBXGroup;
-			children = (
-				527C7EB523752E9300368965 /* AboutDataSourceAndDelegate.swift */,
-				F499C0F8234E3F5500126CDA /* DeviceDataSourceAndDelegate.swift */,
-				F423048523720A7400572A93 /* HelpDataSourceAndDelegate.swift */,
-				F4D150B92345438500739CDA /* ServersDataSourceAndDelegate.swift */,
-				F4D8D952236A2BA000BE5FFC /* SettingsDataSourceAndDelegate.swift */,
-			);
-			path = "Data Sources";
 			sourceTree = "<group>";
 		};
 		F41CCA2623711C7A0018DC43 /* Views */ = {
@@ -1035,7 +1030,7 @@
 				F4E908E02371CAAD00EB9FE6 /* Metropolis-ExtraLight.otf in Resources */,
 				F4E909102371CAAD00EB9FE6 /* CountryVPNHeaderView.xib in Resources */,
 				F4E909162371CAAD00EB9FE6 /* DeviceManagementCell.xib in Resources */,
-				F4230484237209B000572A93 /* GetHelpViewController.xib in Resources */,
+				F4230484237209B000572A93 /* HelpViewController.xib in Resources */,
 				F4E908DD2371CAAD00EB9FE6 /* Metropolis-BoldItalic.otf in Resources */,
 				F4E909142371CAAD00EB9FE6 /* DeviceLimitReachedView.xib in Resources */,
 				F4E909032371CAAD00EB9FE6 /* LoadingViewController.xib in Resources */,
@@ -1270,7 +1265,7 @@
 				F4E909092371CAAD00EB9FE6 /* AccountInformationCell.swift in Sources */,
 				F4E908D62371CAAD00EB9FE6 /* UserDefaulting.swift in Sources */,
 				F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */,
-				F4E908C32371CAAD00EB9FE6 /* ServersDataSourceAndDelegate.swift in Sources */,
+				F4E908C32371CAAD00EB9FE6 /* ServersDataSource.swift in Sources */,
 				F4AED254235F835200F80ABF /* TunnelConfiguration.swift in Sources */,
 				F4E908CA2371CAAD00EB9FE6 /* User.swift in Sources */,
 				F4E909152371CAAD00EB9FE6 /* DeviceManagementCell.swift in Sources */,
@@ -1278,7 +1273,7 @@
 				F4AED251235F835200F80ABF /* Data+KeyEncoding.swift in Sources */,
 				F4E908C52371CAAD00EB9FE6 /* DeviceKeys.swift in Sources */,
 				F4E908CC2371CAAD00EB9FE6 /* VPNLocations.swift in Sources */,
-				F4E908C42371CAAD00EB9FE6 /* SettingsDataSourceAndDelegate.swift in Sources */,
+				F4E908C42371CAAD00EB9FE6 /* SettingsDataSource.swift in Sources */,
 				F4E908FD2371CAAD00EB9FE6 /* HomeViewController.swift in Sources */,
 				F4E909132371CAAD00EB9FE6 /* DeviceLimitReachedView.swift in Sources */,
 				F4AED249235F7BB800F80ABF /* WireGuardAppError.swift in Sources */,
@@ -1286,14 +1281,15 @@
 				F4E908CB2371CAAD00EB9FE6 /* VerifyResponse.swift in Sources */,
 				F4AED259235F838F00F80ABF /* ringlogger.c in Sources */,
 				F4E908F22371CAAD00EB9FE6 /* CAShapeLayer+Animation.swift in Sources */,
+				F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */,
 				F4E909042371CAAD00EB9FE6 /* LoginViewController.swift in Sources */,
 				F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */,
-				F4230483237209B000572A93 /* GetHelpViewController.swift in Sources */,
+				F4230483237209B000572A93 /* HelpViewController.swift in Sources */,
 				F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */,
-				527C7EB623752E9300368965 /* AboutDataSourceAndDelegate.swift in Sources */,
+				527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */,
 				F4AED250235F835200F80ABF /* TunnelConfiguration+WgQuickConfig.swift in Sources */,
 				F4AED24F235F835200F80ABF /* InterfaceConfiguration.swift in Sources */,
-				F4E908C22371CAAD00EB9FE6 /* DeviceDataSourceAndDelegate.swift in Sources */,
+				F4E908C22371CAAD00EB9FE6 /* DeviceManagementDataSource.swift in Sources */,
 				F4E908FA2371CAAD00EB9FE6 /* DeviceManagementViewController.swift in Sources */,
 				F4E909172371CAAD00EB9FE6 /* VPNToggleView.swift in Sources */,
 				F4E908D42371CAAD00EB9FE6 /* NetworkRequesting.swift in Sources */,
@@ -1321,7 +1317,7 @@
 				F4E909022371CAAD00EB9FE6 /* LoadingViewController.swift in Sources */,
 				F4E908CF2371CAAD00EB9FE6 /* NetworkLayer.swift in Sources */,
 				F4E908EC2371CAAD00EB9FE6 /* Strings.swift in Sources */,
-				F423048623720A7400572A93 /* HelpDataSourceAndDelegate.swift in Sources */,
+				F423048623720A7400572A93 /* HelpDataSource.swift in Sources */,
 				F4E908F62371CAAD00EB9FE6 /* TunnelConfigurationBuilder.swift in Sources */,
 				F4E908D12371CAAD00EB9FE6 /* DependencyProviding.swift in Sources */,
 				F4E908CE2371CAAD00EB9FE6 /* NetworkingEnums.swift in Sources */,

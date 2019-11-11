@@ -13,18 +13,20 @@ import UIKit
 import RxSwift
 
 class ServersViewController: UIViewController, Navigating {
+    // MARK: - Properties
     static var navigableItem: NavigableItem = .servers
 
     @IBOutlet weak var tableView: UITableView!
 
-    private var dataSource: ServersDataSourceAndDelegate?
+    private var dataSource: ServersDataSource?
     private var disposeBag = DisposeBag()
 
+    // MARK: - Initialization
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
-
-        DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.subscribe { [weak self] _ in
-            self?.dismiss(animated: true, completion: nil)
+        DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent
+            .subscribe { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
         }.disposed(by: disposeBag)
     }
 
@@ -32,19 +34,21 @@ class ServersViewController: UIViewController, Navigating {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.contentInsetAdjustmentBehavior = .never
         setupNavigationBar()
-        dataSource = ServersDataSourceAndDelegate(tableView: tableView)
+        tableView.contentInsetAdjustmentBehavior = .never
+        dataSource = ServersDataSource(with: tableView)
         tableView.reloadData()
     }
 
+    // MARK: - Setup
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
         navigationItem.title = LocalizedString.serversNavTitle.value
-//        navigationItem. FONT: Metro semibold 15
+        // TODO: navigationItem. FONT: Metro semibold 15
     }
 
     @objc func close() {
