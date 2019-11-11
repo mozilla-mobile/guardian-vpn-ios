@@ -28,29 +28,32 @@ class DeviceDataSourceAndDelegate: NSObject {
 
         tableView.dataSource = self
         tableView.delegate = self
-        
+
         let headerNib = UINib.init(nibName: String(describing: DeviceLimitReachedView.self), bundle: Bundle.main)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: String(describing: DeviceLimitReachedView.self))
-        
+
         let nib = UINib.init(nibName: String(describing: DeviceManagementCell.self), bundle: Bundle.main)
         tableView.register(nib, forCellReuseIdentifier: String(describing: DeviceManagementCell.self))
-        
+
         removeDeviceEvent
-            .observeOn(MainScheduler.instance)
             .subscribe { [weak self] event in
                 guard let self = self else { return }
                 guard let deviceKey = event.element else { return }
-                
+
                 self.accountManager.removeDevice(with: deviceKey) { result in
-                    guard case .success = result, self.user?.deviceWaitingToBeAdded != nil else {
-                        tableView.reloadData()
-                        return
-                    }
-                    self.accountManager.addDevice { addDeviceResult in
-                        if case .success = result {
-                            DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                    DispatchQueue.main.async {
+                        guard case .success = result, Device.fetchFromUserDefaults() == nil else {
+                            tableView.reloadData()
+                            return
                         }
-                        tableView.reloadData()
+                        self.accountManager.addDevice { addDeviceResult in
+                            DispatchQueue.main.async {
+                                if case .success = addDeviceResult {
+                                    DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                                }
+                                tableView.reloadData()
+                            }
+                        }
                     }
                 }
         }.disposed(by: disposeBag)
