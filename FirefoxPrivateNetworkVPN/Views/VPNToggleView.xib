@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,6 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
+                <outlet property="containingView" destination="UwE-Bk-tlK" id="bgE-6X-79I"/>
                 <outlet property="globeImageView" destination="MYo-vc-qhs" id="nCZ-ly-CL2"/>
                 <outlet property="subtitleLabel" destination="2xu-al-pMZ" id="Va5-yw-5W8"/>
                 <outlet property="titleLabel" destination="CVT-rn-kQN" id="DGC-lR-th3"/>
@@ -31,41 +32,50 @@
             <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVT-rn-kQN">
-                    <rect key="frame" x="82.5" y="162" width="185.5" height="26"/>
-                    <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
-                    <color key="textColor" name="custom_grey50"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xu-al-pMZ">
-                    <rect key="frame" x="30" y="198" width="290" height="17.5"/>
-                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
-                    <color key="textColor" name="custom_grey40"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe_off" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs">
-                    <rect key="frame" x="135" y="57" width="80" height="80"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Bk-tlK">
+                    <rect key="frame" x="0.0" y="30" width="350" height="290.5"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe_off" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs">
+                            <rect key="frame" x="95" y="0.0" width="160" height="160"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVT-rn-kQN">
+                            <rect key="frame" x="32" y="184" width="286" height="26"/>
+                            <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
+                            <color key="textColor" name="custom_grey50"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xu-al-pMZ">
+                            <rect key="frame" x="32" y="218" width="286" height="17.5"/>
+                            <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
+                            <color key="textColor" name="custom_grey40"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
+                            <rect key="frame" x="150.5" y="259.5" width="51" height="31"/>
+                            <color key="onTintColor" name="custom_green50"/>
+                        </switch>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="8GJ-8C-TCV"/>
-                        <constraint firstAttribute="width" constant="80" id="dgH-Xm-jQM"/>
+                        <constraint firstItem="MYo-vc-qhs" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="5qD-KN-Mj8"/>
+                        <constraint firstItem="sYv-xh-0Gx" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="NWa-iA-uqq"/>
+                        <constraint firstItem="CVT-rn-kQN" firstAttribute="leading" secondItem="UwE-Bk-tlK" secondAttribute="leading" constant="32" id="OkC-YO-DaK"/>
+                        <constraint firstItem="CVT-rn-kQN" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="cAG-S8-McH"/>
+                        <constraint firstItem="2xu-al-pMZ" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="fWl-mB-qPT"/>
+                        <constraint firstAttribute="bottom" secondItem="sYv-xh-0Gx" secondAttribute="bottom" id="gNj-fm-aJV"/>
+                        <constraint firstItem="MYo-vc-qhs" firstAttribute="top" secondItem="UwE-Bk-tlK" secondAttribute="top" id="i4v-va-vvr"/>
+                        <constraint firstItem="2xu-al-pMZ" firstAttribute="top" secondItem="CVT-rn-kQN" secondAttribute="bottom" constant="8" id="jSh-nk-kdq"/>
+                        <constraint firstItem="sYv-xh-0Gx" firstAttribute="top" secondItem="2xu-al-pMZ" secondAttribute="bottom" constant="24" id="jor-nk-3Am"/>
+                        <constraint firstItem="CVT-rn-kQN" firstAttribute="top" secondItem="MYo-vc-qhs" secondAttribute="bottom" constant="24" id="pKB-nH-Phg"/>
+                        <constraint firstItem="2xu-al-pMZ" firstAttribute="leading" secondItem="UwE-Bk-tlK" secondAttribute="leading" constant="32" id="qUe-ai-48U"/>
                     </constraints>
-                </imageView>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
-                    <rect key="frame" x="150.5" y="240.5" width="51" height="31"/>
-                    <color key="onTintColor" name="custom_green50"/>
-                </switch>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="2xu-al-pMZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="9SN-Y8-cTz"/>
-                <constraint firstItem="MYo-vc-qhs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9r9-J5-oh5"/>
-                <constraint firstItem="CVT-rn-kQN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FyL-r9-iuO"/>
-                <constraint firstItem="sYv-xh-0Gx" firstAttribute="top" secondItem="2xu-al-pMZ" secondAttribute="bottom" constant="25" id="IQv-n8-cKT"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2xu-al-pMZ" secondAttribute="trailing" constant="30" id="Kxa-ag-gIx"/>
-                <constraint firstItem="CVT-rn-kQN" firstAttribute="top" secondItem="MYo-vc-qhs" secondAttribute="bottom" constant="25" id="LJB-Fz-Q8C"/>
-                <constraint firstItem="2xu-al-pMZ" firstAttribute="top" secondItem="CVT-rn-kQN" secondAttribute="bottom" constant="10" id="YBs-1k-00V"/>
-                <constraint firstItem="CVT-rn-kQN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hkb-m2-YNq"/>
-                <constraint firstItem="sYv-xh-0Gx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qHc-yc-UsB"/>
+                <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HCC-4h-gbe"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UwE-Bk-tlK" secondAttribute="trailing" id="dG3-Rc-Qeg"/>
+                <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="s59-Ul-aCr"/>
+                <constraint firstItem="UwE-Bk-tlK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="t4U-39-j8n"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -82,8 +92,11 @@
                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                     <real key="value" value="2"/>
                 </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="35.200000000000003" y="-137.18140929535232"/>
+            <point key="canvasLocation" x="35.200000000000003" y="-137.6311844077961"/>
         </view>
     </objects>
     <resources>
@@ -92,10 +105,10 @@
             <color red="0.24705882352941178" green="0.88235294117647056" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="custom_grey40">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.42745098039215684" green="0.42745098039215684" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="custom_grey50">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.23921568627450981" green="0.23921568627450981" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

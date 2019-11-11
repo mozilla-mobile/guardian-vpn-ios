@@ -2,7 +2,11 @@
 //  GuardianTabBarController
 //  FirefoxPrivateNetworkVPN
 //
-//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+//  Copyright © 2019 Mozilla Corporation.
 //
 
 import UIKit
@@ -40,7 +44,7 @@ class GuardianTabBarController: UITabBarController, Navigating {
 
     private func styleViews() {
         tabBar.tintColor = UIColor.custom(.blue50)
-        tabBar.unselectedItemTintColor = UIColor.custom(.grey30)
+        tabBar.unselectedItemTintColor = UIColor.custom(.grey40)
         tabBar.isTranslucent = true
     }
 }

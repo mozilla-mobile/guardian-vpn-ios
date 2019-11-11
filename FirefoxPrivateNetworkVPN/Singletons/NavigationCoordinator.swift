@@ -2,12 +2,17 @@
 //  NavigationCoordinator
 //  FirefoxPrivateNetworkVPN
 //
-//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+//  Copyright © 2019 Mozilla Corporation.
 //
 
 // TODO: Add back heartbeat.
 
 import UIKit
+import os.log
 
 enum NavigableItem {
     case about
@@ -42,6 +47,7 @@ class NavigationCoordinator: NavigationCoordinating {
     private init() { }
 
     func navigate(from origin: NavigableItem, to destination: NavigableItem, context: [String: Any?]?) {
+        OSLog.logUI(.info, "Navigating from %@ to %@.", args: "\(origin)", "\(destination)")
         DispatchQueue.main.async { [weak self] in
             switch (origin, destination) {
             // To Landing
@@ -64,7 +70,7 @@ class NavigationCoordinator: NavigationCoordinating {
                     self?.homeTab(isEnabled: false)
                 }
 
-                // To Home
+            // To Home
             case (.settings, .home), (.tab, .home):
                 (self?.currentViewController as? GuardianTabBarController)?.displayTab(.home)
 

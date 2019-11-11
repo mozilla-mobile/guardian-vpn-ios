@@ -2,7 +2,11 @@
 //  ServersViewController
 //  FirefoxPrivateNetworkVPN
 //
-//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+//  Copyright © 2019 Mozilla Corporation.
 //
 
 import UIKit
@@ -40,6 +44,7 @@ class ServersViewController: UIViewController, Navigating {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
         navigationItem.title = LocalizedString.serversNavTitle.value
+//        navigationItem. FONT: Metro semibold 15
     }
 
     @objc func close() {

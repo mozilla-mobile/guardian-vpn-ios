@@ -2,7 +2,11 @@
 //  VPNToggleView
 //  FirefoxPrivateNetworkVPN
 //
-//  Copyright © 2019 Mozilla Corporation. All rights reserved.
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+//  Copyright © 2019 Mozilla Corporation.
 //
 
 import UIKit
@@ -16,6 +20,7 @@ class VPNToggleView: UIView {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var vpnSwitch: UISwitch!
+    @IBOutlet weak var containingView: UIView!
 
     var vpnSwitchEvent: ControlProperty<Bool>?
     private let disposeBag = DisposeBag()
@@ -95,9 +100,10 @@ class VPNToggleView: UIView {
         if state == .on {
             showConnectedTime(state: state)
 
-            smallLayer.position = globeImageView.center
-            mediumLayer.position = globeImageView.center
-            largeLayer.position = globeImageView.center
+            let position = CGPoint(x: globeImageView.center.x, y: globeImageView.center.y + containingView.frame.minY)
+            smallLayer.position = position
+            mediumLayer.position = position
+            largeLayer.position = position
             smallLayer.addPulse(delay: 0.0)
             mediumLayer.addPulse(delay: 2.0)
             largeLayer.addPulse(delay: 4.0)

@@ -21,6 +21,8 @@
 		F423048623720A7400572A93 /* HelpDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423048523720A7400572A93 /* HelpDataSourceAndDelegate.swift */; };
 		F42304892372101000572A93 /* HyperlinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42304872372101000572A93 /* HyperlinkCell.swift */; };
 		F423048A2372101000572A93 /* HyperlinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42304882372101000572A93 /* HyperlinkCell.xib */; };
+		F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
+		F43DCC7C2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
 		F4AED1D1235F49EE00F80ABF /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1AD235F450D00F80ABF /* PacketTunnelProvider.swift */; };
 		F4AED1D2235F49FC00F80ABF /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1AE235F450D00F80ABF /* DNSResolver.swift */; };
 		F4AED1D3235F49FF00F80ABF /* PacketTunnelSettingsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1B0235F450D00F80ABF /* PacketTunnelSettingsGenerator.swift */; };
@@ -254,6 +256,9 @@
 		F42304882372101000572A93 /* HyperlinkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HyperlinkCell.xib; sourceTree = "<group>"; };
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
 		F42A23062347D37F00763B0D /* AccountManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManaging.swift; sourceTree = "<group>"; };
+		F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Custom.swift"; sourceTree = "<group>"; };
+		F43DCC7D2379AC35000C60E3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F43DCC7E2379AC36000C60E3 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F43DFC05234BB32C003EA64A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfigurationBuilder.swift; sourceTree = "<group>"; };
 		F43DFC0D234D1361003EA64A /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -429,7 +434,9 @@
 				F41CCA33237128F10018DC43 /* FirefoxPrivateNetworkVPNTests */,
 				F4E908A22371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests */,
 				6FF4AC452120B9E0002C96EB /* Frameworks */,
+				F43DCC7E2379AC36000C60E3 /* LICENSE.txt */,
 				6FF4AC15211EC46F002C96EB /* Products */,
+				F43DCC7D2379AC35000C60E3 /* README.md */,
 				F4AED107235F450D00F80ABF /* WireGuard */,
 				F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */,
 				F41CCA32237128F10018DC43 /* WireGuardTunnel */,
@@ -546,6 +553,7 @@
 				F4D150B0234517D800739CDA /* Data+JSON.swift */,
 				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
 				F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */,
+				F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */,
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
 				F4A4947823709033007595C3 /* UIColor+Named.swift */,
 				F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */,
@@ -595,6 +603,8 @@
 		F41CCA2623711C7A0018DC43 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				527C7EB723752F6500368965 /* AboutHeaderView.swift */,
+				527C7EB923752FBB00368965 /* AboutHeaderView.xib */,
 				F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */,
 				F4D8D94F236A259400BE5FFC /* AccountInformationCell.xib */,
 				F4D8D94A236A207600BE5FFC /* AccountInformationHeader.swift */,
@@ -613,8 +623,6 @@
 				F42304882372101000572A93 /* HyperlinkCell.xib */,
 				F420F4192368840A00CD48BF /* VPNToggleView.swift */,
 				F420F41A2368840A00CD48BF /* VPNToggleView.xib */,
-				527C7EB723752F6500368965 /* AboutHeaderView.swift */,
-				527C7EB923752FBB00368965 /* AboutHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -861,6 +869,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F5D0C25218352EF000F85AD /* Build configuration list for PBXNativeTarget "WireGuardTunnel" */;
 			buildPhases = (
+				52B551C42376751E005A2FE3 /* Check WireGuard submodule commit */,
 				5F45417B21C0906F00994C13 /* Swiftlint */,
 				6F61F1EC21BA4D4700483816 /* Extract wireguard-go Version */,
 				6F5D0C16218352EF000F85AD /* Sources */,
@@ -1082,6 +1091,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		52B551C42376751E005A2FE3 /* Check WireGuard submodule commit */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Check WireGuard submodule commit";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "pushd \"$SRCROOT\" > /dev/null\nDIFF=`git diff WireGuard | wc -c`\nif [ $DIFF -ne 0 ]; then\n    echo \"WireGuard submodule commit out of sync with git commit.\"\n    popd > /dev/null\n    exit 1\nfi\npopd > /dev/null\n";
+		};
 		5F45417A21C0902400994C13 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1210,6 +1237,7 @@
 				F4AED1D8235F4A7400F80ABF /* Keychain.swift in Sources */,
 				F4AED1DF235F4C5700F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */,
 				F4AED1DE235F4C5700F80ABF /* TunnelConfiguration.swift in Sources */,
+				F43DCC7C2379A780000C60E3 /* OSLog+Custom.swift in Sources */,
 				F4AED1DC235F4C5700F80ABF /* PeerConfiguration.swift in Sources */,
 				F4AED1E0235F4C5700F80ABF /* String+ArrayConversion.swift in Sources */,
 				F4AED1E2235F4C5700F80ABF /* IPAddressRange.swift in Sources */,
@@ -1279,6 +1307,7 @@
 				F4AED20F235F52AE00F80ABF /* x25519.c in Sources */,
 				F4E909112371CAAD00EB9FE6 /* CurrentVPNSelectorView.swift in Sources */,
 				F4E908ED2371CAAD00EB9FE6 /* AccountManager.swift in Sources */,
+				F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */,
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,
 				F4E9090B2371CAAD00EB9FE6 /* AccountInformationHeader.swift in Sources */,
 				F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */,

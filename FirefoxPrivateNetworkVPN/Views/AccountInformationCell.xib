@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Metropolis-Regular.otf">
-            <string>Metropolis-Regular</string>
+        <array key="Metropolis-SemiBold.otf">
+            <string>Metropolis-SemiBold</string>
         </array>
     </customFonts>
     <objects>
@@ -23,6 +23,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="311" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfY-Pi-D9A">
+                        <rect key="frame" x="16" y="0.0" width="295" height="1"/>
+                        <color key="backgroundColor" name="custom_grey10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="E2S-9N-Bh2"/>
+                        </constraints>
+                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pry-B6-vED">
                         <rect key="frame" x="16" y="21" width="24" height="24"/>
                         <color key="tintColor" name="custom_grey50"/>
@@ -33,7 +40,7 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yj1-se-YSD">
                         <rect key="frame" x="56" y="24.5" width="184" height="17.5"/>
-                        <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                         <color key="textColor" name="custom_grey50"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -41,12 +48,15 @@
                 <constraints>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="centerY" secondItem="Pry-B6-vED" secondAttribute="centerY" id="4Nv-e4-hrf"/>
                     <constraint firstItem="Pry-B6-vED" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6CV-bP-cCF"/>
+                    <constraint firstItem="sfY-Pi-D9A" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="leading" id="85y-Y7-Vwe"/>
+                    <constraint firstItem="sfY-Pi-D9A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="RbO-tq-7uM"/>
                     <constraint firstItem="Pry-B6-vED" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SG5-mf-Jkb"/>
+                    <constraint firstAttribute="trailing" secondItem="sfY-Pi-D9A" secondAttribute="trailing" id="aDq-Mp-ce0"/>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="trailing" constant="16" id="cks-TI-Mmv"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" name="custom_grey5"/>
-            <color key="tintColor" name="custom_grey50"/>
+            <color key="tintColor" name="custom_grey40"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="iconImageView" destination="Pry-B6-vED" id="OIG-wG-MMD"/>
@@ -56,11 +66,17 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="custom_grey10">
+            <color red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="custom_grey40">
+            <color red="0.42745098039215684" green="0.42745098039215684" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="custom_grey5">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="custom_grey50">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.23921568627450981" green="0.23921568627450981" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>
