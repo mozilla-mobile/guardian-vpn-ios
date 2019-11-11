@@ -104,7 +104,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             // To Help
             case (.settings, .help):
-                let helpViewController = GetHelpViewController()
+                let helpViewController = HelpViewController()
                 let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(helpViewController, animated: true)
 

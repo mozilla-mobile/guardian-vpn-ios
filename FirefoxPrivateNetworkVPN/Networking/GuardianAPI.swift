@@ -60,7 +60,7 @@ class GuardianAPI: NetworkRequesting {
             case .failure(let error):
                 print(error)
                 completion(.failure(error))
-                //            completion(result.flatMap { try $0.convert(to: Device.self) })
+//            completion(result.flatMap { try $0.convert(to: Device.self) })
             }
         })
     }
