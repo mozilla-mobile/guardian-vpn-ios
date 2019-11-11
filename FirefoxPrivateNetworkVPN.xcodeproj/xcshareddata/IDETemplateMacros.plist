@@ -7,7 +7,11 @@
 //  ___FILEBASENAME___
 //  ___PRODUCTNAME___
 //
-//  Copyright © ___YEAR___ ___ORGANIZATIONNAME___. All rights reserved.
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+//  Copyright © ___YEAR___ ___ORGANIZATIONNAME___.
 //</string>
 </dict>
 </plist>

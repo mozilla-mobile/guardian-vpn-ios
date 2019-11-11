@@ -257,6 +257,8 @@
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
 		F42A23062347D37F00763B0D /* AccountManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManaging.swift; sourceTree = "<group>"; };
 		F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Custom.swift"; sourceTree = "<group>"; };
+		F43DCC7D2379AC35000C60E3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F43DCC7E2379AC36000C60E3 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F43DFC05234BB32C003EA64A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfigurationBuilder.swift; sourceTree = "<group>"; };
 		F43DFC0D234D1361003EA64A /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -432,7 +434,9 @@
 				F41CCA33237128F10018DC43 /* FirefoxPrivateNetworkVPNTests */,
 				F4E908A22371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests */,
 				6FF4AC452120B9E0002C96EB /* Frameworks */,
+				F43DCC7E2379AC36000C60E3 /* LICENSE.txt */,
 				6FF4AC15211EC46F002C96EB /* Products */,
+				F43DCC7D2379AC35000C60E3 /* README.md */,
 				F4AED107235F450D00F80ABF /* WireGuard */,
 				F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */,
 				F41CCA32237128F10018DC43 /* WireGuardTunnel */,
@@ -599,6 +603,8 @@
 		F41CCA2623711C7A0018DC43 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				527C7EB723752F6500368965 /* AboutHeaderView.swift */,
+				527C7EB923752FBB00368965 /* AboutHeaderView.xib */,
 				F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */,
 				F4D8D94F236A259400BE5FFC /* AccountInformationCell.xib */,
 				F4D8D94A236A207600BE5FFC /* AccountInformationHeader.swift */,
@@ -617,8 +623,6 @@
 				F42304882372101000572A93 /* HyperlinkCell.xib */,
 				F420F4192368840A00CD48BF /* VPNToggleView.swift */,
 				F420F41A2368840A00CD48BF /* VPNToggleView.xib */,
-				527C7EB723752F6500368965 /* AboutHeaderView.swift */,
-				527C7EB923752FBB00368965 /* AboutHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
