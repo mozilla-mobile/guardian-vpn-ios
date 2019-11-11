@@ -83,8 +83,7 @@ class GuardianAPI: NetworkRequesting {
 }
 
 enum GuardianAPIError: Error {
-    case addDeviceFailure(Data)
+    case addDeviceFailure(Data?)
     case couldNotCreateBody
     case other(Error)
-    case errorWithData(Error, Data?)
 }

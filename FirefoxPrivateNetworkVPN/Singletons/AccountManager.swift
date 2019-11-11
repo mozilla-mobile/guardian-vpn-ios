@@ -215,13 +215,10 @@ class AccountManager: AccountManaging {
                 self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
                 completion(.success(device))
             case .failure(let error):
-//                self.currentDevice = device
-                if case .errorWithData(let errorWithData) = error, let data = errorWithData.1 {
-                    if let errorJson = try? JSONSerialization.jsonObject(with: data, options: []) {
+                if case .addDeviceFailure(let data) = error, let failureData = data {
+                    if let errorJson = try? JSONSerialization.jsonObject(with: failureData, options: []) {
                         print(errorJson) //TODO: Map to GuardianFailReasonError
                     }
-                    completion(.failure(errorWithData.0))
-                    return
                 }
                 completion(.failure(GuardianFailReason.no200))
             }
