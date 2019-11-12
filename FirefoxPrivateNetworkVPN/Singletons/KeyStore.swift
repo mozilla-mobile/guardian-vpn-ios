@@ -11,21 +11,71 @@
 
 import Foundation
 
-class KeyStore {
-    static let sharedStore: KeyStore = {
-        let instance = KeyStore()
-        //
-        return instance
-    }()
+class Credentials: UserDefaulting {
+    static var userDefaultsKey = "credentials"
 
-    let deviceKeys: DeviceKeys
+//    static let shared: Credentials = {
+//        let instance = Credentials()
+//        //
+//        return instance
+//    }()
 
-    private init() {
-        if let keys = DeviceKeys.fetchFromUserDefaults() {
-            deviceKeys = keys
-        } else {
-            deviceKeys = DeviceKeys(devicePrivateKey: Curve25519.generatePrivateKey())
-            deviceKeys.saveToUserDefaults()
+    private let userEmail: String?
+
+    private(set) var deviceKeys: DeviceKeys {
+        didSet {
+            saveToUserDefaults()
         }
     }
+
+    private(set) var verificationToken: String? {
+        didSet {
+            saveToUserDefaults()
+        }
+    }
+
+    init() {
+        if let userDefaults = Credentials.fetchFromUserDefaults() {
+            deviceKeys = userDefaults.deviceKeys
+            verificationToken = userDefaults.verificationToken
+            userEmail = userDefaults.userEmail
+            return
+        }
+        let privateKey = Curve25519.generatePrivateKey()
+        deviceKeys = DeviceKeys(privateKey: privateKey, publicKey: Curve25519.generatePublicKey(fromPrivateKey: privateKey))
+        userEmail = nil
+    }
+
+    init(with verification: VerifyResponse) {
+        if let userDefaults = Credentials.fetchFromUserDefaults(),
+            verification.user.email == userDefaults.userEmail {
+            deviceKeys = userDefaults.deviceKeys
+            verificationToken = userDefaults.verificationToken
+            userEmail = userDefaults.userEmail
+            return
+        }
+
+        Credentials.removeFromUserDefaults()
+        let privateKey = Curve25519.generatePrivateKey()
+        deviceKeys = DeviceKeys(privateKey: privateKey, publicKey: Curve25519.generatePublicKey(fromPrivateKey: privateKey))
+        userEmail = verification.user.email
+        verificationToken = verification.token
+    }
+
+//    func resetDevice(privateKey: Data = Curve25519.generatePrivateKey()) {
+//        deviceKeys = DeviceKeys(privateKey: privateKey, publicKey: Curve25519.generatePublicKey(fromPrivateKey: privateKey))
+//    }
+//
+    func setVerification(token: String) {
+        verificationToken = token
+    }
+//
+//    func clearVerificationToken() {
+//        verificationToken = nil
+//    }
+}
+
+struct DeviceKeys: Codable {
+    let privateKey: Data
+    let publicKey: Data
 }
