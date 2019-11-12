@@ -1,5 +1,5 @@
 //
-//  Data+JSON
+//  Result+Unwrap
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -11,11 +11,14 @@
 
 import Foundation
 
-extension Data {
-    func convert<T>(to type: T.Type) -> Result<T, Error> where T: Decodable { //overrides error thrown
+extension Result where Success == Data? {
+    func decode<T>(to type: T.Type) -> Result<T, Error> where T: Decodable {
+        guard case .success(let optionalData) = self, let data = optionalData else {
+            return .failure(GuardianFailReason.missingData)
+        }
         do {
             let decoder = JSONDecoder()
-            let decodedResponse = try decoder.decode(type, from: self)
+            let decodedResponse = try decoder.decode(type, from: data)
             return .success(decodedResponse)
         } catch {
             return .failure(GuardianFailReason.couldNotDecodeFromJson)

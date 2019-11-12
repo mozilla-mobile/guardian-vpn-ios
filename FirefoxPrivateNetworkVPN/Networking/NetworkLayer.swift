@@ -21,9 +21,8 @@ class NetworkLayer {
             if let response = response as? HTTPURLResponse, 200...210 ~= response.statusCode {
                 completion(.success(data))
             } else if error != nil, let data = data {
-                let errorResponse = try? data.convert(to: ErrorResponse.self).get()
-                let guardianAPIError = errorResponse?.guardianError ?? .unknownServer
-                completion(.failure(guardianAPIError))
+                let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data)
+                completion(.failure(errorResponse?.guardianError ?? .unknownClient))
             } else {
                 completion(.failure(.unknownServer))
             }

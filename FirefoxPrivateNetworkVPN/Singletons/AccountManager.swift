@@ -111,7 +111,7 @@ class AccountManager: AccountManaging {
         addDevice { _ in
             dispatchGroup.leave()
         }
-        
+
         dispatchGroup.enter()
         retrieveVPNServers { result in
             if case .failure(let vpnError) = result {
