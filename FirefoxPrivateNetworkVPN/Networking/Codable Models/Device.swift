@@ -13,7 +13,7 @@ import Foundation
 
 struct Device: Codable, UserDefaulting {
 
-    static let userDefaultsKey = "currentDevice"
+    static let userDefaultsKey = "device"
     let name: String
     let publicKey: String
     let ipv4Address: String
