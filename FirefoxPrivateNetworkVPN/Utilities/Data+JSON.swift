@@ -11,15 +11,6 @@
 
 import Foundation
 
-extension Result where Success == Data? {
-    func unwrap() -> Result<Data, Error> {
-        if case .success(let optionalValue) = self, let value = optionalValue {
-            return .success(value)
-        }
-        return .failure(GuardianFailReason.missingData)
-    }
-}
-
 extension Data {
     func convert<T>(to type: T.Type) -> Result<T, Error> where T: Decodable { //overrides error thrown
         do {
