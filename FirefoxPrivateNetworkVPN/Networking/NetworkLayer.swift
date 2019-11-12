@@ -18,7 +18,7 @@ class NetworkLayer {
         defaultSession.configuration.timeoutIntervalForRequest = 120
 
         let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, error in
-            if let response = response as? HTTPURLResponse, 200 ... 210 ~= response.statusCode {
+            if let response = response as? HTTPURLResponse, 200...210 ~= response.statusCode {
                 completion(.success(data))
             } else if error != nil, let data = data {
                 let errorResponse = try? data.convert(to: ErrorResponse.self).get()
