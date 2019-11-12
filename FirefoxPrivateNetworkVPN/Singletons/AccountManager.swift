@@ -12,14 +12,7 @@
 import UIKit
 import RxSwift
 
-class AccountManager: AccountManaging {
-
-//    static let sharedManager: AccountManaging = {
-//        let instance = AccountManager()
-//        //
-//        return instance
-//    }()
-
+class Account: AccountManaging {
     private(set) var credentials: Credentials
     private(set) var user: User?
     private(set) var availableServers: [VPNCountry]?
@@ -35,35 +28,18 @@ class AccountManager: AccountManaging {
         }
     }
 
-//    private init() {
-//        credentials = Credentials.shared
-//    }
-
-    init() {
-        credentials = Credentials()
-    }
-
     init(with verification: VerifyResponse) {
         user = verification.user
         credentials = Credentials(with: verification)
     }
 
-    init(with storedCredentials: Credentials) {
-        credentials = storedCredentials
+    init(with userDefaults: Credentials) {
+        credentials = userDefaults
     }
-
-//    func login(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
-//        GuardianAPI.initiateUserLogin(completion: completion)
-//    }
 
     func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var error: Error?
-
-        guard credentials.verificationToken != nil else {
-            completion(.failure(GuardianFailReason.emptyToken))
-            return
-        }
 
         dispatchGroup.enter()
         retrieveUser { result in
@@ -90,28 +66,7 @@ class AccountManager: AccountManaging {
         }
     }
 
-//    verify(url: verificationURL) { result in
-//        switch result {
-//        case .failure(let error):
-//                completion(.failure(error))
-//            case .success:
-//                completion(.success(()))
-//            }
-//        }
-//    }
-
-//    func setupFromVerify(url: URL, completion: @escaping (Result<Void, Error>) -> Void) {
-//        verify(url: url) { result in
-//            switch result {
-//            case .failure(let error):
-//                completion(.failure(error))
-//            case .success:
-//                completion(.success(()))
-//            }
-//        }
-//    }
-
-    func finishSetupFromVerify(completion: @escaping (Result<Void, Error>) -> Void) {
+    func setupFromVerification(completion: @escaping (Result<Void, Error>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var error: Error?
         dispatchGroup.enter()
@@ -156,22 +111,8 @@ class AccountManager: AccountManaging {
         retrieveUser { _ in }
     }
 
-    private func verify(url: URL, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
-        GuardianAPI.verify(urlString: url.absoluteString) { result in
-            completion(result.map { [unowned self] verifyResponse in
-                self.user = verifyResponse.user
-                self.credentials.setVerification(token: verifyResponse.token)
-                return verifyResponse
-            })
-        }
-    }
-
     private func retrieveUser(completion: @escaping (Result<User, Error>) -> Void) {
-        guard let token = credentials.verificationToken else {
-            completion(Result.failure(GuardianFailReason.emptyToken))
-            return
-        }
-        GuardianAPI.accountInfo(token: token) { [unowned self] result in
+        GuardianAPI.accountInfo(token: credentials.verificationToken) { [unowned self] result in
             if case .failure = result {
                 self.heartbeatFailedEvent.onNext(())
             }
@@ -184,11 +125,7 @@ class AccountManager: AccountManaging {
     }
 
     private func retrieveVPNServers(completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
-        guard let token = credentials.verificationToken else {
-            completion(Result.failure(GuardianFailReason.emptyToken))
-            return
-        }
-        GuardianAPI.availableServers(with: token) { result in
+        GuardianAPI.availableServers(with: credentials.verificationToken) { result in
             completion(result.map { [unowned self] servers in
                 self.availableServers = servers
                 if !VPNCity.existsInDefaults, let randomUSServer = servers.first(where: { $0.code.uppercased() == "US" })?.cities.randomElement() {
@@ -200,11 +137,6 @@ class AccountManager: AccountManaging {
     }
 
     func addDevice(completion: @escaping (Result<Device, Error>) -> Void) {
-        guard let token = credentials.verificationToken else {
-            completion(Result.failure(GuardianFailReason.emptyToken))
-            return
-        }
-
         guard let devicePublicKey = credentials.deviceKeys.publicKey.base64Key() else {
             completion(Result.failure(GuardianFailReason.deviceKeyFailure))
             return
@@ -212,10 +144,10 @@ class AccountManager: AccountManaging {
         let body: [String: Any] = ["name": UIDevice.current.name,
                                    "pubkey": devicePublicKey]
 
-        GuardianAPI.addDevice(with: token, body: body) { [unowned self] result in
+        GuardianAPI.addDevice(with: credentials.verificationToken, body: body) { [unowned self] result in
             switch result {
             case .success(let device):
-//                self.currentDevice = device
+                self.currentDevice = device
                 self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
                 completion(.success(device))
             case .failure(let error):
@@ -225,21 +157,14 @@ class AccountManager: AccountManaging {
     }
 
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let token = credentials.verificationToken else {
-            completion(Result.failure(GuardianFailReason.emptyToken))
-            return
-        }
         guard let device = currentDevice else {
             completion(Result.failure(GuardianFailReason.emptyToken))
             return
         }
-        GuardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { result in
+        GuardianAPI.removeDevice(with: credentials.verificationToken, deviceKey: device.publicKey) { result in
             switch result {
             case .success:
                 Credentials.removeFromUserDefaults()
-//                self.token = nil
-//                self.currentDevice = nil
-//                DeviceKeys.removeFromUserDefaults()
                 completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
@@ -248,12 +173,8 @@ class AccountManager: AccountManaging {
     }
 
     func removeDevice(with deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let token = credentials.verificationToken else {
-            completion(Result.failure(GuardianFailReason.emptyToken))
-            return
-        }
         user?.deviceIsBeingRemoved(with: deviceKey)
-        GuardianAPI.removeDevice(with: token, deviceKey: deviceKey) { [unowned self] result in
+        GuardianAPI.removeDevice(with: credentials.verificationToken, deviceKey: deviceKey) { [unowned self] result in
             switch result {
             case .success:
                 self.user?.removeDevice(with: deviceKey)
