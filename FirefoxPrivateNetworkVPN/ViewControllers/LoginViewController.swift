@@ -22,7 +22,7 @@ class LoginViewController: UIViewController, Navigating {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        DependencyFactory.sharedFactory.accountManager.login { [weak self] result in
+        GuardianAPI.initiateUserLogin { [weak self] result in
             switch result {
             case .success(let checkpointModel):
                 guard let loginURL = checkpointModel.loginUrl else { return }
@@ -55,16 +55,18 @@ class LoginViewController: UIViewController, Navigating {
         guard let verificationURL = verificationURL else { return }
         if isVerifying { return }
         isVerifying = true
-        DependencyFactory.sharedFactory.accountManager.setupFromVerify(url: verificationURL) { [unowned self] result in
+        GuardianAPI.verify(urlString: verificationURL.absoluteString) { [unowned self] result in
             self.isVerifying = false
             DispatchQueue.main.async {
                 switch result {
-                case .success:
+                case .success(let verification):
                     self.verifyTimer?.invalidate()
-                    DependencyFactory.sharedFactory.accountManager.finishSetupFromVerify { finishResult in
+                    let accountManager = AccountManager(with: verification)
+                    accountManager.finishSetupFromVerify { finishResult in
                         DispatchQueue.main.async {
                             switch finishResult {
                             case .success:
+                                DependencyFactory.sharedFactory.setAccount(account: accountManager)
                                 self.navigate(to: .home)
                             case .failure:
                                 self.navigate(to: .landing)

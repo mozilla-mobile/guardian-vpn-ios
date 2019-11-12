@@ -22,7 +22,7 @@ class DependencyFactory: DependencyProviding {
     private init() { }
 
     var accountManager: AccountManaging {
-        return AccountManager.sharedManager
+        return account ?? AccountManager()
     }
 
     var tunnelManager: TunnelManaging {
@@ -31,5 +31,11 @@ class DependencyFactory: DependencyProviding {
 
     var navigationCoordinator: NavigationCoordinating {
         return NavigationCoordinator.sharedCoordinator
+    }
+
+    private var account: AccountManaging?
+
+    func setAccount(account: AccountManaging) {
+        self.account = account
     }
 }

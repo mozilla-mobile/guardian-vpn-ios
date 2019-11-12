@@ -15,4 +15,6 @@ protocol DependencyProviding {
     var accountManager: AccountManaging { get }
     var tunnelManager: TunnelManaging { get }
     var navigationCoordinator: NavigationCoordinating { get }
+
+    func setAccount(account: AccountManaging)
 }
