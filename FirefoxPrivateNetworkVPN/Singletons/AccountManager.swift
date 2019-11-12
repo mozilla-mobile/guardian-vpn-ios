@@ -108,13 +108,10 @@ class AccountManager: AccountManaging {
         let dispatchGroup = DispatchGroup()
         var error: Error?
         dispatchGroup.enter()
-        addDevice { result in
-            if case .failure(let deviceError) = result {
-//                error = deviceError
-            }
+        addDevice { _ in
             dispatchGroup.leave()
         }
-
+        
         dispatchGroup.enter()
         retrieveVPNServers { result in
             if case .failure(let vpnError) = result {
