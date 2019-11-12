@@ -32,7 +32,7 @@ class CurrentVPNSelectorView: UIView {
                 guard let city = cityEvent.element?.name else { return }
                 DispatchQueue.main.async { [weak self] in
                     self?.countryTitleLabel.text = city
-                    if let countryCode = DependencyFactory.sharedFactory.accountManager.countryCodeForCity(city) {
+                    if let countryCode = DependencyFactory.sharedFactory.account?.countryCodeForCity(city) {
                         self?.countryFlagImageView.image = UIImage(named: "flag_\(countryCode)")
                     } else {
                         self?.countryFlagImageView.image = nil

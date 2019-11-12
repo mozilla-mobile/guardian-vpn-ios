@@ -21,10 +21,6 @@ class DependencyFactory: DependencyProviding {
 
     private init() { }
 
-    var accountManager: AccountManaging {
-        return account ?? AccountManager()
-    }
-
     var tunnelManager: TunnelManaging {
         return GuardianTunnelManager.sharedManager
     }
@@ -33,9 +29,9 @@ class DependencyFactory: DependencyProviding {
         return NavigationCoordinator.sharedCoordinator
     }
 
-    private var account: AccountManaging?
+    private(set)var account: AccountManaging?
 
-    func setAccount(account: AccountManaging) {
+    func set(account: AccountManaging) {
         self.account = account
     }
 }

@@ -40,11 +40,11 @@ class LoadingViewController: UIViewController, Navigating {
             return
         }
 
-        let accountManager = AccountManager(with: storedCredentials)
-        accountManager.setupFromAppLaunch { [weak self] result in
+        let account = Account(with: storedCredentials)
+        account.setupFromAppLaunch { [weak self] result in
             switch result {
             case .success:
-                DependencyFactory.sharedFactory.setAccount(account: accountManager)
+                DependencyFactory.sharedFactory.set(account: account)
                 self?.navigateRelay.accept(.home)
             case .failure:
                 self?.navigateRelay.accept(.landing)

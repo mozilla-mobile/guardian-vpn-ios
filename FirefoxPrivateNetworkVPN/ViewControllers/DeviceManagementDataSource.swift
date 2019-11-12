@@ -24,7 +24,7 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
     // MARK: Initialization
     init(with tableView: UITableView) {
-        representedObject = DependencyFactory.sharedFactory.accountManager.user?.deviceList ?? []
+        representedObject = DependencyFactory.sharedFactory.account?.user?.deviceList ?? []
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
@@ -39,14 +39,14 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
             .subscribe { [weak tableView] event in
                 guard let deviceKey = event.element else { return }
 
-                let accountManager = DependencyFactory.sharedFactory.accountManager
-                accountManager.removeDevice(with: deviceKey) { result in
+                let account = DependencyFactory.sharedFactory.account
+                account?.removeDevice(with: deviceKey) { result in
                     DispatchQueue.main.async {
                         guard case .success = result, Device.fetchFromUserDefaults() == nil else {
                             tableView?.reloadData()
                             return
                         }
-                        accountManager.addDevice { addDeviceResult in
+                        account?.addDevice { addDeviceResult in
                             DispatchQueue.main.async {
                                 if case .success = addDeviceResult {
                                     DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
@@ -75,7 +75,7 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension DeviceManagementDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if DependencyFactory.sharedFactory.accountManager.user?.hasTooManyDevices ?? false {
+        if DependencyFactory.sharedFactory.account?.user?.hasTooManyDevices ?? false {
             return DeviceLimitReachedView.height
         } else {
             return 0
@@ -83,7 +83,7 @@ extension DeviceManagementDataSource: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if DependencyFactory.sharedFactory.accountManager.user?.hasTooManyDevices ?? false {
+        if DependencyFactory.sharedFactory.account?.user?.hasTooManyDevices ?? false {
             return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
         } else {
             return nil

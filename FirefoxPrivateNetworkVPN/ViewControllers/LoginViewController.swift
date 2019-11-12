@@ -61,12 +61,12 @@ class LoginViewController: UIViewController, Navigating {
                 switch result {
                 case .success(let verification):
                     self.verifyTimer?.invalidate()
-                    let accountManager = AccountManager(with: verification)
-                    accountManager.finishSetupFromVerify { finishResult in
+                    let account = Account(with: verification)
+                    account.setupFromVerification { finishResult in
                         DispatchQueue.main.async {
                             switch finishResult {
                             case .success:
-                                DependencyFactory.sharedFactory.setAccount(account: accountManager)
+                                DependencyFactory.sharedFactory.set(account: account)
                                 self.navigate(to: .home)
                             case .failure:
                                 self.navigate(to: .landing)

@@ -62,7 +62,7 @@ extension SettingsDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView
             .dequeueReusableHeaderFooterView(withIdentifier: headerName) as? AccountInformationHeader,
-            let user = DependencyFactory.sharedFactory.accountManager.user
+            let user = DependencyFactory.sharedFactory.account?.user
             else { return nil }
         headerView.setup(with: user)
         return headerView

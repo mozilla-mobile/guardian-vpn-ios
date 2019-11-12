@@ -61,7 +61,7 @@ class HomeViewController: UIViewController, Navigating {
             guard let isOn = isOnEvent.element else { return }
             if isOn {
                 DependencyFactory.sharedFactory.tunnelManager
-                    .connect(with: DependencyFactory.sharedFactory.accountManager.currentDevice)
+                    .connect(with: DependencyFactory.sharedFactory.account?.currentDevice)
             } else {
                 DependencyFactory.sharedFactory.tunnelManager.stop()
             }

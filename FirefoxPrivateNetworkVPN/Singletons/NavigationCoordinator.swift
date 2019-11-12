@@ -63,7 +63,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 self?.appDelegate?.window?.rootViewController = tabBarController
                 self?.currentViewController = tabBarController
 
-                guard let user = DependencyFactory.sharedFactory.accountManager.user else { return }
+                guard let user = DependencyFactory.sharedFactory.account?.user else { return }
                 if user.hasTooManyDevices && Device.fetchFromUserDefaults() == nil {
                     self?.navigate(from: .home, to: .settings)
                     self?.navigate(from: .settings, to: .devices)
