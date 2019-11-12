@@ -17,7 +17,7 @@ class GuardianAPI: NetworkRequesting {
         let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .login, type: .POST)
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             completion(result
-                .unwrap()
+                .unwrapSuccess()
                 .flatMap { $0.convert(to: LoginCheckpointModel.self) }
             )
         }
@@ -27,7 +27,7 @@ class GuardianAPI: NetworkRequesting {
         let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .account, type: .GET, httpHeaderParams: headers(with: token))
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             completion(result
-                .unwrap()
+                .unwrapSuccess()
                 .flatMap { $0.convert(to: User.self) }
             )
         }
@@ -37,7 +37,7 @@ class GuardianAPI: NetworkRequesting {
         let urlRequest = GuardianURLRequestBuilder.urlRequest(fullUrlString: urlString, type: .GET)
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             completion(result
-                .unwrap()
+                .unwrapSuccess()
                 .flatMap { $0.convert(to: VerifyResponse.self) }
             )
         }
@@ -47,7 +47,7 @@ class GuardianAPI: NetworkRequesting {
         let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .retrieveServers, type: .GET, httpHeaderParams: headers(with: token))
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             completion(result
-                .unwrap()
+                .unwrapSuccess()
                 .flatMap { $0.convert(to: [String: [VPNCountry]].self) }
                 .map { $0["countries"]! }
             )
@@ -63,7 +63,7 @@ class GuardianAPI: NetworkRequesting {
         let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token), body: data)
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             completion(result
-                .unwrap()
+                .unwrapSuccess()
                 .flatMap { $0.convert(to: Device.self) }
             )
         }

@@ -12,7 +12,7 @@
 import Foundation
 
 extension Result where Success == Data? {
-    func faiIfNil() -> Result<Data, Error> {
+    func unwrapSuccess() -> Result<Data, Error> {
         if case .success(let optionalValue) = self, let value = optionalValue {
             return .success(value)
         }
