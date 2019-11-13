@@ -71,7 +71,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
                 guard let account = DependencyFactory.sharedFactory.accountManager.account,
                     let user = account.user else { return }
-                if user.hasReachedMaxDevices && account.currentDevice == nil {
+                if (user.hasReachedMaxDevices && !account.hasDeviceBeenAdded) || context == .maxDevicesError {
                     self.navigate(from: .home, to: .settings)
                     self.navigate(from: .settings, to: .devices)
                     self.homeTab(isEnabled: false)

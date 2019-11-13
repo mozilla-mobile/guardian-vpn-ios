@@ -29,42 +29,40 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         let headerNib = UINib.init(nibName: headerName, bundle: nil)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
-
+        
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
-
+        
         removeDeviceEvent
             .subscribe { [weak tableView] event in
                 guard let deviceKey = event.element, let account = self.account else { return }
-
                 account.removeDevice(with: deviceKey) { result in
-                    DispatchQueue.main.async {
-                        guard case .success = result, Device.fetchFromUserDefaults() == nil else {
-                            tableView?.reloadData()
-                            return
-                        }
-
+                    if case .success = result, !account.hasDeviceBeenAdded {
                         account.addCurrentDevice { addDeviceResult in
+                            if case .success = addDeviceResult {
+                                DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                            }
                             DispatchQueue.main.async {
-                                if case .success = addDeviceResult {
-                                    DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
-                                }
                                 tableView?.reloadData()
                             }
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            tableView?.reloadData()
                         }
                     }
                 }
         }.disposed(by: disposeBag)
     }
-
+    
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         representedObject.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? DeviceManagementCell
             else { return UITableViewCell(frame: .zero) }

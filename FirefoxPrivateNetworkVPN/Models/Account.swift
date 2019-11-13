@@ -24,17 +24,21 @@ class Account {
     var publicKey: Data {
         return credentials.deviceKeys.publicKey
     }
-
+    
     var privateKey: Data {
         return credentials.deviceKeys.privateKey
     }
-
+    
+    var hasDeviceBeenAdded: Bool {
+        return currentDevice != nil
+    }
+    
     init(credentials: Credentials, user: User? = nil, currentDevice: Device? = nil) {
         self.credentials = credentials
         self.user = user
         self.currentDevice = currentDevice
     }
-
+    
     func addCurrentDevice(completion: @escaping (Result<Device, Error>) -> Void) {
         guard let devicePublicKey = credentials.deviceKeys.publicKey.base64Key() else {
             completion(Result.failure(GuardianError.couldNotEncodeData))
