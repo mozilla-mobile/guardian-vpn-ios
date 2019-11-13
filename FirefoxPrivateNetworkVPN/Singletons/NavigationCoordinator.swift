@@ -28,6 +28,10 @@ enum NavigableItem {
     case tab
 }
 
+enum NavigableContext {
+    case maxDevicesError
+}
+
 class NavigationCoordinator: NavigationCoordinating {
     static let sharedCoordinator: NavigationCoordinating = {
         let instance = NavigationCoordinator()
@@ -46,7 +50,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
     private init() { }
 
-    func navigate(from origin: NavigableItem, to destination: NavigableItem, context: [String: Any?]?) {
+    func navigate(from origin: NavigableItem, to destination: NavigableItem, context: NavigableContext?) {
         OSLog.logUI(.info, "Navigating from %@ to %@.", args: "\(origin)", "\(destination)")
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
