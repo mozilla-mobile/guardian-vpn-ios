@@ -35,16 +35,9 @@ class LoadingViewController: UIViewController, Navigating {
 
         delayNavigation(timeInterval: Self.navigationDelay)
 
-        guard let storedCredentials = Credentials.fetchFromUserDefaults() else {
-            navigateRelay.accept(.landing)
-            return
-        }
-
-        let account = Account(with: storedCredentials)
-        account.finishSetup { [weak self] result in
+        DependencyFactory.sharedFactory.accountManager.loginWithStoredCredentials { [weak self] result in
             switch result {
             case .success:
-                DependencyFactory.sharedFactory.set(account: account)
                 self?.navigateRelay.accept(.home)
             case .failure:
                 self?.navigateRelay.accept(.landing)

@@ -26,7 +26,7 @@ class GuardianTunnelManager: TunnelManaging {
     var timeSinceConnected: Double {
         return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
     }
-    private let credentials = DependencyFactory.sharedFactory.account?.credentials
+    private let account = DependencyFactory.sharedFactory.accountManager.account
     private var tunnel: NETunnelProviderManager?
 
     private init() {
@@ -43,9 +43,9 @@ class GuardianTunnelManager: TunnelManaging {
             guard let self = self else { return }
 
             let tunnelProviderManager = self.tunnel ?? NETunnelProviderManager()
-            guard let device = device, let credentials = self.credentials else { return }
+            guard let device = device, let account = self.account else { return }
 
-            tunnelProviderManager.setNewConfiguration(for: device, key: credentials.deviceKeys.privateKey)
+            tunnelProviderManager.setNewConfiguration(for: device, key: account.privateKey)
             tunnelProviderManager.isEnabled = true
 
             tunnelProviderManager.saveToPreferences { [unowned self] saveError in
@@ -76,8 +76,8 @@ class GuardianTunnelManager: TunnelManaging {
         if self.stateEvent.value != .off {
             self.stateEvent.accept(.switching)
         }
-        guard let credentials = self.credentials else { return }
-        tunnel.setNewConfiguration(for: device, key: credentials.deviceKeys.privateKey)
+        guard let account = self.account else { return }
+        tunnel.setNewConfiguration(for: device, key: account.privateKey)
 
         tunnel.saveToPreferences { saveError in
             guard saveError == nil else {

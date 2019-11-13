@@ -49,30 +49,33 @@ class NavigationCoordinator: NavigationCoordinating {
     func navigate(from origin: NavigableItem, to destination: NavigableItem, context: [String: Any?]?) {
         OSLog.logUI(.info, "Navigating from %@ to %@.", args: "\(origin)", "\(destination)")
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+
             switch (origin, destination) {
             // To Landing
             case (.loading, .landing), (.login, .landing), (.settings, .landing):
                 let landingViewController = LandingViewController()
-                self?.appDelegate?.window?.rootViewController = landingViewController
-                self?.currentViewController = landingViewController
+                self.appDelegate?.window?.rootViewController = landingViewController
+                self.currentViewController = landingViewController
 
             // To Home
             case (.loading, .home), (.landing, .home), (.login, .home):
                 let tabBarController = GuardianTabBarController()
                 tabBarController.displayTab(.home)
-                self?.appDelegate?.window?.rootViewController = tabBarController
-                self?.currentViewController = tabBarController
+                self.appDelegate?.window?.rootViewController = tabBarController
+                self.currentViewController = tabBarController
 
-                guard let user = DependencyFactory.sharedFactory.account?.user else { return }
-                if user.hasTooManyDevices && Device.fetchFromUserDefaults() == nil {
-                    self?.navigate(from: .home, to: .settings)
-                    self?.navigate(from: .settings, to: .devices)
-                    self?.homeTab(isEnabled: false)
+                guard let account = DependencyFactory.sharedFactory.accountManager.account,
+                    let user = account.user else { return }
+                if user.hasReachedMaxDevices && account.currentDevice == nil {
+                    self.navigate(from: .home, to: .settings)
+                    self.navigate(from: .settings, to: .devices)
+                    self.homeTab(isEnabled: false)
                 }
 
             // To Home
             case (.settings, .home), (.tab, .home):
-                (self?.currentViewController as? GuardianTabBarController)?.displayTab(.home)
+                (self.currentViewController as? GuardianTabBarController)?.displayTab(.home)
 
             // To Servers
             case (.home, .servers):
@@ -80,38 +83,38 @@ class NavigationCoordinator: NavigationCoordinating {
                 let navController = UINavigationController(rootViewController: serversViewController)
                 navController.navigationBar.barTintColor = UIColor.custom(.grey5)
                 navController.navigationBar.tintColor = UIColor.custom(.grey50)
-                self?.currentViewController?.present(navController, animated: true, completion: nil)
+                self.currentViewController?.present(navController, animated: true, completion: nil)
 
             // To Settings
             case (.home, .settings), (.tab, .settings):
-                (self?.currentViewController as? GuardianTabBarController)?.displayTab(.settings)
+                (self.currentViewController as? GuardianTabBarController)?.displayTab(.settings)
 
             case (.devices, .settings), (.about, .settings), (.help, .settings):
-                let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
+                let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.popViewController(animated: true)
 
             // To Login
             case (.landing, .login):
                 let loginViewController = LoginViewController()
-                self?.appDelegate?.window?.rootViewController = loginViewController
-                self?.currentViewController = loginViewController
+                self.appDelegate?.window?.rootViewController = loginViewController
+                self.currentViewController = loginViewController
 
             // To Devices
             case (.settings, .devices):
                 let devicesViewController = DeviceManagementViewController()
-                let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
+                let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(devicesViewController, animated: true)
 
             // To Help
             case (.settings, .help):
                 let helpViewController = HelpViewController()
-                let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
+                let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(helpViewController, animated: true)
 
             // To About
             case (.settings, .about):
                 let aboutViewController = AboutViewController()
-                let navController = (self?.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
+                let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
 
             default: // You can't get there from here.

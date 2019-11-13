@@ -63,7 +63,7 @@ class AccountManager: AccountManaging {
             completion(.failure(GuardianFailReason.needToLogin))
             return
         }
-        
+
         let account = Account(credentials: credentials, currentDevice: currentDevice)
 
         let dispatchGroup = DispatchGroup()
@@ -94,7 +94,7 @@ class AccountManager: AccountManaging {
             }
         }
     }
-    
+
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let device = account?.currentDevice, let token = account?.token else {
             completion(Result.failure(GuardianFailReason.noAccount))

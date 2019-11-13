@@ -22,7 +22,7 @@ protocol AccountManaging {
 
     //TODO: Move to another class
     var heartbeatFailedEvent: PublishSubject<Void> { get }
-    
+
     func startHeartbeat()
     func countryCodeForCity(_ city: String) -> String?
 }

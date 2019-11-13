@@ -20,6 +20,8 @@ enum GuardianFailReason: String, Error {
     case couldNotFetchDevice = "Could not fetch device from user defaults"
     case deviceKeyFailure = "Could not generate device key"
     case missingData = "Missing data"
+    case noAccount = "No account found"
+    case needToLogin = "Need to login"
 }
 
 enum HTTPMethod: String {

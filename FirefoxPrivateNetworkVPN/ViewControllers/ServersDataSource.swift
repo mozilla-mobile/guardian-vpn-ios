@@ -27,7 +27,7 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     // MARK: - Initialization
     init(with tableView: UITableView) {
         self.tableView = tableView
-        representedObject = DependencyFactory.sharedFactory.account?.availableServers ?? []
+        representedObject = DependencyFactory.sharedFactory.accountManager.availableServers ?? []
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
@@ -83,7 +83,7 @@ extension ServersDataSource: UITableViewDelegate {
         tunnelManager.cityChangedEvent.onNext(currentCity)
 
         if indexPath != selectedIndexPath,
-            let device = DependencyFactory.sharedFactory.account?.currentDevice {
+            let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice {
             selectedIndexPath = indexPath
             tunnelManager.switchServer(with: device)
             tableView.reloadData()
