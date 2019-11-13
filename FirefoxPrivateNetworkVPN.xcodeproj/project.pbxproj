@@ -12,6 +12,7 @@
 		527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB523752E9300368965 /* AboutDataSource.swift */; };
 		527C7EB823752F6500368965 /* AboutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB723752F6500368965 /* AboutHeaderView.swift */; };
 		527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527C7EB923752FBB00368965 /* AboutHeaderView.xib */; };
+		52C8CE63237B5A610097D30E /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA3E2D237A0C790055A209 /* PacketTunnelProvider.swift */; };
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
@@ -27,7 +28,6 @@
 		F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA21237AFF210034AF6C /* Result+Decode.swift */; };
 		F4A7FA24237C5C960034AF6C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA23237C5C960034AF6C /* Account.swift */; };
 		F4A7FA26237C5CE00034AF6C /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA25237C5CE00034AF6C /* Credentials.swift */; };
-		F4AED1D1235F49EE00F80ABF /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1AD235F450D00F80ABF /* PacketTunnelProvider.swift */; };
 		F4AED1D2235F49FC00F80ABF /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1AE235F450D00F80ABF /* DNSResolver.swift */; };
 		F4AED1D3235F49FF00F80ABF /* PacketTunnelSettingsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1B0235F450D00F80ABF /* PacketTunnelSettingsGenerator.swift */; };
 		F4AED1D4235F4A0200F80ABF /* ErrorNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1B2235F450D00F80ABF /* ErrorNotifier.swift */; };
@@ -220,6 +220,7 @@
 		527C7EB523752E9300368965 /* AboutDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDataSource.swift; sourceTree = "<group>"; };
 		527C7EB723752F6500368965 /* AboutHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHeaderView.swift; sourceTree = "<group>"; };
 		527C7EB923752FBB00368965 /* AboutHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutHeaderView.xib; sourceTree = "<group>"; };
+		52CA3E2D237A0C790055A209 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		6F5D0C1A218352EF000F85AD /* WireGuardTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WireGuardTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB1BDA021D4E00A00A991BF /* libwg-go.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libwg-go.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB1BDB621D4F8B800A991BF /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/NetworkExtension.framework; sourceTree = DEVELOPER_DIR; };
@@ -356,7 +357,6 @@
 		F4AED19B235F450D00F80ABF /* TunnelConfiguration+UapiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TunnelConfiguration+UapiConfig.swift"; sourceTree = "<group>"; };
 		F4AED1AA235F450D00F80ABF /* WireGuardAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireGuardAppError.swift; sourceTree = "<group>"; };
 		F4AED1AC235F450D00F80ABF /* WireGuardNetworkExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WireGuardNetworkExtension-Bridging-Header.h"; sourceTree = "<group>"; };
-		F4AED1AD235F450D00F80ABF /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		F4AED1AE235F450D00F80ABF /* DNSResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSResolver.swift; sourceTree = "<group>"; };
 		F4AED1B0235F450D00F80ABF /* PacketTunnelSettingsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelSettingsGenerator.swift; sourceTree = "<group>"; };
 		F4AED1B2235F450D00F80ABF /* ErrorNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorNotifier.swift; sourceTree = "<group>"; };
@@ -655,6 +655,7 @@
 			isa = PBXGroup;
 			children = (
 				F4AED25B235F83CB00F80ABF /* Info.plist */,
+				52CA3E2D237A0C790055A209 /* PacketTunnelProvider.swift */,
 				F4AED23A235F5B2E00F80ABF /* WireGuardTunnel.entitlements */,
 			);
 			path = WireGuardTunnel;
@@ -827,7 +828,6 @@
 			children = (
 				F4AED1AE235F450D00F80ABF /* DNSResolver.swift */,
 				F4AED1B2235F450D00F80ABF /* ErrorNotifier.swift */,
-				F4AED1AD235F450D00F80ABF /* PacketTunnelProvider.swift */,
 				F4AED1B0235F450D00F80ABF /* PacketTunnelSettingsGenerator.swift */,
 				F4AED1AC235F450D00F80ABF /* WireGuardNetworkExtension-Bridging-Header.h */,
 			);
@@ -1233,6 +1233,7 @@
 				F4AED1D4235F4A0200F80ABF /* ErrorNotifier.swift in Sources */,
 				F4AED1DA235F4C5700F80ABF /* TunnelConfiguration+WgQuickConfig.swift in Sources */,
 				F4AED1D8235F4A7400F80ABF /* Keychain.swift in Sources */,
+				52C8CE63237B5A610097D30E /* PacketTunnelProvider.swift in Sources */,
 				F4AED1DF235F4C5700F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */,
 				F4AED1DE235F4C5700F80ABF /* TunnelConfiguration.swift in Sources */,
 				F43DCC7C2379A780000C60E3 /* OSLog+Custom.swift in Sources */,
@@ -1247,7 +1248,6 @@
 				F4AED1DD235F4C5700F80ABF /* DNSServer.swift in Sources */,
 				F4AED1D3235F49FF00F80ABF /* PacketTunnelSettingsGenerator.swift in Sources */,
 				F4AED24E235F82BD00F80ABF /* ringlogger.c in Sources */,
-				F4AED1D1235F49EE00F80ABF /* PacketTunnelProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
