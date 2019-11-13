@@ -41,7 +41,7 @@ class LoadingViewController: UIViewController, Navigating {
         }
 
         let account = Account(with: storedCredentials)
-        account.setupFromAppLaunch { [weak self] result in
+        account.finishSetup { [weak self] result in
             switch result {
             case .success:
                 DependencyFactory.sharedFactory.set(account: account)

@@ -62,7 +62,7 @@ class LoginViewController: UIViewController, Navigating {
                 case .success(let verification):
                     self.verifyTimer?.invalidate()
                     let account = Account(with: verification)
-                    account.setupFromVerification { finishResult in
+                    account.finishSetup { finishResult in
                         DispatchQueue.main.async {
                             switch finishResult {
                             case .success:

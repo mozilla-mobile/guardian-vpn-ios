@@ -20,11 +20,12 @@ protocol AccountManaging {
     var heartbeatFailedEvent: PublishSubject<Void> { get }
 
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
-    func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void)
-    func setupFromVerification(completion: @escaping (Result<Void, Error>) -> Void)
+//    func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void)
+//    func setupFromVerification(completion: @escaping (Result<Void, Error>) -> Void)
+    func finishSetup(completion: @escaping (Result<Void, Error>) -> Void)
     func removeDevice(with deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void)
     func addDevice(completion: @escaping (Result<Device, Error>) -> Void)
-    
+
     func startHeartbeat()
     func countryCodeForCity(_ city: String) -> String?
 }

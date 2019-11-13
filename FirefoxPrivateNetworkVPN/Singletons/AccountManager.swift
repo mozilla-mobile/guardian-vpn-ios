@@ -17,16 +17,17 @@ class Account: AccountManaging {
     private(set) var user: User?
     private(set) var availableServers: [VPNCountry]?
     private(set) var heartbeatFailedEvent = PublishSubject<Void>()
+    private(set) var currentDevice: Device?
 
-    private(set) var currentDevice: Device? {
-        didSet {
-            if let currentDevice = currentDevice {
-                currentDevice.saveToUserDefaults()
-            } else {
-                Device.removeFromUserDefaults()
-            }
-        }
-    }
+//    {
+//        didSet {
+//            if let currentDevice = currentDevice {
+//                currentDevice.saveToUserDefaults()
+//            } else {
+//                Device.removeFromUserDefaults()
+//            }
+//        }
+//    }
 
     init(with verification: VerifyResponse) {
         user = verification.user
@@ -37,16 +38,26 @@ class Account: AccountManaging {
         credentials = userDefaults
     }
 
-    func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void) {
+    func finishSetup(completion: @escaping (Result<Void, Error>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var error: Error?
 
-        dispatchGroup.enter()
-        retrieveUser { result in
-            if case .failure(let retrieveUserError) = result {
-                error = retrieveUserError
+        if currentDevice == nil {
+            dispatchGroup.enter()
+            addDevice { _ in
+                //handle error - remove currentDevice from defaults (reset device keys) and recreate if necessary
+                dispatchGroup.leave()
             }
-            dispatchGroup.leave()
+        }
+
+        if user == nil {
+            dispatchGroup.enter()
+            retrieveUser { result in
+                if case .failure(let retrieveUserError) = result {
+                    error = retrieveUserError
+                }
+                dispatchGroup.leave()
+            }
         }
 
         dispatchGroup.enter()
@@ -66,31 +77,60 @@ class Account: AccountManaging {
         }
     }
 
-    func setupFromVerification(completion: @escaping (Result<Void, Error>) -> Void) {
-        let dispatchGroup = DispatchGroup()
-        var error: Error?
-        dispatchGroup.enter()
-        addDevice { _ in
-            dispatchGroup.leave()
-        }
-
-        dispatchGroup.enter()
-        retrieveVPNServers { result in
-            if case .failure(let vpnError) = result {
-                error = vpnError
-            }
-            dispatchGroup.leave()
-        }
-
-        dispatchGroup.notify(queue: .main) {
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
-                completion(.success(()))
-            }
-        }
-    }
+//    func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void) {
+//        let dispatchGroup = DispatchGroup()
+//        var error: Error?
+//
+//        dispatchGroup.enter()
+//        retrieveUser { result in
+//            if case .failure(let retrieveUserError) = result {
+//                error = retrieveUserError
+//            }
+//            dispatchGroup.leave()
+//        }
+//
+//        dispatchGroup.enter()
+//        retrieveVPNServers { result in
+//            if case .failure(let vpnError) = result {
+//                error = vpnError
+//            }
+//            dispatchGroup.leave()
+//        }
+//
+//        dispatchGroup.notify(queue: .main) {
+//            if let error = error {
+//                completion(.failure(error))
+//            } else {
+//                completion(.success(()))
+//            }
+//        }
+//    }
+//
+//    func setupFromVerification(completion: @escaping (Result<Void, Error>) -> Void) {
+//        let dispatchGroup = DispatchGroup()
+//        var error: Error?
+//        dispatchGroup.enter()
+//        addDevice { _ in
+//            dispatchGroup.leave()
+//        }
+//
+//        dispatchGroup.enter()
+//        retrieveVPNServers { result in
+//            if case .failure(let vpnError) = result {
+//                error = vpnError
+//            }
+//            dispatchGroup.leave()
+//        }
+//
+//        dispatchGroup.notify(queue: .main) {
+//            if let error = error {
+//                completion(.failure(error))
+//            } else {
+//                self.retrieveUser { _ in } //TODO: Change this to make get devices call when its available
+//                completion(.success(()))
+//            }
+//        }
+//    }
 
     func startHeartbeat() {
         _ = Timer(timeInterval: 3600,
