@@ -12,9 +12,7 @@
 import Foundation
 
 protocol DependencyProviding {
-    var account: AccountManaging? { get }
+    var accountManager: AccountManaging { get }
     var tunnelManager: TunnelManaging { get }
     var navigationCoordinator: NavigationCoordinating { get }
-
-    func set(account: AccountManaging)
 }

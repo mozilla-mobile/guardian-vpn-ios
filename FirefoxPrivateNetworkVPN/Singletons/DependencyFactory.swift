@@ -29,9 +29,7 @@ class DependencyFactory: DependencyProviding {
         return NavigationCoordinator.sharedCoordinator
     }
 
-    private(set)var account: AccountManaging?
-
-    func set(account: AccountManaging) {
-        self.account = account
+    var accountManager: AccountManaging {
+        return AccountManager.sharedManager
     }
 }

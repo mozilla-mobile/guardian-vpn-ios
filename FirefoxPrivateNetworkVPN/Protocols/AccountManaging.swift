@@ -13,19 +13,16 @@ import Foundation
 import RxSwift
 
 protocol AccountManaging {
-    var user: User? { get }
-    var credentials: Credentials { get }
-    var currentDevice: Device? { get }
+    var account: Account? { get}
     var availableServers: [VPNCountry]? { get }
-    var heartbeatFailedEvent: PublishSubject<Void> { get }
 
+    func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void)
+    func loginWithStoredCredentials(completion: @escaping (Result<Void, Error>) -> Void)
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
-//    func setupFromAppLaunch(completion: @escaping (Result<Void, Error>) -> Void)
-//    func setupFromVerification(completion: @escaping (Result<Void, Error>) -> Void)
-    func finishSetup(completion: @escaping (Result<Void, Error>) -> Void)
-    func removeDevice(with deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void)
-    func addDevice(completion: @escaping (Result<Device, Error>) -> Void)
 
+    //TODO: Move to another class
+    var heartbeatFailedEvent: PublishSubject<Void> { get }
+    
     func startHeartbeat()
     func countryCodeForCity(_ city: String) -> String?
 }
