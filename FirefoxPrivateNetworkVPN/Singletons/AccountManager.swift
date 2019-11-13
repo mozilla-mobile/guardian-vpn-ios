@@ -39,15 +39,15 @@ class AccountManager: AccountManaging {
             }
             dispatchGroup.leave()
         }
-
+        
         dispatchGroup.enter()
         retrieveVPNServers { result in
             if case .failure(let vpnError) = result {
-                error = vpnError
+                error = error ?? vpnError
             }
             dispatchGroup.leave()
         }
-
+        
         dispatchGroup.notify(queue: .main) {
             if let error = error {
                 completion(.failure(error))
@@ -80,7 +80,7 @@ class AccountManager: AccountManaging {
         dispatchGroup.enter()
         retrieveVPNServers { result in
             if case .failure(let vpnError) = result {
-                error = vpnError
+                error = error ?? vpnError
             }
             dispatchGroup.leave()
         }
@@ -104,6 +104,7 @@ class AccountManager: AccountManaging {
             switch result {
             case .success:
                 Credentials.removeFromUserDefaults()
+                Device.removeFromUserDefaults()
                 completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))

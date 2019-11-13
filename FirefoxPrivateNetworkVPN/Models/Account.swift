@@ -47,6 +47,7 @@ class Account {
             switch result {
             case .success(let device):
                 self.currentDevice = device
+                device.saveToUserDefaults()
                 self.setUser { _ in } //TODO: Change this to make get devices call when its available
                 completion(.success(device))
             case .failure(let error):
