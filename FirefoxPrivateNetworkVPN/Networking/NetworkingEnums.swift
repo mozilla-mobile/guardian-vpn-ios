@@ -19,6 +19,7 @@ enum GuardianFailReason: String, Error {
     case couldNotCreateBody = "Could not create body"
     case couldNotFetchDevice = "Could not fetch device from user defaults"
     case deviceKeyFailure = "Could not generate device key"
+    case missingData = "Missing data"
 }
 
 enum HTTPMethod: String {

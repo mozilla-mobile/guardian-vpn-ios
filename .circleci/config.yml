@@ -10,7 +10,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - carthage-cache-v1-{{ .Branch }}-{{ checksum "Cartfile.resolved" }}
+            - carthage-cache-v2-{{ .Branch }}-{{ checksum "Cartfile.resolved" }}
       - run: 
           name: Install SwiftLint
           command: |
