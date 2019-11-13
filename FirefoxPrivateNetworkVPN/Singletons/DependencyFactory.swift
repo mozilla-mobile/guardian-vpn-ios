@@ -20,7 +20,7 @@ class DependencyFactory: DependencyProviding {
     }()
 
     private init() { }
-    
+
     var accountManager: AccountManaging {
         return AccountManager.sharedManager
     }
