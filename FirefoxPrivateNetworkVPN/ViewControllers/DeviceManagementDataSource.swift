@@ -21,11 +21,11 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
     private let headerName = String(describing: DeviceLimitReachedView.self)
     private let cellName = String(describing: DeviceManagementCell.self)
-    private let account = DependencyFactory.sharedFactory.accountManager.account
+    private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
 
     // MARK: Initialization
     init(with tableView: UITableView) {
-        representedObject = account?.user?.deviceList ?? []
+        representedObject = DependencyFactory.sharedFactory.accountManager.account?.user?.deviceList ?? []
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
@@ -38,15 +38,15 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
         removeDeviceEvent
             .subscribe { [weak tableView] event in
-                guard let deviceKey = event.element else { return }
+                guard let deviceKey = event.element, let account = self.account else { return }
 
-                guard let account = DependencyFactory.sharedFactory.accountManager.account else { return }
                 account.removeDevice(with: deviceKey) { result in
                     DispatchQueue.main.async {
                         guard case .success = result, Device.fetchFromUserDefaults() == nil else {
                             tableView?.reloadData()
                             return
                         }
+
                         account.addCurrentDevice { addDeviceResult in
                             DispatchQueue.main.async {
                                 if case .success = addDeviceResult {

@@ -16,9 +16,9 @@ class CurrentVPNSelectorView: UIView {
     @IBOutlet var view: UIView!
     @IBOutlet var countryFlagImageView: UIImageView!
     @IBOutlet var countryTitleLabel: UILabel!
-
+    
     private let disposeBag = DisposeBag()
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         Bundle.main.loadNibNamed(String(describing: CurrentVPNSelectorView.self), owner: self, options: nil)
@@ -32,7 +32,9 @@ class CurrentVPNSelectorView: UIView {
                 guard let city = cityEvent.element else { return }
                 DispatchQueue.main.async { [weak self] in
                     self?.countryTitleLabel.text = city.name
-                    self?.countryFlagImageView.image = UIImage(named: "flag_\(city.flagCode)")
+                    if let flagCode = city.flagCode {
+                        self?.countryFlagImageView.image = UIImage(named: "flag_\(flagCode)")
+                    }
                 }
         }.disposed(by: disposeBag)
     }

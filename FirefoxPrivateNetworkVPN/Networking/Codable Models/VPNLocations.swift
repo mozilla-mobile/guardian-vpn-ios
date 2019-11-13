@@ -33,7 +33,7 @@ struct VPNCountry: Codable {
                     latitude: originalCity.latitude,
                     longitude: originalCity.longitude,
                     servers: [server],
-                    flagCode: self.code
+                    flagCode: code
                 )
                 singleServerCities.append(newCity)
             }
@@ -56,7 +56,7 @@ struct VPNCity: UserDefaulting {
     let latitude: Float
     let longitude: Float
     let servers: [VPNServer]
-    let flagCode: String
+    let flagCode: String?
 
     var isCurrentCity: Bool {
         return name == VPNCity.fetchFromUserDefaults()?.name
