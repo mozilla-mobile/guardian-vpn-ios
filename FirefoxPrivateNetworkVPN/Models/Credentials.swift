@@ -42,8 +42,3 @@ class Credentials: UserDefaulting {
         verificationToken = token
     }
 }
-
-struct DeviceKeys: Codable {
-    let privateKey: Data
-    let publicKey: Data
-}
