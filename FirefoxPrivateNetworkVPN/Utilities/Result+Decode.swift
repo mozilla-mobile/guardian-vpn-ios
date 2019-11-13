@@ -14,14 +14,14 @@ import Foundation
 extension Result where Success == Data? {
     func decode<T>(to type: T.Type) -> Result<T, Error> where T: Decodable {
         guard case .success(let optionalData) = self, let data = optionalData else {
-            return .failure(GuardianFailReason.missingData)
+            return .failure(GuardianError.missingData)
         }
         do {
             let decoder = JSONDecoder()
             let decodedResponse = try decoder.decode(type, from: data)
             return .success(decodedResponse)
         } catch {
-            return .failure(GuardianFailReason.couldNotDecodeFromJson)
+            return .failure(GuardianError.couldNotDecodeFromJson)
         }
     }
 }

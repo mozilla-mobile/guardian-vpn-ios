@@ -39,7 +39,7 @@ class AccountManager: AccountManaging {
             }
             dispatchGroup.leave()
         }
-        
+
         dispatchGroup.enter()
         retrieveVPNServers { result in
             if case .failure(let vpnError) = result {
@@ -47,7 +47,7 @@ class AccountManager: AccountManaging {
             }
             dispatchGroup.leave()
         }
-        
+
         dispatchGroup.notify(queue: .main) {
             if let error = error {
                 completion(.failure(error))
@@ -60,7 +60,7 @@ class AccountManager: AccountManaging {
 
     func loginWithStoredCredentials(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let credentials = Credentials.fetchFromUserDefaults(), let currentDevice = Device.fetchFromUserDefaults() else {
-            completion(.failure(GuardianFailReason.needToLogin))
+            completion(.failure(GuardianError.needToLogin))
             return
         }
 
@@ -97,7 +97,7 @@ class AccountManager: AccountManaging {
 
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let device = account?.currentDevice, let token = account?.token else {
-            completion(Result.failure(GuardianFailReason.noAccount))
+            completion(Result.failure(GuardianError.needToLogin))
             return
         }
         GuardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { result in
@@ -114,7 +114,7 @@ class AccountManager: AccountManaging {
 
     private func retrieveVPNServers(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let account = account else {
-            completion(.failure(GuardianFailReason.noAccount))
+            completion(.failure(GuardianError.needToLogin))
             return
         }
         GuardianAPI.availableServers(with: account.token) { result in

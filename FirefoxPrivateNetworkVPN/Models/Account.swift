@@ -37,7 +37,7 @@ class Account {
 
     func addCurrentDevice(completion: @escaping (Result<Device, Error>) -> Void) {
         guard let devicePublicKey = credentials.deviceKeys.publicKey.base64Key() else {
-            completion(Result.failure(GuardianFailReason.deviceKeyFailure))
+            completion(Result.failure(GuardianError.couldNotEncodeData))
             return
         }
         let body: [String: Any] = ["name": UIDevice.current.name,
