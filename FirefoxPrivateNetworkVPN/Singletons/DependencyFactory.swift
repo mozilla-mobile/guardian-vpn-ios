@@ -20,6 +20,10 @@ class DependencyFactory: DependencyProviding {
     }()
 
     private init() { }
+    
+    var accountManager: AccountManaging {
+        return AccountManager.sharedManager
+    }
 
     var tunnelManager: TunnelManaging {
         return GuardianTunnelManager.sharedManager
@@ -27,9 +31,5 @@ class DependencyFactory: DependencyProviding {
 
     var navigationCoordinator: NavigationCoordinating {
         return NavigationCoordinator.sharedCoordinator
-    }
-
-    var accountManager: AccountManaging {
-        return AccountManager.sharedManager
     }
 }
