@@ -138,13 +138,6 @@ class AccountManager: AccountManaging {
                   repeats: true)
     }
 
-    func countryCodeForCity(_ city: String) -> String? {
-        return availableServers?
-            .first { country -> Bool in
-                country.cities.map { $0.name }.contains(city)
-            }?.code.lowercased()
-    }
-
     @objc private func pollUser() {
         guard let account = account else { return }
         account.setUser { _ in }
