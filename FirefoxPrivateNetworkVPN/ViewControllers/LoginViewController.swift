@@ -59,9 +59,9 @@ class LoginViewController: UIViewController, Navigating {
         GuardianAPI.verify(urlString: verificationURL.absoluteString) { [unowned self] result in
             switch result {
             case .success(let verification):
-                self.verifyTimer?.invalidate()
                 DependencyFactory.sharedFactory.accountManager.login(with: verification) { loginResult in
                     self.isVerifying = false
+                    self.verifyTimer?.invalidate()
                     switch loginResult {
                     case .success:
                         self.navigate(to: .home)
