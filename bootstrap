@@ -1,6 +1,7 @@
 #!/bin/sh
 
 carthage bootstrap --platform ios --no-use-binaries
+echo $?
 
 if [ $? -eq 0 ]; then
 	cp Cartfile.resolved Carthage
