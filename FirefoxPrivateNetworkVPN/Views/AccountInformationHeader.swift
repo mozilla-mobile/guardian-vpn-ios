@@ -12,13 +12,15 @@
 import UIKit
 
 class AccountInformationHeader: UITableViewHeaderFooterView {
-
     static let height: CGFloat = 280.0
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var manageAccountButton: UIButton!
+
+    // TODO: Get correct URL
+    let manageAccountURL = URL(string: "https://support.mozilla.org/")
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,5 +45,11 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
             }
         }
         dataTask.resume()
+    }
+
+    @IBAction func accountButtonTapped() {
+        if let url = manageAccountURL {
+            UIApplication.shared.open(url)
+        }
     }
 }

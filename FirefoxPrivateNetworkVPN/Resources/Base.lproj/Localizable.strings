@@ -54,6 +54,8 @@
 "devicesCount" = "%1$@ of %2$@";
 "devicesCurrentDevice" = "Current device";
 "devicesAddedDate" = "Added %@ ago";
+"devicesLimitTitle" = "Remove a device";
+"devicesLimitSubtitle" = "You've reached your limit. To install the VPN on this device, you'll need to remove one.";
 
 // MARK: - Get Help
 "helpTitle" = "Get help";

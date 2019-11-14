@@ -52,6 +52,8 @@ enum LocalizedString: String {
     case devicesCount
     case devicesCurrentDevice
     case devicesAddedDate
+    case devicesLimitTitle
+    case devicesLimitSubtitle
 
     case helpTitle
     case helpContactUs
