@@ -48,6 +48,7 @@ enum GuardianError: Error {
     case couldNotEncodeData
     case missingData
     case needToLogin
+    case deallocated
 
     var description: String {
         switch self {
@@ -61,6 +62,8 @@ enum GuardianError: Error {
             return "Missing data"
         case .needToLogin:
             return "Need to login"
+        case .deallocated:
+            return "Object has been deallocated"
         }
     }
 }
