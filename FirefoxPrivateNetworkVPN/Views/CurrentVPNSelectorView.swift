@@ -16,9 +16,9 @@ class CurrentVPNSelectorView: UIView {
     @IBOutlet var view: UIView!
     @IBOutlet var countryFlagImageView: UIImageView!
     @IBOutlet var countryTitleLabel: UILabel!
-    
+
     private let disposeBag = DisposeBag()
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         Bundle.main.loadNibNamed(String(describing: CurrentVPNSelectorView.self), owner: self, options: nil)

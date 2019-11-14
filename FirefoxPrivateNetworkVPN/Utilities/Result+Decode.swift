@@ -13,6 +13,9 @@ import Foundation
 
 extension Result where Success == Data? {
     func decode<T>(to type: T.Type) -> Result<T, Error> where T: Decodable {
+        if case .failure(let error) = self {
+            return .failure(error)
+        }
         guard case .success(let optionalData) = self, let data = optionalData else {
             return .failure(GuardianError.missingData)
         }

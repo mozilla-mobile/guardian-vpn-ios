@@ -16,11 +16,11 @@ class NetworkLayer {
     static func fire(urlRequest: URLRequest, completion: @escaping (Result<Data?, GuardianAPIError>) -> Void) {
         let defaultSession = URLSession(configuration: .default)
         defaultSession.configuration.timeoutIntervalForRequest = 120
-
-        let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, error in
+        
+        let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, _ in
             if let response = response as? HTTPURLResponse, 200...210 ~= response.statusCode {
                 completion(.success(data))
-            } else if error != nil, let data = data {
+            } else if let data = data {
                 let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data)
                 completion(.failure(errorResponse?.guardianAPIError ?? .unknown))
             } else {
@@ -33,10 +33,10 @@ class NetworkLayer {
 
 struct ErrorResponse: Codable {
     let code: Int
-    let errorno: Int
+    let errno: Int
     let error: String
 
     var guardianAPIError: GuardianAPIError {
-        return GuardianAPIError(rawValue: errorno) ?? .unknown
+        return GuardianAPIError(rawValue: errno) ?? .unknown
     }
 }

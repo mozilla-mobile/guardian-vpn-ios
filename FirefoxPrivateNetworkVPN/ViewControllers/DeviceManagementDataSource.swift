@@ -15,7 +15,7 @@ import RxCocoa
 
 class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
-    private var representedObject: [Device]
+    private var representedObject: [Device] { return account?.user?.deviceList ?? [] }
     var removeDeviceEvent = PublishSubject<String>()
     private let disposeBag = DisposeBag()
 
@@ -25,7 +25,6 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
     // MARK: Initialization
     init(with tableView: UITableView) {
-        representedObject = DependencyFactory.sharedFactory.accountManager.account?.user?.deviceList ?? []
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
@@ -39,22 +38,16 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
         removeDeviceEvent
             .subscribe { [weak tableView] event in
                 guard let deviceKey = event.element, let account = self.account else { return }
-
                 account.removeDevice(with: deviceKey) { result in
-                    DispatchQueue.main.async {
-                        guard case .success = result, Device.fetchFromUserDefaults() == nil else {
-                            tableView?.reloadData()
-                            return
-                        }
-
+                    if case .success = result, !account.hasDeviceBeenAdded {
                         account.addCurrentDevice { addDeviceResult in
-                            DispatchQueue.main.async {
-                                if case .success = addDeviceResult {
-                                    DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
-                                }
-                                tableView?.reloadData()
+                            if case .success = addDeviceResult {
+                                DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
                             }
+                            tableView?.reloadData()
                         }
+                    } else {
+                        tableView?.reloadData()
                     }
                 }
         }.disposed(by: disposeBag)

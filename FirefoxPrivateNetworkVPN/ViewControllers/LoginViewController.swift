@@ -55,25 +55,27 @@ class LoginViewController: UIViewController, Navigating {
         guard let verificationURL = verificationURL else { return }
         if isVerifying { return }
         isVerifying = true
+
         GuardianAPI.verify(urlString: verificationURL.absoluteString) { [unowned self] result in
-            self.isVerifying = false
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let verification):
+            switch result {
+            case .success(let verification):
+                DependencyFactory.sharedFactory.accountManager.login(with: verification) { loginResult in
+                    self.isVerifying = false
                     self.verifyTimer?.invalidate()
-                    DependencyFactory.sharedFactory.accountManager.login(with: verification) { loginResult in
-                        DispatchQueue.main.async {
-                            switch loginResult {
-                            case .success:
-                                self.navigate(to: .home)
-                            case .failure:
-                                self.navigate(to: .landing)
-                            }
+                    switch loginResult {
+                    case .success:
+                        self.navigate(to: .home)
+                    case .failure(let error):
+                        var context: NavigableContext?
+                        if let guardianAPIError = error as? GuardianAPIError, guardianAPIError == .maxDevicesReached {
+                            context = .maxDevicesError
                         }
+                        self.navigate(to: .landing, context: context)
                     }
-                case .failure:
-                    return
                 }
+            case .failure:
+                self.isVerifying = false
+                return
             }
         }
     }

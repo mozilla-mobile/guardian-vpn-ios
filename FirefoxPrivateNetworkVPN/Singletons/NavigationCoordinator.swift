@@ -62,6 +62,10 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController
 
+                if context == .maxDevicesError {
+                    self.navigate(from: .landing, to: .home, context: context)
+                }
+
             // To Home
             case (.loading, .home), (.landing, .home), (.login, .home):
                 let tabBarController = GuardianTabBarController()
@@ -69,12 +73,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.appDelegate?.window?.rootViewController = tabBarController
                 self.currentViewController = tabBarController
 
-                guard let account = DependencyFactory.sharedFactory.accountManager.account,
-                    let user = account.user else { return }
-                if user.hasReachedMaxDevices && account.currentDevice == nil {
+                if context == .maxDevicesError {
                     self.navigate(from: .home, to: .settings)
-                    self.navigate(from: .settings, to: .devices)
-                    self.homeTab(isEnabled: false)
+                    self.navigate(from: .settings, to: .devices, context: .maxDevicesError)
                 }
 
             // To Home
@@ -109,6 +110,10 @@ class NavigationCoordinator: NavigationCoordinating {
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(devicesViewController, animated: true)
 
+                if context == .maxDevicesError {
+                    self.homeTab(isEnabled: false)
+                }
+
             // To Help
             case (.settings, .help):
                 let helpViewController = HelpViewController()
@@ -120,15 +125,17 @@ class NavigationCoordinator: NavigationCoordinating {
                 let aboutViewController = AboutViewController()
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
-
+                
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
                 return
             }
         }
     }
-
+    
     func homeTab(isEnabled: Bool) {
-        (self.currentViewController as? GuardianTabBarController)?.tabBar.items?[0].isEnabled = isEnabled
+        if let tabBarController = self.currentViewController as? GuardianTabBarController {
+            tabBarController.tabBar.items?[0].isEnabled = isEnabled
+        }
     }
 }
