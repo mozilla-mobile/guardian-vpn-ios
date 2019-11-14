@@ -1,4 +1,8 @@
 #!/bin/sh
 
 carthage bootstrap --platform ios --no-use-binaries
-cp Cartfile.resolved Carthage
+
+if [ $? -eq 0 ]; then
+	cp Cartfile.resolved Carthage
+fi
+exit $?

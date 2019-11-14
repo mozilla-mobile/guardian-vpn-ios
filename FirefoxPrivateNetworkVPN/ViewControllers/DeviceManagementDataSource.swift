@@ -29,13 +29,13 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         let headerNib = UINib.init(nibName: headerName, bundle: nil)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
-        
+
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
-        
+
         removeDeviceEvent
             .subscribe { [weak tableView] event in
                 guard let deviceKey = event.element, let account = self.account else { return }
@@ -57,12 +57,12 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
                 }
         }.disposed(by: disposeBag)
     }
-    
+
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         representedObject.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? DeviceManagementCell
             else { return UITableViewCell(frame: .zero) }

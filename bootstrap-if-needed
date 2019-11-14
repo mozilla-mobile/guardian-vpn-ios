@@ -2,4 +2,5 @@
 
 if ! cmp -s Cartfile.resolved Carthage/Cartfile.resolved; then
   ./bootstrap
+  exit $?
 fi
