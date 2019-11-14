@@ -20,6 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="517" height="56"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssn-TR-bRc" userLabel="Background">
+                    <rect key="frame" x="0.0" y="0.0" width="517" height="56"/>
+                    <color key="backgroundColor" name="custom_grey5"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxu-2h-QzJ">
                     <rect key="frame" x="60" y="0.0" width="441" height="1"/>
                     <color key="backgroundColor" name="custom_grey10"/>
@@ -52,9 +56,9 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" name="custom_grey5"/>
             <constraints>
                 <constraint firstItem="KJz-P7-wQ8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="04h-Xs-FFg"/>
+                <constraint firstAttribute="bottom" secondItem="ssn-TR-bRc" secondAttribute="bottom" id="3jb-B6-o02"/>
                 <constraint firstItem="qjg-uV-5V3" firstAttribute="centerY" secondItem="KJz-P7-wQ8" secondAttribute="centerY" id="FC3-wc-ZmM"/>
                 <constraint firstItem="Wpt-vi-82c" firstAttribute="leading" secondItem="qjg-uV-5V3" secondAttribute="trailing" constant="20" id="Gbg-KY-Y9C"/>
                 <constraint firstItem="rxu-2h-QzJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Hrp-kq-hmN"/>
@@ -62,7 +66,10 @@
                 <constraint firstItem="qjg-uV-5V3" firstAttribute="leading" secondItem="rxu-2h-QzJ" secondAttribute="leading" id="PSD-wQ-QMW"/>
                 <constraint firstItem="qjg-uV-5V3" firstAttribute="leading" secondItem="KJz-P7-wQ8" secondAttribute="trailing" constant="20" id="TP1-2A-xZf"/>
                 <constraint firstItem="Wpt-vi-82c" firstAttribute="centerY" secondItem="qjg-uV-5V3" secondAttribute="centerY" id="TsD-Eg-pFm"/>
+                <constraint firstItem="ssn-TR-bRc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Z3v-Kl-hWe"/>
                 <constraint firstAttribute="trailing" secondItem="rxu-2h-QzJ" secondAttribute="trailing" constant="16" id="fpg-Rj-vb1"/>
+                <constraint firstItem="ssn-TR-bRc" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ieq-02-gS5"/>
+                <constraint firstItem="ssn-TR-bRc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xho-4S-ewg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
