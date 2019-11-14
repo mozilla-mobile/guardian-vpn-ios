@@ -29,31 +29,41 @@ class AccountManager: AccountManaging {
         let account = Account(credentials: credentials, user: verification.user)
 
         let dispatchGroup = DispatchGroup()
-        var error: Error?
+        var addDeviceError: Error?
+        var retrieveServersError: Error?
 
         dispatchGroup.enter()
         account.addCurrentDevice { result in
-            //handle error - remove currentDevice from defaults (reset device keys) and recreate if necessary
-            if case .failure(let addDeviceError) = result {
-                error = addDeviceError
+            if case .failure(let error) = result {
+                addDeviceError = error
             }
             dispatchGroup.leave()
         }
 
         dispatchGroup.enter()
-        retrieveVPNServers { result in
-            if case .failure(let vpnError) = result {
-                error = error ?? vpnError
+        retrieveVPNServers(with: account.token) { result in
+            if case .failure(let error) = result {
+                retrieveServersError = error
             }
             dispatchGroup.leave()
         }
 
         dispatchGroup.notify(queue: .main) {
-            if let error = error {
-                completion(.failure(error))
-            } else {
+            switch (addDeviceError, retrieveServersError) {
+            case (.none, .none):
+                credentials.saveToUserDefaults()
                 self.account = account
                 completion(.success(()))
+            case (.some(let error), _):
+                if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
+                    self.account = account
+                }
+                completion(.failure(error))
+            case (.none, .some(let error)):
+                if let device = account.currentDevice {
+                    account.removeDevice(with: device.publicKey) { _ in }
+                }
+                completion(.failure(error))
             }
         }
     }
@@ -67,30 +77,34 @@ class AccountManager: AccountManaging {
         let account = Account(credentials: credentials, currentDevice: currentDevice)
 
         let dispatchGroup = DispatchGroup()
-        var error: Error?
+        var setUserError: Error?
+        var retrieveServersError: Error?
 
         dispatchGroup.enter()
         account.setUser { result in
-            if case .failure(let retrieveUserError) = result {
-                error = retrieveUserError
+            if case .failure(let error) = result {
+                setUserError = error
             }
             dispatchGroup.leave()
         }
 
         dispatchGroup.enter()
-        retrieveVPNServers { result in
-            if case .failure(let vpnError) = result {
-                error = error ?? vpnError
+        retrieveVPNServers(with: account.token) { result in
+            if case .failure(let error) = result {
+                retrieveServersError = error
             }
             dispatchGroup.leave()
         }
 
         dispatchGroup.notify(queue: .main) {
-            if let error = error {
-                completion(.failure(error))
-            } else {
+            switch (setUserError, retrieveServersError) {
+            case (.none, .none):
+                credentials.saveToUserDefaults()
                 self.account = account
                 completion(.success(()))
+            case (let userError, let serverError):
+                let error = userError ?? serverError
+                completion(.failure(error ?? GuardianAPIError.unknown))
             }
         }
     }
@@ -112,12 +126,8 @@ class AccountManager: AccountManaging {
         }
     }
 
-    private func retrieveVPNServers(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let account = account else {
-            completion(.failure(GuardianError.needToLogin))
-            return
-        }
-        GuardianAPI.availableServers(with: account.token) { result in
+    private func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        GuardianAPI.availableServers(with: token) { result in
             switch result {
             case .success (let servers):
                 self.availableServers = servers
