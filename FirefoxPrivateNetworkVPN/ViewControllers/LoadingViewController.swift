@@ -35,8 +35,7 @@ class LoadingViewController: UIViewController, Navigating {
 
         delayNavigation(timeInterval: Self.navigationDelay)
 
-        let accountManager = DependencyFactory.sharedFactory.accountManager
-        accountManager.setupFromAppLaunch { [weak self] result in
+        DependencyFactory.sharedFactory.accountManager.loginWithStoredCredentials { [weak self] result in
             switch result {
             case .success:
                 self?.navigateRelay.accept(.home)

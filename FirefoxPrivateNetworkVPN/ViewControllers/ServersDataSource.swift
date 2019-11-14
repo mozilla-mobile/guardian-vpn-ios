@@ -83,7 +83,7 @@ extension ServersDataSource: UITableViewDelegate {
         tunnelManager.cityChangedEvent.onNext(currentCity)
 
         if indexPath != selectedIndexPath,
-            let device = DependencyFactory.sharedFactory.accountManager.currentDevice {
+            let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice {
             selectedIndexPath = indexPath
             tunnelManager.switchServer(with: device)
             tableView.reloadData()

@@ -16,7 +16,7 @@ protocol Navigating {
 }
 
 extension Navigating {
-    func navigate(to screen: NavigableItem, context: [String: Any?]? = nil) {
+    func navigate(to screen: NavigableItem, context: NavigableContext? = nil) {
         DependencyFactory.sharedFactory.navigationCoordinator.navigate(from: Self.navigableItem, to: screen, context: context)
     }
 }

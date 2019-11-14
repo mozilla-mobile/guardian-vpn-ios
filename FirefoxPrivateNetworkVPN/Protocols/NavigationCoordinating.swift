@@ -15,7 +15,7 @@ protocol NavigationCoordinating {
     var firstViewController: UIViewController { get }
 
     func navigate(from: NavigableItem, to: NavigableItem)
-    func navigate(from: NavigableItem, to: NavigableItem, context: [String: Any?]?)
+    func navigate(from: NavigableItem, to: NavigableItem, context: NavigableContext?)
     func homeTab(isEnabled: Bool)
 }
 
