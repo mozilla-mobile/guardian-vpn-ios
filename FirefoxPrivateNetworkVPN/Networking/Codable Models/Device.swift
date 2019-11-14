@@ -21,8 +21,11 @@ struct Device: Codable, UserDefaulting {
     let createdAtDate: Date
     private let createdAtDateString: String
     var isBeingRemoved: Bool = false
+    var isMockDevice: Bool?
 
     var isCurrentDevice: Bool {
+        if isMockDevice == true { return true }
+
         return self == Device.fetchFromUserDefaults()
     }
 
@@ -60,5 +63,23 @@ struct Device: Codable, UserDefaulting {
 extension Device: Equatable {
     static func == (lhs: Device, rhs: Device) -> Bool {
         return lhs.publicKey == rhs.publicKey
+    }
+}
+
+extension Device {
+
+    private init(name: String) {
+        self.name = name
+        publicKey = ""
+        createdAtDate = Date()
+        ipv4Address = ""
+        ipv6Address = ""
+        createdAtDateString = ""
+        isMockDevice = true
+
+    }
+
+    static func mock(name: String) -> Device {
+        return Device(name: name)
     }
 }

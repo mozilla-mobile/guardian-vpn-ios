@@ -56,6 +56,7 @@ class AccountManager: AccountManaging {
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
+                    credentials.saveToUserDefaults()
                     self.account = account
                 }
                 completion(.failure(error))

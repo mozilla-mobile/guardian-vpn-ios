@@ -15,13 +15,31 @@ import RxCocoa
 
 class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
-    private var representedObject: [Device] { return account?.user?.deviceList ?? [] }
     var removeDeviceEvent = PublishSubject<String>()
     private let disposeBag = DisposeBag()
 
     private let headerName = String(describing: DeviceLimitReachedView.self)
     private let cellName = String(describing: DeviceManagementCell.self)
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
+
+    private var isOverDeviceLimit: Bool {
+        if let account = account, !account.hasDeviceBeenAdded, let user = account.user, user.hasReachedMaxDevices {
+            return true
+        }
+        return false
+    }
+
+    private var representedObject: [Device] {
+        var devices = account?.user?.deviceList
+        if isOverDeviceLimit {
+            devices?.insert(Device.mock(name: UIDevice.current.name), at: 0)
+        }
+        return devices ?? []
+    }
+
+    var deviceCount: Int {
+        representedObject.count
+    }
 
     // MARK: Initialization
     init(with tableView: UITableView) {
@@ -69,7 +87,7 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension DeviceManagementDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if account?.user?.hasReachedMaxDevices ?? false {
+        if isOverDeviceLimit {
             return DeviceLimitReachedView.height
         } else {
             return 0
@@ -77,7 +95,7 @@ extension DeviceManagementDataSource: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if account?.user?.hasReachedMaxDevices ?? false {
+        if isOverDeviceLimit {
             return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
         } else {
             return nil
