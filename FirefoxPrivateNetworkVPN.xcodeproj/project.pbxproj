@@ -1409,7 +1409,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20191105;
+				MARKETING_VERSION = 0.0.20191114;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.connectedLab.Guardian.network-extension";
 				PRODUCT_NAME = WireGuardTunnel;
 				SKIP_INSTALL = YES;
@@ -1434,7 +1434,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20191105;
+				MARKETING_VERSION = 0.0.20191114;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.connectedLab.Guardian.network-extension";
 				PRODUCT_NAME = WireGuardTunnel;
 				SKIP_INSTALL = YES;
@@ -1609,7 +1609,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20191105;
+				MARKETING_VERSION = 0.0.20191114;
 				PRODUCT_BUNDLE_IDENTIFIER = com.connectedLab.Guardian;
 				PRODUCT_NAME = "Firefox Private Network VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1636,7 +1636,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20191105;
+				MARKETING_VERSION = 0.0.20191114;
 				PRODUCT_BUNDLE_IDENTIFIER = com.connectedLab.Guardian;
 				PRODUCT_NAME = "Firefox Private Network VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
