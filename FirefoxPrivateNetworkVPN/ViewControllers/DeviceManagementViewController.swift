@@ -35,7 +35,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
     private func setupNavigationBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         guard let user = DependencyFactory.sharedFactory.accountManager.account?.user else { return }
-        let countTitle = String(format: LocalizedString.devicesCount.value, "\(user.deviceList.count)", "\(user.maxDevices)")
+        let countTitle = String(format: LocalizedString.devicesCount.value, "\(dataSource?.deviceCount ?? 0)", "\(user.maxDevices)")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: countTitle, style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey50)
         navigationItem.title = LocalizedString.devicesNavTitle.value
