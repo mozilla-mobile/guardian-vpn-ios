@@ -20,7 +20,7 @@ jobs:
           name: Build Carthage dependencies
           command: ./bootstrap-if-needed
       - save_cache:
-          key: carthage-cache-v1-{{ .Branch }}-{{ checksum "Cartfile.resolved" }}
+          key: carthage-cache-v4-{{ .Branch }}-{{ checksum "Cartfile.resolved" }}
           paths:
             - Carthage/
       - run: 
