@@ -45,6 +45,15 @@ extension VPNState {
         }
     }
 
+    var subtitleColor: UIColor {
+        switch self {
+        case .off, .switching, .disconnecting:
+            return UIColor.custom(.grey40)
+        default:
+            return UIColor.white
+        }
+    }
+
     var title: String {
         switch self {
         case .off:
