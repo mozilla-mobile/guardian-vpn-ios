@@ -93,7 +93,6 @@ class VPNToggleView: UIView {
         subtitleLabel.textColor = state.subtitleColor
         vpnSwitch.isOn = state.isToggleOn
         vpnSwitch.isEnabled = state.isEnabled
-        vpnSwitch.tintColor = state.isEnabled ? UIColor.custom(CustomColor.green50) : UIColor.custom(CustomColor.grey30)
         globeImageView.image = state.globeImage
         globeImageView.alpha = state.globeOpacity
         view.backgroundColor = state.backgroundColor
