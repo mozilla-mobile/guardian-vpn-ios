@@ -1,9 +1,9 @@
 #!/bin/sh
 
 carthage bootstrap --platform ios --no-use-binaries
-echo $?
+EXIT_CODE="$?"
 
-if [ $? -eq 0 ]; then
+if [ $EXIT_CODE -eq 0 ]; then
 	cp Cartfile.resolved Carthage
 fi
-exit $?
+exit $EXIT_CODE
