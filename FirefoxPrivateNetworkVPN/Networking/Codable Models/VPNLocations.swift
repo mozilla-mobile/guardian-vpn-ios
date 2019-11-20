@@ -48,7 +48,7 @@ struct VPNCountry: Codable {
     }
 }
 
-struct VPNCity: UserDefaulting {
+struct VPNCity: UserDefaulting, Equatable {
     static var userDefaultsKey = "savedCity"
 
     let name: String
@@ -59,11 +59,11 @@ struct VPNCity: UserDefaulting {
     let flagCode: String?
 
     var isCurrentCity: Bool {
-        return name == VPNCity.fetchFromUserDefaults()?.name
+        return self == VPNCity.fetchFromUserDefaults()
     }
 }
 
-struct VPNServer: Codable {
+struct VPNServer: Codable, Equatable {
     let hostname: String
     let includeInCountry: Bool
     let publicKey: String
