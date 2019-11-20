@@ -111,6 +111,12 @@ extension ServersDataSource: UITableViewDelegate {
         return CountryVPNHeaderView.height
     }
 
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        // Preventing the `grouped` style from introducing extra spacing between sections
+        // Reference: https://stackoverflow.com/a/56978339
+        return .leastNormalMagnitude
+    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName) as? CountryVPNHeaderView
             else { return nil }
