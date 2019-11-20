@@ -36,11 +36,14 @@ class VPNToggleView: UIView {
         Bundle.main.loadNibNamed(String(describing: VPNToggleView.self), owner: self, options: nil)
         view.frame = bounds
         addSubview(view)
+
+        let vpnStateEvent = tunnelManager.stateEvent
+            .observeOn(MainScheduler.instance)
+            .skip(1)
+
         Observable
-            .zip(tunnelManager.stateEvent, updateUIEvent.startWith(())) { [weak self] state, _ in
-                DispatchQueue.main.async {
-                    self?.update(with: state)
-                }
+            .zip(vpnStateEvent, updateUIEvent.startWith(())) { [weak self] state, _ in
+                self?.update(with: state)
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + (state.delay ?? 0)) {
                     self?.updateUIEvent.onNext(())

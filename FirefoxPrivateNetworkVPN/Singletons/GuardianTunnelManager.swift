@@ -23,17 +23,24 @@ class GuardianTunnelManager: TunnelManaging {
 
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
-    var timeSinceConnected: Double {
-        return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
-    }
     private let account = DependencyFactory.sharedFactory.accountManager.account
     private var tunnel: NETunnelProviderManager?
 
+    var timeSinceConnected: Double {
+        return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
+    }
+
     private init() {
-        loadTunnel()
+        loadTunnel {
+            guard let tunnel = self.tunnel else {
+                self.stateEvent.accept(.off)
+                return
+            }
+            self.stateEvent.accept(VPNState(with: tunnel.connection.status))
+        }
+
         DispatchQueue.main.async {
             NotificationCenter.default.addObserver(self, selector: #selector(self.vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
-
             NotificationCenter.default.addObserver(self, selector: #selector(self.vpnConfigurationDidChange(notification:)), name: Notification.Name.NEVPNConfigurationChange, object: nil)
         }
     }

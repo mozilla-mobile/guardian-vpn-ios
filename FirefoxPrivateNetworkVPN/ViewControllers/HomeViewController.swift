@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func subscribeToToggle() {
-        vpnToggleView.vpnSwitchEvent?.subscribe { isOnEvent in
+        vpnToggleView.vpnSwitchEvent?.skip(1).subscribe { isOnEvent in
             guard let isOn = isOnEvent.element else { return }
             if isOn {
                 DependencyFactory.sharedFactory.tunnelManager
