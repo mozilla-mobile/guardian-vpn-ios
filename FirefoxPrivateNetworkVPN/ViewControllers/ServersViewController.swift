@@ -56,8 +56,9 @@ class ServersViewController: UIViewController, Navigating {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
         navigationItem.title = LocalizedString.serversNavTitle.value
-//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Metropolis", size: 15)!]
-        // TODO: navigationItem. FONT: Metro semibold 15
+        navigationController?.navigationBar.setTitleFont()
+        navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
+        navigationController?.navigationBar.tintColor = UIColor.custom(.grey50)
     }
 
     @objc func close() {
