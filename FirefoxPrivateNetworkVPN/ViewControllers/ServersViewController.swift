@@ -43,6 +43,14 @@ class ServersViewController: UIViewController, Navigating {
         tableView.reloadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let selectedIndexPath = dataSource?.selectedIndexPath {
+            tableView.scrollToRow(at: selectedIndexPath, at: .middle, animated: false)
+        }
+    }
+
     // MARK: - Setup
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))

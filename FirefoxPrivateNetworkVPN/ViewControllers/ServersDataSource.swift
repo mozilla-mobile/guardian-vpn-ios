@@ -17,18 +17,20 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     // MARK: - Properties
     private let representedObject: [VPNCountry]
     private weak var tableView: UITableView?
-    private var selectedIndexPath: IndexPath?
     private var sectionExpandedStates = [Int: Bool]()
     private let headerTapPublishSubject = PublishSubject<CountryVPNHeaderView>()
     private let disposeBag = DisposeBag()
     private let headerName = String(describing: CountryVPNHeaderView.self)
     private let cellName = String(describing: CityVPNCell.self)
+    private(set) var selectedIndexPath: IndexPath?
 
     // MARK: - Initialization
     init(with tableView: UITableView) {
         self.tableView = tableView
         representedObject = DependencyFactory.sharedFactory.accountManager.availableServers ?? []
         super.init()
+        selectedIndexPath = getSelectedIndexPath()
+
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -42,6 +44,17 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     }
 
     // MARK: - Setup
+    private func getSelectedIndexPath() -> IndexPath? {
+        guard let currentCity = VPNCity.fetchFromUserDefaults() else { return nil }
+
+        for (countryIndex, country) in representedObject.enumerated() {
+            for (cityIndex, city) in country.cities.enumerated() where city == currentCity {
+                return IndexPath(row: cityIndex, section: countryIndex)
+            }
+        }
+        return nil
+    }
+
     private func listenForHeaderTaps() {
         headerTapPublishSubject.subscribe { [weak self] headerEvent in
             guard let headerView = headerEvent.element,
@@ -60,7 +73,7 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (sectionExpandedStates[section] ?? false)
+        return (sectionExpandedStates[section, default: true])
             ? representedObject[section].cities.count
             : 0
     }
@@ -104,7 +117,7 @@ extension ServersDataSource: UITableViewDelegate {
         headerView.tag = section
         headerView.setup(country: representedObject[section])
         headerView.tapPublishSubject = headerTapPublishSubject
-        headerView.isExpanded = sectionExpandedStates[section] ?? false
+        headerView.isExpanded = sectionExpandedStates[section, default: true]
 
         return headerView
     }
