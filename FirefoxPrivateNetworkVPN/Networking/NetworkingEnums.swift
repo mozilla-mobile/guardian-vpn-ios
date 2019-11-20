@@ -42,6 +42,7 @@ enum GuardianRelativeRequest {
         }
     }
 }
+
 enum GuardianError: Error {
     case couldNotDecodeFromJson
     case couldNotCreateBody
