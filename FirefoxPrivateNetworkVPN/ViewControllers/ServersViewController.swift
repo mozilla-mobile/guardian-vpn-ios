@@ -53,12 +53,13 @@ class ServersViewController: UIViewController, Navigating {
 
     // MARK: - Setup
     private func setupNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
+//        let leftSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+//        leftSpacer.width = 0.5
+        let closeButton = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))
+        navigationItem.leftBarButtonItems = [closeButton]
         navigationItem.title = LocalizedString.serversNavTitle.value
         navigationController?.navigationBar.setTitleFont()
         navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
-        navigationController?.navigationBar.tintColor = UIColor.custom(.grey50)
     }
 
     @objc func close() {
