@@ -15,7 +15,8 @@ extension UINavigationBar {
 
     func setTitleFont() {
         if let font = UIFont(name: "Metropolis-SemiBold", size: 15) {
-            titleTextAttributes = [NSAttributedString.Key.font: font]
+            titleTextAttributes = [NSAttributedString.Key.font: font,
+                                   NSAttributedString.Key.foregroundColor: UIColor.custom(.grey50)]
         }
     }
 }
