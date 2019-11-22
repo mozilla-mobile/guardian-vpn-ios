@@ -11,12 +11,12 @@
 
 import UIKit
 
-class CarouselPageViewDataSource: NSObject {
-    typealias Pages = (first: Page, count: Int)
+extension CarouselPageViewController {
+//    typealias Pages = (first: Page, count: Int)
+//
+//    let pages: Pages
 
-    let pages: Pages
-
-    private static var viewControllers: [LandingViewController] = {
+    static var viewControllers: [LandingViewController] = {
         let activityLogsViewController = LandingViewController()
         activityLogsViewController.setup(for: .activityLogs)
 
@@ -32,12 +32,12 @@ class CarouselPageViewDataSource: NSObject {
         return [activityLogsViewController, encryptionViewController, countriesViewController, connectViewController]
     }()
 
-    override init() {
-        self.pages = CarouselPageViewDataSource.setupPages(for: CarouselPageViewDataSource.viewControllers)
-        super.init()
-    }
+//    override init() {
+//        self.pages = CarouselPageViewDataSource.setupPages(for: CarouselPageViewDataSource.viewControllers)
+//        super.init()
+//    }
 
-    private static func setupPages(for viewControllers: [LandingViewController]) -> Pages {
+    static func setupPages(for viewControllers: [LandingViewController]) -> Pages {
         let first = Page(with: viewControllers.first!)
         var previous = first
         for each in viewControllers.dropFirst() {
@@ -50,11 +50,12 @@ class CarouselPageViewDataSource: NSObject {
     }
 }
 
-extension CarouselPageViewDataSource: UIPageViewControllerDataSource {
+extension CarouselPageViewController: UIPageViewControllerDataSource {
 
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let landingViewController = viewController as? LandingViewController {
+            currentIndex -= 1
             return landingViewController.before
         }
         return nil
@@ -63,6 +64,7 @@ extension CarouselPageViewDataSource: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let landingViewController = viewController as? LandingViewController {
+            currentIndex += 1
             return landingViewController.after
         }
         return nil
@@ -73,11 +75,11 @@ extension CarouselPageViewDataSource: UIPageViewControllerDataSource {
     }
 
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return 0
+        return currentIndex
     }
 }
 
-extension CarouselPageViewDataSource: UIPageViewControllerDelegate { }
+extension CarouselPageViewController: UIPageViewControllerDelegate { }
 
 class Page {
     let landingViewController: LandingViewController
