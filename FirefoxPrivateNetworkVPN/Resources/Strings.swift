@@ -14,8 +14,16 @@ import Foundation
 enum LocalizedString: String {
     case landingTitle
     case landingSubtitle
-    case landingGetStarted
-    case landingLearnMore
+    case activityLogsTitle
+    case activityLogsSubtitle
+    case encryptionTitle
+    case encryptionSubtitle
+    case countriesTitle
+    case countriesSubtitle
+    case connectTitle
+    case connectSubtitle
+    case getStarted
+    case learnMore
 
     case homeTabName
 

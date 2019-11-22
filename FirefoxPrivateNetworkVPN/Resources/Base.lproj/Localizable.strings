@@ -12,8 +12,16 @@
 // MARK: - Landing Screen
 "landingTitle" = "Firefox Private Network";
 "landingSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
-"landingGetStarted" = "Get started";
-"landingLearnMore" = "Learn more";
+"activityLogsTitle" = "Firefox Private Network";
+"activityLogsSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
+"encryptionTitle" = "Firefox Private Network";
+"encryptionSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
+"countriesTitle" = "Firefox Private Network";
+"countriesSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
+"connectTitle" = "Firefox Private Network";
+"connectSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
+"getStarted" = "Get started";
+"learnMore" = "Learn more";
 
 // MARK: - VPN Home
 "homeTabName" = "VPN";
