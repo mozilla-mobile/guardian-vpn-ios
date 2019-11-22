@@ -15,8 +15,7 @@ import RxCocoa
 
 class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
-    var removeDeviceEvent = PublishSubject<String>()
-    private let disposeBag = DisposeBag()
+    var removeDeviceEvent = PublishSubject<Device>()
 
     private let headerName = String(describing: DeviceLimitReachedView.self)
     private let cellName = String(describing: DeviceManagementCell.self)
@@ -52,23 +51,6 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
-
-        removeDeviceEvent
-            .subscribe { [weak tableView] event in
-                guard let deviceKey = event.element, let account = self.account else { return }
-                account.removeDevice(with: deviceKey) { result in
-                    if case .success = result, !account.hasDeviceBeenAdded {
-                        account.addCurrentDevice { addDeviceResult in
-                            if case .success = addDeviceResult {
-                                DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
-                            }
-                            tableView?.reloadData()
-                        }
-                    } else {
-                        tableView?.reloadData()
-                    }
-                }
-        }.disposed(by: disposeBag)
     }
 
     // MARK: UITableViewDataSource
