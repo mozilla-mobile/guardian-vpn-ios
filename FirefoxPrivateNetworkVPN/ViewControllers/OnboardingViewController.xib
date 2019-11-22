@@ -20,7 +20,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LandingViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
                 <outlet property="getStartedButton" destination="E5n-2e-PN9" id="k56-bw-3KQ"/>
                 <outlet property="imageView" destination="Xtd-yb-bAs" id="YFv-py-dm9"/>

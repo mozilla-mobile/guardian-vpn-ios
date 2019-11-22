@@ -12,16 +12,18 @@
 import UIKit
 
 class CarouselPageViewController: UIPageViewController, Navigating {
+
+    private struct Constant {
+        static let pageControlOffsetY: CGFloat = -100
+    }
+
     static var navigableItem: NavigableItem = .carousel
 
-    typealias Pages = (first: Page, count: Int)
+    private let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 43, height: 6))
+    private let carouselDataSource = CarouselDataSource()
 
-    let pages: Pages
-    var currentIndex = 0
-
-    override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
-        self.pages = CarouselPageViewController.setupPages(for: CarouselPageViewController.viewControllers)
-        super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
+    init() {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -30,15 +32,33 @@ class CarouselPageViewController: UIPageViewController, Navigating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .custom(.grey5)
 
-        let carouselDataSource = self
-        delegate = carouselDataSource
+        delegate = self
         dataSource = carouselDataSource
 
-        setViewControllers([carouselDataSource.pages.first.landingViewController],
+        setupPageControl()
+        setViewControllers([carouselDataSource.viewControllers.first!],
                            direction: .forward,
                            animated: true,
                            completion: nil)
+    }
+
+    private func setupPageControl() {
+        pageControl.pageIndicatorTintColor = .custom(.grey20)
+        pageControl.currentPageIndicatorTintColor = .custom(.blue50)
+
+        pageControl.numberOfPages = carouselDataSource.viewControllers.count
+
+        view.addSubview(pageControl)
+    }
+
+    override func viewDidLayoutSubviews() {
+        let viewHeight = view.frame.height
+        let viewWidth = view.frame.width
+
+        pageControl.center.x = viewWidth/2.0
+        pageControl.center.y = viewHeight + Constant.pageControlOffsetY
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,5 +87,16 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         //present last screen
         //hide page indicator
         //hide right bar button
+    }
+}
+
+extension CarouselPageViewController: UIPageViewControllerDelegate {
+
+    //swiftlint:disable force_cast
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        let nextViewController = pendingViewControllers.first as!  OnboardingViewController
+        let index = carouselDataSource.viewControllers.firstIndex(of: nextViewController)
+
+        pageControl.currentPage = index ?? 0
     }
 }

@@ -59,8 +59,7 @@ class NavigationCoordinator: NavigationCoordinating {
             switch (origin, destination) {
             // To Landing
             case (.loading, .landing), (.login, .landing), (.settings, .landing):
-                let landingViewController = LandingViewController()
-                landingViewController.setup(for: .landing)
+                let landingViewController = OnboardingViewController(for: .landing)
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController
 
@@ -108,11 +107,8 @@ class NavigationCoordinator: NavigationCoordinating {
 
             // To Onboarding carousel
             case (.landing, .carousel):
-                let pageViewController = CarouselPageViewController(transitionStyle: .scroll,
-                                                                    navigationOrientation: .horizontal,
-                                                                    options: nil)
-
-                self.currentViewController?.present(pageViewController,
+                let carouselPageViewController = CarouselPageViewController()
+                self.currentViewController?.present(carouselPageViewController,
                                                     animated: true,
                                                     completion: nil)
 
