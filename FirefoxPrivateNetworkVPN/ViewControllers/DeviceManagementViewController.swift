@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class DeviceManagementViewController: UIViewController, Navigating {
     // MARK: Properties
@@ -18,12 +19,42 @@ class DeviceManagementViewController: UIViewController, Navigating {
     @IBOutlet weak var tableView: UITableView!
 
     private var dataSource: DeviceManagementDataSource?
+    private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
+    private let disposeBag = DisposeBag()
 
     // MARK: View Lifecycle
+    //swiftlint:disable trailing_closure
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = DeviceManagementDataSource(with: tableView)
         tableView.tableFooterView = UIView()
+
+        dataSource?
+            .removeDeviceEvent
+            .subscribe(onNext: { [unowned self] deviceKey in
+                guard let account = self.account else { return }
+
+                let confirmAlert = DependencyFactory
+                    .sharedFactory
+                    .navigationCoordinator
+                    .createDeviceDeletionAlert(title: LocalizedString.devicesConfirmDeletionTitle.value,
+                                               message: LocalizedString.devicesConfirmDeletionMessage.value) { _ in
+                        account.removeDevice(with: deviceKey) { result in
+                            if case .success = result, !account.hasDeviceBeenAdded {
+                                account.addCurrentDevice { addDeviceResult in
+                                    if case .success = addDeviceResult {
+                                        DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                                    }
+                                    self.tableView?.reloadData()
+                                }
+                            } else {
+                                self.tableView?.reloadData()
+                            }
+                        }
+                        self.tableView?.reloadData()
+                }
+                self.present(confirmAlert, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {

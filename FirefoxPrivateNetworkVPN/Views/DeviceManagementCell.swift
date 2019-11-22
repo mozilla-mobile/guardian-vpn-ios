@@ -94,7 +94,6 @@ class DeviceManagementCell: UITableViewCell {
 
     @IBAction func removeDevice() {
         if let removeDeviceEvent = removeDeviceEvent, let deviceKey = deviceKey {
-            applyDisabledStyle()
             removeDeviceEvent.onNext(deviceKey)
         }
     }
