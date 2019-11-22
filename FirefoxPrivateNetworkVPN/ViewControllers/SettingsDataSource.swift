@@ -16,6 +16,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
     private let representedObject: [SettingsItem]
     private let headerName = String(describing: AccountInformationHeader.self)
     private let cellName = String(describing: AccountInformationCell.self)
+    private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
 
     // MARK: - Initialization
     init(with tableView: UITableView) {
@@ -39,7 +40,18 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? AccountInformationCell
             else { return UITableViewCell(frame: .zero) }
-        cell.setup(representedObject[indexPath.row])
+        let settingsItem = representedObject[indexPath.row]
+        cell.setup(settingsItem)
+
+        if settingsItem.action == .devices,
+            let account = account,
+            account.isOverDeviceLimit {
+            cell.accessoryIconImageView.image = UIImage(named: "icon_alert")
+            cell.accessoryIconImageView.isHidden = false
+        } else {
+            cell.accessoryIconImageView.isHidden = true
+        }
+
         return cell
     }
 }

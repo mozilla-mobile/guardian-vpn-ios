@@ -33,6 +33,15 @@ class Account {
         return currentDevice != nil
     }
 
+    var isOverDeviceLimit: Bool {
+        if !hasDeviceBeenAdded,
+            let user = user,
+            user.hasReachedMaxDevices {
+            return true
+        }
+        return false
+    }
+
     init(credentials: Credentials, user: User? = nil, currentDevice: Device? = nil) {
         self.credentials = credentials
         self.user = user

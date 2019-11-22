@@ -21,16 +21,11 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     private let cellName = String(describing: DeviceManagementCell.self)
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
 
-    private var isOverDeviceLimit: Bool {
-        if let account = account, !account.hasDeviceBeenAdded, let user = account.user, user.hasReachedMaxDevices {
-            return true
-        }
-        return false
-    }
-
     private var representedObject: [Device] {
-        var devices = account?.user?.deviceList
-        if isOverDeviceLimit {
+        guard let account = account else { return [] }
+
+        var devices = account.user?.deviceList
+        if account.isOverDeviceLimit {
             devices?.insert(Device.mock(name: UIDevice.current.name), at: 0)
         }
         return devices ?? []
@@ -69,18 +64,15 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension DeviceManagementDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if isOverDeviceLimit {
-            return DeviceLimitReachedView.height
-        } else {
-            return 0
-        }
+        guard let account = account, account.isOverDeviceLimit else { return 0 }
+
+        return DeviceLimitReachedView.height
+
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if isOverDeviceLimit {
-            return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
-        } else {
-            return nil
-        }
+        guard let account = account, account.isOverDeviceLimit else { return nil }
+
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
     }
 }

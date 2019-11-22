@@ -37,12 +37,12 @@ class SettingsViewController: UIViewController, Navigating {
 
         dataSource = SettingsDataSource(with: tableView)
         tableView.tableFooterView = UIView()
-        tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        tableView.reloadData()
     }
 
     // MARK: - IBActions
