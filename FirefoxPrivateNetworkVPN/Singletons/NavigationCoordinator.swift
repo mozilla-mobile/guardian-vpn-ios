@@ -108,7 +108,7 @@ class NavigationCoordinator: NavigationCoordinating {
             // To Onboarding carousel
             case (.landing, .carousel):
                 let carouselPageViewController = CarouselPageViewController()
-                self.currentViewController?.present(carouselPageViewController,
+                self.currentViewController?.present(UINavigationController(rootViewController: carouselPageViewController),
                                                     animated: true,
                                                     completion: nil)
 

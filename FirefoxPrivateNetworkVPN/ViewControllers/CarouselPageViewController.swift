@@ -38,6 +38,8 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         dataSource = carouselDataSource
 
         setupPageControl()
+        setupNavigationBar()
+
         setViewControllers([carouselDataSource.viewControllers.first!],
                            direction: .forward,
                            animated: true,
@@ -63,20 +65,20 @@ class CarouselPageViewController: UIPageViewController, Navigating {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavigationBar()
+
     }
 
     private func setupNavigationBar() {
         navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
-        navigationController?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"),
-                                                                                style: .plain,
-                                                                                target: self,
-                                                                                action: #selector(self.closeCarousel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(self.closeCarousel))
 
-        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip",
-                                                                                 style: .done,
-                                                                                 target: self,
-                                                                                 action: #selector(self.skipCarousel))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(self.skipCarousel))
     }
 
     @objc func closeCarousel() {
