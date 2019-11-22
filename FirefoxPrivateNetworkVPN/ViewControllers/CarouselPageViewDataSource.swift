@@ -11,15 +11,14 @@
 
 import UIKit
 
-class CarouselPageViewDataSource: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class CarouselPageViewDataSource: NSObject {
+    typealias Pages = (first: Page, count: Int)
 
-    let head: LandingViewController
+    let pages: Pages
 
-    init(head: LandingViewController) {
-//        let activityLogsViewController = LandingViewController()
-//        activityLogsViewController.setup(for: .activityLogs)
-
-        self.head = head
+    private static var viewControllers: [LandingViewController] = {
+        let activityLogsViewController = LandingViewController()
+        activityLogsViewController.setup(for: .activityLogs)
 
         let encryptionViewController = LandingViewController()
         encryptionViewController.setup(for: .encryption)
@@ -30,22 +29,28 @@ class CarouselPageViewDataSource: NSObject, UIPageViewControllerDataSource, UIPa
         let connectViewController = LandingViewController()
         connectViewController.setup(for: .connect)
 
-        self.head.after = encryptionViewController
-        encryptionViewController.before = self.head
-        encryptionViewController.after = countriesViewController
-        countriesViewController.before = encryptionViewController
-        countriesViewController.after = connectViewController
+        return [activityLogsViewController, encryptionViewController, countriesViewController, connectViewController]
+    }()
 
+    override init() {
+        self.pages = CarouselPageViewDataSource.setupPages(for: CarouselPageViewDataSource.viewControllers)
         super.init()
     }
 
-    func getCount(from item: LandingViewController) -> Int {
-        var count = 1
-        if let next = item.after {
-            count += getCount(from: next)
+    private static func setupPages(for viewControllers: [LandingViewController]) -> Pages {
+        let first = Page(with: viewControllers.first!)
+        var previous = first
+        for each in viewControllers.dropFirst() {
+            let page = Page(with: each)
+            page.before = previous
+            previous.after = page
+            previous = page
         }
-        return count
+        return Pages(first: first, count: viewControllers.count)
     }
+}
+
+extension CarouselPageViewDataSource: UIPageViewControllerDataSource {
 
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -64,10 +69,22 @@ class CarouselPageViewDataSource: NSObject, UIPageViewControllerDataSource, UIPa
     }
 
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return getCount(from: head)
+        return pages.count
     }
 
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
+    }
+}
+
+extension CarouselPageViewDataSource: UIPageViewControllerDelegate { }
+
+class Page {
+    let landingViewController: LandingViewController
+    var before: Page?
+    var after: Page?
+
+    init(with landingViewController: LandingViewController) {
+        self.landingViewController = landingViewController
     }
 }
