@@ -106,36 +106,23 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.appDelegate?.window?.rootViewController = loginViewController
                 self.currentViewController = loginViewController
 
+            // To Onboarding carousel
             case (.landing, .carousel):
-//                let activityLogsViewController = LandingViewController()
-//                activityLogsViewController.setup(for: .activityLogs)
+                let pageViewController = CarouselPageViewController(transitionStyle: .scroll,
+                                                                    navigationOrientation: .horizontal,
+                                                                    options: nil)
 
-                let pageViewController = CarouselPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+                self.currentViewController?.present(pageViewController,
+                                                    animated: true,
+                                                    completion: nil)
 
-//                let carouselDataSource = CarouselPageViewDataSource(head: activityLogsViewController)
-//                pageViewController.delegate = carouselDataSource
-//                pageViewController.dataSource = carouselDataSource
-//
-//                pageViewController.setViewControllers([activityLogsViewController],
-//                                                      direction: .forward,
-//                                                      animated: true,
-//                                                      completion: nil)
-
-//                let navController = UINavigationController(rootViewController: pageViewController)
-//                navController.navigationBar.barTintColor = UIColor.custom(.grey5)
-//                navController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(self.closeCarousel))
-//                navController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip", style: .done, target: self, action: #selector(self.skipCarousel))
-
-                if let landingViewController = self.currentViewController as? LandingViewController {
-                    landingViewController.present(pageViewController, animated: true, completion: nil)
-                }
-
-            case (_, .getStarted):
-                let connectViewController = LandingViewController()
-                connectViewController.setup(for: .connect)
-                let navController = self.currentViewController as? UINavigationController
-                navController?.navigationItem.rightBarButtonItem = nil
-                navController?.pushViewController(connectViewController, animated: true)
+            // To last Onboarding screen
+//            case (_, .getStarted):
+//                let connectViewController = LandingViewController()
+//                connectViewController.setup(for: .connect)
+//                let navController = self.currentViewController as? UINavigationController
+//                navController?.navigationItem.rightBarButtonItem = nil
+//                navController?.pushViewController(connectViewController, animated: true)
 
             // To Devices
             case (.settings, .devices):
@@ -170,14 +157,5 @@ class NavigationCoordinator: NavigationCoordinating {
         if let tabBarController = self.currentViewController as? GuardianTabBarController {
             tabBarController.tabBar.items?[0].isEnabled = isEnabled
         }
-    }
-
-    @objc func closeCarousel() {
-        let navController = self.currentViewController as? UINavigationController
-        navController?.dismiss(animated: true, completion: nil)
-    }
-
-    @objc func skipCarousel() {
-        navigate(from: .carousel, to: .getStarted)
     }
 }

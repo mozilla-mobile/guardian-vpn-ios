@@ -11,7 +11,8 @@
 
 import UIKit
 
-class CarouselPageViewController: UIPageViewController {
+class CarouselPageViewController: UIPageViewController, Navigating {
+    static var navigableItem: NavigableItem = .carousel
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,24 @@ class CarouselPageViewController: UIPageViewController {
 
     private func setupNavigationBar() {
         navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
-//        navigationController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(self.closeCarousel))
-//        navigationController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip", style: .done, target: self, action: #selector(self.skipCarousel))
+        navigationController?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"),
+                                                                                style: .plain,
+                                                                                target: self,
+                                                                                action: #selector(self.closeCarousel))
+
+        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip",
+                                                                                 style: .done,
+                                                                                 target: self,
+                                                                                 action: #selector(self.skipCarousel))
+    }
+
+    @objc func closeCarousel() {
+        dismiss(animated: true, completion: nil)
+    }
+
+    @objc func skipCarousel() {
+        //present last screen
+        //hide page indicator
+        //hide right bar button
     }
 }
