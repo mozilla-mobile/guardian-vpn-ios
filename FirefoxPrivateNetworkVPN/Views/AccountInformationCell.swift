@@ -14,6 +14,7 @@ import UIKit
 class AccountInformationCell: UITableViewCell {
 
     @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var accessoryIconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
     static let height: CGFloat = 55.0
