@@ -23,6 +23,8 @@
 		F423048A2372101000572A93 /* HyperlinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42304882372101000572A93 /* HyperlinkCell.xib */; };
 		F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
 		F43DCC7C2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
+		F45D1D0E238721E20084B5DE /* CarouselPageViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0D238721E20084B5DE /* CarouselPageViewDataSource.swift */; };
+		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
 		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
 		F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA21237AFF210034AF6C /* Result+Decode.swift */; };
 		F4A7FA24237C5C960034AF6C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA23237C5C960034AF6C /* Account.swift */; };
@@ -267,6 +269,8 @@
 		F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaulting.swift; sourceTree = "<group>"; };
 		F43DFC13234E436E003EA64A /* DeviceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceKeys.swift; sourceTree = "<group>"; };
 		F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianTunnelManager.swift; sourceTree = "<group>"; };
+		F45D1D0D238721E20084B5DE /* CarouselPageViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselPageViewDataSource.swift; sourceTree = "<group>"; };
+		F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselPageViewController.swift; sourceTree = "<group>"; };
 		F45D7097233D34B100871447 /* VerifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyResponse.swift; sourceTree = "<group>"; };
 		F45D709A233D384E00871447 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		F45D70A0233D3BC000871447 /* Navigating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigating.swift; sourceTree = "<group>"; };
@@ -572,6 +576,8 @@
 				527C7EB523752E9300368965 /* AboutDataSource.swift */,
 				527C7EB123752DCA00368965 /* AboutViewController.swift */,
 				527C7EB223752DCA00368965 /* AboutViewController.xib */,
+				F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */,
+				F45D1D0D238721E20084B5DE /* CarouselPageViewDataSource.swift */,
 				F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */,
 				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
 				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
@@ -1267,6 +1273,7 @@
 				F4AED257235F835300F80ABF /* IPAddressRange.swift in Sources */,
 				F4E908D32371CAAD00EB9FE6 /* NavigationCoordinating.swift in Sources */,
 				F4E909092371CAAD00EB9FE6 /* AccountInformationCell.swift in Sources */,
+				F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */,
 				F4E908D62371CAAD00EB9FE6 /* UserDefaulting.swift in Sources */,
 				F4A7FA24237C5C960034AF6C /* Account.swift in Sources */,
 				F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */,
@@ -1281,6 +1288,7 @@
 				F4E908C42371CAAD00EB9FE6 /* SettingsDataSource.swift in Sources */,
 				F4E908FD2371CAAD00EB9FE6 /* HomeViewController.swift in Sources */,
 				F4E909132371CAAD00EB9FE6 /* DeviceLimitReachedView.swift in Sources */,
+				F45D1D0E238721E20084B5DE /* CarouselPageViewDataSource.swift in Sources */,
 				F4AED249235F7BB800F80ABF /* WireGuardAppError.swift in Sources */,
 				F4E909052371CAAD00EB9FE6 /* ServersViewController.swift in Sources */,
 				F4E908CB2371CAAD00EB9FE6 /* VerifyResponse.swift in Sources */,
