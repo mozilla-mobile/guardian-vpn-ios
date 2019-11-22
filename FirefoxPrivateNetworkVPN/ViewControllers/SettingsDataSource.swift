@@ -46,9 +46,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
         if settingsItem.action == .devices,
             let account = account,
             account.isOverDeviceLimit {
-            // TODO: Replace the Placeholder image
-            cell.accessoryIconImageView.image = UIImage(named: "icon_trash")
-            cell.accessoryIconImageView.tintColor = UIColor.custom(.red50)
+            cell.accessoryIconImageView.image = UIImage(named: "icon_alert")
             cell.accessoryIconImageView.isHidden = false
         } else {
             cell.accessoryIconImageView.isHidden = true
