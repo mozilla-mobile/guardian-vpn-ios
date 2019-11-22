@@ -31,8 +31,8 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
         dataSource?
             .removeDeviceEvent
-            .subscribe(onNext: { [unowned self] deviceKey in
-                guard let account = self.account else { return }
+            .subscribe(onNext: { [weak self] deviceKey in
+                guard let account = self?.account else { return }
 
                 let confirmAlert = DependencyFactory
                     .sharedFactory
@@ -44,15 +44,15 @@ class DeviceManagementViewController: UIViewController, Navigating {
                                     if case .success = addDeviceResult {
                                         DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
                                     }
-                                    self.tableView?.reloadData()
+                                    self?.tableView?.reloadData()
                                 }
                             } else {
-                                self.tableView?.reloadData()
+                                self?.tableView?.reloadData()
                             }
                         }
-                        self.tableView?.reloadData()
+                        self?.tableView?.reloadData()
                 }
-                self.present(confirmAlert, animated: true, completion: nil)
+                self?.present(confirmAlert, animated: true, completion: nil)
             }).disposed(by: disposeBag)
     }
 
