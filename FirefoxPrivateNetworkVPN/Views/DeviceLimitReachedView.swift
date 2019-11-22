@@ -28,6 +28,5 @@ class DeviceLimitReachedView: UITableViewHeaderFooterView {
         title.text = LocalizedString.devicesLimitTitle.value
         subtitle.text = LocalizedString.devicesLimitSubtitle.value
         backgroundView = UIView()
-        backgroundView?.backgroundColor = .white
     }
 }

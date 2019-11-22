@@ -64,22 +64,15 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension DeviceManagementDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let account = account else { return 0 }
+        guard let account = account, account.isOverDeviceLimit else { return 0 }
 
-        if account.isOverDeviceLimit {
-            return DeviceLimitReachedView.height
-        } else {
-            return 0
-        }
+        return DeviceLimitReachedView.height
+
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let account = account else { return nil }
+        guard let account = account, account.isOverDeviceLimit else { return nil }
 
-        if account.isOverDeviceLimit {
-            return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
-        } else {
-            return nil
-        }
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
     }
 }
