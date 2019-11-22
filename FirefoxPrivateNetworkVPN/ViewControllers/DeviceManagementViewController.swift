@@ -37,8 +37,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
                 let confirmAlert = DependencyFactory
                     .sharedFactory
                     .navigationCoordinator
-                    .createDeviceDeletionAlert(title: LocalizedString.devicesConfirmDeletionTitle.value,
-                                               message: LocalizedString.devicesConfirmDeletionMessage.value) { _ in
+                    .createDeviceDeletionAlert { _ in
                         account.removeDevice(with: deviceKey) { result in
                             if case .success = result, !account.hasDeviceBeenAdded {
                                 account.addCurrentDevice { addDeviceResult in
