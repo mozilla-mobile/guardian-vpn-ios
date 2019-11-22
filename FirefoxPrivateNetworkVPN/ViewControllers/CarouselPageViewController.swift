@@ -13,14 +13,16 @@ import UIKit
 
 class CarouselPageViewController: UIPageViewController, Navigating {
 
+    static var navigableItem: NavigableItem = .carousel
+
     private struct Constant {
         static let pageControlOffsetY: CGFloat = -100
     }
 
-    static var navigableItem: NavigableItem = .carousel
-
-    private let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 43, height: 6))
     private let carouselDataSource = CarouselDataSource()
+    private let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 43, height: 6))
+    private var currentIndex = 0
+    private var pendingIndex = 1
 
     init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -74,11 +76,14 @@ class CarouselPageViewController: UIPageViewController, Navigating {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(self.closeCarousel))
+        addSkipButton()
+    }
 
+    private func addSkipButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip",
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(self.skipCarousel))
+        style: .done,
+        target: self,
+        action: #selector(self.skipCarousel))
     }
 
     @objc func closeCarousel() {
@@ -86,19 +91,42 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     }
 
     @objc func skipCarousel() {
-        //present last screen
-        //hide page indicator
+        setViewControllers([carouselDataSource.viewControllers.last!],
+                           direction: .forward,
+                           animated: true,
+                           completion: nil)
+        pageControl.isHidden = true
+
+        navigationItem.rightBarButtonItem = nil
         //hide right bar button
     }
 }
 
 extension CarouselPageViewController: UIPageViewControllerDelegate {
 
-    //swiftlint:disable force_cast
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        let nextViewController = pendingViewControllers.first as!  OnboardingViewController
-        let index = carouselDataSource.viewControllers.firstIndex(of: nextViewController)
+        //swiftlint:disable force_cast
+        let nextViewController = pendingViewControllers.first as! OnboardingViewController
+        pendingIndex = carouselDataSource.viewControllers.firstIndex(of: nextViewController)!
+        let lastIndex = carouselDataSource.viewControllers.endIndex - 1
+        pageControl.isHidden = (currentIndex == lastIndex - 1 && pendingIndex == lastIndex)
+            || (currentIndex == lastIndex && pendingIndex == lastIndex - 1)
+    }
 
-        pageControl.currentPage = index ?? 0
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let lastIndex = carouselDataSource.viewControllers.endIndex - 1
+
+        if completed {
+            currentIndex = pendingIndex
+            pageControl.currentPage = currentIndex
+            pageControl.isHidden = currentIndex == lastIndex
+            if currentIndex < lastIndex {
+                addSkipButton()
+            } else {
+                navigationItem.rightBarButtonItem = nil
+            }
+        } else {
+            pageControl.isHidden = !(currentIndex < lastIndex)
+        }
     }
 }

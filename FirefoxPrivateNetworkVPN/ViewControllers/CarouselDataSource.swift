@@ -35,7 +35,7 @@ class CarouselDataSource: NSObject, UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let currentIndex = viewControllers.firstIndex(of: viewController as! OnboardingViewController) ?? 0
-        guard currentIndex < viewControllers.count - 1 else { return nil }
+        guard currentIndex < viewControllers.endIndex - 1 else { return nil }
 
         return viewControllers[currentIndex + 1]
     }
