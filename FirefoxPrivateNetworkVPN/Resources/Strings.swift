@@ -54,6 +54,10 @@ enum LocalizedString: String {
     case devicesAddedDate
     case devicesLimitTitle
     case devicesLimitSubtitle
+    case devicesConfirmDeletionTitle
+    case devicesConfirmDeletionMessage
+    case devicesConfirmDeletion
+    case devicesCancelDeletion
 
     case helpTitle
     case helpContactUs
