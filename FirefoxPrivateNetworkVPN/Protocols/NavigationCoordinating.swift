@@ -19,7 +19,7 @@ protocol NavigationCoordinating {
     func navigate(from: NavigableItem, to: NavigableItem, context: NavigableContext?)
     func homeTab(isEnabled: Bool)
 
-    func createDeviceDeletionAlert(handler: DeletionConfirmedHandler?) -> UIAlertController
+    func createDeviceDeletionAlert(deviceName: String, handler: DeletionConfirmedHandler?) -> UIAlertController
 }
 
 extension NavigationCoordinating {

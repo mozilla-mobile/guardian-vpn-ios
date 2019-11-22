@@ -22,20 +22,20 @@ class DeviceManagementCell: UITableViewCell {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     private var disposeBag = DisposeBag()
-    private var deviceKey: String?
-    private var removeDeviceEvent: PublishSubject<String>?
+    private var device: Device?
+    private var removeDeviceEvent: PublishSubject<Device>?
 
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
-        deviceKey = nil
+        device = nil
         removeDeviceEvent = nil
         nameLabel.text = nil
     }
 
-    func setup(with device: Device, event: PublishSubject<String>) {
+    func setup(with device: Device, event: PublishSubject<Device>) {
         nameLabel.text = device.name
-        deviceKey = device.publicKey
+        self.device = device
         removeDeviceEvent = event
 
         if device.isCurrentDevice {
@@ -93,8 +93,8 @@ class DeviceManagementCell: UITableViewCell {
     }
 
     @IBAction func removeDevice() {
-        if let removeDeviceEvent = removeDeviceEvent, let deviceKey = deviceKey {
-            removeDeviceEvent.onNext(deviceKey)
+        if let removeDeviceEvent = removeDeviceEvent, let device = device {
+            removeDeviceEvent.onNext(device)
         }
     }
 }

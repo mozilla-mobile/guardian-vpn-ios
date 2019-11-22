@@ -31,14 +31,14 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
         dataSource?
             .removeDeviceEvent
-            .subscribe(onNext: { [weak self] deviceKey in
+            .subscribe(onNext: { [weak self] device in
                 guard let account = self?.account else { return }
 
                 let confirmAlert = DependencyFactory
                     .sharedFactory
                     .navigationCoordinator
-                    .createDeviceDeletionAlert { _ in
-                        account.removeDevice(with: deviceKey) { result in
+                    .createDeviceDeletionAlert(deviceName: device.name) { _ in
+                        account.removeDevice(with: device.publicKey) { result in
                             if case .success = result, !account.hasDeviceBeenAdded {
                                 account.addCurrentDevice { addDeviceResult in
                                     if case .success = addDeviceResult {

@@ -15,7 +15,7 @@ import RxCocoa
 
 class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
-    var removeDeviceEvent = PublishSubject<String>()
+    var removeDeviceEvent = PublishSubject<Device>()
 
     private let headerName = String(describing: DeviceLimitReachedView.self)
     private let cellName = String(describing: DeviceManagementCell.self)

@@ -139,9 +139,9 @@ class NavigationCoordinator: NavigationCoordinating {
         }
     }
 
-    func createDeviceDeletionAlert(handler: DeletionConfirmedHandler?) -> UIAlertController {
+    func createDeviceDeletionAlert(deviceName: String, handler: DeletionConfirmedHandler?) -> UIAlertController {
         let alert = UIAlertController(title: LocalizedString.devicesConfirmDeletionTitle.value,
-            message: LocalizedString.devicesConfirmDeletionMessage.value,
+            message: String(format: LocalizedString.devicesConfirmDeletionMessage.value, deviceName),
             preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: LocalizedString.devicesCancelDeletion.value,
