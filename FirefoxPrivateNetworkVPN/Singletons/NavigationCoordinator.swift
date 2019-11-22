@@ -138,4 +138,18 @@ class NavigationCoordinator: NavigationCoordinating {
             tabBarController.tabBar.items?[0].isEnabled = isEnabled
         }
     }
+
+    func createDeviceDeletionAlert(title: String, message: String, handler: DelectionConfirmedHandler?) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        // TODO: localization
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { _ in
+            // Do nothing
+        }))
+        alert.addAction(UIAlertAction(title: "Remove",
+          style: .destructive,
+          handler: handler))
+
+        return alert
+    }
 }

@@ -11,12 +11,15 @@
 
 import UIKit
 
+typealias DelectionConfirmedHandler = (UIAlertAction) -> Void
 protocol NavigationCoordinating {
     var firstViewController: UIViewController { get }
 
     func navigate(from: NavigableItem, to: NavigableItem)
     func navigate(from: NavigableItem, to: NavigableItem, context: NavigableContext?)
     func homeTab(isEnabled: Bool)
+
+    func createDeviceDeletionAlert(title: String, message: String, handler: DelectionConfirmedHandler?) -> UIAlertController
 }
 
 extension NavigationCoordinating {
