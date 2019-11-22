@@ -17,6 +17,7 @@ import os.log
 enum NavigableItem {
     case about
     case carousel
+    case getStarted
     case devices
     case help
     case home
@@ -59,6 +60,7 @@ class NavigationCoordinator: NavigationCoordinating {
             // To Landing
             case (.loading, .landing), (.login, .landing), (.settings, .landing):
                 let landingViewController = LandingViewController()
+                landingViewController.setup(for: .landing)
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController
 
@@ -104,6 +106,37 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.appDelegate?.window?.rootViewController = loginViewController
                 self.currentViewController = loginViewController
 
+            case (.landing, .carousel):
+//                let activityLogsViewController = LandingViewController()
+//                activityLogsViewController.setup(for: .activityLogs)
+
+                let pageViewController = CarouselPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+
+//                let carouselDataSource = CarouselPageViewDataSource(head: activityLogsViewController)
+//                pageViewController.delegate = carouselDataSource
+//                pageViewController.dataSource = carouselDataSource
+//
+//                pageViewController.setViewControllers([activityLogsViewController],
+//                                                      direction: .forward,
+//                                                      animated: true,
+//                                                      completion: nil)
+
+//                let navController = UINavigationController(rootViewController: pageViewController)
+//                navController.navigationBar.barTintColor = UIColor.custom(.grey5)
+//                navController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(self.closeCarousel))
+//                navController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip", style: .done, target: self, action: #selector(self.skipCarousel))
+
+                if let landingViewController = self.currentViewController as? LandingViewController {
+                    landingViewController.present(pageViewController, animated: true, completion: nil)
+                }
+
+            case (_, .getStarted):
+                let connectViewController = LandingViewController()
+                connectViewController.setup(for: .connect)
+                let navController = self.currentViewController as? UINavigationController
+                navController?.navigationItem.rightBarButtonItem = nil
+                navController?.pushViewController(connectViewController, animated: true)
+
             // To Devices
             case (.settings, .devices):
                 let devicesViewController = DeviceManagementViewController()
@@ -125,17 +158,26 @@ class NavigationCoordinator: NavigationCoordinating {
                 let aboutViewController = AboutViewController()
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
-                
+
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
                 return
             }
         }
     }
-    
+
     func homeTab(isEnabled: Bool) {
         if let tabBarController = self.currentViewController as? GuardianTabBarController {
             tabBarController.tabBar.items?[0].isEnabled = isEnabled
         }
+    }
+
+    @objc func closeCarousel() {
+        let navController = self.currentViewController as? UINavigationController
+        navController?.dismiss(animated: true, completion: nil)
+    }
+
+    @objc func skipCarousel() {
+        navigate(from: .carousel, to: .getStarted)
     }
 }
