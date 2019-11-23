@@ -12,14 +12,14 @@
 // MARK: - Landing Screen
 "landingTitle" = "Firefox Private Network";
 "landingSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
-"activityLogsTitle" = "Firefox Private Network";
-"activityLogsSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
-"encryptionTitle" = "Firefox Private Network";
-"encryptionSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
-"countriesTitle" = "Firefox Private Network";
-"countriesSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
-"connectTitle" = "Firefox Private Network";
-"connectSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
+"activityLogsTitle" = "No activity logs";
+"activityLogsSubtitle" = "We’re Mozilla. We don’t log your activity and we’re always on your side.";
+"encryptionTitle" = "Device level encryption";
+"encryptionSubtitle" = "No one will see your location or activity, even on unsecure Wi-Fi networks.";
+"countriesTitle" = "Servers in 39 countries";
+"countriesSubtitle" = "Stand up to tech bullies and protect your access to the web.";
+"connectTitle" = "Connect up to 5 devices";
+"connectSubtitle" = "Stream, download and game. We won’t restrict your bandwidth.";
 "getStarted" = "Get started";
 "learnMore" = "Learn more";
 
