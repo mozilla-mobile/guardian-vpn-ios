@@ -76,10 +76,15 @@ class CarouselPageViewController: UIPageViewController, Navigating {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(self.closeCarousel))
-        addSkipButton()
+        skipButton(isHidden: false)
     }
-
-    private func addSkipButton() {
+    
+    private func skipButton(isHidden: Bool) {
+        guard !isHidden else {
+            navigationItem.rightBarButtonItem = nil
+            return
+        }
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip",
         style: .done,
         target: self,
@@ -96,9 +101,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
                            animated: true,
                            completion: nil)
         pageControl.isHidden = true
-
-        navigationItem.rightBarButtonItem = nil
-        //hide right bar button
+        skipButton(isHidden: true)
     }
 }
 
@@ -121,7 +124,7 @@ extension CarouselPageViewController: UIPageViewControllerDelegate {
             pageControl.currentPage = currentIndex
             pageControl.isHidden = currentIndex == lastIndex
             if currentIndex < lastIndex {
-                addSkipButton()
+                skipButton(isHidden: false)
             } else {
                 navigationItem.rightBarButtonItem = nil
             }
