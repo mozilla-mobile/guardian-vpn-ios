@@ -54,14 +54,22 @@ class CarouselPageViewController: UIPageViewController, Navigating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .custom(.grey5)
 
         delegate = self
         dataSource = carouselDataSource
 
-        setupPageControl()
+        setupViews()
         setupNavigationBar()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        layoutPageControl()
+    }
+
+    private func setupViews() {
+        view.backgroundColor = .custom(.grey5)
+        view.addSubview(pageControl)
 
         setViewControllers([carouselDataSource.viewControllers.first!],
                            direction: .forward,
@@ -69,32 +77,17 @@ class CarouselPageViewController: UIPageViewController, Navigating {
                            completion: nil)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        layoutPageControl()
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = skipButton
     }
-    
-    private func setupPageControl() {
-        pageControl.pageIndicatorTintColor = .custom(.grey20)
-        pageControl.currentPageIndicatorTintColor = .custom(.blue50)
-        pageControl.numberOfPages = carouselDataSource.viewControllers.count
-        view.addSubview(pageControl)
-    }
-    
+
     private func layoutPageControl() {
         let viewHeight = view.frame.height
         let viewWidth = view.frame.width
         pageControl.center.x = viewWidth/2.0
         pageControl.center.y = viewHeight + Constant.pageControlOffsetY
-    }
-    
-    private func setupNavigationBar() {
-        navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"),
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(self.close))
-        skipButton(isHidden: false)
     }
     
     private func skipButton(isHidden: Bool) {
