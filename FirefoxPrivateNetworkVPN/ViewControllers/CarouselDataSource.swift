@@ -13,6 +13,10 @@ import UIKit
 
 class CarouselDataSource: NSObject, UIPageViewControllerDataSource {
 
+    lazy var lastIndex: Int = {
+        return self.viewControllers.endIndex - 1
+    }()
+
     lazy var viewControllers: [OnboardingViewController] = {
         let activityLogsViewController = OnboardingViewController(for: .activityLogs)
         let encryptionViewController = OnboardingViewController(for: .encryption)
@@ -22,20 +26,21 @@ class CarouselDataSource: NSObject, UIPageViewControllerDataSource {
         return [activityLogsViewController, encryptionViewController, countriesViewController, connectViewController]
     }()
 
-    //swiftlint:disable force_cast
+    func index(of viewController: UIViewController) -> Int? {
+        guard let onboardingViewController = viewController as? OnboardingViewController else { return nil }
+        return viewControllers.firstIndex(of: onboardingViewController)
+    }
+
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let currentIndex = viewControllers.firstIndex(of: viewController as! OnboardingViewController) ?? 0
-        guard currentIndex > 0 else { return nil }
+        guard let currentIndex = index(of: viewController), currentIndex > 0 else { return nil }
 
         return viewControllers[currentIndex - 1]
     }
 
-    //swiftlint:disable force_cast
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let currentIndex = viewControllers.firstIndex(of: viewController as! OnboardingViewController) ?? 0
-        guard currentIndex < viewControllers.endIndex - 1 else { return nil }
+        guard let currentIndex = index(of: viewController), currentIndex < lastIndex else { return nil }
 
         return viewControllers[currentIndex + 1]
     }
