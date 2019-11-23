@@ -71,8 +71,7 @@ class OnboardingViewController: UIViewController, Navigating {
             self.subtitleLabel.text = LocalizedString.connectSubtitle.value
             self.learnMoreButton.isHidden = true
             self.imageView.image = UIImage(named: "carousel_meter")
-            OnboardingViewController.navigableItem = .getStarted
-            //move getStartedButton down
+            self.getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
         }
     }
 
