@@ -73,7 +73,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"),
                                                            style: .plain,
                                                            target: self,
-                                                           action: #selector(self.closeCarousel))
+                                                           action: #selector(self.close))
         skipButton(isHidden: false)
     }
     
@@ -84,20 +84,21 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip",
-        style: .done,
-        target: self,
-        action: #selector(self.skipCarousel))
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(self.skipToLastPage))
     }
-
-    @objc func closeCarousel() {
+    
+    @objc func close() {
         dismiss(animated: true, completion: nil)
     }
-
-    @objc func skipCarousel() {
+    
+    @objc func skipToLastPage() {
         setViewControllers([carouselDataSource.viewControllers.last!],
                            direction: .forward,
                            animated: true,
                            completion: nil)
+        
         pageControl.isHidden = true
         skipButton(isHidden: true)
     }
