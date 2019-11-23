@@ -112,14 +112,6 @@ class NavigationCoordinator: NavigationCoordinating {
                                                     animated: true,
                                                     completion: nil)
 
-            // To last Onboarding screen
-//            case (_, .getStarted):
-//                let connectViewController = LandingViewController()
-//                connectViewController.setup(for: .connect)
-//                let navController = self.currentViewController as? UINavigationController
-//                navController?.navigationItem.rightBarButtonItem = nil
-//                navController?.pushViewController(connectViewController, animated: true)
-
             // To Devices
             case (.settings, .devices):
                 let devicesViewController = DeviceManagementViewController()
