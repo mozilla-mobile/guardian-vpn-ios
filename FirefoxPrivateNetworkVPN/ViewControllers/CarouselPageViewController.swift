@@ -127,12 +127,11 @@ class CarouselPageViewController: UIPageViewController, Navigating {
 extension CarouselPageViewController: UIPageViewControllerDelegate {
 
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        //swiftlint:disable force_cast
-        let nextViewController = pendingViewControllers.first as! OnboardingViewController
-        pendingIndex = carouselDataSource.viewControllers.firstIndex(of: nextViewController)!
-        let lastIndex = carouselDataSource.viewControllers.endIndex - 1
-        pageControl.isHidden = (currentIndex == lastIndex - 1 && pendingIndex == lastIndex)
-            || (currentIndex == lastIndex && pendingIndex == lastIndex - 1)
+        if let nextViewController = pendingViewControllers.first,
+            let nextIndex = carouselDataSource.index(of: nextViewController) {
+            pendingIndex = nextIndex
+            reformatPage()
+        }
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
