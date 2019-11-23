@@ -34,6 +34,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .custom(.grey5)
 
         delegate = self
@@ -48,28 +49,25 @@ class CarouselPageViewController: UIPageViewController, Navigating {
                            completion: nil)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        layoutPageControl()
+    }
+    
     private func setupPageControl() {
         pageControl.pageIndicatorTintColor = .custom(.grey20)
         pageControl.currentPageIndicatorTintColor = .custom(.blue50)
-
         pageControl.numberOfPages = carouselDataSource.viewControllers.count
-
         view.addSubview(pageControl)
     }
-
-    override func viewDidLayoutSubviews() {
+    
+    private func layoutPageControl() {
         let viewHeight = view.frame.height
         let viewWidth = view.frame.width
-
         pageControl.center.x = viewWidth/2.0
         pageControl.center.y = viewHeight + Constant.pageControlOffsetY
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
-
+    
     private func setupNavigationBar() {
         navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"),
