@@ -135,19 +135,11 @@ extension CarouselPageViewController: UIPageViewControllerDelegate {
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        let lastIndex = carouselDataSource.viewControllers.endIndex - 1
-
         if completed {
-            currentIndex = pendingIndex
+            currentIndex = pendingIndex ?? carouselDataSource.lastIndex
             pageControl.currentPage = currentIndex
-            pageControl.isHidden = currentIndex == lastIndex
-            if currentIndex < lastIndex {
-                skipButton(isHidden: false)
-            } else {
-                navigationItem.rightBarButtonItem = nil
-            }
-        } else {
-            pageControl.isHidden = !(currentIndex < lastIndex)
         }
+        pendingIndex = nil
+        reformatPage()
     }
 }
