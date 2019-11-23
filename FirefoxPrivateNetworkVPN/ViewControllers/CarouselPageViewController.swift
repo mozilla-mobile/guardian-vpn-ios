@@ -21,7 +21,21 @@ class CarouselPageViewController: UIPageViewController, Navigating {
 
     private let carouselDataSource = CarouselDataSource()
     private var currentIndex = 0
-    private var pendingIndex = 1
+    private var pendingIndex: Int?
+
+    private var isLastPage: Bool {
+        return currentIndex == carouselDataSource.lastIndex
+    }
+
+    private var isLastPageNext: Bool {
+        return currentIndex == carouselDataSource.lastIndex - 1
+            && pendingIndex == carouselDataSource.lastIndex
+    }
+
+    private var shouldHideControls: Bool {
+        return isLastPage || isLastPageNext
+    }
+
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 43, height: 6))
         pageControl.pageIndicatorTintColor = .custom(.grey20)
@@ -89,31 +103,24 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         pageControl.center.x = viewWidth/2.0
         pageControl.center.y = viewHeight + Constant.pageControlOffsetY
     }
-    
-    private func skipButton(isHidden: Bool) {
-        guard !isHidden else {
-            navigationItem.rightBarButtonItem = nil
-            return
-        }
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip",
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(self.skipToLastPage))
+
+    private func reformatPage() {
+        pageControl.isHidden = shouldHideControls
+        navigationItem.rightBarButtonItem = shouldHideControls ? nil : skipButton
     }
-    
+
     @objc func close() {
         dismiss(animated: true, completion: nil)
     }
-    
+
     @objc func skipToLastPage() {
         setViewControllers([carouselDataSource.viewControllers.last!],
                            direction: .forward,
                            animated: true,
                            completion: nil)
-        
-        pageControl.isHidden = true
-        skipButton(isHidden: true)
+
+        currentIndex = carouselDataSource.lastIndex
+        reformatPage()
     }
 }
 
