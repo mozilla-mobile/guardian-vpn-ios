@@ -20,9 +20,29 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     }
 
     private let carouselDataSource = CarouselDataSource()
-    private let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 43, height: 6))
     private var currentIndex = 0
     private var pendingIndex = 1
+    private lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 43, height: 6))
+        pageControl.pageIndicatorTintColor = .custom(.grey20)
+        pageControl.currentPageIndicatorTintColor = .custom(.blue50)
+        pageControl.numberOfPages = carouselDataSource.viewControllers.count
+        return pageControl
+    }()
+
+    private lazy var closeButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(named: "icon_close"),
+                               style: .plain,
+                               target: self,
+                               action: #selector(self.close))
+    }()
+
+    private lazy var skipButton: UIBarButtonItem = {
+        UIBarButtonItem(title: "Skip",
+                        style: .done,
+                        target: self,
+                        action: #selector(self.skipToLastPage))
+    }()
 
     init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
