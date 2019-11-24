@@ -41,6 +41,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         pageControl.pageIndicatorTintColor = .custom(.grey20)
         pageControl.currentPageIndicatorTintColor = .custom(.blue50)
         pageControl.numberOfPages = carouselDataSource.viewControllers.count
+
         return pageControl
     }()
 
@@ -52,7 +53,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     }()
 
     private lazy var skipButton: UIBarButtonItem = {
-        UIBarButtonItem(title: "Skip",
+        return UIBarButtonItem(title: "Skip",
                         style: .done,
                         target: self,
                         action: #selector(self.skipToLastPage))
