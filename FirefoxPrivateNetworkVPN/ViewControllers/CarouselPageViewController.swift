@@ -93,6 +93,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
 
     private func setupNavigationBar() {
         navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
+        navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = skipButton
     }
