@@ -99,7 +99,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 navController?.popViewController(animated: true)
 
             // To Login
-            case (.landing, .login):
+            case (.landing, .login), (.carousel, .login):
                 let loginViewController = LoginViewController()
                 self.appDelegate?.window?.rootViewController = loginViewController
                 self.currentViewController = loginViewController

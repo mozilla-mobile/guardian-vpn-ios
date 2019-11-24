@@ -12,7 +12,7 @@
 import UIKit
 
 class OnboardingViewController: UIViewController, Navigating {
-    static var navigableItem: NavigableItem = .landing
+    static var navigableItem: NavigableItem = .carousel
 
     @IBOutlet weak var getStartedButton: UIButton!
     @IBOutlet weak var learnMoreButton: UIButton!
@@ -39,6 +39,7 @@ class OnboardingViewController: UIViewController, Navigating {
     private func setupView() {
         switch type {
         case .landing:
+            OnboardingViewController.navigableItem = .landing
             self.titleLabel.text = LocalizedString.landingTitle.value
             self.subtitleLabel.text = LocalizedString.landingSubtitle.value
             self.getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
