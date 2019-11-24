@@ -14,13 +14,13 @@ import UIKit
 class OnboardingViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .carousel
 
-    @IBOutlet weak var getStartedButton: UIButton!
-    @IBOutlet weak var learnMoreButton: UIButton!
-    @IBOutlet weak var buttonStackView: UIStackView!
-    @IBOutlet weak var buttonStackViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var getStartedButton: UIButton!
+    @IBOutlet private weak var learnMoreButton: UIButton!
+    @IBOutlet private weak var buttonStackView: UIStackView!
+    @IBOutlet private weak var buttonStackViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
 
     var type: OnboardingViewType
 
