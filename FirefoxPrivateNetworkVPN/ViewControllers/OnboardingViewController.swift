@@ -44,31 +44,31 @@ class OnboardingViewController: UIViewController, Navigating {
             self.getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
             self.learnMoreButton.setTitle(LocalizedString.learnMore.value, for: .normal)
             self.imageView.image = UIImage(named: "logo")
-            
-        case .activityLogs:
-            self.titleLabel.text = LocalizedString.activityLogsTitle.value
-            self.subtitleLabel.text = LocalizedString.activityLogsSubtitle.value
+
+        case .noLogs:
+            self.titleLabel.text = LocalizedString.noLogsTitle.value
+            self.subtitleLabel.text = LocalizedString.noLogsSubtitle.value
             self.getStartedButton.isHidden = true
             self.learnMoreButton.isHidden = true
             self.imageView.image = UIImage(named: "carousel_padlock")
-            
+
         case .encryption:
             self.titleLabel.text = LocalizedString.encryptionTitle.value
             self.subtitleLabel.text = LocalizedString.encryptionSubtitle.value
             self.getStartedButton.isHidden = true
             self.learnMoreButton.isHidden = true
             self.imageView.image = UIImage(named: "carousel_encryption")
-            
-        case .countries:
-            self.titleLabel.text = LocalizedString.countriesTitle.value
-            self.subtitleLabel.text = LocalizedString.countriesSubtitle.value
+
+        case .manyServers:
+            self.titleLabel.text = LocalizedString.manyServersTitle.value
+            self.subtitleLabel.text = LocalizedString.manyServersSubtitle.value
             self.getStartedButton.isHidden = true
             self.learnMoreButton.isHidden = true
             self.imageView.image = UIImage(named: "carousel_globe")
-            
-        case .connect:
-            self.titleLabel.text = LocalizedString.connectTitle.value
-            self.subtitleLabel.text = LocalizedString.connectSubtitle.value
+
+        case .getStarted:
+            self.titleLabel.text = LocalizedString.getStartedTitle.value
+            self.subtitleLabel.text = LocalizedString.getStartedSubtitle.value
             self.learnMoreButton.isHidden = true
             self.imageView.image = UIImage(named: "carousel_meter")
             self.getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
@@ -86,8 +86,8 @@ class OnboardingViewController: UIViewController, Navigating {
 
 enum OnboardingViewType {
     case landing
-    case activityLogs
+    case noLogs
     case encryption
-    case countries
-    case connect
+    case manyServers
+    case getStarted
 }

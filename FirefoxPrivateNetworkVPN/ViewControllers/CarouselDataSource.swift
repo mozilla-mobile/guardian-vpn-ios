@@ -18,12 +18,12 @@ class CarouselDataSource: NSObject, UIPageViewControllerDataSource {
     }()
 
     lazy var viewControllers: [OnboardingViewController] = {
-        let activityLogsViewController = OnboardingViewController(for: .activityLogs)
+        let noLogsViewController = OnboardingViewController(for: .noLogs)
         let encryptionViewController = OnboardingViewController(for: .encryption)
-        let countriesViewController = OnboardingViewController(for: .countries)
-        let connectViewController = OnboardingViewController(for: .connect)
+        let manyServersViewController = OnboardingViewController(for: .manyServers)
+        let getStartedViewController = OnboardingViewController(for: .getStarted)
 
-        return [activityLogsViewController, encryptionViewController, countriesViewController, connectViewController]
+        return [noLogsViewController, encryptionViewController, manyServersViewController, getStartedViewController]
     }()
 
     func index(of viewController: UIViewController) -> Int? {

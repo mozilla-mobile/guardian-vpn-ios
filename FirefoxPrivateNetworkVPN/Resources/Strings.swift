@@ -14,14 +14,14 @@ import Foundation
 enum LocalizedString: String {
     case landingTitle
     case landingSubtitle
-    case activityLogsTitle
-    case activityLogsSubtitle
+    case noLogsTitle
+    case noLogsSubtitle
     case encryptionTitle
     case encryptionSubtitle
-    case countriesTitle
-    case countriesSubtitle
-    case connectTitle
-    case connectSubtitle
+    case manyServersTitle
+    case manyServersSubtitle
+    case getStartedTitle
+    case getStartedSubtitle
     case getStarted
     case learnMore
 
