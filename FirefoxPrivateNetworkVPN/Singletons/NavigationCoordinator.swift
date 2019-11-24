@@ -17,7 +17,6 @@ import os.log
 enum NavigableItem {
     case about
     case carousel
-    case getStarted
     case devices
     case help
     case home
