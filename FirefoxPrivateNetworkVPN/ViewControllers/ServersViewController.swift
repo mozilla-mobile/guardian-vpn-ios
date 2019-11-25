@@ -49,6 +49,11 @@ class ServersViewController: UIViewController, Navigating {
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presentingViewController?.view.alpha = 1
+    }
+
     // MARK: - Setup
     private func setupNavigationBar() {
 //        let leftSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
