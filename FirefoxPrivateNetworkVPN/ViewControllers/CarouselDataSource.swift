@@ -13,11 +13,11 @@ import UIKit
 
 class CarouselDataSource: NSObject, UIPageViewControllerDataSource {
 
-    lazy var lastIndex: Int = {
+    private(set) lazy var lastIndex: Int = {
         return self.viewControllers.endIndex - 1
     }()
 
-    lazy var viewControllers: [OnboardingViewController] = {
+    private(set) lazy var viewControllers: [OnboardingViewController] = {
         let noLogsViewController = OnboardingViewController(for: .noLogs)
         let encryptionViewController = OnboardingViewController(for: .encryption)
         let manyServersViewController = OnboardingViewController(for: .manyServers)
