@@ -16,7 +16,7 @@ class NetworkLayer {
     static func fire(urlRequest: URLRequest, completion: @escaping (Result<Data?, GuardianAPIError>) -> Void) {
         let defaultSession = URLSession(configuration: .default)
         defaultSession.configuration.timeoutIntervalForRequest = 120
-        
+
         let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, _ in
             if let response = response as? HTTPURLResponse, 200...210 ~= response.statusCode {
                 completion(.success(data))
