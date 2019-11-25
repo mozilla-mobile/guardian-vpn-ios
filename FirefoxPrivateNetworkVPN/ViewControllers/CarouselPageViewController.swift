@@ -82,6 +82,11 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         layoutPageControl()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presentingViewController?.view.alpha = 1
+    }
+
     private func setupViews() {
         view.backgroundColor = .custom(.grey5)
         view.addSubview(pageControl)

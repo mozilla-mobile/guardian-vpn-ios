@@ -87,6 +87,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 let serversViewController = ServersViewController()
                 let navController = UINavigationController(rootViewController: serversViewController)
                 self.currentViewController?.present(navController, animated: true, completion: nil)
+                self.currentViewController?.view.alpha = 0.5
 
             // To Settings
             case (.home, .settings), (.tab, .settings):
@@ -105,9 +106,8 @@ class NavigationCoordinator: NavigationCoordinating {
             // To Onboarding carousel
             case (.landing, .carousel):
                 let carouselPageViewController = CarouselPageViewController()
-                self.currentViewController?.present(UINavigationController(rootViewController: carouselPageViewController),
-                                                    animated: true,
-                                                    completion: nil)
+                self.currentViewController?.present(UINavigationController(rootViewController: carouselPageViewController), animated: true, completion: nil)
+                self.currentViewController?.view.alpha = 0.5
 
             // To Devices
             case (.settings, .devices):
