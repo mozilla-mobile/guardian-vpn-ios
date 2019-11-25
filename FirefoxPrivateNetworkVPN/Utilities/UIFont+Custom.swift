@@ -1,5 +1,5 @@
 //
-//  UINavigationBar+font
+//  UIFont+Custom
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -11,10 +11,13 @@
 
 import UIKit
 
-extension UINavigationBar {
+enum CustomFont: String {
+    case metropolis = "Metropolis"
+    case metropolisSemiBold = "Metropolis-SemiBold"
+}
 
-    func setTitleFont(_ font: CustomFont = .metropolisSemiBold) {
-        titleTextAttributes = [NSAttributedString.Key.font: UIFont.custom(font),
-                               NSAttributedString.Key.foregroundColor: UIColor.custom(.grey50)]
+extension UIFont {
+    static func custom(_ font: CustomFont, size: CGFloat = 15) -> UIFont {
+        return UIFont(name: font.rawValue, size: size)!
     }
 }
