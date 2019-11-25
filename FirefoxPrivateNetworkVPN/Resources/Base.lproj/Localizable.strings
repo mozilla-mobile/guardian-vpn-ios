@@ -12,8 +12,16 @@
 // MARK: - Landing Screen
 "landingTitle" = "Firefox Private Network";
 "landingSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
-"landingGetStarted" = "Get started";
-"landingLearnMore" = "Learn more";
+"noLogsTitle" = "No activity logs";
+"noLogsSubtitle" = "We’re Mozilla. We don’t log your activity and we’re always on your side.";
+"encryptionTitle" = "Device level encryption";
+"encryptionSubtitle" = "No one will see your location or activity, even on unsecure Wi-Fi networks.";
+"manyServersTitle" = "Servers in 39 countries";
+"manyServersSubtitle" = "Stand up to tech bullies and protect your access to the web.";
+"getStartedTitle" = "Connect up to 5 devices";
+"getStartedSubtitle" = "Stream, download and game. We won’t restrict your bandwidth.";
+"getStarted" = "Get started";
+"learnMore" = "Learn more";
 
 // MARK: - VPN Home
 "homeTabName" = "VPN";

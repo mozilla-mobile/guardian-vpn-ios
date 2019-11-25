@@ -23,6 +23,8 @@
 		F423048A2372101000572A93 /* HyperlinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42304882372101000572A93 /* HyperlinkCell.xib */; };
 		F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
 		F43DCC7C2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
+		F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */; };
+		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
 		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
 		F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA21237AFF210034AF6C /* Result+Decode.swift */; };
 		F4A7FA24237C5C960034AF6C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA23237C5C960034AF6C /* Account.swift */; };
@@ -134,8 +136,8 @@
 		F4E908FC2371CAAD00EB9FE6 /* GuardianTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70AA233E921900871447 /* GuardianTabBarController.swift */; };
 		F4E908FD2371CAAD00EB9FE6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A2233D3D6C00871447 /* HomeViewController.swift */; };
 		F4E908FE2371CAAD00EB9FE6 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70A3233D3D6C00871447 /* HomeViewController.xib */; };
-		F4E908FF2371CAAD00EB9FE6 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46969792367345100D48617 /* LandingViewController.swift */; };
-		F4E909002371CAAD00EB9FE6 /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F469697A2367345100D48617 /* LandingViewController.xib */; };
+		F4E908FF2371CAAD00EB9FE6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46969792367345100D48617 /* OnboardingViewController.swift */; };
+		F4E909002371CAAD00EB9FE6 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F469697A2367345100D48617 /* OnboardingViewController.xib */; };
 		F4E909012371CAAD00EB9FE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41B9C7D2368933F00ACC414 /* LaunchScreen.storyboard */; };
 		F4E909022371CAAD00EB9FE6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC05234BB32C003EA64A /* LoadingViewController.swift */; };
 		F4E909032371CAAD00EB9FE6 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */; };
@@ -267,6 +269,8 @@
 		F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaulting.swift; sourceTree = "<group>"; };
 		F43DFC13234E436E003EA64A /* DeviceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceKeys.swift; sourceTree = "<group>"; };
 		F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianTunnelManager.swift; sourceTree = "<group>"; };
+		F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselDataSource.swift; sourceTree = "<group>"; };
+		F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselPageViewController.swift; sourceTree = "<group>"; };
 		F45D7097233D34B100871447 /* VerifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyResponse.swift; sourceTree = "<group>"; };
 		F45D709A233D384E00871447 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		F45D70A0233D3BC000871447 /* Navigating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigating.swift; sourceTree = "<group>"; };
@@ -301,8 +305,8 @@
 		F4658544233BB7690081D7D7 /* GuardianAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPI.swift; sourceTree = "<group>"; };
 		F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckpointModel.swift; sourceTree = "<group>"; };
 		F465854C233BF0850081D7D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		F46969792367345100D48617 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
-		F469697A2367345100D48617 /* LandingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
+		F46969792367345100D48617 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		F469697A2367345100D48617 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		F49090BD2379D43200C8430A /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewController.swift; sourceTree = "<group>"; };
@@ -572,6 +576,8 @@
 				527C7EB523752E9300368965 /* AboutDataSource.swift */,
 				527C7EB123752DCA00368965 /* AboutViewController.swift */,
 				527C7EB223752DCA00368965 /* AboutViewController.xib */,
+				F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */,
+				F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */,
 				F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */,
 				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
 				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
@@ -581,12 +587,12 @@
 				F4230482237209B000572A93 /* HelpViewController.xib */,
 				F45D70A2233D3D6C00871447 /* HomeViewController.swift */,
 				F45D70A3233D3D6C00871447 /* HomeViewController.xib */,
-				F46969792367345100D48617 /* LandingViewController.swift */,
-				F469697A2367345100D48617 /* LandingViewController.xib */,
 				F41B9C7D2368933F00ACC414 /* LaunchScreen.storyboard */,
 				F43DFC05234BB32C003EA64A /* LoadingViewController.swift */,
 				F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */,
 				F4E33D802358BF1500B2003A /* LoginViewController.swift */,
+				F46969792367345100D48617 /* OnboardingViewController.swift */,
+				F469697A2367345100D48617 /* OnboardingViewController.xib */,
 				F4D150B92345438500739CDA /* ServersDataSource.swift */,
 				F45D70FB23428DCE00871447 /* ServersViewController.swift */,
 				F45D70FC23428DCE00871447 /* ServersViewController.xib */,
@@ -1054,7 +1060,7 @@
 				F4E908E62371CAAD00EB9FE6 /* Metropolis-Regular.otf in Resources */,
 				F4E908E92371CAAD00EB9FE6 /* Metropolis-SemiBoldItalic.otf in Resources */,
 				527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */,
-				F4E909002371CAAD00EB9FE6 /* LandingViewController.xib in Resources */,
+				F4E909002371CAAD00EB9FE6 /* OnboardingViewController.xib in Resources */,
 				F4E909122371CAAD00EB9FE6 /* CurrentVPNSelectorView.xib in Resources */,
 				F4E908E82371CAAD00EB9FE6 /* Metropolis-SemiBold.otf in Resources */,
 				F4E908EA2371CAAD00EB9FE6 /* Metropolis-Thin.otf in Resources */,
@@ -1267,6 +1273,7 @@
 				F4AED257235F835300F80ABF /* IPAddressRange.swift in Sources */,
 				F4E908D32371CAAD00EB9FE6 /* NavigationCoordinating.swift in Sources */,
 				F4E909092371CAAD00EB9FE6 /* AccountInformationCell.swift in Sources */,
+				F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */,
 				F4E908D62371CAAD00EB9FE6 /* UserDefaulting.swift in Sources */,
 				F4A7FA24237C5C960034AF6C /* Account.swift in Sources */,
 				F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */,
@@ -1281,6 +1288,7 @@
 				F4E908C42371CAAD00EB9FE6 /* SettingsDataSource.swift in Sources */,
 				F4E908FD2371CAAD00EB9FE6 /* HomeViewController.swift in Sources */,
 				F4E909132371CAAD00EB9FE6 /* DeviceLimitReachedView.swift in Sources */,
+				F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */,
 				F4AED249235F7BB800F80ABF /* WireGuardAppError.swift in Sources */,
 				F4E909052371CAAD00EB9FE6 /* ServersViewController.swift in Sources */,
 				F4E908CB2371CAAD00EB9FE6 /* VerifyResponse.swift in Sources */,
@@ -1332,7 +1340,7 @@
 				F4AED253235F835200F80ABF /* DNSServer.swift in Sources */,
 				F4E908C92371CAAD00EB9FE6 /* LoginCheckpointModel.swift in Sources */,
 				F4E908F72371CAAD00EB9FE6 /* UIColor+Named.swift in Sources */,
-				F4E908FF2371CAAD00EB9FE6 /* LandingViewController.swift in Sources */,
+				F4E908FF2371CAAD00EB9FE6 /* OnboardingViewController.swift in Sources */,
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
 				F42304892372101000572A93 /* HyperlinkCell.swift in Sources */,
 				F4E9090D2371CAAD00EB9FE6 /* CityVPNCell.swift in Sources */,

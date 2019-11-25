@@ -58,7 +58,7 @@ class NavigationCoordinator: NavigationCoordinating {
             switch (origin, destination) {
             // To Landing
             case (.loading, .landing), (.login, .landing), (.settings, .landing):
-                let landingViewController = LandingViewController()
+                let landingViewController = OnboardingViewController(for: .landing)
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController
 
@@ -99,10 +99,17 @@ class NavigationCoordinator: NavigationCoordinating {
                 navController?.popViewController(animated: true)
 
             // To Login
-            case (.landing, .login):
+            case (.landing, .login), (.carousel, .login):
                 let loginViewController = LoginViewController()
                 self.appDelegate?.window?.rootViewController = loginViewController
                 self.currentViewController = loginViewController
+
+            // To Onboarding carousel
+            case (.landing, .carousel):
+                let carouselPageViewController = CarouselPageViewController()
+                self.currentViewController?.present(UINavigationController(rootViewController: carouselPageViewController),
+                                                    animated: true,
+                                                    completion: nil)
 
             // To Devices
             case (.settings, .devices):
@@ -125,14 +132,14 @@ class NavigationCoordinator: NavigationCoordinating {
                 let aboutViewController = AboutViewController()
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
-                
+
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
                 return
             }
         }
     }
-    
+
     func homeTab(isEnabled: Bool) {
         if let tabBarController = self.currentViewController as? GuardianTabBarController {
             tabBarController.tabBar.items?[0].isEnabled = isEnabled

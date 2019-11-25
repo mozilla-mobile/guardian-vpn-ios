@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,9 +20,12 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LandingViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
+                <outlet property="buttonStackView" destination="eEb-rt-3fv" id="1w3-tV-TZP"/>
+                <outlet property="buttonStackViewBottomConstraint" destination="OJj-px-Exc" id="Guh-tt-qvb"/>
                 <outlet property="getStartedButton" destination="E5n-2e-PN9" id="k56-bw-3KQ"/>
+                <outlet property="imageView" destination="Xtd-yb-bAs" id="YFv-py-dm9"/>
                 <outlet property="learnMoreButton" destination="Xsj-jW-6dB" id="laE-Qs-Gxc"/>
                 <outlet property="subtitleLabel" destination="aKt-Ai-EeU" id="lrz-a2-dYk"/>
                 <outlet property="titleLabel" destination="hn5-H4-ufw" id="gAC-dd-InD"/>
@@ -35,7 +38,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBV-6t-Eg4">
-                    <rect key="frame" x="0.0" y="311.5" width="414" height="173"/>
+                    <rect key="frame" x="0.0" y="313" width="414" height="170.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xtd-yb-bAs">
                             <rect key="frame" x="167" y="0.0" width="80" height="80"/>
@@ -45,13 +48,13 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum Dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn5-H4-ufw">
-                            <rect key="frame" x="32" y="104" width="350" height="26"/>
+                            <rect key="frame" x="32" y="104" width="350" height="22"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                             <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKt-Ai-EeU">
-                            <rect key="frame" x="32" y="138" width="350" height="35"/>
+                            <rect key="frame" x="32" y="134" width="350" height="36.5"/>
                             <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                             <color key="textColor" name="custom_grey40"/>
                             <nil key="highlightedColor"/>
@@ -69,59 +72,61 @@
                         <constraint firstItem="aKt-Ai-EeU" firstAttribute="leading" secondItem="sBV-6t-Eg4" secondAttribute="leading" constant="32" id="xc6-ni-Dm5"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-2e-PN9">
-                    <rect key="frame" x="32" y="750" width="350" height="40"/>
-                    <color key="backgroundColor" name="custom_blue50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="jST-kX-YVJ"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
-                    <state key="normal" title="Lorum Ipsum">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="getStarted" destination="-1" eventType="touchUpInside" id="sEg-qK-jzG"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsj-jW-6dB">
-                    <rect key="frame" x="32" y="806" width="350" height="40"/>
-                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
-                    <state key="normal" title="Sit amet">
-                        <color key="titleColor" name="custom_blue50"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="learnMore" destination="-1" eventType="touchUpInside" id="xr8-fc-ciq"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eEb-rt-3fv">
+                    <rect key="frame" x="32" y="750" width="350" height="96"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-2e-PN9">
+                            <rect key="frame" x="0.0" y="0.0" width="350" height="40"/>
+                            <color key="backgroundColor" name="custom_blue50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="jST-kX-YVJ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
+                            <state key="normal" title="Lorum Ipsum">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="getStarted" destination="-1" eventType="touchUpInside" id="sEg-qK-jzG"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsj-jW-6dB">
+                            <rect key="frame" x="0.0" y="56" width="350" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="U8f-Wn-TXn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
+                            <state key="normal" title="Sit amet">
+                                <color key="titleColor" name="custom_blue50"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="learnMore" destination="-1" eventType="touchUpInside" id="xr8-fc-ciq"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" name="custom_grey5"/>
             <constraints>
+                <constraint firstItem="eEb-rt-3fv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="0Yh-Ae-3lh"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0ce-vF-XyJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sBV-6t-Eg4" secondAttribute="trailing" id="2F6-EW-b1R"/>
-                <constraint firstItem="Xsj-jW-6dB" firstAttribute="top" secondItem="E5n-2e-PN9" secondAttribute="bottom" constant="16" id="9A0-1e-dCx"/>
-                <constraint firstItem="E5n-2e-PN9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="ERA-n3-2Vc"/>
-                <constraint firstItem="Xsj-jW-6dB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qha-e9-7kA"/>
-                <constraint firstItem="Xsj-jW-6dB" firstAttribute="height" secondItem="E5n-2e-PN9" secondAttribute="height" id="Rk0-HP-non"/>
-                <constraint firstItem="Xsj-jW-6dB" firstAttribute="leading" secondItem="E5n-2e-PN9" secondAttribute="leading" id="Wff-Ng-R61"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="eEb-rt-3fv" secondAttribute="bottom" constant="16" id="OJj-px-Exc"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aT5-lV-kfi"/>
-                <constraint firstItem="E5n-2e-PN9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bLa-bL-nnR"/>
-                <constraint firstItem="Xsj-jW-6dB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kfV-OA-6iN"/>
-                <constraint firstItem="E5n-2e-PN9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="udU-A4-TFc"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Xsj-jW-6dB" secondAttribute="bottom" constant="16" id="vSE-Jk-oZf"/>
+                <constraint firstItem="eEb-rt-3fv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wYh-eS-DLO"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-50" id="wgH-oM-zTo"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="132" y="154"/>
+            <point key="canvasLocation" x="131.8840579710145" y="153.34821428571428"/>
         </view>
     </objects>
     <resources>
