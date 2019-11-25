@@ -106,7 +106,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         pageControl.center.y = viewHeight + Constant.pageControlOffsetY
     }
 
-    private func reformatPage() {
+    private func reloadPage() {
         pageControl.isHidden = shouldHideControls
         navigationItem.rightBarButtonItem = shouldHideControls ? nil : skipButton
     }
@@ -122,7 +122,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
                            completion: nil)
 
         currentIndex = carouselDataSource.lastIndex
-        reformatPage()
+        reloadPage()
     }
 }
 
@@ -132,7 +132,7 @@ extension CarouselPageViewController: UIPageViewControllerDelegate {
         if let nextViewController = pendingViewControllers.first,
             let nextIndex = carouselDataSource.index(of: nextViewController) {
             pendingIndex = nextIndex
-            reformatPage()
+            reloadPage()
         }
     }
 
@@ -142,6 +142,6 @@ extension CarouselPageViewController: UIPageViewControllerDelegate {
             pageControl.currentPage = currentIndex
         }
         pendingIndex = nil
-        reformatPage()
+        reloadPage()
     }
 }
