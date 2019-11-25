@@ -97,6 +97,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = skipButton
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.custom(.metropolis, size: 17)], for: .normal)
     }
 
     private func layoutPageControl() {
