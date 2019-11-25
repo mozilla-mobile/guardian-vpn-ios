@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -78,14 +78,24 @@
                         <color key="textColor" name="custom_grey40"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAW-5J-ZfB" userLabel="Separator">
+                        <rect key="frame" x="16" y="279" width="471" height="1"/>
+                        <color key="backgroundColor" name="custom_grey10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="pWP-uP-pd5"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="UlA-am-E2b" firstAttribute="top" secondItem="pcN-zC-qOq" secondAttribute="bottom" constant="14" id="77H-u8-2eH"/>
                     <constraint firstItem="EAu-aI-d3e" firstAttribute="top" secondItem="UlA-am-E2b" secondAttribute="bottom" constant="8" id="8od-ce-vBE"/>
+                    <constraint firstAttribute="trailing" secondItem="zAW-5J-ZfB" secondAttribute="trailing" constant="16" id="AZ5-Jd-tW1"/>
                     <constraint firstItem="pcN-zC-qOq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="KWk-gi-Gd4"/>
                     <constraint firstItem="JzQ-Ff-F1D" firstAttribute="top" secondItem="EAu-aI-d3e" secondAttribute="bottom" constant="24" id="OCE-5V-DKm"/>
+                    <constraint firstAttribute="bottom" secondItem="zAW-5J-ZfB" secondAttribute="bottom" id="PoM-Gh-bGY"/>
                     <constraint firstItem="EAu-aI-d3e" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Q2W-YX-KbV"/>
                     <constraint firstItem="pcN-zC-qOq" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="QBz-ma-0gu"/>
+                    <constraint firstItem="zAW-5J-ZfB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="RPf-O7-RWS"/>
                     <constraint firstAttribute="bottomMargin" secondItem="JzQ-Ff-F1D" secondAttribute="bottom" priority="999" constant="32" id="T0D-vZ-jOB"/>
                     <constraint firstItem="JzQ-Ff-F1D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="32" id="cOz-VV-X6Z"/>
                     <constraint firstItem="JzQ-Ff-F1D" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="dqK-4s-eG6"/>
@@ -107,6 +117,9 @@
         <image name="default_avatar" width="76" height="76"/>
         <namedColor name="custom_blue50">
             <color red="0.0" green="0.37647058823529411" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="custom_grey10">
+            <color red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="custom_grey40">
             <color red="0.42745098039215684" green="0.42745098039215684" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

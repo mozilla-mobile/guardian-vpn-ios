@@ -86,8 +86,6 @@ class NavigationCoordinator: NavigationCoordinating {
             case (.home, .servers):
                 let serversViewController = ServersViewController()
                 let navController = UINavigationController(rootViewController: serversViewController)
-                navController.navigationBar.barTintColor = UIColor.custom(.grey5)
-                navController.navigationBar.tintColor = UIColor.custom(.grey50)
                 self.currentViewController?.present(navController, animated: true, completion: nil)
 
             // To Settings

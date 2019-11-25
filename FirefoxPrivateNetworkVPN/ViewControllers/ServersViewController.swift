@@ -19,15 +19,12 @@ class ServersViewController: UIViewController, Navigating {
     @IBOutlet weak var tableView: UITableView!
 
     private var dataSource: ServersDataSource?
+    private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var disposeBag = DisposeBag()
 
     // MARK: - Initialization
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
-        DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent
-            .subscribe { [weak self] _ in
-                self?.dismiss(animated: true, completion: nil)
-        }.disposed(by: disposeBag)
     }
 
     required init?(coder: NSCoder) {
@@ -38,18 +35,46 @@ class ServersViewController: UIViewController, Navigating {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupObservers()
         tableView.contentInsetAdjustmentBehavior = .never
         dataSource = ServersDataSource(with: tableView)
         tableView.reloadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let selectedIndexPath = dataSource?.selectedIndexPath {
+            tableView.scrollToRow(at: selectedIndexPath, at: .middle, animated: false)
+        }
+    }
+
     // MARK: - Setup
     private func setupNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
+//        let leftSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+//        leftSpacer.width = 0.5
+        let closeButton = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))
+        navigationItem.leftBarButtonItems = [closeButton]
         navigationItem.title = LocalizedString.serversNavTitle.value
-//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Metropolis", size: 15)!]
-        // TODO: navigationItem. FONT: Metro semibold 15
+        navigationController?.navigationBar.setTitleFont()
+        navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
+    }
+
+    //swiftlint:disable trailing_closure
+    private func setupObservers() {
+        tunnelManager
+            .stateEvent
+            .skip(1)
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] state in
+                switch state {
+                case .connecting, .switching, .disconnecting:
+                    self?.title = state.title
+                default:
+                    self?.title = LocalizedString.serversNavTitle.value
+                }
+
+            }).disposed(by: disposeBag)
     }
 
     @objc func close() {

@@ -17,8 +17,11 @@ class GuardianTabBarController: UITabBarController, Navigating {
     private let tabs: [NavigableItem: UIViewController]
 
     init() {
+        let navigationController = UINavigationController(rootViewController: SettingsViewController())
+        navigationController.navigationBar.setTitleFont()
+
         tabs = [.home: HomeViewController(),
-                .settings: UINavigationController(rootViewController: SettingsViewController())]
+                .settings: navigationController]
         super.init(nibName: nil, bundle: nil)
         viewControllers = [tabs[.home]!, tabs[.settings]!]
     }

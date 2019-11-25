@@ -61,6 +61,8 @@ extension SettingsDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DependencyFactory.sharedFactory.navigationCoordinator
             .navigate(from: .settings, to: representedObject[indexPath.row].action)
+
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

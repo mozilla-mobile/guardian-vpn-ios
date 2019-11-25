@@ -23,8 +23,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="311" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfY-Pi-D9A">
-                        <rect key="frame" x="16" y="0.0" width="295" height="1"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfY-Pi-D9A" userLabel="Separator">
+                        <rect key="frame" x="56" y="65" width="239" height="1"/>
                         <color key="backgroundColor" name="custom_grey10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="E2S-9N-Bh2"/>
@@ -54,21 +54,20 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="sfY-Pi-D9A" secondAttribute="bottom" id="0rL-RA-SaN"/>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="centerY" secondItem="Pry-B6-vED" secondAttribute="centerY" id="4Nv-e4-hrf"/>
                     <constraint firstItem="Pry-B6-vED" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6CV-bP-cCF"/>
-                    <constraint firstItem="sfY-Pi-D9A" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="leading" id="85y-Y7-Vwe"/>
-                    <constraint firstItem="sfY-Pi-D9A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="RbO-tq-7uM"/>
-                    <constraint firstItem="Cy6-7K-pHk" firstAttribute="width" secondItem="Cy6-7K-pHk" secondAttribute="height" multiplier="1:1" id="SCy-Oi-lGu"/>
                     <constraint firstItem="Pry-B6-vED" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SG5-mf-Jkb"/>
-                    <constraint firstItem="Cy6-7K-pHk" firstAttribute="centerY" secondItem="Yj1-se-YSD" secondAttribute="centerY" id="UOl-1I-5RU"/>
-                    <constraint firstAttribute="trailing" secondItem="sfY-Pi-D9A" secondAttribute="trailing" id="aDq-Mp-ce0"/>
+                    <constraint firstAttribute="trailing" secondItem="sfY-Pi-D9A" secondAttribute="trailing" constant="16" id="W6I-Xs-5K0"/>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="trailing" constant="16" id="cks-TI-Mmv"/>
+                    <constraint firstItem="sfY-Pi-D9A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="et6-JR-nvy"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" name="custom_grey5"/>
             <color key="tintColor" name="custom_grey40"/>
             <constraints>
                 <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="Cy6-7K-pHk" secondAttribute="trailing" constant="56" id="0ec-bE-eAL"/>
+                <constraint firstItem="Cy6-7K-pHk" firstAttribute="centerY" secondItem="njF-e1-oar" secondAttribute="centerY" id="bzB-zc-n1t"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
