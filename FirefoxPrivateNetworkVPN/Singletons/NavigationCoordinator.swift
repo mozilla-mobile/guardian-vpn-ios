@@ -66,6 +66,9 @@ class NavigationCoordinator: NavigationCoordinating {
                     self.navigate(from: .landing, to: .home, context: context)
                 }
 
+            case (.login, .landing):
+                self.currentViewController?.dismiss(animated: true, completion: nil)
+
             // To Home
             case (.loading, .home), (.landing, .home), (.login, .home):
                 let tabBarController = GuardianTabBarController()
@@ -100,8 +103,8 @@ class NavigationCoordinator: NavigationCoordinating {
             // To Login
             case (.landing, .login), (.carousel, .login):
                 let loginViewController = LoginViewController()
-                self.appDelegate?.window?.rootViewController = loginViewController
-                self.currentViewController = loginViewController
+                loginViewController.modalPresentationStyle = .fullScreen
+                self.currentViewController?.present(loginViewController, animated: true, completion: nil)
 
             // To Onboarding carousel
             case (.landing, .carousel):
