@@ -83,6 +83,6 @@ class ServersViewController: UIViewController, Navigating {
     }
 
     @objc func close() {
-        self.dismiss(animated: true, completion: nil)
+        navigate(to: .home)
     }
 }

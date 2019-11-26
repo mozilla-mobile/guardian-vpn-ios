@@ -57,7 +57,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             switch (origin, destination) {
             // To Landing
-            case (.loading, .landing), (.login, .landing), (.settings, .landing):
+            case (.loading, .landing), (.settings, .landing):
                 let landingViewController = OnboardingViewController(for: .landing)
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController
@@ -65,6 +65,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 if context == .maxDevicesError {
                     self.navigate(from: .landing, to: .home, context: context)
                 }
+
+            case (.login, .landing):
+                self.currentViewController?.dismiss(animated: true, completion: nil)
 
             // To Home
             case (.loading, .home), (.landing, .home), (.login, .home):
@@ -89,6 +92,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.currentViewController?.present(navController, animated: true, completion: nil)
                 self.currentViewController?.view.alpha = 0.5
 
+            case (.servers, .home):
+                self.currentViewController?.dismiss(animated: true, completion: nil)
+
             // To Settings
             case (.home, .settings), (.tab, .settings):
                 (self.currentViewController as? GuardianTabBarController)?.displayTab(.settings)
@@ -100,14 +106,17 @@ class NavigationCoordinator: NavigationCoordinating {
             // To Login
             case (.landing, .login), (.carousel, .login):
                 let loginViewController = LoginViewController()
-                self.appDelegate?.window?.rootViewController = loginViewController
-                self.currentViewController = loginViewController
+                loginViewController.modalPresentationStyle = .fullScreen
+                self.currentViewController?.present(loginViewController, animated: true, completion: nil)
 
             // To Onboarding carousel
             case (.landing, .carousel):
                 let carouselPageViewController = CarouselPageViewController()
                 self.currentViewController?.present(UINavigationController(rootViewController: carouselPageViewController), animated: true, completion: nil)
                 self.currentViewController?.view.alpha = 0.5
+
+            case (.carousel, .landing):
+                self.currentViewController?.dismiss(animated: true, completion: nil)
 
             // To Devices
             case (.settings, .devices):

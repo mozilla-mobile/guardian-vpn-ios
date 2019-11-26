@@ -118,7 +118,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     }
 
     @objc func close() {
-        dismiss(animated: true, completion: nil)
+        navigate(to: .landing)
     }
 
     @objc func skipToLastPage() {

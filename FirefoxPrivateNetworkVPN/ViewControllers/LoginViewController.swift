@@ -56,7 +56,9 @@ class LoginViewController: UIViewController, Navigating {
         if isVerifying { return }
         isVerifying = true
 
-        GuardianAPI.verify(urlString: verificationURL.absoluteString) { [unowned self] result in
+        GuardianAPI.verify(urlString: verificationURL.absoluteString) { [weak self] result in
+            guard let self = self else { return }
+
             switch result {
             case .success(let verification):
                 DependencyFactory.sharedFactory.accountManager.login(with: verification) { loginResult in
