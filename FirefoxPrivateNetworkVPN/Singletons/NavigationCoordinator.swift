@@ -57,7 +57,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             switch (origin, destination) {
             // To Landing
-            case (.loading, .landing), (.login, .landing), (.settings, .landing):
+            case (.loading, .landing), (.settings, .landing):
                 let landingViewController = OnboardingViewController(for: .landing)
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController
@@ -92,6 +92,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.currentViewController?.present(navController, animated: true, completion: nil)
                 self.currentViewController?.view.alpha = 0.5
 
+            case (.servers, .home):
+                self.currentViewController?.dismiss(animated: true, completion: nil)
+
             // To Settings
             case (.home, .settings), (.tab, .settings):
                 (self.currentViewController as? GuardianTabBarController)?.displayTab(.settings)
@@ -111,6 +114,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 let carouselPageViewController = CarouselPageViewController()
                 self.currentViewController?.present(UINavigationController(rootViewController: carouselPageViewController), animated: true, completion: nil)
                 self.currentViewController?.view.alpha = 0.5
+
+            case (.carousel, .landing):
+                self.currentViewController?.dismiss(animated: true, completion: nil)
 
             // To Devices
             case (.settings, .devices):
