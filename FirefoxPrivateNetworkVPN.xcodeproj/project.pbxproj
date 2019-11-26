@@ -76,6 +76,9 @@
 		F4B42C1523900E6C001F64F7 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF32356111A00A06D7B /* RxSwift.framework */; };
 		F4B42C1823900E6D001F64F7 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B42C1623900E6D001F64F7 /* RxBlocking.framework */; };
 		F4B42C1923900E6D001F64F7 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B42C1723900E6D001F64F7 /* RxTest.framework */; };
+		F4B42BFB238D88EE001F64F7 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B42BFA238D88EE001F64F7 /* SimplePing.m */; };
+		F4B42BFF238D8A44001F64F7 /* LongPinger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42BFE238D8A44001F64F7 /* LongPinger.swift */; };
+		F4B42C01238DC6A7001F64F7 /* MockSimplePinger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C00238DC6A7001F64F7 /* MockSimplePinger.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
 		F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E908B92371C45600EB9FE6 /* Lottie.framework */; };
@@ -381,6 +384,10 @@
 		F4B21E422366514700136316 /* VPNState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNState.swift; sourceTree = "<group>"; };
 		F4B42C1623900E6D001F64F7 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		F4B42C1723900E6D001F64F7 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		F4B42BF9238D88EE001F64F7 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
+		F4B42BFA238D88EE001F64F7 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+		F4B42BFE238D8A44001F64F7 /* LongPinger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPinger.swift; sourceTree = "<group>"; };
+		F4B42C00238DC6A7001F64F7 /* MockSimplePinger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSimplePinger.swift; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
 		F4D150B523453F9900739CDA /* CityVPNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityVPNCell.xib; sourceTree = "<group>"; };
@@ -577,6 +584,7 @@
 		F41CCA2023711C7A0018DC43 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F4B42BF8238D88B7001F64F7 /* SimplePing */,
 				F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */,
 				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
 				F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */,
@@ -859,6 +867,17 @@
 				F4AED1AC235F450D00F80ABF /* WireGuardNetworkExtension-Bridging-Header.h */,
 			);
 			path = WireGuardNetworkExtension;
+			sourceTree = "<group>";
+		};
+		F4B42BF8238D88B7001F64F7 /* SimplePing */ = {
+			isa = PBXGroup;
+			children = (
+				F4B42BF9238D88EE001F64F7 /* SimplePing.h */,
+				F4B42BFA238D88EE001F64F7 /* SimplePing.m */,
+				F4B42BFE238D8A44001F64F7 /* LongPinger.swift */,
+				F4B42C00238DC6A7001F64F7 /* MockSimplePinger.swift */,
+			);
+			path = SimplePing;
 			sourceTree = "<group>";
 		};
 		F4E908A22371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests */ = {
@@ -1325,6 +1344,7 @@
 				F4E908D62371CAAD00EB9FE6 /* UserDefaulting.swift in Sources */,
 				F4A7FA24237C5C960034AF6C /* Account.swift in Sources */,
 				F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */,
+				F4B42BFB238D88EE001F64F7 /* SimplePing.m in Sources */,
 				F4E908C32371CAAD00EB9FE6 /* ServersDataSource.swift in Sources */,
 				F4AED254235F835200F80ABF /* TunnelConfiguration.swift in Sources */,
 				F4E908CA2371CAAD00EB9FE6 /* User.swift in Sources */,
@@ -1370,6 +1390,7 @@
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,
 				F4E9090B2371CAAD00EB9FE6 /* AccountInformationHeader.swift in Sources */,
 				F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */,
+				F4B42BFF238D8A44001F64F7 /* LongPinger.swift in Sources */,
 				F4E909072371CAAD00EB9FE6 /* SettingsViewController.swift in Sources */,
 				F4AED210235F52AE00F80ABF /* Curve25519.swift in Sources */,
 				F4E908EE2371CAAD00EB9FE6 /* DependencyFactory.swift in Sources */,
@@ -1388,6 +1409,7 @@
 				F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */,
 				F4AED253235F835200F80ABF /* DNSServer.swift in Sources */,
 				F4E908C92371CAAD00EB9FE6 /* LoginCheckpointModel.swift in Sources */,
+				F4B42C01238DC6A7001F64F7 /* MockSimplePinger.swift in Sources */,
 				F4E908F72371CAAD00EB9FE6 /* UIColor+Named.swift in Sources */,
 				F4E908FF2371CAAD00EB9FE6 /* OnboardingViewController.swift in Sources */,
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
