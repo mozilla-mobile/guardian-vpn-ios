@@ -62,12 +62,12 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController
 
+            case (.login, .landing):
+                self.currentViewController?.dismiss(animated: true, completion: nil)
+
                 if context == .maxDevicesError {
                     self.navigate(from: .landing, to: .home, context: context)
                 }
-
-            case (.login, .landing):
-                self.currentViewController?.dismiss(animated: true, completion: nil)
 
             // To Home
             case (.loading, .home), (.landing, .home), (.login, .home):
