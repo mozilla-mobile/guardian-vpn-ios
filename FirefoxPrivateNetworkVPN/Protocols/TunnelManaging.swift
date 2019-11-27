@@ -20,5 +20,7 @@ protocol TunnelManaging {
 
     func connect(with device: Device?)
     func stop()
+    func getReceivedBytes(completionHandler: @escaping ((UInt?) -> Void))
+
     func switchServer(with device: Device)
 }

@@ -101,6 +101,48 @@ class GuardianTunnelManager: TunnelManaging {
         }
     }
 
+    func getReceivedBytes(completionHandler: @escaping ((UInt?) -> Void)) {
+        guard stateEvent.value != .off,
+            let session = tunnel?.connection as? NETunnelProviderSession
+        else {
+            completionHandler(nil)
+            return
+        }
+
+        do {
+            try session.sendProviderMessage(Data([UInt8(0)])) { [weak self] data in
+                guard self?.stateEvent.value != .off,
+                    let data = data,
+                    let configString = String(data: data, encoding: .utf8)
+                else {
+                    completionHandler(nil)
+                    return
+                }
+
+                let config: [String: String] = {
+                    var dict = [String: String]()
+                    configString
+                        .splitToArray(separator: "\n")
+                        .forEach {
+                            let keyValuePair = $0.splitToArray(separator: "=")
+                            dict[keyValuePair[0]] = keyValuePair[1]
+                    }
+
+                    return dict
+                }()
+
+                guard let rxBytes = config["rx_bytes"] else {
+                    completionHandler(nil)
+                    return
+                }
+
+                completionHandler(UInt(rxBytes))
+            }
+        } catch {
+            completionHandler(nil)
+        }
+    }
+
     private func startTunnel() {
         guard let tunnel = tunnel else { return }
         do {
