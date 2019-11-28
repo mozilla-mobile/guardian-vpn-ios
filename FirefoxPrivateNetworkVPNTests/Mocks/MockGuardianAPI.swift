@@ -14,7 +14,6 @@ import RxSwift
 @testable import Firefox_Private_Network_VPN
 
 class MockGuardianAPI: NetworkRequesting {
-
     static var apiCallObservable = PublishSubject<Void>()
 
     static func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
@@ -57,8 +56,8 @@ class MockGuardianAPI: NetworkRequesting {
         completion(Result.success(device))
     }
 
-    static func removeDevice(with deviceKey: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    static func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
         apiCallObservable.onNext(())
-        completion(Result.success(Data()))
+        completion(Result.success(()))
     }
 }
