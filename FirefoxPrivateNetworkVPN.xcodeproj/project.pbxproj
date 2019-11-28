@@ -83,6 +83,8 @@
 		F4B42C1823900E6D001F64F7 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B42C1623900E6D001F64F7 /* RxBlocking.framework */; };
 		F4B42C1923900E6D001F64F7 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B42C1723900E6D001F64F7 /* RxTest.framework */; };
 		F4B42C1B23901DA3001F64F7 /* MockLongPinger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C00238DC6A7001F64F7 /* MockLongPinger.swift */; };
+		F4B42C1D239021F4001F64F7 /* MockConnectionTimeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1C239021F4001F64F7 /* MockConnectionTimeFactory.swift */; };
+		F4B42C1F2390230B001F64F7 /* MockConnectionRxValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
 		F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E908B92371C45600EB9FE6 /* Lottie.framework */; };
@@ -396,6 +398,8 @@
 		F4B42C09238F2195001F64F7 /* ObservableType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extensions.swift"; sourceTree = "<group>"; };
 		F4B42C1623900E6D001F64F7 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		F4B42C1723900E6D001F64F7 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		F4B42C1C239021F4001F64F7 /* MockConnectionTimeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectionTimeFactory.swift; sourceTree = "<group>"; };
+		F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectionRxValue.swift; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
 		F4D150B523453F9900739CDA /* CityVPNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityVPNCell.xib; sourceTree = "<group>"; };
@@ -719,8 +723,10 @@
 		F41CCA3523712A1B0018DC43 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				F4B42C00238DC6A7001F64F7 /* MockLongPinger.swift */,
+				F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */,
+				F4B42C1C239021F4001F64F7 /* MockConnectionTimeFactory.swift */,
 				F41CCA3623712A1B0018DC43 /* MockGuardianAPI.swift */,
+				F4B42C00238DC6A7001F64F7 /* MockLongPinger.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1455,6 +1461,8 @@
 			files = (
 				F4B42C1B23901DA3001F64F7 /* MockLongPinger.swift in Sources */,
 				F4E909202371CB1F00EB9FE6 /* MockGuardianAPI.swift in Sources */,
+				F4B42C1D239021F4001F64F7 /* MockConnectionTimeFactory.swift in Sources */,
+				F4B42C1F2390230B001F64F7 /* MockConnectionRxValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

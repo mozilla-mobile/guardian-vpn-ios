@@ -19,7 +19,7 @@ protocol ConnectionRxValueObserving {
 
 class ConnectionRxValue: ConnectionRxValueObserving {
 
-    private static let timerInternal: TimeInterval = 1
+    private static let timerInterval: TimeInterval = 1
 
     private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var timer: Timer?
@@ -28,7 +28,7 @@ class ConnectionRxValue: ConnectionRxValueObserving {
         return .create { [weak self] observer -> Disposable in
             guard let self = self else { return Disposables.create() }
 
-            self.timer = Timer.scheduledTimer(withTimeInterval: ConnectionRxValue.timerInternal, repeats: true) { [weak self] _ in
+            self.timer = Timer.scheduledTimer(withTimeInterval: ConnectionRxValue.timerInterval, repeats: true) { [weak self] _ in
                 self?.tunnelManager.getReceivedBytes { rxValue in
                     guard let rxValue = rxValue else { return }
 
