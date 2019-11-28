@@ -1,5 +1,5 @@
 //
-//  MockSimplePinger
+//  MockLongPinger
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -10,10 +10,9 @@
 //
 
 import Foundation
-import RxSwift
+@testable import Firefox_Private_Network_VPN
 
-// TODO: move this class to test bundle
-class MockSimplePinger: Pinging {
+class MockLongPinger: Pinging {
 
     func start(hostAddress: String) {
         /* Do nothing */
