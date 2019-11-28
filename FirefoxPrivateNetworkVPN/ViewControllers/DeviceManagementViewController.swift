@@ -22,6 +22,12 @@ class DeviceManagementViewController: UIViewController, Navigating {
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
     private let disposeBag = DisposeBag()
 
+    private var formattedDeviceCountTitle: String {
+        guard let user = account?.user else { return "" }
+        let currentDevices = dataSource?.deviceCount ?? 0
+        return String(format: LocalizedString.devicesCount.value, "\(currentDevices)", "\(user.maxDevices)")
+    }
+
     // MARK: View Lifecycle
     //swiftlint:disable trailing_closure
     override func viewDidLoad() {
@@ -32,27 +38,22 @@ class DeviceManagementViewController: UIViewController, Navigating {
         dataSource?
             .removeDeviceEvent
             .subscribe(onNext: { [weak self] device in
-                guard let account = self?.account else { return }
+                guard let self = self, let account = self.account else { return }
 
                 let confirmAlert = DependencyFactory
                     .sharedFactory
                     .navigationCoordinator
                     .createDeviceDeletionAlert(deviceName: device.name) { _ in
                         account.removeDevice(with: device.publicKey) { result in
-                            if case .success = result, !account.hasDeviceBeenAdded {
-                                account.addCurrentDevice { addDeviceResult in
-                                    if case .success = addDeviceResult {
-                                        DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
-                                    }
-                                    self?.tableView?.reloadData()
-                                }
-                            } else {
-                                self?.tableView?.reloadData()
+                            guard case .success = result, !account.hasDeviceBeenAdded else {
+                                self.tableView?.reloadData()
+                                return
                             }
+                            self.addCurrentDeviceToAccount()
                         }
-                        self?.tableView?.reloadData()
+                        self.tableView?.reloadData()
                 }
-                self?.present(confirmAlert, animated: true, completion: nil)
+                self.present(confirmAlert, animated: true, completion: nil)
             }).disposed(by: disposeBag)
     }
 
@@ -64,17 +65,29 @@ class DeviceManagementViewController: UIViewController, Navigating {
     // MARK: Setup
     private func setupNavigationBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
-        guard let user = DependencyFactory.sharedFactory.accountManager.account?.user else { return }
-        let countTitle = String(format: LocalizedString.devicesCount.value, "\(dataSource?.deviceCount ?? 0)", "\(user.maxDevices)")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: countTitle, style: .plain, target: nil, action: nil)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: formattedDeviceCountTitle, style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey50)
+
         navigationItem.title = LocalizedString.devicesNavTitle.value
         navigationItem.titleView?.tintColor = UIColor.custom(.grey40)
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_backChevron"), style: .plain, target: self, action: #selector(goBack))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
     }
 
     @objc func goBack() {
         navigate(to: .settings)
+    }
+
+    private func addCurrentDeviceToAccount() {
+        guard let account = account else { return }
+        account.addCurrentDevice { [weak self] addDeviceResult in
+            if case .success = addDeviceResult {
+                DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+            }
+            self?.navigationItem.rightBarButtonItem?.title = self?.formattedDeviceCountTitle
+            self?.tableView?.reloadData()
+        }
     }
 }
