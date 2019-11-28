@@ -16,7 +16,9 @@ protocol Pinging {
     func start(hostAddress: String)
     func stop()
 }
-
+/**
+ LongPinger pings the host with a pre-defined interval until it is stopped.
+ */
 class LongPinger: NSObject, Pinging, SimplePingDelegate {
 
     var pingInterval: TimeInterval = 1

@@ -1,5 +1,5 @@
 //
-//  MockSimplePinger
+//  ObservableType+Extensions
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -12,14 +12,10 @@
 import Foundation
 import RxSwift
 
-// TODO: move this class to test bundle
-class MockSimplePinger: Pinging {
+// Reference: https://stackoverflow.com/a/36050818
+extension ObservableType {
 
-    func start(hostAddress: String) {
-        /* Do nothing */
-    }
-
-    func stop() {
-        /* Do nothing */
+    func withPrevious(startWith first: Element) -> Observable<(Element, Element)> {
+        return scan((first, first)) { ($0.1, $1) }.skip(1)
     }
 }

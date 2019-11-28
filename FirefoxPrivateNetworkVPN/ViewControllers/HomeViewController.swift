@@ -20,6 +20,13 @@ class HomeViewController: UIViewController, Navigating {
     @IBOutlet var selectConnectionLabel: UILabel!
     @IBOutlet var vpnSelectionView: CurrentVPNSelectorView!
 
+    private let pinger = LongPinger()
+    private let timerFactory = ConnectionTimerFactory()
+    private let rxValueObserving = ConnectionRxValue()
+    private lazy var connectionHealthMonitor = {
+        ConnectionHealthMonitor(pinger: self.pinger, timerFactory: self.timerFactory, rxValueObserving: self.rxValueObserving)
+    }()
+
     private let disposeBag = DisposeBag()
 
     init() {
@@ -62,6 +69,11 @@ class HomeViewController: UIViewController, Navigating {
             if isOn {
                 DependencyFactory.sharedFactory.tunnelManager
                     .connect(with: DependencyFactory.sharedFactory.accountManager.account?.currentDevice)
+
+                // TEST
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) {
+                    self.connectionHealthMonitor.start(hostAddress: "www.google.ca")
+                }
             } else {
                 DependencyFactory.sharedFactory.tunnelManager.stop()
             }
