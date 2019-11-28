@@ -12,6 +12,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import os.log
 
 enum ConnectionState {
     case initial, stable, unstable, noSignal
@@ -51,10 +52,17 @@ class ConnectionHealthMonitor {
         timer = timerFactory.unstableStateTimer { [unowned self] _ in
             self.move(to: .unstable)
         }
+
+        //swiftlint:disable:next trailing_closure
         rxValueObserving
             .rx
-            .withPrevious(startWith: 0)
+            .withPrevious(startWith: nil)
             .subscribe(onNext: { [unowned self] previousRx, newRx in
+                guard
+                    let previousRx = previousRx,
+                    let newRx = newRx
+                else { return }
+
                 if newRx > previousRx {
                     self.move(to: .stable)
                 }
@@ -72,13 +80,36 @@ class ConnectionHealthMonitor {
     }
 
     private func move(to destinationState: ConnectionState) {
+        OSLog.log(.debug, "[Connection health monitor] %@ -> %@",
+                  args: String(describing: _currentState.value), String(describing: destinationState))
+
         switch (_currentState.value, destinationState) {
-        case (.initial, .stable): break
+        case (.initial, .stable):
+            _currentState.accept(.stable)
+
         case (.stable, .stable): break
-        case (.stable, .unstable): break
-        case (.unstable, .noSignal): break
-        case (.unstable, .stable): break
-        case (.noSignal, .stable): break
+            
+        case (.stable, .unstable):
+            _currentState.accept(.unstable)
+            timer?.invalidate()
+            timer = timerFactory.noSignalStateTimer { _ in
+                self.move(to: .noSignal)
+            }
+
+        case (.unstable, .noSignal):
+            _currentState.accept(.noSignal)
+
+        case (.unstable, .stable):
+            _currentState.accept(.stable)
+            timer = timerFactory.unstableStateTimer { [unowned self] _ in
+                self.move(to: .unstable)
+            }
+
+        case (.noSignal, .stable):
+            _currentState.accept(.stable)
+            timer = timerFactory.unstableStateTimer { [unowned self] _ in
+                self.move(to: .unstable)
+            }
 
         default: break
         }

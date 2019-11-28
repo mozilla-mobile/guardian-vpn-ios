@@ -14,7 +14,7 @@ import RxSwift
 import os.log
 
 protocol ConnectionRxValueObserving {
-    var rx: Observable<UInt> { get }
+    var rx: Observable<UInt?> { get }
 }
 
 class ConnectionRxValue: ConnectionRxValueObserving {
@@ -24,15 +24,13 @@ class ConnectionRxValue: ConnectionRxValueObserving {
     private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var timer: Timer?
 
-    var rx: Observable<UInt> {
+    var rx: Observable<UInt?> {
         return .create { [weak self] observer -> Disposable in
             guard let self = self else { return Disposables.create() }
 
             self.timer = Timer.scheduledTimer(withTimeInterval: ConnectionRxValue.timerInterval, repeats: true) { [weak self] _ in
                 self?.tunnelManager.getReceivedBytes { rxValue in
-                    guard let rxValue = rxValue else { return }
-
-                    OSLog.log(.debug, "Rx value retrieved: \(rxValue)")
+                    OSLog.log(.debug, "Rx value retrieved: \(String(describing: rxValue))")
                     observer.on(.next(rxValue))
                 }
             }

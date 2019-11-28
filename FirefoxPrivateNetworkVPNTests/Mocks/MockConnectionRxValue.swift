@@ -11,17 +11,13 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 @testable import Firefox_Private_Network_VPN
 
 class MockConnectionRxValue: ConnectionRxValueObserving {
-    
-    var rxValue: UInt = 0
-    
-    var rx: Observable<UInt> {
-        return .create { [weak self] observer -> Disposable in
-            guard let self = self else { return Disposables.create() }
-            observer.on(.next(self.rxValue))
-            return Disposables.create { }
-        }
+
+    var rxRelay = BehaviorRelay<UInt?>(value: nil)
+    var rx: Observable<UInt?> {
+        return rxRelay.asObservable()
     }
 }
