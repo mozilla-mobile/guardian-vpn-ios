@@ -54,6 +54,7 @@ class VPNToggleView: UIView {
     }
 
     override func awakeFromNib() {
+        update(with: .off)
         vpnSwitchEvent = vpnSwitch.rx.isOn
     }
 
