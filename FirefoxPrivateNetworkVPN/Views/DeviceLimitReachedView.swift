@@ -27,6 +27,8 @@ class DeviceLimitReachedView: UITableViewHeaderFooterView {
     private func styleViews() {
         title.text = LocalizedString.devicesLimitTitle.value
         subtitle.text = LocalizedString.devicesLimitSubtitle.value
-        backgroundView = UIView()
+        let customBackgroundView = UIView()
+        customBackgroundView.backgroundColor = UIColor.custom(.grey5)
+        backgroundView = customBackgroundView
     }
 }
