@@ -23,6 +23,9 @@ jobs:
           key: carthage-cache-v5-{{ .Branch }}-{{ checksum "Cartfile.resolved" }}
           paths:
             - Carthage/
+      - run:
+          name: Install xcpretty
+          command: gem install xcpretty
       - run: 
           name: Download and update GoLang, then compile the app
           command: |
@@ -30,12 +33,13 @@ jobs:
             tar -xzf $GOLANG_INSTALLER_NAME
             export PATH="$PROJECT_ROOT/go/bin:$PATH"
             git submodule update --init --recursive
-            xcodebuild clean build -scheme FirefoxPrivateNetworkVPN -destination 'generic/platform=iOS Simulator' -sdk iphonesimulator13.1 -derivedDataPath "$PROJECT_ROOT/$DERIVED_DATA"
+            xcodebuild clean build-for-testing -scheme FirefoxPrivateNetworkVPN -destination 'generic/platform=iOS Simulator' -sdk iphonesimulator13.1 -derivedDataPath "$PROJECT_ROOT/$DERIVED_DATA"
       - run:
-          name: Compress .app file for artifact storage
+          name: Run unit tests
           command: |
-            cd $PROJECT_ROOT/$DERIVED_DATA/Build/Products/Debug-iphonesimulator
-            zip -r FirefoxPrivateNetworkVPN.zip Firefox\ Private\ Network\ VPN.app
+            set -o pipefail && xcodebuild test-without-building -scheme FirefoxPrivateNetworkVPN -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' -derivedDataPath "$PROJECT_ROOT/$DERIVED_DATA" | xcpretty -r junit -r html
+      - store_test_results:
+          path: build/reports/
       - store_artifacts:
-          path: DerivedData/Build/Products/Debug-iphonesimulator/FirefoxPrivateNetworkVPN.zip
-          destination: /BuildArchive/FirefoxPrivateNetworkVPN.zip
+          path: build/reports/
+          destination: /TestReports/
