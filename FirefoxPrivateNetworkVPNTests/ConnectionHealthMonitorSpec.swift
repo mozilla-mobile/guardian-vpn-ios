@@ -55,6 +55,12 @@ class ConnectionHealthMonitorSpec: QuickSpec {
                 }
             }
 
+            context("when transitioned to the stable state") {
+                xit("should reset unstable timer") {
+                    // TODO:
+                }
+            }
+
             context("after unstable timer expires") {
                 it("should be in an unstable state") {
                     // Unstable timer expires once, resulting in the unstable state

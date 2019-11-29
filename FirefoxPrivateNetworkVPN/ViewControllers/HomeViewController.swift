@@ -69,11 +69,6 @@ class HomeViewController: UIViewController, Navigating {
             if isOn {
                 DependencyFactory.sharedFactory.tunnelManager
                     .connect(with: DependencyFactory.sharedFactory.accountManager.account?.currentDevice)
-
-                // TEST
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) {
-                    self.connectionHealthMonitor.start(hostAddress: "www.google.ca")
-                }
             } else {
                 DependencyFactory.sharedFactory.tunnelManager.stop()
             }

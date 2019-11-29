@@ -86,6 +86,7 @@
 		F4B42C1D239021F4001F64F7 /* MockConnectionTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1C239021F4001F64F7 /* MockConnectionTimerFactory.swift */; };
 		F4B42C1F2390230B001F64F7 /* MockConnectionRxValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */; };
 		F4B42C212390504F001F64F7 /* ConnectionHealthMonitorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C202390504F001F64F7 /* ConnectionHealthMonitorSpec.swift */; };
+		F4B42C2323916A90001F64F7 /* ConnectionHealthMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
 		F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E908B92371C45600EB9FE6 /* Lottie.framework */; };
@@ -402,6 +403,7 @@
 		F4B42C1C239021F4001F64F7 /* MockConnectionTimerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectionTimerFactory.swift; sourceTree = "<group>"; };
 		F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectionRxValue.swift; sourceTree = "<group>"; };
 		F4B42C202390504F001F64F7 /* ConnectionHealthMonitorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealthMonitorSpec.swift; sourceTree = "<group>"; };
+		F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealthMonitoring.swift; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
 		F4D150B523453F9900739CDA /* CityVPNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityVPNCell.xib; sourceTree = "<group>"; };
@@ -903,8 +905,9 @@
 			isa = PBXGroup;
 			children = (
 				F4B42C03238DD22D001F64F7 /* ConnectionHealthMonitor.swift */,
-				F4B42C05238EFF83001F64F7 /* ConnectionTimerFactory.swift */,
+				F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */,
 				F4B42C07238F1652001F64F7 /* ConnectionRxValue.swift */,
+				F4B42C05238EFF83001F64F7 /* ConnectionTimerFactory.swift */,
 			);
 			path = "Connection Heath Monitor";
 			sourceTree = "<group>";
@@ -1366,6 +1369,7 @@
 				F4E908C82371CAAD00EB9FE6 /* Device.swift in Sources */,
 				F4E908FC2371CAAD00EB9FE6 /* GuardianTabBarController.swift in Sources */,
 				F4B42C04238DD22D001F64F7 /* ConnectionHealthMonitor.swift in Sources */,
+				F4B42C2323916A90001F64F7 /* ConnectionHealthMonitoring.swift in Sources */,
 				F4E908F12371CAAD00EB9FE6 /* NavigationCoordinator.swift in Sources */,
 				F4AED255235F835300F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */,
 				F4AED257235F835300F80ABF /* IPAddressRange.swift in Sources */,

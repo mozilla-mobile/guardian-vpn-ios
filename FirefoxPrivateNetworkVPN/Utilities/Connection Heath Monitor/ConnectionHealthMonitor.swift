@@ -18,7 +18,9 @@ enum ConnectionState {
     case initial, stable, unstable, noSignal
 }
 
-class ConnectionHealthMonitor {
+class ConnectionHealthMonitor: ConnectionHealthMonitoring {
+
+    static let scheduler = ConcurrentDispatchQueueScheduler(qos: .background)
 
     // TODO: DI here
     private let pinger: Pinging
@@ -35,13 +37,17 @@ class ConnectionHealthMonitor {
     }
     private var disposeBag = DisposeBag()
 
-    init(pinger: Pinging, timerFactory: TimerFactory, rxValueObserving: ConnectionRxValueObserving) {
+    init(pinger: Pinging = LongPinger(),
+         timerFactory: TimerFactory = ConnectionTimerFactory(),
+         rxValueObserving: ConnectionRxValueObserving = ConnectionRxValue()) {
         self.pinger = pinger
         self.timerFactory = timerFactory
         self.rxValueObserving = rxValueObserving
     }
 
     func start(hostAddress: String) {
+        reset()
+
         self.hostAddress = hostAddress
 
         if _currentState.value == .initial {
@@ -49,9 +55,6 @@ class ConnectionHealthMonitor {
         }
 
         startPinging()
-        timer = timerFactory.unstableStateTimer { [unowned self] _ in
-            self.move(to: .unstable)
-        }
 
         //swiftlint:disable:next trailing_closure
         rxValueObserving
@@ -69,7 +72,7 @@ class ConnectionHealthMonitor {
             }).disposed(by: disposeBag)
     }
 
-    func stop() {
+    func reset() {
         _currentState.accept(.initial)
 
         pinger.stop()
@@ -84,32 +87,16 @@ class ConnectionHealthMonitor {
                   args: String(describing: _currentState.value), String(describing: destinationState))
 
         switch (_currentState.value, destinationState) {
-        case (.initial, .stable):
+        case (_, .stable):
             _currentState.accept(.stable)
+            startUnstableTimer()
 
-        case (.stable, .stable): break
-            
         case (.stable, .unstable):
             _currentState.accept(.unstable)
-            timer?.invalidate()
-            timer = timerFactory.noSignalStateTimer { _ in
-                self.move(to: .noSignal)
-            }
+            startNoSignalTimer()
 
         case (.unstable, .noSignal):
             _currentState.accept(.noSignal)
-
-        case (.unstable, .stable):
-            _currentState.accept(.stable)
-            timer = timerFactory.unstableStateTimer { [unowned self] _ in
-                self.move(to: .unstable)
-            }
-
-        case (.noSignal, .stable):
-            _currentState.accept(.stable)
-            timer = timerFactory.unstableStateTimer { [unowned self] _ in
-                self.move(to: .unstable)
-            }
 
         default: break
         }
@@ -117,5 +104,19 @@ class ConnectionHealthMonitor {
 
     private func startPinging() {
         pinger.start(hostAddress: self.hostAddress)
+    }
+
+    private func startUnstableTimer() {
+        timer?.invalidate()
+        timer = timerFactory.unstableStateTimer { [unowned self] _ in
+            self.move(to: .unstable)
+        }
+    }
+
+    private func startNoSignalTimer() {
+        timer?.invalidate()
+        timer = timerFactory.noSignalStateTimer { _ in
+            self.move(to: .noSignal)
+        }
     }
 }

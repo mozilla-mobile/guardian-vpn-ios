@@ -30,7 +30,11 @@ class ConnectionRxValue: ConnectionRxValueObserving {
 
             self.timer = Timer.scheduledTimer(withTimeInterval: ConnectionRxValue.timerInterval, repeats: true) { [weak self] _ in
                 self?.tunnelManager.getReceivedBytes { rxValue in
-                    OSLog.log(.debug, "Rx value retrieved: \(String(describing: rxValue))")
+
+                    if let rxValue = rxValue {
+                        OSLog.log(.debug, "Rx value retrieved: \(String(describing: rxValue))")
+                    }
+
                     observer.on(.next(rxValue))
                 }
             }

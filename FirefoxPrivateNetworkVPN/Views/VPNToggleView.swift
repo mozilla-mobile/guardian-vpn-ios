@@ -24,12 +24,44 @@ class VPNToggleView: UIView {
 
     var vpnSwitchEvent: ControlProperty<Bool>?
     private let disposeBag = DisposeBag()
+    private var timerDisposeBag = DisposeBag()
     private var smallLayer = CAShapeLayer()
     private var mediumLayer = CAShapeLayer()
     private var largeLayer = CAShapeLayer()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
-    private var connectedTimer: Timer?
+    private var connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
     private var updateUIEvent = PublishSubject<Void>()
+
+    lazy var daysFormatter: DateComponentsFormatter = {
+        let daysFormatter = DateComponentsFormatter()
+        daysFormatter.allowedUnits = [.day]
+        daysFormatter.unitsStyle = .full
+        return daysFormatter
+    }()
+
+    lazy var hoursFormatter: DateComponentsFormatter = {
+        let hoursFormatter = DateComponentsFormatter()
+        hoursFormatter.zeroFormattingBehavior = .pad
+        hoursFormatter.allowedUnits = [.hour, .minute, .second]
+        hoursFormatter.unitsStyle = .positional
+        return hoursFormatter
+    }()
+
+    private var formattedTime: String {
+        let time = self.tunnelManager.timeSinceConnected
+
+        guard let daysString = daysFormatter.string(from: time),
+            let hoursString = hoursFormatter.string(from: TimeInterval(Int(time) % 86400))
+            else { return "" }
+
+        let connectedTime: String
+        if time < 86400 {
+            connectedTime = hoursString
+        } else {
+            connectedTime = "\(daysString) \(hoursString)"
+        }
+        return connectedTime
+    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -59,34 +91,29 @@ class VPNToggleView: UIView {
     }
 
     private func showConnectedTime(state: VPNState) {
-        let daysFormatter = DateComponentsFormatter()
-        daysFormatter.allowedUnits = [.day]
-        daysFormatter.unitsStyle = .full
 
-        let hoursFormatter = DateComponentsFormatter()
-        hoursFormatter.zeroFormattingBehavior = .pad
-        hoursFormatter.allowedUnits = [.hour, .minute, .second]
-        hoursFormatter.unitsStyle = .positional
+        let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+        let connectionState = connectionHealthMonitor.currentState.asObservable().subscribeOn(ConnectionHealthMonitor.scheduler).distinctUntilChanged()
 
-        connectedTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            guard let self = self else { return }
-            let time = self.tunnelManager.timeSinceConnected
+        //swiftlint:disable trailing_closure
+        Observable.combineLatest(timer, connectionState)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _, connectionState in
+                guard let self = self else { return }
 
-            guard let daysString = daysFormatter.string(from: time),
-                let hoursString = hoursFormatter.string(from: TimeInterval(Int(time) % 86400))
-                else { return }
+                var subtitleText = ""
+                switch connectionState {
+                case .stable:
+                    subtitleText = String(format: LocalizedString.homeSubtitleOn.value, self.formattedTime)
+                case .unstable:
+                    subtitleText = String(format: LocalizedString.homeSubtitleCheckConnection.value, "Unstable")
+                case .noSignal:
+                    subtitleText = String(format: LocalizedString.homeSubtitleCheckConnection.value, "No signal")
+                default: break
+                }
 
-            let connectedTime: String
-            if time < 86400 {
-                connectedTime = hoursString
-            } else {
-                connectedTime = "\(daysString) \(hoursString)"
-            }
-
-            DispatchQueue.main.async { [weak self] in
-                self?.subtitleLabel.text = String(format: state.subtitle, connectedTime)
-            }
-        }
+                self.subtitleLabel.text = subtitleText
+            }).disposed(by: timerDisposeBag)
     }
 
     // MARK: State Change
@@ -103,6 +130,9 @@ class VPNToggleView: UIView {
 
         if state == .on {
             showConnectedTime(state: state)
+            if let hostAddress = VPNCity.fetchFromUserDefaults()?.servers.first?.ipv4Gateway {
+                connectionHealthMonitor.start(hostAddress: hostAddress)
+            }
 
             let position = CGPoint(x: globeImageView.center.x, y: globeImageView.center.y + containingView.frame.minY)
             smallLayer.position = position
@@ -115,7 +145,9 @@ class VPNToggleView: UIView {
             layer.addSublayer(mediumLayer)
             layer.addSublayer(largeLayer)
         } else {
-            connectedTimer?.invalidate()
+            connectionHealthMonitor.reset()
+            timerDisposeBag = DisposeBag()
+
             subtitleLabel.text = state.subtitle
             smallLayer.removeFromSuperlayer()
             mediumLayer.removeFromSuperlayer()
