@@ -37,9 +37,9 @@
 "homeSubtitleOn" = "Secure and protected • %@";
 "homeSubtitleSwitching" = "From %1$@ to %2$@";
 "homeSubtitleDisconnecting" = "You will be disconnected shortly";
-"homeSubtitleCheckConnection" = "%@ • Check connection";
-"homeSubtitleUnstable" = "Unstable";
-"homeSubtitleNoSignal" = "No signal";
+"homeSubtitleCheckConnection" = "  •  Check connection";
+"homeSubtitleUnstable" = "  Unstable";
+"homeSubtitleNoSignal" = "  No signal";
 
 "homeApplicationName" = "Private Network";
 "homeSelectConnection" = "Select connection";

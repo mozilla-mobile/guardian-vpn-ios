@@ -101,18 +101,45 @@ class VPNToggleView: UIView {
             .subscribe(onNext: { [weak self] _, connectionState in
                 guard let self = self else { return }
 
-                var subtitleText = ""
                 switch connectionState {
-                case .stable:
-                    subtitleText = String(format: LocalizedString.homeSubtitleOn.value, self.formattedTime)
+                    //  ======== TODO: Pelase refactor :)======
                 case .unstable:
-                    subtitleText = String(format: LocalizedString.homeSubtitleCheckConnection.value, "Unstable")
-                case .noSignal:
-                    subtitleText = String(format: LocalizedString.homeSubtitleCheckConnection.value, "No signal")
-                default: break
-                }
+                    let icon = NSTextAttachment()
+                    let iconImage = UIImage(named: "icon_unstable")!
+                    icon.image = iconImage
+                    icon.centerImage(with: self.subtitleLabel)
+                    let iconString = NSAttributedString(attachment: icon)
 
-                self.subtitleLabel.text = subtitleText
+                    let stateString = NSAttributedString(string: LocalizedString.homeSubtitleUnstable.value, attributes: [
+                        NSAttributedString.Key.foregroundColor: UIColor.custom(.yellow50)
+                    ])
+
+                    let checkConnectionString = NSAttributedString(string: LocalizedString.homeSubtitleCheckConnection.value)
+
+                    let fullString = NSMutableAttributedString(attributedString: iconString)
+                    fullString.append(stateString)
+                    fullString.append(checkConnectionString)
+                    self.subtitleLabel.attributedText = NSAttributedString(attributedString: fullString)
+
+                case .noSignal:
+                    let icon = NSTextAttachment()
+                    icon.image = UIImage(named: "icon_nosignal")
+                    icon.centerImage(with: self.subtitleLabel)
+                    let iconString = NSAttributedString(attachment: icon)
+
+                    let stateString = NSAttributedString(string: LocalizedString.homeSubtitleUnstable.value, attributes: [
+                        NSAttributedString.Key.foregroundColor: UIColor.custom(.red50)
+                    ])
+
+                    let checkConnectionString = NSAttributedString(string: LocalizedString.homeSubtitleCheckConnection.value)
+                    let fullString = NSMutableAttributedString(attributedString: iconString)
+                    fullString.append(stateString)
+                    fullString.append(checkConnectionString)
+                    self.subtitleLabel.attributedText = NSAttributedString(attributedString: fullString)
+                    // ===============
+                default:
+                    self.subtitleLabel.text = String(format: LocalizedString.homeSubtitleOn.value, self.formattedTime)
+                }
             }).disposed(by: timerDisposeBag)
     }
 
