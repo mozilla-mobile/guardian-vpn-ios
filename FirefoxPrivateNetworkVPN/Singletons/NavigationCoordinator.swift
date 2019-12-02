@@ -90,8 +90,10 @@ class NavigationCoordinator: NavigationCoordinating {
                 let serversViewController = ServersViewController()
                 let navController = UINavigationController(rootViewController: serversViewController)
                 self.currentViewController?.present(navController, animated: true, completion: nil)
-                self.currentViewController?.view.alpha = 0.5
-
+                if #available(iOS 13.0, *) {
+                    self.currentViewController?.view.alpha = 0.5
+                }
+                
             case (.servers, .home):
                 self.currentViewController?.dismiss(animated: true, completion: nil)
 
@@ -113,8 +115,10 @@ class NavigationCoordinator: NavigationCoordinating {
             case (.landing, .carousel):
                 let carouselPageViewController = CarouselPageViewController()
                 self.currentViewController?.present(UINavigationController(rootViewController: carouselPageViewController), animated: true, completion: nil)
-                self.currentViewController?.view.alpha = 0.5
-
+                if #available(iOS 13.0, *) {
+                    self.currentViewController?.view.alpha = 0.5
+                }
+                
             case (.carousel, .landing):
                 self.currentViewController?.dismiss(animated: true, completion: nil)
 
