@@ -50,7 +50,7 @@ extension VPNState {
         case .off, .switching, .disconnecting:
             return UIColor.custom(.grey40)
         default:
-            return UIColor.white
+            return UIColor.custom(.white80)
         }
     }
 
@@ -76,7 +76,7 @@ extension VPNState {
         case .connecting, .switching:
             return LocalizedString.homeSubtitleConnecting.value
         case .on:
-            return LocalizedString.homeSubtitleOn.value
+            return ""
         case .disconnecting:
             return LocalizedString.homeSubtitleDisconnecting.value
         }

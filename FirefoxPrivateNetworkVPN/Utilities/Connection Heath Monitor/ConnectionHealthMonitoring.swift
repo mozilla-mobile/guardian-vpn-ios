@@ -1,5 +1,5 @@
 //
-//  Bridging-Header.h
+//  ConnectionHealthMonitoring
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -9,14 +9,12 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
+import RxSwift
+import RxCocoa
 
-#ifndef Guardian_Bridging_Header_h
-#define Guardian_Bridging_Header_h
+protocol ConnectionHealthMonitoring {
+    var currentState: Driver<ConnectionHealth> { get }
 
-#include "x25519.h"
-#include "wireguard-go-version.h"
-#include "ringlogger.h"
-#include "key.h"
-#import "SimplePing.h"
-
-#endif /* Guardian_Bridging_Header_h */
+    func start(hostAddress: String)
+    func reset()
+}

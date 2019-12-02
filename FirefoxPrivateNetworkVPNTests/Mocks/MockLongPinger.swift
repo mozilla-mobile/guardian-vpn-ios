@@ -1,5 +1,5 @@
 //
-//  Bridging-Header.h
+//  MockLongPinger
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -9,14 +9,16 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
+import Foundation
+@testable import Firefox_Private_Network_VPN
 
-#ifndef Guardian_Bridging_Header_h
-#define Guardian_Bridging_Header_h
+class MockLongPinger: Pinging {
 
-#include "x25519.h"
-#include "wireguard-go-version.h"
-#include "ringlogger.h"
-#include "key.h"
-#import "SimplePing.h"
+    func start(hostAddress: String) {
+        /* Do nothing */
+    }
 
-#endif /* Guardian_Bridging_Header_h */
+    func stop() {
+        /* Do nothing */
+    }
+}

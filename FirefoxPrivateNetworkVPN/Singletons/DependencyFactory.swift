@@ -14,9 +14,7 @@ import Foundation
 class DependencyFactory: DependencyProviding {
 
     static let sharedFactory: DependencyProviding = {
-        let instance = DependencyFactory()
-        //
-        return instance
+        return DependencyFactory()
     }()
 
     private init() { }
@@ -32,4 +30,8 @@ class DependencyFactory: DependencyProviding {
     var navigationCoordinator: NavigationCoordinating {
         return NavigationCoordinator.sharedCoordinator
     }
+
+    lazy var connectionHealthMonitor: ConnectionHealthMonitoring = {
+        return ConnectionHealthMonitor()
+    }()
 }

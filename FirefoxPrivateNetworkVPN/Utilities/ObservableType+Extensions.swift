@@ -1,5 +1,5 @@
 //
-//  Bridging-Header.h
+//  ObservableType+Extensions
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -9,14 +9,13 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
+import Foundation
+import RxSwift
 
-#ifndef Guardian_Bridging_Header_h
-#define Guardian_Bridging_Header_h
+// Reference: https://stackoverflow.com/a/36050818
+extension ObservableType {
 
-#include "x25519.h"
-#include "wireguard-go-version.h"
-#include "ringlogger.h"
-#include "key.h"
-#import "SimplePing.h"
-
-#endif /* Guardian_Bridging_Header_h */
+    func withPrevious(startWith first: Element) -> Observable<(Element, Element)> {
+        return scan((first, first)) { ($0.1, $1) }.skip(1)
+    }
+}

@@ -69,6 +69,12 @@
 		F4AED258235F835300F80ABF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED128235F450D00F80ABF /* Endpoint.swift */; };
 		F4AED259235F838F00F80ABF /* ringlogger.c in Sources */ = {isa = PBXBuildFile; fileRef = F4AED12A235F450D00F80ABF /* ringlogger.c */; };
 		F4AED25A235F838F00F80ABF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED12B235F450D00F80ABF /* Logger.swift */; };
+		F4B42BFB238D88EE001F64F7 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B42BFA238D88EE001F64F7 /* SimplePing.m */; };
+		F4B42BFF238D8A44001F64F7 /* LongPinger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42BFE238D8A44001F64F7 /* LongPinger.swift */; };
+		F4B42C04238DD22D001F64F7 /* ConnectionHealthMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C03238DD22D001F64F7 /* ConnectionHealthMonitor.swift */; };
+		F4B42C06238EFF83001F64F7 /* ConnectionTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C05238EFF83001F64F7 /* ConnectionTimerFactory.swift */; };
+		F4B42C08238F1652001F64F7 /* ConnectionRxValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C07238F1652001F64F7 /* ConnectionRxValue.swift */; };
+		F4B42C0A238F2195001F64F7 /* ObservableType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C09238F2195001F64F7 /* ObservableType+Extensions.swift */; };
 		F4B42C1123900E6C001F64F7 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D150D5234797B700739CDA /* Nimble.framework */; };
 		F4B42C1223900E6C001F64F7 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D150D7234797C700739CDA /* Quick.framework */; };
 		F4B42C1323900E6C001F64F7 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF5235612F500A06D7B /* RxCocoa.framework */; };
@@ -76,6 +82,11 @@
 		F4B42C1523900E6C001F64F7 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF32356111A00A06D7B /* RxSwift.framework */; };
 		F4B42C1823900E6D001F64F7 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B42C1623900E6D001F64F7 /* RxBlocking.framework */; };
 		F4B42C1923900E6D001F64F7 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B42C1723900E6D001F64F7 /* RxTest.framework */; };
+		F4B42C1B23901DA3001F64F7 /* MockLongPinger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C00238DC6A7001F64F7 /* MockLongPinger.swift */; };
+		F4B42C1D239021F4001F64F7 /* MockConnectionTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1C239021F4001F64F7 /* MockConnectionTimerFactory.swift */; };
+		F4B42C1F2390230B001F64F7 /* MockConnectionRxValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */; };
+		F4B42C212390504F001F64F7 /* ConnectionHealthMonitorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C202390504F001F64F7 /* ConnectionHealthMonitorSpec.swift */; };
+		F4B42C2323916A90001F64F7 /* ConnectionHealthMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
 		F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E908B92371C45600EB9FE6 /* Lottie.framework */; };
@@ -177,6 +188,8 @@
 		F4E9091E2371CB1F00EB9FE6 /* verifyResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA3C23712A1B0018DC43 /* verifyResponse.json */; };
 		F4E9091F2371CB1F00EB9FE6 /* vpnCountry.json in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA3823712A1B0018DC43 /* vpnCountry.json */; };
 		F4E909202371CB1F00EB9FE6 /* MockGuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA3623712A1B0018DC43 /* MockGuardianAPI.swift */; };
+		F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */; };
+		F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -379,8 +392,20 @@
 		F4AED25B235F83CB00F80ABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAShapeLayer+Animation.swift"; sourceTree = "<group>"; };
 		F4B21E422366514700136316 /* VPNState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNState.swift; sourceTree = "<group>"; };
+		F4B42BF9238D88EE001F64F7 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
+		F4B42BFA238D88EE001F64F7 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+		F4B42BFE238D8A44001F64F7 /* LongPinger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPinger.swift; sourceTree = "<group>"; };
+		F4B42C00238DC6A7001F64F7 /* MockLongPinger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLongPinger.swift; sourceTree = "<group>"; };
+		F4B42C03238DD22D001F64F7 /* ConnectionHealthMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealthMonitor.swift; sourceTree = "<group>"; };
+		F4B42C05238EFF83001F64F7 /* ConnectionTimerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTimerFactory.swift; sourceTree = "<group>"; };
+		F4B42C07238F1652001F64F7 /* ConnectionRxValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRxValue.swift; sourceTree = "<group>"; };
+		F4B42C09238F2195001F64F7 /* ObservableType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extensions.swift"; sourceTree = "<group>"; };
 		F4B42C1623900E6D001F64F7 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		F4B42C1723900E6D001F64F7 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		F4B42C1C239021F4001F64F7 /* MockConnectionTimerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectionTimerFactory.swift; sourceTree = "<group>"; };
+		F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectionRxValue.swift; sourceTree = "<group>"; };
+		F4B42C202390504F001F64F7 /* ConnectionHealthMonitorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealthMonitorSpec.swift; sourceTree = "<group>"; };
+		F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealthMonitoring.swift; sourceTree = "<group>"; };
 		F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestBuilder.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
 		F4D150B523453F9900739CDA /* CityVPNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityVPNCell.xib; sourceTree = "<group>"; };
@@ -404,6 +429,8 @@
 		F4E908AF2371C35100EB9FE6 /* FirefoxPrivateNetworkVPNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirefoxPrivateNetworkVPNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E908B92371C45600EB9FE6 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
+		F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextAttachment+Extensions.swift"; sourceTree = "<group>"; };
+		F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -578,10 +605,14 @@
 			isa = PBXGroup;
 			children = (
 				F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */,
+				F4B42C02238DD1FA001F64F7 /* Connection Heath Monitor */,
 				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
 				F4D150B223451DC900739CDA /* GuardianURLRequestBuilder.swift */,
+				F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */,
+				F4B42C09238F2195001F64F7 /* ObservableType+Extensions.swift */,
 				F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */,
 				F4A7FA21237AFF210034AF6C /* Result+Decode.swift */,
+				F4B42BF8238D88B7001F64F7 /* SimplePing */,
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
 				F4A4947823709033007595C3 /* UIColor+Named.swift */,
 				F4720258238C3D620033A14B /* UIFont+Custom.swift */,
@@ -694,6 +725,7 @@
 				F4D150CF2347975C00739CDA /* Info.plist */,
 				F41CCA3723712A1B0018DC43 /* JSON */,
 				F41CCA3523712A1B0018DC43 /* Mocks */,
+				F4B42C202390504F001F64F7 /* ConnectionHealthMonitorSpec.swift */,
 			);
 			path = FirefoxPrivateNetworkVPNTests;
 			sourceTree = "<group>";
@@ -701,7 +733,10 @@
 		F41CCA3523712A1B0018DC43 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */,
+				F4B42C1C239021F4001F64F7 /* MockConnectionTimerFactory.swift */,
 				F41CCA3623712A1B0018DC43 /* MockGuardianAPI.swift */,
+				F4B42C00238DC6A7001F64F7 /* MockLongPinger.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -859,6 +894,28 @@
 				F4AED1AC235F450D00F80ABF /* WireGuardNetworkExtension-Bridging-Header.h */,
 			);
 			path = WireGuardNetworkExtension;
+			sourceTree = "<group>";
+		};
+		F4B42BF8238D88B7001F64F7 /* SimplePing */ = {
+			isa = PBXGroup;
+			children = (
+				F4B42BF9238D88EE001F64F7 /* SimplePing.h */,
+				F4B42BFA238D88EE001F64F7 /* SimplePing.m */,
+				F4B42BFE238D8A44001F64F7 /* LongPinger.swift */,
+			);
+			path = SimplePing;
+			sourceTree = "<group>";
+		};
+		F4B42C02238DD1FA001F64F7 /* Connection Heath Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */,
+				F4B42C03238DD22D001F64F7 /* ConnectionHealthMonitor.swift */,
+				F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */,
+				F4B42C07238F1652001F64F7 /* ConnectionRxValue.swift */,
+				F4B42C05238EFF83001F64F7 /* ConnectionTimerFactory.swift */,
+			);
+			path = "Connection Heath Monitor";
 			sourceTree = "<group>";
 		};
 		F4E908A22371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests */ = {
@@ -1312,10 +1369,13 @@
 				F4E908F92371CAAD00EB9FE6 /* UIView+Designing.swift in Sources */,
 				F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */,
 				F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */,
+				F4B42C06238EFF83001F64F7 /* ConnectionTimerFactory.swift in Sources */,
 				F4AED252235F835200F80ABF /* PeerConfiguration.swift in Sources */,
 				F4AED25A235F838F00F80ABF /* Logger.swift in Sources */,
 				F4E908C82371CAAD00EB9FE6 /* Device.swift in Sources */,
 				F4E908FC2371CAAD00EB9FE6 /* GuardianTabBarController.swift in Sources */,
+				F4B42C04238DD22D001F64F7 /* ConnectionHealthMonitor.swift in Sources */,
+				F4B42C2323916A90001F64F7 /* ConnectionHealthMonitoring.swift in Sources */,
 				F4E908F12371CAAD00EB9FE6 /* NavigationCoordinator.swift in Sources */,
 				F4AED255235F835300F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */,
 				F4AED257235F835300F80ABF /* IPAddressRange.swift in Sources */,
@@ -1325,6 +1385,7 @@
 				F4E908D62371CAAD00EB9FE6 /* UserDefaulting.swift in Sources */,
 				F4A7FA24237C5C960034AF6C /* Account.swift in Sources */,
 				F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */,
+				F4B42BFB238D88EE001F64F7 /* SimplePing.m in Sources */,
 				F4E908C32371CAAD00EB9FE6 /* ServersDataSource.swift in Sources */,
 				F4AED254235F835200F80ABF /* TunnelConfiguration.swift in Sources */,
 				F4E908CA2371CAAD00EB9FE6 /* User.swift in Sources */,
@@ -1349,6 +1410,7 @@
 				F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */,
 				F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */,
 				527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */,
+				F4B42C0A238F2195001F64F7 /* ObservableType+Extensions.swift in Sources */,
 				F4AED250235F835200F80ABF /* TunnelConfiguration+WgQuickConfig.swift in Sources */,
 				F4AED24F235F835200F80ABF /* InterfaceConfiguration.swift in Sources */,
 				F4E908C22371CAAD00EB9FE6 /* DeviceManagementDataSource.swift in Sources */,
@@ -1358,6 +1420,7 @@
 				F4AED256235F835300F80ABF /* String+ArrayConversion.swift in Sources */,
 				F4E908D22371CAAD00EB9FE6 /* Navigating.swift in Sources */,
 				F4AED21D235F55EA00F80ABF /* Keychain.swift in Sources */,
+				F4B42C08238F1652001F64F7 /* ConnectionRxValue.swift in Sources */,
 				F4E908F52371CAAD00EB9FE6 /* GuardianURLRequestBuilder.swift in Sources */,
 				F4A7FA26237C5CE00034AF6C /* Credentials.swift in Sources */,
 				F4E908EF2371CAAD00EB9FE6 /* GuardianTunnelManager.swift in Sources */,
@@ -1370,6 +1433,7 @@
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,
 				F4E9090B2371CAAD00EB9FE6 /* AccountInformationHeader.swift in Sources */,
 				F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */,
+				F4B42BFF238D8A44001F64F7 /* LongPinger.swift in Sources */,
 				F4E909072371CAAD00EB9FE6 /* SettingsViewController.swift in Sources */,
 				F4AED210235F52AE00F80ABF /* Curve25519.swift in Sources */,
 				F4E908EE2371CAAD00EB9FE6 /* DependencyFactory.swift in Sources */,
@@ -1384,12 +1448,14 @@
 				F4E908CE2371CAAD00EB9FE6 /* NetworkingEnums.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
 				527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */,
+				F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */,
 				F4AED1ED235F50D200F80ABF /* key.c in Sources */,
 				F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */,
 				F4AED253235F835200F80ABF /* DNSServer.swift in Sources */,
 				F4E908C92371CAAD00EB9FE6 /* LoginCheckpointModel.swift in Sources */,
 				F4E908F72371CAAD00EB9FE6 /* UIColor+Named.swift in Sources */,
 				F4E908FF2371CAAD00EB9FE6 /* OnboardingViewController.swift in Sources */,
+				F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */,
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
 				F42304892372101000572A93 /* HyperlinkCell.swift in Sources */,
 				F4E9090D2371CAAD00EB9FE6 /* CityVPNCell.swift in Sources */,
@@ -1408,7 +1474,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4B42C1B23901DA3001F64F7 /* MockLongPinger.swift in Sources */,
 				F4E909202371CB1F00EB9FE6 /* MockGuardianAPI.swift in Sources */,
+				F4B42C212390504F001F64F7 /* ConnectionHealthMonitorSpec.swift in Sources */,
+				F4B42C1D239021F4001F64F7 /* MockConnectionTimerFactory.swift in Sources */,
+				F4B42C1F2390230B001F64F7 /* MockConnectionRxValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
