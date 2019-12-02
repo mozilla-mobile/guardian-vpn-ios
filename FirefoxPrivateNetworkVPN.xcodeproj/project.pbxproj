@@ -189,6 +189,7 @@
 		F4E9091F2371CB1F00EB9FE6 /* vpnCountry.json in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA3823712A1B0018DC43 /* vpnCountry.json */; };
 		F4E909202371CB1F00EB9FE6 /* MockGuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA3623712A1B0018DC43 /* MockGuardianAPI.swift */; };
 		F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */; };
+		F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -429,6 +430,7 @@
 		F4E908B92371C45600EB9FE6 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
 		F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextAttachment+Extensions.swift"; sourceTree = "<group>"; };
+		F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -907,6 +909,7 @@
 		F4B42C02238DD1FA001F64F7 /* Connection Heath Monitor */ = {
 			isa = PBXGroup;
 			children = (
+				F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */,
 				F4B42C03238DD22D001F64F7 /* ConnectionHealthMonitor.swift */,
 				F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */,
 				F4B42C07238F1652001F64F7 /* ConnectionRxValue.swift */,
@@ -1445,6 +1448,7 @@
 				F4E908CE2371CAAD00EB9FE6 /* NetworkingEnums.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
 				527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */,
+				F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */,
 				F4AED1ED235F50D200F80ABF /* key.c in Sources */,
 				F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */,
 				F4AED253235F835200F80ABF /* DNSServer.swift in Sources */,

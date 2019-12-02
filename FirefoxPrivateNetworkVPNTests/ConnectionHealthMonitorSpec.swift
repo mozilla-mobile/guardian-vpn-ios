@@ -40,7 +40,7 @@ class ConnectionHealthMonitorSpec: QuickSpec {
                     timerFactory = MockConnectionTimerFactory(unstableTimerExpirationCount: 0, noSignalTimerExpirationCount: 0)
                     sut = ConnectionHealthMonitor(pinger: pinger, timerFactory: timerFactory, rxValueObserving: rxValueObserving)
 
-                    expect(state(of: sut)).to(equal(ConnectionState.initial))
+                    expect(state(of: sut)).to(equal(ConnectionHealth.initial))
                 }
             }
 
@@ -51,7 +51,7 @@ class ConnectionHealthMonitorSpec: QuickSpec {
                     sut = ConnectionHealthMonitor(pinger: pinger, timerFactory: timerFactory, rxValueObserving: rxValueObserving)
                     sut.start(hostAddress: ConnectionHealthMonitorSpec.hostAddress)
 
-                    expect(state(of: sut)).to(equal(ConnectionState.stable))
+                    expect(state(of: sut)).to(equal(ConnectionHealth.stable))
                 }
             }
 
@@ -62,7 +62,7 @@ class ConnectionHealthMonitorSpec: QuickSpec {
                     sut = ConnectionHealthMonitor(pinger: pinger, timerFactory: timerFactory, rxValueObserving: rxValueObserving)
                     sut.start(hostAddress: ConnectionHealthMonitorSpec.hostAddress)
 
-                    expect(state(of: sut)).to(equal(ConnectionState.unstable))
+                    expect(state(of: sut)).to(equal(ConnectionHealth.unstable))
                 }
             }
 
@@ -73,7 +73,7 @@ class ConnectionHealthMonitorSpec: QuickSpec {
                     sut = ConnectionHealthMonitor(pinger: pinger, timerFactory: timerFactory, rxValueObserving: rxValueObserving)
                     sut.start(hostAddress: ConnectionHealthMonitorSpec.hostAddress)
 
-                    expect(state(of: sut)).to(equal(ConnectionState.noSignal))
+                    expect(state(of: sut)).to(equal(ConnectionHealth.noSignal))
                 }
             }
 
@@ -87,7 +87,7 @@ class ConnectionHealthMonitorSpec: QuickSpec {
                     rxValueObserving.rxRelay.accept(1)
                     rxValueObserving.rxRelay.accept(10)
 
-                    expect(state(of: sut)).to(equal(ConnectionState.stable))
+                    expect(state(of: sut)).to(equal(ConnectionHealth.stable))
                 }
             }
 
@@ -101,17 +101,17 @@ class ConnectionHealthMonitorSpec: QuickSpec {
                     rxValueObserving.rxRelay.accept(1)
                     rxValueObserving.rxRelay.accept(10)
 
-                    expect(state(of: sut)).to(equal(ConnectionState.stable))
+                    expect(state(of: sut)).to(equal(ConnectionHealth.stable))
                 }
             }
         }
     }
 }
 
-private func state(of sut: ConnectionHealthMonitor) -> ConnectionState? {
+private func state(of sut: ConnectionHealthMonitor) -> ConnectionHealth? {
     let testScheduler = TestScheduler(initialClock: 0)
     let disposeBag = DisposeBag()
-    let observer = testScheduler.createObserver(ConnectionState.self)
+    let observer = testScheduler.createObserver(ConnectionHealth.self)
     sut.currentState.drive(observer).disposed(by: disposeBag)
     testScheduler.start()
 

@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 
 protocol ConnectionHealthMonitoring {
-    var currentState: Driver<ConnectionState> { get }
+    var currentState: Driver<ConnectionHealth> { get }
 
     func start(hostAddress: String)
     func reset()

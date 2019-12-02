@@ -14,10 +14,6 @@ import RxSwift
 import RxCocoa
 import os.log
 
-enum ConnectionState {
-    case initial, stable, unstable, noSignal
-}
-
 class ConnectionHealthMonitor: ConnectionHealthMonitoring {
 
     static let scheduler = ConcurrentDispatchQueueScheduler(qos: .background)
@@ -31,8 +27,8 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
     private var hostAddress: String!
     private var timer: Timer?
 
-    private var _currentState = BehaviorRelay<ConnectionState>(value: .initial)
-    var currentState: Driver<ConnectionState> {
+    private var _currentState = BehaviorRelay<ConnectionHealth>(value: .initial)
+    var currentState: Driver<ConnectionHealth> {
         return _currentState.asDriver(onErrorJustReturn: .noSignal)
     }
     private var disposeBag = DisposeBag()
@@ -82,7 +78,7 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
         timer = nil
     }
 
-    private func move(to destinationState: ConnectionState) {
+    private func move(to destinationState: ConnectionHealth) {
         OSLog.log(.debug, "[Connection health monitor] %@ -> %@",
                   args: String(describing: _currentState.value), String(describing: destinationState))
 
