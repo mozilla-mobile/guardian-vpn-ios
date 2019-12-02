@@ -104,10 +104,14 @@ class NavigationCoordinator: NavigationCoordinating {
                 navController?.popViewController(animated: true)
 
             // To Login
-            case (.landing, .login), (.carousel, .login):
+            case (.landing, .login):
                 let loginViewController = LoginViewController()
                 loginViewController.modalPresentationStyle = .fullScreen
                 self.currentViewController?.present(loginViewController, animated: true, completion: nil)
+
+            case (.carousel, .login):
+                self.navigate(from: .carousel, to: .landing)
+                self.navigate(from: .landing, to: .login)
 
             // To Onboarding carousel
             case (.landing, .carousel):

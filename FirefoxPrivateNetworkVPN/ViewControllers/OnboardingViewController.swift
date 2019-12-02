@@ -12,7 +12,8 @@
 import UIKit
 
 class OnboardingViewController: UIViewController, Navigating {
-    static var navigableItem: NavigableItem = .carousel
+
+    static var navigableItem: NavigableItem = .landing
 
     @IBOutlet private weak var getStartedButton: UIButton!
     @IBOutlet private weak var learnMoreButton: UIButton!
@@ -26,6 +27,7 @@ class OnboardingViewController: UIViewController, Navigating {
 
     init(for type: OnboardingViewType) {
         self.type = type
+        OnboardingViewController.navigableItem = type == .landing ? .landing : .carousel
         super.init(nibName: String(describing: Self.self), bundle: nil)
     }
 
@@ -41,7 +43,6 @@ class OnboardingViewController: UIViewController, Navigating {
     private func setupView() {
         switch type {
         case .landing:
-            OnboardingViewController.navigableItem = .landing
             titleLabel.text = LocalizedString.landingTitle.value
             subtitleLabel.text = LocalizedString.landingSubtitle.value
             getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
