@@ -25,6 +25,7 @@ enum CustomColor: String {
     case red40  = "custom_red40"
     case red50 = "custom_red50"
     case yellow50 = "custom_yellow50"
+    case white80 = "custom_white80"
 }
 
 extension UIColor {
