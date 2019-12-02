@@ -15,12 +15,12 @@ import RxCocoa
 import NetworkExtension
 
 class VPNToggleView: UIView {
-    @IBOutlet var view: UIView!
-    @IBOutlet var globeImageView: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var subtitleLabel: UILabel!
-    @IBOutlet var vpnSwitch: UISwitch!
-    @IBOutlet weak var containingView: UIView!
+    @IBOutlet private var view: UIView!
+    @IBOutlet private var globeImageView: UIImageView!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var subtitleLabel: UILabel!
+    @IBOutlet private var vpnSwitch: UISwitch!
+    @IBOutlet private weak var containingView: UIView!
 
     var vpnSwitchEvent: ControlProperty<Bool>?
     private let disposeBag = DisposeBag()
@@ -32,18 +32,20 @@ class VPNToggleView: UIView {
     private var connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
     private var updateUIEvent = PublishSubject<Void>()
 
-    lazy var daysFormatter: DateComponentsFormatter = {
+    private lazy var daysFormatter: DateComponentsFormatter = {
         let daysFormatter = DateComponentsFormatter()
         daysFormatter.allowedUnits = [.day]
         daysFormatter.unitsStyle = .full
+
         return daysFormatter
     }()
 
-    lazy var hoursFormatter: DateComponentsFormatter = {
+    private lazy var hoursFormatter: DateComponentsFormatter = {
         let hoursFormatter = DateComponentsFormatter()
         hoursFormatter.zeroFormattingBehavior = .pad
         hoursFormatter.allowedUnits = [.hour, .minute, .second]
         hoursFormatter.unitsStyle = .positional
+
         return hoursFormatter
     }()
 
@@ -54,13 +56,7 @@ class VPNToggleView: UIView {
             let hoursString = hoursFormatter.string(from: TimeInterval(Int(time) % 86400))
             else { return "" }
 
-        let connectedTime: String
-        if time < 86400 {
-            connectedTime = hoursString
-        } else {
-            connectedTime = "\(daysString) \(hoursString)"
-        }
-        return connectedTime
+        return time < 86400 ? hoursString : "\(daysString) \(hoursString)"
     }
 
     required init?(coder: NSCoder) {
@@ -90,64 +86,12 @@ class VPNToggleView: UIView {
         vpnSwitchEvent = vpnSwitch.rx.isOn
     }
 
-    private func showConnectedTime(state: VPNState) {
-
-        let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
-        let connectionState = connectionHealthMonitor.currentState.asObservable().subscribeOn(ConnectionHealthMonitor.scheduler).distinctUntilChanged()
-
-        //swiftlint:disable trailing_closure
-        Observable.combineLatest(timer, connectionState)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _, connectionState in
-                guard let self = self else { return }
-
-                switch connectionState {
-                    //  ======== TODO: Pelase refactor :)======
-                case .unstable:
-                    let icon = NSTextAttachment()
-                    let iconImage = UIImage(named: "icon_unstable")!
-                    icon.image = iconImage
-                    icon.centerImage(with: self.subtitleLabel)
-                    let iconString = NSAttributedString(attachment: icon)
-
-                    let stateString = NSAttributedString(string: LocalizedString.homeSubtitleUnstable.value, attributes: [
-                        NSAttributedString.Key.foregroundColor: UIColor.custom(.yellow50)
-                    ])
-
-                    let checkConnectionString = NSAttributedString(string: LocalizedString.homeSubtitleCheckConnection.value)
-
-                    let fullString = NSMutableAttributedString(attributedString: iconString)
-                    fullString.append(stateString)
-                    fullString.append(checkConnectionString)
-                    self.subtitleLabel.attributedText = NSAttributedString(attributedString: fullString)
-
-                case .noSignal:
-                    let icon = NSTextAttachment()
-                    icon.image = UIImage(named: "icon_nosignal")
-                    icon.centerImage(with: self.subtitleLabel)
-                    let iconString = NSAttributedString(attachment: icon)
-
-                    let stateString = NSAttributedString(string: LocalizedString.homeSubtitleUnstable.value, attributes: [
-                        NSAttributedString.Key.foregroundColor: UIColor.custom(.red50)
-                    ])
-
-                    let checkConnectionString = NSAttributedString(string: LocalizedString.homeSubtitleCheckConnection.value)
-                    let fullString = NSMutableAttributedString(attributedString: iconString)
-                    fullString.append(stateString)
-                    fullString.append(checkConnectionString)
-                    self.subtitleLabel.attributedText = NSAttributedString(attributedString: fullString)
-                    // ===============
-                default:
-                    self.subtitleLabel.text = String(format: LocalizedString.homeSubtitleOn.value, self.formattedTime)
-                }
-            }).disposed(by: timerDisposeBag)
-    }
-
     // MARK: State Change
 
     private func update(with state: VPNState) {
         titleLabel.text = state.title
         titleLabel.textColor = state.textColor
+        subtitleLabel.text = state.subtitle
         subtitleLabel.textColor = state.subtitleColor
         vpnSwitch.isOn = state.isToggleOn
         vpnSwitch.isEnabled = state.isEnabled
@@ -156,29 +100,79 @@ class VPNToggleView: UIView {
         view.backgroundColor = state.backgroundColor
 
         if state == .on {
-            showConnectedTime(state: state)
-            if let hostAddress = VPNCity.fetchFromUserDefaults()?.servers.first?.ipv4Gateway {
-                connectionHealthMonitor.start(hostAddress: hostAddress)
-            }
-
-            let position = CGPoint(x: globeImageView.center.x, y: globeImageView.center.y + containingView.frame.minY)
-            smallLayer.position = position
-            mediumLayer.position = position
-            largeLayer.position = position
-            smallLayer.addPulse(delay: 0.0)
-            mediumLayer.addPulse(delay: 2.0)
-            largeLayer.addPulse(delay: 4.0)
-            layer.addSublayer(smallLayer)
-            layer.addSublayer(mediumLayer)
-            layer.addSublayer(largeLayer)
+            addAnimationToView()
+            getConnectionTimeAndHealth()
         } else {
-            connectionHealthMonitor.reset()
-            timerDisposeBag = DisposeBag()
-
-            subtitleLabel.text = state.subtitle
-            smallLayer.removeFromSuperlayer()
-            mediumLayer.removeFromSuperlayer()
-            largeLayer.removeFromSuperlayer()
+            removeAnimationFromView()
+            resetConnectionTimeAndHealth()
         }
+    }
+
+    private func addAnimationToView() {
+        let position = CGPoint(x: globeImageView.center.x, y: globeImageView.center.y + containingView.frame.minY)
+        smallLayer.position = position
+        mediumLayer.position = position
+        largeLayer.position = position
+        smallLayer.addPulse(delay: 0.0)
+        mediumLayer.addPulse(delay: 2.0)
+        largeLayer.addPulse(delay: 4.0)
+        layer.addSublayer(smallLayer)
+        layer.addSublayer(mediumLayer)
+        layer.addSublayer(largeLayer)
+    }
+
+    private func removeAnimationFromView() {
+        smallLayer.removeFromSuperlayer()
+        mediumLayer.removeFromSuperlayer()
+        largeLayer.removeFromSuperlayer()
+    }
+
+    // MARK: Connection Health and Time
+
+    private func getConnectionTimeAndHealth() {
+        let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+        let connectionState = connectionHealthMonitor.currentState.asObservable().subscribeOn(ConnectionHealthMonitor.scheduler).distinctUntilChanged()
+
+        //swiftlint:disable trailing_closure
+        Observable.combineLatest(timer, connectionState)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _, connectionHealth in
+                guard let self = self else { return }
+                self.setSubtitle(with: connectionHealth)
+            }).disposed(by: timerDisposeBag)
+
+        if let hostAddress = VPNCity.fetchFromUserDefaults()?.servers.first?.ipv4Gateway {
+            connectionHealthMonitor.start(hostAddress: hostAddress)
+        }
+    }
+
+    private func resetConnectionTimeAndHealth() {
+        connectionHealthMonitor.reset()
+        timerDisposeBag = DisposeBag()
+    }
+
+    private func setSubtitle(with connectionHealth: ConnectionHealth) {
+        guard connectionHealth == .unstable || connectionHealth == .noSignal else {
+            self.subtitleLabel.text = String(format: connectionHealth.subtitleText, self.formattedTime)
+            return
+        }
+
+        let icon = NSTextAttachment()
+        if let iconImage = connectionHealth.icon {
+            icon.image = iconImage
+            icon.centerImage(with: self.subtitleLabel)
+        }
+        let iconString = NSAttributedString(attachment: icon)
+
+        let stateString = NSAttributedString(string: connectionHealth.subtitleText, attributes: [
+            NSAttributedString.Key.foregroundColor: connectionHealth.textColor
+        ])
+
+        let checkConnectionString = NSAttributedString(string: LocalizedString.homeSubtitleCheckConnection.value)
+
+        let fullString = NSMutableAttributedString(attributedString: iconString)
+        fullString.append(stateString)
+        fullString.append(checkConnectionString)
+        self.subtitleLabel.attributedText = NSAttributedString(attributedString: fullString)
     }
 }
