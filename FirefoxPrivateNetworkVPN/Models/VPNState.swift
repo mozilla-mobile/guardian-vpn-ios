@@ -76,7 +76,7 @@ extension VPNState {
         case .connecting, .switching:
             return LocalizedString.homeSubtitleConnecting.value
         case .on:
-            return LocalizedString.homeSubtitleOn.value
+            return ""
         case .disconnecting:
             return LocalizedString.homeSubtitleDisconnecting.value
         }
