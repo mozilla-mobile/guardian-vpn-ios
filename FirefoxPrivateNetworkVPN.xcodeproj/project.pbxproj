@@ -21,6 +21,9 @@
 		F423048623720A7400572A93 /* HelpDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423048523720A7400572A93 /* HelpDataSource.swift */; };
 		F42304892372101000572A93 /* HyperlinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42304872372101000572A93 /* HyperlinkCell.swift */; };
 		F423048A2372101000572A93 /* HyperlinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42304882372101000572A93 /* HyperlinkCell.xib */; };
+		F42DE7C62395A61C000B79C3 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C52395A61C000B79C3 /* LandingViewController.swift */; };
+		F42DE7C82395A64A000B79C3 /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C72395A64A000B79C3 /* CarouselViewController.swift */; };
+		F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C92395A824000B79C3 /* CarouselViewType.swift */; };
 		F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
 		F43DCC7C2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
 		F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */; };
@@ -268,6 +271,9 @@
 		F42304882372101000572A93 /* HyperlinkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HyperlinkCell.xib; sourceTree = "<group>"; };
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
 		F42A23062347D37F00763B0D /* AccountManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManaging.swift; sourceTree = "<group>"; };
+		F42DE7C52395A61C000B79C3 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		F42DE7C72395A64A000B79C3 /* CarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
+		F42DE7C92395A824000B79C3 /* CarouselViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewType.swift; sourceTree = "<group>"; };
 		F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Custom.swift"; sourceTree = "<group>"; };
 		F43DCC7D2379AC35000C60E3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F43DCC7E2379AC36000C60E3 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -560,6 +566,7 @@
 				F49090BD2379D43200C8430A /* SettingsItem.swift */,
 				F4E8B2342368C39C001CEC8A /* TunnelAction.swift */,
 				F4B21E422366514700136316 /* VPNState.swift */,
+				F42DE7C92395A824000B79C3 /* CarouselViewType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -600,6 +607,7 @@
 				527C7EB223752DCA00368965 /* AboutViewController.xib */,
 				F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */,
 				F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */,
+				F42DE7C72395A64A000B79C3 /* CarouselViewController.swift */,
 				F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */,
 				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
 				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
@@ -609,6 +617,7 @@
 				F4230482237209B000572A93 /* HelpViewController.xib */,
 				F45D70A2233D3D6C00871447 /* HomeViewController.swift */,
 				F45D70A3233D3D6C00871447 /* HomeViewController.xib */,
+				F42DE7C52395A61C000B79C3 /* LandingViewController.swift */,
 				F41B9C7D2368933F00ACC414 /* LaunchScreen.storyboard */,
 				F43DFC05234BB32C003EA64A /* LoadingViewController.swift */,
 				F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */,
@@ -1321,12 +1330,14 @@
 				F4AED257235F835300F80ABF /* IPAddressRange.swift in Sources */,
 				F4E908D32371CAAD00EB9FE6 /* NavigationCoordinating.swift in Sources */,
 				F4E909092371CAAD00EB9FE6 /* AccountInformationCell.swift in Sources */,
+				F42DE7C82395A64A000B79C3 /* CarouselViewController.swift in Sources */,
 				F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */,
 				F4E908D62371CAAD00EB9FE6 /* UserDefaulting.swift in Sources */,
 				F4A7FA24237C5C960034AF6C /* Account.swift in Sources */,
 				F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */,
 				F4E908C32371CAAD00EB9FE6 /* ServersDataSource.swift in Sources */,
 				F4AED254235F835200F80ABF /* TunnelConfiguration.swift in Sources */,
+				F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */,
 				F4E908CA2371CAAD00EB9FE6 /* User.swift in Sources */,
 				F4E909152371CAAD00EB9FE6 /* DeviceManagementCell.swift in Sources */,
 				527C7EB823752F6500368965 /* AboutHeaderView.swift in Sources */,
@@ -1336,6 +1347,7 @@
 				F4E908C42371CAAD00EB9FE6 /* SettingsDataSource.swift in Sources */,
 				F4E908FD2371CAAD00EB9FE6 /* HomeViewController.swift in Sources */,
 				F4E909132371CAAD00EB9FE6 /* DeviceLimitReachedView.swift in Sources */,
+				F42DE7C62395A61C000B79C3 /* LandingViewController.swift in Sources */,
 				F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */,
 				F4AED249235F7BB800F80ABF /* WireGuardAppError.swift in Sources */,
 				F4E909052371CAAD00EB9FE6 /* ServersViewController.swift in Sources */,

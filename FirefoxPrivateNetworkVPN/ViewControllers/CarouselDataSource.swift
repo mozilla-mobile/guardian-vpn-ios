@@ -18,10 +18,10 @@ class CarouselDataSource: NSObject, UIPageViewControllerDataSource {
     }()
 
     private(set) lazy var viewControllers: [OnboardingViewController] = {
-        let noLogsViewController = OnboardingViewController(for: .noLogs)
-        let encryptionViewController = OnboardingViewController(for: .encryption)
-        let manyServersViewController = OnboardingViewController(for: .manyServers)
-        let getStartedViewController = OnboardingViewController(for: .getStarted)
+        let noLogsViewController = CarouselViewController(for: .noLogs)
+        let encryptionViewController = CarouselViewController(for: .encryption)
+        let manyServersViewController = CarouselViewController(for: .manyServers)
+        let getStartedViewController = CarouselViewController(for: .getStarted)
 
         return [noLogsViewController, encryptionViewController, manyServersViewController, getStartedViewController]
     }()
