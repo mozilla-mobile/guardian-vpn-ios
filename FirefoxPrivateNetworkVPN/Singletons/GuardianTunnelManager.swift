@@ -25,6 +25,7 @@ class GuardianTunnelManager: TunnelManaging {
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
     private let account = DependencyFactory.sharedFactory.accountManager.account
     private var tunnel: NETunnelProviderManager?
+    private let disposeBag = DisposeBag()
 
     var timeSinceConnected: Double {
         return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
@@ -45,27 +46,37 @@ class GuardianTunnelManager: TunnelManaging {
         }
     }
 
-    func connect(with device: Device?) {
-        loadTunnel { [weak self] in
-            guard let self = self else { return }
+    func connect(with device: Device?) -> Single<Void> {
+        return Single<Void>.create { [unowned self] resolver in
+            self.loadTunnel {
+                let tunnelProviderManager = self.tunnel ?? NETunnelProviderManager()
+                guard let device = device, let account = self.account else { return }
 
-            let tunnelProviderManager = self.tunnel ?? NETunnelProviderManager()
-            guard let device = device, let account = self.account else { return }
+                tunnelProviderManager.setNewConfiguration(for: device, key: account.privateKey)
+                tunnelProviderManager.isEnabled = true
 
-            tunnelProviderManager.setNewConfiguration(for: device, key: account.privateKey)
-            tunnelProviderManager.isEnabled = true
-
-            tunnelProviderManager.saveToPreferences { [unowned self] saveError in
-                guard saveError == nil else {
-                    self.tunnel = nil
-                    return
-                }
-                self.tunnel = tunnelProviderManager
-                self.tunnel?.loadFromPreferences { error in
-                    guard error == nil else { return }
-                    self.startTunnel()
+                tunnelProviderManager.saveToPreferences { [unowned self] saveError in
+                    if let error = saveError {
+                        self.tunnel = nil
+                        resolver(.error(error))
+                        return
+                    }
+                    self.tunnel = tunnelProviderManager
+                    self.tunnel?.loadFromPreferences { error in
+                        if let error = error {
+                            resolver(.error(error))
+                            return
+                        }
+                        do {
+                            try self.startTunnel()
+                            resolver(.success(()))
+                        } catch {
+                            resolver(.error(error))
+                        }
+                    }
                 }
             }
+            return Disposables.create()
         }
     }
 
@@ -77,6 +88,10 @@ class GuardianTunnelManager: TunnelManaging {
     func switchServer(with device: Device) {
         guard let tunnel = self.tunnel else {
             connect(with: device)
+                .subscribe { error in
+                    // TODO: handle error
+            }.disposed(by: disposeBag)
+
             return
         }
 
@@ -143,13 +158,10 @@ class GuardianTunnelManager: TunnelManaging {
         }
     }
 
-    private func startTunnel() {
+    private func startTunnel() throws {
         guard let tunnel = tunnel else { return }
-        do {
-            try (tunnel.connection as? NETunnelProviderSession)?.startTunnel()
-        } catch let error {
-            print("Error: \(error)")
-        }
+
+        try (tunnel.connection as? NETunnelProviderSession)?.startTunnel()
     }
 
     private func loadTunnel(completion: (() -> Void)? = nil) {
@@ -182,7 +194,7 @@ class GuardianTunnelManager: TunnelManaging {
             case .disconnecting, .connecting:
                 return
             case .disconnected:
-                startTunnel()
+                try? startTunnel()
                 return
             default:
                 break
