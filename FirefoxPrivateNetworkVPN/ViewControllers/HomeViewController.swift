@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, Navigating {
     private let pinger = LongPinger()
     private let timerFactory = ConnectionTimerFactory()
     private let rxValueObserving = ConnectionRxValue()
+    private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private lazy var connectionHealthMonitor = {
         ConnectionHealthMonitor(pinger: self.pinger, timerFactory: self.timerFactory, rxValueObserving: self.rxValueObserving)
     }()
@@ -53,7 +54,7 @@ class HomeViewController: UIViewController, Navigating {
 
     private func setupTabBar() {
         let tag: TabTag = .home
-        DependencyFactory.sharedFactory.tunnelManager.stateEvent.subscribe { [weak self] event in
+        tunnelManager.stateEvent.subscribe { [weak self] event in
             let image = event.element == .on ? #imageLiteral(resourceName: "tab_vpnOn") : #imageLiteral(resourceName: "tab_vpnOff")
             self?.tabBarItem = UITabBarItem(title: LocalizedString.homeTabName.value, image: image, tag: tag)
         }.disposed(by: disposeBag)
@@ -72,18 +73,32 @@ class HomeViewController: UIViewController, Navigating {
             else { return }
 
             if isOn {
-                let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
-                let currentDevice = DependencyFactory.sharedFactory.accountManager.account?.currentDevice
-
-                tunnelManager.connect(with: currentDevice)
-                    .subscribe { [weak self] error in
-                        self?.warningToastView.appear(animated: true)
-                }.disposed(by: self.disposeBag)
-
+                self.connectToTunnel()
             } else {
-                DependencyFactory.sharedFactory.tunnelManager.stop()
+                self.tunnelManager.stop()
             }
         }.disposed(by: disposeBag)
+    }
+
+    private func connectToTunnel() {
+        let currentDevice = DependencyFactory.sharedFactory.accountManager.account?.currentDevice
+
+        //swiftlint:disable:next trailing_closure
+        tunnelManager.connect(with: currentDevice)
+            .subscribe(onError: { _ in
+                self.warningToastView.show(message: self.formatErrorMessage(with: .couldNotConnectVPN), action: self.connectToTunnel)
+            }).disposed(by: self.disposeBag)
+    }
+
+    private func formatErrorMessage(with error: GuardianError) -> NSMutableAttributedString {
+        let message = NSMutableAttributedString(string: error.localizedDescription)
+        let actionMessage = NSAttributedString(string: LocalizedString.toastTryAgain.value, attributes: [
+            .font: UIFont.custom(.interSemiBold, size: 13),
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
+        message.append(NSAttributedString(string: " "))
+        message.append(actionMessage)
+        return message
     }
 
     @objc func selectVpn() {

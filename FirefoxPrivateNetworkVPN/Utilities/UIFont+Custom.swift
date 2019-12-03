@@ -14,6 +14,7 @@ import UIKit
 enum CustomFont: String {
     case metropolis = "Metropolis"
     case metropolisSemiBold = "Metropolis-SemiBold"
+    case interSemiBold = "Inter-SemiBold"
 }
 
 extension UIFont {

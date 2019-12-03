@@ -17,13 +17,9 @@ final class WarningToastView: UIView {
     @IBOutlet var view: UIView!
     @IBOutlet private weak var label: UILabel!
 
-    var errorMessage = NSAttributedString() {
-        didSet {
-            label.attributedText = errorMessage
-        }
-    }
+    typealias Action = (() -> Void)
 
-    var callback: (() -> Void)?
+    private var action: Action?
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -33,20 +29,25 @@ final class WarningToastView: UIView {
         addSubview(view)
     }
 
-    func appear(animated: Bool) {
-        if animated {
-            UIView.animate(withDuration: 0.5) {
-                self.label.alpha = 1
-            }
+    func show(message: NSMutableAttributedString, dismissAfter: TimeInterval = 3, action: Action? = nil) {
+        label.attributedText = message
+        self.action = action
+        UIView.animate(withDuration: 0.5) {
+            self.alpha = 1
         }
-        self.label.alpha = 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + dismissAfter) {
+            self.dismiss()
+        }
     }
 
-    func scheduleDismissal(after timeInterval: TimeInterval = 3) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + timeInterval) {
-            UIView.animate(withDuration: 1) {
-                self.label.alpha = 0
-            }
+    @IBAction func tapped(_ sender: Any) {
+        action?()
+        dismiss()
+    }
+
+    private func dismiss() {
+        UIView.animate(withDuration: 1) {
+            self.alpha = 0
         }
     }
 }

@@ -78,6 +78,11 @@ enum LocalizedString: String {
     case aboutDescription
     case aboutReleaseVersion
 
+    case toastTryAgain
+
+    case errorDeviceRemoval
+    case errorConnectVPN
+
     var value: String {
         NSLocalizedString(rawValue, comment: "")
     }

@@ -77,6 +77,7 @@ class DeviceManagementCell: UITableViewCell {
         subtitleLabel.textColor = UIColor.custom(.grey40)
         deleteButton.tintColor = UIColor.custom(.red50)
         deleteButton.isHidden = false
+        deleteButton.isUserInteractionEnabled = true
         activityIndicatorView.stopAnimating()
     }
 

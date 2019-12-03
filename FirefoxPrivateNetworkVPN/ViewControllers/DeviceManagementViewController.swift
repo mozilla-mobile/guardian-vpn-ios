@@ -17,6 +17,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .devices
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var warningToastView: WarningToastView!
 
     private var dataSource: DeviceManagementDataSource?
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
@@ -45,16 +46,36 @@ class DeviceManagementViewController: UIViewController, Navigating {
                     .navigationCoordinator
                     .createDeviceDeletionAlert(deviceName: device.name) { _ in
                         account.removeDevice(with: device.publicKey) { result in
-                            guard case .success = result, !account.hasDeviceBeenAdded else {
+                            switch result {
+                            case .success:
+                            guard !account.hasDeviceBeenAdded else {
                                 self.tableView?.reloadData()
                                 return
                             }
                             self.addCurrentDeviceToAccount()
+
+                            case .failure:
+                                self.tableView?.reloadData()
+                                self.warningToastView.show(message: self.formatErrorMessage(with: .couldNotRemoveDevice)) { [weak self] in
+                                    self?.dataSource?.removeDeviceEvent.onNext(device)
+                                }
+                            }
                         }
                         self.tableView?.reloadData()
                 }
                 self.present(confirmAlert, animated: true, completion: nil)
             }).disposed(by: disposeBag)
+    }
+
+    private func formatErrorMessage(with error: GuardianError) -> NSMutableAttributedString {
+        let message = NSMutableAttributedString(string: error.description)
+        let actionMessage = NSAttributedString(string: LocalizedString.toastTryAgain.value, attributes: [
+            .font: UIFont.custom(.interSemiBold, size: 13),
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
+        message.append(NSAttributedString(string: " "))
+        message.append(actionMessage)
+        return message
     }
 
     override func viewWillAppear(_ animated: Bool) {

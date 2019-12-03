@@ -81,3 +81,10 @@
 "aboutAppName" = "Firefox Private Network";
 "aboutDescription" = "A fast, secure and trusted virtual private network. Built for people not profits.";
 "aboutReleaseVersion" = "Release version";
+
+// MARK: - Warning toast
+"toastTryAgain" = "Try again";
+
+//MARK: - Error Descriptions
+"errorDeviceRemoval" = "Unable to remove device.";
+"errorConnectVPN" = "Unable to connect.";

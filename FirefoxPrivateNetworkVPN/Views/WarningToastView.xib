@@ -22,20 +22,23 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="424" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="444" height="137"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spa-uT-lU5">
-                    <rect key="frame" x="174" y="12" width="76" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spa-uT-lU5">
+                    <rect key="frame" x="30" y="54" width="384" height="39"/>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
                     <color key="textColor" name="custom_grey50"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" name="custom_red40"/>
+            <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="spa-uT-lU5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="AfN-Mq-2Gw"/>
-                <constraint firstItem="spa-uT-lU5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Ddg-5z-cZw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="spa-uT-lU5" secondAttribute="trailing" constant="30" id="0Ag-CM-ESV"/>
+                <constraint firstItem="spa-uT-lU5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="6PI-Ya-N3Z"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="spa-uT-lU5" secondAttribute="bottom" constant="10" id="7i2-1w-7Rv"/>
+                <constraint firstItem="spa-uT-lU5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="N9E-CB-fEg"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -46,8 +49,16 @@
                     <real key="value" value="4"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="-91.304347826086968" y="-4.6875"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="DeZ-s7-UHR" appends="YES" id="4wq-Tj-BzX"/>
+            </connections>
+            <point key="canvasLocation" x="-76.811594202898561" y="27.790178571428569"/>
         </view>
+        <tapGestureRecognizer id="DeZ-s7-UHR">
+            <connections>
+                <action selector="tapped:" destination="-1" id="oGN-g1-DdL"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <namedColor name="custom_grey50">
