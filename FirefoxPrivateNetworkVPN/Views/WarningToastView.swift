@@ -46,7 +46,7 @@ final class WarningToastView: UIView {
     }
 
     private func dismiss() {
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             self.alpha = 0
         }
     }

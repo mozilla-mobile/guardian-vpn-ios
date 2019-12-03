@@ -85,34 +85,43 @@ class GuardianTunnelManager: TunnelManaging {
         (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
 
-    func switchServer(with device: Device) {
-        guard let tunnel = self.tunnel else {
-            connect(with: device)
-                .subscribe { error in
-                    // TODO: handle error
-            }.disposed(by: disposeBag)
+    func switchServer(with device: Device) -> Single<Void> {
+        return Single<Void>.create { [unowned self] resolver in
+            guard let tunnel = self.tunnel else {
+                self.connect(with: device)
+                    .subscribe { error in
+                        resolver(.error(error))
+                }.disposed(by: self.disposeBag)
 
-            return
-        }
+                return Disposables.create()
+            }
 
-        if self.stateEvent.value != .off {
-            self.stateEvent.accept(.switching)
-        }
-        guard let account = self.account else { return }
-        tunnel.setNewConfiguration(for: device, key: account.privateKey)
+            if self.stateEvent.value != .off {
+                self.stateEvent.accept(.switching)
+            }
+            guard let account = self.account else {
+                resolver(.error(GuardianError.needToLogin))
+                return Disposables.create()
+            }
+            tunnel.setNewConfiguration(for: device, key: account.privateKey)
 
-        tunnel.saveToPreferences { saveError in
-            guard saveError == nil else {
-                if self.stateEvent.value == .switching {
-                    self.stateEvent.accept(.on)
+            tunnel.saveToPreferences { saveError in
+                if let error = saveError {
+                    if self.stateEvent.value == .switching {
+                        self.stateEvent.accept(.on)
+                    }
+                    resolver(.error(error))
+                    return
                 }
-                return
-            }
 
-            tunnel.loadFromPreferences { error in
-                // TODO: Handle errors, don't print
-                if let error = error { print(error) }
+                tunnel.loadFromPreferences { error in
+                    if let error = error {
+                        resolver(.error(error))
+                        return
+                    }
+                }
             }
+            return Disposables.create()
         }
     }
 

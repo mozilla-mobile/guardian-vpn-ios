@@ -16,6 +16,7 @@
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
+		F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422FEF523970752009413E2 /* Notification+Extensions.swift */; };
 		F4230483237209B000572A93 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4230481237209B000572A93 /* HelpViewController.swift */; };
 		F4230484237209B000572A93 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4230482237209B000572A93 /* HelpViewController.xib */; };
 		F423048623720A7400572A93 /* HelpDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423048523720A7400572A93 /* HelpDataSource.swift */; };
@@ -278,6 +279,7 @@
 		F420F4192368840A00CD48BF /* VPNToggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNToggleView.swift; sourceTree = "<group>"; };
 		F420F41A2368840A00CD48BF /* VPNToggleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPNToggleView.xib; sourceTree = "<group>"; };
 		F420F41B2368840A00CD48BF /* CurrentVPNSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentVPNSelectorView.xib; sourceTree = "<group>"; };
+		F422FEF523970752009413E2 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = WireGuardGoBridge.xcconfig; sourceTree = "<group>"; };
 		F4230481237209B000572A93 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		F4230482237209B000572A93 /* HelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 				F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */,
 				F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */,
 				F4A4947D23709033007595C3 /* UIView+Designing.swift */,
+				F422FEF523970752009413E2 /* Notification+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1442,6 +1445,7 @@
 				F4AED21D235F55EA00F80ABF /* Keychain.swift in Sources */,
 				F4B42C08238F1652001F64F7 /* ConnectionRxValue.swift in Sources */,
 				F4E908F52371CAAD00EB9FE6 /* GuardianURLRequestBuilder.swift in Sources */,
+				F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */,
 				F4A7FA26237C5CE00034AF6C /* Credentials.swift in Sources */,
 				F4E908EF2371CAAD00EB9FE6 /* GuardianTunnelManager.swift in Sources */,
 				F4E908C62371CAAD00EB9FE6 /* TunnelAction.swift in Sources */,

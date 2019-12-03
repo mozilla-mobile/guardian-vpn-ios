@@ -45,6 +45,7 @@ class HomeViewController: UIViewController, Navigating {
         setStrings()
         addTapGesture()
         subscribeToToggle()
+        subscribeToErrors()
     }
 
     private func setStrings() {
@@ -91,7 +92,7 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func formatErrorMessage(with error: GuardianError) -> NSMutableAttributedString {
-        let message = NSMutableAttributedString(string: error.localizedDescription)
+        let message = NSMutableAttributedString(string: error.description)
         let actionMessage = NSAttributedString(string: LocalizedString.toastTryAgain.value, attributes: [
             .font: UIFont.custom(.interSemiBold, size: 13),
             .underlineStyle: NSUnderlineStyle.single.rawValue
@@ -99,6 +100,16 @@ class HomeViewController: UIViewController, Navigating {
         message.append(NSAttributedString(string: " "))
         message.append(actionMessage)
         return message
+    }
+
+    private func subscribeToErrors() {
+        //swiftlint:disable:next trailing_closure
+        NotificationCenter.default.rx.notification(.switchServerError)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.warningToastView.show(message: self.formatErrorMessage(with: .couldNotConnectVPN), action: self.connectToTunnel)
+            })
+        .disposed(by: disposeBag)
     }
 
     @objc func selectVpn() {
