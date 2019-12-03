@@ -24,6 +24,8 @@
 		F42DE7C62395A61C000B79C3 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C52395A61C000B79C3 /* LandingViewController.swift */; };
 		F42DE7C82395A64A000B79C3 /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C72395A64A000B79C3 /* CarouselViewController.swift */; };
 		F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C92395A824000B79C3 /* CarouselViewType.swift */; };
+		F42DE7CC2395B9D3000B79C3 /* WarningToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42DE7CB2395B9D3000B79C3 /* WarningToastView.xib */; };
+		F42DE7CE2395B9E7000B79C3 /* WarningToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */; };
 		F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
 		F43DCC7C2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
 		F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */; };
@@ -287,6 +289,8 @@
 		F42DE7C52395A61C000B79C3 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		F42DE7C72395A64A000B79C3 /* CarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 		F42DE7C92395A824000B79C3 /* CarouselViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewType.swift; sourceTree = "<group>"; };
+		F42DE7CB2395B9D3000B79C3 /* WarningToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningToastView.xib; sourceTree = "<group>"; };
+		F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningToastView.swift; sourceTree = "<group>"; };
 		F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Custom.swift"; sourceTree = "<group>"; };
 		F43DCC7D2379AC35000C60E3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F43DCC7E2379AC36000C60E3 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -684,6 +688,8 @@
 				F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */,
 				F499C0F4234E301900126CDA /* DeviceManagementCell.swift */,
 				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
+				F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */,
+				F42DE7CB2395B9D3000B79C3 /* WarningToastView.xib */,
 				F42304872372101000572A93 /* HyperlinkCell.swift */,
 				F42304882372101000572A93 /* HyperlinkCell.xib */,
 				F420F4192368840A00CD48BF /* VPNToggleView.swift */,
@@ -1145,6 +1151,7 @@
 				F4E908D92371CAAD00EB9FE6 /* Inter-SemiBold.otf in Resources */,
 				F41CCA302371215E0018DC43 /* Localizable.strings in Resources */,
 				F4E909082371CAAD00EB9FE6 /* SettingsViewController.xib in Resources */,
+				F42DE7CC2395B9D3000B79C3 /* WarningToastView.xib in Resources */,
 				F4E908E62371CAAD00EB9FE6 /* Metropolis-Regular.otf in Resources */,
 				F4E908E92371CAAD00EB9FE6 /* Metropolis-SemiBoldItalic.otf in Resources */,
 				527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */,
@@ -1421,6 +1428,7 @@
 				F4230483237209B000572A93 /* HelpViewController.swift in Sources */,
 				F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */,
 				F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */,
+				F42DE7CE2395B9E7000B79C3 /* WarningToastView.swift in Sources */,
 				527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */,
 				F4B42C0A238F2195001F64F7 /* ObservableType+Extensions.swift in Sources */,
 				F4AED250235F835200F80ABF /* TunnelConfiguration+WgQuickConfig.swift in Sources */,

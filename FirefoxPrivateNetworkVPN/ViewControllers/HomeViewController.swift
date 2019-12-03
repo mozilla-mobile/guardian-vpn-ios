@@ -19,6 +19,7 @@ class HomeViewController: UIViewController, Navigating {
     @IBOutlet var vpnToggleView: VPNToggleView!
     @IBOutlet var selectConnectionLabel: UILabel!
     @IBOutlet var vpnSelectionView: CurrentVPNSelectorView!
+    @IBOutlet weak var warningToastView: WarningToastView!
 
     private let pinger = LongPinger()
     private let timerFactory = ConnectionTimerFactory()
@@ -64,11 +65,21 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func subscribeToToggle() {
-        vpnToggleView.vpnSwitchEvent?.skip(1).subscribe { isOnEvent in
-            guard let isOn = isOnEvent.element else { return }
+        vpnToggleView.vpnSwitchEvent?.skip(1).subscribe { [weak self] isOnEvent in
+            guard
+                let self = self,
+                let isOn = isOnEvent.element
+            else { return }
+
             if isOn {
-                DependencyFactory.sharedFactory.tunnelManager
-                    .connect(with: DependencyFactory.sharedFactory.accountManager.account?.currentDevice)
+                let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
+                let currentDevice = DependencyFactory.sharedFactory.accountManager.account?.currentDevice
+
+                tunnelManager.connect(with: currentDevice)
+                    .subscribe { [weak self] error in
+                        self?.warningToastView.appear(animated: true)
+                }.disposed(by: self.disposeBag)
+
             } else {
                 DependencyFactory.sharedFactory.tunnelManager.stop()
             }
