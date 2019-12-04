@@ -33,25 +33,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Bk-tlK">
-                    <rect key="frame" x="0.0" y="30" width="350" height="290.5"/>
+                    <rect key="frame" x="0.0" y="69.5" width="350" height="211"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe_off" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs">
-                            <rect key="frame" x="95" y="0.0" width="160" height="160"/>
+                            <rect key="frame" x="135" y="0.0" width="80" height="80"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVT-rn-kQN">
-                            <rect key="frame" x="32" y="184" width="286" height="26"/>
+                            <rect key="frame" x="32" y="104" width="286" height="22"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                             <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xu-al-pMZ">
-                            <rect key="frame" x="32" y="218" width="286" height="17.5"/>
+                            <rect key="frame" x="32" y="134" width="286" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="jkG-Fz-RTN"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                             <color key="textColor" name="custom_grey40"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
-                            <rect key="frame" x="150.5" y="259.5" width="51" height="31"/>
+                            <rect key="frame" x="150.5" y="180" width="51" height="31"/>
                             <color key="backgroundColor" name="custom_grey30"/>
                             <color key="tintColor" name="custom_grey30"/>
                             <color key="onTintColor" name="custom_green50"/>
