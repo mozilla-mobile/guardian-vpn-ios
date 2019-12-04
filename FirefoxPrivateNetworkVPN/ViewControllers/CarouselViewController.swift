@@ -39,6 +39,7 @@ class CarouselViewController: OnboardingViewController, Navigating {
         case .getStarted:
             learnMoreButton.removeFromSuperview()
             getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
+            getStartedButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
             buttonStackViewBottomConstraint.constant = 48
 
         default:
