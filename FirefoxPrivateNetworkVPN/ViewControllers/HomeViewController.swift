@@ -94,7 +94,6 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func subscribeToErrors() {
-        //swiftlint:disable:next trailing_closure
         Observable.merge(
             NotificationCenter.default.rx.notification(.switchServerError),
             NotificationCenter.default.rx.notification(.startTunnelError))
