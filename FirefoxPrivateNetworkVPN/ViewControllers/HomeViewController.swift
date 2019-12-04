@@ -86,8 +86,10 @@ class HomeViewController: UIViewController, Navigating {
 
         //swiftlint:disable:next trailing_closure
         tunnelManager.connect(with: currentDevice)
-            .subscribe(onError: { _ in
-                self.warningToastView.show(message: self.formatErrorMessage(with: .couldNotConnectVPN), action: self.connectToTunnel)
+            .subscribe(onError: { [weak self] _ in
+                guard let self = self else { return }
+                self.warningToastView.show(message: self.formatErrorMessage(with: .couldNotConnectVPN),
+                                           action: self.connectToTunnel)
             }).disposed(by: self.disposeBag)
     }
 
@@ -104,7 +106,9 @@ class HomeViewController: UIViewController, Navigating {
 
     private func subscribeToErrors() {
         //swiftlint:disable:next trailing_closure
-        NotificationCenter.default.rx.notification(.switchServerError)
+        Observable.merge(
+            NotificationCenter.default.rx.notification(.switchServerError),
+            NotificationCenter.default.rx.notification(.startTunnelError))
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.warningToastView.show(message: self.formatErrorMessage(with: .couldNotConnectVPN), action: self.connectToTunnel)

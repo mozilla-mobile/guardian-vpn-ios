@@ -14,5 +14,5 @@ import Foundation
 extension NSNotification.Name {
 
     static let switchServerError = Notification.Name("switchServerError")
-
+    static let startTunnelError = Notification.Name("startTunnelError")
 }
