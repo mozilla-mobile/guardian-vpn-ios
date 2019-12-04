@@ -203,7 +203,11 @@ class GuardianTunnelManager: TunnelManaging {
             case .disconnecting, .connecting:
                 return
             case .disconnected:
-                try? startTunnel()
+                do {
+                    try startTunnel()
+                } catch {
+                    NotificationCenter.default.post(Notification(name: .switchServerError))
+                }
                 return
             default:
                 break
