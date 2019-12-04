@@ -33,7 +33,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Bk-tlK">
-                    <rect key="frame" x="0.0" y="69.5" width="350" height="211"/>
+                    <rect key="frame" x="0.0" y="68.5" width="350" height="213"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe_off" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs">
                             <rect key="frame" x="135" y="0.0" width="80" height="80"/>
@@ -45,7 +45,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xu-al-pMZ">
-                            <rect key="frame" x="32" y="134" width="286" height="22"/>
+                            <rect key="frame" x="32" y="136" width="286" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="jkG-Fz-RTN"/>
                             </constraints>
@@ -54,7 +54,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
-                            <rect key="frame" x="150.5" y="180" width="51" height="31"/>
+                            <rect key="frame" x="150.5" y="182" width="51" height="31"/>
                             <color key="backgroundColor" name="custom_grey30"/>
                             <color key="tintColor" name="custom_grey30"/>
                             <color key="onTintColor" name="custom_green50"/>
@@ -77,7 +77,7 @@
                         <constraint firstItem="2xu-al-pMZ" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="fWl-mB-qPT"/>
                         <constraint firstAttribute="bottom" secondItem="sYv-xh-0Gx" secondAttribute="bottom" id="gNj-fm-aJV"/>
                         <constraint firstItem="MYo-vc-qhs" firstAttribute="top" secondItem="UwE-Bk-tlK" secondAttribute="top" id="i4v-va-vvr"/>
-                        <constraint firstItem="2xu-al-pMZ" firstAttribute="top" secondItem="CVT-rn-kQN" secondAttribute="bottom" constant="8" id="jSh-nk-kdq"/>
+                        <constraint firstItem="2xu-al-pMZ" firstAttribute="top" secondItem="CVT-rn-kQN" secondAttribute="bottom" constant="10" id="jSh-nk-kdq"/>
                         <constraint firstItem="sYv-xh-0Gx" firstAttribute="top" secondItem="2xu-al-pMZ" secondAttribute="bottom" constant="24" id="jor-nk-3Am"/>
                         <constraint firstItem="CVT-rn-kQN" firstAttribute="top" secondItem="MYo-vc-qhs" secondAttribute="bottom" constant="24" id="pKB-nH-Phg"/>
                         <constraint firstItem="2xu-al-pMZ" firstAttribute="leading" secondItem="UwE-Bk-tlK" secondAttribute="leading" constant="32" id="qUe-ai-48U"/>
