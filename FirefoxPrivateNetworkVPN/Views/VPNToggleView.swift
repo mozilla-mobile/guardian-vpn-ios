@@ -72,7 +72,9 @@ class VPNToggleView: UIView {
         Observable
             .zip(vpnStateEvent, updateUIEvent.startWith(())) { [weak self] state, _ in
                 // If the state goes to disconnecting before the toggle is switched off, there was an error when trying to connect the tunnel and it was not user initiated
-                if let isOn = self?.vpnSwitch.isOn, isOn, state == .disconnecting {
+                if let isOn = self?.vpnSwitch.isOn,
+                    isOn,
+                    state == .disconnecting {
                     NotificationCenter.default.post(Notification(name: .startTunnelError))
                 }
 
