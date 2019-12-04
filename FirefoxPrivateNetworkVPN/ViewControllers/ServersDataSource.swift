@@ -12,6 +12,7 @@
 import UIKit
 import NetworkExtension
 import RxSwift
+import os.log
 
 class ServersDataSource: NSObject, UITableViewDataSource {
     // MARK: - Properties
@@ -98,7 +99,12 @@ extension ServersDataSource: UITableViewDelegate {
         if indexPath != selectedIndexPath,
             let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice {
             selectedIndexPath = indexPath
+            //swiftlint:disable:next trailing_closure
             tunnelManager.switchServer(with: device)
+                .subscribe(onError: { error in
+                    OSLog.logTunnel(.error, error.localizedDescription)
+                    NotificationCenter.default.post(Notification(name: .switchServerError))
+                }).disposed(by: disposeBag)
             tableView.reloadData()
         }
     }

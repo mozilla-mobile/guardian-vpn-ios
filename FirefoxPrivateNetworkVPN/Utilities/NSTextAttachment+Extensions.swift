@@ -18,5 +18,4 @@ extension NSTextAttachment {
 
         bounds = CGRect(x: 0, y: (label.font.capHeight - image.size.height).rounded() / 2, width: image.size.width, height: image.size.height)
     }
-
 }

@@ -18,8 +18,8 @@ protocol TunnelManaging {
     var stateEvent: BehaviorRelay<VPNState> { get }
     var timeSinceConnected: Double { get }
 
-    func connect(with device: Device?)
+    func connect(with device: Device?) -> Single<Void>
+    func switchServer(with device: Device) -> Single<Void>
     func stop()
     func getReceivedBytes(completionHandler: @escaping ((UInt?) -> Void))
-    func switchServer(with device: Device)
 }

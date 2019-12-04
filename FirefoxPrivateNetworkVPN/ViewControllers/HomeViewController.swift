@@ -19,10 +19,12 @@ class HomeViewController: UIViewController, Navigating {
     @IBOutlet var vpnToggleView: VPNToggleView!
     @IBOutlet var selectConnectionLabel: UILabel!
     @IBOutlet var vpnSelectionView: CurrentVPNSelectorView!
+    @IBOutlet weak var warningToastView: WarningToastView!
 
     private let pinger = LongPinger()
     private let timerFactory = ConnectionTimerFactory()
     private let rxValueObserving = ConnectionRxValue()
+    private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private lazy var connectionHealthMonitor = {
         ConnectionHealthMonitor(pinger: self.pinger, timerFactory: self.timerFactory, rxValueObserving: self.rxValueObserving)
     }()
@@ -43,6 +45,7 @@ class HomeViewController: UIViewController, Navigating {
         setStrings()
         addTapGesture()
         subscribeToToggle()
+        subscribeToErrors()
     }
 
     private func setStrings() {
@@ -52,7 +55,7 @@ class HomeViewController: UIViewController, Navigating {
 
     private func setupTabBar() {
         let tag: TabTag = .home
-        DependencyFactory.sharedFactory.tunnelManager.stateEvent.subscribe { [weak self] event in
+        tunnelManager.stateEvent.subscribe { [weak self] event in
             let image = event.element == .on ? #imageLiteral(resourceName: "tab_vpnOn") : #imageLiteral(resourceName: "tab_vpnOff")
             self?.tabBarItem = UITabBarItem(title: LocalizedString.homeTabName.value, image: image, tag: tag)
         }.disposed(by: disposeBag)
@@ -64,15 +67,42 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func subscribeToToggle() {
-        vpnToggleView.vpnSwitchEvent?.skip(1).subscribe { isOnEvent in
-            guard let isOn = isOnEvent.element else { return }
+        vpnToggleView.vpnSwitchEvent?.skip(1).subscribe { [weak self] isOnEvent in
+            guard
+                let self = self,
+                let isOn = isOnEvent.element
+            else { return }
+
             if isOn {
-                DependencyFactory.sharedFactory.tunnelManager
-                    .connect(with: DependencyFactory.sharedFactory.accountManager.account?.currentDevice)
+                self.connectToTunnel()
             } else {
-                DependencyFactory.sharedFactory.tunnelManager.stop()
+                self.tunnelManager.stop()
             }
         }.disposed(by: disposeBag)
+    }
+
+    private func connectToTunnel() {
+        let currentDevice = DependencyFactory.sharedFactory.accountManager.account?.currentDevice
+
+        //swiftlint:disable:next trailing_closure
+        tunnelManager.connect(with: currentDevice)
+            .subscribe(onError: { [weak self] _ in
+                guard let self = self else { return }
+                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
+                                           action: self.connectToTunnel)
+            }).disposed(by: self.disposeBag)
+    }
+
+    private func subscribeToErrors() {
+        Observable.merge(
+            NotificationCenter.default.rx.notification(.switchServerError),
+            NotificationCenter.default.rx.notification(.startTunnelError))
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
+                                           action: self.connectToTunnel)
+            })
+        .disposed(by: disposeBag)
     }
 
     @objc func selectVpn() {

@@ -17,6 +17,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .devices
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var warningToastView: WarningToastView!
 
     private var dataSource: DeviceManagementDataSource?
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
@@ -45,11 +46,20 @@ class DeviceManagementViewController: UIViewController, Navigating {
                     .navigationCoordinator
                     .createDeviceDeletionAlert(deviceName: device.name) { _ in
                         account.removeDevice(with: device.publicKey) { result in
-                            guard case .success = result, !account.hasDeviceBeenAdded else {
+                            switch result {
+                            case .success:
+                                guard !account.hasDeviceBeenAdded else {
+                                    self.tableView?.reloadData()
+                                    return
+                                }
+                                self.addCurrentDeviceToAccount()
+
+                            case .failure:
                                 self.tableView?.reloadData()
-                                return
+                                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotRemoveDevice)) {
+                                    self.dataSource?.removeDeviceEvent.onNext(device)
+                                }
                             }
-                            self.addCurrentDeviceToAccount()
                         }
                         self.tableView?.reloadData()
                 }

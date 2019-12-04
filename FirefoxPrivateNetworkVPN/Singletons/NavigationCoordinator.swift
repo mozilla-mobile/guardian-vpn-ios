@@ -93,7 +93,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 if #available(iOS 13.0, *) {
                     self.currentViewController?.view.alpha = 0.5
                 }
-                
+
             case (.servers, .home):
                 self.currentViewController?.dismiss(animated: true, completion: nil)
 
@@ -122,7 +122,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 if #available(iOS 13.0, *) {
                     self.currentViewController?.view.alpha = 0.5
                 }
-                
+
             case (.carousel, .landing):
                 self.currentViewController?.dismiss(animated: true, completion: nil)
 

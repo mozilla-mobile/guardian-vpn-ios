@@ -50,6 +50,8 @@ enum GuardianError: Error {
     case missingData
     case needToLogin
     case deallocated
+    case couldNotRemoveDevice
+    case couldNotConnectVPN
 
     var description: String {
         switch self {
@@ -65,6 +67,10 @@ enum GuardianError: Error {
             return "Need to login"
         case .deallocated:
             return "Object has been deallocated"
+        case .couldNotRemoveDevice:
+            return LocalizedString.errorDeviceRemoval.value
+        case .couldNotConnectVPN:
+        return LocalizedString.errorConnectVPN.value
         }
     }
 }

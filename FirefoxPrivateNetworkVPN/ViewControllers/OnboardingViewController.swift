@@ -28,15 +28,15 @@ class OnboardingViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     @IBAction func getStarted() {
         assertionFailure("Must override")
     }
-    
+
     @IBAction func learnMore() {
         assertionFailure("Must override")
     }
