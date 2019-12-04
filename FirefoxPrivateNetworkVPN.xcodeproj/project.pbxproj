@@ -18,6 +18,7 @@
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
 		F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422FEF523970752009413E2 /* Notification+Extensions.swift */; };
 		F422FEF823980C1D009413E2 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422FEF723980C1D009413E2 /* NSAttributedString+Extensions.swift */; };
+		F422FEFA23983E85009413E2 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422FEF923983E85009413E2 /* UIImage+Color.swift */; };
 		F4230483237209B000572A93 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4230481237209B000572A93 /* HelpViewController.swift */; };
 		F4230484237209B000572A93 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4230482237209B000572A93 /* HelpViewController.xib */; };
 		F423048623720A7400572A93 /* HelpDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423048523720A7400572A93 /* HelpDataSource.swift */; };
@@ -282,6 +283,7 @@
 		F420F41B2368840A00CD48BF /* CurrentVPNSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentVPNSelectorView.xib; sourceTree = "<group>"; };
 		F422FEF523970752009413E2 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		F422FEF723980C1D009413E2 /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		F422FEF923983E85009413E2 /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = WireGuardGoBridge.xcconfig; sourceTree = "<group>"; };
 		F4230481237209B000572A93 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		F4230482237209B000572A93 /* HelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
@@ -636,6 +638,7 @@
 				F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */,
 				F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */,
 				F4A4947D23709033007595C3 /* UIView+Designing.swift */,
+				F422FEF923983E85009413E2 /* UIImage+Color.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1440,6 +1443,7 @@
 				F4B42C0A238F2195001F64F7 /* ObservableType+Extensions.swift in Sources */,
 				F4AED250235F835200F80ABF /* TunnelConfiguration+WgQuickConfig.swift in Sources */,
 				F4AED24F235F835200F80ABF /* InterfaceConfiguration.swift in Sources */,
+				F422FEFA23983E85009413E2 /* UIImage+Color.swift in Sources */,
 				F4E908C22371CAAD00EB9FE6 /* DeviceManagementDataSource.swift in Sources */,
 				F4E908FA2371CAAD00EB9FE6 /* DeviceManagementViewController.swift in Sources */,
 				F4E909172371CAAD00EB9FE6 /* VPNToggleView.swift in Sources */,

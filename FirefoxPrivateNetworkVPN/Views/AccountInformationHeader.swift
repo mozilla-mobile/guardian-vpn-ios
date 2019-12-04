@@ -24,7 +24,13 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        configureManageAccountButton()
+    }
+
+    private func configureManageAccountButton() {
         manageAccountButton.setTitle(LocalizedString.settingsManageAccount.value, for: .normal)
+        manageAccountButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
     }
 
     func setup(with user: User) {
