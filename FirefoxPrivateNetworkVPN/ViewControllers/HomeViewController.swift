@@ -88,20 +88,9 @@ class HomeViewController: UIViewController, Navigating {
         tunnelManager.connect(with: currentDevice)
             .subscribe(onError: { [weak self] _ in
                 guard let self = self else { return }
-                self.warningToastView.show(message: self.formatErrorMessage(with: .couldNotConnectVPN),
+                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
                                            action: self.connectToTunnel)
             }).disposed(by: self.disposeBag)
-    }
-
-    private func formatErrorMessage(with error: GuardianError) -> NSMutableAttributedString {
-        let message = NSMutableAttributedString(string: error.description)
-        let actionMessage = NSAttributedString(string: LocalizedString.toastTryAgain.value, attributes: [
-            .font: UIFont.custom(.interSemiBold, size: 13),
-            .underlineStyle: NSUnderlineStyle.single.rawValue
-        ])
-        message.append(NSAttributedString(string: " "))
-        message.append(actionMessage)
-        return message
     }
 
     private func subscribeToErrors() {
@@ -111,7 +100,8 @@ class HomeViewController: UIViewController, Navigating {
             NotificationCenter.default.rx.notification(.startTunnelError))
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.warningToastView.show(message: self.formatErrorMessage(with: .couldNotConnectVPN), action: self.connectToTunnel)
+                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
+                                           action: self.connectToTunnel)
             })
         .disposed(by: disposeBag)
     }

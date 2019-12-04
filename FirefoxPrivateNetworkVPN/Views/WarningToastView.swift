@@ -29,7 +29,7 @@ final class WarningToastView: UIView {
         addSubview(view)
     }
 
-    func show(message: NSMutableAttributedString, dismissAfter: TimeInterval = 3, action: Action? = nil) {
+    func show(message: NSAttributedString, dismissAfter: TimeInterval = 3, action: Action? = nil) {
         label.attributedText = message
         self.action = action
         UIView.animate(withDuration: 0.5) {

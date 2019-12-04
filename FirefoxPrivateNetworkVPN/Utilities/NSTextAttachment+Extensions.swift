@@ -18,5 +18,19 @@ extension NSTextAttachment {
 
         bounds = CGRect(x: 0, y: (label.font.capHeight - image.size.height).rounded() / 2, width: image.size.width, height: image.size.height)
     }
+}
 
+extension NSAttributedString {
+    static func formattedError(_ error: GuardianError, canTryAgain: Bool = true) -> NSAttributedString {
+        let message = NSMutableAttributedString(string: error.description)
+        if canTryAgain {
+            let tryAgainMessage = NSAttributedString(string: LocalizedString.toastTryAgain.value, attributes: [
+                .font: UIFont.custom(.interSemiBold, size: 13),
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+            ])
+            message.append(NSAttributedString(string: " "))
+            message.append(tryAgainMessage)
+        }
+        return message
+    }
 }

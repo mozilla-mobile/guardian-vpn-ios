@@ -48,16 +48,16 @@ class DeviceManagementViewController: UIViewController, Navigating {
                         account.removeDevice(with: device.publicKey) { result in
                             switch result {
                             case .success:
-                            guard !account.hasDeviceBeenAdded else {
-                                self.tableView?.reloadData()
-                                return
-                            }
-                            self.addCurrentDeviceToAccount()
+                                guard !account.hasDeviceBeenAdded else {
+                                    self.tableView?.reloadData()
+                                    return
+                                }
+                                self.addCurrentDeviceToAccount()
 
                             case .failure:
                                 self.tableView?.reloadData()
-                                self.warningToastView.show(message: self.formatErrorMessage(with: .couldNotRemoveDevice)) { [weak self] in
-                                    self?.dataSource?.removeDeviceEvent.onNext(device)
+                                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotRemoveDevice)) {
+                                    self.dataSource?.removeDeviceEvent.onNext(device)
                                 }
                             }
                         }
@@ -65,17 +65,6 @@ class DeviceManagementViewController: UIViewController, Navigating {
                 }
                 self.present(confirmAlert, animated: true, completion: nil)
             }).disposed(by: disposeBag)
-    }
-
-    private func formatErrorMessage(with error: GuardianError) -> NSMutableAttributedString {
-        let message = NSMutableAttributedString(string: error.description)
-        let actionMessage = NSAttributedString(string: LocalizedString.toastTryAgain.value, attributes: [
-            .font: UIFont.custom(.interSemiBold, size: 13),
-            .underlineStyle: NSUnderlineStyle.single.rawValue
-        ])
-        message.append(NSAttributedString(string: " "))
-        message.append(actionMessage)
-        return message
     }
 
     override func viewWillAppear(_ animated: Bool) {
