@@ -16,7 +16,7 @@ enum VPNState {
     case on
     case off
     case connecting
-    case switching
+    case switching(String, String)
     case disconnecting
 
     init(with status: NEVPNStatus) {
@@ -73,8 +73,10 @@ extension VPNState {
         switch self {
         case .off:
             return LocalizedString.homeSubtitleOff.value
-        case .connecting, .switching:
+        case .connecting:
             return LocalizedString.homeSubtitleConnecting.value
+        case .switching(let fromCity, let toCity):
+            return "From \(fromCity) to \(toCity)"
         case .on:
             return ""
         case .disconnecting:
@@ -147,3 +149,5 @@ extension VPNState {
         }
     }
 }
+
+extension VPNState: Equatable { }
