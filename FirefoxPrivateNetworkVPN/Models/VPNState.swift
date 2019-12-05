@@ -76,7 +76,7 @@ extension VPNState {
         case .connecting:
             return LocalizedString.homeSubtitleConnecting.value
         case .switching(let fromCity, let toCity):
-            return "From \(fromCity) to \(toCity)"
+            return String(format: LocalizedString.homeSubtitleSwitching.value, fromCity, toCity)
         case .on:
             return ""
         case .disconnecting:
