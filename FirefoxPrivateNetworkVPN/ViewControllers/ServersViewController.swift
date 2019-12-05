@@ -11,6 +11,7 @@
 
 import UIKit
 import RxSwift
+import os.log
 
 class ServersViewController: UIViewController, Navigating {
     // MARK: - Properties
@@ -35,10 +36,10 @@ class ServersViewController: UIViewController, Navigating {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupObservers()
         tableView.contentInsetAdjustmentBehavior = .never
         dataSource = ServersDataSource(with: tableView)
         tableView.reloadData()
+        setupObservers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +80,25 @@ class ServersViewController: UIViewController, Navigating {
                     self?.title = LocalizedString.serversNavTitle.value
                 }
 
+            }).disposed(by: disposeBag)
+
+        dataSource?.vpnSelection
+            .delay(.milliseconds(150), scheduler: MainScheduler.instance)
+            .do(onNext: { [weak self] _ in
+                self?.close()
+            })
+            .flatMap { [weak self] _ -> Single<Void> in
+                guard let self = self,
+                    let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice else {
+                        OSLog.log(.error, "No device found when switching VPN server")
+                        return .never()
+                }
+
+                return self.tunnelManager.switchServer(with: device)
+            }
+            .subscribe(onError: { error in
+                OSLog.logTunnel(.error, error.localizedDescription)
+                NotificationCenter.default.post(Notification(name: .switchServerError))
             }).disposed(by: disposeBag)
     }
 

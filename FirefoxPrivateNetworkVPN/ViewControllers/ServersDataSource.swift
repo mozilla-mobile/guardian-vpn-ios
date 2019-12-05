@@ -23,7 +23,9 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     private let disposeBag = DisposeBag()
     private let headerName = String(describing: CountryVPNHeaderView.self)
     private let cellName = String(describing: CityVPNCell.self)
+
     private(set) var selectedIndexPath: IndexPath?
+    let vpnSelection = PublishSubject<Void>()
 
     // MARK: - Initialization
     init(with tableView: UITableView) {
@@ -90,22 +92,18 @@ class ServersDataSource: NSObject, UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension ServersDataSource: UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCity = representedObject[indexPath.section].cities[indexPath.row]
         currentCity.saveToUserDefaults()
         let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
         tunnelManager.cityChangedEvent.onNext(currentCity)
 
-        if indexPath != selectedIndexPath,
-            let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice {
+        if indexPath != selectedIndexPath {
             selectedIndexPath = indexPath
-            //swiftlint:disable:next trailing_closure
-            tunnelManager.switchServer(with: device)
-                .subscribe(onError: { error in
-                    OSLog.logTunnel(.error, error.localizedDescription)
-                    NotificationCenter.default.post(Notification(name: .switchServerError))
-                }).disposed(by: disposeBag)
             tableView.reloadData()
+
+            vpnSelection.onNext(())
         }
     }
 
