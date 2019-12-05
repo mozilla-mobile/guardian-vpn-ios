@@ -15,21 +15,21 @@ import RxSwift
 class HomeViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .home
 
-    @IBOutlet var navigationTitleLabel: UILabel!
-    @IBOutlet var vpnToggleView: VPNToggleView!
-    @IBOutlet var selectConnectionLabel: UILabel!
-    @IBOutlet var vpnSelectionView: CurrentVPNSelectorView!
-    @IBOutlet weak var warningToastView: WarningToastView!
+    @IBOutlet private weak var navigationTitleLabel: UILabel!
+    @IBOutlet private weak var vpnToggleView: VPNToggleView!
+    @IBOutlet private weak var selectConnectionLabel: UILabel!
+    @IBOutlet private weak var vpnSelectionView: CurrentVPNSelectorView!
+    @IBOutlet private weak var warningToastView: WarningToastView!
 
     private let pinger = LongPinger()
     private let timerFactory = ConnectionTimerFactory()
     private let rxValueObserving = ConnectionRxValue()
     private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
+    private let disposeBag = DisposeBag()
+
     private lazy var connectionHealthMonitor = {
         ConnectionHealthMonitor(pinger: self.pinger, timerFactory: self.timerFactory, rxValueObserving: self.rxValueObserving)
     }()
-
-    private let disposeBag = DisposeBag()
 
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
@@ -43,7 +43,6 @@ class HomeViewController: UIViewController, Navigating {
     override func viewDidLoad() {
         super.viewDidLoad()
         setStrings()
-        addTapGesture()
         subscribeToToggle()
         subscribeToErrors()
     }
@@ -59,11 +58,6 @@ class HomeViewController: UIViewController, Navigating {
             let image = event.element == .on ? #imageLiteral(resourceName: "tab_vpnOn") : #imageLiteral(resourceName: "tab_vpnOff")
             self?.tabBarItem = UITabBarItem(title: LocalizedString.homeTabName.value, image: image, tag: tag)
         }.disposed(by: disposeBag)
-    }
-
-    private func addTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectVpn))
-        vpnSelectionView.addGestureRecognizer(tapGesture)
     }
 
     private func subscribeToToggle() {
@@ -94,6 +88,7 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func subscribeToErrors() {
+        //swiftlint:disable trailing_closure
         Observable.merge(
             NotificationCenter.default.rx.notification(.switchServerError),
             NotificationCenter.default.rx.notification(.startTunnelError))
@@ -105,19 +100,26 @@ class HomeViewController: UIViewController, Navigating {
         .disposed(by: disposeBag)
     }
 
-    @objc func selectVpn() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.vpnSelectionView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        }, completion: { _ in
-            self.navigate(to: .servers)
-            UIView.animate(withDuration: 0.7,
-                           delay: 0,
-                           usingSpringWithDamping: 0.4,
-                           initialSpringVelocity: 6.0,
-                           options: .allowUserInteraction,
-                           animations: {
-                            self.vpnSelectionView.transform = CGAffineTransform.identity
-            }, completion: nil)
+    // MARK: - VPN Selection handling
+    @IBAction private func vpnSelectionTouchUpInside() {
+        UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: {
+            self.vpnSelectionView.transform = CGAffineTransform.identity
+        }, completion: { isComplete in
+            if isComplete {
+                self.navigate(to: .servers)
+            }
         })
+    }
+
+    @IBAction private func vpnSelectionTouchDown() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
+            self.vpnSelectionView.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
+        }, completion: nil)
+    }
+
+    @IBAction private func vpnSelectionTouchDragOutside() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.vpnSelectionView.transform = CGAffineTransform.identity
+        }, completion: nil)
     }
 }

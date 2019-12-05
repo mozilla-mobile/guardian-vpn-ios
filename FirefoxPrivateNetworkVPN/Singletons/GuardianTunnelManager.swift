@@ -97,7 +97,7 @@ class GuardianTunnelManager: TunnelManaging {
             }
 
             if self.stateEvent.value != .off {
-                self.stateEvent.accept(.switching)
+                self.stateEvent.accept(.switching(tunnel.localizedDescription ?? "", VPNCity.fetchFromUserDefaults()?.name ?? ""))
             }
             guard let account = self.account else {
                 resolver(.error(GuardianError.needToLogin))
@@ -107,7 +107,7 @@ class GuardianTunnelManager: TunnelManaging {
 
             tunnel.saveToPreferences { saveError in
                 if let error = saveError {
-                    if self.stateEvent.value == .switching {
+                    if case .switching(_, _) = self.stateEvent.value {
                         self.stateEvent.accept(.on)
                     }
                     resolver(.error(error))
@@ -190,7 +190,7 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     @objc private func vpnConfigurationDidChange(notification: Notification) {
-        if stateEvent.value == .switching {
+        if case .switching(_, _) = stateEvent.value {
             stop()
         }
     }
@@ -198,7 +198,7 @@ class GuardianTunnelManager: TunnelManaging {
     @objc private func vpnStatusDidChange(notification: Notification) {
         guard let session = (notification.object as? NETunnelProviderSession), tunnel?.connection == session else { return }
 
-        if stateEvent.value == .switching {
+        if  case .switching(_, _) = stateEvent.value {
             switch session.status {
             case .disconnecting, .connecting:
                 return

@@ -108,6 +108,7 @@ class VPNToggleView: UIView {
 
         if state == .on {
             addAnimationToView()
+            setSubtitle(with: ConnectionHealth.stable)
             getConnectionTimeAndHealth()
         } else {
             removeAnimationFromView()
