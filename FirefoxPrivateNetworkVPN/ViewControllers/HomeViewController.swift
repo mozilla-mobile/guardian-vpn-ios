@@ -15,21 +15,21 @@ import RxSwift
 class HomeViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .home
 
-    @IBOutlet var navigationTitleLabel: UILabel!
-    @IBOutlet var vpnToggleView: VPNToggleView!
-    @IBOutlet var selectConnectionLabel: UILabel!
-    @IBOutlet var vpnSelectionView: CurrentVPNSelectorView!
-    @IBOutlet weak var warningToastView: WarningToastView!
+    @IBOutlet private weak var navigationTitleLabel: UILabel!
+    @IBOutlet private weak var vpnToggleView: VPNToggleView!
+    @IBOutlet private weak var selectConnectionLabel: UILabel!
+    @IBOutlet private weak var vpnSelectionView: CurrentVPNSelectorView!
+    @IBOutlet private weak var warningToastView: WarningToastView!
 
     private let pinger = LongPinger()
     private let timerFactory = ConnectionTimerFactory()
     private let rxValueObserving = ConnectionRxValue()
     private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
+    private let disposeBag = DisposeBag()
+
     private lazy var connectionHealthMonitor = {
         ConnectionHealthMonitor(pinger: self.pinger, timerFactory: self.timerFactory, rxValueObserving: self.rxValueObserving)
     }()
-
-    private let disposeBag = DisposeBag()
 
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
