@@ -11,34 +11,50 @@
 
 import Foundation
 
-class Credentials: UserDefaulting {
-    static var userDefaultsKey = "credentials"
+private class CredentialsKeyStore {
 
-    private(set) var deviceKeys: DeviceKeys {
-        didSet {
-            saveToUserDefaults()
-        }
-    }
+    static let shared = CredentialsKeyStore()
 
-    private(set) var verificationToken: String {
-        didSet {
-            saveToUserDefaults()
-        }
-    }
+    private static let containerKey = "org.mozilla.guardian.credentials"
+    @KeychainStored(service: containerKey) var credentials: Credentials
 
-    init(with userDefaults: Credentials) {
-        deviceKeys = userDefaults.deviceKeys
-        verificationToken = userDefaults.verificationToken
-    }
+    private init() { }
+}
+
+class Credentials: Codable {
+    private(set) var deviceKeys: DeviceKeys
+    private(set) var verificationToken: String
 
     init(with verification: VerifyResponse) {
-        Credentials.removeFromUserDefaults()
+        Credentials.remove()
+
         let privateKey = Curve25519.generatePrivateKey()
         deviceKeys = DeviceKeys(privateKey: privateKey, publicKey: Curve25519.generatePublicKey(fromPrivateKey: privateKey))
         verificationToken = verification.token
     }
 
+    private init?() {
+        guard let credentials = CredentialsKeyStore.shared.credentials else { return nil }
+
+        deviceKeys = credentials.deviceKeys
+        verificationToken = credentials.verificationToken
+    }
+
     func setVerification(token: String) {
         verificationToken = token
+    }
+
+    // MARK: - Helpers
+
+    static func fetch() -> Credentials? {
+        return CredentialsKeyStore.shared.credentials
+    }
+
+    func save() {
+        CredentialsKeyStore.shared.credentials = self
+    }
+
+    static func remove() {
+        CredentialsKeyStore.shared.credentials = nil
     }
 }
