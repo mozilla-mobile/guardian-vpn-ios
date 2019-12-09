@@ -26,6 +26,7 @@ class AboutViewController: UIViewController, Navigating {
 
         dataSource = AboutDataSource(with: tableView)
         tableView.tableFooterView = UIView()
+        tableView.tableHeaderView = UIView()
     }
 
     // MARK: Setup

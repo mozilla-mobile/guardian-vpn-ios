@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Inter-Regular.otf">
-            <string>Inter-Regular</string>
-        </array>
         <array key="Metropolis-Regular.otf">
             <string>Metropolis-Regular</string>
         </array>
@@ -23,36 +20,72 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9X-Ir-z8h">
-                    <rect key="frame" x="16" y="16" width="328" height="17.5"/>
-                    <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="15"/>
-                    <color key="textColor" name="custom_grey50"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9X-Ir-z8h">
+                    <rect key="frame" x="16" y="16" width="328" height="24"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Lorem Ipsum">
+                            <attributes>
+                                <color key="NSColor" red="0.23725679520000001" green="0.23728126290000001" blue="0.2372363508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="15" name="Metropolis-SemiBold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.6000000000000001" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYF-mf-Dqe">
-                    <rect key="frame" x="16" y="33.5" width="328" height="30.5"/>
-                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
-                    <color key="textColor" name="custom_grey40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYF-mf-Dqe">
+                    <rect key="frame" x="16" y="40" width="328" height="42"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra.">
+                            <attributes>
+                                <color key="NSColor" name="custom_grey40"/>
+                                <font key="NSFont" size="13" name="Inter-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.3300000000000001" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKd-dh-qhR">
-                    <rect key="frame" x="16" y="88" width="328" height="17.5"/>
-                    <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="15"/>
-                    <color key="textColor" name="custom_grey50"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKd-dh-qhR">
+                    <rect key="frame" x="16" y="106" width="328" height="24"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Dolor sit amet">
+                            <attributes>
+                                <color key="NSColor" red="0.23725679520000001" green="0.23728126290000001" blue="0.2372363508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="15" name="Metropolis-SemiBold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.6000000000000001" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vehicula" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpa-Iu-g5i">
-                    <rect key="frame" x="16" y="105.5" width="328" height="16"/>
-                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
-                    <color key="textColor" name="custom_grey40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpa-Iu-g5i">
+                    <rect key="frame" x="16" y="130" width="328" height="21"/>
+                    <attributedString key="attributedText">
+                        <fragment content="vehicula">
+                            <attributes>
+                                <color key="NSColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="13" name="Inter-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.3300000000000001" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NlP-ns-2zB" userLabel="Separator">
+                    <rect key="frame" x="16" y="174" width="343" height="1"/>
+                    <color key="backgroundColor" name="custom_grey10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="ohP-Bx-Taz"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" name="custom_grey5"/>
             <constraints>
                 <constraint firstItem="pKd-dh-qhR" firstAttribute="leading" secondItem="mP1-GX-pUa" secondAttribute="leading" constant="16" id="0za-7c-ffX"/>
                 <constraint firstItem="pKd-dh-qhR" firstAttribute="top" secondItem="UYF-mf-Dqe" secondAttribute="bottom" constant="24" id="1cF-ab-Yon"/>
                 <constraint firstItem="UYF-mf-Dqe" firstAttribute="leading" secondItem="mP1-GX-pUa" secondAttribute="leading" constant="16" id="2gr-jP-4Ib"/>
+                <constraint firstItem="rHg-Ly-jtl" firstAttribute="bottom" secondItem="NlP-ns-2zB" secondAttribute="bottom" id="30X-sJ-RqC"/>
                 <constraint firstItem="A9X-Ir-z8h" firstAttribute="top" secondItem="mP1-GX-pUa" secondAttribute="top" constant="16" id="3va-Lb-gYW"/>
                 <constraint firstItem="Mpa-Iu-g5i" firstAttribute="leading" secondItem="mP1-GX-pUa" secondAttribute="leading" constant="16" id="LuS-Kx-m7u"/>
                 <constraint firstItem="Mpa-Iu-g5i" firstAttribute="top" secondItem="pKd-dh-qhR" secondAttribute="bottom" id="MaA-NY-j7r"/>
@@ -60,6 +93,8 @@
                 <constraint firstAttribute="trailing" secondItem="pKd-dh-qhR" secondAttribute="trailing" constant="31" id="UuM-34-1du"/>
                 <constraint firstAttribute="trailing" secondItem="A9X-Ir-z8h" secondAttribute="trailing" constant="31" id="cSm-mx-OKA"/>
                 <constraint firstItem="A9X-Ir-z8h" firstAttribute="leading" secondItem="mP1-GX-pUa" secondAttribute="leading" constant="16" id="cwi-QP-ONl"/>
+                <constraint firstItem="NlP-ns-2zB" firstAttribute="leading" secondItem="rHg-Ly-jtl" secondAttribute="leading" constant="16" id="kjo-bK-3md"/>
+                <constraint firstItem="rHg-Ly-jtl" firstAttribute="trailing" secondItem="NlP-ns-2zB" secondAttribute="trailing" constant="16" id="wnx-Ba-3im"/>
                 <constraint firstAttribute="trailing" secondItem="Mpa-Iu-g5i" secondAttribute="trailing" constant="31" id="xI6-VS-H1h"/>
                 <constraint firstItem="UYF-mf-Dqe" firstAttribute="top" secondItem="A9X-Ir-z8h" secondAttribute="bottom" id="zUk-b6-oV5"/>
             </constraints>
@@ -73,18 +108,18 @@
                 <outlet property="releaseLabel" destination="pKd-dh-qhR" id="yiX-2W-POa"/>
                 <outlet property="versionLabel" destination="Mpa-Iu-g5i" id="XIU-d2-PJN"/>
             </connections>
-            <point key="canvasLocation" x="149" y="135"/>
+            <point key="canvasLocation" x="148.55072463768118" y="134.93303571428569"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="custom_grey10">
+            <color red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="custom_grey40">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.42745098039215684" green="0.42745098039215684" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="custom_grey5">
-            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="custom_grey50">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
