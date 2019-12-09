@@ -53,10 +53,13 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     }()
 
     private lazy var skipButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: "Skip",
+        let skipButton = UIBarButtonItem(title: "Skip",
                         style: .done,
                         target: self,
                         action: #selector(self.skipToLastPage))
+        skipButton.tintColor = .custom(.blue50)
+
+        return skipButton
     }()
 
     init() {
