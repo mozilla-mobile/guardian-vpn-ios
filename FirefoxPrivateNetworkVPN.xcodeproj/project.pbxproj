@@ -14,6 +14,7 @@
 		527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527C7EB923752FBB00368965 /* AboutHeaderView.xib */; };
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
+		F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056031239E9F31000A93CC /* KeychainStored.swift */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
 		F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422FEF523970752009413E2 /* Notification+Extensions.swift */; };
@@ -259,6 +260,7 @@
 		6FF4AC23211EC472002C96EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
+		F4056031239E9F31000A93CC /* KeychainStored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStored.swift; sourceTree = "<group>"; };
 		F40831CB233CF5BE00A60FCA /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		F40831CE233CFA2000A60FCA /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		F40831D0233CFD5600A60FCA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 				F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */,
 				F4A4947D23709033007595C3 /* UIView+Designing.swift */,
 				F422FEF923983E85009413E2 /* UIImage+Color.swift */,
+				F4056031239E9F31000A93CC /* KeychainStored.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1484,6 +1487,7 @@
 				F4AED1ED235F50D200F80ABF /* key.c in Sources */,
 				F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */,
 				F4AED253235F835200F80ABF /* DNSServer.swift in Sources */,
+				F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */,
 				F4E908C92371CAAD00EB9FE6 /* LoginCheckpointModel.swift in Sources */,
 				F4E908F72371CAAD00EB9FE6 /* UIColor+Named.swift in Sources */,
 				F4E908FF2371CAAD00EB9FE6 /* OnboardingViewController.swift in Sources */,

@@ -51,12 +51,12 @@ class AccountManager: AccountManaging {
         dispatchGroup.notify(queue: .main) {
             switch (addDeviceError, retrieveServersError) {
             case (.none, .none):
-                credentials.saveToUserDefaults()
+                credentials.save()
                 self.account = account
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
-                    credentials.saveToUserDefaults()
+                    credentials.save()
                     self.account = account
                 }
                 completion(.failure(error))
@@ -70,7 +70,7 @@ class AccountManager: AccountManaging {
     }
 
     func loginWithStoredCredentials(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let credentials = Credentials.fetchFromUserDefaults(), let currentDevice = Device.fetchFromUserDefaults() else {
+        guard let credentials = Credentials.fetch(), let currentDevice = Device.fetchFromUserDefaults() else {
             completion(.failure(GuardianError.needToLogin))
             return
         }
@@ -100,7 +100,7 @@ class AccountManager: AccountManaging {
         dispatchGroup.notify(queue: .main) {
             switch (setUserError, retrieveServersError) {
             case (.none, .none):
-                credentials.saveToUserDefaults()
+                credentials.save()
                 self.account = account
                 completion(.success(()))
             case (let userError, let serverError):
@@ -118,7 +118,7 @@ class AccountManager: AccountManaging {
         GuardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { result in
             switch result {
             case .success:
-                Credentials.removeFromUserDefaults()
+                Credentials.remove()
                 Device.removeFromUserDefaults()
                 completion(.success(()))
             case .failure(let error):
