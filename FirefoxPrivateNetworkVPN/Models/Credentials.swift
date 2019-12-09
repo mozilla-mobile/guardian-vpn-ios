@@ -33,17 +33,6 @@ class Credentials: Codable {
         verificationToken = verification.token
     }
 
-    private init?() {
-        guard let credentials = CredentialsKeyStore.shared.credentials else { return nil }
-
-        deviceKeys = credentials.deviceKeys
-        verificationToken = credentials.verificationToken
-    }
-
-    func setVerification(token: String) {
-        verificationToken = token
-    }
-
     // MARK: - Helpers
 
     static func fetch() -> Credentials? {
