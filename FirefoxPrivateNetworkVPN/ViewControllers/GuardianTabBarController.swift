@@ -51,5 +51,7 @@ class GuardianTabBarController: UITabBarController, Navigating {
         tabBar.unselectedItemTintColor = UIColor.custom(.grey40)
         tabBar.barTintColor = UIColor.custom(.grey5)
         tabBar.isTranslucent = true
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.custom(.inter, size: 11)], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.custom(.inter, size: 11)], for: .selected)
     }
 }
