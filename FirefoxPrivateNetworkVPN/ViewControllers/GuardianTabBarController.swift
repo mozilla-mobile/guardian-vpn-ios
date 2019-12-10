@@ -19,6 +19,7 @@ class GuardianTabBarController: UITabBarController, Navigating {
     init() {
         let navigationController = UINavigationController(rootViewController: SettingsViewController())
         navigationController.navigationBar.setTitleFont()
+        navigationController.navigationBar.barTintColor = UIColor.custom(.grey5)
 
         tabs = [.home: HomeViewController(),
                 .settings: navigationController]
@@ -48,6 +49,9 @@ class GuardianTabBarController: UITabBarController, Navigating {
     private func styleViews() {
         tabBar.tintColor = UIColor.custom(.blue50)
         tabBar.unselectedItemTintColor = UIColor.custom(.grey40)
+        tabBar.barTintColor = UIColor.custom(.grey5)
         tabBar.isTranslucent = true
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.custom(.inter, size: 11)], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.custom(.inter, size: 11)], for: .selected)
     }
 }

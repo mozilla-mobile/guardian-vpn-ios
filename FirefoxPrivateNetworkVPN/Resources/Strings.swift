@@ -24,6 +24,7 @@ enum LocalizedString: String {
     case getStartedSubtitle
     case getStarted
     case learnMore
+    case landingSkip
 
     case homeTabName
 

@@ -19,8 +19,7 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var manageAccountButton: UIButton!
 
-    // TODO: Get correct URL
-    let manageAccountURL = URL(string: "https://support.mozilla.org/")
+    private let manageAccountURL = URL(string: "https://fpn.firefox.com/r/vpn/account/")
 
     override func awakeFromNib() {
         super.awakeFromNib()

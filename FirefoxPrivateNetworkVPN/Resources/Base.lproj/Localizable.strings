@@ -22,6 +22,7 @@
 "getStartedSubtitle" = "Stream, download and game. We won’t restrict your bandwidth.";
 "getStarted" = "Get started";
 "learnMore" = "Learn more";
+"landingSkip" = "Skip";
 
 // MARK: - VPN Home
 "homeTabName" = "VPN";

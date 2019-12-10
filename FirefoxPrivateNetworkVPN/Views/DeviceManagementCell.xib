@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYJ-k3-oVq">
-                        <rect key="frame" x="57" y="0.0" width="302" height="1"/>
+                        <rect key="frame" x="57" y="74" width="302" height="1"/>
                         <color key="backgroundColor" name="custom_grey10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="xaX-w7-5Mo"/>
@@ -38,7 +38,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rE-g0-yIp">
-                        <rect key="frame" x="57" y="16" width="88.5" height="22"/>
+                        <rect key="frame" x="57" y="16" width="91.5" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="ifX-Lr-cwz"/>
                         </constraints>
@@ -65,7 +65,7 @@
                         </constraints>
                     </activityIndicatorView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EE9-Eo-AUh">
-                        <rect key="frame" x="57" y="38" width="159.5" height="21"/>
+                        <rect key="frame" x="57" y="38" width="167" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="U2H-LK-Au1"/>
                         </constraints>
@@ -80,7 +80,7 @@
                     <constraint firstItem="r0Q-8z-QiE" firstAttribute="centerY" secondItem="8rE-g0-yIp" secondAttribute="centerY" id="EHM-si-zTo"/>
                     <constraint firstItem="T2Q-JX-2zC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bDQ-tb-06t"/>
                     <constraint firstItem="8rE-g0-yIp" firstAttribute="centerY" secondItem="T2Q-JX-2zC" secondAttribute="centerY" id="bX6-BZ-amh"/>
-                    <constraint firstItem="PYJ-k3-oVq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gbA-6S-O0H"/>
+                    <constraint firstItem="PYJ-k3-oVq" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottom" id="gbA-6S-O0H"/>
                     <constraint firstItem="EE9-Eo-AUh" firstAttribute="top" secondItem="8rE-g0-yIp" secondAttribute="bottom" id="jJd-zL-v5v"/>
                     <constraint firstAttribute="bottom" secondItem="EE9-Eo-AUh" secondAttribute="bottom" constant="16" id="lIr-td-tuq"/>
                     <constraint firstAttribute="trailing" secondItem="PYJ-k3-oVq" secondAttribute="trailing" constant="16" id="mod-KA-wnK"/>
@@ -110,10 +110,10 @@
         <image name="icon_device" width="24" height="24"/>
         <image name="icon_trash" width="24" height="24"/>
         <namedColor name="custom_grey10">
-            <color red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="custom_grey5">
-            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

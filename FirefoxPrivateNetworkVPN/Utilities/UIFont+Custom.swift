@@ -15,6 +15,7 @@ enum CustomFont: String {
     case metropolis = "Metropolis"
     case metropolisSemiBold = "Metropolis-SemiBold"
     case interSemiBold = "Inter-SemiBold"
+    case inter = "Inter"
 }
 
 extension UIFont {

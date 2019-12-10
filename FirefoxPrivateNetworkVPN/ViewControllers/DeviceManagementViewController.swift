@@ -29,6 +29,27 @@ class DeviceManagementViewController: UIViewController, Navigating {
         return String(format: LocalizedString.devicesCount.value, "\(currentDevices)", "\(user.maxDevices)")
     }
 
+    private lazy var backButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(named: "icon_backChevron"),
+                               style: .plain,
+                               target: self,
+                               action: #selector(goBack))
+    }()
+
+    private lazy var deviceCountItem: UIBarButtonItem = {
+        let deviceCountItem = UIBarButtonItem(title: formattedDeviceCountTitle,
+                                              style: .plain,
+                                              target: nil,
+                                              action: nil)
+
+        deviceCountItem.isEnabled = false
+        deviceCountItem.setTitleTextAttributes(
+            [NSAttributedString.Key.font: UIFont.custom(.inter), NSAttributedString.Key.foregroundColor: UIColor.custom(.grey40)],
+            for: .disabled)
+
+        return deviceCountItem
+    }()
+
     // MARK: View Lifecycle
     //swiftlint:disable trailing_closure
     override func viewDidLoad() {
@@ -75,15 +96,12 @@ class DeviceManagementViewController: UIViewController, Navigating {
     // MARK: Setup
     private func setupNavigationBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: formattedDeviceCountTitle, style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.custom(.grey50)
+        navigationItem.rightBarButtonItem = deviceCountItem
 
         navigationItem.title = LocalizedString.devicesNavTitle.value
         navigationItem.titleView?.tintColor = UIColor.custom(.grey40)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_backChevron"), style: .plain, target: self, action: #selector(goBack))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
+        navigationItem.leftBarButtonItem = backButtonItem
     }
 
     @objc func goBack() {
