@@ -19,6 +19,7 @@ class GuardianTabBarController: UITabBarController, Navigating {
     init() {
         let navigationController = UINavigationController(rootViewController: SettingsViewController())
         navigationController.navigationBar.setTitleFont()
+        navigationController.navigationBar.barTintColor = UIColor.custom(.grey5)
 
         tabs = [.home: HomeViewController(),
                 .settings: navigationController]
