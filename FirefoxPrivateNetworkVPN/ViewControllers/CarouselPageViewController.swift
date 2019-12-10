@@ -53,7 +53,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     }()
 
     private lazy var skipButton: UIBarButtonItem = {
-        let skipButton = UIBarButtonItem(title: "Skip",
+        let skipButton = UIBarButtonItem(title: LocalizedString.landingSkip.value,
                         style: .done,
                         target: self,
                         action: #selector(self.skipToLastPage))
