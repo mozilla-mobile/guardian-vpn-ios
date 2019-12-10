@@ -60,10 +60,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NlP-ns-2zB" userLabel="Separator">
-                    <rect key="frame" x="16" y="174" width="343" height="1"/>
+                    <rect key="frame" x="16" y="174.5" width="343" height="0.5"/>
                     <color key="backgroundColor" name="custom_grey10"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="ohP-Bx-Taz"/>
+                        <constraint firstAttribute="height" constant="0.5" id="ohP-Bx-Taz"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYF-mf-Dqe">
