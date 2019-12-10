@@ -41,7 +41,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
                                               style: .plain,
                                               target: nil,
                                               action: nil)
-        
+
         deviceCountItem.isEnabled = false
         deviceCountItem.setTitleTextAttributes(
             [NSAttributedString.Key.font: UIFont.custom(.inter), NSAttributedString.Key.foregroundColor: UIColor.custom(.grey40)],
