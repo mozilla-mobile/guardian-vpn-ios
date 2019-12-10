@@ -25,7 +25,7 @@ jobs:
             - Carthage/
       - run:
           name: Install xcpretty
-          command: gem install xcpretty
+          command: sudo gem install xcpretty
       - run: 
           name: Download and update GoLang, then compile the app
           command: |
