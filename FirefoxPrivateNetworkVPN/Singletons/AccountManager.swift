@@ -123,9 +123,7 @@ class AccountManager: AccountManaging, Navigating {
         GuardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { result in
             switch result {
             case .success:
-                self.stopHeartbeat()
-                Credentials.remove()
-                Device.removeFromUserDefaults()
+                self.resetAccount()
                 completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
@@ -146,6 +144,15 @@ class AccountManager: AccountManaging, Navigating {
                 completion(.failure(error))
             }
         }
+    }
+
+    private func resetAccount() {
+        self.stopHeartbeat()
+        Credentials.remove()
+        Device.removeFromUserDefaults()
+        self.account = nil
+        self.availableServers = nil
+        self.navigate(to: .landing)
     }
 
     func startHeartbeat() {
@@ -169,9 +176,7 @@ class AccountManager: AccountManaging, Navigating {
                 subscriptionError.isAuthError else { return }
 
             DispatchQueue.main.async {
-                self.stopHeartbeat()
-                Credentials.remove()
-                Device.removeFromUserDefaults()
+                self.resetAccount()
                 self.navigate(to: .landing)
             }
         }
