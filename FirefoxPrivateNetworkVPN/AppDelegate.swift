@@ -35,10 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         dependencyFactory?.connectionHealthMonitor.reset()
+        dependencyFactory?.accountManager.stopHeartbeat()
     }
 
     //swiftlint:disable trailing_closure
     func applicationWillEnterForeground(_ application: UIApplication) {
+        if dependencyFactory?.accountManager.account != nil {
+            dependencyFactory?.accountManager.startHeartbeat()
+        }
         dependencyFactory?.tunnelManager.stateEvent
             .filter { $0 == .on }
             .take(1)
