@@ -92,10 +92,15 @@ class VPNToggleView: UIView {
         update(with: .off)
         vpnSwitchEvent = vpnSwitch.rx.isOn
 
+        setupRippleAnimation()
+    }
+
+    private func setupRippleAnimation() {
         let rippleAnimation = Animation.named("ripples")
         rippleAnimationView.animation = rippleAnimation
         rippleAnimationView.contentMode = .scaleAspectFit
         rippleAnimationView.loopMode = .loop
+        rippleAnimationView.backgroundBehavior = .pauseAndRestore
         backgroundAnimationContainerView.addSubview(rippleAnimationView)
     }
 
