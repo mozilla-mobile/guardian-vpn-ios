@@ -117,21 +117,25 @@ class VPNToggleView: UIView {
         view.backgroundColor = state.backgroundColor
 
         if state == .on {
-            addAnimationToView()
+            startRippleAnimation()
             setSubtitle(with: ConnectionHealth.stable)
             getConnectionTimeAndHealth()
-        } else {
-            removeAnimationFromView()
+        } else if state == .disconnecting {
+            stopRippleAnimation()
             resetConnectionTimeAndHealth()
         }
     }
 
-    private func addAnimationToView() {
-        rippleAnimationView.play()
+    private func startRippleAnimation() {
+        rippleAnimationView.play(fromFrame: 0, toFrame: 75, loopMode: .playOnce) { [weak self] isComplete in
+            if isComplete {
+                self?.rippleAnimationView.play(fromFrame: 75, toFrame: 120, loopMode: .loop, completion: nil)
+            }
+        }
     }
 
-    private func removeAnimationFromView() {
-        rippleAnimationView.stop()
+    private func stopRippleAnimation() {
+        rippleAnimationView.play(fromFrame: 120, toFrame: 210, loopMode: .playOnce, completion: nil)
     }
 
     // MARK: Connection Health and Time
