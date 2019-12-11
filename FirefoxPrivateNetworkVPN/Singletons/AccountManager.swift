@@ -18,7 +18,7 @@ class AccountManager: AccountManaging, Navigating {
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry]?
     private(set) var heartbeatFailedEvent = PublishSubject<Void>()
-    private var heartbeatTimer: Timer?
+    private var heartbeatTimer: DispatchSourceTimer?
 
     static let sharedManager: AccountManaging = {
         let instance = AccountManager()
@@ -147,17 +147,17 @@ class AccountManager: AccountManaging, Navigating {
             }
         }
     }
-    
+
     func startHeartbeat() {
-        heartbeatTimer = Timer(timeInterval: 3600,
-                               target: self,
-                               selector: #selector(pollUser),
-                               userInfo: nil,
-                               repeats: true)
+        heartbeatTimer = DispatchSource.makeTimerSource()
+        heartbeatTimer?.schedule(deadline: .now(), repeating: .seconds(3600), leeway: .seconds(1))
+        heartbeatTimer?.setEventHandler { [weak self] in
+            self?.pollUser()
+        }
+        heartbeatTimer?.activate()
     }
-    
+
     func stopHeartbeat() {
-        heartbeatTimer?.invalidate()
         heartbeatTimer = nil
     }
 
