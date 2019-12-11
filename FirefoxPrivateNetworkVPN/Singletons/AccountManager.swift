@@ -160,9 +160,20 @@ class AccountManager: AccountManaging, Navigating {
         heartbeatTimer?.invalidate()
         heartbeatTimer = nil
     }
-    
-    @objc private func pollUser() {
+
+    private func pollUser() {
         guard let account = account else { return }
-        account.setUser { _ in }
+        account.setUser { result in
+            guard case .failure(let error) = result,
+                let subscriptionError = error as? GuardianAPIError,
+                subscriptionError.isAuthError else { return }
+
+            DispatchQueue.main.async {
+                self.stopHeartbeat()
+                Credentials.remove()
+                Device.removeFromUserDefaults()
+                self.navigate(to: .landing)
+            }
+        }
     }
 }

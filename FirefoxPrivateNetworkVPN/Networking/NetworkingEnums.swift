@@ -132,4 +132,13 @@ enum GuardianAPIError: Int, Error {
             return "Unknown error"
         }
     }
+
+    var isAuthError: Bool {
+        switch self {
+        case .inactiveSubscription, .tokenExpired, .tokenInvalid, .tokenNotFound, .userNotFound, .tokenNotVerified:
+            return true
+        default:
+            return false
+        }
+    }
 }
