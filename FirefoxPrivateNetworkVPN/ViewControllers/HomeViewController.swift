@@ -72,12 +72,17 @@ class HomeViewController: UIViewController, Navigating {
         //swiftlint:disable trailing_closure
         tunnelManager.stateEvent
             .withPrevious(startWith: .off)
-            .flatMap { previous, current -> Observable<VPNState> in
+            .flatMap { [weak self] previous, current -> Observable<VPNState> in
                 switch (previous, current) {
                 case (VPNState.connecting, VPNState.on), (VPNState.disconnecting, VPNState.off):
                     return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
                 case (VPNState.switching, VPNState.on):
                     return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1500), scheduler: MainScheduler.instance)
+                case (VPNState.off, VPNState.disconnecting):
+                    self?.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
+                    action: self?.connectToTunnel)
+
+                    return Observable.just(current)
                 default: return Observable.just(current)
                 }
         }
