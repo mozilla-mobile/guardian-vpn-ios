@@ -129,17 +129,6 @@ extension VPNState {
         }
     }
 
-    var delay: TimeInterval? {
-        switch self {
-        case .connecting, .disconnecting:
-            return 1
-        case .switching:
-            return 1.5
-        default:
-            return nil
-        }
-    }
-
     var isEnabled: Bool {
         switch self {
         case .connecting, .disconnecting, .switching:

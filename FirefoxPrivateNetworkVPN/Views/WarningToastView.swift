@@ -20,6 +20,7 @@ final class WarningToastView: UIView {
     typealias Action = (() -> Void)
 
     private var action: Action?
+    private var dismissTimer: Timer?
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -30,14 +31,22 @@ final class WarningToastView: UIView {
     }
 
     func show(message: NSAttributedString, dismissAfter: TimeInterval = 3, action: Action? = nil) {
+        guard !isShown else { return }
+
         label.attributedText = message
         self.action = action
-        UIView.animate(withDuration: 0.5) {
-            self.alpha = 1
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + dismissAfter) {
-            self.dismiss()
-        }
+
+        UIView.animate(withDuration: 0.5,
+            animations: {
+                self.alpha = 1
+            },
+            completion: { isComplete in
+                if isComplete {
+                    self.dismissTimer = Timer.scheduledTimer(withTimeInterval: dismissAfter, repeats: false) { [weak self] _ in
+                        self?.dismiss()
+                    }
+                }
+            })
     }
 
     @IBAction func tapped(_ sender: Any) {
@@ -45,9 +54,16 @@ final class WarningToastView: UIView {
         dismiss()
     }
 
+    private var isShown: Bool {
+        return alpha == 1
+    }
+
     private func dismiss() {
         UIView.animate(withDuration: 0.5) {
             self.alpha = 0
         }
+
+        dismissTimer?.invalidate()
+        dismissTimer = nil
     }
 }
