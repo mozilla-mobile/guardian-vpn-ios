@@ -76,8 +76,10 @@ class ServersViewController: UIViewController, Navigating {
                 switch state {
                 case .connecting, .switching, .disconnecting:
                     self?.title = state.title
+                    self?.tableView.isUserInteractionEnabled = false
                 default:
                     self?.title = LocalizedString.serversNavTitle.value
+                    self?.tableView.isUserInteractionEnabled = true
                 }
 
             }).disposed(by: disposeBag)
