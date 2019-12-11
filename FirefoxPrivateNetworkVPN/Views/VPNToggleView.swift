@@ -32,7 +32,6 @@ class VPNToggleView: UIView {
     private var timerDisposeBag = DisposeBag()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
-    private var updateUIEvent = PublishSubject<Void>()
     private let rippleAnimationView = AnimationView()
 
     private lazy var daysFormatter: DateComponentsFormatter = {
@@ -109,12 +108,15 @@ class VPNToggleView: UIView {
         globeImageView.alpha = state.globeOpacity
         view.backgroundColor = state.backgroundColor
 
-        if state == .on {
+        switch state {
+        case .on:
             startRippleAnimation()
             setSubtitle(with: ConnectionHealth.stable)
             getConnectionTimeAndHealth()
-        } else if state == .disconnecting {
+        case .disconnecting:
             stopRippleAnimation()
+            resetConnectionTimeAndHealth()
+        default:
             resetConnectionTimeAndHealth()
         }
     }
