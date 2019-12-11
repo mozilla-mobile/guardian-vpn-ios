@@ -34,7 +34,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m89-A7-vt0" userLabel="Animation Container">
-                    <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
+                    <rect key="frame" x="0.0" y="-66.5" width="350" height="350"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="m89-A7-vt0" secondAttribute="height" multiplier="1:1" id="VyB-iW-wzj"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Bk-tlK">
                     <rect key="frame" x="0.0" y="68.5" width="350" height="213"/>
@@ -90,12 +93,11 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="m89-A7-vt0" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="86m-0a-4MG"/>
+                <constraint firstItem="m89-A7-vt0" firstAttribute="centerX" secondItem="MYo-vc-qhs" secondAttribute="centerX" id="9st-2K-wI3"/>
+                <constraint firstItem="m89-A7-vt0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="EDo-CA-Pde"/>
                 <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HCC-4h-gbe"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="m89-A7-vt0" secondAttribute="bottom" id="ZUT-vP-DQp"/>
+                <constraint firstItem="m89-A7-vt0" firstAttribute="centerY" secondItem="MYo-vc-qhs" secondAttribute="centerY" id="S1n-bm-Gc9"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UwE-Bk-tlK" secondAttribute="trailing" id="dG3-Rc-Qeg"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="m89-A7-vt0" secondAttribute="trailing" id="ofi-2I-rBH"/>
-                <constraint firstItem="m89-A7-vt0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rVQ-jH-cZN"/>
                 <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="s59-Ul-aCr"/>
                 <constraint firstItem="UwE-Bk-tlK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="t4U-39-j8n"/>
             </constraints>
