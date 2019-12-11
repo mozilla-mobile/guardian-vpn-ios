@@ -91,6 +91,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        account?.setUser { _ in }
     }
 
     // MARK: Setup
