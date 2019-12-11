@@ -34,25 +34,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m89-A7-vt0" userLabel="Animation Container">
-                    <rect key="frame" x="0.0" y="-66.5" width="350" height="350"/>
+                    <rect key="frame" x="0.0" y="-68.5" width="350" height="350"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="m89-A7-vt0" secondAttribute="height" multiplier="1:1" id="VyB-iW-wzj"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Bk-tlK">
-                    <rect key="frame" x="0.0" y="68.5" width="350" height="213"/>
+                    <rect key="frame" x="0.0" y="26.5" width="350" height="297"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe_off" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs">
-                            <rect key="frame" x="135" y="0.0" width="80" height="80"/>
+                            <rect key="frame" x="95" y="0.0" width="160" height="160"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVT-rn-kQN">
-                            <rect key="frame" x="32" y="104" width="286" height="22"/>
+                            <rect key="frame" x="32" y="184" width="286" height="26"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                             <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xu-al-pMZ">
-                            <rect key="frame" x="32" y="136" width="286" height="22"/>
+                            <rect key="frame" x="32" y="220" width="286" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="jkG-Fz-RTN"/>
                             </constraints>
@@ -60,9 +60,10 @@
                             <color key="textColor" name="custom_grey40"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
-                            <rect key="frame" x="150.5" y="182" width="51" height="31"/>
+                        <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
+                            <rect key="frame" x="150.5" y="266" width="51" height="31"/>
                             <color key="backgroundColor" name="custom_grey30"/>
+                            <gestureRecognizers/>
                             <color key="tintColor" name="custom_grey30"/>
                             <color key="onTintColor" name="custom_green50"/>
                             <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,9 +76,18 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </switch>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-MW-iTo" userLabel="Toggle Button">
+                            <rect key="frame" x="150.5" y="266" width="49" height="31"/>
+                            <connections>
+                                <action selector="toggleTapped" destination="-1" eventType="touchUpInside" id="SsJ-hE-bTx"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="0B4-MW-iTo" firstAttribute="leading" secondItem="sYv-xh-0Gx" secondAttribute="leading" id="4Of-5b-N2c"/>
                         <constraint firstItem="MYo-vc-qhs" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="5qD-KN-Mj8"/>
+                        <constraint firstItem="0B4-MW-iTo" firstAttribute="top" secondItem="sYv-xh-0Gx" secondAttribute="top" id="61z-2r-7zA"/>
+                        <constraint firstItem="0B4-MW-iTo" firstAttribute="bottom" secondItem="sYv-xh-0Gx" secondAttribute="bottom" id="CK2-HK-JBB"/>
                         <constraint firstItem="sYv-xh-0Gx" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="NWa-iA-uqq"/>
                         <constraint firstItem="CVT-rn-kQN" firstAttribute="leading" secondItem="UwE-Bk-tlK" secondAttribute="leading" constant="32" id="OkC-YO-DaK"/>
                         <constraint firstItem="CVT-rn-kQN" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="cAG-S8-McH"/>
@@ -86,12 +96,14 @@
                         <constraint firstItem="MYo-vc-qhs" firstAttribute="top" secondItem="UwE-Bk-tlK" secondAttribute="top" id="i4v-va-vvr"/>
                         <constraint firstItem="2xu-al-pMZ" firstAttribute="top" secondItem="CVT-rn-kQN" secondAttribute="bottom" constant="10" id="jSh-nk-kdq"/>
                         <constraint firstItem="sYv-xh-0Gx" firstAttribute="top" secondItem="2xu-al-pMZ" secondAttribute="bottom" constant="24" id="jor-nk-3Am"/>
+                        <constraint firstItem="0B4-MW-iTo" firstAttribute="trailing" secondItem="sYv-xh-0Gx" secondAttribute="trailing" id="kJA-F5-Ie0"/>
                         <constraint firstItem="CVT-rn-kQN" firstAttribute="top" secondItem="MYo-vc-qhs" secondAttribute="bottom" constant="24" id="pKB-nH-Phg"/>
                         <constraint firstItem="2xu-al-pMZ" firstAttribute="leading" secondItem="UwE-Bk-tlK" secondAttribute="leading" constant="32" id="qUe-ai-48U"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="m89-A7-vt0" firstAttribute="centerX" secondItem="MYo-vc-qhs" secondAttribute="centerX" id="9st-2K-wI3"/>
                 <constraint firstItem="m89-A7-vt0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="EDo-CA-Pde"/>
@@ -126,16 +138,16 @@
     <resources>
         <image name="globe_off" width="80" height="80"/>
         <namedColor name="custom_green50">
-            <color red="0.24705882352941178" green="0.88235294117647056" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.24705882352941178" green="0.88235294117647056" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="custom_grey30">
             <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="custom_grey40">
-            <color red="0.42745098039215684" green="0.42745098039215684" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="custom_grey50">
-            <color red="0.23921568627450981" green="0.23921568627450981" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

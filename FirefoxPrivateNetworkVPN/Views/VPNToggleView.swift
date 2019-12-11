@@ -24,7 +24,9 @@ class VPNToggleView: UIView {
     @IBOutlet private weak var containingView: UIView!
     @IBOutlet weak var backgroundAnimationContainerView: UIView!
 
-    var vpnSwitchEvent: ControlProperty<Bool>?
+    var connectionHandler: (() -> Void)?
+    var disconnectionHandler: (() -> Void)?
+
     private let disposeBag = DisposeBag()
     private var timerDisposeBag = DisposeBag()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
@@ -64,34 +66,10 @@ class VPNToggleView: UIView {
         Bundle.main.loadNibNamed(String(describing: VPNToggleView.self), owner: self, options: nil)
         view.frame = bounds
         addSubview(view)
-
-        let vpnStateEvent = tunnelManager.stateEvent
-            .observeOn(MainScheduler.instance)
-            .skip(1)
-
-        Observable
-            .zip(vpnStateEvent, updateUIEvent.startWith(())) { [weak self] state, _ in
-                // If the state goes to disconnecting before the toggle is switched off, there was an error when trying to connect the tunnel and it was not user initiated
-                if let isOn = self?.vpnSwitch.isOn,
-                    isOn,
-                    state == .disconnecting {
-                    NotificationCenter.default.post(Notification(name: .startTunnelError))
-                }
-
-                self?.update(with: state)
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + (state.delay ?? 0)) {
-                    self?.updateUIEvent.onNext(())
-                }
-        }
-        .subscribe()
-        .disposed(by: disposeBag)
     }
 
     override func awakeFromNib() {
         update(with: .off)
-        vpnSwitchEvent = vpnSwitch.rx.isOn
-
         setupRippleAnimation()
     }
 
@@ -108,9 +86,17 @@ class VPNToggleView: UIView {
         rippleAnimationView.frame = backgroundAnimationContainerView.bounds
     }
 
-    // MARK: State Change
+    // MARK: - Actions
+    @IBAction func toggleTapped() {
+        if !vpnSwitch.isOn {
+            connectionHandler?()
+        } else {
+            disconnectionHandler?()
+        }
+    }
 
-    private func update(with state: VPNState) {
+    // MARK: State Change
+    func update(with state: VPNState) {
         titleLabel.text = state.title
         titleLabel.textColor = state.textColor
         subtitleLabel.text = state.subtitle
@@ -131,6 +117,7 @@ class VPNToggleView: UIView {
         }
     }
 
+    // MARK: - Animations
     private func startRippleAnimation() {
         rippleAnimationView.play(fromFrame: 0, toFrame: 75, loopMode: .playOnce) { [weak self] isComplete in
             if isComplete {

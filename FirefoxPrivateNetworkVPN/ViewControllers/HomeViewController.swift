@@ -43,7 +43,7 @@ class HomeViewController: UIViewController, Navigating {
     override func viewDidLoad() {
         super.viewDidLoad()
         setStrings()
-        subscribeToToggle()
+        setupToggleView()
         subscribeToErrors()
     }
 
@@ -60,19 +60,20 @@ class HomeViewController: UIViewController, Navigating {
         }.disposed(by: disposeBag)
     }
 
-    private func subscribeToToggle() {
-        vpnToggleView.vpnSwitchEvent?.skip(1).subscribe { [weak self] isOnEvent in
-            guard
-                let self = self,
-                let isOn = isOnEvent.element
-            else { return }
+    private func setupToggleView() {
+        vpnToggleView.connectionHandler = { [weak self] in
+            self?.connectToTunnel()
+        }
 
-            if isOn {
-                self.connectToTunnel()
-            } else {
-                self.tunnelManager.stop()
-            }
-        }.disposed(by: disposeBag)
+        vpnToggleView.disconnectionHandler = { [weak self] in
+            self?.tunnelManager.stop()
+        }
+
+        //swiftlint:disable trailing_closure
+        tunnelManager.stateEvent.asDriver()
+            .drive(onNext: { [weak self] state in
+                self?.vpnToggleView.update(with: state)
+            }).disposed(by: disposeBag)
     }
 
     private func connectToTunnel() {
@@ -82,7 +83,6 @@ class HomeViewController: UIViewController, Navigating {
         tunnelManager.connect(with: currentDevice)
             .subscribe(onError: { [weak self] _ in
                 guard let self = self else { return }
-                self.vpnToggleView.vpnSwitchEvent?.onNext(false)
                 self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
                                            action: self.connectToTunnel)
             }).disposed(by: self.disposeBag)
