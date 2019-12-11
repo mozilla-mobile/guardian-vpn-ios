@@ -82,6 +82,7 @@ class HomeViewController: UIViewController, Navigating {
         tunnelManager.connect(with: currentDevice)
             .subscribe(onError: { [weak self] _ in
                 guard let self = self else { return }
+                self.vpnToggleView.vpnSwitchEvent?.onNext(false)
                 self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
                                            action: self.connectToTunnel)
             }).disposed(by: self.disposeBag)
