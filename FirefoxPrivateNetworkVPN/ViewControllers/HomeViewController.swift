@@ -70,10 +70,22 @@ class HomeViewController: UIViewController, Navigating {
         }
 
         //swiftlint:disable trailing_closure
-        tunnelManager.stateEvent.asDriver()
-            .drive(onNext: { [weak self] state in
-                self?.vpnToggleView.update(with: state)
-            }).disposed(by: disposeBag)
+        tunnelManager.stateEvent
+            .withPrevious(startWith: .off)
+            .flatMap { previous, current -> Observable<VPNState> in
+                switch (previous, current) {
+                case (VPNState.connecting, VPNState.on), (VPNState.disconnecting, VPNState.off):
+                    return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
+                case (VPNState.switching, VPNState.on):
+                    return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1500), scheduler: MainScheduler.instance)
+                default: return Observable.just(current)
+                }
+        }
+        .distinctUntilChanged()
+        .observeOn(MainScheduler.instance)
+        .subscribe(onNext: { [weak self] state in
+            self?.vpnToggleView.update(with: state)
+        }).disposed(by: disposeBag)
     }
 
     private func connectToTunnel() {
