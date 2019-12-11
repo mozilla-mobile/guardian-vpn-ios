@@ -12,11 +12,13 @@
 import Foundation
 import RxSwift
 
-class AccountManager: AccountManaging {
+class AccountManager: AccountManaging, Navigating {
+    static var navigableItem: NavigableItem = .account
 
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry]?
     private(set) var heartbeatFailedEvent = PublishSubject<Void>()
+    private var heartbeatTimer: Timer?
 
     static let sharedManager: AccountManaging = {
         let instance = AccountManager()
@@ -53,11 +55,13 @@ class AccountManager: AccountManaging {
             case (.none, .none):
                 credentials.save()
                 self.account = account
+                self.startHeartbeat()
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
                     credentials.save()
                     self.account = account
+                    self.startHeartbeat()
                 }
                 completion(.failure(error))
             case (.none, .some(let error)):
@@ -102,6 +106,7 @@ class AccountManager: AccountManaging {
             case (.none, .none):
                 credentials.save()
                 self.account = account
+                self.startHeartbeat()
                 completion(.success(()))
             case (let userError, let serverError):
                 let error = userError ?? serverError
@@ -118,6 +123,7 @@ class AccountManager: AccountManaging {
         GuardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { result in
             switch result {
             case .success:
+                self.stopHeartbeat()
                 Credentials.remove()
                 Device.removeFromUserDefaults()
                 completion(.success(()))
@@ -141,15 +147,20 @@ class AccountManager: AccountManaging {
             }
         }
     }
-
+    
     func startHeartbeat() {
-        _ = Timer(timeInterval: 3600,
-                  target: self,
-                  selector: #selector(pollUser),
-                  userInfo: nil,
-                  repeats: true)
+        heartbeatTimer = Timer(timeInterval: 3600,
+                               target: self,
+                               selector: #selector(pollUser),
+                               userInfo: nil,
+                               repeats: true)
     }
-
+    
+    func stopHeartbeat() {
+        heartbeatTimer?.invalidate()
+        heartbeatTimer = nil
+    }
+    
     @objc private func pollUser() {
         guard let account = account else { return }
         account.setUser { _ in }
