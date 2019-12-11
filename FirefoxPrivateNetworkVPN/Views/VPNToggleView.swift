@@ -13,6 +13,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import NetworkExtension
+import Lottie
 
 class VPNToggleView: UIView {
     @IBOutlet private var view: UIView!
@@ -21,16 +22,15 @@ class VPNToggleView: UIView {
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var vpnSwitch: UISwitch!
     @IBOutlet private weak var containingView: UIView!
+    @IBOutlet weak var backgroundAnimationContainerView: UIView!
 
     var vpnSwitchEvent: ControlProperty<Bool>?
     private let disposeBag = DisposeBag()
     private var timerDisposeBag = DisposeBag()
-    private var smallLayer = CAShapeLayer()
-    private var mediumLayer = CAShapeLayer()
-    private var largeLayer = CAShapeLayer()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
     private var updateUIEvent = PublishSubject<Void>()
+    private let rippleAnimationView = AnimationView()
 
     private lazy var daysFormatter: DateComponentsFormatter = {
         let daysFormatter = DateComponentsFormatter()
@@ -91,6 +91,21 @@ class VPNToggleView: UIView {
     override func awakeFromNib() {
         update(with: .off)
         vpnSwitchEvent = vpnSwitch.rx.isOn
+
+        setupRippleAnimation()
+    }
+
+    private func setupRippleAnimation() {
+        let rippleAnimation = Animation.named("ripples")
+        rippleAnimationView.animation = rippleAnimation
+        rippleAnimationView.contentMode = .scaleAspectFit
+        rippleAnimationView.loopMode = .loop
+        rippleAnimationView.backgroundBehavior = .pauseAndRestore
+        backgroundAnimationContainerView.addSubview(rippleAnimationView)
+    }
+
+    override func layoutSubviews() {
+        rippleAnimationView.frame = backgroundAnimationContainerView.bounds
     }
 
     // MARK: State Change
@@ -107,32 +122,25 @@ class VPNToggleView: UIView {
         view.backgroundColor = state.backgroundColor
 
         if state == .on {
-            addAnimationToView()
+            startRippleAnimation()
             setSubtitle(with: ConnectionHealth.stable)
             getConnectionTimeAndHealth()
-        } else {
-            removeAnimationFromView()
+        } else if state == .disconnecting {
+            stopRippleAnimation()
             resetConnectionTimeAndHealth()
         }
     }
 
-    private func addAnimationToView() {
-        let position = CGPoint(x: globeImageView.center.x, y: globeImageView.center.y + containingView.frame.minY)
-        smallLayer.position = position
-        mediumLayer.position = position
-        largeLayer.position = position
-        smallLayer.addPulse(delay: 0.0)
-        mediumLayer.addPulse(delay: 2.0)
-        largeLayer.addPulse(delay: 4.0)
-        layer.addSublayer(smallLayer)
-        layer.addSublayer(mediumLayer)
-        layer.addSublayer(largeLayer)
+    private func startRippleAnimation() {
+        rippleAnimationView.play(fromFrame: 0, toFrame: 75, loopMode: .playOnce) { [weak self] isComplete in
+            if isComplete {
+                self?.rippleAnimationView.play(fromFrame: 75, toFrame: 120, loopMode: .loop, completion: nil)
+            }
+        }
     }
 
-    private func removeAnimationFromView() {
-        smallLayer.removeFromSuperlayer()
-        mediumLayer.removeFromSuperlayer()
-        largeLayer.removeFromSuperlayer()
+    private func stopRippleAnimation() {
+        rippleAnimationView.play(fromFrame: 120, toFrame: 210, loopMode: .playOnce, completion: nil)
     }
 
     // MARK: Connection Health and Time
