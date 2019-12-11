@@ -17,4 +17,5 @@ protocol ConnectionHealthMonitoring {
 
     func start(hostAddress: String)
     func reset()
+    func stop()
 }
