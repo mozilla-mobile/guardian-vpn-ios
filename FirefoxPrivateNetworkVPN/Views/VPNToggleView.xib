@@ -26,6 +26,7 @@
                 <outlet property="titleLabel" destination="CVT-rn-kQN" id="DGC-lR-th3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="lsA-1R-49L"/>
                 <outlet property="vpnSwitch" destination="sYv-xh-0Gx" id="Qae-Ma-lwG"/>
+                <outlet property="vpnToggleButton" destination="0B4-MW-iTo" id="9Ln-Im-Hci"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -61,7 +62,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
-                            <rect key="frame" x="150.5" y="266" width="51" height="31"/>
+                            <rect key="frame" x="150.5" y="182" width="51" height="31"/>
                             <color key="backgroundColor" name="custom_grey30"/>
                             <gestureRecognizers/>
                             <color key="tintColor" name="custom_grey30"/>
@@ -77,7 +78,7 @@
                             </userDefinedRuntimeAttributes>
                         </switch>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-MW-iTo" userLabel="Toggle Button">
-                            <rect key="frame" x="150.5" y="266" width="49" height="31"/>
+                            <rect key="frame" x="150.5" y="182" width="49" height="31"/>
                             <connections>
                                 <action selector="toggleTapped" destination="-1" eventType="touchUpInside" id="SsJ-hE-bTx"/>
                             </connections>

@@ -21,6 +21,7 @@ class VPNToggleView: UIView {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var vpnSwitch: UISwitch!
+    @IBOutlet weak var vpnToggleButton: UIButton!
     @IBOutlet private weak var containingView: UIView!
     @IBOutlet weak var backgroundAnimationContainerView: UIView!
 
@@ -103,6 +104,7 @@ class VPNToggleView: UIView {
         subtitleLabel.textColor = state.subtitleColor
         vpnSwitch.isOn = state.isToggleOn
         vpnSwitch.isEnabled = state.isEnabled
+        vpnToggleButton.isEnabled = state.isEnabled
         globeImageView.image = state.globeImage
         globeImageView.alpha = state.globeOpacity
         view.backgroundColor = state.backgroundColor
