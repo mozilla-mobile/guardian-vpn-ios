@@ -78,7 +78,6 @@ class VPNToggleView: UIView {
         let rippleAnimation = Animation.named("ripples")
         rippleAnimationView.animation = rippleAnimation
         rippleAnimationView.contentMode = .scaleAspectFit
-        rippleAnimationView.loopMode = .loop
         rippleAnimationView.backgroundBehavior = .pauseAndRestore
         backgroundAnimationContainerView.addSubview(rippleAnimationView)
     }
@@ -120,6 +119,10 @@ class VPNToggleView: UIView {
     }
 
     // MARK: - Animations
+    private var isRippleAnimationPlaying: Bool {
+        rippleAnimationView.isAnimationPlaying
+    }
+
     private func startRippleAnimation() {
         rippleAnimationView.play(fromFrame: 0, toFrame: 75, loopMode: .playOnce) { [weak self] isComplete in
             if isComplete {
@@ -129,7 +132,12 @@ class VPNToggleView: UIView {
     }
 
     private func stopRippleAnimation() {
-        rippleAnimationView.play(fromFrame: 120, toFrame: 210, loopMode: .playOnce, completion: nil)
+        self.rippleAnimationView.stop()
+        rippleAnimationView.play(fromFrame: 120, toFrame: 210, loopMode: .playOnce) { [weak self] isComplete in
+            if isComplete {
+                self?.rippleAnimationView.stop()
+            }
+        }
     }
 
     // MARK: Connection Health and Time
@@ -144,6 +152,14 @@ class VPNToggleView: UIView {
             .subscribe(onNext: { [weak self] _, connectionHealth in
                 guard let self = self else { return }
                 self.setSubtitle(with: connectionHealth)
+
+                if connectionHealth == .unstable || connectionHealth == .noSignal {
+                    self.rippleAnimationView.stop()
+                } else {
+                    if !self.isRippleAnimationPlaying {
+                        self.startRippleAnimation()
+                    }
+                }
             }).disposed(by: timerDisposeBag)
 
         if let hostAddress = VPNCity.fetchFromUserDefaults()?.servers.first?.ipv4Gateway {
