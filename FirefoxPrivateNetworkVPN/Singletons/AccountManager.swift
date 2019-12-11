@@ -147,12 +147,12 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     private func resetAccount() {
-        self.stopHeartbeat()
+        stopHeartbeat()
         Credentials.remove()
         Device.removeFromUserDefaults()
-        self.account = nil
-        self.availableServers = nil
-        self.navigate(to: .landing)
+        account = nil
+        availableServers = nil
+        navigate(to: .landing)
     }
 
     func startHeartbeat() {
