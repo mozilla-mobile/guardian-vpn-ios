@@ -146,7 +146,7 @@ class VPNToggleView: UIView {
 
     private func getConnectionTimeAndHealth() {
         let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
-        let connectionState = connectionHealthMonitor.currentState.asObservable().subscribeOn(ConnectionHealthMonitor.scheduler).distinctUntilChanged()
+        let connectionState = connectionHealthMonitor.currentState.distinctUntilChanged()
 
         //swiftlint:disable trailing_closure
         Observable.combineLatest(timer, connectionState)

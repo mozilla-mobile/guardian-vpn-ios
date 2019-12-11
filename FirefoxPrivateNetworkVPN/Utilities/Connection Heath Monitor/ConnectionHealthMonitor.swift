@@ -28,8 +28,8 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
     private var timer: Timer?
 
     private var _currentState = BehaviorRelay<ConnectionHealth>(value: .initial)
-    var currentState: Driver<ConnectionHealth> {
-        return _currentState.asDriver(onErrorJustReturn: .noSignal)
+    var currentState: Observable<ConnectionHealth> {
+        return _currentState.asObservable()
     }
     private var disposeBag = DisposeBag()
 
