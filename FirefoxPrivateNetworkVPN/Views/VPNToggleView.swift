@@ -74,7 +74,7 @@ class VPNToggleView: UIView {
     }
 
     private func setupRippleAnimation() {
-        let rippleAnimation = Animation.named("ripples")
+        let rippleAnimation = Animation.named("ripples", subdirectory: "Animations")
         rippleAnimationView.animation = rippleAnimation
         rippleAnimationView.contentMode = .scaleAspectFit
         rippleAnimationView.backgroundBehavior = .pauseAndRestore
