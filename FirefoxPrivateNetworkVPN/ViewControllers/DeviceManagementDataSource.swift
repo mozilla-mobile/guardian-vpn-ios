@@ -25,7 +25,7 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
         guard let account = account else { return [] }
 
         var devices = account.user?.deviceList
-        if account.isOverDeviceLimit {
+        if !account.hasDeviceBeenAdded {
             devices?.insert(Device.mock(name: UIDevice.current.name), at: 0)
         }
         return devices ?? []
@@ -70,14 +70,14 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension DeviceManagementDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let account = account, account.isOverDeviceLimit else { return 0 }
+        guard let account = account, !account.hasDeviceBeenAdded else { return 0 }
 
         return DeviceLimitReachedView.height
 
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let account = account, account.isOverDeviceLimit else { return nil }
+        guard let account = account, !account.hasDeviceBeenAdded else { return nil }
 
         return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
     }

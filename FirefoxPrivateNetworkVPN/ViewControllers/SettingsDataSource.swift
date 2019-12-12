@@ -45,7 +45,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
 
         if settingsItem.action == .devices,
             let account = account,
-            account.isOverDeviceLimit {
+            !account.hasDeviceBeenAdded {
             cell.accessoryIconImageView.image = UIImage(named: "icon_alert")
             cell.accessoryIconImageView.isHidden = false
         } else {
