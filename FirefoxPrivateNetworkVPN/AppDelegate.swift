@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        dependencyFactory?.connectionHealthMonitor.reset()
+        dependencyFactory?.connectionHealthMonitor.stop()
     }
 
     //swiftlint:disable trailing_closure

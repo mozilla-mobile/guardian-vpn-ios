@@ -112,7 +112,7 @@ private func state(of sut: ConnectionHealthMonitor) -> ConnectionHealth? {
     let testScheduler = TestScheduler(initialClock: 0)
     let disposeBag = DisposeBag()
     let observer = testScheduler.createObserver(ConnectionHealth.self)
-    sut.currentState.drive(observer).disposed(by: disposeBag)
+    sut.currentState.bind(to: observer).disposed(by: disposeBag)
     testScheduler.start()
 
     return observer.events.last?.value.element
