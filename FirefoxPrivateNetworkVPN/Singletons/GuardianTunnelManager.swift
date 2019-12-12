@@ -23,7 +23,10 @@ class GuardianTunnelManager: TunnelManaging {
 
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
-    private let account = DependencyFactory.sharedFactory.accountManager.account
+    private var account: Account? {
+        return DependencyFactory.sharedFactory.accountManager.account
+    }
+
     private var tunnel: NETunnelProviderManager?
     private let disposeBag = DisposeBag()
 
