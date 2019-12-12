@@ -26,24 +26,23 @@ class Credentials: Codable {
     private(set) var verificationToken: String
 
     init(with verification: VerifyResponse) {
-        Credentials.remove()
-
         let privateKey = Curve25519.generatePrivateKey()
-        deviceKeys = DeviceKeys(privateKey: privateKey, publicKey: Curve25519.generatePublicKey(fromPrivateKey: privateKey))
+        let publicKey = Curve25519.generatePublicKey(fromPrivateKey: privateKey)
+        deviceKeys = DeviceKeys(privateKey: privateKey, publicKey: publicKey)
         verificationToken = verification.token
     }
 
     // MARK: - Helpers
 
-    static func fetch() -> Credentials? {
+    static func fetchAll() -> Credentials? {
         return CredentialsKeyStore.shared.credentials
     }
 
-    func save() {
+    func saveAll() {
         CredentialsKeyStore.shared.credentials = self
     }
 
-    static func remove() {
+    static func removeAll() {
         CredentialsKeyStore.shared.credentials = nil
     }
 }

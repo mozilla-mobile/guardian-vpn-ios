@@ -20,13 +20,10 @@ class AccountManager: AccountManaging, Navigating {
     private(set) var heartbeatFailedEvent = PublishSubject<Void>()
     private var heartbeatTimer: DispatchSourceTimer?
 
-    static let sharedManager: AccountManaging = {
-        let instance = AccountManager()
-        //
-        return instance
-    }()
+    static let sharedManager = AccountManager()
 
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void) {
+        Credentials.removeAll()
         let credentials = Credentials(with: verification)
         let account = Account(credentials: credentials, user: verification.user)
 
@@ -53,13 +50,13 @@ class AccountManager: AccountManaging, Navigating {
         dispatchGroup.notify(queue: .main) {
             switch (addDeviceError, retrieveServersError) {
             case (.none, .none):
-                credentials.save()
+                credentials.saveAll()
                 self.account = account
                 self.startHeartbeat()
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
-                    credentials.save()
+                    credentials.saveAll()
                     self.account = account
                     self.startHeartbeat()
                 }
@@ -74,7 +71,7 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     func loginWithStoredCredentials(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let credentials = Credentials.fetch(), let currentDevice = Device.fetchFromUserDefaults() else {
+        guard let credentials = Credentials.fetchAll(), let currentDevice = Device.fetchFromUserDefaults() else {
             completion(.failure(GuardianError.needToLogin))
             return
         }
@@ -104,7 +101,7 @@ class AccountManager: AccountManaging, Navigating {
         dispatchGroup.notify(queue: .main) {
             switch (setUserError, retrieveServersError) {
             case (.none, .none):
-                credentials.save()
+                credentials.saveAll()
                 self.account = account
                 self.startHeartbeat()
                 completion(.success(()))
@@ -149,7 +146,7 @@ class AccountManager: AccountManaging, Navigating {
     private func resetAccount() {
         stopHeartbeat()
         DependencyFactory.sharedFactory.tunnelManager.stopAndRemove()
-        Credentials.remove()
+        Credentials.removeAll()
         Device.removeFromUserDefaults()
         account = nil
         availableServers = nil
