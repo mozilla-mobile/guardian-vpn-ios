@@ -72,7 +72,7 @@ class Account {
             case .success(let device):
                 self.currentDevice = device
                 device.saveToUserDefaults()
-                self.setUser { _ in //TODO: Change this to make get devices call when its available
+                self.getUser { _ in //TODO: Change this to make get devices call when its available
                     completion(.success(()))
                 }
             case .failure(let error):
@@ -81,7 +81,7 @@ class Account {
         }
     }
 
-    func setUser(completion: @escaping (Result<Void, Error>) -> Void) {
+    func getUser(completion: @escaping (Result<Void, Error>) -> Void) {
         GuardianAPI.accountInfo(token: credentials.verificationToken) { [weak self] result in
             guard let self = self else {
                 completion(.failure(GuardianError.deallocated))

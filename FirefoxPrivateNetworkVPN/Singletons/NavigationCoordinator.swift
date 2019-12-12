@@ -26,6 +26,7 @@ enum NavigableItem {
     case servers
     case settings
     case tab
+    case account
 }
 
 enum NavigableContext {
@@ -57,7 +58,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             switch (origin, destination) {
             // To Landing
-            case (.loading, .landing), (.settings, .landing):
+            case (.loading, .landing), (.settings, .landing), (.account, .landing):
                 let landingViewController = LandingViewController()
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController

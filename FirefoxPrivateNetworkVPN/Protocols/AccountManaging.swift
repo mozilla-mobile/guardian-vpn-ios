@@ -24,4 +24,5 @@ protocol AccountManaging {
     var heartbeatFailedEvent: PublishSubject<Void> { get }
 
     func startHeartbeat()
+    func stopHeartbeat()
 }

@@ -32,10 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        if dependencyFactory?.accountManager.account != nil {
+            dependencyFactory?.accountManager.startHeartbeat()
+        }
         guard
             let vpnState = self.dependencyFactory?.tunnelManager.stateEvent.value,
             vpnState == .on
-        else {
+            else {
                 return
         }
 
@@ -45,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        self.dependencyFactory?.connectionHealthMonitor.stop()
+        dependencyFactory?.connectionHealthMonitor.stop()
+        dependencyFactory?.accountManager.stopHeartbeat()
     }
 }

@@ -46,6 +46,11 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
+
+        //refresh device list only if device has already been added to make sure current device gets added
+        if let account = account, account.hasDeviceBeenAdded {
+            account.getUser { _ in }
+        }
     }
 
     // MARK: UITableViewDataSource

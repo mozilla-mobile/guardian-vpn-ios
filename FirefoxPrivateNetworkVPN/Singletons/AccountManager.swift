@@ -12,11 +12,13 @@
 import Foundation
 import RxSwift
 
-class AccountManager: AccountManaging {
+class AccountManager: AccountManaging, Navigating {
+    static var navigableItem: NavigableItem = .account
 
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry]?
     private(set) var heartbeatFailedEvent = PublishSubject<Void>()
+    private var heartbeatTimer: DispatchSourceTimer?
 
     static let sharedManager: AccountManaging = {
         let instance = AccountManager()
@@ -53,11 +55,13 @@ class AccountManager: AccountManaging {
             case (.none, .none):
                 credentials.save()
                 self.account = account
+                self.startHeartbeat()
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
                     credentials.save()
                     self.account = account
+                    self.startHeartbeat()
                 }
                 completion(.failure(error))
             case (.none, .some(let error)):
@@ -82,7 +86,7 @@ class AccountManager: AccountManaging {
         var retrieveServersError: Error?
 
         dispatchGroup.enter()
-        account.setUser { result in
+        account.getUser { result in
             if case .failure(let error) = result {
                 setUserError = error
             }
@@ -102,6 +106,7 @@ class AccountManager: AccountManaging {
             case (.none, .none):
                 credentials.save()
                 self.account = account
+                self.startHeartbeat()
                 completion(.success(()))
             case (let userError, let serverError):
                 let error = userError ?? serverError
@@ -118,8 +123,7 @@ class AccountManager: AccountManaging {
         GuardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { result in
             switch result {
             case .success:
-                Credentials.remove()
-                Device.removeFromUserDefaults()
+                self.resetAccount()
                 completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
@@ -142,16 +146,39 @@ class AccountManager: AccountManaging {
         }
     }
 
-    func startHeartbeat() {
-        _ = Timer(timeInterval: 3600,
-                  target: self,
-                  selector: #selector(pollUser),
-                  userInfo: nil,
-                  repeats: true)
+    private func resetAccount() {
+        stopHeartbeat()
+        DependencyFactory.sharedFactory.tunnelManager.stopAndRemove()
+        Credentials.remove()
+        Device.removeFromUserDefaults()
+        account = nil
+        availableServers = nil
     }
 
-    @objc private func pollUser() {
+    func startHeartbeat() {
+        heartbeatTimer = DispatchSource.makeTimerSource()
+        heartbeatTimer?.schedule(deadline: .now(), repeating: .seconds(3600), leeway: .seconds(1))
+        heartbeatTimer?.setEventHandler { [weak self] in
+            self?.pollUser()
+        }
+        heartbeatTimer?.activate()
+    }
+
+    func stopHeartbeat() {
+        heartbeatTimer = nil
+    }
+
+    private func pollUser() {
         guard let account = account else { return }
-        account.setUser { _ in }
+        account.getUser { result in
+            guard case .failure(let error) = result,
+                let subscriptionError = error as? GuardianAPIError,
+                subscriptionError.isAuthError else { return }
+
+            DispatchQueue.main.async {
+                self.resetAccount()
+                self.navigate(to: .landing)
+            }
+        }
     }
 }
