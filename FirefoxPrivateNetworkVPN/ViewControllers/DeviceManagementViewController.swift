@@ -69,12 +69,12 @@ class DeviceManagementViewController: UIViewController, Navigating {
                         account.removeDevice(with: device.publicKey) { result in
                             switch result {
                             case .success:
-                                self.navigationItem.rightBarButtonItem?.title = self.formattedDeviceCountTitle
-                                guard !account.hasDeviceBeenAdded else {
-                                    self.tableView?.reloadData()
-                                    return
+                                if !account.hasDeviceBeenAdded {
+                                    self.addCurrentDeviceToAccount()
+                                } else {
+                                    self.navigationItem.rightBarButtonItem?.title = self.formattedDeviceCountTitle
                                 }
-                                self.addCurrentDeviceToAccount()
+                                self.tableView?.reloadData()
 
                             case .failure:
                                 self.tableView?.reloadData()
