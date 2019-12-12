@@ -28,8 +28,8 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
     private var timer: Timer?
 
     private var _currentState = BehaviorRelay<ConnectionHealth>(value: .initial)
-    var currentState: Driver<ConnectionHealth> {
-        return _currentState.asDriver(onErrorJustReturn: .noSignal)
+    var currentState: Observable<ConnectionHealth> {
+        return _currentState.asObservable()
     }
     private var disposeBag = DisposeBag()
 
@@ -42,7 +42,6 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
     }
 
     func start(hostAddress: String) {
-        reset()
 
         self.hostAddress = hostAddress
 
@@ -68,14 +67,18 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
             }).disposed(by: disposeBag)
     }
 
-    func reset() {
-        _currentState.accept(.initial)
-
+    func stop() {
         pinger.stop()
         disposeBag = DisposeBag()
 
         timer?.invalidate()
         timer = nil
+    }
+
+    func reset() {
+        stop()
+
+        _currentState.accept(.initial)
     }
 
     private func move(to destinationState: ConnectionHealth) {

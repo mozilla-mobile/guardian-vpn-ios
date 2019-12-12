@@ -13,6 +13,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import NetworkExtension
+import Lottie
 
 class VPNToggleView: UIView {
     @IBOutlet private var view: UIView!
@@ -20,17 +21,18 @@ class VPNToggleView: UIView {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var vpnSwitch: UISwitch!
+    @IBOutlet weak var vpnToggleButton: UIButton!
     @IBOutlet private weak var containingView: UIView!
+    @IBOutlet weak var backgroundAnimationContainerView: UIView!
 
-    var vpnSwitchEvent: ControlProperty<Bool>?
+    var connectionHandler: (() -> Void)?
+    var disconnectionHandler: (() -> Void)?
+
     private let disposeBag = DisposeBag()
     private var timerDisposeBag = DisposeBag()
-    private var smallLayer = CAShapeLayer()
-    private var mediumLayer = CAShapeLayer()
-    private var largeLayer = CAShapeLayer()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
-    private var updateUIEvent = PublishSubject<Void>()
+    private let rippleAnimationView = AnimationView()
 
     private lazy var daysFormatter: DateComponentsFormatter = {
         let daysFormatter = DateComponentsFormatter()
@@ -64,82 +66,87 @@ class VPNToggleView: UIView {
         Bundle.main.loadNibNamed(String(describing: VPNToggleView.self), owner: self, options: nil)
         view.frame = bounds
         addSubview(view)
-
-        let vpnStateEvent = tunnelManager.stateEvent
-            .observeOn(MainScheduler.instance)
-            .skip(1)
-
-        Observable
-            .zip(vpnStateEvent, updateUIEvent.startWith(())) { [weak self] state, _ in
-                // If the state goes to disconnecting before the toggle is switched off, there was an error when trying to connect the tunnel and it was not user initiated
-                if let isOn = self?.vpnSwitch.isOn,
-                    isOn,
-                    state == .disconnecting {
-                    NotificationCenter.default.post(Notification(name: .startTunnelError))
-                }
-
-                self?.update(with: state)
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + (state.delay ?? 0)) {
-                    self?.updateUIEvent.onNext(())
-                }
-        }
-        .subscribe()
-        .disposed(by: disposeBag)
     }
 
     override func awakeFromNib() {
         update(with: .off)
-        vpnSwitchEvent = vpnSwitch.rx.isOn
+        setupRippleAnimation()
+    }
+
+    private func setupRippleAnimation() {
+        let rippleAnimation = Animation.named("ripples")
+        rippleAnimationView.animation = rippleAnimation
+        rippleAnimationView.contentMode = .scaleAspectFit
+        rippleAnimationView.backgroundBehavior = .pauseAndRestore
+        backgroundAnimationContainerView.addSubview(rippleAnimationView)
+    }
+
+    override func layoutSubviews() {
+        rippleAnimationView.frame = backgroundAnimationContainerView.bounds
+    }
+
+    // MARK: - Actions
+    @IBAction func toggleTapped() {
+        if !vpnSwitch.isOn {
+            connectionHandler?()
+        } else {
+            disconnectionHandler?()
+        }
     }
 
     // MARK: State Change
-
-    private func update(with state: VPNState) {
+    func update(with state: VPNState) {
         titleLabel.text = state.title
         titleLabel.textColor = state.textColor
         subtitleLabel.text = state.subtitle
         subtitleLabel.textColor = state.subtitleColor
         vpnSwitch.isOn = state.isToggleOn
         vpnSwitch.isEnabled = state.isEnabled
+        vpnToggleButton.isEnabled = state.isEnabled
         globeImageView.image = state.globeImage
         globeImageView.alpha = state.globeOpacity
         view.backgroundColor = state.backgroundColor
 
-        if state == .on {
-            addAnimationToView()
+        switch state {
+        case .on:
+            startRippleAnimation()
             setSubtitle(with: ConnectionHealth.stable)
             getConnectionTimeAndHealth()
-        } else {
-            removeAnimationFromView()
+        case .disconnecting:
+            stopRippleAnimation()
+            resetConnectionTimeAndHealth()
+        default:
             resetConnectionTimeAndHealth()
         }
     }
 
-    private func addAnimationToView() {
-        let position = CGPoint(x: globeImageView.center.x, y: globeImageView.center.y + containingView.frame.minY)
-        smallLayer.position = position
-        mediumLayer.position = position
-        largeLayer.position = position
-        smallLayer.addPulse(delay: 0.0)
-        mediumLayer.addPulse(delay: 2.0)
-        largeLayer.addPulse(delay: 4.0)
-        layer.addSublayer(smallLayer)
-        layer.addSublayer(mediumLayer)
-        layer.addSublayer(largeLayer)
+    // MARK: - Animations
+    private var isRippleAnimationPlaying: Bool {
+        rippleAnimationView.isAnimationPlaying
     }
 
-    private func removeAnimationFromView() {
-        smallLayer.removeFromSuperlayer()
-        mediumLayer.removeFromSuperlayer()
-        largeLayer.removeFromSuperlayer()
+    private func startRippleAnimation() {
+        rippleAnimationView.play(fromFrame: 0, toFrame: 75, loopMode: .playOnce) { [weak self] isComplete in
+            if isComplete {
+                self?.rippleAnimationView.play(fromFrame: 75, toFrame: 120, loopMode: .loop, completion: nil)
+            }
+        }
+    }
+
+    private func stopRippleAnimation() {
+        self.rippleAnimationView.stop()
+        rippleAnimationView.play(fromFrame: 120, toFrame: 210, loopMode: .playOnce) { [weak self] isComplete in
+            if isComplete {
+                self?.rippleAnimationView.stop()
+            }
+        }
     }
 
     // MARK: Connection Health and Time
 
     private func getConnectionTimeAndHealth() {
         let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
-        let connectionState = connectionHealthMonitor.currentState.asObservable().subscribeOn(ConnectionHealthMonitor.scheduler).distinctUntilChanged()
+        let connectionState = connectionHealthMonitor.currentState.distinctUntilChanged()
 
         //swiftlint:disable trailing_closure
         Observable.combineLatest(timer, connectionState)
@@ -147,6 +154,14 @@ class VPNToggleView: UIView {
             .subscribe(onNext: { [weak self] _, connectionHealth in
                 guard let self = self else { return }
                 self.setSubtitle(with: connectionHealth)
+
+                if connectionHealth == .unstable || connectionHealth == .noSignal {
+                    self.rippleAnimationView.stop()
+                } else {
+                    if !self.isRippleAnimationPlaying {
+                        self.startRippleAnimation()
+                    }
+                }
             }).disposed(by: timerDisposeBag)
 
         if let hostAddress = VPNCity.fetchFromUserDefaults()?.servers.first?.ipv4Gateway {

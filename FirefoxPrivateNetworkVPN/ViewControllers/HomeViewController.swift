@@ -43,7 +43,7 @@ class HomeViewController: UIViewController, Navigating {
     override func viewDidLoad() {
         super.viewDidLoad()
         setStrings()
-        subscribeToToggle()
+        setupToggleView()
         subscribeToErrors()
     }
 
@@ -60,19 +60,37 @@ class HomeViewController: UIViewController, Navigating {
         }.disposed(by: disposeBag)
     }
 
-    private func subscribeToToggle() {
-        vpnToggleView.vpnSwitchEvent?.skip(1).subscribe { [weak self] isOnEvent in
-            guard
-                let self = self,
-                let isOn = isOnEvent.element
-            else { return }
+    private func setupToggleView() {
+        vpnToggleView.connectionHandler = { [weak self] in
+            self?.connectToTunnel()
+        }
 
-            if isOn {
-                self.connectToTunnel()
-            } else {
-                self.tunnelManager.stop()
-            }
-        }.disposed(by: disposeBag)
+        vpnToggleView.disconnectionHandler = { [weak self] in
+            self?.tunnelManager.stop()
+        }
+
+        //swiftlint:disable trailing_closure
+        tunnelManager.stateEvent
+            .withPrevious(startWith: .off)
+            .flatMap { [weak self] previous, current -> Observable<VPNState> in
+                switch (previous, current) {
+                case (VPNState.connecting, VPNState.on), (VPNState.disconnecting, VPNState.off):
+                    return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
+                case (VPNState.switching, VPNState.on):
+                    return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1500), scheduler: MainScheduler.instance)
+                case (VPNState.off, VPNState.disconnecting):
+                    self?.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
+                    action: self?.connectToTunnel)
+
+                    return Observable.just(current)
+                default: return Observable.just(current)
+                }
+        }
+        .distinctUntilChanged()
+        .observeOn(MainScheduler.instance)
+        .subscribe(onNext: { [weak self] state in
+            self?.vpnToggleView.update(with: state)
+        }).disposed(by: disposeBag)
     }
 
     private func connectToTunnel() {
@@ -82,7 +100,6 @@ class HomeViewController: UIViewController, Navigating {
         tunnelManager.connect(with: currentDevice)
             .subscribe(onError: { [weak self] _ in
                 guard let self = self else { return }
-                self.vpnToggleView.vpnSwitchEvent?.onNext(false)
                 self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
                                            action: self.connectToTunnel)
             }).disposed(by: self.disposeBag)
