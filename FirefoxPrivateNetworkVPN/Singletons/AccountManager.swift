@@ -86,7 +86,7 @@ class AccountManager: AccountManaging, Navigating {
         var retrieveServersError: Error?
 
         dispatchGroup.enter()
-        account.setUser { result in
+        account.getUser { result in
             if case .failure(let error) = result {
                 setUserError = error
             }
@@ -148,11 +148,11 @@ class AccountManager: AccountManaging, Navigating {
 
     private func resetAccount() {
         stopHeartbeat()
+        DependencyFactory.sharedFactory.tunnelManager.stopAndRemove()
         Credentials.remove()
         Device.removeFromUserDefaults()
         account = nil
         availableServers = nil
-        navigate(to: .landing)
     }
 
     func startHeartbeat() {
@@ -170,7 +170,7 @@ class AccountManager: AccountManaging, Navigating {
 
     private func pollUser() {
         guard let account = account else { return }
-        account.setUser { result in
+        account.getUser { result in
             guard case .failure(let error) = result,
                 let subscriptionError = error as? GuardianAPIError,
                 subscriptionError.isAuthError else { return }

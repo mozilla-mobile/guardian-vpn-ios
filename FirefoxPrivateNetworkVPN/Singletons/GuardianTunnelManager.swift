@@ -181,7 +181,7 @@ class GuardianTunnelManager: TunnelManaging {
         }
     }
 
-    private func removeTunnel() {
+    func stopAndRemove() {
         guard let tunnel = tunnel else { return }
         tunnel.removeFromPreferences { _ in
             self.tunnel = nil
