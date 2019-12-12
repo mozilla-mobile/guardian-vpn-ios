@@ -59,7 +59,8 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? DeviceManagementCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? DeviceManagementCell,
+        indexPath.row < representedObject.count
             else { return UITableViewCell(frame: .zero) }
         cell.setup(with: representedObject[indexPath.row], event: removeDeviceEvent)
         return cell
