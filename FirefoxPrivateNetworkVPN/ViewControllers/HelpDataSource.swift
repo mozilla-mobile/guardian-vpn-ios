@@ -50,7 +50,7 @@ extension HelpDataSource: UITableViewDelegate {
         }
         tableView.deselectRow(at: indexPath, animated: false)
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return HyperlinkCell.height
     }
