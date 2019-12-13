@@ -30,30 +30,35 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m89-A7-vt0" userLabel="Animation Container">
-                    <rect key="frame" x="0.0" y="-68.5" width="350" height="350"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="m89-A7-vt0" secondAttribute="height" multiplier="1:1" id="VyB-iW-wzj"/>
-                    </constraints>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgm-YP-nOg" userLabel="Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m89-A7-vt0" userLabel="Animation Container">
+                            <rect key="frame" x="0.0" y="-68.5" width="350" height="350"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="m89-A7-vt0" secondAttribute="height" multiplier="1:1" id="VyB-iW-wzj"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Bk-tlK">
-                    <rect key="frame" x="0.0" y="26.5" width="350" height="297"/>
+                    <rect key="frame" x="0.0" y="66.5" width="350" height="217"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe_off" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs">
-                            <rect key="frame" x="95" y="0.0" width="160" height="160"/>
+                            <rect key="frame" x="135" y="0.0" width="80" height="80"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVT-rn-kQN">
-                            <rect key="frame" x="32" y="184" width="286" height="26"/>
+                            <rect key="frame" x="32" y="104" width="286" height="26"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                             <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xu-al-pMZ">
-                            <rect key="frame" x="32" y="220" width="286" height="22"/>
+                            <rect key="frame" x="32" y="140" width="286" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="jkG-Fz-RTN"/>
                             </constraints>
@@ -62,7 +67,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
-                            <rect key="frame" x="150.5" y="182" width="51" height="31"/>
+                            <rect key="frame" x="150.5" y="186" width="51" height="31"/>
                             <color key="backgroundColor" name="custom_grey30"/>
                             <gestureRecognizers/>
                             <color key="tintColor" name="custom_grey30"/>
@@ -78,7 +83,7 @@
                             </userDefinedRuntimeAttributes>
                         </switch>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-MW-iTo" userLabel="Toggle Button">
-                            <rect key="frame" x="150.5" y="182" width="49" height="31"/>
+                            <rect key="frame" x="150.5" y="186" width="49" height="31"/>
                             <connections>
                                 <action selector="toggleTapped" destination="-1" eventType="touchUpInside" id="SsJ-hE-bTx"/>
                             </connections>
@@ -106,12 +111,16 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="m89-A7-vt0" firstAttribute="centerX" secondItem="MYo-vc-qhs" secondAttribute="centerX" id="9st-2K-wI3"/>
-                <constraint firstItem="m89-A7-vt0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="EDo-CA-Pde"/>
+                <constraint firstItem="m89-A7-vt0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="5IX-Cv-Zob"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sgm-YP-nOg" secondAttribute="trailing" id="5UR-va-4jw"/>
+                <constraint firstItem="sgm-YP-nOg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7Ff-Yy-eCy"/>
+                <constraint firstItem="sgm-YP-nOg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="D57-3W-5Y5"/>
                 <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HCC-4h-gbe"/>
-                <constraint firstItem="m89-A7-vt0" firstAttribute="centerY" secondItem="MYo-vc-qhs" secondAttribute="centerY" id="S1n-bm-Gc9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="sgm-YP-nOg" secondAttribute="bottom" id="XLj-uY-zxN"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UwE-Bk-tlK" secondAttribute="trailing" id="dG3-Rc-Qeg"/>
+                <constraint firstItem="m89-A7-vt0" firstAttribute="centerY" secondItem="MYo-vc-qhs" secondAttribute="centerY" id="pBW-PE-AHW"/>
                 <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="s59-Ul-aCr"/>
+                <constraint firstItem="m89-A7-vt0" firstAttribute="centerX" secondItem="MYo-vc-qhs" secondAttribute="centerX" id="std-Ua-fRL"/>
                 <constraint firstItem="UwE-Bk-tlK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="t4U-39-j8n"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
