@@ -48,8 +48,9 @@ extension HelpDataSource: UITableViewDelegate {
         if let url = representedObject[indexPath.row].url {
             UIApplication.shared.open(url)
         }
+        tableView.deselectRow(at: indexPath, animated: false)
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return HyperlinkCell.height
     }
