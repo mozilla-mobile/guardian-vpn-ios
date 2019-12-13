@@ -1566,7 +1566,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WireGuardTunnel/WireGuardTunnel.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WireGuardTunnel/Info.plist";
@@ -1591,7 +1591,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WireGuardTunnel/WireGuardTunnel.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WireGuardTunnel/Info.plist";
@@ -1764,7 +1764,7 @@
 				CODE_SIGN_ENTITLEMENTS = "FirefoxPrivateNetworkVPN/Project Files/FirefoxPrivateNetworkVPN.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1792,7 +1792,7 @@
 				CODE_SIGN_ENTITLEMENTS = "FirefoxPrivateNetworkVPN/Project Files/FirefoxPrivateNetworkVPN.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YL7Q499FV6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
