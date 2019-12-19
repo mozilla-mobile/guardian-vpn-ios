@@ -16,7 +16,7 @@ private class CredentialsKeyStore {
     static let shared = CredentialsKeyStore()
 
     private static let containerKey = "org.mozilla.guardian.credentials"
-    @KeychainStored(service: containerKey) var credentials: Credentials
+    @KeychainStored<Credentials>(service: containerKey) var credentials: Credentials?
 
     private init() { }
 }
