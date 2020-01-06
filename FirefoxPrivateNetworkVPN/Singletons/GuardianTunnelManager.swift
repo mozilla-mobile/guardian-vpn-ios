@@ -36,10 +36,7 @@ class GuardianTunnelManager: TunnelManaging {
 
     private init() {
         loadTunnel {
-            guard let tunnel = self.tunnel else {
-                self.stateEvent.accept(.off)
-                return
-            }
+            guard let tunnel = self.tunnel else { return }
             self.stateEvent.accept(VPNState(with: tunnel.connection.status))
         }
 

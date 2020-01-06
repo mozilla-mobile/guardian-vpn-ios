@@ -73,8 +73,8 @@ class DeviceManagementViewController: UIViewController, Navigating {
                                     self.addCurrentDeviceToAccount()
                                 } else {
                                     self.navigationItem.rightBarButtonItem?.title = self.formattedDeviceCountTitle
+                                    self.tableView?.reloadData()
                                 }
-                                self.tableView?.reloadData()
 
                             case .failure:
                                 self.tableView?.reloadData()
@@ -110,7 +110,10 @@ class DeviceManagementViewController: UIViewController, Navigating {
     }
 
     private func addCurrentDeviceToAccount() {
-        guard let account = account else { return }
+        guard let account = account else {
+            tableView?.reloadData()
+            return
+        }
         account.addCurrentDevice { [weak self] addDeviceResult in
             if case .success = addDeviceResult {
                 DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)

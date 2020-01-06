@@ -69,7 +69,6 @@ class VPNToggleView: UIView {
     }
 
     override func awakeFromNib() {
-        update(with: .off)
         setupRippleAnimation()
     }
 
