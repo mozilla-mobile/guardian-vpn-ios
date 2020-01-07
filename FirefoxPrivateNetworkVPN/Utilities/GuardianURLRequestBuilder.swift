@@ -11,7 +11,7 @@
 
 import Foundation
 
-struct GuardianURLRequestBuilder {
+struct GuardianURLRequestBuilder: URLRequestBuilding {
     private static let baseURL = "https://stage.guardian.nonprod.cloudops.mozgcp.net" // will have to change in future
 
     static func urlRequest(request: GuardianRelativeRequest,
@@ -32,12 +32,22 @@ struct GuardianURLRequestBuilder {
 
         return buildURLRequest(with: fullUrlString, type: type, queryParameters: queryParameters, httpHeaderParams: httpHeaderParams, body: body)
     }
+}
 
-    private static func buildURLRequest(with urlString: String,
-                                        type: HTTPMethod,
-                                        queryParameters: [String: String]? = nil,
-                                        httpHeaderParams: [String: String]? = nil,
-                                        body: Data? = nil) -> URLRequest {
+protocol URLRequestBuilding {
+    static func buildURLRequest(with urlString: String,
+                                type: HTTPMethod,
+                                queryParameters: [String: String]?,
+                                httpHeaderParams: [String: String]?,
+                                body: Data?) -> URLRequest
+}
+
+extension URLRequestBuilding {
+    static func buildURLRequest(with urlString: String,
+                                type: HTTPMethod,
+                                queryParameters: [String: String]? = nil,
+                                httpHeaderParams: [String: String]? = nil,
+                                body: Data? = nil) -> URLRequest {
         var urlComponent = URLComponents(string: urlString)!
         if let queryParameters = queryParameters {
             let queryItems = queryParameters.map { URLQueryItem(name: $0.key, value: $0.value) }
@@ -58,5 +68,13 @@ struct GuardianURLRequestBuilder {
         }
 
         return urlRequest
+    }
+}
+
+struct FirefoxVPNVersionURLRequest: URLRequestBuilding {
+    private static let urlString = "https://aus5.mozilla.org/json/1/FirefoxVPN/0.2/iOS/ios-release/update.json"
+
+    static func urlRequest() -> URLRequest {
+        return buildURLRequest(with: FirefoxVPNVersionURLRequest.urlString, type: .GET)
     }
 }
