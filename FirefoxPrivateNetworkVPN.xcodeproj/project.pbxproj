@@ -37,6 +37,7 @@
 		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
 		F471537623C3D15900226CB8 /* UpdateToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* UpdateToastView.swift */; };
 		F471537823C3D17A00226CB8 /* UpdateToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* UpdateToastView.xib */; };
+		F471537A23C4E81F00226CB8 /* VersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537923C4E81F00226CB8 /* VersionManager.swift */; };
 		F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4720258238C3D620033A14B /* UIFont+Custom.swift */; };
 		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
 		F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA21237AFF210034AF6C /* Result+Decode.swift */; };
@@ -352,6 +353,7 @@
 		F469697A2367345100D48617 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		F471537523C3D15900226CB8 /* UpdateToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateToastView.swift; sourceTree = "<group>"; };
 		F471537723C3D17A00226CB8 /* UpdateToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateToastView.xib; sourceTree = "<group>"; };
+		F471537923C4E81F00226CB8 /* VersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionManager.swift; sourceTree = "<group>"; };
 		F4720258238C3D620033A14B /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
 		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		F49090BD2379D43200C8430A /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 				F41CCA1A23711C7A0018DC43 /* DependencyFactory.swift */,
 				F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */,
 				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
+				F471537923C4E81F00226CB8 /* VersionManager.swift */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";
@@ -1493,6 +1496,7 @@
 				F4E908F62371CAAD00EB9FE6 /* TunnelConfigurationBuilder.swift in Sources */,
 				F4E908D12371CAAD00EB9FE6 /* DependencyProviding.swift in Sources */,
 				F4E908CE2371CAAD00EB9FE6 /* NetworkingEnums.swift in Sources */,
+				F471537A23C4E81F00226CB8 /* VersionManager.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
 				527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */,
 				F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */,
