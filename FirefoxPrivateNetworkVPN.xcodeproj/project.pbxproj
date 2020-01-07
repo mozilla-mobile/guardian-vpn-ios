@@ -35,6 +35,8 @@
 		F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */; };
 		F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */; };
 		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
+		F471537623C3D15900226CB8 /* UpdateToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* UpdateToastView.swift */; };
+		F471537823C3D17A00226CB8 /* UpdateToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* UpdateToastView.xib */; };
 		F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4720258238C3D620033A14B /* UIFont+Custom.swift */; };
 		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
 		F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA21237AFF210034AF6C /* Result+Decode.swift */; };
@@ -348,6 +350,8 @@
 		F465854C233BF0850081D7D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F46969792367345100D48617 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F469697A2367345100D48617 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
+		F471537523C3D15900226CB8 /* UpdateToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateToastView.swift; sourceTree = "<group>"; };
+		F471537723C3D17A00226CB8 /* UpdateToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateToastView.xib; sourceTree = "<group>"; };
 		F4720258238C3D620033A14B /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
 		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		F49090BD2379D43200C8430A /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
@@ -705,6 +709,8 @@
 				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
 				F42304872372101000572A93 /* HyperlinkCell.swift */,
 				F42304882372101000572A93 /* HyperlinkCell.xib */,
+				F471537523C3D15900226CB8 /* UpdateToastView.swift */,
+				F471537723C3D17A00226CB8 /* UpdateToastView.xib */,
 				F420F4192368840A00CD48BF /* VPNToggleView.swift */,
 				F420F41A2368840A00CD48BF /* VPNToggleView.xib */,
 				F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */,
@@ -1157,6 +1163,7 @@
 				F4E908D72371CAAD00EB9FE6 /* Inter-Medium.otf in Resources */,
 				F4E908E52371CAAD00EB9FE6 /* Metropolis-MediumItalic.otf in Resources */,
 				F4E908DB2371CAAD00EB9FE6 /* Metropolis-BlackItalic.otf in Resources */,
+				F471537823C3D17A00226CB8 /* UpdateToastView.xib in Resources */,
 				F4E908E42371CAAD00EB9FE6 /* Metropolis-Medium.otf in Resources */,
 				F4E908E72371CAAD00EB9FE6 /* Metropolis-RegularItalic.otf in Resources */,
 				F4E9090A2371CAAD00EB9FE6 /* AccountInformationCell.xib in Resources */,
@@ -1442,6 +1449,7 @@
 				F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */,
 				F4E909042371CAAD00EB9FE6 /* LoginViewController.swift in Sources */,
 				F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */,
+				F471537623C3D15900226CB8 /* UpdateToastView.swift in Sources */,
 				F4230483237209B000572A93 /* HelpViewController.swift in Sources */,
 				F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */,
 				F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */,

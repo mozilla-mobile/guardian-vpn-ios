@@ -86,6 +86,10 @@
 // MARK: - Warning toast
 "toastTryAgain" = "Try again";
 
+//MARK: - Update toast
+"toastUpdateNow" = "Update now";
+"toastFeaturesAvailable" = "New features are available!";
+
 //MARK: - Error Descriptions
 "errorDeviceRemoval" = "Unable to remove device.";
 "errorConnectVPN" = "Unable to connect.";

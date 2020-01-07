@@ -13,14 +13,18 @@ import UIKit
 
 extension NSAttributedString {
     static func formattedError(_ error: GuardianError, canTryAgain: Bool = true) -> NSAttributedString {
-        let message = NSMutableAttributedString(string: error.description)
-        if canTryAgain {
-            let tryAgainMessage = NSAttributedString(string: LocalizedString.toastTryAgain.value, attributes: [
+        return formatted(error.description, actionMessage: canTryAgain ? LocalizedString.toastTryAgain.value : nil)
+    }
+    
+    static func formatted(_ message: String, actionMessage: String?) -> NSAttributedString {
+        let message = NSMutableAttributedString(string: message)
+        if let selectMessage = actionMessage {
+            let underlinedMessage = NSAttributedString(string: selectMessage, attributes: [
                 .font: UIFont.custom(.interSemiBold, size: 13),
                 .underlineStyle: NSUnderlineStyle.single.rawValue
             ])
             message.append(NSAttributedString(string: " "))
-            message.append(tryAgainMessage)
+            message.append(underlinedMessage)
         }
         return message
     }
