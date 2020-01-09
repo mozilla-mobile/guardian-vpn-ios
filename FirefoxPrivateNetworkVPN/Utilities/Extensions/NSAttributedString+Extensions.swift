@@ -15,7 +15,7 @@ extension NSAttributedString {
     static func formattedError(_ error: GuardianError, canTryAgain: Bool = true) -> NSAttributedString {
         return formatted(error.description, actionMessage: canTryAgain ? LocalizedString.toastTryAgain.value : nil)
     }
-    
+
     static func formatted(_ message: String, actionMessage: String?) -> NSAttributedString {
         let message = NSMutableAttributedString(string: message)
         if let selectMessage = actionMessage {
