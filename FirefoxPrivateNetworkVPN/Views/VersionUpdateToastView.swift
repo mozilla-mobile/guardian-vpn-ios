@@ -12,13 +12,10 @@
 import UIKit
 
 @IBDesignable
-final class UpdateToastView: UIView {
+final class VersionUpdateToastView: UIView {
 
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private var view: UIView!
-
-    //try to remove this state
-    private var hasUserDismissed: Bool = false
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -31,21 +28,15 @@ final class UpdateToastView: UIView {
                                                             actionMessage: LocalizedString.toastUpdateNow.value)
     }
 
-    func show() {
-        if !hasUserDismissed {
-            //instead of using alpha, use the height or add/remove since it needs to shift down the HVC view
-            self.alpha = 1
-        }
-    }
-
     @IBAction private func dismiss(_ sender: Any) {
-        hasUserDismissed = true
-        UIView.animate(withDuration: 0.5) {
-            self.alpha = 0
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.removeFromSuperview()
         }
     }
 
     @IBAction private func tapped(_ sender: UITapGestureRecognizer) {
         //open App Store
+        DependencyFactory.sharedFactory.navigationCoordinator
+            .navigate(from: .home, to: .appStore)
     }
 }

@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpdateToastView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VersionUpdateToastView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
                 <outlet property="label" destination="QNw-OD-G01" id="Ojs-Ag-xPf"/>
                 <outlet property="view" destination="iN0-l3-epB" id="78X-bz-XFL"/>
@@ -34,7 +34,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJL-se-FYI" userLabel="Dismiss View">
                     <rect key="frame" x="413" y="0.0" width="57" height="57"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_close" translatesAutoresizingMaskIntoConstraints="NO" id="INV-nW-rHf">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_closeWhite" translatesAutoresizingMaskIntoConstraints="NO" id="INV-nW-rHf">
                             <rect key="frame" x="22.5" y="22.5" width="12" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="INV-nW-rHf" secondAttribute="height" multiplier="1:1" id="9Ba-Fy-eUF"/>
@@ -90,7 +90,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="icon_close" width="16" height="16"/>
+        <image name="icon_closeWhite" width="12" height="12"/>
         <namedColor name="custom_blue50">
             <color red="0.0" green="0.37647058823529411" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

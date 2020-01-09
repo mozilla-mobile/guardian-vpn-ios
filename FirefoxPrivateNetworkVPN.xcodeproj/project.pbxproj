@@ -34,12 +34,12 @@
 		F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */; };
 		F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */; };
 		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
-		F471537623C3D15900226CB8 /* UpdateToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* UpdateToastView.swift */; };
-		F471537823C3D17A00226CB8 /* UpdateToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* UpdateToastView.xib */; };
+		F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */; };
+		F471537823C3D17A00226CB8 /* VersionUpdateToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */; };
 		F471537A23C4E81F00226CB8 /* ReleaseMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */; };
 		F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4720258238C3D620033A14B /* UIFont+Custom.swift */; };
 		F478E47F23C7842D00D17FE0 /* LatestRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E47E23C7842D00D17FE0 /* LatestRelease.swift */; };
-		F478E48123C784C400D17FE0 /* UIApplication+appVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48023C784C400D17FE0 /* UIApplication+appVersion.swift */; };
+		F478E48123C784C400D17FE0 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48023C784C400D17FE0 /* UIApplication+Extensions.swift */; };
 		F478E48423C787B600D17FE0 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48323C787B600D17FE0 /* Release.swift */; };
 		F478E48623C7881900D17FE0 /* LatestReleaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48523C7881900D17FE0 /* LatestReleaseStatus.swift */; };
 		F478E48823C78A1700D17FE0 /* ReleaseMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */; };
@@ -357,12 +357,12 @@
 		F465854C233BF0850081D7D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F46969792367345100D48617 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F469697A2367345100D48617 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
-		F471537523C3D15900226CB8 /* UpdateToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateToastView.swift; sourceTree = "<group>"; };
-		F471537723C3D17A00226CB8 /* UpdateToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateToastView.xib; sourceTree = "<group>"; };
+		F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdateToastView.swift; sourceTree = "<group>"; };
+		F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersionUpdateToastView.xib; sourceTree = "<group>"; };
 		F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitor.swift; sourceTree = "<group>"; };
 		F4720258238C3D620033A14B /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
 		F478E47E23C7842D00D17FE0 /* LatestRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestRelease.swift; sourceTree = "<group>"; };
-		F478E48023C784C400D17FE0 /* UIApplication+appVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+appVersion.swift"; sourceTree = "<group>"; };
+		F478E48023C784C400D17FE0 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		F478E48323C787B600D17FE0 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
 		F478E48523C7881900D17FE0 /* LatestReleaseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestReleaseStatus.swift; sourceTree = "<group>"; };
 		F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitoring.swift; sourceTree = "<group>"; };
@@ -714,8 +714,8 @@
 				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
 				F42304872372101000572A93 /* HyperlinkCell.swift */,
 				F42304882372101000572A93 /* HyperlinkCell.xib */,
-				F471537523C3D15900226CB8 /* UpdateToastView.swift */,
-				F471537723C3D17A00226CB8 /* UpdateToastView.xib */,
+				F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */,
+				F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */,
 				F420F4192368840A00CD48BF /* VPNToggleView.swift */,
 				F420F41A2368840A00CD48BF /* VPNToggleView.xib */,
 				F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */,
@@ -835,7 +835,7 @@
 				F4B42C09238F2195001F64F7 /* ObservableType+Extensions.swift */,
 				F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */,
 				F4A7FA21237AFF210034AF6C /* Result+Decode.swift */,
-				F478E48023C784C400D17FE0 /* UIApplication+appVersion.swift */,
+				F478E48023C784C400D17FE0 /* UIApplication+Extensions.swift */,
 				F4A4947823709033007595C3 /* UIColor+Named.swift */,
 				F4720258238C3D620033A14B /* UIFont+Custom.swift */,
 				F422FEF923983E85009413E2 /* UIImage+Color.swift */,
@@ -1202,7 +1202,7 @@
 				F4E908D72371CAAD00EB9FE6 /* Inter-Medium.otf in Resources */,
 				F4E908E52371CAAD00EB9FE6 /* Metropolis-MediumItalic.otf in Resources */,
 				F4E908DB2371CAAD00EB9FE6 /* Metropolis-BlackItalic.otf in Resources */,
-				F471537823C3D17A00226CB8 /* UpdateToastView.xib in Resources */,
+				F471537823C3D17A00226CB8 /* VersionUpdateToastView.xib in Resources */,
 				F4E908E42371CAAD00EB9FE6 /* Metropolis-Medium.otf in Resources */,
 				F4E908E72371CAAD00EB9FE6 /* Metropolis-RegularItalic.otf in Resources */,
 				F4E9090A2371CAAD00EB9FE6 /* AccountInformationCell.xib in Resources */,
@@ -1489,7 +1489,7 @@
 				F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */,
 				F4E909042371CAAD00EB9FE6 /* LoginViewController.swift in Sources */,
 				F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */,
-				F471537623C3D15900226CB8 /* UpdateToastView.swift in Sources */,
+				F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */,
 				F4230483237209B000572A93 /* HelpViewController.swift in Sources */,
 				F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */,
 				F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */,
@@ -1530,7 +1530,7 @@
 				F4E9090F2371CAAD00EB9FE6 /* CountryVPNHeaderView.swift in Sources */,
 				F4E909022371CAAD00EB9FE6 /* LoadingViewController.swift in Sources */,
 				F4E908CF2371CAAD00EB9FE6 /* NetworkLayer.swift in Sources */,
-				F478E48123C784C400D17FE0 /* UIApplication+appVersion.swift in Sources */,
+				F478E48123C784C400D17FE0 /* UIApplication+Extensions.swift in Sources */,
 				F4E908EC2371CAAD00EB9FE6 /* Strings.swift in Sources */,
 				F423048623720A7400572A93 /* HelpDataSource.swift in Sources */,
 				F478E48823C78A1700D17FE0 /* ReleaseMonitoring.swift in Sources */,

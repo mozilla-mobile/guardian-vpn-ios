@@ -20,11 +20,14 @@ class HomeViewController: UIViewController, Navigating {
     @IBOutlet private weak var selectConnectionLabel: UILabel!
     @IBOutlet private weak var vpnSelectionView: CurrentVPNSelectorView!
     @IBOutlet private weak var warningToastView: WarningToastView!
+    @IBOutlet private weak var versionUpdateToastView: VersionUpdateToastView!
+    @IBOutlet private weak var vpnStackView: UIStackView!
 
     private let pinger = LongPinger()
     private let timerFactory = ConnectionTimerFactory()
     private let rxValueObserving = ConnectionRxValue()
     private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
+    private let releaseMonitor = DependencyFactory.sharedFactory.releaseMonitor
     private let disposeBag = DisposeBag()
 
     private lazy var connectionHealthMonitor = {
@@ -45,6 +48,7 @@ class HomeViewController: UIViewController, Navigating {
         setStrings()
         setupToggleView()
         subscribeToErrors()
+        subscribeToVersionUpdates()
     }
 
     private func setStrings() {
@@ -118,6 +122,26 @@ class HomeViewController: UIViewController, Navigating {
                                            action: self.connectToTunnel)
             })
         .disposed(by: disposeBag)
+    }
+
+    private func subscribeToVersionUpdates() {
+        releaseMonitor.releaseStatus
+            .distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] value in
+                guard let self = self else { return }
+                switch value {
+                case .available:
+                    self.vpnStackView.insertArrangedSubview(self.versionUpdateToastView, at: 0)
+                case .required:
+                    self.vpnStackView.removeArrangedSubview(self.versionUpdateToastView)
+//                    break
+                    //present the version required view
+                default: //.none or nil
+                    //remove toast or fullscreen if showing
+                    self.vpnStackView.removeArrangedSubview(self.versionUpdateToastView)
+                }
+            }).disposed(by: disposeBag)
     }
 
     // MARK: - VPN Selection handling
