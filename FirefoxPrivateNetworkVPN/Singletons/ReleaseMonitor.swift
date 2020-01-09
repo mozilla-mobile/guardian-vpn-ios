@@ -52,9 +52,4 @@ class ReleaseMonitor: ReleaseMonitoring {
             self?.releaseStatus.accept(latestRelease.status)
         }
     }
-
-    //move this somewhere else
-    func openAppStore() {
-
-    }
 }

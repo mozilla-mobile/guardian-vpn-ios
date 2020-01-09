@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNw-OD-G01">
-                    <rect key="frame" x="30" y="21" width="353" height="15.5"/>
+                    <rect key="frame" x="10" y="20.5" width="393" height="16"/>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -48,6 +48,11 @@
                         <constraint firstItem="INV-nW-rHf" firstAttribute="centerY" secondItem="iJL-se-FYI" secondAttribute="centerY" id="O5B-2Q-cF1"/>
                         <constraint firstItem="INV-nW-rHf" firstAttribute="centerX" secondItem="iJL-se-FYI" secondAttribute="centerX" id="gMg-gB-vHZ"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="P9w-ve-CLq" appends="YES" id="XSq-uC-aFK"/>
                     </connections>
@@ -56,9 +61,9 @@
             <color key="backgroundColor" name="custom_blue50"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="iJL-se-FYI" firstAttribute="leading" secondItem="QNw-OD-G01" secondAttribute="trailing" constant="30" id="8yz-Tx-TMg"/>
+                <constraint firstItem="iJL-se-FYI" firstAttribute="leading" secondItem="QNw-OD-G01" secondAttribute="trailing" constant="10" id="8yz-Tx-TMg"/>
                 <constraint firstItem="iJL-se-FYI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1:1" id="GLv-ot-TbC"/>
-                <constraint firstItem="QNw-OD-G01" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="Lkj-nG-Mhx"/>
+                <constraint firstItem="QNw-OD-G01" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Lkj-nG-Mhx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="iJL-se-FYI" secondAttribute="trailing" id="WvK-Vp-PID"/>
                 <constraint firstAttribute="bottom" secondItem="iJL-se-FYI" secondAttribute="bottom" id="YdD-N4-aeP"/>
                 <constraint firstItem="iJL-se-FYI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Yth-J9-EdZ"/>
@@ -71,6 +76,18 @@
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                     <integer key="value" value="4"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                    <real key="value" value="0.10000000000000001"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                    <real key="value" value="4"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                    <size key="value" width="0.0" height="1"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
