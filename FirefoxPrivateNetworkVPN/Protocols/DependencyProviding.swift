@@ -16,4 +16,5 @@ protocol DependencyProviding {
     var tunnelManager: TunnelManaging { get }
     var navigationCoordinator: NavigationCoordinating { get }
     var connectionHealthMonitor: ConnectionHealthMonitoring { get }
+    var releaseMonitor: ReleaseMonitoring { get }
 }
