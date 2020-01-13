@@ -16,6 +16,7 @@ final class VersionUpdateToastView: UIView {
 
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private var view: UIView!
+    @IBOutlet private weak var dismissView: UIView!
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -23,19 +24,23 @@ final class VersionUpdateToastView: UIView {
         Bundle.main.loadNibNamed(String(describing: Self.self), owner: self, options: nil)
         view.frame = bounds
         addSubview(view)
-
+        
         label.attributedText = NSAttributedString.formatted(LocalizedString.toastFeaturesAvailable.value,
                                                             actionMessage: LocalizedString.toastUpdateNow.value)
     }
-
+    
     @IBAction private func dismiss(_ sender: Any) {
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.removeFromSuperview()
-        }
+        dismissView.backgroundColor = .custom(.blue80)
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { [weak self] in
+                        self?.alpha = 0
+            }, completion: { [weak self] _ in
+                self?.removeFromSuperview()
+        })
     }
-
+    
     @IBAction private func tapped(_ sender: UITapGestureRecognizer) {
-        //open App Store
         DependencyFactory.sharedFactory.navigationCoordinator
             .navigate(from: .home, to: .appStore)
     }
