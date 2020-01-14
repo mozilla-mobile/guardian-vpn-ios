@@ -27,23 +27,23 @@ struct LatestRelease: UserDefaulting {
             return .available
         }
     }
-
+    
     var isUpdateRequired: Bool {
-        let first = version.components(separatedBy: ".")
-        let second = minimum.components(separatedBy: ".")
-        let maxIndex = first.endIndex >= second.endIndex ? first.endIndex : second.endIndex
-
+        let latestVersionArray = version.components(separatedBy: ".")
+        let minimumVersionArray = minimum.components(separatedBy: ".")
+        let maxIndex = latestVersionArray.endIndex >= minimumVersionArray.endIndex ? latestVersionArray.endIndex : minimumVersionArray.endIndex
+        
         for index in 0..<maxIndex {
-            let firstElement = first.indices.contains(index) ? first[index] : "0"
-            let secondElement = second.indices.contains(index) ? second[index] : "0"
-            let comparisonResult = firstElement.compare(secondElement, options: .numeric)
+            let latestVersionElement = latestVersionArray.indices.contains(index) ? latestVersionArray[index] : "0"
+            let minimumVersionElement = minimumVersionArray.indices.contains(index) ? minimumVersionArray[index] : "0"
+            let comparisonResult = latestVersionElement.compare(minimumVersionElement, options: .numeric)
             guard comparisonResult == .orderedSame else {
                 return comparisonResult == .orderedAscending
             }
         }
         return false
     }
-
+    
     init(with release: Release) {
         version = release.latestVersion
         minimum = release.minimumVersion
