@@ -44,7 +44,6 @@
 		F478E48623C7881900D17FE0 /* LatestReleaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48523C7881900D17FE0 /* LatestReleaseStatus.swift */; };
 		F478E48823C78A1700D17FE0 /* ReleaseMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */; };
 		F478E48A23C78F4F00D17FE0 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */; };
-		F478E48D23C78F9400D17FE0 /* ReleaseUpdateURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48C23C78F9400D17FE0 /* ReleaseUpdateURLRequest.swift */; };
 		F478E48F23C7906C00D17FE0 /* GuardianURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */; };
 		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
 		F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA21237AFF210034AF6C /* Result+Decode.swift */; };
@@ -367,7 +366,6 @@
 		F478E48523C7881900D17FE0 /* LatestReleaseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestReleaseStatus.swift; sourceTree = "<group>"; };
 		F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitoring.swift; sourceTree = "<group>"; };
 		F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
-		F478E48C23C78F9400D17FE0 /* ReleaseUpdateURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseUpdateURLRequest.swift; sourceTree = "<group>"; };
 		F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuardianURLRequest.swift; sourceTree = "<group>"; };
 		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		F49090BD2379D43200C8430A /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
@@ -850,7 +848,6 @@
 			isa = PBXGroup;
 			children = (
 				F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */,
-				F478E48C23C78F9400D17FE0 /* ReleaseUpdateURLRequest.swift */,
 				F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */,
 			);
 			path = URLRequestBuilders;
@@ -1551,7 +1548,6 @@
 				F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */,
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
 				F42304892372101000572A93 /* HyperlinkCell.swift in Sources */,
-				F478E48D23C78F9400D17FE0 /* ReleaseUpdateURLRequest.swift in Sources */,
 				F4E9090D2371CAAD00EB9FE6 /* CityVPNCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1736,7 +1732,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1798,7 +1794,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

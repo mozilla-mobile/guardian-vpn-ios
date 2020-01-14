@@ -13,6 +13,11 @@ import Foundation
 
 class GuardianAPI: NetworkRequesting {
 
+    private static func headers(with token: String) -> [String: String] {
+        return ["Authorization": "Bearer \(token)",
+            "Content-Type": "application/json"]
+    }
+
     static func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .login, type: .POST)
         NetworkLayer.fire(urlRequest: urlRequest) { result in
@@ -86,8 +91,12 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    private static func headers(with token: String) -> [String: String] {
-        return ["Authorization": "Bearer \(token)",
-            "Content-Type": "application/json"]
+    static func latestVersion(completion: @escaping (Result<Release, Error>) -> Void) {
+        let urlRequest = GuardianURLRequest.urlRequest(request: .versions, type: .GET)
+        NetworkLayer.fire(urlRequest: urlRequest) { result in
+            DispatchQueue.main.async {
+                completion(result.decode(to: Release.self))
+            }
+        }
     }
 }

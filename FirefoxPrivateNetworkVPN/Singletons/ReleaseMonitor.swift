@@ -18,7 +18,6 @@ class ReleaseMonitor: ReleaseMonitoring {
 
     private static let timeInterval: TimeInterval = 21600
     private var timer: DispatchSourceTimer?
-    private static let urlRequest = ReleaseUpdateURLRequest.urlRequest()
 
     var releaseStatus = BehaviorRelay<LatestReleaseStatus?>(value: LatestRelease.fetchFromUserDefaults()?.status)
 
@@ -44,8 +43,8 @@ class ReleaseMonitor: ReleaseMonitoring {
     }
 
     private func pollLatestVersion() {
-        NetworkLayer.fire(urlRequest: ReleaseMonitor.urlRequest) { [weak self] response in
-            guard case .success(let release) = response.decode(to: Release.self) else { return }
+        GuardianAPI.latestVersion { [weak self] response in
+            guard case .success(let release) = response else { return }
             let latestRelease = LatestRelease(with: release)
             latestRelease.saveToUserDefaults()
 
