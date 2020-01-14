@@ -34,14 +34,6 @@ class VPNToggleView: UIView {
     private var connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
     private let rippleAnimationView = AnimationView()
 
-    private lazy var daysFormatter: DateComponentsFormatter = {
-        let daysFormatter = DateComponentsFormatter()
-        daysFormatter.allowedUnits = [.day]
-        daysFormatter.unitsStyle = .full
-
-        return daysFormatter
-    }()
-
     private lazy var hoursFormatter: DateComponentsFormatter = {
         let hoursFormatter = DateComponentsFormatter()
         hoursFormatter.zeroFormattingBehavior = .pad
@@ -51,14 +43,32 @@ class VPNToggleView: UIView {
         return hoursFormatter
     }()
 
+    private lazy var daysFormatter: DateComponentsFormatter = {
+        let daysFormatter = DateComponentsFormatter()
+        daysFormatter.allowedUnits = [.day]
+        daysFormatter.unitsStyle = .full
+
+        return daysFormatter
+    }()
+
     private var formattedTime: String {
-        let time = self.tunnelManager.timeSinceConnected
+        let day = 86400.0
+        let secondsSinceConnected = self.tunnelManager.timeSinceConnected
 
-        guard let daysString = daysFormatter.string(from: time),
-            let hoursString = hoursFormatter.string(from: TimeInterval(Int(time) % 86400))
-            else { return "" }
+        switch secondsSinceConnected {
+        case 0..<day:
+            let roundedSecondsSinceConnected = TimeInterval(Int(secondsSinceConnected) % 86400)
+            return hoursFormatter.string(from: roundedSecondsSinceConnected) ?? ""
 
-        return time < 86400 ? hoursString : "\(daysString) \(hoursString)"
+        case day...(6 * day):
+            return daysFormatter.string(from: secondsSinceConnected) ?? ""
+
+        case (6 * day)...(7 * day):
+            return LocalizedString.homeSubtitleWeek.value
+
+        default:
+            return LocalizedString.homeSubtitleWeekPlus.value
+        }
     }
 
     required init?(coder: NSCoder) {

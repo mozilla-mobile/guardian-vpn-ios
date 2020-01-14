@@ -41,6 +41,8 @@
 "homeSubtitleCheckConnection" = "  •  Check connection";
 "homeSubtitleUnstable" = "  Unstable";
 "homeSubtitleNoSignal" = "  No signal";
+"homeSubtitleWeek" = "1 week";
+"homeSubtitleWeekPlus" = "1 week +";
 
 "homeApplicationName" = "Private Network";
 "homeSelectConnection" = "Select connection";
