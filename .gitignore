@@ -49,3 +49,6 @@ Guardian/Submodules/WireGuard/WireGuard/WireGuard/Config/Developer.xcconfig
 Carthage/Build/
 Carthage/Checkouts/
 Carthage/
+
+# Local Xcode build settings
+Config/FirefoxPrivateNetworkVPN-Local.xcconfig

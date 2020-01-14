@@ -36,6 +36,9 @@
 		F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */; };
 		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
 		F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4720258238C3D620033A14B /* UIFont+Custom.swift */; };
+		F484429323CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */; };
+		F484429423CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */; };
+		F484429523CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */; };
 		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
 		F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA21237AFF210034AF6C /* Result+Decode.swift */; };
 		F4A7FA24237C5C960034AF6C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA23237C5C960034AF6C /* Account.swift */; };
@@ -287,7 +290,6 @@
 		F422FEF523970752009413E2 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		F422FEF723980C1D009413E2 /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		F422FEF923983E85009413E2 /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
-		F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = WireGuardGoBridge.xcconfig; sourceTree = "<group>"; };
 		F4230481237209B000572A93 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		F4230482237209B000572A93 /* HelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
 		F423048523720A7400572A93 /* HelpDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpDataSource.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 		F46969792367345100D48617 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F469697A2367345100D48617 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		F4720258238C3D620033A14B /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
+		F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FirefoxPrivateNetworkVPN.xcconfig; sourceTree = "<group>"; };
 		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		F49090BD2379D43200C8430A /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewController.swift; sourceTree = "<group>"; };
@@ -503,6 +506,7 @@
 		6FF4AC0B211EC46F002C96EB = {
 			isa = PBXGroup;
 			children = (
+				F484429623CD059000D140B1 /* Config */,
 				F41CCA1823711C7A0018DC43 /* FirefoxPrivateNetworkVPN */,
 				F41CCA33237128F10018DC43 /* FirefoxPrivateNetworkVPNTests */,
 				F4E908A22371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests */,
@@ -511,7 +515,6 @@
 				6FF4AC15211EC46F002C96EB /* Products */,
 				F43DCC7D2379AC35000C60E3 /* README.md */,
 				F4AED107235F450D00F80ABF /* WireGuard */,
-				F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */,
 				F41CCA32237128F10018DC43 /* WireGuardTunnel */,
 			);
 			sourceTree = "<group>";
@@ -809,6 +812,14 @@
 				F45D70C22342431F00871447 /* Metropolis-ThinItalic.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F484429623CD059000D140B1 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		F4AED107235F450D00F80ABF /* WireGuard */ = {
@@ -1159,6 +1170,7 @@
 				F4E908DB2371CAAD00EB9FE6 /* Metropolis-BlackItalic.otf in Resources */,
 				F4E908E42371CAAD00EB9FE6 /* Metropolis-Medium.otf in Resources */,
 				F4E908E72371CAAD00EB9FE6 /* Metropolis-RegularItalic.otf in Resources */,
+				F484429323CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */,
 				F4E9090A2371CAAD00EB9FE6 /* AccountInformationCell.xib in Resources */,
 				F4E909182371CAAD00EB9FE6 /* VPNToggleView.xib in Resources */,
 				F4E908FB2371CAAD00EB9FE6 /* DeviceManagementViewController.xib in Resources */,
@@ -1188,6 +1200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F484429423CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1199,6 +1212,7 @@
 				F4E9091B2371CB1F00EB9FE6 /* device.json in Resources */,
 				F4E9091C2371CB1F00EB9FE6 /* loginCheckpointModel.json in Resources */,
 				F4E9091E2371CB1F00EB9FE6 /* verifyResponse.json in Resources */,
+				F484429523CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */,
 				F4E9091F2371CB1F00EB9FE6 /* vpnCountry.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1561,14 +1575,15 @@
 /* Begin XCBuildConfiguration section */
 		6F5D0C23218352EF000F85AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WireGuardTunnel/WireGuardTunnel.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YL7Q499FV6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WireGuardTunnel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1577,7 +1592,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 0.0.20191213;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.mozilla.ios.FirefoxVPN.network-extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(WIREGUARD_TUNNEL_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = WireGuardTunnel;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1588,14 +1603,15 @@
 		};
 		6F5D0C24218352EF000F85AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WireGuardTunnel/WireGuardTunnel.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YL7Q499FV6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WireGuardTunnel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1604,7 +1620,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 0.0.20191213;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.mozilla.ios.FirefoxVPN.network-extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(WIREGUARD_TUNNEL_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = WireGuardTunnel;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1635,7 +1651,7 @@
 		};
 		6FF4AC24211EC472002C96EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1701,7 +1717,7 @@
 		};
 		6FF4AC25211EC472002C96EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F423046F2371F7CF00572A93 /* WireGuardGoBridge.xcconfig */;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1763,13 +1779,14 @@
 		};
 		6FF4AC27211EC472002C96EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "FirefoxPrivateNetworkVPN/Project Files/FirefoxPrivateNetworkVPN.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YL7Q499FV6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1780,7 +1797,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.20191213;
-				PRODUCT_BUNDLE_IDENTIFIER = org.mozilla.ios.FirefoxVPN;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "Firefox Private Network VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FirefoxPrivateNetworkVPN/Project Files/Bridging-Header.h";
@@ -1791,13 +1808,14 @@
 		};
 		6FF4AC28211EC472002C96EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "FirefoxPrivateNetworkVPN/Project Files/FirefoxPrivateNetworkVPN.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YL7Q499FV6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1808,7 +1826,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.20191213;
-				PRODUCT_BUNDLE_IDENTIFIER = org.mozilla.ios.FirefoxVPN;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "Firefox Private Network VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FirefoxPrivateNetworkVPN/Project Files/Bridging-Header.h";
@@ -1819,6 +1837,7 @@
 		};
 		F4E908A92371C31400EB9FE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1833,7 +1852,7 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				PRODUCT_BUNDLE_IDENTIFIER = org.mozilla.FirefoxPrivateNetworkVPNUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_UI_TESTS_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1843,6 +1862,7 @@
 		};
 		F4E908AA2371C31400EB9FE6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1854,7 +1874,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.mozilla.FirefoxPrivateNetworkVPNUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_UI_TESTS_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1864,6 +1884,7 @@
 		};
 		F4E908B72371C35100EB9FE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1883,7 +1904,7 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				PRODUCT_BUNDLE_IDENTIFIER = org.mozilla.FirefoxPrivateNetworkVPNTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_TESTS_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1893,6 +1914,7 @@
 		};
 		F4E908B82371C35100EB9FE6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1909,7 +1931,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.mozilla.FirefoxPrivateNetworkVPNTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_TESTS_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -1,0 +1,25 @@
+//
+//  Local
+//  FirefoxPrivateNetworkVPN
+//
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+//  Copyright © 2020 Mozilla Corporation.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// Default values
+VERSION_NAME = 0.0.20191213
+VERSION_ID = 2
+DEVELOPMENT_TEAM = 43AQ936H96
+FIREFOX_VPN_BUNDLE_IDENTIFIER = org.mozilla.ios.FirefoxVPN
+WIREGUARD_TUNNEL_BUNDLE_IDENTIFIER = $(FIREFOX_VPN_BUNDLE_IDENTIFIER).network-extension
+FIREFOX_VPN_UI_TESTS_BUNDLE_IDENTIFIER = org.mozilla.FirefoxPrivateNetworkVPNUITests
+FIREFOX_VPN_TESTS_BUNDLE_IDENTIFIER = org.mozilla.FirefoxPrivateNetworkVPNTests
+
+// Override with local config if present
+#include? "FirefoxPrivateNetworkVPN-Local.xcconfig"
