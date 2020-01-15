@@ -133,7 +133,7 @@ class HomeViewController: UIViewController, Navigating {
                 switch value {
                 case .available:
                     self.vpnStackView.insertArrangedSubview(self.versionUpdateToastView, at: 0)
-                case .required:
+                case .recommended:
                     self.versionUpdateToastView.removeFromSuperview()
                     //present the version required view
                 default: //.none or nil

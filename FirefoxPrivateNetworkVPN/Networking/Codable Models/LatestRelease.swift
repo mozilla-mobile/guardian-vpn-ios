@@ -22,7 +22,7 @@ struct LatestRelease: UserDefaulting {
         if version == UIApplication.appVersion {
             return .none
         } else if compareLatestToMinimum() == .orderedAscending {
-            return .required
+            return .recommended
         } else {
             return .available
         }

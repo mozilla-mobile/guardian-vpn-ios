@@ -12,7 +12,7 @@
 import Foundation
 
 enum LatestReleaseStatus {
-    case required
-    case available
     case none
+    case available
+    case recommended
 }
