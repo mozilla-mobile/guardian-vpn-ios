@@ -36,9 +36,6 @@
 		F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */; };
 		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
 		F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4720258238C3D620033A14B /* UIFont+Custom.swift */; };
-		F484429323CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */; };
-		F484429423CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */; };
-		F484429523CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */; };
 		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
 		F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA21237AFF210034AF6C /* Result+Decode.swift */; };
 		F4A7FA24237C5C960034AF6C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA23237C5C960034AF6C /* Account.swift */; };
@@ -1170,7 +1167,6 @@
 				F4E908DB2371CAAD00EB9FE6 /* Metropolis-BlackItalic.otf in Resources */,
 				F4E908E42371CAAD00EB9FE6 /* Metropolis-Medium.otf in Resources */,
 				F4E908E72371CAAD00EB9FE6 /* Metropolis-RegularItalic.otf in Resources */,
-				F484429323CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */,
 				F4E9090A2371CAAD00EB9FE6 /* AccountInformationCell.xib in Resources */,
 				F4E909182371CAAD00EB9FE6 /* VPNToggleView.xib in Resources */,
 				F4E908FB2371CAAD00EB9FE6 /* DeviceManagementViewController.xib in Resources */,
@@ -1200,7 +1196,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F484429423CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1212,7 +1207,6 @@
 				F4E9091B2371CB1F00EB9FE6 /* device.json in Resources */,
 				F4E9091C2371CB1F00EB9FE6 /* loginCheckpointModel.json in Resources */,
 				F4E9091E2371CB1F00EB9FE6 /* verifyResponse.json in Resources */,
-				F484429523CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig in Resources */,
 				F4E9091F2371CB1F00EB9FE6 /* vpnCountry.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1583,7 +1577,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = YL7Q499FV6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WireGuardTunnel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1611,7 +1605,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = YL7Q499FV6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WireGuardTunnel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1786,7 +1780,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = YL7Q499FV6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1815,7 +1809,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = YL7Q499FV6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1841,7 +1835,7 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YL7Q499FV6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = FirefoxPrivateNetworkVPNUITests/Info.plist;
@@ -1866,7 +1860,7 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YL7Q499FV6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				INFOPLIST_FILE = FirefoxPrivateNetworkVPNUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1889,7 +1883,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YL7Q499FV6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1919,7 +1913,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YL7Q499FV6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
