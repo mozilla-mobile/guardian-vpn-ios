@@ -86,9 +86,14 @@
 // MARK: - Warning toast
 "toastTryAgain" = "Try again";
 
-//MARK: - Update toast
+// MARK: - Update toast
 "toastUpdateNow" = "Update now";
 "toastFeaturesAvailable" = "New features are available!";
+
+// Mark: - Recommended Update
+"updateRecommended" = "Update Recommended"
+"updateRecommendedSubtitle" = "Please update the app before you continue to use the VPN"
+"updateRecommendedConnection" = "Your connection will not be secure while you update."
 
 //MARK: - Error Descriptions
 "errorDeviceRemoval" = "Unable to remove device.";

@@ -105,6 +105,8 @@
 		F4B42C1F2390230B001F64F7 /* MockConnectionRxValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */; };
 		F4B42C212390504F001F64F7 /* ConnectionHealthMonitorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C202390504F001F64F7 /* ConnectionHealthMonitorSpec.swift */; };
 		F4B42C2323916A90001F64F7 /* ConnectionHealthMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */; };
+		F4DF5B1423CFBDAA006A7E4C /* UpdateRecommendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */; };
+		F4DF5B1523CFBDAA006A7E4C /* UpdateRecommendedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
 		F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E908B92371C45600EB9FE6 /* Lottie.framework */; };
@@ -456,6 +458,8 @@
 		F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationCell.swift; sourceTree = "<group>"; };
 		F4D8D94F236A259400BE5FFC /* AccountInformationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInformationCell.xib; sourceTree = "<group>"; };
 		F4D8D952236A2BA000BE5FFC /* SettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
+		F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRecommendedViewController.swift; sourceTree = "<group>"; };
+		F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateRecommendedViewController.xib; sourceTree = "<group>"; };
 		F4E33D802358BF1500B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4E8B2342368C39C001CEC8A /* TunnelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelAction.swift; sourceTree = "<group>"; };
 		F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkItem.swift; sourceTree = "<group>"; };
@@ -687,6 +691,8 @@
 				F4D8D952236A2BA000BE5FFC /* SettingsDataSource.swift */,
 				F41FE9E7235F98E400CD05C4 /* SettingsViewController.swift */,
 				F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */,
+				F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */,
+				F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1214,6 +1220,7 @@
 				F4E908E62371CAAD00EB9FE6 /* Metropolis-Regular.otf in Resources */,
 				F4E908E92371CAAD00EB9FE6 /* Metropolis-SemiBoldItalic.otf in Resources */,
 				527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */,
+				F4DF5B1523CFBDAA006A7E4C /* UpdateRecommendedViewController.xib in Resources */,
 				F4E909002371CAAD00EB9FE6 /* OnboardingViewController.xib in Resources */,
 				F4E909122371CAAD00EB9FE6 /* CurrentVPNSelectorView.xib in Resources */,
 				F4E908E82371CAAD00EB9FE6 /* Metropolis-SemiBold.otf in Resources */,
@@ -1441,6 +1448,7 @@
 			files = (
 				F4E908C72371CAAD00EB9FE6 /* VPNState.swift in Sources */,
 				F4E908F92371CAAD00EB9FE6 /* UIView+Designing.swift in Sources */,
+				F4DF5B1423CFBDAA006A7E4C /* UpdateRecommendedViewController.swift in Sources */,
 				F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */,
 				F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */,
 				F4B42C06238EFF83001F64F7 /* ConnectionTimerFactory.swift in Sources */,
