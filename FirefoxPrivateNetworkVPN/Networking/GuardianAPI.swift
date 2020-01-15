@@ -94,9 +94,7 @@ class GuardianAPI: NetworkRequesting {
     static func latestVersion(completion: @escaping (Result<Release, Error>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .versions, type: .GET)
         NetworkLayer.fire(urlRequest: urlRequest) { result in
-            DispatchQueue.main.async {
-                completion(result.decode(to: Release.self))
-            }
+            completion(result.decode(to: Release.self))
         }
     }
 }

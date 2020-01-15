@@ -21,29 +21,29 @@ struct LatestRelease: UserDefaulting {
     var status: LatestReleaseStatus {
         if version == UIApplication.appVersion {
             return .none
-        } else if isUpdateRequired {
+        } else if compareLatestToMinimum() == .orderedAscending {
             return .required
         } else {
             return .available
         }
     }
     
-    var isUpdateRequired: Bool {
+    private func compareLatestToMinimum() -> ComparisonResult {
         let latestVersionArray = version.components(separatedBy: ".")
         let minimumVersionArray = minimum.components(separatedBy: ".")
         let maxIndex = latestVersionArray.endIndex >= minimumVersionArray.endIndex ? latestVersionArray.endIndex : minimumVersionArray.endIndex
-        
+
         for index in 0..<maxIndex {
             let latestVersionElement = latestVersionArray.indices.contains(index) ? latestVersionArray[index] : "0"
             let minimumVersionElement = minimumVersionArray.indices.contains(index) ? minimumVersionArray[index] : "0"
             let comparisonResult = latestVersionElement.compare(minimumVersionElement, options: .numeric)
             guard comparisonResult == .orderedSame else {
-                return comparisonResult == .orderedAscending
+                return comparisonResult
             }
         }
-        return false
+        return .orderedSame
     }
-    
+
     init(with release: Release) {
         version = release.latestVersion
         minimum = release.minimumVersion
