@@ -27,6 +27,7 @@ enum NavigableItem {
     case settings
     case tab
     case account
+    case appStore
 }
 
 enum NavigableContext {
@@ -148,6 +149,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 let aboutViewController = AboutViewController()
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
+
+            case (.home, .appStore):
+                UIApplication.shared.openAppStore()
 
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
