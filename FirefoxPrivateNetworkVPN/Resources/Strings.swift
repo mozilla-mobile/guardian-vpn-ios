@@ -42,6 +42,8 @@ enum LocalizedString: String {
     case homeSubtitleCheckConnection
     case homeSubtitleUnstable
     case homeSubtitleNoSignal
+    case homeSubtitleWeek
+    case homeSubtitleWeekPlus
 
     case homeApplicationName
     case homeSelectConnection
