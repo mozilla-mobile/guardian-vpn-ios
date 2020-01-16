@@ -19,6 +19,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpdateRecommendedViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
+                <outlet property="connectionSubtitleLabel" destination="5M0-WD-U8v" id="y6M-vV-fe2"/>
+                <outlet property="subtitleLabel" destination="wDU-CA-TDs" id="fHo-lb-y4a"/>
+                <outlet property="titleLabel" destination="uxH-K5-0dr" id="Yqw-j2-k07"/>
+                <outlet property="updateNowButton" destination="4Ra-Uj-Ln8" id="eQx-Hd-mA3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,7 +42,7 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="wDU-CA-TDs" secondAttribute="height" multiplier="311:44" id="eDG-xN-0Vq"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                     <color key="textColor" name="custom_grey40"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -47,7 +51,7 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="uxH-K5-0dr" secondAttribute="height" multiplier="311:32" id="2VV-Ab-2IQ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="22"/>
+                    <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                     <color key="textColor" name="custom_grey50"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -91,6 +95,9 @@
                             <real key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="updateNowButtonTapped" destination="-1" eventType="touchUpInside" id="sUX-G7-OgQ"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" name="custom_grey5"/>

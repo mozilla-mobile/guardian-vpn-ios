@@ -13,12 +13,16 @@ import UIKit
 
 class UpdateRecommendedViewController: UIViewController {
 
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var connectionSubtitleLabel: UILabel!
+    @IBOutlet private weak var updateNowButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setLocalizedStrings()
     }
-
 
     /*
     // MARK: - Navigation
@@ -29,5 +33,15 @@ class UpdateRecommendedViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    @IBAction private func updateNowButtonTapped() {
+        //go to app store
+    }
+    
+    private func setLocalizedStrings() {
+        titleLabel.text = LocalizedString.updateRecommended.rawValue
+        subtitleLabel.text = LocalizedString.updateRecommendedSubtitle.rawValue
+        connectionSubtitleLabel.text = LocalizedString.updateRecommendedConnection.rawValue
+        updateNowButton.titleLabel?.text = LocalizedString.toastUpdateNow.rawValue
+    }
 }
