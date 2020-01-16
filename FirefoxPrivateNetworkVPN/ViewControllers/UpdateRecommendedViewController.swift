@@ -23,6 +23,7 @@ class UpdateRecommendedViewController: FormSheetStyleViewController, Navigating 
         super.viewDidLoad()
 
         navigationController?.navigationBar.shadowImage = UIImage()
+        updateNowButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
         setLocalizedStrings()
     }
 
