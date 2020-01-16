@@ -135,6 +135,8 @@ class HomeViewController: UIViewController, Navigating {
                     self.vpnStackView.insertArrangedSubview(self.versionUpdateToastView, at: 0)
                 case .recommended:
                     self.versionUpdateToastView.removeFromSuperview()
+
+                    self.navigate(to: .recommendedUpdate)
                     //present the version required view
                 default: //.none or nil
                     //remove toast or fullscreen if showing

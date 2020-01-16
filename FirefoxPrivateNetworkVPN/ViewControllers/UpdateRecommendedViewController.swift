@@ -11,37 +11,32 @@
 
 import UIKit
 
-class UpdateRecommendedViewController: UIViewController {
+class UpdateRecommendedViewController: FormSheetStyleViewController, Navigating {
+    static var navigableItem: NavigableItem = .recommendedUpdate
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var connectionSubtitleLabel: UILabel!
     @IBOutlet private weak var updateNowButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        navigationController?.navigationBar.shadowImage = UIImage()
         setLocalizedStrings()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     @IBAction private func updateNowButtonTapped() {
-        //go to app store
+        dismiss(animated: true) { [weak self] in
+            self?.navigate(to: .appStore)
+        }
     }
-    
+
+    // MARK: - Setup
     private func setLocalizedStrings() {
-        titleLabel.text = LocalizedString.updateRecommended.rawValue
-        subtitleLabel.text = LocalizedString.updateRecommendedSubtitle.rawValue
-        connectionSubtitleLabel.text = LocalizedString.updateRecommendedConnection.rawValue
-        updateNowButton.titleLabel?.text = LocalizedString.toastUpdateNow.rawValue
+        titleLabel.text = LocalizedString.updateRecommended.value
+        subtitleLabel.text = LocalizedString.updateRecommendedSubtitle.value
+        connectionSubtitleLabel.text = LocalizedString.updateRecommendedConnection.value
+        updateNowButton.titleLabel?.text = LocalizedString.toastUpdateNow.value
     }
 }
