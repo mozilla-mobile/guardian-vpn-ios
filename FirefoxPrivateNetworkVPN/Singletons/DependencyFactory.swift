@@ -34,4 +34,8 @@ class DependencyFactory: DependencyProviding {
     lazy var connectionHealthMonitor: ConnectionHealthMonitoring = {
         return ConnectionHealthMonitor()
     }()
+
+    var releaseMonitor: ReleaseMonitoring {
+        return ReleaseMonitor.sharedManager
+    }
 }

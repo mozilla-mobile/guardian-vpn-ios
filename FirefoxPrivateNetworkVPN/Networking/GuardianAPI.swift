@@ -13,8 +13,13 @@ import Foundation
 
 class GuardianAPI: NetworkRequesting {
 
+    private static func headers(with token: String) -> [String: String] {
+        return ["Authorization": "Bearer \(token)",
+            "Content-Type": "application/json"]
+    }
+
     static func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .login, type: .POST)
+        let urlRequest = GuardianURLRequest.urlRequest(request: .login, type: .POST)
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: LoginCheckpointModel.self))
@@ -23,7 +28,7 @@ class GuardianAPI: NetworkRequesting {
     }
 
     static func accountInfo(token: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .account, type: .GET, httpHeaderParams: headers(with: token))
+        let urlRequest = GuardianURLRequest.urlRequest(request: .account, type: .GET, httpHeaderParams: headers(with: token))
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: User.self))
@@ -32,7 +37,7 @@ class GuardianAPI: NetworkRequesting {
     }
 
     static func verify(urlString: String, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(fullUrlString: urlString, type: .GET)
+        let urlRequest = URLRequestBuilder.urlRequest(with: urlString, type: .GET)
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: VerifyResponse.self))
@@ -41,7 +46,7 @@ class GuardianAPI: NetworkRequesting {
     }
 
     static func availableServers(with token: String, completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .retrieveServers, type: .GET, httpHeaderParams: headers(with: token))
+        let urlRequest = GuardianURLRequest.urlRequest(request: .retrieveServers, type: .GET, httpHeaderParams: headers(with: token))
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result
@@ -58,7 +63,7 @@ class GuardianAPI: NetworkRequesting {
             return
         }
 
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token), body: data)
+        let urlRequest = GuardianURLRequest.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token), body: data)
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: Device.self))
@@ -72,7 +77,7 @@ class GuardianAPI: NetworkRequesting {
             return
         }
 
-        let urlRequest = GuardianURLRequestBuilder.urlRequest(request: .removeDevice(encodedKey), type: .DELETE, httpHeaderParams: headers(with: token))
+        let urlRequest = GuardianURLRequest.urlRequest(request: .removeDevice(encodedKey), type: .DELETE, httpHeaderParams: headers(with: token))
 
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
@@ -86,8 +91,10 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    private static func headers(with token: String) -> [String: String] {
-        return ["Authorization": "Bearer \(token)",
-            "Content-Type": "application/json"]
+    static func latestVersion(completion: @escaping (Result<Release, Error>) -> Void) {
+        let urlRequest = GuardianURLRequest.urlRequest(request: .versions, type: .GET)
+        NetworkLayer.fire(urlRequest: urlRequest) { result in
+            completion(result.decode(to: Release.self))
+        }
     }
 }

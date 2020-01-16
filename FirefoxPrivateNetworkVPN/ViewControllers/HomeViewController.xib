@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,8 +21,10 @@
             <connections>
                 <outlet property="navigationTitleLabel" destination="Rpo-Dd-s6i" id="iLn-NZ-4zI"/>
                 <outlet property="selectConnectionLabel" destination="oGq-Iz-V78" id="kph-nE-1mz"/>
+                <outlet property="versionUpdateToastView" destination="Yry-ba-MAs" id="ik3-ib-RVg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vpnSelectionView" destination="6xU-vI-Kl7" id="P7N-x9-c9b"/>
+                <outlet property="vpnStackView" destination="d5Z-V5-CBU" id="4f5-ZT-iU4"/>
                 <outlet property="vpnToggleView" destination="mRl-G2-VBt" id="Rrg-HE-azY"/>
                 <outlet property="warningToastView" destination="yL4-fg-Uhn" id="Lgl-oV-wt2"/>
             </connections>
@@ -33,7 +35,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="b76-ij-pGQ" userLabel="Logo View">
-                    <rect key="frame" x="124" y="24" width="127.5" height="24"/>
+                    <rect key="frame" x="127.5" y="24" width="120.5" height="24"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="bGv-w5-bfc">
                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -43,7 +45,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpo-Dd-s6i">
-                            <rect key="frame" x="32" y="4.5" width="95.5" height="15"/>
+                            <rect key="frame" x="32" y="3.5" width="88.5" height="17.5"/>
                             <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                             <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
@@ -59,14 +61,26 @@
                         <constraint firstItem="bGv-w5-bfc" firstAttribute="leading" secondItem="b76-ij-pGQ" secondAttribute="leading" id="npb-BY-4VZ"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mRl-G2-VBt" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
-                    <rect key="frame" x="16" y="72" width="343" height="311.5"/>
-                    <constraints>
-                        <constraint firstAttribute="height" priority="249" constant="311.5" id="3gJ-NP-1EL"/>
-                    </constraints>
-                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d5Z-V5-CBU" userLabel="VPN Stack View">
+                    <rect key="frame" x="16" y="72" width="343" height="367.5"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yry-ba-MAs" customClass="VersionUpdateToastView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="VfZ-fR-WI1"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mRl-G2-VBt" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="56" width="343" height="311.5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="249" constant="311.5" id="3gJ-NP-1EL"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hE9-aK-nXZ" userLabel="Vpn Selection View Container">
-                    <rect key="frame" x="32" y="415.5" width="311" height="48"/>
+                    <rect key="frame" x="32" y="471.5" width="311" height="48"/>
                     <subviews>
                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xU-vI-Kl7" customClass="CurrentVPNSelectorView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="311" height="48"/>
@@ -100,7 +114,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGq-Iz-V78">
-                    <rect key="frame" x="154" y="473.5" width="67" height="13"/>
+                    <rect key="frame" x="155.5" y="529.5" width="64.5" height="13"/>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
                     <color key="textColor" name="custom_grey40"/>
                     <nil key="highlightedColor"/>
@@ -119,15 +133,15 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yL4-fg-Uhn" secondAttribute="trailing" constant="8" id="6Dh-XY-jTm"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hE9-aK-nXZ" secondAttribute="trailing" constant="32" id="7cW-3X-e0I"/>
                 <constraint firstItem="b76-ij-pGQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Aye-h4-0R0"/>
-                <constraint firstItem="mRl-G2-VBt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Bw1-0n-kd1"/>
+                <constraint firstItem="d5Z-V5-CBU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NFm-ZZ-lkh"/>
                 <constraint firstItem="oGq-Iz-V78" firstAttribute="top" secondItem="hE9-aK-nXZ" secondAttribute="bottom" constant="10" id="NKU-mO-U19"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yL4-fg-Uhn" secondAttribute="bottom" constant="8" id="UEO-Ud-15u"/>
-                <constraint firstItem="hE9-aK-nXZ" firstAttribute="top" secondItem="mRl-G2-VBt" secondAttribute="bottom" constant="32" id="UOt-Ty-LMi"/>
                 <constraint firstItem="hE9-aK-nXZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="Uh0-tm-kfe"/>
+                <constraint firstItem="d5Z-V5-CBU" firstAttribute="top" secondItem="b76-ij-pGQ" secondAttribute="bottom" constant="24" id="YMy-38-S9k"/>
                 <constraint firstItem="oGq-Iz-V78" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="apr-3l-aqJ"/>
-                <constraint firstItem="mRl-G2-VBt" firstAttribute="top" secondItem="b76-ij-pGQ" secondAttribute="bottom" constant="24" id="eyk-pi-yGr"/>
                 <constraint firstItem="hE9-aK-nXZ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="k6K-AA-TZD"/>
-                <constraint firstItem="mRl-G2-VBt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="rNu-IJ-lnM"/>
+                <constraint firstItem="hE9-aK-nXZ" firstAttribute="top" secondItem="d5Z-V5-CBU" secondAttribute="bottom" constant="32" id="t1P-BE-6Se"/>
+                <constraint firstItem="d5Z-V5-CBU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="t1T-GG-ubu"/>
                 <constraint firstItem="b76-ij-pGQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="wmI-Iq-zeC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

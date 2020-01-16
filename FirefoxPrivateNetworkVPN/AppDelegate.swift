@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         dependencyFactory = DependencyFactory.sharedFactory
+        dependencyFactory?.releaseMonitor.start()
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
@@ -32,17 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        if dependencyFactory?.accountManager.account != nil {
-            dependencyFactory?.accountManager.startHeartbeat()
-        }
-        guard
-            let vpnState = self.dependencyFactory?.tunnelManager.stateEvent.value,
-            vpnState == .on
-            else {
-                return
+        guard let dependencyFactory = dependencyFactory else { return }
+
+        dependencyFactory.releaseMonitor.start()
+
+        if dependencyFactory.accountManager.account != nil {
+            dependencyFactory.accountManager.startHeartbeat()
         }
 
-        if let hostAddress = VPNCity.fetchFromUserDefaults()?.servers.first?.ipv4Gateway {
+        if dependencyFactory.tunnelManager.stateEvent.value == .on,
+            let hostAddress = VPNCity.fetchFromUserDefaults()?.servers.first?.ipv4Gateway {
             self.dependencyFactory?.connectionHealthMonitor.start(hostAddress: hostAddress)
         }
     }
@@ -50,5 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         dependencyFactory?.connectionHealthMonitor.stop()
         dependencyFactory?.accountManager.stopHeartbeat()
+        dependencyFactory?.releaseMonitor.stop()
     }
 }
