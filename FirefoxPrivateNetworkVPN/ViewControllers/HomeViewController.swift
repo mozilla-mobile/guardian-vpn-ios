@@ -132,15 +132,12 @@ class HomeViewController: UIViewController, Navigating {
                 guard let self = self else { return }
                 switch value {
                 case .available:
-                    self.vpnStackView.insertArrangedSubview(self.versionUpdateToastView, at: 0)
+                    self.versionUpdateToastView.isHidden = false
                 case .recommended:
-                    self.versionUpdateToastView.removeFromSuperview()
-
+                    self.versionUpdateToastView.isHidden = true
                     self.navigate(to: .recommendedUpdate)
-                    //present the version required view
                 default: //.none or nil
-                    //remove toast or fullscreen if showing
-                    self.versionUpdateToastView.removeFromSuperview()
+                    self.versionUpdateToastView.isHidden = true
                 }
             }).disposed(by: disposeBag)
     }

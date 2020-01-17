@@ -11,7 +11,7 @@
 
 import UIKit
 
-struct LatestRelease: UserDefaulting {
+struct ReleaseInfo: UserDefaulting {
     static var userDefaultsKey = "LatestRelease"
 
     let version: String
@@ -27,7 +27,7 @@ struct LatestRelease: UserDefaulting {
             return .available
         }
     }
-    
+
     private func compareLatestToMinimum() -> ComparisonResult {
         let latestVersionArray = version.components(separatedBy: ".")
         let minimumVersionArray = minimum.components(separatedBy: ".")

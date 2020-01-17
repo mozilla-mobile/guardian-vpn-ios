@@ -23,6 +23,6 @@ class AboutHeaderView: UITableViewHeaderFooterView {
         appNameLabel.text = LocalizedString.aboutAppName.value
         appDescriptionLabel.text = LocalizedString.aboutDescription.value
         releaseLabel.text = LocalizedString.aboutReleaseVersion.value
-        versionLabel.text = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        versionLabel.text = UIApplication.appVersion
     }
 }
