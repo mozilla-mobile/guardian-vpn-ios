@@ -125,7 +125,7 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func subscribeToVersionUpdates() {
-        releaseMonitor.releaseStatus
+        releaseMonitor.updateStatus
             .distinctUntilChanged()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] value in

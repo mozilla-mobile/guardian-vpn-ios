@@ -19,7 +19,7 @@ class ReleaseMonitor: ReleaseMonitoring {
     private static let timeInterval: TimeInterval = 21600
     private var timer: DispatchSourceTimer?
 
-    var releaseStatus = BehaviorRelay<LatestReleaseStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.status)
+    var updateStatus = BehaviorRelay<UpdateStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus())
 
     private var pollingDelay: DispatchTime {
         guard let latestRelease = ReleaseInfo.fetchFromUserDefaults() else { return .now() }
@@ -48,7 +48,7 @@ class ReleaseMonitor: ReleaseMonitoring {
             let releaseInfo = ReleaseInfo(with: release)
             releaseInfo.saveToUserDefaults()
 
-            self?.releaseStatus.accept(releaseInfo.status)
+            self?.updateStatus.accept(releaseInfo.getUpdateStatus())
         }
     }
 }

@@ -15,8 +15,8 @@ extension UIApplication {
     private static let bundleVersionKey = "CFBundleShortVersionString"
     private static let appStoreURL = "itms-apps://itunes.apple.com/app/id"
 
-    static var appVersion: String? {
-        return Bundle.main.object(forInfoDictionaryKey: UIApplication.bundleVersionKey) as? String
+    static var appVersion: String {
+        return Bundle.main.object(forInfoDictionaryKey: UIApplication.bundleVersionKey) as? String ?? ""
     }
 
     func openAppStore() {

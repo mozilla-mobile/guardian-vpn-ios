@@ -18,24 +18,16 @@ struct ReleaseInfo: UserDefaulting {
     private let minimumVersion: String
     let dateRetrieved: Date
 
-    private var currentVersion: String {
-        return UIApplication.appVersion ?? ""
-    }
-
-    var status: LatestReleaseStatus {
-        if currentVersion >= latestVersion {
-            return .none
-        } else if compareCurrentToMinimum() == .orderedAscending {
-            return .recommended
-        } else {
-            return .available
-        }
+    init(latestVersion: String, minimumVersion: String, dateRetrieved: Date) {
+        self.latestVersion = latestVersion
+        self.minimumVersion = minimumVersion
+        self.dateRetrieved = dateRetrieved
     }
 
     init(with release: Release) {
-        latestVersion = release.latestVersion
-        minimumVersion = release.minimumVersion
-        dateRetrieved = release.dateRetrieved
+        self.latestVersion = release.latestVersion
+        self.minimumVersion = release.minimumVersion
+        self.dateRetrieved = release.dateRetrieved
     }
 
     init(from decoder: Decoder) throws {
@@ -46,15 +38,31 @@ struct ReleaseInfo: UserDefaulting {
         dateRetrieved = try container.decode(Date.self, forKey: .dateRetrieved)
     }
 
-    private func compareCurrentToMinimum() -> ComparisonResult {
-        let currentVersionArray = currentVersion.components(separatedBy: ".")
-        let minimumVersionArray = minimumVersion.components(separatedBy: ".")
-        let maxIndex = currentVersionArray.endIndex >= minimumVersionArray.endIndex ? currentVersionArray.endIndex : minimumVersionArray.endIndex
+    func getUpdateStatus(of currentVersion: String = UIApplication.appVersion) -> UpdateStatus {
+
+        switch (currentVersion.compare(with: latestVersion), currentVersion.compare(with: minimumVersion)) {
+        case (_, .orderedAscending):
+            return .recommended
+
+        case (.orderedAscending, _):
+            return .available
+
+        default:
+            return .none
+        }
+    }
+}
+
+extension String {
+    func compare(with secondVersion: String) -> ComparisonResult {
+        let firstArray = components(separatedBy: ".")
+        let secondArray = secondVersion.components(separatedBy: ".")
+        let maxIndex = secondArray.endIndex >= firstArray.endIndex ? secondArray.endIndex : firstArray.endIndex
 
         for index in 0..<maxIndex {
-            let currentVersionElement = currentVersionArray.indices.contains(index) ? currentVersionArray[index] : "0"
-            let minimumVersionElement = minimumVersionArray.indices.contains(index) ? minimumVersionArray[index] : "0"
-            let comparisonResult = currentVersionElement.compare(minimumVersionElement, options: .numeric)
+            let secondElement = secondArray.indices.contains(index) ? secondArray[index] : "0"
+            let firstElement = firstArray.indices.contains(index) ? firstArray[index] : "0"
+            let comparisonResult = firstElement.compare(secondElement, options: .numeric)
             guard comparisonResult == .orderedSame else {
                 return comparisonResult
             }
