@@ -88,14 +88,20 @@
 // MARK: - Warning toast
 "toastTryAgain" = "Try again";
 
+//Mark: - Update
+"updateConnection" = "Your connection will not be secure while you update.";
+"updateNow" = "Update now";
+
 // MARK: - Update toast
-"toastUpdateNow" = "Update now";
 "toastFeaturesAvailable" = "New features are available!";
 
 // Mark: - Recommended Update
 "updateRecommended" = "Update recommended";
 "updateRecommendedSubtitle" = "Please update the app before you continue to use the VPN";
-"updateRecommendedConnection" = "Your connection will not be secure while you update.";
+
+// Mark: - Required Update
+"updateRequired" = "Update required";
+"updateRequiredSubtitle" = "We detected and fixed a serious bug. You must update your app in order to use Firefox Private Network.";
 
 //MARK: - Error Descriptions
 "errorDeviceRemoval" = "Unable to remove device.";

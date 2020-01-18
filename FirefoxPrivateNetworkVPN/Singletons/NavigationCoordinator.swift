@@ -29,6 +29,7 @@ enum NavigableItem {
     case account
     case appStore
     case recommendedUpdate
+    case requiredUpdate
 }
 
 enum NavigableContext {
@@ -60,7 +61,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             switch (origin, destination) {
             // To Landing
-            case (.loading, .landing), (.settings, .landing), (.account, .landing):
+            case (.loading, .landing), (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
                 let landingViewController = LandingViewController()
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController
@@ -156,6 +157,11 @@ class NavigationCoordinator: NavigationCoordinating {
                 let navController = UINavigationController(rootViewController: updateRecommendedViewController)
                 self.currentViewController?.present(navController, animated: true, completion: nil)
 
+            case (.home, .requiredUpdate):
+                let updateRequiredViewController = UpdateRequiredViewController()
+                self.appDelegate?.window?.rootViewController = updateRequiredViewController
+                self.currentViewController = updateRequiredViewController
+                
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
                 return

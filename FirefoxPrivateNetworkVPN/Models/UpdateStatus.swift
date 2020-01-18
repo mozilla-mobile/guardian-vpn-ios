@@ -13,6 +13,7 @@ import Foundation
 
 enum UpdateStatus {
     case none
-    case available
+    case optional
     case recommended
+    case required
 }

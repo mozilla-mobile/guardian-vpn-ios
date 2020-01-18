@@ -61,7 +61,7 @@ class ReleaseInfoSpec: QuickSpec {
                         sut = ReleaseInfo(latestVersion: "6.6", minimumVersion: "6.5.9", dateRetrieved: Date())
 
                         let status = sut.getUpdateStatus(of: "6.5.9")
-                        expect(status).to(equal(UpdateStatus.available))
+                        expect(status).to(equal(UpdateStatus.optional))
                     }
                 }
 
@@ -81,7 +81,7 @@ class ReleaseInfoSpec: QuickSpec {
                         sut = ReleaseInfo(latestVersion: "2.2", minimumVersion: "1.1", dateRetrieved: Date())
 
                         let status = sut.getUpdateStatus(of: "2.0.0")
-                        expect(status).to(equal(UpdateStatus.available))
+                        expect(status).to(equal(UpdateStatus.optional))
                     }
                 }
 

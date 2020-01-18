@@ -45,7 +45,7 @@ struct ReleaseInfo: UserDefaulting {
             return .recommended
 
         case (.orderedAscending, _):
-            return .available
+            return .optional
 
         default:
             return .none

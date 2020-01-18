@@ -37,7 +37,7 @@ class UpdateRecommendedViewController: FormSheetStyleViewController, Navigating 
     private func setLocalizedStrings() {
         titleLabel.text = LocalizedString.updateRecommended.value
         subtitleLabel.text = LocalizedString.updateRecommendedSubtitle.value
-        connectionSubtitleLabel.text = LocalizedString.updateRecommendedConnection.value
+        connectionSubtitleLabel.text = LocalizedString.updateConnection.value
         updateNowButton.titleLabel?.text = LocalizedString.toastUpdateNow.value
     }
 }
