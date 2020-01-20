@@ -19,8 +19,6 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var manageAccountButton: UIButton!
 
-    private let manageAccountURL = URL(string: "https://fpn.firefox.com/r/vpn/account/")
-
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -53,7 +51,7 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     }
 
     @IBAction func accountButtonTapped() {
-        if let url = manageAccountURL {
+        if let url = HyperlinkItem.account.url {
             UIApplication.shared.open(url)
         }
     }

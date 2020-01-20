@@ -14,8 +14,6 @@ import UIKit
 class UpdateRequiredViewController: FormSheetStyleViewController, Navigating {
     static var navigableItem: NavigableItem = .requiredUpdate
 
-    private let manageAccountURL = URL(string: "https://fpn.firefox.com/r/vpn/account/")
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var connectionSubtitleLabel: UILabel!
@@ -35,7 +33,7 @@ class UpdateRequiredViewController: FormSheetStyleViewController, Navigating {
     }
 
     @IBAction func manageAccountTapped() {
-        if let url = manageAccountURL {
+        if let url = HyperlinkItem.account.url {
             UIApplication.shared.open(url)
         }
     }
@@ -53,5 +51,7 @@ class UpdateRequiredViewController: FormSheetStyleViewController, Navigating {
         subtitleLabel.text = LocalizedString.updateRequiredSubtitle.value
         connectionSubtitleLabel.text = LocalizedString.updateConnection.value
         updateNowButton.titleLabel?.text = LocalizedString.updateNow.value
+        manageAccountButton.titleLabel?.text = LocalizedString.settingsManageAccount.value
+        signoutButton.titleLabel?.text = LocalizedString.settingsSignOut.value
     }
 }
