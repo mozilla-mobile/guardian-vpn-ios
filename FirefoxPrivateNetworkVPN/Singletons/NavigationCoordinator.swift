@@ -28,6 +28,7 @@ enum NavigableItem {
     case tab
     case account
     case appStore
+    case recommendedUpdate
 }
 
 enum NavigableContext {
@@ -92,9 +93,6 @@ class NavigationCoordinator: NavigationCoordinating {
                 let serversViewController = ServersViewController()
                 let navController = UINavigationController(rootViewController: serversViewController)
                 self.currentViewController?.present(navController, animated: true, completion: nil)
-                if #available(iOS 13.0, *) {
-                    self.currentViewController?.view.alpha = 0.5
-                }
 
             case (.servers, .home):
                 self.currentViewController?.dismiss(animated: true, completion: nil)
@@ -150,8 +148,13 @@ class NavigationCoordinator: NavigationCoordinating {
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
 
-            case (.home, .appStore):
+            case (_, .appStore):
                 UIApplication.shared.openAppStore()
+
+            case (.home, .recommendedUpdate):
+                let updateRecommendedViewController = UpdateRecommendedViewController()
+                let navController = UINavigationController(rootViewController: updateRecommendedViewController)
+                self.currentViewController?.present(navController, animated: true, completion: nil)
 
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions

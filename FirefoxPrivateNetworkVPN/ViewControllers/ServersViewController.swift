@@ -13,7 +13,7 @@ import UIKit
 import RxSwift
 import os.log
 
-class ServersViewController: UIViewController, Navigating {
+class ServersViewController: FormSheetStyleViewController, Navigating {
     // MARK: - Properties
     static var navigableItem: NavigableItem = .servers
 
@@ -35,10 +35,8 @@ class ServersViewController: UIViewController, Navigating {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
-        tableView.contentInsetAdjustmentBehavior = .never
-        dataSource = ServersDataSource(with: tableView)
-        tableView.reloadData()
+        setupTableView()
+        setupTitle()
         setupObservers()
     }
 
@@ -50,20 +48,16 @@ class ServersViewController: UIViewController, Navigating {
         }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        presentingViewController?.view.alpha = 1
-    }
-
     // MARK: - Setup
-    private func setupNavigationBar() {
-//        let leftSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-//        leftSpacer.width = 0.5
-        let closeButton = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(close))
-        navigationItem.leftBarButtonItems = [closeButton]
+    private func setupTitle() {
         navigationItem.title = LocalizedString.serversNavTitle.value
         navigationController?.navigationBar.setTitleFont()
-        navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
+    }
+
+    private func setupTableView() {
+        tableView.contentInsetAdjustmentBehavior = .never
+        dataSource = ServersDataSource(with: tableView)
+        tableView.reloadData()
     }
 
     //swiftlint:disable trailing_closure
@@ -102,9 +96,5 @@ class ServersViewController: UIViewController, Navigating {
                 OSLog.logTunnel(.error, error.localizedDescription)
                 NotificationCenter.default.post(Notification(name: .switchServerError))
             }).disposed(by: disposeBag)
-    }
-
-    @objc func close() {
-        navigate(to: .home)
     }
 }

@@ -11,8 +11,8 @@
 
 import Foundation
 
-enum LatestReleaseStatus {
-    case required
-    case available
+enum UpdateStatus {
     case none
+    case available
+    case recommended
 }

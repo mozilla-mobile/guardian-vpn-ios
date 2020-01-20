@@ -125,20 +125,19 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func subscribeToVersionUpdates() {
-        releaseMonitor.releaseStatus
+        releaseMonitor.updateStatus
             .distinctUntilChanged()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 switch value {
                 case .available:
-                    self.vpnStackView.insertArrangedSubview(self.versionUpdateToastView, at: 0)
-                case .required:
-                    self.versionUpdateToastView.removeFromSuperview()
-                    //present the version required view
+                    self.versionUpdateToastView.isHidden = false
+                case .recommended:
+                    self.versionUpdateToastView.isHidden = true
+                    self.navigate(to: .recommendedUpdate)
                 default: //.none or nil
-                    //remove toast or fullscreen if showing
-                    self.versionUpdateToastView.removeFromSuperview()
+                    self.versionUpdateToastView.isHidden = true
                 }
             }).disposed(by: disposeBag)
     }

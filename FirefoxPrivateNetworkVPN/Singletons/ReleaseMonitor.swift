@@ -19,19 +19,19 @@ class ReleaseMonitor: ReleaseMonitoring {
     private static let timeInterval: TimeInterval = 21600
     private var timer: DispatchSourceTimer?
 
-    var releaseStatus = BehaviorRelay<LatestReleaseStatus?>(value: LatestRelease.fetchFromUserDefaults()?.status)
+    var updateStatus = BehaviorRelay<UpdateStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus())
 
-    private var pollingDelay: DispatchTime? {
-        guard let latestRelease = LatestRelease.fetchFromUserDefaults() else { return nil }
+    private var pollingDelay: DispatchTime {
+        guard let latestRelease = ReleaseInfo.fetchFromUserDefaults() else { return .now() }
         let delayInSeconds = ReleaseMonitor.timeInterval + latestRelease.dateRetrieved.timeIntervalSinceNow
-        guard delayInSeconds > 0 else { return nil }
+        guard delayInSeconds > 0 else { return .now() }
 
         return .now() + DispatchTimeInterval.seconds(Int(delayInSeconds))
     }
 
     func start() {
         timer = DispatchSource.makeTimerSource()
-        timer?.schedule(deadline: pollingDelay ?? .now(), repeating: ReleaseMonitor.timeInterval, leeway: .seconds(1))
+        timer?.schedule(deadline: pollingDelay, repeating: ReleaseMonitor.timeInterval, leeway: .seconds(1))
         timer?.setEventHandler { [weak self] in
             self?.pollLatestVersion()
         }
@@ -45,10 +45,10 @@ class ReleaseMonitor: ReleaseMonitoring {
     private func pollLatestVersion() {
         GuardianAPI.latestVersion { [weak self] response in
             guard case .success(let release) = response else { return }
-            let latestRelease = LatestRelease(with: release)
-            latestRelease.saveToUserDefaults()
+            let releaseInfo = ReleaseInfo(with: release)
+            releaseInfo.saveToUserDefaults()
 
-            self?.releaseStatus.accept(latestRelease.status)
+            self?.updateStatus.accept(releaseInfo.getUpdateStatus())
         }
     }
 }

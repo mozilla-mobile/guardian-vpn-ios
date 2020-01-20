@@ -24,22 +24,23 @@ final class VersionUpdateToastView: UIView {
         Bundle.main.loadNibNamed(String(describing: Self.self), owner: self, options: nil)
         view.frame = bounds
         addSubview(view)
-        
+
         label.attributedText = NSAttributedString.formatted(LocalizedString.toastFeaturesAvailable.value,
                                                             actionMessage: LocalizedString.toastUpdateNow.value)
     }
-    
+
     @IBAction private func dismiss(_ sender: Any) {
         dismissView.backgroundColor = .custom(.blue80)
-        
+
         UIView.animate(withDuration: 0.3,
                        animations: { [weak self] in
                         self?.alpha = 0
-            }, completion: { [weak self] _ in
-                self?.removeFromSuperview()
+            },
+                       completion: { [weak self] _ in
+                        self?.isHidden = true
         })
     }
-    
+
     @IBAction private func tapped(_ sender: UITapGestureRecognizer) {
         DependencyFactory.sharedFactory.navigationCoordinator
             .navigate(from: .home, to: .appStore)
