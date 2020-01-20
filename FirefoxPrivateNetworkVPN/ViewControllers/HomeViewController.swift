@@ -81,7 +81,7 @@ class HomeViewController: UIViewController, Navigating {
                 case (VPNState.off, VPNState.disconnecting):
                     self?.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
                                                 action: self?.connectToTunnel)
-
+                    
                     return Observable.just(current)
                 default: return Observable.just(current)
                 }
@@ -91,7 +91,7 @@ class HomeViewController: UIViewController, Navigating {
         .subscribe(onNext: { [weak self] state in
             self?.vpnToggleView.update(with: state)
         }).disposed(by: disposeBag)
-
+        
         vpnToggleView.update(with: tunnelManager.stateEvent.value)
     }
 
