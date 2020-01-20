@@ -47,7 +47,6 @@ class SettingsViewController: UIViewController, Navigating {
 
     // MARK: - IBActions
     @IBAction func signOut() {
-        DependencyFactory.sharedFactory.tunnelManager.stop()
         DependencyFactory.sharedFactory.accountManager.logout { [weak self] _ in
             self?.navigate(to: .landing)
         }

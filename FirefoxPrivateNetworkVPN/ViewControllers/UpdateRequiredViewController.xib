@@ -37,7 +37,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lVb-oU-lqV" userLabel="Logo View">
-                    <rect key="frame" x="112.5" y="60" width="189" height="24"/>
+                    <rect key="frame" x="104" y="60" width="206" height="24"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="cEF-tW-10w">
                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -47,7 +47,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Firefox Private Network" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIW-4b-6nb">
-                            <rect key="frame" x="32" y="3.5" width="157" height="17.5"/>
+                            <rect key="frame" x="32" y="4.5" width="174" height="15"/>
                             <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                             <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
@@ -65,13 +65,14 @@
                     <viewLayoutGuide key="safeArea" id="gf4-KB-gQh"/>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="required_upgrade" translatesAutoresizingMaskIntoConstraints="NO" id="LCX-1i-bGJ">
-                    <rect key="frame" x="127" y="175" width="160" height="160"/>
+                    <rect key="frame" x="167" y="175" width="80" height="80"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="80" id="SoG-Ze-OpO"/>
                         <constraint firstAttribute="width" secondItem="LCX-1i-bGJ" secondAttribute="height" multiplier="1:1" id="yLN-o2-anZ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update recommended" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxH-K5-0dr">
-                    <rect key="frame" x="32" y="359" width="350" height="36"/>
+                    <rect key="frame" x="32" y="279" width="350" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="uxH-K5-0dr" secondAttribute="height" multiplier="311:32" id="2VV-Ab-2IQ"/>
                     </constraints>
@@ -80,7 +81,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please update the app before you continue to use the VPN" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDU-CA-TDs">
-                    <rect key="frame" x="32" y="403" width="350" height="49.5"/>
+                    <rect key="frame" x="32" y="323" width="350" height="49.5"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="wDU-CA-TDs" secondAttribute="height" multiplier="311:44" id="eDG-xN-0Vq"/>
                     </constraints>
@@ -89,7 +90,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdX-CU-tOL" userLabel="Container View">
-                    <rect key="frame" x="16" y="484.5" width="382" height="82.5"/>
+                    <rect key="frame" x="16" y="404.5" width="382" height="82.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aTe-gB-AbV">
                             <rect key="frame" x="0.0" y="0.0" width="382" height="82.5"/>
@@ -163,7 +164,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ra-Uj-Ln8">
-                    <rect key="frame" x="32" y="599" width="350" height="45"/>
+                    <rect key="frame" x="32" y="519" width="350" height="45"/>
                     <color key="backgroundColor" name="custom_blue50"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="4Ra-Uj-Ln8" secondAttribute="height" multiplier="311:40" id="nq6-sw-3tp"/>
@@ -182,7 +183,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyu-Lp-Wf1">
-                    <rect key="frame" x="179" y="776" width="56" height="30"/>
+                    <rect key="frame" x="176.5" y="779" width="61" height="27"/>
                     <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                     <state key="normal" title="Sign out">
                         <color key="titleColor" name="custom_red50"/>
@@ -192,7 +193,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOM-lZ-xOn">
-                    <rect key="frame" x="150.5" y="728" width="113" height="30"/>
+                    <rect key="frame" x="147.5" y="730" width="119" height="31"/>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                     <state key="normal" title="Manage account">
                         <color key="titleColor" name="custom_blue50"/>

@@ -39,7 +39,6 @@ class UpdateRequiredViewController: FormSheetStyleViewController, Navigating {
     }
 
     @IBAction func signoutTapped() {
-        DependencyFactory.sharedFactory.tunnelManager.stop()
         DependencyFactory.sharedFactory.accountManager.logout { [weak self] _ in
             self?.navigate(to: .landing)
         }
