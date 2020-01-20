@@ -10,7 +10,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.org.mozilla.ios.FirefoxVPN</string>
+		<string>$(FIREFOX_VPN_APP_GROUP)</string>
 	</array>
 </dict>
 </plist>
