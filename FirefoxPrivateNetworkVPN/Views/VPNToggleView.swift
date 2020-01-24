@@ -109,7 +109,7 @@ class VPNToggleView: UIView {
         titleLabel.textColor = state.textColor
         subtitleLabel.text = state.subtitle
         subtitleLabel.textColor = state.subtitleColor
-        vpnSwitch.isOn = state.isToggleOn
+        vpnSwitch.setOn(state.isToggleOn, animated: true)
         vpnSwitch.isUserInteractionEnabled = state.isEnabled
         vpnSwitch.alpha = state.isEnabled ? 1 : 0.5
         vpnToggleButton.isUserInteractionEnabled = state.isEnabled
