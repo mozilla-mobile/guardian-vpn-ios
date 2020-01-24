@@ -33,6 +33,11 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        getStartedButton.cornerRadius = getStartedButton.frame.height/10
+    }
+
     @IBAction func getStarted() {
         assertionFailure("Must override")
     }
