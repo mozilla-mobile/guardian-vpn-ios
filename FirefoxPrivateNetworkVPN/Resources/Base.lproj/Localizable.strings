@@ -44,7 +44,7 @@
 "homeSubtitleWeek" = "1 week";
 "homeSubtitleWeekPlus" = "1 week +";
 
-"homeApplicationName" = "Private Network";
+"homeApplicationName" = "Firefox Private Network";
 "homeSelectConnection" = "Select connection";
 
 // MARK: - Server Selection
