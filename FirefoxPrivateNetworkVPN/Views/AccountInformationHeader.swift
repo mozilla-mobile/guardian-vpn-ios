@@ -12,7 +12,7 @@
 import UIKit
 
 class AccountInformationHeader: UITableViewHeaderFooterView {
-    static let height: CGFloat = 280.0
+    static let height: CGFloat = UIScreen.isiPad ? 368.0 : 280.0
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -24,10 +24,10 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        configureManageAccountButton()
+        setupManageAccountButton()
     }
 
-    private func configureManageAccountButton() {
+    private func setupManageAccountButton() {
         manageAccountButton.setTitle(LocalizedString.settingsManageAccount.value, for: .normal)
         manageAccountButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
     }

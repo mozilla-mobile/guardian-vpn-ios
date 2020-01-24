@@ -45,6 +45,7 @@
 		F478E48823C78A1700D17FE0 /* ReleaseMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */; };
 		F478E48A23C78F4F00D17FE0 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */; };
 		F478E48F23C7906C00D17FE0 /* GuardianURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */; };
+		F48A595C23DBA03400BB2A0A /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48A595B23DBA03400BB2A0A /* UIScreen+Extensions.swift */; };
 		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
 		F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA21237AFF210034AF6C /* Result+Decode.swift */; };
 		F4A7FA24237C5C960034AF6C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7FA23237C5C960034AF6C /* Account.swift */; };
@@ -371,6 +372,7 @@
 		F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitoring.swift; sourceTree = "<group>"; };
 		F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuardianURLRequest.swift; sourceTree = "<group>"; };
+		F48A595B23DBA03400BB2A0A /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		F49090BD2379D43200C8430A /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewController.swift; sourceTree = "<group>"; };
@@ -858,6 +860,7 @@
 				F4720258238C3D620033A14B /* UIFont+Custom.swift */,
 				F422FEF923983E85009413E2 /* UIImage+Color.swift */,
 				F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */,
+				F48A595B23DBA03400BB2A0A /* UIScreen+Extensions.swift */,
 				F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */,
 				F4A4947D23709033007595C3 /* UIView+Designing.swift */,
 			);
@@ -1541,6 +1544,7 @@
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,
 				F4E9090B2371CAAD00EB9FE6 /* AccountInformationHeader.swift in Sources */,
 				F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */,
+				F48A595C23DBA03400BB2A0A /* UIScreen+Extensions.swift in Sources */,
 				F4B42BFF238D8A44001F64F7 /* LongPinger.swift in Sources */,
 				F4E909072371CAAD00EB9FE6 /* SettingsViewController.swift in Sources */,
 				F4AED210235F52AE00F80ABF /* Curve25519.swift in Sources */,
