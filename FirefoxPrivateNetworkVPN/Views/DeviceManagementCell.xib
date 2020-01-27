@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYJ-k3-oVq">
-                        <rect key="frame" x="80" y="118" width="393" height="1"/>
+                        <rect key="frame" x="80" y="122" width="377" height="1"/>
                         <color key="backgroundColor" name="custom_grey10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="xaX-w7-5Mo"/>
@@ -38,7 +38,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rE-g0-yIp">
-                        <rect key="frame" x="80" y="43" width="88.5" height="22"/>
+                        <rect key="frame" x="80" y="43" width="91.5" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="ifX-Lr-cwz"/>
                         </constraints>
@@ -65,7 +65,7 @@
                         </constraints>
                     </activityIndicatorView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EE9-Eo-AUh">
-                        <rect key="frame" x="80" y="69" width="159.5" height="21"/>
+                        <rect key="frame" x="80" y="69" width="167" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="U2H-LK-Au1"/>
                         </constraints>
@@ -75,6 +75,7 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="PYJ-k3-oVq" secondAttribute="trailing" constant="32" id="0BJ-TQ-yz7"/>
                     <constraint firstItem="8rE-g0-yIp" firstAttribute="leading" secondItem="T2Q-JX-2zC" secondAttribute="trailing" constant="24" id="1RY-xa-sqm"/>
                     <constraint firstAttribute="trailing" secondItem="qjR-1E-EJ9" secondAttribute="trailing" constant="24" id="2bz-FX-YYB">
                         <variation key="heightClass=regular-widthClass=regular" constant="16"/>
@@ -86,7 +87,7 @@
                     <constraint firstAttribute="trailing" secondItem="r0Q-8z-QiE" secondAttribute="trailing" constant="32" id="GFg-5Q-Pcm"/>
                     <constraint firstAttribute="bottom" secondItem="PYJ-k3-oVq" secondAttribute="bottom" id="NOb-4u-zSh"/>
                     <constraint firstItem="T2Q-JX-2zC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="Nkt-aA-pql"/>
-                    <constraint firstItem="PYJ-k3-oVq" firstAttribute="top" secondItem="EE9-Eo-AUh" secondAttribute="bottom" constant="28" id="XvG-et-h1f"/>
+                    <constraint firstItem="PYJ-k3-oVq" firstAttribute="top" secondItem="EE9-Eo-AUh" secondAttribute="bottom" constant="32" id="XvG-et-h1f"/>
                     <constraint firstItem="T2Q-JX-2zC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bDQ-tb-06t"/>
                     <constraint firstItem="8rE-g0-yIp" firstAttribute="centerY" secondItem="T2Q-JX-2zC" secondAttribute="centerY" id="bX6-BZ-amh"/>
                     <constraint firstItem="8rE-g0-yIp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="32" id="gug-0G-9J1"/>
@@ -107,9 +108,10 @@
                         <exclude reference="1RY-xa-sqm"/>
                         <exclude reference="gug-0G-9J1"/>
                         <exclude reference="9Eb-mG-hTb"/>
+                        <exclude reference="0BJ-TQ-yz7"/>
                         <exclude reference="XvG-et-h1f"/>
-                        <exclude reference="GFg-5Q-Pcm"/>
                         <exclude reference="CqL-hy-L68"/>
+                        <exclude reference="GFg-5Q-Pcm"/>
                     </mask>
                 </variation>
                 <variation key="heightClass=regular-widthClass=regular">
@@ -123,11 +125,13 @@
                         <include reference="9Eb-mG-hTb"/>
                         <exclude reference="jJd-zL-v5v"/>
                         <exclude reference="lIr-td-tuq"/>
+                        <include reference="0BJ-TQ-yz7"/>
                         <include reference="XvG-et-h1f"/>
-                        <include reference="GFg-5Q-Pcm"/>
-                        <exclude reference="xiD-iF-H2Y"/>
+                        <exclude reference="mod-KA-wnK"/>
                         <exclude reference="2bz-FX-YYB"/>
                         <include reference="CqL-hy-L68"/>
+                        <include reference="GFg-5Q-Pcm"/>
+                        <exclude reference="xiD-iF-H2Y"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
