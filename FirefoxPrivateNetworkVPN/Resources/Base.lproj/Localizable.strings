@@ -82,7 +82,7 @@
 "aboutTerms" = "Terms of Service";
 "aboutPrivacy" = "Privacy Policy";
 "aboutAppName" = "Firefox Private Network";
-"aboutDescription" = "A fast, secure and trusted virtual private network. Built for people not profits.";
+"aboutDescription" = "A fast, secure and trusted virtual private network. \nBuilt for people not profits.";
 "aboutReleaseVersion" = "Release version";
 
 // MARK: - Warning toast
