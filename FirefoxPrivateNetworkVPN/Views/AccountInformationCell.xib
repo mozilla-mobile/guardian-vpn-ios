@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -24,14 +24,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfY-Pi-D9A" userLabel="Separator">
-                        <rect key="frame" x="56" y="65" width="386" height="1"/>
+                        <rect key="frame" x="95" y="65" width="331" height="1"/>
                         <color key="backgroundColor" name="custom_grey10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="E2S-9N-Bh2"/>
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pry-B6-vED">
-                        <rect key="frame" x="16" y="21" width="24" height="24"/>
+                        <rect key="frame" x="47" y="21" width="24" height="24"/>
                         <color key="tintColor" name="custom_grey50"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Pry-B6-vED" secondAttribute="height" multiplier="1:1" id="FuE-9E-Nnz"/>
@@ -39,13 +39,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yj1-se-YSD">
-                        <rect key="frame" x="56" y="24.5" width="184" height="17.5"/>
+                        <rect key="frame" x="95" y="25.5" width="201" height="15"/>
                         <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                         <color key="textColor" name="custom_grey50"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cy6-7K-pHk" userLabel="Accessory Icon">
-                        <rect key="frame" x="378" y="21" width="24" height="24"/>
+                        <rect key="frame" x="354" y="21" width="24" height="24"/>
                         <color key="tintColor" name="custom_grey50"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Cy6-7K-pHk" secondAttribute="height" multiplier="1:1" id="EBA-tL-nCg"/>
@@ -53,7 +53,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_forwardChevron" translatesAutoresizingMaskIntoConstraints="NO" id="K8r-qX-Wy7">
-                        <rect key="frame" x="418" y="21" width="24" height="24"/>
+                        <rect key="frame" x="402" y="21" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="K8r-qX-Wy7" secondAttribute="height" multiplier="1:1" id="724-95-fyq"/>
                             <constraint firstAttribute="height" constant="24" id="j4E-oL-zfc"/>
@@ -66,6 +66,7 @@
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="centerY" secondItem="Pry-B6-vED" secondAttribute="centerY" id="4Nv-e4-hrf"/>
                     <constraint firstItem="Pry-B6-vED" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6CV-bP-cCF"/>
                     <constraint firstAttribute="trailing" secondItem="K8r-qX-Wy7" secondAttribute="trailing" constant="16" id="6hj-Ee-Wg3"/>
+                    <constraint firstAttribute="trailing" secondItem="sfY-Pi-D9A" secondAttribute="trailing" constant="32" id="7VM-KF-A5b"/>
                     <constraint firstAttribute="trailing" secondItem="K8r-qX-Wy7" secondAttribute="trailing" constant="32" id="GY4-UB-4z2"/>
                     <constraint firstItem="Pry-B6-vED" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SG5-mf-Jkb"/>
                     <constraint firstAttribute="trailing" secondItem="sfY-Pi-D9A" secondAttribute="trailing" constant="16" id="W6I-Xs-5K0"/>
@@ -73,13 +74,14 @@
                     <constraint firstItem="K8r-qX-Wy7" firstAttribute="leading" secondItem="Cy6-7K-pHk" secondAttribute="trailing" constant="24" id="aSi-hy-GTt"/>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="trailing" constant="16" id="cks-TI-Mmv"/>
                     <constraint firstItem="Pry-B6-vED" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="32" id="d9f-nl-jtV"/>
-                    <constraint firstItem="sfY-Pi-D9A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="et6-JR-nvy"/>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="trailing" constant="24" id="n4n-2j-F9N"/>
+                    <constraint firstItem="sfY-Pi-D9A" firstAttribute="leading" secondItem="Yj1-se-YSD" secondAttribute="leading" id="wDG-tH-7BV"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="d9f-nl-jtV"/>
                         <exclude reference="n4n-2j-F9N"/>
+                        <exclude reference="7VM-KF-A5b"/>
                         <exclude reference="3k3-gn-yQE"/>
                         <exclude reference="GY4-UB-4z2"/>
                         <exclude reference="aSi-hy-GTt"/>
@@ -96,6 +98,8 @@
                         <include reference="d9f-nl-jtV"/>
                         <exclude reference="cks-TI-Mmv"/>
                         <include reference="n4n-2j-F9N"/>
+                        <include reference="7VM-KF-A5b"/>
+                        <exclude reference="W6I-Xs-5K0"/>
                         <exclude reference="6hj-Ee-Wg3"/>
                         <include reference="GY4-UB-4z2"/>
                         <include reference="aSi-hy-GTt"/>

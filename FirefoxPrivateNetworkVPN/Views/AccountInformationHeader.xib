@@ -86,7 +86,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAW-5J-ZfB" userLabel="Separator">
-                        <rect key="frame" x="16" y="382" width="471" height="1"/>
+                        <rect key="frame" x="32" y="382" width="439" height="1"/>
                         <color key="backgroundColor" name="custom_grey10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="pWP-uP-pd5"/>
@@ -96,7 +96,6 @@
                 <constraints>
                     <constraint firstItem="UlA-am-E2b" firstAttribute="top" secondItem="pcN-zC-qOq" secondAttribute="bottom" constant="16" id="77H-u8-2eH"/>
                     <constraint firstItem="EAu-aI-d3e" firstAttribute="top" secondItem="UlA-am-E2b" secondAttribute="bottom" constant="8" id="8od-ce-vBE"/>
-                    <constraint firstAttribute="trailing" secondItem="zAW-5J-ZfB" secondAttribute="trailing" constant="16" id="AZ5-Jd-tW1"/>
                     <constraint firstItem="JzQ-Ff-F1D" firstAttribute="top" secondItem="EAu-aI-d3e" secondAttribute="bottom" constant="48" id="E5V-Yv-GVw"/>
                     <constraint firstItem="pcN-zC-qOq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="KWk-gi-Gd4"/>
                     <constraint firstItem="JzQ-Ff-F1D" firstAttribute="top" secondItem="EAu-aI-d3e" secondAttribute="bottom" constant="32" id="OCE-5V-DKm"/>
@@ -106,12 +105,14 @@
                     <constraint firstItem="zAW-5J-ZfB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="RPf-O7-RWS"/>
                     <constraint firstItem="UlA-am-E2b" firstAttribute="top" secondItem="pcN-zC-qOq" secondAttribute="bottom" constant="24" id="TVg-Jb-D4V"/>
                     <constraint firstItem="JzQ-Ff-F1D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="64" id="U1l-T9-dKD"/>
+                    <constraint firstItem="zAW-5J-ZfB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="dVl-XA-4gp"/>
                     <constraint firstItem="JzQ-Ff-F1D" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="dqK-4s-eG6"/>
                     <constraint firstItem="EAu-aI-d3e" firstAttribute="top" secondItem="UlA-am-E2b" secondAttribute="bottom" constant="12" id="g3p-3Q-p2Q">
                         <variation key="heightClass=regular-widthClass=regular" constant="12"/>
                     </constraint>
                     <constraint firstItem="pcN-zC-qOq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="75" id="kFB-0A-QYm"/>
                     <constraint firstItem="JzQ-Ff-F1D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="kME-fI-kpL"/>
+                    <constraint firstItem="zAW-5J-ZfB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="ktD-yG-ZfR"/>
                     <constraint firstItem="UlA-am-E2b" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="zGc-la-dn8"/>
                 </constraints>
                 <variation key="default">
@@ -121,6 +122,7 @@
                         <exclude reference="g3p-3Q-p2Q"/>
                         <exclude reference="E5V-Yv-GVw"/>
                         <exclude reference="U1l-T9-dKD"/>
+                        <exclude reference="ktD-yG-ZfR"/>
                     </mask>
                 </variation>
                 <variation key="heightClass=regular-widthClass=regular">
@@ -135,6 +137,8 @@
                         <exclude reference="OCE-5V-DKm"/>
                         <include reference="U1l-T9-dKD"/>
                         <exclude reference="kME-fI-kpL"/>
+                        <exclude reference="RPf-O7-RWS"/>
+                        <include reference="ktD-yG-ZfR"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
