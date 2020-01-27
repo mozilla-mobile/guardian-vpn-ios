@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_radioOn" translatesAutoresizingMaskIntoConstraints="NO" id="9tF-ua-oZ9">
-                        <rect key="frame" x="56" y="16" width="24" height="24"/>
+                        <rect key="frame" x="76" y="16" width="24" height="24"/>
                         <color key="tintColor" name="custom_grey40"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="9tF-ua-oZ9" secondAttribute="height" multiplier="1:1" id="ABO-ji-iMK"/>
@@ -32,18 +32,34 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem (ipsum)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQ5-3b-fki">
-                        <rect key="frame" x="96" y="19.5" width="95.5" height="17.5"/>
+                        <rect key="frame" x="124" y="19.5" width="95.5" height="17.5"/>
                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                         <color key="textColor" name="custom_grey50"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="9tF-ua-oZ9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="76" id="97N-bo-2k7"/>
                     <constraint firstItem="iQ5-3b-fki" firstAttribute="centerY" secondItem="9tF-ua-oZ9" secondAttribute="centerY" id="Mkc-Pg-hKo"/>
                     <constraint firstItem="9tF-ua-oZ9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="d4A-z1-1kJ"/>
                     <constraint firstItem="9tF-ua-oZ9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="idN-cE-YOK"/>
+                    <constraint firstItem="iQ5-3b-fki" firstAttribute="leading" secondItem="9tF-ua-oZ9" secondAttribute="trailing" constant="24" id="jBA-9G-sD4"/>
                     <constraint firstItem="iQ5-3b-fki" firstAttribute="leading" secondItem="9tF-ua-oZ9" secondAttribute="trailing" constant="16" id="wLx-1l-LXV"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="97N-bo-2k7"/>
+                        <exclude reference="jBA-9G-sD4"/>
+                    </mask>
+                </variation>
+                <variation key="heightClass=regular-widthClass=regular">
+                    <mask key="constraints">
+                        <include reference="97N-bo-2k7"/>
+                        <exclude reference="d4A-z1-1kJ"/>
+                        <include reference="jBA-9G-sD4"/>
+                        <exclude reference="wLx-1l-LXV"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" name="custom_grey5"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -57,13 +73,13 @@
     <resources>
         <image name="icon_radioOn" width="24" height="24"/>
         <namedColor name="custom_grey40">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="custom_grey5">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="custom_grey50">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
