@@ -17,7 +17,7 @@ class DeviceLimitReachedView: UITableViewHeaderFooterView {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
 
-    static let height: CGFloat = 252.0
+    static let height: CGFloat = UIScreen.isiPad ? 350 : 252.0
 
     override func awakeFromNib() {
         super.awakeFromNib()
