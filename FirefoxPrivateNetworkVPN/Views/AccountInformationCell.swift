@@ -22,7 +22,6 @@ class AccountInformationCell: UITableViewCell {
     func setup(_ type: SettingsItem) {
         iconImageView.image = type.image
         titleLabel.text = type.title
-        accessoryView = UIImageView(image: UIImage(named: "icon_forwardChevron"))
     }
 
     override func awakeFromNib() {

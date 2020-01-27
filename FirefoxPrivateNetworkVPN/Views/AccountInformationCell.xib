@@ -16,15 +16,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="66" id="KGk-i7-Jjw" customClass="AccountInformationCell" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="342" height="66"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="66" id="KGk-i7-Jjw" customClass="AccountInformationCell" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="458" height="66"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="311" height="66"/>
+                <rect key="frame" x="0.0" y="0.0" width="458" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfY-Pi-D9A" userLabel="Separator">
-                        <rect key="frame" x="56" y="65" width="239" height="1"/>
+                        <rect key="frame" x="56" y="65" width="386" height="1"/>
                         <color key="backgroundColor" name="custom_grey10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="E2S-9N-Bh2"/>
@@ -45,28 +45,66 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cy6-7K-pHk" userLabel="Accessory Icon">
-                        <rect key="frame" x="262" y="21" width="24" height="24"/>
+                        <rect key="frame" x="378" y="21" width="24" height="24"/>
                         <color key="tintColor" name="custom_grey50"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Cy6-7K-pHk" secondAttribute="height" multiplier="1:1" id="EBA-tL-nCg"/>
                             <constraint firstAttribute="width" constant="24" id="hsm-H8-tXO"/>
                         </constraints>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_forwardChevron" translatesAutoresizingMaskIntoConstraints="NO" id="K8r-qX-Wy7">
+                        <rect key="frame" x="418" y="21" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="K8r-qX-Wy7" secondAttribute="height" multiplier="1:1" id="724-95-fyq"/>
+                            <constraint firstAttribute="height" constant="24" id="j4E-oL-zfc"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="sfY-Pi-D9A" secondAttribute="bottom" id="0rL-RA-SaN"/>
+                    <constraint firstItem="K8r-qX-Wy7" firstAttribute="leading" secondItem="Cy6-7K-pHk" secondAttribute="trailing" constant="16" id="3k3-gn-yQE"/>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="centerY" secondItem="Pry-B6-vED" secondAttribute="centerY" id="4Nv-e4-hrf"/>
                     <constraint firstItem="Pry-B6-vED" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6CV-bP-cCF"/>
+                    <constraint firstAttribute="trailing" secondItem="K8r-qX-Wy7" secondAttribute="trailing" constant="16" id="6hj-Ee-Wg3"/>
+                    <constraint firstAttribute="trailing" secondItem="K8r-qX-Wy7" secondAttribute="trailing" constant="32" id="GY4-UB-4z2"/>
                     <constraint firstItem="Pry-B6-vED" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SG5-mf-Jkb"/>
                     <constraint firstAttribute="trailing" secondItem="sfY-Pi-D9A" secondAttribute="trailing" constant="16" id="W6I-Xs-5K0"/>
+                    <constraint firstItem="K8r-qX-Wy7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZQA-TG-fkN"/>
+                    <constraint firstItem="K8r-qX-Wy7" firstAttribute="leading" secondItem="Cy6-7K-pHk" secondAttribute="trailing" constant="24" id="aSi-hy-GTt"/>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="trailing" constant="16" id="cks-TI-Mmv"/>
+                    <constraint firstItem="Pry-B6-vED" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="32" id="d9f-nl-jtV"/>
                     <constraint firstItem="sfY-Pi-D9A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="et6-JR-nvy"/>
+                    <constraint firstItem="Yj1-se-YSD" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="trailing" constant="24" id="n4n-2j-F9N"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="d9f-nl-jtV"/>
+                        <exclude reference="n4n-2j-F9N"/>
+                        <exclude reference="3k3-gn-yQE"/>
+                        <exclude reference="GY4-UB-4z2"/>
+                        <exclude reference="aSi-hy-GTt"/>
+                    </mask>
+                </variation>
+                <variation key="heightClass=regular-widthClass=compact">
+                    <mask key="constraints">
+                        <include reference="3k3-gn-yQE"/>
+                    </mask>
+                </variation>
+                <variation key="heightClass=regular-widthClass=regular">
+                    <mask key="constraints">
+                        <exclude reference="SG5-mf-Jkb"/>
+                        <include reference="d9f-nl-jtV"/>
+                        <exclude reference="cks-TI-Mmv"/>
+                        <include reference="n4n-2j-F9N"/>
+                        <exclude reference="6hj-Ee-Wg3"/>
+                        <include reference="GY4-UB-4z2"/>
+                        <include reference="aSi-hy-GTt"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" name="custom_grey5"/>
             <color key="tintColor" name="custom_grey40"/>
             <constraints>
-                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="Cy6-7K-pHk" secondAttribute="trailing" constant="56" id="0ec-bE-eAL"/>
                 <constraint firstItem="Cy6-7K-pHk" firstAttribute="centerY" secondItem="njF-e1-oar" secondAttribute="centerY" id="bzB-zc-n1t"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -75,10 +113,11 @@
                 <outlet property="iconImageView" destination="Pry-B6-vED" id="OIG-wG-MMD"/>
                 <outlet property="titleLabel" destination="Yj1-se-YSD" id="kkS-4e-gJy"/>
             </connections>
-            <point key="canvasLocation" x="-281.15942028985512" y="83.035714285714278"/>
+            <point key="canvasLocation" x="-239.84375" y="82.03125"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon_forwardChevron" width="24" height="24"/>
         <namedColor name="custom_grey10">
             <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

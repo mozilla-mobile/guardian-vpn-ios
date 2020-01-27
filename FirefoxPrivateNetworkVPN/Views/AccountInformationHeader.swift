@@ -12,7 +12,7 @@
 import UIKit
 
 class AccountInformationHeader: UITableViewHeaderFooterView {
-    static let height: CGFloat = UIScreen.isiPad ? 368.0 : 280.0
+    static let height: CGFloat = UIScreen.isiPad ? 400.0 : 294.0
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -33,6 +33,7 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     }
 
     func setup(with user: User) {
+        manageAccountButton.cornerRadius = manageAccountButton.frame.size.height/10
         nameLabel.text = user.displayName.isEmpty ? LocalizedString.settingsDefaultName.value : user.displayName
         emailLabel.text = user.email
 
