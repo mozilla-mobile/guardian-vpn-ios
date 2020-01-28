@@ -12,7 +12,7 @@
 import UIKit
 
 class AboutHeaderView: UITableViewHeaderFooterView {
-    static let height: CGFloat = 175.0
+    static let height: CGFloat = UIScreen.isiPad ? 224.0 : 175.0
 
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var appDescriptionLabel: UILabel!
