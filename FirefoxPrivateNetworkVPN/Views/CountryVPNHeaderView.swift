@@ -13,7 +13,7 @@ import UIKit
 import RxSwift
 
 class CountryVPNHeaderView: UITableViewHeaderFooterView {
-    static let height: CGFloat = 56.0
+    static let height: CGFloat = UIScreen.isiPad ? 87.0 : 56.0
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var flagImageView: UIImageView!
