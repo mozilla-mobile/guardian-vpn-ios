@@ -17,12 +17,11 @@ class AccountInformationCell: UITableViewCell {
     @IBOutlet weak var accessoryIconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
-    static let height: CGFloat = 55.0
+    static let height: CGFloat = UIScreen.isiPad ? 88.0 : 55.0
 
     func setup(_ type: SettingsItem) {
         iconImageView.image = type.image
         titleLabel.text = type.title
-        accessoryView = UIImageView(image: UIImage(named: "icon_forwardChevron"))
     }
 
     override func awakeFromNib() {
