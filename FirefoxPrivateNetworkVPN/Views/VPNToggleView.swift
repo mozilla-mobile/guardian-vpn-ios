@@ -33,6 +33,7 @@ class VPNToggleView: UIView {
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
     private let rippleAnimationView = AnimationView()
+    private var tapHaptics = UIImpactFeedbackGenerator(style: .light)
 
     private lazy var hoursFormatter: DateComponentsFormatter = {
         let hoursFormatter = DateComponentsFormatter()
@@ -107,14 +108,20 @@ class VPNToggleView: UIView {
     func update(with state: VPNState) {
         titleLabel.text = state.title
         titleLabel.textColor = state.textColor
+
         subtitleLabel.text = state.subtitle
         subtitleLabel.textColor = state.subtitleColor
-        vpnSwitch.isOn = state.isToggleOn
+
+        vpnSwitch.setOn(state.isToggleOn, animated: true)
         vpnSwitch.isUserInteractionEnabled = state.isEnabled
         vpnSwitch.alpha = state.isEnabled ? 1 : 0.5
+        tapHaptics.impactOccurred()
+
         vpnToggleButton.isUserInteractionEnabled = state.isEnabled
+
         globeImageView.image = state.globeImage
         globeImageView.alpha = state.globeOpacity
+
         view.backgroundColor = state.backgroundColor
 
         switch state {
