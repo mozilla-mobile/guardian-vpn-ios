@@ -34,6 +34,7 @@
 		F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */; };
 		F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */; };
 		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
+		F47112A023E200F000539A15 /* UINavigationBar+HandleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */; };
 		F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */; };
 		F471537823C3D17A00226CB8 /* VersionUpdateToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */; };
 		F471537A23C4E81F00226CB8 /* ReleaseMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */; };
@@ -360,11 +361,11 @@
 		F465854C233BF0850081D7D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F46969792367345100D48617 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F469697A2367345100D48617 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
+		F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+HandleBar.swift"; sourceTree = "<group>"; };
 		F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdateToastView.swift; sourceTree = "<group>"; };
 		F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersionUpdateToastView.xib; sourceTree = "<group>"; };
 		F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitor.swift; sourceTree = "<group>"; };
 		F4720258238C3D620033A14B /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
-		F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FirefoxPrivateNetworkVPN.xcconfig; sourceTree = "<group>"; };
 		F478E47E23C7842D00D17FE0 /* ReleaseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseInfo.swift; sourceTree = "<group>"; };
 		F478E48023C784C400D17FE0 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		F478E48323C787B600D17FE0 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
@@ -372,6 +373,7 @@
 		F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitoring.swift; sourceTree = "<group>"; };
 		F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuardianURLRequest.swift; sourceTree = "<group>"; };
+		F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FirefoxPrivateNetworkVPN.xcconfig; sourceTree = "<group>"; };
 		F48A595B23DBA03400BB2A0A /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		F49090BD2379D43200C8430A /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
@@ -837,14 +839,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		F484429623CD059000D140B1 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */,
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
 		F478E48223C7865300D17FE0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -860,6 +854,7 @@
 				F4720258238C3D620033A14B /* UIFont+Custom.swift */,
 				F422FEF923983E85009413E2 /* UIImage+Color.swift */,
 				F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */,
+				F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */,
 				F48A595B23DBA03400BB2A0A /* UIScreen+Extensions.swift */,
 				F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */,
 				F4A4947D23709033007595C3 /* UIView+Designing.swift */,
@@ -874,6 +869,14 @@
 				F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */,
 			);
 			path = URLRequestBuilders;
+			sourceTree = "<group>";
+		};
+		F484429623CD059000D140B1 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		F4AED107235F450D00F80ABF /* WireGuard */ = {
@@ -1516,6 +1519,7 @@
 				F4EB6BFF23D0E75E00A7D081 /* FormSheetStyleViewController.swift in Sources */,
 				F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */,
 				F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */,
+				F47112A023E200F000539A15 /* UINavigationBar+HandleBar.swift in Sources */,
 				F42DE7CE2395B9E7000B79C3 /* WarningToastView.swift in Sources */,
 				527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */,
 				F4B42C0A238F2195001F64F7 /* ObservableType+Extensions.swift in Sources */,
