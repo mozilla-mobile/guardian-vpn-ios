@@ -35,6 +35,7 @@
 		F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */; };
 		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
 		F47112A023E200F000539A15 /* UINavigationBar+HandleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */; };
+		F47112A223E218AC00539A15 /* UIViewController+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47112A123E218AC00539A15 /* UIViewController+Modal.swift */; };
 		F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */; };
 		F471537823C3D17A00226CB8 /* VersionUpdateToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */; };
 		F471537A23C4E81F00226CB8 /* ReleaseMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */; };
@@ -209,7 +210,6 @@
 		F4E9091E2371CB1F00EB9FE6 /* verifyResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA3C23712A1B0018DC43 /* verifyResponse.json */; };
 		F4E9091F2371CB1F00EB9FE6 /* vpnCountry.json in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA3823712A1B0018DC43 /* vpnCountry.json */; };
 		F4E909202371CB1F00EB9FE6 /* MockGuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA3623712A1B0018DC43 /* MockGuardianAPI.swift */; };
-		F4EB6BFF23D0E75E00A7D081 /* FormSheetStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB6BFE23D0E75E00A7D081 /* FormSheetStyleViewController.swift */; };
 		F4EB6C0123D22DDF00A7D081 /* ReleaseInfoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB6C0023D22DDF00A7D081 /* ReleaseInfoSpec.swift */; };
 		F4F00E0223A2E1C5000E9DCA /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = F4F00E0123A2E1C5000E9DCA /* Animations */; };
 		F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */; };
@@ -362,6 +362,7 @@
 		F46969792367345100D48617 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F469697A2367345100D48617 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+HandleBar.swift"; sourceTree = "<group>"; };
+		F47112A123E218AC00539A15 /* UIViewController+Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Modal.swift"; sourceTree = "<group>"; };
 		F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdateToastView.swift; sourceTree = "<group>"; };
 		F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersionUpdateToastView.xib; sourceTree = "<group>"; };
 		F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitor.swift; sourceTree = "<group>"; };
@@ -474,7 +475,6 @@
 		F4E908A52371C31400EB9FE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4E908AF2371C35100EB9FE6 /* FirefoxPrivateNetworkVPNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirefoxPrivateNetworkVPNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E908B92371C45600EB9FE6 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
-		F4EB6BFE23D0E75E00A7D081 /* FormSheetStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSheetStyleViewController.swift; sourceTree = "<group>"; };
 		F4EB6C0023D22DDF00A7D081 /* ReleaseInfoSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseInfoSpec.swift; sourceTree = "<group>"; };
 		F4F00E0123A2E1C5000E9DCA /* Animations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Animations; sourceTree = "<group>"; };
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
@@ -680,7 +680,6 @@
 				F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */,
 				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
 				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
-				F4EB6BFE23D0E75E00A7D081 /* FormSheetStyleViewController.swift */,
 				F45D70AA233E921900871447 /* GuardianTabBarController.swift */,
 				F423048523720A7400572A93 /* HelpDataSource.swift */,
 				F4230481237209B000572A93 /* HelpViewController.swift */,
@@ -842,6 +841,7 @@
 		F478E48223C7865300D17FE0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F47112A123E218AC00539A15 /* UIViewController+Modal.swift */,
 				F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */,
 				F422FEF523970752009413E2 /* Notification+Extensions.swift */,
 				F422FEF723980C1D009413E2 /* NSAttributedString+Extensions.swift */,
@@ -1516,7 +1516,6 @@
 				F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */,
 				F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */,
 				F4230483237209B000572A93 /* HelpViewController.swift in Sources */,
-				F4EB6BFF23D0E75E00A7D081 /* FormSheetStyleViewController.swift in Sources */,
 				F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */,
 				F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */,
 				F47112A023E200F000539A15 /* UINavigationBar+HandleBar.swift in Sources */,
@@ -1538,6 +1537,7 @@
 				F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */,
 				F4A7FA26237C5CE00034AF6C /* Credentials.swift in Sources */,
 				F4E908EF2371CAAD00EB9FE6 /* GuardianTunnelManager.swift in Sources */,
+				F47112A223E218AC00539A15 /* UIViewController+Modal.swift in Sources */,
 				F4E908C62371CAAD00EB9FE6 /* TunnelAction.swift in Sources */,
 				F4E908F42371CAAD00EB9FE6 /* GuardianAPIDateFormatter.swift in Sources */,
 				F478E48423C787B600D17FE0 /* Release.swift in Sources */,

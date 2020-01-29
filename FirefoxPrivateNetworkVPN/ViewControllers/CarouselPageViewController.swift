@@ -45,13 +45,6 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         return pageControl
     }()
 
-    private lazy var closeButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(named: "icon_close"),
-                               style: .plain,
-                               target: self,
-                               action: #selector(self.close))
-    }()
-
     private lazy var skipButton: UIBarButtonItem = {
         let skipButton = UIBarButtonItem(title: LocalizedString.landingSkip.value,
                         style: .done,
@@ -85,9 +78,20 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         layoutPageControl()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 13.0, *) {
+            isPresentingViewControllerDimmed = true
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presentingViewController?.view.alpha = 1
+
+        if #available(iOS 13.0, *) {
+            isPresentingViewControllerDimmed = false
+        }
     }
 
     private func setupViews() {
@@ -101,9 +105,10 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     }
 
     private func setupNavigationBar() {
+        setupNavigationBarForModalPresentation()
+
         navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = skipButton
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.custom(.metropolis, size: 17)], for: .normal)
     }
@@ -120,7 +125,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         navigationItem.rightBarButtonItem = shouldHideControls ? nil : skipButton
     }
 
-    @objc func close() {
+    @objc override func closeModal() {
         navigate(to: .landing)
     }
 
