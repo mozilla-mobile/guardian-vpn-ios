@@ -173,7 +173,9 @@ class VPNToggleView: UIView {
         if connected {
             globeAnimationView?.play(fromFrame: 0, toFrame: 30, loopMode: .playOnce, completion: nil)
         } else {
-            globeAnimationView?.play(fromFrame: 30, toFrame: 60, loopMode: .playOnce, completion: nil)
+            if let globeAnimationView = globeAnimationView, globeAnimationView.currentFrame == 30 {
+                globeAnimationView.play(fromFrame: 30, toFrame: 60, loopMode: .playOnce, completion: nil)
+            }
         }
     }
 
