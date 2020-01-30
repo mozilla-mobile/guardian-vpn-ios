@@ -28,6 +28,7 @@ class VPNToggleView: UIView {
     var connectionHandler: (() -> Void)?
     var disconnectionHandler: (() -> Void)?
 
+    private var currentState = VPNState.off
     private let disposeBag = DisposeBag()
     private var timerDisposeBag = DisposeBag()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
@@ -82,6 +83,8 @@ class VPNToggleView: UIView {
 
     override func awakeFromNib() {
         globeAnimationView = createAnimation(for: "globe", in: globeAnimationContainer)
+        globeAnimationView?.respectAnimationFrameRate = true
+        globeAnimationView?.loopMode = .playOnce
         rippleAnimationView = createAnimation(for: "ripples", in: backgroundAnimationContainerView)
     }
 
@@ -126,11 +129,7 @@ class VPNToggleView: UIView {
 
         vpnToggleButton.isUserInteractionEnabled = state.isEnabled
 
-        if state == .on {
-            animateGlobe(connected: true)
-        } else if state == .off {
-            animateGlobe(connected: false)
-        }
+        animateGlobe(to: state)
 
         view.backgroundColor = state.backgroundColor
 
@@ -167,6 +166,26 @@ class VPNToggleView: UIView {
                 self?.rippleAnimationView?.stop()
             }
         }
+    }
+
+    private func animateGlobe(to newState: VPNState) {
+        switch (currentState, newState) {
+        case (.off, .connecting):
+            globeAnimationView?.play(fromFrame: 0, toFrame: 15)
+        case (.connecting, .on):
+            globeAnimationView?.play(fromFrame: 15, toFrame: 30)
+        case (.on, .switching):
+            globeAnimationView?.play(fromFrame: 30, toFrame: 45)
+        case (.switching, .on):
+            globeAnimationView?.play(fromFrame: 45, toFrame: 30)
+        case (.on, .disconnecting):
+            globeAnimationView?.play(fromFrame: 30, toFrame: 45)
+        case (.disconnecting, .off):
+            globeAnimationView?.play(fromFrame: 45, toFrame: 60)
+        default: break
+        }
+
+        currentState = newState
     }
 
     private func animateGlobe(connected: Bool) {
