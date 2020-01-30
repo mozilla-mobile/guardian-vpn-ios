@@ -38,7 +38,7 @@
                     <rect key="frame" x="0.0" y="44" width="350" height="306"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m89-A7-vt0" userLabel="Animation Container">
-                            <rect key="frame" x="0.0" y="-111.5" width="350" height="350"/>
+                            <rect key="frame" x="0.0" y="-109.5" width="350" height="350"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="m89-A7-vt0" secondAttribute="height" multiplier="1:1" id="VyB-iW-wzj"/>
                             </constraints>
@@ -49,13 +49,15 @@
                     <rect key="frame" x="0.0" y="69.5" width="350" height="211"/>
                     <subviews>
                         <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs" userLabel="Globe Animation Container">
-                            <rect key="frame" x="137" y="0.0" width="76" height="76"/>
+                            <rect key="frame" x="135" y="0.0" width="80" height="80"/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="80" id="81c-rs-ldf"/>
                                 <constraint firstAttribute="width" secondItem="MYo-vc-qhs" secondAttribute="height" multiplier="1:1" id="E5R-WH-qCj"/>
+                                <constraint firstAttribute="width" constant="80" id="THC-Kr-URY"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVT-rn-kQN">
-                            <rect key="frame" x="32" y="100" width="286" height="26"/>
+                            <rect key="frame" x="32" y="104" width="286" height="22"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                             <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
@@ -141,7 +143,6 @@
                 <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HCC-4h-gbe"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="sgm-YP-nOg" secondAttribute="bottom" id="XLj-uY-zxN"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UwE-Bk-tlK" secondAttribute="trailing" id="dG3-Rc-Qeg"/>
-                <constraint firstItem="UwE-Bk-tlK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25.5" id="hTL-BN-x0G"/>
                 <constraint firstItem="m89-A7-vt0" firstAttribute="centerY" secondItem="MYo-vc-qhs" secondAttribute="centerY" id="pBW-PE-AHW"/>
                 <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="s59-Ul-aCr"/>
                 <constraint firstItem="m89-A7-vt0" firstAttribute="centerX" secondItem="MYo-vc-qhs" secondAttribute="centerX" id="std-Ua-fRL"/>
