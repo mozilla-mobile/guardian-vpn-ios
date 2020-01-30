@@ -24,14 +24,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfY-Pi-D9A" userLabel="Separator">
-                        <rect key="frame" x="95" y="65" width="331" height="1"/>
+                        <rect key="frame" x="80" y="65" width="346" height="1"/>
                         <color key="backgroundColor" name="custom_grey10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="E2S-9N-Bh2"/>
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pry-B6-vED">
-                        <rect key="frame" x="47" y="21" width="24" height="24"/>
+                        <rect key="frame" x="32" y="21" width="24" height="24"/>
                         <color key="tintColor" name="custom_grey50"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Pry-B6-vED" secondAttribute="height" multiplier="1:1" id="FuE-9E-Nnz"/>
@@ -39,7 +39,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yj1-se-YSD">
-                        <rect key="frame" x="95" y="25.5" width="201" height="15"/>
+                        <rect key="frame" x="80" y="24.5" width="184" height="17.5"/>
                         <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                         <color key="textColor" name="custom_grey50"/>
                         <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                     <constraint firstItem="K8r-qX-Wy7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZQA-TG-fkN"/>
                     <constraint firstItem="K8r-qX-Wy7" firstAttribute="leading" secondItem="Cy6-7K-pHk" secondAttribute="trailing" constant="24" id="aSi-hy-GTt"/>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="trailing" constant="16" id="cks-TI-Mmv"/>
-                    <constraint firstItem="Pry-B6-vED" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="32" id="d9f-nl-jtV"/>
+                    <constraint firstItem="Pry-B6-vED" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="d9f-nl-jtV"/>
                     <constraint firstItem="Yj1-se-YSD" firstAttribute="leading" secondItem="Pry-B6-vED" secondAttribute="trailing" constant="24" id="n4n-2j-F9N"/>
                     <constraint firstItem="sfY-Pi-D9A" firstAttribute="leading" secondItem="Yj1-se-YSD" secondAttribute="leading" id="wDG-tH-7BV"/>
                 </constraints>
@@ -109,7 +109,7 @@
             <color key="backgroundColor" name="custom_grey5"/>
             <color key="tintColor" name="custom_grey40"/>
             <constraints>
-                <constraint firstItem="Cy6-7K-pHk" firstAttribute="centerY" secondItem="njF-e1-oar" secondAttribute="centerY" id="bzB-zc-n1t"/>
+                <constraint firstItem="Cy6-7K-pHk" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bzB-zc-n1t"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
