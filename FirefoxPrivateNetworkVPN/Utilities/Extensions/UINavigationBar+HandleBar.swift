@@ -18,7 +18,7 @@ extension UINavigationBar {
     @available(iOS 13.0, *)
     var isHandleBarShown: Bool {
         get {
-            return handerBarView(from: subviews) != nil
+            return handleBarView(from: subviews) != nil
         }
 
         set(shouldShow) {
@@ -31,14 +31,14 @@ extension UINavigationBar {
 
                 addSubview(handleBarView)
             } else {
-                if let handleBarView = handerBarView(from: subviews) {
+                if let handleBarView = handleBarView(from: subviews) {
                     handleBarView.removeFromSuperview()
                 }
             }
         }
     }
 
-    private func handerBarView(from subviews: [UIView]) -> UIView? {
+    private func handleBarView(from subviews: [UIView]) -> UIView? {
         return subviews.filter { $0.tag == Self.handleBarTag }.first
     }
 }
