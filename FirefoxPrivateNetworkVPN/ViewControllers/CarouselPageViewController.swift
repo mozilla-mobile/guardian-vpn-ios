@@ -107,7 +107,6 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     private func setupNavigationBar() {
         setupNavigationBarForModalPresentation()
 
-        navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.rightBarButtonItem = skipButton
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.custom(.metropolis, size: 17)], for: .normal)

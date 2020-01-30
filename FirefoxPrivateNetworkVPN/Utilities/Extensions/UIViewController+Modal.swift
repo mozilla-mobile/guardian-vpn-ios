@@ -28,6 +28,7 @@ extension UIViewController {
     func setupNavigationBarForModalPresentation() {
         let closeButton = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(closeModal))
         navigationItem.leftBarButtonItems = [closeButton]
+        navigationController?.navigationBar.barTintColor = UIColor.custom(.grey5)
 
         if #available(iOS 13.0, *) {
             navigationController?.navigationBar.isHandleBarShown = true
