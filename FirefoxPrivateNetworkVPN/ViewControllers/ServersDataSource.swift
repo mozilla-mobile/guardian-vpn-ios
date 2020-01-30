@@ -18,7 +18,14 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     // MARK: - Properties
     private let representedObject: [VPNCountry]
     private weak var tableView: UITableView?
-    private var sectionExpandedStates = [Int: Bool]()
+    private lazy var sectionExpandedStates: [Int: Bool] = {
+        var states = [Int: Bool]()
+        if let selectedSection = selectedIndexPath?.section {
+            states[selectedSection] = true
+        }
+
+        return states
+    }()
     private let headerTapPublishSubject = PublishSubject<CountryVPNHeaderView>()
     private let disposeBag = DisposeBag()
     private let headerName = String(describing: CountryVPNHeaderView.self)
@@ -76,7 +83,7 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (sectionExpandedStates[section, default: true])
+        return (sectionExpandedStates[section, default: false])
             ? representedObject[section].cities.count
             : 0
     }
@@ -127,7 +134,7 @@ extension ServersDataSource: UITableViewDelegate {
         headerView.tag = section
         headerView.setup(country: representedObject[section])
         headerView.tapPublishSubject = headerTapPublishSubject
-        headerView.isExpanded = sectionExpandedStates[section, default: true]
+        headerView.isExpanded = sectionExpandedStates[section, default: false]
 
         return headerView
     }
