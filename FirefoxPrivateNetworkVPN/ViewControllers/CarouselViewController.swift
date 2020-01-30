@@ -37,11 +37,10 @@ class CarouselViewController: OnboardingViewController, Navigating {
 
         switch type {
         case .getStarted:
-            learnMoreButton.removeFromSuperview()
+            learnMoreButton.alpha = 0
+            learnMoreButton.isUserInteractionEnabled = false
             getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
             getStartedButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
-            buttonStackViewBottomConstraint.constant = 48
-
         default:
             buttonStackView.isHidden = true
         }

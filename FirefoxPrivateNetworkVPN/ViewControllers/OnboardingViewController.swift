@@ -16,7 +16,6 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var getStartedButton: UIButton!
     @IBOutlet weak var learnMoreButton: UIButton!
     @IBOutlet weak var buttonStackView: UIStackView!
-    @IBOutlet weak var buttonStackViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
