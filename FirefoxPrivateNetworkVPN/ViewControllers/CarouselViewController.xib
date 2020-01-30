@@ -20,17 +20,13 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CarouselViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
-                <outlet property="buttonStackView" destination="eEb-rt-3fv" id="1w3-tV-TZP"/>
-                <outlet property="getStartedButton" destination="E5n-2e-PN9" id="k56-bw-3KQ"/>
-                <outlet property="iPadButtonBottomConstraint" destination="sKc-I3-33H" id="27h-aO-0Fu"/>
-                <outlet property="iPhoneButtonBottomContraint" destination="Ykw-uO-0Fb" id="HER-6I-0Dc"/>
-                <outlet property="imageView" destination="Xtd-yb-bAs" id="YFv-py-dm9"/>
-                <outlet property="learnMoreButton" destination="Xsj-jW-6dB" id="laE-Qs-Gxc"/>
-                <outlet property="subtitleLabel" destination="aKt-Ai-EeU" id="lrz-a2-dYk"/>
-                <outlet property="titleLabel" destination="hn5-H4-ufw" id="gAC-dd-InD"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="getStartedButton" destination="E5n-2e-PN9" id="TIp-oD-3g5"/>
+                <outlet property="imageView" destination="Xtd-yb-bAs" id="v8s-9d-NTb"/>
+                <outlet property="subtitleLabel" destination="aKt-Ai-EeU" id="QXW-Us-kaN"/>
+                <outlet property="titleLabel" destination="hn5-H4-ufw" id="exr-gA-DKO"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="jPc-tL-Bnn"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -95,103 +91,67 @@
                         </mask>
                     </variation>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eEb-rt-3fv">
-                    <rect key="frame" x="64" y="1006" width="706" height="136"/>
-                    <subviews>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-2e-PN9">
-                            <rect key="frame" x="0.0" y="0.0" width="706" height="56"/>
-                            <color key="backgroundColor" name="custom_blue50"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="56" id="OsL-yV-li7"/>
-                                <constraint firstAttribute="height" constant="40" id="jST-kX-YVJ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
-                            <state key="normal" title="Lorum Ipsum">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="4"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="OsL-yV-li7"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=regular">
-                                <mask key="constraints">
-                                    <include reference="OsL-yV-li7"/>
-                                    <exclude reference="jST-kX-YVJ"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="getStarted" destination="-1" eventType="touchUpInside" id="sEg-qK-jzG"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsj-jW-6dB">
-                            <rect key="frame" x="0.0" y="80" width="706" height="56"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="U8f-Wn-TXn"/>
-                                <constraint firstAttribute="height" constant="56" id="fRR-CI-xZc"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
-                            <state key="normal" title="Sit amet">
-                                <color key="titleColor" name="custom_blue50"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="4"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="fRR-CI-xZc"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=regular">
-                                <mask key="constraints">
-                                    <exclude reference="U8f-Wn-TXn"/>
-                                    <include reference="fRR-CI-xZc"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="learnMore" destination="-1" eventType="touchUpInside" id="xr8-fc-ciq"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <variation key="heightClass=regular-widthClass=regular" spacing="24"/>
-                </stackView>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-2e-PN9">
+                    <rect key="frame" x="64" y="1054" width="706" height="56"/>
+                    <color key="backgroundColor" name="custom_blue50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="OsL-yV-li7"/>
+                        <constraint firstAttribute="height" constant="40" id="jST-kX-YVJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
+                    <state key="normal" title="Lorum Ipsum">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="OsL-yV-li7"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="OsL-yV-li7"/>
+                            <exclude reference="jST-kX-YVJ"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="getStarted" destination="-1" eventType="touchUpInside" id="Dez-IR-jII"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" name="custom_grey5"/>
             <constraints>
-                <constraint firstItem="eEb-rt-3fv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="0Yh-Ae-3lh"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0ce-vF-XyJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sBV-6t-Eg4" secondAttribute="trailing" id="2F6-EW-b1R"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="E5n-2e-PN9" secondAttribute="bottom" constant="32" id="3uS-vQ-KOo"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="NqX-TW-nV6"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="eEb-rt-3fv" secondAttribute="bottom" constant="16" id="Ykw-uO-0Fb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="E5n-2e-PN9" secondAttribute="bottom" constant="64" id="OV1-rb-k4m"/>
+                <constraint firstItem="E5n-2e-PN9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qh5-xg-VZ1"/>
+                <constraint firstItem="E5n-2e-PN9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="Qjq-ii-1lg"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aT5-lV-kfi"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="eEb-rt-3fv" secondAttribute="bottom" constant="32" id="sKc-I3-33H"/>
-                <constraint firstItem="eEb-rt-3fv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wYh-eS-DLO"/>
+                <constraint firstItem="E5n-2e-PN9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="64" id="kyA-9O-Yrz"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-80" id="wgH-oM-zTo"/>
-                <constraint firstItem="eEb-rt-3fv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="64" id="zt7-DO-idw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="sKc-I3-33H"/>
+                    <exclude reference="OV1-rb-k4m"/>
                     <exclude reference="NqX-TW-nV6"/>
-                    <exclude reference="zt7-DO-idw"/>
+                    <exclude reference="kyA-9O-Yrz"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=regular">
                 <mask key="constraints">
-                    <exclude reference="Ykw-uO-0Fb"/>
-                    <include reference="sKc-I3-33H"/>
+                    <exclude reference="3uS-vQ-KOo"/>
+                    <include reference="OV1-rb-k4m"/>
                     <include reference="NqX-TW-nV6"/>
                     <exclude reference="wgH-oM-zTo"/>
-                    <exclude reference="0Yh-Ae-3lh"/>
-                    <include reference="zt7-DO-idw"/>
+                    <exclude reference="Qjq-ii-1lg"/>
+                    <include reference="kyA-9O-Yrz"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="131.8840579710145" y="153.34821428571428"/>
