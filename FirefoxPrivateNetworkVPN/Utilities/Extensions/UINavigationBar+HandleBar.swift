@@ -25,7 +25,7 @@ extension UINavigationBar {
             if shouldShow {
                 let handleBarView = UIView(frame: CGRect(x: 0, y: 8, width: 32, height: 4))
                 handleBarView.tag = Self.handleBarTag
-                handleBarView.backgroundColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
+                handleBarView.backgroundColor = UIColor.custom(.silver)
                 handleBarView.layer.cornerRadius = 2
                 handleBarView.center.x = center.x
 
