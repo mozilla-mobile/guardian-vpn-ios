@@ -86,6 +86,8 @@ class VPNToggleView: UIView {
         globeAnimationView?.respectAnimationFrameRate = true
         globeAnimationView?.loopMode = .playOnce
         rippleAnimationView = createAnimation(for: "ripples", in: backgroundAnimationContainerView)
+        rippleAnimationView?.respectAnimationFrameRate = true
+        rippleAnimationView?.animationSpeed = 0.5
     }
 
     private func createAnimation(for name: String, in containerView: UIView) -> AnimationView {
