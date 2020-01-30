@@ -13,7 +13,8 @@ import UIKit
 import RxSwift
 import os.log
 
-class ServersViewController: FormSheetStyleViewController, Navigating {
+class ServersViewController: UIViewController, Navigating {
+
     // MARK: - Properties
     static var navigableItem: NavigableItem = .servers
 
@@ -35,6 +36,8 @@ class ServersViewController: FormSheetStyleViewController, Navigating {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupNavigationBarForModalPresentation()
         setupTableView()
         setupTitle()
         setupObservers()
@@ -43,8 +46,20 @@ class ServersViewController: FormSheetStyleViewController, Navigating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        if #available(iOS 13.0, *) {
+            isPresentingViewControllerDimmed = true
+        }
+
         if let selectedIndexPath = dataSource?.selectedIndexPath {
             tableView.scrollToRow(at: selectedIndexPath, at: .middle, animated: false)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 13.0, *) {
+            isPresentingViewControllerDimmed = false
         }
     }
 
@@ -81,7 +96,7 @@ class ServersViewController: FormSheetStyleViewController, Navigating {
         dataSource?.vpnSelection
             .delay(.milliseconds(150), scheduler: MainScheduler.instance)
             .do(onNext: { [weak self] _ in
-                self?.close()
+                self?.closeModal()
             })
             .flatMap { [weak self] _ -> Single<Void> in
                 guard let self = self,
