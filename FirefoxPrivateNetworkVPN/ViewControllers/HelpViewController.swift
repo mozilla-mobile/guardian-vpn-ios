@@ -30,6 +30,8 @@ class HelpViewController: UIViewController, Navigating {
 
     // MARK: Setup
     func setupNavigationBar() {
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil // enables back swipe
+
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = LocalizedString.helpTitle.value
         navigationItem.titleView?.tintColor = UIColor.custom(.grey50)
