@@ -114,10 +114,6 @@ extension ServersDataSource: UITableViewDelegate {
         }
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CityVPNCell.height
-    }
-
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CountryVPNHeaderView.height
     }
