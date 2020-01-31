@@ -73,7 +73,6 @@ extension DeviceManagementDataSource: UITableViewDelegate {
         guard let account = account, !account.hasDeviceBeenAdded else { return 0 }
 
         return DeviceLimitReachedView.height
-
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
