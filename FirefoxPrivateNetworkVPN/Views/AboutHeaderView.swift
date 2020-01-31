@@ -21,8 +21,19 @@ class AboutHeaderView: UITableViewHeaderFooterView {
 
     override func awakeFromNib() {
         appNameLabel.text = LocalizedString.aboutAppName.value
+        appNameLabel.font = UIFont.custom(.metropolisSemiBold, size: 15)
+        appNameLabel.textColor = UIColor.custom(.grey50)
+
         appDescriptionLabel.text = LocalizedString.aboutDescription.value
+        appDescriptionLabel.font = UIFont.custom(.inter, size: 13)
+        appDescriptionLabel.textColor = UIColor.custom(.grey40)
+
         releaseLabel.text = LocalizedString.aboutReleaseVersion.value
+        releaseLabel.font = UIFont.custom(.metropolisSemiBold, size: 15)
+        releaseLabel.textColor = UIColor.custom(.grey50)
+
         versionLabel.text = UIApplication.appVersion
+        versionLabel.font = UIFont.custom(.inter, size: 13)
+        versionLabel.textColor = UIColor.custom(.grey40)
     }
 }

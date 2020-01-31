@@ -16,10 +16,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9X-Ir-z8h">
-                    <rect key="frame" x="16" y="16" width="271.5" height="24"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="A9X-Ir-z8h" secondAttribute="height" multiplier="328:29" id="1Lz-U9-SZd"/>
-                    </constraints>
+                    <rect key="frame" x="16" y="60" width="95.5" height="24"/>
                     <attributedString key="attributedText">
                         <fragment content="Lorem Ipsum">
                             <attributes>
@@ -32,11 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYF-mf-Dqe">
-                    <rect key="frame" x="16" y="40" width="328" height="43"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="43" id="AaC-V8-MFo"/>
-                        <constraint firstAttribute="width" secondItem="UYF-mf-Dqe" secondAttribute="height" multiplier="328:43" id="mJW-Nz-Hd3"/>
-                    </constraints>
+                    <rect key="frame" x="16" y="84" width="420" height="21"/>
                     <attributedString key="attributedText">
                         <fragment content="Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra.">
                             <attributes>
@@ -49,7 +42,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKd-dh-qhR">
-                    <rect key="frame" x="16" y="107" width="271.5" height="24"/>
+                    <rect key="frame" x="16" y="129" width="271.5" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="pKd-dh-qhR" secondAttribute="height" multiplier="328:29" id="xBf-7g-4g8"/>
                     </constraints>
@@ -65,7 +58,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpa-Iu-g5i">
-                    <rect key="frame" x="16" y="131" width="328" height="21"/>
+                    <rect key="frame" x="16" y="153" width="328" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Mpa-Iu-g5i" secondAttribute="height" multiplier="328:21" id="fxW-H7-IXN"/>
                     </constraints>
@@ -92,7 +85,7 @@
             <constraints>
                 <constraint firstItem="pKd-dh-qhR" firstAttribute="top" secondItem="UYF-mf-Dqe" secondAttribute="bottom" constant="24" id="1cF-ab-Yon"/>
                 <constraint firstItem="rHg-Ly-jtl" firstAttribute="bottom" secondItem="NlP-ns-2zB" secondAttribute="bottom" id="30X-sJ-RqC"/>
-                <constraint firstItem="A9X-Ir-z8h" firstAttribute="top" secondItem="mP1-GX-pUa" secondAttribute="top" constant="16" id="3va-Lb-gYW"/>
+                <constraint firstItem="A9X-Ir-z8h" firstAttribute="top" secondItem="rHg-Ly-jtl" secondAttribute="top" constant="16" id="3va-Lb-gYW"/>
                 <constraint firstItem="NlP-ns-2zB" firstAttribute="leading" secondItem="mP1-GX-pUa" secondAttribute="leading" constant="32" id="6SS-IL-ugW"/>
                 <constraint firstItem="Mpa-Iu-g5i" firstAttribute="top" secondItem="pKd-dh-qhR" secondAttribute="bottom" constant="4" id="Iid-Y2-pdB"/>
                 <constraint firstItem="Mpa-Iu-g5i" firstAttribute="top" secondItem="pKd-dh-qhR" secondAttribute="bottom" id="MaA-NY-j7r"/>
