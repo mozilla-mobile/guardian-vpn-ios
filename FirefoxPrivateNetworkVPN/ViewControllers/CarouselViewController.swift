@@ -11,14 +11,19 @@
 
 import UIKit
 
-class CarouselViewController: OnboardingViewController, Navigating {
+class CarouselViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .carousel
+
+    @IBOutlet weak private var imageView: UIImageView!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var subtitleLabel: UILabel!
+    @IBOutlet weak private var getStartedButton: UIButton!
 
     var type: CarouselViewType
 
     init(for type: CarouselViewType) {
         self.type = type
-        super.init()
+        super.init(nibName: String(describing: Self.self), bundle: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -30,6 +35,11 @@ class CarouselViewController: OnboardingViewController, Navigating {
         setupView()
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        getStartedButton.cornerRadius = getStartedButton.frame.height/10
+    }
+
     private func setupView() {
         imageView.image = type.image
         titleLabel.text = type.title
@@ -37,17 +47,14 @@ class CarouselViewController: OnboardingViewController, Navigating {
 
         switch type {
         case .getStarted:
-            learnMoreButton.removeFromSuperview()
             getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
             getStartedButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
-            buttonStackViewBottomConstraint.constant = 48
-
         default:
-            buttonStackView.isHidden = true
+            getStartedButton.isHidden = true
         }
     }
 
-    override func getStarted() {
+    @IBAction func getStarted() {
         navigate(to: .login)
     }
 }

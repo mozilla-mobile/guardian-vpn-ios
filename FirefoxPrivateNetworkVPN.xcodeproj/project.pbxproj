@@ -40,6 +40,8 @@
 		F471537823C3D17A00226CB8 /* VersionUpdateToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */; };
 		F471537A23C4E81F00226CB8 /* ReleaseMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */; };
 		F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4720258238C3D620033A14B /* UIFont+Custom.swift */; };
+		F477A20A23E3508F00585066 /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F477A20923E3508F00585066 /* LandingViewController.xib */; };
+		F477A20C23E352E900585066 /* CarouselViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F477A20B23E352E900585066 /* CarouselViewController.xib */; };
 		F478E47F23C7842D00D17FE0 /* ReleaseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E47E23C7842D00D17FE0 /* ReleaseInfo.swift */; };
 		F478E48123C784C400D17FE0 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48023C784C400D17FE0 /* UIApplication+Extensions.swift */; };
 		F478E48423C787B600D17FE0 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48323C787B600D17FE0 /* Release.swift */; };
@@ -178,8 +180,6 @@
 		F4E908FC2371CAAD00EB9FE6 /* GuardianTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70AA233E921900871447 /* GuardianTabBarController.swift */; };
 		F4E908FD2371CAAD00EB9FE6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D70A2233D3D6C00871447 /* HomeViewController.swift */; };
 		F4E908FE2371CAAD00EB9FE6 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45D70A3233D3D6C00871447 /* HomeViewController.xib */; };
-		F4E908FF2371CAAD00EB9FE6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46969792367345100D48617 /* OnboardingViewController.swift */; };
-		F4E909002371CAAD00EB9FE6 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F469697A2367345100D48617 /* OnboardingViewController.xib */; };
 		F4E909012371CAAD00EB9FE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F41B9C7D2368933F00ACC414 /* LaunchScreen.storyboard */; };
 		F4E909022371CAAD00EB9FE6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC05234BB32C003EA64A /* LoadingViewController.swift */; };
 		F4E909032371CAAD00EB9FE6 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */; };
@@ -359,14 +359,14 @@
 		F4658544233BB7690081D7D7 /* GuardianAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPI.swift; sourceTree = "<group>"; };
 		F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckpointModel.swift; sourceTree = "<group>"; };
 		F465854C233BF0850081D7D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		F46969792367345100D48617 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		F469697A2367345100D48617 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+HandleBar.swift"; sourceTree = "<group>"; };
 		F47112A123E218AC00539A15 /* UIViewController+Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Modal.swift"; sourceTree = "<group>"; };
 		F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdateToastView.swift; sourceTree = "<group>"; };
 		F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersionUpdateToastView.xib; sourceTree = "<group>"; };
 		F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitor.swift; sourceTree = "<group>"; };
 		F4720258238C3D620033A14B /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
+		F477A20923E3508F00585066 /* LandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
+		F477A20B23E352E900585066 /* CarouselViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselViewController.xib; sourceTree = "<group>"; };
 		F478E47E23C7842D00D17FE0 /* ReleaseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseInfo.swift; sourceTree = "<group>"; };
 		F478E48023C784C400D17FE0 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		F478E48323C787B600D17FE0 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
@@ -677,6 +677,7 @@
 				F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */,
 				F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */,
 				F42DE7C72395A64A000B79C3 /* CarouselViewController.swift */,
+				F477A20B23E352E900585066 /* CarouselViewController.xib */,
 				F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */,
 				F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */,
 				F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */,
@@ -687,12 +688,11 @@
 				F45D70A2233D3D6C00871447 /* HomeViewController.swift */,
 				F45D70A3233D3D6C00871447 /* HomeViewController.xib */,
 				F42DE7C52395A61C000B79C3 /* LandingViewController.swift */,
+				F477A20923E3508F00585066 /* LandingViewController.xib */,
 				F41B9C7D2368933F00ACC414 /* LaunchScreen.storyboard */,
 				F43DFC05234BB32C003EA64A /* LoadingViewController.swift */,
 				F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */,
 				F4E33D802358BF1500B2003A /* LoginViewController.swift */,
-				F46969792367345100D48617 /* OnboardingViewController.swift */,
-				F469697A2367345100D48617 /* OnboardingViewController.xib */,
 				F4D150B92345438500739CDA /* ServersDataSource.swift */,
 				F45D70FB23428DCE00871447 /* ServersViewController.swift */,
 				F45D70FC23428DCE00871447 /* ServersViewController.xib */,
@@ -1208,6 +1208,7 @@
 				F423048A2372101000572A93 /* HyperlinkCell.xib in Resources */,
 				F4F00E0223A2E1C5000E9DCA /* Animations in Resources */,
 				F4E909012371CAAD00EB9FE6 /* LaunchScreen.storyboard in Resources */,
+				F477A20C23E352E900585066 /* CarouselViewController.xib in Resources */,
 				527C7EB423752DCA00368965 /* AboutViewController.xib in Resources */,
 				F4E909062371CAAD00EB9FE6 /* ServersViewController.xib in Resources */,
 				F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */,
@@ -1233,6 +1234,7 @@
 				F4E908FB2371CAAD00EB9FE6 /* DeviceManagementViewController.xib in Resources */,
 				F4E908E12371CAAD00EB9FE6 /* Metropolis-ExtraLightItalic.otf in Resources */,
 				F4E908E22371CAAD00EB9FE6 /* Metropolis-Light.otf in Resources */,
+				F477A20A23E3508F00585066 /* LandingViewController.xib in Resources */,
 				F4E908D92371CAAD00EB9FE6 /* Inter-SemiBold.otf in Resources */,
 				F41CCA302371215E0018DC43 /* Localizable.strings in Resources */,
 				F4E909082371CAAD00EB9FE6 /* SettingsViewController.xib in Resources */,
@@ -1241,7 +1243,6 @@
 				F4E908E92371CAAD00EB9FE6 /* Metropolis-SemiBoldItalic.otf in Resources */,
 				527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */,
 				F4DF5B1523CFBDAA006A7E4C /* UpdateRecommendedViewController.xib in Resources */,
-				F4E909002371CAAD00EB9FE6 /* OnboardingViewController.xib in Resources */,
 				F4E909122371CAAD00EB9FE6 /* CurrentVPNSelectorView.xib in Resources */,
 				F4E908E82371CAAD00EB9FE6 /* Metropolis-SemiBold.otf in Resources */,
 				F4E908EA2371CAAD00EB9FE6 /* Metropolis-Thin.otf in Resources */,
@@ -1575,7 +1576,6 @@
 				F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */,
 				F4E908C92371CAAD00EB9FE6 /* LoginCheckpointModel.swift in Sources */,
 				F4E908F72371CAAD00EB9FE6 /* UIColor+Named.swift in Sources */,
-				F4E908FF2371CAAD00EB9FE6 /* OnboardingViewController.swift in Sources */,
 				F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */,
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
 				F42304892372101000572A93 /* HyperlinkCell.swift in Sources */,
