@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +21,7 @@
             <connections>
                 <outlet property="backgroundAnimationContainerView" destination="m89-A7-vt0" id="vMK-4N-prT"/>
                 <outlet property="containingView" destination="UwE-Bk-tlK" id="bgE-6X-79I"/>
-                <outlet property="globeImageView" destination="MYo-vc-qhs" id="nCZ-ly-CL2"/>
+                <outlet property="globeAnimationContainer" destination="MYo-vc-qhs" id="Byx-lN-xYv"/>
                 <outlet property="subtitleLabel" destination="2xu-al-pMZ" id="Va5-yw-5W8"/>
                 <outlet property="titleLabel" destination="CVT-rn-kQN" id="DGC-lR-th3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="lsA-1R-49L"/>
@@ -48,9 +48,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Bk-tlK">
                     <rect key="frame" x="0.0" y="69.5" width="350" height="211"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe_off" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs">
+                        <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs" userLabel="Globe Animation Container">
                             <rect key="frame" x="135" y="0.0" width="80" height="80"/>
-                        </imageView>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="81c-rs-ldf"/>
+                                <constraint firstAttribute="width" secondItem="MYo-vc-qhs" secondAttribute="height" multiplier="1:1" id="E5R-WH-qCj"/>
+                                <constraint firstAttribute="width" constant="80" id="THC-Kr-URY"/>
+                            </constraints>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVT-rn-kQN">
                             <rect key="frame" x="32" y="104" width="286" height="22"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
@@ -166,7 +171,6 @@
         </view>
     </objects>
     <resources>
-        <image name="globe_off" width="80" height="80"/>
         <namedColor name="custom_green50">
             <color red="0.24705882352941178" green="0.88235294117647056" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
