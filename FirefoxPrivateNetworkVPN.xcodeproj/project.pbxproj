@@ -1650,7 +1650,7 @@
 				CODE_SIGN_ENTITLEMENTS = WireGuardTunnel/WireGuardTunnel.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "$(VERSION_ID";
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WireGuardTunnel/Info.plist";
@@ -1659,7 +1659,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20191213;
+				MARKETING_VERSION = 0.0.20200131;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(WIREGUARD_TUNNEL_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = WireGuardTunnel;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1678,7 +1678,7 @@
 				CODE_SIGN_ENTITLEMENTS = WireGuardTunnel/WireGuardTunnel.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "$(VERSION_ID";
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WireGuardTunnel/Info.plist";
@@ -1687,7 +1687,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20191213;
+				MARKETING_VERSION = 0.0.20200131;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(WIREGUARD_TUNNEL_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = WireGuardTunnel;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1853,7 +1853,7 @@
 				CODE_SIGN_ENTITLEMENTS = "FirefoxPrivateNetworkVPN/Project Files/FirefoxPrivateNetworkVPN.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "$(VERSION_ID)";
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1864,7 +1864,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20191213;
+				MARKETING_VERSION = "$(VERSION_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "Firefox Private Network VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1882,7 +1882,7 @@
 				CODE_SIGN_ENTITLEMENTS = "FirefoxPrivateNetworkVPN/Project Files/FirefoxPrivateNetworkVPN.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "$(VERSION_ID)";
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1893,7 +1893,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20191213;
+				MARKETING_VERSION = "$(VERSION_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "Firefox Private Network VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
