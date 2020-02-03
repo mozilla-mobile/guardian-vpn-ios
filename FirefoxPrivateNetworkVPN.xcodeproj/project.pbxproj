@@ -214,6 +214,7 @@
 		F4F00E0223A2E1C5000E9DCA /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = F4F00E0123A2E1C5000E9DCA /* Animations */; };
 		F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */; };
 		F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */; };
+		F4FFF3B123E8BDC700C365F3 /* UILabel+AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FFF3B023E8BDC700C365F3 /* UILabel+AttributedText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -480,6 +481,7 @@
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
 		F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextAttachment+Extensions.swift"; sourceTree = "<group>"; };
 		F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealth.swift; sourceTree = "<group>"; };
+		F4FFF3B023E8BDC700C365F3 /* UILabel+AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+AttributedText.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -841,7 +843,6 @@
 		F478E48223C7865300D17FE0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F47112A123E218AC00539A15 /* UIViewController+Modal.swift */,
 				F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */,
 				F422FEF523970752009413E2 /* Notification+Extensions.swift */,
 				F422FEF723980C1D009413E2 /* NSAttributedString+Extensions.swift */,
@@ -853,11 +854,13 @@
 				F4A4947823709033007595C3 /* UIColor+Named.swift */,
 				F4720258238C3D620033A14B /* UIFont+Custom.swift */,
 				F422FEF923983E85009413E2 /* UIImage+Color.swift */,
+				F4FFF3B023E8BDC700C365F3 /* UILabel+AttributedText.swift */,
 				F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */,
 				F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */,
 				F48A595B23DBA03400BB2A0A /* UIScreen+Extensions.swift */,
 				F4A4947B23709033007595C3 /* UITabBarItem+Tagging.swift */,
 				F4A4947D23709033007595C3 /* UIView+Designing.swift */,
+				F47112A123E218AC00539A15 /* UIViewController+Modal.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1548,6 +1551,7 @@
 				F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */,
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,
 				F4E9090B2371CAAD00EB9FE6 /* AccountInformationHeader.swift in Sources */,
+				F4FFF3B123E8BDC700C365F3 /* UILabel+AttributedText.swift in Sources */,
 				F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */,
 				F48A595C23DBA03400BB2A0A /* UIScreen+Extensions.swift in Sources */,
 				F4B42BFF238D8A44001F64F7 /* LongPinger.swift in Sources */,
