@@ -11,7 +11,7 @@
 
 import UIKit
 
-class UpdateRequiredViewController: FormSheetStyleViewController, Navigating {
+class UpdateRequiredViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .requiredUpdate
 
     @IBOutlet weak var titleLabel: UILabel!
