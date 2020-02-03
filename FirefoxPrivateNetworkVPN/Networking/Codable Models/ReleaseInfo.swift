@@ -42,7 +42,7 @@ struct ReleaseInfo: UserDefaulting {
 
         switch (currentVersion.compare(with: latestVersion), currentVersion.compare(with: minimumVersion)) {
         case (_, .orderedAscending):
-            return .recommended
+            return .required
 
         case (.orderedAscending, _):
             return .optional
@@ -53,7 +53,7 @@ struct ReleaseInfo: UserDefaulting {
     }
 }
 
-extension String {
+private extension String {
     func compare(with secondVersion: String) -> ComparisonResult {
         let firstArray = components(separatedBy: ".")
         let secondArray = secondVersion.components(separatedBy: ".")

@@ -14,6 +14,6 @@ import Foundation
 enum UpdateStatus {
     case none
     case optional
-    case recommended
+//    case recommended
     case required
 }
