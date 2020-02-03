@@ -11,7 +11,7 @@
 
 import UIKit
 
-class UpdateRecommendedViewController: FormSheetStyleViewController, Navigating {
+class UpdateRecommendedViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .recommendedUpdate
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -22,9 +22,30 @@ class UpdateRecommendedViewController: FormSheetStyleViewController, Navigating 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.shadowImage = UIImage()
+        setupNavigationBar()
         updateNowButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
         setLocalizedStrings()
+    }
+
+    private func setupNavigationBar() {
+        setupNavigationBarForModalPresentation()
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 13.0, *) {
+            isPresentingViewControllerDimmed = true
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 13.0, *) {
+            isPresentingViewControllerDimmed = false
+        }
     }
 
     @IBAction private func updateNowButtonTapped() {

@@ -12,7 +12,7 @@
 import UIKit
 
 class HyperlinkCell: UITableViewCell {
-    static let height: CGFloat = 56.0
+    static let height: CGFloat = UIScreen.isiPad ? 87.0 : 56.0
 
     var item: HyperlinkItem?
 

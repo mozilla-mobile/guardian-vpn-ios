@@ -31,6 +31,8 @@ class AboutViewController: UIViewController, Navigating {
 
     // MARK: Setup
     func setupNavigationBar() {
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil // enables back swipe
+
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = LocalizedString.aboutTitle.value
         navigationItem.titleView?.tintColor = UIColor.custom(.grey50)

@@ -11,19 +11,38 @@
 
 import UIKit
 
-class LandingViewController: OnboardingViewController, Navigating {
+class LandingViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .landing
+
+    @IBOutlet weak private var subtitleLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var getStartedButton: UIButton!
+    @IBOutlet weak private var learnMoreButton: UIButton!
+    @IBOutlet weak private var imageView: UIImageView!
+
+    init() {
+        super.init(nibName: String(describing: Self.self), bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
 
-    override func getStarted() {
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        getStartedButton.cornerRadius = getStartedButton.frame.height/10
+    }
+
+    @IBAction func getStarted() {
         navigate(to: .login)
     }
 
-    override func learnMore() {
+    @IBAction func learnMore() {
         navigate(to: .carousel)
     }
 

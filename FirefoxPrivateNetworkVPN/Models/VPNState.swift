@@ -84,15 +84,6 @@ extension VPNState {
         }
     }
 
-    var globeImage: UIImage? {
-        switch self {
-        case .off, .switching, .disconnecting:
-            return #imageLiteral(resourceName: "globe_off")
-        case .on, .connecting:
-            return #imageLiteral(resourceName: "globe_on")
-        }
-    }
-
     var globeOpacity: CGFloat {
         switch self {
         case .off, .on:

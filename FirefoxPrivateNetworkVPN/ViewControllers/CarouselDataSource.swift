@@ -17,7 +17,7 @@ class CarouselDataSource: NSObject, UIPageViewControllerDataSource {
         return self.viewControllers.endIndex - 1
     }()
 
-    private(set) lazy var viewControllers: [OnboardingViewController] = {
+    private(set) lazy var viewControllers: [CarouselViewController] = {
         let noLogsViewController = CarouselViewController(for: .noLogs)
         let encryptionViewController = CarouselViewController(for: .encryption)
         let manyServersViewController = CarouselViewController(for: .manyServers)
@@ -27,8 +27,8 @@ class CarouselDataSource: NSObject, UIPageViewControllerDataSource {
     }()
 
     func index(of viewController: UIViewController) -> Int? {
-        guard let onboardingViewController = viewController as? OnboardingViewController else { return nil }
-        return viewControllers.firstIndex(of: onboardingViewController)
+        guard let carouselViewController = viewController as? CarouselViewController else { return nil }
+        return viewControllers.firstIndex(of: carouselViewController)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController,

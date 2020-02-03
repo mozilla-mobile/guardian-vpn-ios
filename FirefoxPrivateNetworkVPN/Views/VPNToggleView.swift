@@ -17,22 +17,25 @@ import Lottie
 
 class VPNToggleView: UIView {
     @IBOutlet private var view: UIView!
-    @IBOutlet private var globeImageView: UIImageView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var vpnSwitch: UISwitch!
     @IBOutlet weak var vpnToggleButton: UIButton!
     @IBOutlet private weak var containingView: UIView!
+    @IBOutlet weak var globeAnimationContainer: UIView!
     @IBOutlet weak var backgroundAnimationContainerView: UIView!
 
     var connectionHandler: (() -> Void)?
     var disconnectionHandler: (() -> Void)?
 
+    private var currentState = VPNState.off
     private let disposeBag = DisposeBag()
     private var timerDisposeBag = DisposeBag()
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
-    private let rippleAnimationView = AnimationView()
+    private var globeAnimationView: AnimationView?
+    private var rippleAnimationView: AnimationView?
+    private var tapHaptics = UIImpactFeedbackGenerator(style: .light)
 
     private lazy var hoursFormatter: DateComponentsFormatter = {
         let hoursFormatter = DateComponentsFormatter()
@@ -79,19 +82,29 @@ class VPNToggleView: UIView {
     }
 
     override func awakeFromNib() {
-        setupRippleAnimation()
+        globeAnimationView = createAnimation(for: "globe", in: globeAnimationContainer)
+        globeAnimationView?.respectAnimationFrameRate = true
+        globeAnimationView?.loopMode = .playOnce
+        rippleAnimationView = createAnimation(for: "ripples", in: backgroundAnimationContainerView)
+        rippleAnimationView?.respectAnimationFrameRate = true
+        rippleAnimationView?.animationSpeed = 0.5
     }
 
-    private func setupRippleAnimation() {
-        let rippleAnimation = Animation.named("ripples", subdirectory: "Animations")
-        rippleAnimationView.animation = rippleAnimation
-        rippleAnimationView.contentMode = .scaleAspectFit
-        rippleAnimationView.backgroundBehavior = .pauseAndRestore
-        backgroundAnimationContainerView.addSubview(rippleAnimationView)
+    private func createAnimation(for name: String, in containerView: UIView) -> AnimationView {
+        let animation = Animation.named(name, subdirectory: "Animations")
+        let animationView = AnimationView()
+        animationView.animation = animation
+        animationView.contentMode = .scaleAspectFit
+        animationView.backgroundBehavior = .pauseAndRestore
+        containerView.addSubview(animationView)
+
+        return animationView
     }
 
     override func layoutSubviews() {
-        rippleAnimationView.frame = backgroundAnimationContainerView.bounds
+        globeAnimationView?.frame = globeAnimationContainer.bounds
+        globeAnimationView?.play(toFrame: 0)
+        rippleAnimationView?.frame = backgroundAnimationContainerView.bounds
     }
 
     // MARK: - Actions
@@ -107,13 +120,19 @@ class VPNToggleView: UIView {
     func update(with state: VPNState) {
         titleLabel.text = state.title
         titleLabel.textColor = state.textColor
+
         subtitleLabel.text = state.subtitle
         subtitleLabel.textColor = state.subtitleColor
-        vpnSwitch.isOn = state.isToggleOn
-        vpnSwitch.isEnabled = state.isEnabled
-        vpnToggleButton.isEnabled = state.isEnabled
-        globeImageView.image = state.globeImage
-        globeImageView.alpha = state.globeOpacity
+
+        vpnSwitch.setOn(state.isToggleOn, animated: true)
+        vpnSwitch.isUserInteractionEnabled = state.isEnabled
+        vpnSwitch.alpha = state.isEnabled ? 1 : 0.5
+        tapHaptics.impactOccurred()
+
+        vpnToggleButton.isUserInteractionEnabled = state.isEnabled
+
+        animateGlobe(to: state)
+
         view.backgroundColor = state.backgroundColor
 
         switch state {
@@ -131,22 +150,52 @@ class VPNToggleView: UIView {
 
     // MARK: - Animations
     private var isRippleAnimationPlaying: Bool {
-        rippleAnimationView.isAnimationPlaying
+        return rippleAnimationView?.isAnimationPlaying ?? false
     }
 
     private func startRippleAnimation() {
-        rippleAnimationView.play(fromFrame: 0, toFrame: 75, loopMode: .playOnce) { [weak self] isComplete in
+        rippleAnimationView?.play(fromFrame: 0, toFrame: 75, loopMode: .playOnce) { [weak self] isComplete in
             if isComplete {
-                self?.rippleAnimationView.play(fromFrame: 75, toFrame: 120, loopMode: .loop, completion: nil)
+                self?.rippleAnimationView?.play(fromFrame: 75, toFrame: 120, loopMode: .loop, completion: nil)
             }
         }
     }
 
     private func stopRippleAnimation() {
-        self.rippleAnimationView.stop()
-        rippleAnimationView.play(fromFrame: 120, toFrame: 210, loopMode: .playOnce) { [weak self] isComplete in
+        self.rippleAnimationView?.stop()
+        rippleAnimationView?.play(fromFrame: 120, toFrame: 210, loopMode: .playOnce) { [weak self] isComplete in
             if isComplete {
-                self?.rippleAnimationView.stop()
+                self?.rippleAnimationView?.stop()
+            }
+        }
+    }
+
+    private func animateGlobe(to newState: VPNState) {
+        switch (currentState, newState) {
+        case (.off, .connecting):
+            globeAnimationView?.play(fromFrame: 0, toFrame: 15)
+        case (.connecting, .on):
+            globeAnimationView?.play(fromFrame: 15, toFrame: 30)
+        case (.on, .switching):
+            globeAnimationView?.play(fromFrame: 30, toFrame: 45)
+        case (.switching, .on):
+            globeAnimationView?.play(fromFrame: 45, toFrame: 30)
+        case (.on, .disconnecting):
+            globeAnimationView?.play(fromFrame: 30, toFrame: 45)
+        case (.disconnecting, .off):
+            globeAnimationView?.play(fromFrame: 45, toFrame: 60)
+        default: break
+        }
+
+        currentState = newState
+    }
+
+    private func animateGlobe(connected: Bool) {
+        if connected {
+            globeAnimationView?.play(fromFrame: 0, toFrame: 30, loopMode: .playOnce, completion: nil)
+        } else {
+            if let globeAnimationView = globeAnimationView, globeAnimationView.currentFrame == 30 {
+                globeAnimationView.play(fromFrame: 30, toFrame: 60, loopMode: .playOnce, completion: nil)
             }
         }
     }
@@ -165,7 +214,7 @@ class VPNToggleView: UIView {
                 self.setSubtitle(with: connectionHealth)
 
                 if connectionHealth == .unstable || connectionHealth == .noSignal {
-                    self.rippleAnimationView.stop()
+                    self.rippleAnimationView?.stop()
                 } else {
                     if !self.isRippleAnimationPlaying {
                         self.startRippleAnimation()

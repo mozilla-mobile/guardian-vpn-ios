@@ -96,6 +96,8 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
     // MARK: Setup
     private func setupNavigationBar() {
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil // enables back swipe
+
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.rightBarButtonItem = deviceCountItem
 

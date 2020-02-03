@@ -51,6 +51,11 @@ class HomeViewController: UIViewController, Navigating {
         subscribeToVersionUpdates()
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        vpnSelectionView.view.cornerRadius = vpnSelectionView.view.frame.height/2
+    }
+
     private func setStrings() {
         navigationTitleLabel.text = LocalizedString.homeApplicationName.value
         selectConnectionLabel.text = LocalizedString.homeSelectConnection.value

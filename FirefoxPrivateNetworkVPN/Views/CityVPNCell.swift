@@ -13,8 +13,6 @@ import UIKit
 
 class CityVPNCell: UITableViewCell {
 
-    static let height: CGFloat = 55.0
-
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var radioImageView: UIImageView!
 
