@@ -44,6 +44,8 @@ class GuardianTunnelManager: TunnelManaging {
             NotificationCenter.default.addObserver(self, selector: #selector(self.vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(self.vpnConfigurationDidChange(notification:)), name: Notification.Name.NEVPNConfigurationChange, object: nil)
         }
+
+        subscribeToVersionUpdates()
     }
 
     private func subscribeToVersionUpdates() {
