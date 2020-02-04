@@ -95,9 +95,6 @@ class ServersViewController: UIViewController, Navigating {
 
         dataSource?.vpnSelection
             .delay(.milliseconds(150), scheduler: MainScheduler.instance)
-            .do(onNext: { [weak self] _ in
-                self?.closeModal()
-            })
             .flatMap { [weak self] _ -> Single<Void> in
                 guard let self = self,
                     let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice else {
@@ -106,10 +103,15 @@ class ServersViewController: UIViewController, Navigating {
                 }
 
                 return self.tunnelManager.switchServer(with: device)
-            }
-            .subscribe(onError: { error in
-                OSLog.logTunnel(.error, error.localizedDescription)
-                NotificationCenter.default.post(Notification(name: .switchServerError))
-            }).disposed(by: disposeBag)
+        }.catchError { error -> Observable<Void> in
+            OSLog.logTunnel(.error, error.localizedDescription)
+            NotificationCenter.default.post(Notification(name: .switchServerError))
+            return Observable.just(())
+        }
+        .delay(.milliseconds(600), scheduler: MainScheduler.instance)
+        .subscribe(onNext: { [weak self] _ in
+            self?.closeModal()
+        })
+        .disposed(by: disposeBag)
     }
 }
