@@ -11,6 +11,7 @@
 
 import UIKit
 
+//This class is not currently used anywhere in the app but kept in case requirements change
 class UpdateRecommendedViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .recommendedUpdate
 

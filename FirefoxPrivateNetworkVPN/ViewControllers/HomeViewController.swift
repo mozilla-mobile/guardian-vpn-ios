@@ -138,9 +138,6 @@ class HomeViewController: UIViewController, Navigating {
                 switch value {
                 case .optional:
                     self.versionUpdateToastView.isHidden = false
-//                case .recommended:
-//                    self.versionUpdateToastView.isHidden = true
-//                    self.navigate(to: .recommendedUpdate)
                 case .required:
                     self.versionUpdateToastView.isHidden = true
                     self.navigate(to: .requiredUpdate)

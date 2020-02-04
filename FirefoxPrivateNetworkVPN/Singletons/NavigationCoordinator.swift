@@ -152,16 +152,11 @@ class NavigationCoordinator: NavigationCoordinating {
             case (_, .appStore):
                 UIApplication.shared.openAppStore()
 
-            case (.home, .recommendedUpdate):
-                let updateRecommendedViewController = UpdateRecommendedViewController()
-                let navController = UINavigationController(rootViewController: updateRecommendedViewController)
-                self.currentViewController?.present(navController, animated: true, completion: nil)
-
             case (.home, .requiredUpdate):
                 let updateRequiredViewController = UpdateRequiredViewController()
                 self.appDelegate?.window?.rootViewController = updateRequiredViewController
                 self.currentViewController = updateRequiredViewController
-                
+
             default: // You can't get there from here.
                 // Breakpoint here to catch unhandled transitions
                 return
