@@ -68,7 +68,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="VfZ-fR-WI1"/>
+                                <constraint firstAttribute="height" constant="40" id="VfZ-fR-WI1">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="56"/>
+                                </constraint>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mRl-G2-VBt" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
