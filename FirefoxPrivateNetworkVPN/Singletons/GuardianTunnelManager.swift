@@ -121,6 +121,8 @@ class GuardianTunnelManager: TunnelManaging {
                     }
                 }
             }
+
+            resolver(.success(()))
             return Disposables.create()
         }
     }
