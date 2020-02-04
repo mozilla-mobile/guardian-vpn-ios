@@ -28,9 +28,11 @@ final class VersionUpdateToastView: UIView {
         label.attributedText = NSAttributedString.formatted(LocalizedString.toastFeaturesAvailable.value,
                                                             actionMessage: LocalizedString.toastUpdateNow.value)
     }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        layoutIfNeeded()
         setCornerRadius()
     }
 
@@ -40,7 +42,7 @@ final class VersionUpdateToastView: UIView {
         dismissView.cornerRadius = dismissView.frame.height/10
         dismissView.shadowRadius = dismissView.frame.height/10
     }
-    
+
     @IBAction private func dismiss(_ sender: Any) {
         dismissView.backgroundColor = .custom(.blue80)
 
