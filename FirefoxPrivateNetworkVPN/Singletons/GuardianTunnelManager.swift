@@ -46,6 +46,16 @@ class GuardianTunnelManager: TunnelManaging {
         }
     }
 
+    private func subscribeToVersionUpdates() {
+        //swiftlint:disable:next trailing_closure
+        DependencyFactory.sharedFactory.releaseMonitor.updateStatus
+            .distinctUntilChanged()
+            .filter { $0 == .required }
+            .subscribe(onNext: { [weak self] _ in
+                self?.stopAndRemove()
+            }).disposed(by: disposeBag)
+    }
+
     func connect(with device: Device?) -> Single<Void> {
         return Single<Void>.create { [unowned self] resolver in
             self.loadTunnel {
