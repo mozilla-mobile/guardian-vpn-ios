@@ -65,38 +65,42 @@
                     <viewLayoutGuide key="safeArea" id="gf4-KB-gQh"/>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="required_upgrade" translatesAutoresizingMaskIntoConstraints="NO" id="LCX-1i-bGJ">
-                    <rect key="frame" x="167" y="175" width="80" height="80"/>
+                    <rect key="frame" x="167" y="228" width="80" height="80"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="LCX-1i-bGJ" secondAttribute="height" multiplier="1:1" id="OTq-la-dHd"/>
                         <constraint firstAttribute="width" constant="80" id="SoG-Ze-OpO"/>
-                        <constraint firstAttribute="width" secondItem="LCX-1i-bGJ" secondAttribute="height" multiplier="1:1" id="yLN-o2-anZ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update recommended" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxH-K5-0dr">
-                    <rect key="frame" x="32" y="279" width="350" height="36"/>
+                    <rect key="frame" x="32" y="332" width="350" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="uxH-K5-0dr" secondAttribute="height" multiplier="311:32" id="2VV-Ab-2IQ"/>
+                        <constraint firstAttribute="height" constant="32" id="3ng-LY-pLz"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                     <color key="textColor" name="custom_grey50"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please update the app before you continue to use the VPN" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDU-CA-TDs">
-                    <rect key="frame" x="32" y="323" width="350" height="49.5"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="wDU-CA-TDs" secondAttribute="height" multiplier="311:44" id="eDG-xN-0Vq"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
-                    <color key="textColor" name="custom_grey40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDU-CA-TDs">
+                    <rect key="frame" x="32" y="372" width="350" height="44"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Please update the app before you continue to use the VPN">
+                            <attributes>
+                                <color key="NSColor" name="custom_grey40"/>
+                                <font key="NSFont" size="15" name="Inter-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.2" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdX-CU-tOL" userLabel="Container View">
-                    <rect key="frame" x="16" y="404.5" width="382" height="82.5"/>
+                    <rect key="frame" x="16" y="448" width="382" height="74"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aTe-gB-AbV">
-                            <rect key="frame" x="0.0" y="0.0" width="382" height="82.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="74"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hay-KL-aE0">
-                                    <rect key="frame" x="0.0" y="40.5" width="0.0" height="1"/>
+                                    <rect key="frame" x="0.0" y="36.5" width="0.0" height="1"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" id="0Il-K0-quk"/>
@@ -104,30 +108,27 @@
                                     </constraints>
                                 </view>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_about" translatesAutoresizingMaskIntoConstraints="NO" id="gYZ-g1-a3R">
-                                    <rect key="frame" x="20" y="29" width="24" height="24"/>
+                                    <rect key="frame" x="20" y="25" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="gYZ-g1-a3R" secondAttribute="height" multiplier="1:1" id="Wv1-Vc-Y0v"/>
                                         <constraint firstAttribute="width" constant="24" id="bei-jd-5wg"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5M0-WD-U8v">
-                                    <rect key="frame" x="64" y="20" width="298" height="42"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="42" id="XKm-A3-J0h"/>
-                                    </constraints>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5M0-WD-U8v">
+                                    <rect key="frame" x="64" y="16" width="298" height="42"/>
                                     <attributedString key="attributedText">
                                         <fragment content="Your connection will not be secure while you update.">
                                             <attributes>
                                                 <color key="NSColor" name="custom_grey50"/>
                                                 <font key="NSFont" size="13" name="Inter-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.3300000000000001" tighteningFactorForTruncation="0.0"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.3300000000000001" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOn-7u-RtW">
-                                    <rect key="frame" x="382" y="40.5" width="0.0" height="1"/>
+                                    <rect key="frame" x="382" y="36.5" width="0.0" height="1"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" id="FHt-gD-FtE"/>
@@ -140,9 +141,9 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="aTe-gB-AbV" secondAttribute="trailing" id="9JH-de-xHx"/>
+                        <constraint firstAttribute="height" constant="74" id="ES0-Kq-022"/>
                         <constraint firstAttribute="bottom" secondItem="aTe-gB-AbV" secondAttribute="bottom" id="VcL-9I-dsf"/>
                         <constraint firstItem="aTe-gB-AbV" firstAttribute="leading" secondItem="rdX-CU-tOL" secondAttribute="leading" id="ffD-sa-p0e"/>
-                        <constraint firstAttribute="width" secondItem="rdX-CU-tOL" secondAttribute="height" multiplier="343:74" id="nLt-l6-C1J"/>
                         <constraint firstItem="aTe-gB-AbV" firstAttribute="top" secondItem="rdX-CU-tOL" secondAttribute="top" id="yLN-eV-uZZ"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -164,10 +165,12 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ra-Uj-Ln8">
-                    <rect key="frame" x="32" y="519" width="350" height="45"/>
+                    <rect key="frame" x="32" y="554" width="350" height="40"/>
                     <color key="backgroundColor" name="custom_blue50"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="4Ra-Uj-Ln8" secondAttribute="height" multiplier="311:40" id="nq6-sw-3tp"/>
+                        <constraint firstAttribute="height" constant="40" id="ZHc-Hx-DfS">
+                            <variation key="heightClass=regular-widthClass=regular" constant="56"/>
+                        </constraint>
                     </constraints>
                     <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                     <state key="normal" title="Update now">
@@ -182,18 +185,13 @@
                         <action selector="updateNowTapped" destination="-1" eventType="touchUpInside" id="3hb-WW-o5R"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyu-Lp-Wf1">
-                    <rect key="frame" x="176.5" y="779" width="61" height="27"/>
-                    <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
-                    <state key="normal" title="Sign out">
-                        <color key="titleColor" name="custom_red50"/>
-                    </state>
-                    <connections>
-                        <action selector="signoutTapped" destination="-1" eventType="touchUpInside" id="1vz-Iw-yBU"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOM-lZ-xOn">
-                    <rect key="frame" x="147.5" y="730" width="119" height="31"/>
+                    <rect key="frame" x="147.5" y="734" width="119" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="zzs-2h-EsX">
+                            <variation key="heightClass=regular-widthClass=regular" constant="56"/>
+                        </constraint>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                     <state key="normal" title="Manage account">
                         <color key="titleColor" name="custom_blue50"/>
@@ -202,29 +200,67 @@
                         <action selector="manageAccountTapped" destination="-1" eventType="touchUpInside" id="bL1-Bt-Jck"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyu-Lp-Wf1">
+                    <rect key="frame" x="176.5" y="774" width="61" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="9I1-6l-2HG">
+                            <variation key="heightClass=regular-widthClass=regular" constant="56"/>
+                        </constraint>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
+                    <state key="normal" title="Sign out">
+                        <color key="titleColor" name="custom_red50"/>
+                    </state>
+                    <connections>
+                        <action selector="signoutTapped" destination="-1" eventType="touchUpInside" id="1vz-Iw-yBU"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" name="custom_grey5"/>
             <constraints>
                 <constraint firstItem="LCX-1i-bGJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="238-QO-OnL"/>
                 <constraint firstItem="OOM-lZ-xOn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3KM-Gm-qEL"/>
-                <constraint firstItem="4Ra-Uj-Ln8" firstAttribute="top" secondItem="rdX-CU-tOL" secondAttribute="bottom" constant="32" id="93P-ae-tdh"/>
-                <constraint firstItem="uxH-K5-0dr" firstAttribute="top" secondItem="LCX-1i-bGJ" secondAttribute="bottom" constant="24" id="AgJ-gf-GUE"/>
+                <constraint firstItem="OOM-lZ-xOn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4Ra-Uj-Ln8" secondAttribute="bottom" constant="48" id="5le-Z1-aX3"/>
+                <constraint firstItem="4Ra-Uj-Ln8" firstAttribute="top" secondItem="rdX-CU-tOL" secondAttribute="bottom" constant="32" id="93P-ae-tdh">
+                    <variation key="heightClass=regular-widthClass=regular" constant="48"/>
+                </constraint>
+                <constraint firstItem="uxH-K5-0dr" firstAttribute="top" secondItem="LCX-1i-bGJ" secondAttribute="bottom" constant="24" id="AgJ-gf-GUE">
+                    <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                </constraint>
                 <constraint firstItem="rdX-CU-tOL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CKh-3x-B5y"/>
-                <constraint firstItem="4Ra-Uj-Ln8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="ETJ-y5-6Tk"/>
+                <constraint firstItem="4Ra-Uj-Ln8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="ETJ-y5-6Tk">
+                    <variation key="heightClass=regular-widthClass=regular" constant="64"/>
+                </constraint>
                 <constraint firstItem="wDU-CA-TDs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="G3a-xW-r3h"/>
+                <constraint firstItem="rdX-CU-tOL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="NTJ-yZ-hNm"/>
                 <constraint firstItem="4Ra-Uj-Ln8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qid-0b-55a"/>
-                <constraint firstItem="rdX-CU-tOL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RuU-83-1zA"/>
+                <constraint firstItem="rdX-CU-tOL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RuU-83-1zA">
+                    <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                </constraint>
                 <constraint firstItem="uxH-K5-0dr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TQH-Xk-JdS"/>
-                <constraint firstItem="LCX-1i-bGJ" firstAttribute="top" secondItem="lVb-oU-lqV" secondAttribute="bottom" constant="91" id="XE3-8Y-1DG"/>
-                <constraint firstItem="dyu-Lp-Wf1" firstAttribute="top" secondItem="OOM-lZ-xOn" secondAttribute="bottom" constant="18" id="cld-8g-Ll1"/>
+                <constraint firstItem="dyu-Lp-Wf1" firstAttribute="top" secondItem="OOM-lZ-xOn" secondAttribute="bottom" id="cld-8g-Ll1">
+                    <variation key="heightClass=regular-widthClass=regular" constant="4"/>
+                </constraint>
                 <constraint firstItem="lVb-oU-lqV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ddC-Md-3Qf"/>
-                <constraint firstItem="uxH-K5-0dr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="f7Z-au-AU4"/>
-                <constraint firstItem="wDU-CA-TDs" firstAttribute="top" secondItem="uxH-K5-0dr" secondAttribute="bottom" constant="8" id="gCR-wl-WtT"/>
-                <constraint firstItem="wDU-CA-TDs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="hM5-iZ-3nf"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dyu-Lp-Wf1" secondAttribute="bottom" constant="56" id="hdF-4B-7bw"/>
-                <constraint firstItem="rdX-CU-tOL" firstAttribute="top" secondItem="wDU-CA-TDs" secondAttribute="bottom" constant="32" id="ocK-gZ-goc"/>
+                <constraint firstItem="uxH-K5-0dr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="f7Z-au-AU4">
+                    <variation key="heightClass=regular-widthClass=regular" constant="64"/>
+                </constraint>
+                <constraint firstItem="wDU-CA-TDs" firstAttribute="top" secondItem="uxH-K5-0dr" secondAttribute="bottom" constant="8" id="gCR-wl-WtT">
+                    <variation key="heightClass=regular-widthClass=regular" constant="12"/>
+                </constraint>
+                <constraint firstItem="wDU-CA-TDs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="hM5-iZ-3nf">
+                    <variation key="heightClass=regular-widthClass=regular" constant="64"/>
+                </constraint>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dyu-Lp-Wf1" secondAttribute="bottom" priority="999" constant="48" id="hdF-4B-7bw">
+                    <variation key="heightClass=regular-widthClass=regular" constant="96"/>
+                </constraint>
+                <constraint firstItem="rdX-CU-tOL" firstAttribute="top" secondItem="wDU-CA-TDs" secondAttribute="bottom" constant="32" id="ocK-gZ-goc">
+                    <variation key="heightClass=regular-widthClass=regular" constant="48"/>
+                </constraint>
                 <constraint firstItem="dyu-Lp-Wf1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vZG-Kp-nfL"/>
-                <constraint firstItem="lVb-oU-lqV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="yB3-Fn-ndx"/>
+                <constraint firstItem="lVb-oU-lqV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="yB3-Fn-ndx">
+                    <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                </constraint>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="19" y="158"/>

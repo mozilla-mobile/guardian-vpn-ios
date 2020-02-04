@@ -24,8 +24,13 @@ class UpdateRequiredViewController: UIViewController, Navigating {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        updateNowButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
         setLocalizedStrings()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        setupButton()
     }
 
     @IBAction func updateNowTapped() {
@@ -52,5 +57,10 @@ class UpdateRequiredViewController: UIViewController, Navigating {
         updateNowButton.titleLabel?.text = LocalizedString.updateNow.value
         manageAccountButton.titleLabel?.text = LocalizedString.settingsManageAccount.value
         signoutButton.titleLabel?.text = LocalizedString.settingsSignOut.value
+    }
+
+    private func setupButton() {
+        updateNowButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
+        updateNowButton.cornerRadius = updateNowButton.frame.height/10
     }
 }
