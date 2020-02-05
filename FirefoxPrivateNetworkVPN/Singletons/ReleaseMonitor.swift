@@ -18,11 +18,14 @@ class ReleaseMonitor: ReleaseMonitoring {
 
     private static let timeInterval: TimeInterval = 21600
     private var timer: DispatchSourceTimer?
+    private var _updateStatus = PublishSubject<UpdateStatus>()
 
-    private var _updateStatus = BehaviorRelay<UpdateStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus())
+    var updateStatus: Observable<UpdateStatus> {
+        guard let updateStatus = ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus() else {
+            return _updateStatus.asObservable()
+        }
 
-    var updateStatus: Observable<UpdateStatus?> {
-        return _updateStatus.asObservable()
+        return _updateStatus.startWith(updateStatus).asObservable()
     }
 
     private var pollingDelay: DispatchTime {
@@ -52,7 +55,7 @@ class ReleaseMonitor: ReleaseMonitoring {
             let releaseInfo = ReleaseInfo(with: release)
             releaseInfo.saveToUserDefaults()
 
-            self?._updateStatus.accept(releaseInfo.getUpdateStatus())
+            self?._updateStatus.onNext(releaseInfo.getUpdateStatus())
         }
     }
 }
