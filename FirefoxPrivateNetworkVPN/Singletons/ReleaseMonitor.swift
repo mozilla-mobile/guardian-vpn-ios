@@ -21,11 +21,7 @@ class ReleaseMonitor: ReleaseMonitoring {
     private var _updateStatus = BehaviorSubject<UpdateStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus())
 
     var updateStatus: Observable<UpdateStatus?> {
-        guard let updateStatus = ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus() else {
-            return _updateStatus.asObservable()
-        }
-
-        return _updateStatus.startWith(updateStatus).asObservable()
+        return _updateStatus.asObservable()
     }
 
     private var pollingDelay: DispatchTime {
