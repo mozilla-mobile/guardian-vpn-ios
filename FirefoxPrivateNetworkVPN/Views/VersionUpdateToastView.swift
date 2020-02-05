@@ -29,6 +29,20 @@ final class VersionUpdateToastView: UIView {
                                                             actionMessage: LocalizedString.toastUpdateNow.value)
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        layoutIfNeeded()
+        setCornerRadius()
+    }
+
+    private func setCornerRadius() {
+        view.cornerRadius = view.frame.height/10
+        view.shadowRadius = view.frame.height/10
+        dismissView.cornerRadius = dismissView.frame.height/10
+        dismissView.shadowRadius = dismissView.frame.height/10
+    }
+
     @IBAction private func dismiss(_ sender: Any) {
         dismissView.backgroundColor = .custom(.blue80)
 

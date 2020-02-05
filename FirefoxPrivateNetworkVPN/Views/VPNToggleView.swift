@@ -124,13 +124,7 @@ class VPNToggleView: UIView {
         subtitleLabel.text = state.subtitle
         subtitleLabel.textColor = state.subtitleColor
 
-        vpnSwitch.setOn(state.isToggleOn, animated: true)
-        vpnSwitch.isUserInteractionEnabled = state.isEnabled
-        vpnSwitch.alpha = state.isEnabled ? 1 : 0.5
-        tapHaptics.impactOccurred()
-
-        vpnToggleButton.isUserInteractionEnabled = state.isEnabled
-
+        updateToggle(to: state)
         animateGlobe(to: state)
 
         view.backgroundColor = state.backgroundColor
@@ -146,6 +140,21 @@ class VPNToggleView: UIView {
         default:
             resetConnectionTimeAndHealth()
         }
+    }
+
+    private func updateToggle(to newState: VPNState) {
+        switch (currentState, newState) {
+        case (.off, .on): // handles app re-launch
+            vpnSwitch.setOn(newState.isToggleOn, animated: false)
+        default:
+            vpnSwitch.setOn(newState.isToggleOn, animated: true)
+        }
+
+        vpnSwitch.isUserInteractionEnabled = newState.isEnabled
+        vpnSwitch.alpha = newState.isEnabled ? 1 : 0.5
+        tapHaptics.impactOccurred()
+
+        vpnToggleButton.isUserInteractionEnabled = newState.isEnabled
     }
 
     // MARK: - Animations
@@ -176,6 +185,8 @@ class VPNToggleView: UIView {
             globeAnimationView?.play(fromFrame: 0, toFrame: 15)
         case (.connecting, .on):
             globeAnimationView?.play(fromFrame: 15, toFrame: 30)
+        case (.off, .on): // handles app re-launch
+            globeAnimationView?.play(fromFrame: 30, toFrame: 30)
         case (.on, .switching):
             globeAnimationView?.play(fromFrame: 30, toFrame: 45)
         case (.switching, .on):
