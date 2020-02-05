@@ -18,9 +18,9 @@ class ReleaseMonitor: ReleaseMonitoring {
 
     private static let timeInterval: TimeInterval = 21600
     private var timer: DispatchSourceTimer?
-    private var _updateStatus = PublishSubject<UpdateStatus>()
+    private var _updateStatus = BehaviorSubject<UpdateStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus())
 
-    var updateStatus: Observable<UpdateStatus> {
+    var updateStatus: Observable<UpdateStatus?> {
         guard let updateStatus = ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus() else {
             return _updateStatus.asObservable()
         }
