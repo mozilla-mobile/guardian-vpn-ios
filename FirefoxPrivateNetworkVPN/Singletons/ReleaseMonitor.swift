@@ -18,7 +18,7 @@ class ReleaseMonitor: ReleaseMonitoring {
 
     private static let timeInterval: TimeInterval = 21600
     private var timer: DispatchSourceTimer?
-    private var _updateStatus = BehaviorSubject<UpdateStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus())
+    private var _updateStatus = BehaviorRelay<UpdateStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus())
 
     var updateStatus: Observable<UpdateStatus?> {
         return _updateStatus.asObservable()
@@ -51,7 +51,7 @@ class ReleaseMonitor: ReleaseMonitoring {
             let releaseInfo = ReleaseInfo(with: release)
             releaseInfo.saveToUserDefaults()
 
-            self?._updateStatus.onNext(releaseInfo.getUpdateStatus())
+            self?._updateStatus.accept(releaseInfo.getUpdateStatus())
         }
     }
 }
