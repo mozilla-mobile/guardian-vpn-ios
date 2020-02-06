@@ -31,6 +31,8 @@
 		F42DE7CC2395B9D3000B79C3 /* WarningToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42DE7CB2395B9D3000B79C3 /* WarningToastView.xib */; };
 		F42DE7CE2395B9E7000B79C3 /* WarningToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */; };
 		F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
+		F4483D0323F594E80094BE3E /* UpdateRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */; };
+		F4483D0423F594E80094BE3E /* UpdateRequiredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4483D0223F594E80094BE3E /* UpdateRequiredViewController.xib */; };
 		F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */; };
 		F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */; };
 		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
@@ -110,6 +112,9 @@
 		F4B42C1F2390230B001F64F7 /* MockConnectionRxValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */; };
 		F4B42C212390504F001F64F7 /* ConnectionHealthMonitorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C202390504F001F64F7 /* ConnectionHealthMonitorSpec.swift */; };
 		F4B42C2323916A90001F64F7 /* ConnectionHealthMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */; };
+		F4BAF48323EC68D8000FDBB0 /* ServerSectionHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48123EC68D8000FDBB0 /* ServerSectionHeaderViewCell.swift */; };
+		F4BAF48423EC68D8000FDBB0 /* ServerSectionHeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4BAF48223EC68D8000FDBB0 /* ServerSectionHeaderViewCell.xib */; };
+		F4BAF48623EC820D000FDBB0 /* ServerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48523EC820D000FDBB0 /* ServerListViewModel.swift */; };
 		F4DF5B1423CFBDAA006A7E4C /* UpdateRecommendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */; };
 		F4DF5B1523CFBDAA006A7E4C /* UpdateRecommendedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
@@ -211,8 +216,6 @@
 		F4E9091F2371CB1F00EB9FE6 /* vpnCountry.json in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA3823712A1B0018DC43 /* vpnCountry.json */; };
 		F4E909202371CB1F00EB9FE6 /* MockGuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA3623712A1B0018DC43 /* MockGuardianAPI.swift */; };
 		F4EB6C0123D22DDF00A7D081 /* ReleaseInfoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB6C0023D22DDF00A7D081 /* ReleaseInfoSpec.swift */; };
-		F4EB6C0323D2A92400A7D081 /* UpdateRequiredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4EB6C0223D2A92400A7D081 /* UpdateRequiredViewController.xib */; };
-		F4EB6C0523D2A95400A7D081 /* UpdateRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB6C0423D2A95400A7D081 /* UpdateRequiredViewController.swift */; };
 		F4F00E0223A2E1C5000E9DCA /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = F4F00E0123A2E1C5000E9DCA /* Animations */; };
 		F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */; };
 		F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */; };
@@ -325,6 +328,8 @@
 		F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaulting.swift; sourceTree = "<group>"; };
 		F43DFC13234E436E003EA64A /* DeviceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceKeys.swift; sourceTree = "<group>"; };
 		F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianTunnelManager.swift; sourceTree = "<group>"; };
+		F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRequiredViewController.swift; sourceTree = "<group>"; };
+		F4483D0223F594E80094BE3E /* UpdateRequiredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateRequiredViewController.xib; sourceTree = "<group>"; };
 		F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+font.swift"; sourceTree = "<group>"; };
 		F45D1D0D238721E20084B5DE /* CarouselDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselDataSource.swift; sourceTree = "<group>"; };
 		F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselPageViewController.swift; sourceTree = "<group>"; };
@@ -455,6 +460,9 @@
 		F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectionRxValue.swift; sourceTree = "<group>"; };
 		F4B42C202390504F001F64F7 /* ConnectionHealthMonitorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealthMonitorSpec.swift; sourceTree = "<group>"; };
 		F4B42C2223916A90001F64F7 /* ConnectionHealthMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealthMonitoring.swift; sourceTree = "<group>"; };
+		F4BAF48123EC68D8000FDBB0 /* ServerSectionHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSectionHeaderViewCell.swift; sourceTree = "<group>"; };
+		F4BAF48223EC68D8000FDBB0 /* ServerSectionHeaderViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServerSectionHeaderViewCell.xib; sourceTree = "<group>"; };
+		F4BAF48523EC820D000FDBB0 /* ServerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListViewModel.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
 		F4D150B523453F9900739CDA /* CityVPNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityVPNCell.xib; sourceTree = "<group>"; };
 		F4D150B92345438500739CDA /* ServersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersDataSource.swift; sourceTree = "<group>"; };
@@ -548,6 +556,7 @@
 				F43DCC7D2379AC35000C60E3 /* README.md */,
 				F4AED107235F450D00F80ABF /* WireGuard */,
 				F41CCA32237128F10018DC43 /* WireGuardTunnel */,
+				F4483D0023F594C70094BE3E /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -677,6 +686,8 @@
 		F41CCA2123711C7A0018DC43 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */,
+				F4483D0223F594E80094BE3E /* UpdateRequiredViewController.xib */,
 				527C7EB523752E9300368965 /* AboutDataSource.swift */,
 				527C7EB123752DCA00368965 /* AboutViewController.swift */,
 				527C7EB223752DCA00368965 /* AboutViewController.xib */,
@@ -707,8 +718,7 @@
 				F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */,
 				F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */,
 				F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */,
-				F4EB6C0423D2A95400A7D081 /* UpdateRequiredViewController.swift */,
-				F4EB6C0223D2A92400A7D081 /* UpdateRequiredViewController.xib */,
+				F4BAF48523EC820D000FDBB0 /* ServerListViewModel.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -740,6 +750,8 @@
 				F420F41A2368840A00CD48BF /* VPNToggleView.xib */,
 				F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */,
 				F42DE7CB2395B9D3000B79C3 /* WarningToastView.xib */,
+				F4BAF48123EC68D8000FDBB0 /* ServerSectionHeaderViewCell.swift */,
+				F4BAF48223EC68D8000FDBB0 /* ServerSectionHeaderViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -816,6 +828,15 @@
 				F41CCA3823712A1B0018DC43 /* vpnCountry.json */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		F4483D0023F594C70094BE3E /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F4EB6C0423D2A95400A7D081 /* UpdateRequiredViewController.swift */,
+				F4EB6C0223D2A92400A7D081 /* UpdateRequiredViewController.xib */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		F45D70B1234242EE00871447 /* Fonts */ = {
@@ -1246,6 +1267,7 @@
 				F477A20A23E3508F00585066 /* LandingViewController.xib in Resources */,
 				F4E908D92371CAAD00EB9FE6 /* Inter-SemiBold.otf in Resources */,
 				F41CCA302371215E0018DC43 /* Localizable.strings in Resources */,
+				F4BAF48423EC68D8000FDBB0 /* ServerSectionHeaderViewCell.xib in Resources */,
 				F4E909082371CAAD00EB9FE6 /* SettingsViewController.xib in Resources */,
 				F42DE7CC2395B9D3000B79C3 /* WarningToastView.xib in Resources */,
 				F4E908E62371CAAD00EB9FE6 /* Metropolis-Regular.otf in Resources */,
@@ -1259,8 +1281,8 @@
 				F4E908DC2371CAAD00EB9FE6 /* Metropolis-Bold.otf in Resources */,
 				F4E908FE2371CAAD00EB9FE6 /* HomeViewController.xib in Resources */,
 				F4E9090E2371CAAD00EB9FE6 /* CityVPNCell.xib in Resources */,
+				F4483D0423F594E80094BE3E /* UpdateRequiredViewController.xib in Resources */,
 				F4E908EB2371CAAD00EB9FE6 /* Metropolis-ThinItalic.otf in Resources */,
-				F4EB6C0323D2A92400A7D081 /* UpdateRequiredViewController.xib in Resources */,
 				F4E908DA2371CAAD00EB9FE6 /* Metropolis-Black.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1523,7 +1545,6 @@
 				F4AED259235F838F00F80ABF /* ringlogger.c in Sources */,
 				F4E908F22371CAAD00EB9FE6 /* CAShapeLayer+Animation.swift in Sources */,
 				F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */,
-				F4EB6C0523D2A95400A7D081 /* UpdateRequiredViewController.swift in Sources */,
 				F4E909042371CAAD00EB9FE6 /* LoginViewController.swift in Sources */,
 				F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */,
 				F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */,
@@ -1559,6 +1580,7 @@
 				F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */,
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,
 				F4E9090B2371CAAD00EB9FE6 /* AccountInformationHeader.swift in Sources */,
+				F4BAF48323EC68D8000FDBB0 /* ServerSectionHeaderViewCell.swift in Sources */,
 				F4FFF3B123E8BDC700C365F3 /* UILabel+AttributedText.swift in Sources */,
 				F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */,
 				F48A595C23DBA03400BB2A0A /* UIScreen+Extensions.swift in Sources */,
@@ -1582,12 +1604,14 @@
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
 				527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */,
 				F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */,
+				F4483D0323F594E80094BE3E /* UpdateRequiredViewController.swift in Sources */,
 				F4AED1ED235F50D200F80ABF /* key.c in Sources */,
 				F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */,
 				F4AED253235F835200F80ABF /* DNSServer.swift in Sources */,
 				F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */,
 				F4E908C92371CAAD00EB9FE6 /* LoginCheckpointModel.swift in Sources */,
 				F4E908F72371CAAD00EB9FE6 /* UIColor+Named.swift in Sources */,
+				F4BAF48623EC820D000FDBB0 /* ServerListViewModel.swift in Sources */,
 				F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */,
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
 				F42304892372101000572A93 /* HyperlinkCell.swift in Sources */,

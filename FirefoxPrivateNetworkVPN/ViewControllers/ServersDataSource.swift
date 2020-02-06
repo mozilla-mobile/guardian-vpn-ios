@@ -16,6 +16,7 @@ import os.log
 
 class ServersDataSource: NSObject, UITableViewDataSource {
     // MARK: - Properties
+    private let viewModel: ServerListViewModel
     private let representedObject: [VPNCountry]
     private weak var tableView: UITableView?
     private lazy var sectionExpandedStates: [Int: Bool] = {
@@ -26,17 +27,19 @@ class ServersDataSource: NSObject, UITableViewDataSource {
 
         return states
     }()
-    private let headerTapPublishSubject = PublishSubject<CountryVPNHeaderView>()
+
+    private let headerTapPublishSubject = PublishSubject<ServerSectionHeaderViewCell>()
     private let disposeBag = DisposeBag()
-    private let headerName = String(describing: CountryVPNHeaderView.self)
+    private let headerCellName = String(describing: ServerSectionHeaderViewCell.self)
     private let cellName = String(describing: CityVPNCell.self)
 
     private(set) var selectedIndexPath: IndexPath?
     let vpnSelection = PublishSubject<Void>()
 
     // MARK: - Initialization
-    init(with tableView: UITableView) {
+    init(with tableView: UITableView, viewModel: ServerListViewModel = ServerListViewModel()) {
         self.tableView = tableView
+        self.viewModel = viewModel
         representedObject = DependencyFactory.sharedFactory.accountManager.availableServers ?? []
         super.init()
         selectedIndexPath = getSelectedIndexPath()
@@ -44,13 +47,13 @@ class ServersDataSource: NSObject, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
 
-        let headerNib = UINib.init(nibName: headerName, bundle: nil)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
+        let headerNib = UINib.init(nibName: headerCellName, bundle: nil)
+        tableView.register(headerNib, forCellReuseIdentifier: headerCellName)
 
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
 
-        listenForHeaderTaps()
+//        listenForHeaderTaps()
     }
 
     // MARK: - Setup
@@ -65,73 +68,56 @@ class ServersDataSource: NSObject, UITableViewDataSource {
         return nil
     }
 
-    private func listenForHeaderTaps() {
-        headerTapPublishSubject.subscribe { [weak self] headerEvent in
-            guard let headerView = headerEvent.element,
-                let tableView = self?.tableView
-                else { return }
-            headerView.isExpanded.toggle()
-            let section = headerView.tag
-            self?.sectionExpandedStates[section] = headerView.isExpanded
-            tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-        }.disposed(by: disposeBag)
-    }
-
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return representedObject.count
+        return viewModel.numberOfSections
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (sectionExpandedStates[section, default: false])
-            ? representedObject[section].cities.count
-            : 0
+        return viewModel.getRowCount(for: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            guard let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellName, for: indexPath) as? ServerSectionHeaderViewCell else { return UITableViewCell(frame: .zero) }
+
+//            cell.setup(with: viewModel.getCountry(at: indexPath.section))
+            return headerCell
+        }
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? CityVPNCell
             else { return UITableViewCell(frame: .zero) }
-        let city = representedObject[indexPath.section].cities[indexPath.row]
-        cell.setup(city: city)
+        let city = representedObject[indexPath.section].cities[indexPath.row - 1]
+//        cell.setup(with: viewModel.getCity(at: indexPath))
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
 extension ServersDataSource: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCity = representedObject[indexPath.section].cities[indexPath.row]
-        currentCity.saveToUserDefaults()
-        let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
-        tunnelManager.cityChangedEvent.onNext(currentCity)
-
-        if indexPath != selectedIndexPath {
-            selectedIndexPath = indexPath
-            tableView.reloadData()
-
-            vpnSelection.onNext(())
+        if indexPath.row == 0 {
+            viewModel.toggle(section: indexPath.section)
+            return
         }
-    }
 
+        viewModel.selectCity(at: indexPath)
+
+    }
+}
+
+// Preventing the `grouped` style from introducing extra spacing between sections
+// Reference: https://stackoverflow.com/a/56978339
+extension ServersDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CountryVPNHeaderView.height
+        return .leastNormalMagnitude
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        // Preventing the `grouped` style from introducing extra spacing between sections
-        // Reference: https://stackoverflow.com/a/56978339
         return .leastNormalMagnitude
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName) as? CountryVPNHeaderView
-            else { return nil }
-        headerView.tag = section
-        headerView.setup(country: representedObject[section])
-        headerView.tapPublishSubject = headerTapPublishSubject
-        headerView.isExpanded = sectionExpandedStates[section, default: false]
-
-        return headerView
+        return UIView()
     }
 }

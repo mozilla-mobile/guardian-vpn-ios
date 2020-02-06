@@ -12,7 +12,7 @@
 import UIKit
 import RxSwift
 
-class CountryVPNHeaderView: UITableViewHeaderFooterView {
+class CountryVPNHeaderView: UITableViewCell {
     static let height: CGFloat = UIScreen.isiPad ? 87.0 : 56.0
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -25,7 +25,7 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
     var isExpanded: Bool = false {
         willSet {
             DispatchQueue.main.async { [weak self] in
-                self?.chevronImageView.image = newValue ? #imageLiteral(resourceName: "icon_sectionOpen") : #imageLiteral(resourceName: "icon_sectionClosed")
+//                self?.chevronImageView.image = newValue ? #imageLiteral(resourceName: "icon_sectionOpen") : #imageLiteral(resourceName: "icon_sectionClosed")
             }
         }
     }
@@ -36,9 +36,9 @@ class CountryVPNHeaderView: UITableViewHeaderFooterView {
     }
 
     func setup(country: VPNCountry) {
-        flagImageView.image = UIImage(named: "flag_\(country.code.lowercased())")
-        nameLabel.text = country.name
-        topLineView.isHidden = tag == 0
+//        flagImageView.image = UIImage(named: "flag_\(country.code.lowercased())")
+//        nameLabel.text = country.name
+//        topLineView.isHidden = tag == 0
     }
 
     @objc private func handleTap(sender: UITapGestureRecognizer) {
