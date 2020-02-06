@@ -79,9 +79,23 @@ class ServersViewController: UIViewController, Navigating {
     private func setupObservers() {
         tunnelManager
             .stateEvent
+            .withPrevious(startWith: .off)
+            .subscribe(onNext: { [weak self] prevState, currentState in
+            switch (prevState, currentState) {
+            case (.connecting, .on):
+                self?.closeModal()
+            case (.switching, .on):
+                self?.closeModal()
+            default:
+                break
+            }
+        }).disposed(by: disposeBag)
+
+        tunnelManager
+            .stateEvent
             .skip(1)
-            .subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] state in
+            .asDriver(onErrorJustReturn: .off)
+            .drive(onNext: { [weak self] state in
                 switch state {
                 case .connecting, .switching, .disconnecting:
                     self?.title = state.title
@@ -90,7 +104,6 @@ class ServersViewController: UIViewController, Navigating {
                     self?.title = LocalizedString.serversNavTitle.value
                     self?.tableView.isUserInteractionEnabled = true
                 }
-
             }).disposed(by: disposeBag)
 
         dataSource?.vpnSelection
@@ -108,9 +121,14 @@ class ServersViewController: UIViewController, Navigating {
             NotificationCenter.default.post(Notification(name: .switchServerError))
             return Observable.just(())
         }
-        .delay(.milliseconds(600), scheduler: MainScheduler.instance)
         .subscribe(onNext: { [weak self] _ in
-            self?.closeModal()
+            guard let self = self else { return }
+
+            // Dismisses server list if tunnel is not already established
+            let currentState = self.tunnelManager.stateEvent.value
+            if currentState == .off {
+                self.closeModal()
+            }
         })
         .disposed(by: disposeBag)
     }
