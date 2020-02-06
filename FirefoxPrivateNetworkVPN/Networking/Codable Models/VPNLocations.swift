@@ -88,3 +88,9 @@ struct VPNServer: Codable, Equatable {
         return portRanges.flatMap { $0 }.randomElement()
     }
 }
+
+extension Array: UserDefaulting where Element == VPNCountry {
+    static var userDefaultsKey: String {
+        "serverList"
+    }
+}
