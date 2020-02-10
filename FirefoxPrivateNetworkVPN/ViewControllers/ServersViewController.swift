@@ -21,6 +21,7 @@ class ServersViewController: UIViewController, Navigating {
     @IBOutlet weak var tableView: UITableView!
 
     private var dataSource: ServersDataSource?
+    private var viewModel: ServerListViewModel?
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var disposeBag = DisposeBag()
 
@@ -50,8 +51,8 @@ class ServersViewController: UIViewController, Navigating {
             isPresentingViewControllerDimmed = true
         }
 
-        if let selectedIndexPath = dataSource?.selectedIndexPath {
-            tableView.scrollToRow(at: selectedIndexPath, at: .middle, animated: false)
+        if let selectedCityIndexPath = viewModel?.selectedCityIndexPath {
+            tableView?.scrollToRow(at: selectedCityIndexPath, at: .middle, animated: false)
         }
     }
 
@@ -63,6 +64,14 @@ class ServersViewController: UIViewController, Navigating {
         }
     }
 
+    func reload(section: Int) -> Single<Void> {
+        return Single<Void>.create { [weak self] resolver in
+            self?.tableView?.reloadSections(IndexSet(integer: section), with: .automatic)
+            resolver(.success(()))
+            return Disposables.create()
+        }
+    }
+
     // MARK: - Setup
     private func setupTitle() {
         navigationItem.title = LocalizedString.serversNavTitle.value
@@ -71,7 +80,10 @@ class ServersViewController: UIViewController, Navigating {
 
     private func setupTableView() {
         tableView.contentInsetAdjustmentBehavior = .never
-        dataSource = ServersDataSource(with: tableView)
+        let serverListViewModel = ServerListViewModel()
+        viewModel = serverListViewModel
+        dataSource = ServersDataSource(with: tableView, viewModel: serverListViewModel)
+
         tableView.reloadData()
     }
 
@@ -106,7 +118,7 @@ class ServersViewController: UIViewController, Navigating {
                 }
             }).disposed(by: disposeBag)
 
-        dataSource?.vpnSelection
+        viewModel?.vpnSelection
             .delay(.milliseconds(150), scheduler: MainScheduler.instance)
             .flatMap { [weak self] _ -> Single<Void> in
                 guard let self = self,
