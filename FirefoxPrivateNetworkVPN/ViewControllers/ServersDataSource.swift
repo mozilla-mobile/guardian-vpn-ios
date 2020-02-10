@@ -20,8 +20,8 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     private weak var tableView: UITableView?
 
     private let disposeBag = DisposeBag()
-    private let headerCellName = String(describing: CountryVPNCell.self)
-    private let cellName = String(describing: CityVPNCell.self)
+    private let countryCellIdentifier = String(describing: CountryVPNCell.self)
+    private let cityCellIdentifier = String(describing: CityVPNCell.self)
 
     // MARK: - Initialization
     init(with tableView: UITableView, viewModel: ServerListViewModel) {
@@ -32,11 +32,11 @@ class ServersDataSource: NSObject, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
 
-        let headerNib = UINib.init(nibName: headerCellName, bundle: nil)
-        tableView.register(headerNib, forCellReuseIdentifier: headerCellName)
+        let countryCellNib = UINib.init(nibName: countryCellIdentifier, bundle: nil)
+        tableView.register(countryCellNib, forCellReuseIdentifier: countryCellIdentifier)
 
-        let cellNib = UINib.init(nibName: cellName, bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: cellName)
+        let cityCellNib = UINib.init(nibName: cityCellIdentifier, bundle: nil)
+        tableView.register(cityCellNib, forCellReuseIdentifier: cityCellIdentifier)
     }
 
     // MARK: - UITableViewDataSource
@@ -50,16 +50,16 @@ class ServersDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellName, for: indexPath) as? CountryVPNCell
-            headerCell?.setup(with: viewModel.getCountryCellModel(at: indexPath.section))
+            let countryCell = tableView.dequeueReusableCell(withIdentifier: countryCellIdentifier, for: indexPath) as? CountryVPNCell
+            countryCell?.setup(with: viewModel.getCountryCellModel(at: indexPath.section))
 
-            return headerCell ?? UITableViewCell(frame: .zero)
+            return countryCell ?? UITableViewCell(frame: .zero)
         }
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? CityVPNCell
-        cell?.setup(with: viewModel.getCityCellModel(at: indexPath))
+        let cityCell = tableView.dequeueReusableCell(withIdentifier: cityCellIdentifier, for: indexPath) as? CityVPNCell
+        cityCell?.setup(with: viewModel.getCityCellModel(at: indexPath))
 
-        return cell ?? UITableViewCell(frame: .zero)
+        return cityCell ?? UITableViewCell(frame: .zero)
     }
 }
 

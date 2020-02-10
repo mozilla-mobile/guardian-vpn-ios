@@ -12,20 +12,28 @@
 import RxSwift
 import os.log
 
-class ServerListViewModel: NSObject {
+class ServerListViewModel {
     private var serverList: [VPNCountry]
     private let disposeBag = DisposeBag()
     private let sectionHeaderCount = 1
 
     let cellSelection = PublishSubject<IndexPath>()
-    let vpnSelection = PublishSubject<Void>()
-    let toggleSection = PublishSubject<IndexPath>()
+    private let _vpnSelection = PublishSubject<Void>()
+    private let _toggleSection = PublishSubject<IndexPath>()
+
+    var vpnSelection: Observable<Void> {
+        return _vpnSelection.asObservable()
+    }
+
+    var toggleSection: Observable<IndexPath> {
+        return _toggleSection.asObservable()
+    }
 
     var numberOfSections: Int {
         return serverList.count
     }
 
-    //find the saved city in the server list in case the list has changed
+    //Find the saved city in the server list in case the list has changed
     lazy var selectedCityIndexPath: IndexPath = {
         let currentCity = VPNCity.fetchFromUserDefaults() ?? serverList.getRandomUSServer()
         for (countryIndex, country) in serverList.enumerated() {
@@ -42,11 +50,8 @@ class ServerListViewModel: NSObject {
         return states
     }()
 
-    override init() {
+    init() {
         self.serverList = [VPNCountry].fetchFromUserDefaults() ?? []
-
-        super.init()
-
         setupObservers()
     }
 
@@ -82,7 +87,7 @@ class ServerListViewModel: NSObject {
                 let newCity = self.serverList[indexPath.section].cities[indexPath.row - 1]
                 newCity.saveToUserDefaults()
                 DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.onNext(newCity)
-                self.vpnSelection.onNext(())
+                self._vpnSelection.onNext(())
             })
             .flatMap { _ -> Single<Void> in
                 guard let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice else {
@@ -101,7 +106,7 @@ class ServerListViewModel: NSObject {
             .subscribe(onNext: { [weak self] indexPath in
                 self?.sectionExpandedStates[indexPath.section] = self?.sectionExpandedStates[indexPath.section] ?? false
                 self?.sectionExpandedStates[indexPath.section]?.toggle()
-                self?.toggleSection.onNext(indexPath)
+                self?._toggleSection.onNext(indexPath)
             }).disposed(by: disposeBag)
     }
 }
