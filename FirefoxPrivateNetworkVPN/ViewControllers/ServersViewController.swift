@@ -64,14 +64,6 @@ class ServersViewController: UIViewController, Navigating {
         }
     }
 
-    func reload(section: Int) -> Single<Void> {
-        return Single<Void>.create { [weak self] resolver in
-            self?.tableView?.reloadSections(IndexSet(integer: section), with: .automatic)
-            resolver(.success(()))
-            return Disposables.create()
-        }
-    }
-
     // MARK: - Setup
     private func setupTitle() {
         navigationItem.title = LocalizedString.serversNavTitle.value
