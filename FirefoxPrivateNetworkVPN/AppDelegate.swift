@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         dependencyFactory = DependencyFactory.sharedFactory
-        dependencyFactory?.releaseMonitor.start()
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
