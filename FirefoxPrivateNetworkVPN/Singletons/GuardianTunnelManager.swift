@@ -44,6 +44,18 @@ class GuardianTunnelManager: TunnelManaging {
             NotificationCenter.default.addObserver(self, selector: #selector(self.vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(self.vpnConfigurationDidChange(notification:)), name: Notification.Name.NEVPNConfigurationChange, object: nil)
         }
+
+        subscribeToVersionUpdates()
+    }
+
+    private func subscribeToVersionUpdates() {
+        //swiftlint:disable:next trailing_closure
+        DependencyFactory.sharedFactory.releaseMonitor.updateStatus
+            .distinctUntilChanged()
+            .filter { $0 == .required }
+            .subscribe(onNext: { [weak self] _ in
+                self?.stopAndRemove()
+            }).disposed(by: disposeBag)
     }
 
     func connect(with device: Device?) -> Single<Void> {

@@ -47,11 +47,11 @@ class ReleaseInfoSpec: QuickSpec {
 
                 context("when the current version matches the latest version and is less than the minimum version") {
 
-                    it("is recommended") {
+                    it("is required") {
                         sut = ReleaseInfo(latestVersion: "1", minimumVersion: "1.0.1", dateRetrieved: Date())
 
                         let status = sut.getUpdateStatus(of: "1.0")
-                        expect(status).to(equal(UpdateStatus.recommended))
+                        expect(status).to(equal(UpdateStatus.required))
                     }
                 }
 
@@ -61,17 +61,17 @@ class ReleaseInfoSpec: QuickSpec {
                         sut = ReleaseInfo(latestVersion: "6.6", minimumVersion: "6.5.9", dateRetrieved: Date())
 
                         let status = sut.getUpdateStatus(of: "6.5.9")
-                        expect(status).to(equal(UpdateStatus.available))
+                        expect(status).to(equal(UpdateStatus.optional))
                     }
                 }
 
                 context("when the current version is less than both the latest version and the minimum version") {
 
-                    it("is recommended") {
+                    it("is required") {
                         sut = ReleaseInfo(latestVersion: "2.2", minimumVersion: "2.1", dateRetrieved: Date())
 
                         let status = sut.getUpdateStatus(of: "2.0.2")
-                        expect(status).to(equal(UpdateStatus.recommended))
+                        expect(status).to(equal(UpdateStatus.required))
                     }
                 }
 
@@ -81,7 +81,7 @@ class ReleaseInfoSpec: QuickSpec {
                         sut = ReleaseInfo(latestVersion: "2.2", minimumVersion: "1.1", dateRetrieved: Date())
 
                         let status = sut.getUpdateStatus(of: "2.0.0")
-                        expect(status).to(equal(UpdateStatus.available))
+                        expect(status).to(equal(UpdateStatus.optional))
                     }
                 }
 
@@ -107,11 +107,11 @@ class ReleaseInfoSpec: QuickSpec {
 
                 context("when the current version is greater than the latest version and less than the minimum version") {
 
-                    it("is recommended") {
+                    it("is required") {
                         sut = ReleaseInfo(latestVersion: "2.2", minimumVersion: "v13.0.0", dateRetrieved: Date())
 
                         let status = sut.getUpdateStatus(of: "12.0")
-                        expect(status).to(equal(UpdateStatus.recommended))
+                        expect(status).to(equal(UpdateStatus.required))
                     }
                 }
             }

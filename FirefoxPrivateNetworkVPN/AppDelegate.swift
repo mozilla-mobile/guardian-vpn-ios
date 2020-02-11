@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         dependencyFactory = DependencyFactory.sharedFactory
-//        dependencyFactory?.releaseMonitor.start()
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
@@ -35,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         guard let dependencyFactory = dependencyFactory else { return }
 
-//        dependencyFactory.releaseMonitor.start()
+        dependencyFactory.releaseMonitor.start()
 
         if dependencyFactory.accountManager.account != nil {
             dependencyFactory.accountManager.startHeartbeat()
@@ -50,6 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         dependencyFactory?.connectionHealthMonitor.stop()
         dependencyFactory?.accountManager.stopHeartbeat()
-//        dependencyFactory?.releaseMonitor.stop()
+        dependencyFactory?.releaseMonitor.stop()
     }
 }

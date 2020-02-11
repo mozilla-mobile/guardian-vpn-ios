@@ -211,6 +211,8 @@
 		F4E9091F2371CB1F00EB9FE6 /* vpnCountry.json in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA3823712A1B0018DC43 /* vpnCountry.json */; };
 		F4E909202371CB1F00EB9FE6 /* MockGuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA3623712A1B0018DC43 /* MockGuardianAPI.swift */; };
 		F4EB6C0123D22DDF00A7D081 /* ReleaseInfoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB6C0023D22DDF00A7D081 /* ReleaseInfoSpec.swift */; };
+		F4EB6C0323D2A92400A7D081 /* UpdateRequiredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4EB6C0223D2A92400A7D081 /* UpdateRequiredViewController.xib */; };
+		F4EB6C0523D2A95400A7D081 /* UpdateRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB6C0423D2A95400A7D081 /* UpdateRequiredViewController.swift */; };
 		F4F00E0223A2E1C5000E9DCA /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = F4F00E0123A2E1C5000E9DCA /* Animations */; };
 		F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */; };
 		F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */; };
@@ -477,6 +479,8 @@
 		F4E908AF2371C35100EB9FE6 /* FirefoxPrivateNetworkVPNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirefoxPrivateNetworkVPNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E908B92371C45600EB9FE6 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		F4EB6C0023D22DDF00A7D081 /* ReleaseInfoSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseInfoSpec.swift; sourceTree = "<group>"; };
+		F4EB6C0223D2A92400A7D081 /* UpdateRequiredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateRequiredViewController.xib; sourceTree = "<group>"; };
+		F4EB6C0423D2A95400A7D081 /* UpdateRequiredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRequiredViewController.swift; sourceTree = "<group>"; };
 		F4F00E0123A2E1C5000E9DCA /* Animations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Animations; sourceTree = "<group>"; };
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
 		F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextAttachment+Extensions.swift"; sourceTree = "<group>"; };
@@ -703,6 +707,8 @@
 				F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */,
 				F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */,
 				F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */,
+				F4EB6C0423D2A95400A7D081 /* UpdateRequiredViewController.swift */,
+				F4EB6C0223D2A92400A7D081 /* UpdateRequiredViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1254,6 +1260,7 @@
 				F4E908FE2371CAAD00EB9FE6 /* HomeViewController.xib in Resources */,
 				F4E9090E2371CAAD00EB9FE6 /* CityVPNCell.xib in Resources */,
 				F4E908EB2371CAAD00EB9FE6 /* Metropolis-ThinItalic.otf in Resources */,
+				F4EB6C0323D2A92400A7D081 /* UpdateRequiredViewController.xib in Resources */,
 				F4E908DA2371CAAD00EB9FE6 /* Metropolis-Black.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1516,6 +1523,7 @@
 				F4AED259235F838F00F80ABF /* ringlogger.c in Sources */,
 				F4E908F22371CAAD00EB9FE6 /* CAShapeLayer+Animation.swift in Sources */,
 				F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */,
+				F4EB6C0523D2A95400A7D081 /* UpdateRequiredViewController.swift in Sources */,
 				F4E909042371CAAD00EB9FE6 /* LoginViewController.swift in Sources */,
 				F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */,
 				F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */,

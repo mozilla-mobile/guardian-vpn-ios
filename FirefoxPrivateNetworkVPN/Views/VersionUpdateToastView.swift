@@ -26,7 +26,7 @@ final class VersionUpdateToastView: UIView {
         addSubview(view)
 
         label.attributedText = NSAttributedString.formatted(LocalizedString.toastFeaturesAvailable.value,
-                                                            actionMessage: LocalizedString.toastUpdateNow.value)
+                                                            actionMessage: LocalizedString.updateNow.value)
     }
 
     override func awakeFromNib() {

@@ -136,11 +136,11 @@ class HomeViewController: UIViewController, Navigating {
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 switch value {
-                case .available:
+                case .optional:
                     self.versionUpdateToastView.isHidden = false
-                case .recommended:
+                case .required:
                     self.versionUpdateToastView.isHidden = true
-                    self.navigate(to: .recommendedUpdate)
+                    self.navigate(to: .requiredUpdate)
                 default: //.none or nil
                     self.versionUpdateToastView.isHidden = true
                 }

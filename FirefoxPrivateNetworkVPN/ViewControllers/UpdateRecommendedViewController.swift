@@ -11,6 +11,7 @@
 
 import UIKit
 
+//This class is not currently used anywhere in the app but kept in case requirements change
 class UpdateRecommendedViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .recommendedUpdate
 
@@ -58,7 +59,7 @@ class UpdateRecommendedViewController: UIViewController, Navigating {
     private func setLocalizedStrings() {
         titleLabel.text = LocalizedString.updateRecommended.value
         subtitleLabel.text = LocalizedString.updateRecommendedSubtitle.value
-        connectionSubtitleLabel.text = LocalizedString.updateRecommendedConnection.value
-        updateNowButton.titleLabel?.text = LocalizedString.toastUpdateNow.value
+        connectionSubtitleLabel.text = LocalizedString.updateConnection.value
+        updateNowButton.titleLabel?.text = LocalizedString.updateNow.value
     }
 }

@@ -16,6 +16,7 @@ enum HyperlinkItem {
     case support
     case terms
     case privacy
+    case account
 
     private static let base = "https://fpn.firefox.com"
     private static let query = "?utm_medium=fx-vpn&utm_source=fx-vpn-iOSs&utm_campaign=download-client"
@@ -26,6 +27,7 @@ enum HyperlinkItem {
         case .support: return LocalizedString.helpSupport.value
         case .terms: return LocalizedString.aboutTerms.value
         case .privacy: return LocalizedString.aboutPrivacy.value
+        case .account: return LocalizedString.settingsManageAccount.value
         }
     }
 
@@ -40,6 +42,8 @@ enum HyperlinkItem {
             return URL(string: HyperlinkItem.base + "/r/vpn/terms" + HyperlinkItem.query)
         case .privacy:
             return URL(string: HyperlinkItem.base + "/r/vpn/privacy" + HyperlinkItem.query)
+        case .account:
+            return URL(string: HyperlinkItem.base + "/r/vpn/account/")
         }
     }
 }

@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 
 protocol ReleaseMonitoring {
-    var updateStatus: BehaviorRelay<UpdateStatus?> { get }
+    var updateStatus: Observable<UpdateStatus?> { get }
 
     func start()
     func stop()

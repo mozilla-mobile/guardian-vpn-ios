@@ -37,6 +37,7 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommended_upgrade" translatesAutoresizingMaskIntoConstraints="NO" id="LCX-1i-bGJ">
                     <rect key="frame" x="167" y="255" width="80" height="80"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="80" id="oV0-Xi-sGN"/>
                         <constraint firstAttribute="width" secondItem="LCX-1i-bGJ" secondAttribute="height" multiplier="1:1" id="yLN-o2-anZ"/>
                     </constraints>
                 </imageView>

@@ -83,12 +83,16 @@ enum LocalizedString: String {
 
     case toastTryAgain
 
-    case toastUpdateNow
     case toastFeaturesAvailable
+
+    case updateNow
+    case updateConnection
 
     case updateRecommended
     case updateRecommendedSubtitle
-    case updateRecommendedConnection
+
+    case updateRequired
+    case updateRequiredSubtitle
 
     case errorDeviceRemoval
     case errorConnectVPN
