@@ -13,13 +13,23 @@ import RxSwift
 import os.log
 
 class ServerListViewModel {
+
+    // MARK: - Properties
     private var serverList: [VPNCountry]
     private let disposeBag = DisposeBag()
     private let sectionHeaderCount = 1
-
-    let cellSelection = PublishSubject<IndexPath>()
     private let _vpnSelection = PublishSubject<Void>()
     private let _toggleSection = PublishSubject<IndexPath>()
+
+    private lazy var sectionExpandedStates: [Int: Bool] = {
+        var states = [Int: Bool]()
+        if let selectedCityIndexPath = selectedCityIndexPath {
+            states[selectedCityIndexPath.section] = true
+        }
+        return states
+    }()
+
+    let cellSelection = PublishSubject<IndexPath>()
 
     var vpnSelection: Observable<Void> {
         return _vpnSelection.asObservable()
@@ -33,25 +43,11 @@ class ServerListViewModel {
         return serverList.count
     }
 
-    //Find the saved city in the server list in case the list has changed
-    lazy var selectedCityIndexPath: IndexPath = {
-        let currentCity = VPNCity.fetchFromUserDefaults() ?? serverList.getRandomUSServer()
-        for (countryIndex, country) in serverList.enumerated() {
-            for (cityIndex, city) in country.cities.enumerated() where city == currentCity {
-                return IndexPath(row: cityIndex, section: countryIndex)
-            }
-        }
-        return IndexPath(row: 0, section: 0)
-    }()
-
-    private lazy var sectionExpandedStates: [Int: Bool] = {
-        var states = [Int: Bool]()
-        states[selectedCityIndexPath.section] = true
-        return states
-    }()
+    var selectedCityIndexPath: IndexPath?
 
     init() {
         self.serverList = [VPNCountry].fetchFromUserDefaults() ?? []
+        self.selectedCityIndexPath = getIndexPathOfCurrentCity()
         setupObservers()
     }
 
@@ -69,10 +65,20 @@ class ServerListViewModel {
     }
 
     func getCityCellModel(at indexPath: IndexPath) -> CityCellModel {
-        let row = indexPath.row - sectionHeaderCount
-        let city = serverList[indexPath.section].cities[row]
+        let city = serverList[indexPath.section].cities[indexPath.row - sectionHeaderCount]
         return CityCellModel(name: city.name,
-                             isSelected: IndexPath(row: row, section: indexPath.section) == selectedCityIndexPath)
+                             isSelected: indexPath == selectedCityIndexPath)
+    }
+
+    //Find the saved city in the server list each time in case the list has changed
+    private func getIndexPathOfCurrentCity() -> IndexPath? {
+        let currentCity = VPNCity.fetchFromUserDefaults() ?? serverList.getRandomUSServer()
+        for (countryIndex, country) in serverList.enumerated() {
+            for (cityIndex, city) in country.cities.enumerated() where city == currentCity {
+                return IndexPath(row: cityIndex + sectionHeaderCount, section: countryIndex)
+            }
+        }
+        return nil
     }
 
     //swiftlint:disable trailing_closure
@@ -80,11 +86,9 @@ class ServerListViewModel {
         cellSelection
             .filter { $0.row != 0 }
             .do(onNext: { [weak self] indexPath in
-                guard let self = self, indexPath != self.selectedCityIndexPath else {
-                    return
-                }
+                guard let self = self, indexPath != self.selectedCityIndexPath else { return }
                 self.selectedCityIndexPath = indexPath
-                let newCity = self.serverList[indexPath.section].cities[indexPath.row - 1]
+                let newCity = self.serverList[indexPath.section].cities[indexPath.row - self.sectionHeaderCount]
                 newCity.saveToUserDefaults()
                 DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.onNext(newCity)
                 self._vpnSelection.onNext(())

@@ -10,16 +10,14 @@
 //
 
 import UIKit
-import NetworkExtension
 import RxSwift
-import os.log
 
 class ServersDataSource: NSObject, UITableViewDataSource {
+
     // MARK: - Properties
     private let viewModel: ServerListViewModel
     private weak var tableView: UITableView?
 
-    private let disposeBag = DisposeBag()
     private let countryCellIdentifier = String(describing: CountryVPNCell.self)
     private let cityCellIdentifier = String(describing: CityVPNCell.self)
 
@@ -49,7 +47,7 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if indexPath.isFirstRowInSection {
             let countryCell = tableView.dequeueReusableCell(withIdentifier: countryCellIdentifier, for: indexPath) as? CountryVPNCell
             countryCell?.setup(with: viewModel.getCountryCellModel(at: indexPath.section))
 
@@ -68,16 +66,15 @@ extension ServersDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.cellSelection.onNext(indexPath)
     }
+
+    //Need to set the estimatedHeightForRow since using automatic dimensions
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.isFirstRowInSection ? CountryVPNCell.estimatedHeight : CityVPNCell.estimatedHeight
+    }
 }
 
-// Preventing the `grouped` style from introducing extra spacing between sections
-// Reference: https://stackoverflow.com/a/56978339
-extension ServersDataSource {
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return .leastNormalMagnitude
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .leastNormalMagnitude
+private extension IndexPath {
+    var isFirstRowInSection: Bool {
+        return row == 0
     }
 }

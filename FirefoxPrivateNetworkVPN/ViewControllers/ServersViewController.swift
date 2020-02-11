@@ -26,8 +26,10 @@ class ServersViewController: UIViewController, Navigating {
     private var disposeBag = DisposeBag()
 
     // MARK: - Initialization
-    init() {
+    init(viewModel: ServerListViewModel = ServerListViewModel()) {
         super.init(nibName: String(describing: Self.self), bundle: nil)
+
+        self.viewModel = viewModel
     }
 
     required init?(coder: NSCoder) {
@@ -51,8 +53,8 @@ class ServersViewController: UIViewController, Navigating {
             isPresentingViewControllerDimmed = true
         }
 
-        if let selectedCityIndexPath = viewModel?.selectedCityIndexPath {
-            tableView?.scrollToRow(at: selectedCityIndexPath, at: .middle, animated: false)
+        if let selectedCityIndexPath = self.viewModel?.selectedCityIndexPath {
+            self.tableView?.scrollToRow(at: selectedCityIndexPath, at: .middle, animated: false)
         }
     }
 
@@ -71,10 +73,9 @@ class ServersViewController: UIViewController, Navigating {
     }
 
     private func setupTableView() {
-        tableView.contentInsetAdjustmentBehavior = .never
-        let serverListViewModel = ServerListViewModel()
-        viewModel = serverListViewModel
-        dataSource = ServersDataSource(with: tableView, viewModel: serverListViewModel)
+        if let viewModel = viewModel {
+            dataSource = ServersDataSource(with: tableView, viewModel: viewModel)
+        }
 
         tableView.reloadData()
     }

@@ -16,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="CountryVPNCell" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CountryVPNCell" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="415" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -56,6 +56,9 @@
                 <constraints>
                     <constraint firstItem="O6p-JA-idl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0Zw-jh-g7i"/>
                     <constraint firstItem="HKA-OB-099" firstAttribute="centerY" secondItem="O6p-JA-idl" secondAttribute="centerY" id="4B2-S4-rQL"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HKA-OB-099" secondAttribute="trailing" constant="16" id="4Hd-lH-4l5">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
                     <constraint firstItem="O6p-JA-idl" firstAttribute="leading" secondItem="66t-8x-8bc" secondAttribute="trailing" constant="20" id="CXJ-2a-0hv">
                         <variation key="heightClass=regular-widthClass=regular" constant="24"/>
                     </constraint>

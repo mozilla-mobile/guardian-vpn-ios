@@ -14,6 +14,8 @@ import RxSwift
 
 class CountryVPNCell: UITableViewCell {
 
+    static let estimatedHeight: CGFloat = UIScreen.isiPad ? 88 : 56
+
     @IBOutlet weak var topLineView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var flagImageView: UIImageView!
@@ -22,7 +24,6 @@ class CountryVPNCell: UITableViewCell {
     func setup(with cellModel: CountryCellModel) {
         flagImageView.image = UIImage(named: "flag_\(cellModel.countryCode.lowercased())")
         nameLabel.text = cellModel.name
-        topLineView.isHidden = cellModel.isExpanded
         chevronImageView.image = cellModel.isExpanded ? #imageLiteral(resourceName: "icon_sectionOpen") : #imageLiteral(resourceName: "icon_sectionClosed")
     }
 }

@@ -13,6 +13,8 @@ import UIKit
 
 class CityVPNCell: UITableViewCell {
 
+    static let estimatedHeight: CGFloat = UIScreen.isiPad ? 88 : 56
+
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var radioImageView: UIImageView!
 
