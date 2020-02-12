@@ -132,6 +132,7 @@ class GuardianTunnelManager: TunnelManaging {
                         return
                     }
                 }
+                resolver(.success(()))
             }
 
             resolver(.success(()))

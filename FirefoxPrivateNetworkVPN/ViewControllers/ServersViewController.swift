@@ -136,5 +136,11 @@ class ServersViewController: UIViewController, Navigating {
             }
         })
         .disposed(by: disposeBag)
+
+        viewModel?.toggleSection
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+            })
+            .disposed(by: disposeBag)
     }
 }

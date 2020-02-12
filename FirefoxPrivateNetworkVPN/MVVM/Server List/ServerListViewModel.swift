@@ -91,7 +91,6 @@ class ServerListViewModel {
                 let newCity = self.serverList[indexPath.section].cities[indexPath.row - self.sectionHeaderCount]
                 newCity.saveToUserDefaults()
                 DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.onNext(newCity)
-                self._vpnSelection.onNext(())
             })
             .flatMap { _ -> Single<Void> in
                 guard let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice else {
@@ -100,9 +99,13 @@ class ServerListViewModel {
                 }
                 return DependencyFactory.sharedFactory.tunnelManager.switchServer(with: device)
         }
-        .subscribe(onError: { error in
+        .catchError { error -> Observable<Void> in
             OSLog.logTunnel(.error, error.localizedDescription)
             NotificationCenter.default.post(Notification(name: .switchServerError))
+            return Observable.just(())
+        }
+        .subscribe(onNext: { [weak self] in
+            self?._vpnSelection.onNext(())
         }).disposed(by: disposeBag)
 
         cellSelection
