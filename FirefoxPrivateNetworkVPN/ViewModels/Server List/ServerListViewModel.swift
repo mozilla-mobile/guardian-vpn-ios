@@ -15,9 +15,9 @@ import os.log
 class ServerListViewModel {
 
     // MARK: - Properties
+    private static let sectionHeaderCount = 1
     private var serverList: [VPNCountry]
     private let disposeBag = DisposeBag()
-    private let sectionHeaderCount = 1
     private let _vpnSelection = PublishSubject<Void>()
     private let _toggleSection = PublishSubject<IndexPath>()
 
@@ -30,6 +30,7 @@ class ServerListViewModel {
     }()
 
     let cellSelection = PublishSubject<IndexPath>()
+    var selectedCityIndexPath: IndexPath?
 
     var vpnSelection: Observable<Void> {
         return _vpnSelection.asObservable()
@@ -43,8 +44,6 @@ class ServerListViewModel {
         return serverList.count
     }
 
-    var selectedCityIndexPath: IndexPath?
-
     init() {
         self.serverList = [VPNCountry].fetchFromUserDefaults() ?? []
         self.selectedCityIndexPath = getIndexPathOfCurrentCity()
@@ -53,9 +52,9 @@ class ServerListViewModel {
 
     func getRowCount(for section: Int) -> Int {
         if let isExpanded = sectionExpandedStates[section], isExpanded == true {
-            return serverList[section].cities.count + sectionHeaderCount
+            return serverList[section].cities.count + ServerListViewModel.sectionHeaderCount
         }
-        return sectionHeaderCount
+        return ServerListViewModel.sectionHeaderCount
     }
 
     func getCountryCellModel(at section: Int) -> CountryCellModel {
@@ -65,7 +64,7 @@ class ServerListViewModel {
     }
 
     func getCityCellModel(at indexPath: IndexPath) -> CityCellModel {
-        let city = serverList[indexPath.section].cities[indexPath.row - sectionHeaderCount]
+        let city = serverList[indexPath.section].cities[indexPath.row - ServerListViewModel.sectionHeaderCount]
         return CityCellModel(name: city.name,
                              isSelected: indexPath == selectedCityIndexPath)
     }
@@ -75,7 +74,7 @@ class ServerListViewModel {
         let currentCity = VPNCity.fetchFromUserDefaults() ?? serverList.getRandomUSServer()
         for (countryIndex, country) in serverList.enumerated() {
             for (cityIndex, city) in country.cities.enumerated() where city == currentCity {
-                return IndexPath(row: cityIndex + sectionHeaderCount, section: countryIndex)
+                return IndexPath(row: cityIndex + ServerListViewModel.sectionHeaderCount, section: countryIndex)
             }
         }
         return nil
@@ -84,11 +83,11 @@ class ServerListViewModel {
     //swiftlint:disable trailing_closure
     private func setupObservers() {
         cellSelection
-            .filter { $0.row != 0 }
+            .filter { $0.isCityCell }
             .do(onNext: { [weak self] indexPath in
                 guard let self = self, indexPath != self.selectedCityIndexPath else { return }
                 self.selectedCityIndexPath = indexPath
-                let newCity = self.serverList[indexPath.section].cities[indexPath.row - self.sectionHeaderCount]
+                let newCity = self.serverList[indexPath.section].cities[indexPath.row - ServerListViewModel.sectionHeaderCount]
                 newCity.saveToUserDefaults()
                 DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.onNext(newCity)
             })
@@ -109,11 +108,21 @@ class ServerListViewModel {
         }).disposed(by: disposeBag)
 
         cellSelection
-            .filter { $0.row == 0 }
+            .filter { $0.isCountryHeader }
             .subscribe(onNext: { [weak self] indexPath in
                 self?.sectionExpandedStates[indexPath.section] = self?.sectionExpandedStates[indexPath.section] ?? false
                 self?.sectionExpandedStates[indexPath.section]?.toggle()
                 self?._toggleSection.onNext(indexPath)
             }).disposed(by: disposeBag)
+    }
+}
+
+private extension IndexPath {
+    var isCountryHeader: Bool {
+        return row == 0
+    }
+
+    var isCityCell: Bool {
+        return row != 0
     }
 }

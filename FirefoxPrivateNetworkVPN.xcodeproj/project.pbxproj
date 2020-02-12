@@ -597,7 +597,6 @@
 			children = (
 				F41CCA2423711C7A0018DC43 /* AppDelegate.swift */,
 				F41CCA1E23711C7A0018DC43 /* Models */,
-				F4BAF48723F1C356000FDBB0 /* MVVM */,
 				F41CCA1B23711C7A0018DC43 /* Networking */,
 				F41CCA1F23711C7A0018DC43 /* Project Files */,
 				F41CCA2723711C7A0018DC43 /* Protocols */,
@@ -605,6 +604,7 @@
 				F41CCA1923711C7A0018DC43 /* Singletons */,
 				F41CCA2023711C7A0018DC43 /* Utilities */,
 				F41CCA2123711C7A0018DC43 /* ViewControllers */,
+				F4BAF48723F1C356000FDBB0 /* ViewModels */,
 				F41CCA2623711C7A0018DC43 /* Views */,
 			);
 			path = FirefoxPrivateNetworkVPN;
@@ -1044,12 +1044,12 @@
 			path = "Connection Heath Monitor";
 			sourceTree = "<group>";
 		};
-		F4BAF48723F1C356000FDBB0 /* MVVM */ = {
+		F4BAF48723F1C356000FDBB0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				F4BAF48A23F1C370000FDBB0 /* Server List */,
 			);
-			path = MVVM;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		F4BAF48A23F1C370000FDBB0 /* Server List */ = {

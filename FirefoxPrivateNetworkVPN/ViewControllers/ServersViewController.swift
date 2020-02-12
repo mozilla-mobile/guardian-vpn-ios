@@ -112,30 +112,16 @@ class ServersViewController: UIViewController, Navigating {
             }).disposed(by: disposeBag)
 
         viewModel?.vpnSelection
-            .delay(.milliseconds(150), scheduler: MainScheduler.instance)
-            .flatMap { [weak self] _ -> Single<Void> in
-                guard let self = self,
-                    let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice else {
-                        OSLog.log(.error, "No device found when switching VPN server")
-                        return .never()
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // Dismisses server list if tunnel is not already established
+                let currentState = self.tunnelManager.stateEvent.value
+                if currentState == .off {
+                    self.closeModal()
                 }
-
-                return self.tunnelManager.switchServer(with: device)
-        }.catchError { error -> Observable<Void> in
-            OSLog.logTunnel(.error, error.localizedDescription)
-            NotificationCenter.default.post(Notification(name: .switchServerError))
-            return Observable.just(())
-        }
-        .subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-
-            // Dismisses server list if tunnel is not already established
-            let currentState = self.tunnelManager.stateEvent.value
-            if currentState == .off {
-                self.closeModal()
-            }
-        })
-        .disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
 
         viewModel?.toggleSection
             .subscribe(onNext: { [weak self] indexPath in
