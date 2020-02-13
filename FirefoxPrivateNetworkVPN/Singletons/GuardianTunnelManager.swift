@@ -89,11 +89,6 @@ class GuardianTunnelManager: TunnelManaging {
         }
     }
 
-    func stop() {
-        guard let tunnel = tunnel else { return }
-        (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
-    }
-
     func switchServer(with device: Device) -> Single<Void> {
         return Single<Void>.create { [unowned self] resolver in
             guard let tunnel = self.tunnel else {
@@ -186,10 +181,16 @@ class GuardianTunnelManager: TunnelManaging {
 
     private func loadTunnel(completion: (() -> Void)? = nil) {
         NETunnelProviderManager.loadAllFromPreferences { [weak self] managers, error in
-            guard let self = self, error == nil else { return }
-            self.tunnel = managers?.first { $0.localizedDescription == VPNCity.fetchFromUserDefaults()?.name }
+            if let self = self, error == nil {
+                self.tunnel = managers?.first { $0.localizedDescription == VPNCity.fetchFromUserDefaults()?.name }
+            }
             completion?()
         }
+    }
+
+    func stop() {
+        guard let tunnel = tunnel else { return }
+        (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
 
     func stopAndRemove() {
@@ -210,7 +211,7 @@ class GuardianTunnelManager: TunnelManaging {
     @objc private func vpnStatusDidChange(notification: Notification) {
         guard let session = (notification.object as? NETunnelProviderSession), tunnel?.connection == session else { return }
 
-        if  case .switching(_, _) = stateEvent.value {
+        if case .switching(_, _) = stateEvent.value {
             switch session.status {
             case .disconnecting, .connecting:
                 return
