@@ -10,128 +10,71 @@
 //
 
 import UIKit
-import NetworkExtension
 import RxSwift
-import os.log
 
 class ServersDataSource: NSObject, UITableViewDataSource {
+
     // MARK: - Properties
-    private let representedObject: [VPNCountry]
+    private let viewModel: ServerListViewModel
     private weak var tableView: UITableView?
-    private lazy var sectionExpandedStates: [Int: Bool] = {
-        var states = [Int: Bool]()
-        if let selectedSection = selectedIndexPath?.section {
-            states[selectedSection] = true
-        }
 
-        return states
-    }()
-    private let headerTapPublishSubject = PublishSubject<CountryVPNHeaderView>()
-    private let disposeBag = DisposeBag()
-    private let headerName = String(describing: CountryVPNHeaderView.self)
-    private let cellName = String(describing: CityVPNCell.self)
-
-    private(set) var selectedIndexPath: IndexPath?
-    let vpnSelection = PublishSubject<Void>()
+    private let countryCellIdentifier = String(describing: CountryVPNCell.self)
+    private let cityCellIdentifier = String(describing: CityVPNCell.self)
 
     // MARK: - Initialization
-    init(with tableView: UITableView) {
+    init(with tableView: UITableView, viewModel: ServerListViewModel) {
         self.tableView = tableView
-        representedObject = DependencyFactory.sharedFactory.accountManager.availableServers ?? []
+        self.viewModel = viewModel
         super.init()
-        selectedIndexPath = getSelectedIndexPath()
 
         tableView.delegate = self
         tableView.dataSource = self
 
-        let headerNib = UINib.init(nibName: headerName, bundle: nil)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
+        let countryCellNib = UINib.init(nibName: countryCellIdentifier, bundle: nil)
+        tableView.register(countryCellNib, forCellReuseIdentifier: countryCellIdentifier)
 
-        let cellNib = UINib.init(nibName: cellName, bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: cellName)
-
-        listenForHeaderTaps()
-    }
-
-    // MARK: - Setup
-    private func getSelectedIndexPath() -> IndexPath? {
-        guard let currentCity = VPNCity.fetchFromUserDefaults() else { return nil }
-
-        for (countryIndex, country) in representedObject.enumerated() {
-            for (cityIndex, city) in country.cities.enumerated() where city == currentCity {
-                return IndexPath(row: cityIndex, section: countryIndex)
-            }
-        }
-        return nil
-    }
-
-    private func listenForHeaderTaps() {
-        headerTapPublishSubject.subscribe { [weak self] headerEvent in
-            guard let headerView = headerEvent.element,
-                let tableView = self?.tableView
-                else { return }
-            headerView.isExpanded.toggle()
-            let section = headerView.tag
-            self?.sectionExpandedStates[section] = headerView.isExpanded
-            tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-        }.disposed(by: disposeBag)
+        let cityCellNib = UINib.init(nibName: cityCellIdentifier, bundle: nil)
+        tableView.register(cityCellNib, forCellReuseIdentifier: cityCellIdentifier)
     }
 
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return representedObject.count
+        return viewModel.numberOfSections
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (sectionExpandedStates[section, default: false])
-            ? representedObject[section].cities.count
-            : 0
+        return viewModel.getRowCount(for: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? CityVPNCell
-            else { return UITableViewCell(frame: .zero) }
-        let city = representedObject[indexPath.section].cities[indexPath.row]
-        cell.setup(city: city)
-        return cell
+        if indexPath.isFirstRowInSection {
+            let countryCell = tableView.dequeueReusableCell(withIdentifier: countryCellIdentifier, for: indexPath) as? CountryVPNCell
+            countryCell?.setup(with: viewModel.getCountryCellModel(at: indexPath.section))
+
+            return countryCell ?? UITableViewCell(frame: .zero)
+        }
+
+        let cityCell = tableView.dequeueReusableCell(withIdentifier: cityCellIdentifier, for: indexPath) as? CityVPNCell
+        cityCell?.setup(with: viewModel.getCityCellModel(at: indexPath))
+
+        return cityCell ?? UITableViewCell(frame: .zero)
     }
 }
 
 // MARK: - UITableViewDelegate
 extension ServersDataSource: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCity = representedObject[indexPath.section].cities[indexPath.row]
-        currentCity.saveToUserDefaults()
-        let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
-        tunnelManager.cityChangedEvent.onNext(currentCity)
-
-        if indexPath != selectedIndexPath {
-            selectedIndexPath = indexPath
-            tableView.reloadData()
-
-            vpnSelection.onNext(())
-        }
+        viewModel.cellSelection.onNext(indexPath)
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CountryVPNHeaderView.height
+    //Need to set the estimatedHeightForRow since using automatic dimensions
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.isFirstRowInSection ? CountryVPNCell.estimatedHeight : CityVPNCell.estimatedHeight
     }
+}
 
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        // Preventing the `grouped` style from introducing extra spacing between sections
-        // Reference: https://stackoverflow.com/a/56978339
-        return .leastNormalMagnitude
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName) as? CountryVPNHeaderView
-            else { return nil }
-        headerView.tag = section
-        headerView.setup(country: representedObject[section])
-        headerView.tapPublishSubject = headerTapPublishSubject
-        headerView.isExpanded = sectionExpandedStates[section, default: false]
-
-        return headerView
+private extension IndexPath {
+    var isFirstRowInSection: Bool {
+        return row == 0
     }
 }

@@ -13,16 +13,14 @@ import UIKit
 
 class CityVPNCell: UITableViewCell {
 
+    static let estimatedHeight: CGFloat = UIScreen.isiPad ? 88 : 56
+
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var radioImageView: UIImageView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    func setup(city: VPNCity) {
-        cityLabel.text = city.name
-        radioImageView.image = city.isCurrentCity ? UIImage(named: "icon_radioOn") : UIImage(named: "icon_radioOff")
-        radioImageView.tintColor = city.isCurrentCity ? UIColor.custom(.blue50) : UIColor.custom(.grey40)
+    func setup(with cellModel: CityCellModel) {
+        cityLabel.text = cellModel.name
+        radioImageView.image = cellModel.isSelected ? UIImage(named: "icon_radioOn") : UIImage(named: "icon_radioOff")
+        radioImageView.tintColor = cellModel.isSelected ? UIColor.custom(.blue50) : UIColor.custom(.grey40)
     }
 }

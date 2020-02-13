@@ -21,12 +21,15 @@ class ServersViewController: UIViewController, Navigating {
     @IBOutlet weak var tableView: UITableView!
 
     private var dataSource: ServersDataSource?
+    private var viewModel: ServerListViewModel?
     private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
     private var disposeBag = DisposeBag()
 
     // MARK: - Initialization
-    init() {
+    init(viewModel: ServerListViewModel = ServerListViewModel()) {
         super.init(nibName: String(describing: Self.self), bundle: nil)
+
+        self.viewModel = viewModel
     }
 
     required init?(coder: NSCoder) {
@@ -50,8 +53,8 @@ class ServersViewController: UIViewController, Navigating {
             isPresentingViewControllerDimmed = true
         }
 
-        if let selectedIndexPath = dataSource?.selectedIndexPath {
-            tableView.scrollToRow(at: selectedIndexPath, at: .middle, animated: false)
+        if let selectedCityIndexPath = self.viewModel?.selectedCityIndexPath {
+            self.tableView?.scrollToRow(at: selectedCityIndexPath, at: .middle, animated: false)
         }
     }
 
@@ -70,8 +73,10 @@ class ServersViewController: UIViewController, Navigating {
     }
 
     private func setupTableView() {
-        tableView.contentInsetAdjustmentBehavior = .never
-        dataSource = ServersDataSource(with: tableView)
+        if let viewModel = viewModel {
+            dataSource = ServersDataSource(with: tableView, viewModel: viewModel)
+        }
+
         tableView.reloadData()
     }
 
@@ -106,30 +111,22 @@ class ServersViewController: UIViewController, Navigating {
                 }
             }).disposed(by: disposeBag)
 
-        dataSource?.vpnSelection
-            .delay(.milliseconds(150), scheduler: MainScheduler.instance)
-            .flatMap { [weak self] _ -> Single<Void> in
-                guard let self = self,
-                    let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice else {
-                        OSLog.log(.error, "No device found when switching VPN server")
-                        return .never()
+        viewModel?.vpnSelection
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                // Dismisses server list if tunnel is not already established
+                let currentState = self.tunnelManager.stateEvent.value
+                if currentState == .off {
+                    self.closeModal()
                 }
+            })
+            .disposed(by: disposeBag)
 
-                return self.tunnelManager.switchServer(with: device)
-        }.catchError { error -> Observable<Void> in
-            OSLog.logTunnel(.error, error.localizedDescription)
-            NotificationCenter.default.post(Notification(name: .switchServerError))
-            return Observable.just(())
-        }
-        .subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-
-            // Dismisses server list if tunnel is not already established
-            let currentState = self.tunnelManager.stateEvent.value
-            if currentState == .off {
-                self.closeModal()
-            }
-        })
-        .disposed(by: disposeBag)
+        viewModel?.toggleSection
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+            })
+            .disposed(by: disposeBag)
     }
 }

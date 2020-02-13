@@ -15,11 +15,8 @@ import RxSwift
 import RxRelay
 
 class GuardianTunnelManager: TunnelManaging {
-    static let sharedManager: TunnelManaging = {
-        let instance = GuardianTunnelManager()
-        //
-        return instance
-    }()
+
+    static let sharedManager = GuardianTunnelManager()
 
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
@@ -131,10 +128,10 @@ class GuardianTunnelManager: TunnelManaging {
                         resolver(.error(error))
                         return
                     }
+
+                    resolver(.success(()))
                 }
             }
-
-            resolver(.success(()))
             return Disposables.create()
         }
     }

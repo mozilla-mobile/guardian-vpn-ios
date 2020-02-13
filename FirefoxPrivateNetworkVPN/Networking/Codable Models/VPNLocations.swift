@@ -93,4 +93,12 @@ extension Array: UserDefaulting where Element == VPNCountry {
     static var userDefaultsKey: String {
         "serverList"
     }
+
+    func getRandomUSServer() -> VPNCity? {
+        return first { $0.code.uppercased() == "US" }?.cities.randomElement()
+    }
+
+    func getRandomServer() -> VPNCity? {
+        return randomElement()?.cities.randomElement()
+    }
 }
