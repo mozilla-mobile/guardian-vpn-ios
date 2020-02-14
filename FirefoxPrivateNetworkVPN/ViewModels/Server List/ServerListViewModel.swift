@@ -83,7 +83,7 @@ class ServerListViewModel {
     private func getVisibleCityRows(for section: Int) -> [IndexPath]? {
         guard self.sectionExpandedStates[section] == true else { return nil }
 
-        return (1 ..< self.serverList[section].cities.count).map {
+        return (1...self.serverList[section].cities.count).map {
             return IndexPath(row: $0, section: section)
         }
     }
