@@ -1711,7 +1711,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20200131;
+				MARKETING_VERSION = 0.0.20200214;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(WIREGUARD_TUNNEL_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = WireGuardTunnel;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1739,7 +1739,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.20200131;
+				MARKETING_VERSION = 0.0.20200214;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(WIREGUARD_TUNNEL_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = WireGuardTunnel;
 				PROVISIONING_PROFILE_SPECIFIER = "";
