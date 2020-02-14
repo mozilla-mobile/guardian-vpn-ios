@@ -124,9 +124,11 @@ class ServersViewController: UIViewController, Navigating {
             .disposed(by: disposeBag)
 
         viewModel?.toggleSection
-            .subscribe(onNext: { [weak self] indexPath in
-                self?.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
-            })
-            .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] indexPaths in
+                self?.tableView.reloadData()
+                if let visibleCityRows = indexPaths {
+                    self?.tableView.reloadRows(at: visibleCityRows, with: .automatic)
+                }
+            }).disposed(by: disposeBag)
     }
 }

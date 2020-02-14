@@ -19,7 +19,7 @@ class ServerListViewModel {
     private var serverList: [VPNCountry]
     private let disposeBag = DisposeBag()
     private let _vpnSelection = PublishSubject<Void>()
-    private let _toggleSection = PublishSubject<IndexPath>()
+    private let _toggleSection = PublishSubject<[IndexPath]?>()
 
     private lazy var sectionExpandedStates: [Int: Bool] = {
         var states = [Int: Bool]()
@@ -36,7 +36,7 @@ class ServerListViewModel {
         return _vpnSelection.asObservable()
     }
 
-    var toggleSection: Observable<IndexPath> {
+    var toggleSection: Observable<[IndexPath]?> {
         return _toggleSection.asObservable()
     }
 
@@ -80,6 +80,14 @@ class ServerListViewModel {
         return nil
     }
 
+    private func getVisibleCityRows(for section: Int) -> [IndexPath]? {
+        guard self.sectionExpandedStates[section] == true else { return nil }
+
+        return (1 ..< self.serverList[section].cities.count).map {
+            return IndexPath(row: $0, section: section)
+        }
+    }
+
     //swiftlint:disable trailing_closure
     private func setupObservers() {
         cellSelection
@@ -110,9 +118,9 @@ class ServerListViewModel {
         cellSelection
             .filter { $0.isCountryHeader }
             .subscribe(onNext: { [weak self] indexPath in
-                self?.sectionExpandedStates[indexPath.section] = self?.sectionExpandedStates[indexPath.section] ?? false
-                self?.sectionExpandedStates[indexPath.section]?.toggle()
-                self?._toggleSection.onNext(indexPath)
+                guard let self = self else { return }
+                self.sectionExpandedStates[indexPath.section] = !(self.sectionExpandedStates[indexPath.section] ?? false)
+                self._toggleSection.onNext(self.getVisibleCityRows(for: indexPath.section))
             }).disposed(by: disposeBag)
     }
 }
