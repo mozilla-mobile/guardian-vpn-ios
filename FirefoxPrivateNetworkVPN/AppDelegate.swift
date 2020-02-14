@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let firstViewController = dependencyFactory?.navigationCoordinator.firstViewController
         window.rootViewController = firstViewController
         window.makeKeyAndVisible()
+        
+        dependencyFactory?.releaseMonitor.start()
 
         return true
     }
