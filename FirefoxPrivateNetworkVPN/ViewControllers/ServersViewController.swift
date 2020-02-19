@@ -124,11 +124,21 @@ class ServersViewController: UIViewController, Navigating {
             .disposed(by: disposeBag)
 
         viewModel?.toggleSection
-            .subscribe(onNext: { [weak self] indexPaths in
-                self?.tableView.reloadData()
-                if let visibleCityRows = indexPaths {
-                    self?.tableView.reloadRows(at: visibleCityRows, with: .automatic)
-                }
+            .subscribe(onNext: { [weak self] section, rows, isExpanded in
+                guard let self = self else { return }
+
+                self.tableView.performBatchUpdates({
+                    if isExpanded {
+                        self.tableView.insertRows(at: rows, with: .top)
+                    } else {
+                        self.tableView.deleteRows(at: rows, with: .top)
+                    }
+                }, completion: { isComplete in
+                    if isComplete {
+                        let sectionHeader = IndexPath(row: 0, section: section)
+                        self.tableView.reloadRows(at: [sectionHeader], with: .none)
+                    }
+                })
             }).disposed(by: disposeBag)
     }
 }
