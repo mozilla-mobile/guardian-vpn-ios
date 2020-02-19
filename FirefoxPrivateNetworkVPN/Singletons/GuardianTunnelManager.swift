@@ -32,7 +32,7 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     private init() {
-        loadTunnel {
+        loadTunnel { _ in
             guard let tunnel = self.tunnel else { return }
             self.stateEvent.accept(VPNState(with: tunnel.connection.status))
         }
@@ -57,7 +57,11 @@ class GuardianTunnelManager: TunnelManaging {
 
     func connect(with device: Device?) -> Single<Void> {
         return Single<Void>.create { [unowned self] resolver in
-            self.loadTunnel {
+            self.loadTunnel { error in
+                if let error = error {
+                    resolver(.error(error))
+                    return
+                }
                 let tunnelProviderManager = self.tunnel ?? NETunnelProviderManager()
                 guard let device = device, let account = self.account else { return }
 
@@ -179,12 +183,12 @@ class GuardianTunnelManager: TunnelManaging {
         try (tunnel.connection as? NETunnelProviderSession)?.startTunnel()
     }
 
-    private func loadTunnel(completion: (() -> Void)? = nil) {
+    private func loadTunnel(completion: ((Error?) -> Void)? = nil) {
         NETunnelProviderManager.loadAllFromPreferences { [weak self] managers, error in
             if let self = self, error == nil {
                 self.tunnel = managers?.first { $0.localizedDescription == VPNCity.fetchFromUserDefaults()?.name }
             }
-            completion?()
+            completion?(error)
         }
     }
 
