@@ -27,21 +27,22 @@ enum GuardianRelativeRequest {
     case versions
 
     var endpoint: String {
+        let prefix = "api/v1/vpn/"
         switch self {
         case .login:
-            return "/api/v1/vpn/login/"
+            return prefix + "login/"
         case .verify(let token):
-            return "/api/v1/vpn/login/verify/" + token
+            return prefix + "login/verify/" + token
         case .retrieveServers:
-            return "/api/v1/vpn/servers/"
+            return prefix + "servers/"
         case .account:
-            return "/api/v1/vpn/account/"
+            return prefix + "account/"
         case .addDevice:
-            return "/api/v1/vpn/device/"
+            return prefix + "device/"
         case .removeDevice(let deviceKey):
-            return "/api/v1/vpn/device/" + deviceKey
+            return prefix + "device/" + deviceKey
         case .versions:
-            return "/api/v1/vpn/versions"
+            return prefix + "versions/"
         }
     }
 }

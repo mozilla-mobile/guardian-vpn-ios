@@ -12,13 +12,23 @@
 import Foundation
 
 struct GuardianURLRequest {
-    private static let baseURL = "https://stage.guardian.nonprod.cloudops.mozgcp.net" // will have to change in future
+    private static let productionBaseURL = "https://fpn.firefox.com/"
+    private static let stagingBaseURL = "https://stage.guardian.nonprod.cloudops.mozgcp.net/"
+
+    private static var baseURL: String {
+        #if DEBUG
+        return GuardianURLRequest.stagingBaseURL
+        #else
+        return GuardianURLRequest.productionBaseURL
+        #endif
+    }
 
     static func urlRequest(request: GuardianRelativeRequest,
                            type: HTTPMethod,
                            queryParameters: [String: String]? = nil,
                            httpHeaderParams: [String: String]? = nil,
                            body: Data? = nil) -> URLRequest {
+
         let urlString = "\(GuardianURLRequest.baseURL)\(request.endpoint)"
 
         return URLRequestBuilder.urlRequest(with: urlString, type: type, queryParameters: queryParameters, httpHeaderParams: httpHeaderParams, body: body)
