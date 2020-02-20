@@ -32,7 +32,7 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     private init() {
-        loadTunnel {
+        loadTunnel { _ in
             guard let tunnel = self.tunnel else { return }
             self.stateEvent.accept(VPNState(with: tunnel.connection.status))
         }
@@ -57,7 +57,11 @@ class GuardianTunnelManager: TunnelManaging {
 
     func connect(with device: Device?) -> Single<Void> {
         return Single<Void>.create { [unowned self] resolver in
-            self.loadTunnel {
+            self.loadTunnel { error in
+                if let error = error {
+                    resolver(.error(error))
+                    return
+                }
                 let tunnelProviderManager = self.tunnel ?? NETunnelProviderManager()
                 guard let device = device, let account = self.account else { return }
 
@@ -87,11 +91,6 @@ class GuardianTunnelManager: TunnelManaging {
             }
             return Disposables.create()
         }
-    }
-
-    func stop() {
-        guard let tunnel = tunnel else { return }
-        (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
 
     func switchServer(with device: Device) -> Single<Void> {
@@ -184,12 +183,18 @@ class GuardianTunnelManager: TunnelManaging {
         try (tunnel.connection as? NETunnelProviderSession)?.startTunnel()
     }
 
-    private func loadTunnel(completion: (() -> Void)? = nil) {
+    private func loadTunnel(completion: ((Error?) -> Void)? = nil) {
         NETunnelProviderManager.loadAllFromPreferences { [weak self] managers, error in
-            guard let self = self, error == nil else { return }
-            self.tunnel = managers?.first { $0.localizedDescription == VPNCity.fetchFromUserDefaults()?.name }
-            completion?()
+            if let self = self, error == nil {
+                self.tunnel = managers?.first { $0.localizedDescription == VPNCity.fetchFromUserDefaults()?.name }
+            }
+            completion?(error)
         }
+    }
+
+    func stop() {
+        guard let tunnel = tunnel else { return }
+        (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
 
     func stopAndRemove() {
@@ -210,7 +215,7 @@ class GuardianTunnelManager: TunnelManaging {
     @objc private func vpnStatusDidChange(notification: Notification) {
         guard let session = (notification.object as? NETunnelProviderSession), tunnel?.connection == session else { return }
 
-        if  case .switching(_, _) = stateEvent.value {
+        if case .switching(_, _) = stateEvent.value {
             switch session.status {
             case .disconnecting, .connecting:
                 return
