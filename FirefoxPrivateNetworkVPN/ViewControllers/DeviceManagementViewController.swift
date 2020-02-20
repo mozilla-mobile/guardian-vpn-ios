@@ -87,6 +87,16 @@ class DeviceManagementViewController: UIViewController, Navigating {
                 }
                 self.present(confirmAlert, animated: true, completion: nil)
             }).disposed(by: disposeBag)
+
+        //refresh device list only if device has already been added to make sure current device gets added
+        if let account = account, account.hasDeviceBeenAdded {
+            account.getUser { [weak self] result in
+                if case .success = result {
+                    self?.tableView.reloadData()
+                    self?.navigationItem.rightBarButtonItem?.title = self?.formattedDeviceCountTitle
+                }
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
