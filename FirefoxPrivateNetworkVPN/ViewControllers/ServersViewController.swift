@@ -115,6 +115,8 @@ class ServersViewController: UIViewController, Navigating {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
 
+                self.tableView.reloadData()
+
                 // Dismisses server list if tunnel is not already established
                 let currentState = self.tunnelManager.stateEvent.value
                 if currentState == .off {
