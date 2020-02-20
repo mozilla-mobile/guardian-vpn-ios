@@ -14,6 +14,8 @@
 		527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527C7EB923752FBB00368965 /* AboutHeaderView.xib */; };
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
+		F401097923FEE2D8006DFF96 /* HeartbeatMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */; };
+		F401097B23FEE829006DFF96 /* HeartbeatMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */; };
 		F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056031239E9F31000A93CC /* KeychainStored.swift */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
@@ -281,6 +283,8 @@
 		6FF4AC23211EC472002C96EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
+		F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitor.swift; sourceTree = "<group>"; };
+		F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitoring.swift; sourceTree = "<group>"; };
 		F4056031239E9F31000A93CC /* KeychainStored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStored.swift; sourceTree = "<group>"; };
 		F40831CB233CF5BE00A60FCA /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		F40831CE233CFA2000A60FCA /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
@@ -616,6 +620,7 @@
 				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
 				F41CCA1A23711C7A0018DC43 /* DependencyFactory.swift */,
 				F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */,
+				F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */,
 				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
 				F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */,
 			);
@@ -759,6 +764,7 @@
 			children = (
 				F42A23062347D37F00763B0D /* AccountManaging.swift */,
 				F42A23042347D22100763B0D /* DependencyProviding.swift */,
+				F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */,
 				F45D70A0233D3BC000871447 /* Navigating.swift */,
 				F4A4947923709033007595C3 /* NavigationCoordinating.swift */,
 				F4A4947E23709033007595C3 /* NetworkRequesting.swift */,
@@ -1564,6 +1570,7 @@
 				F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */,
 				F4E909042371CAAD00EB9FE6 /* LoginViewController.swift in Sources */,
 				F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */,
+				F401097B23FEE829006DFF96 /* HeartbeatMonitoring.swift in Sources */,
 				F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */,
 				F4230483237209B000572A93 /* HelpViewController.swift in Sources */,
 				F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */,
@@ -1618,6 +1625,7 @@
 				F4E908CE2371CAAD00EB9FE6 /* NetworkingEnums.swift in Sources */,
 				F471537A23C4E81F00226CB8 /* ReleaseMonitor.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
+				F401097923FEE2D8006DFF96 /* HeartbeatMonitor.swift in Sources */,
 				527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */,
 				F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */,
 				F4483D0323F594E80094BE3E /* UpdateRequiredViewController.swift in Sources */,

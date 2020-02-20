@@ -38,4 +38,8 @@ class DependencyFactory: DependencyProviding {
     var releaseMonitor: ReleaseMonitoring {
         return ReleaseMonitor.sharedManager
     }
+
+    var heartbeatMonitor: HeartbeatMonitoring {
+        return HeartbeatMonitor.sharedManager
+    }
 }
