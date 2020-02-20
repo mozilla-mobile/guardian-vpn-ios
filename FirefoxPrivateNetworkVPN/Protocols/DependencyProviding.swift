@@ -17,4 +17,5 @@ protocol DependencyProviding {
     var navigationCoordinator: NavigationCoordinating { get }
     var connectionHealthMonitor: ConnectionHealthMonitoring { get }
     var releaseMonitor: ReleaseMonitoring { get }
+    var heartbeatMonitor: HeartbeatMonitoring { get }
 }

@@ -14,13 +14,11 @@ import RxSwift
 
 class AccountManager: AccountManaging, Navigating {
     static var navigableItem: NavigableItem = .account
+    static let sharedManager = AccountManager()
 
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry]?
-    private(set) var heartbeatFailedEvent = PublishSubject<Void>()
-    private var heartbeatTimer: DispatchSourceTimer?
-
-    static let sharedManager = AccountManager()
+    private let disposeBag = DisposeBag()
 
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void) {
         Credentials.removeAll()
@@ -52,13 +50,15 @@ class AccountManager: AccountManaging, Navigating {
             case (.none, .none):
                 credentials.saveAll()
                 self.account = account
-                self.startHeartbeat()
+                self.subscribeToHeartbeat()
+                DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
                     credentials.saveAll()
                     self.account = account
-                    self.startHeartbeat()
+                    self.subscribeToHeartbeat()
+                    DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 }
                 completion(.failure(error))
             case (.none, .some(let error)):
@@ -103,7 +103,8 @@ class AccountManager: AccountManaging, Navigating {
             case (.none, .none):
                 credentials.saveAll()
                 self.account = account
-                self.startHeartbeat()
+                self.subscribeToHeartbeat()
+                DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 completion(.success(()))
             case (let userError, let serverError):
                 let error = userError ?? serverError
@@ -145,7 +146,7 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     private func resetAccount() {
-        stopHeartbeat()
+        DependencyFactory.sharedFactory.heartbeatMonitor.stop()
         DependencyFactory.sharedFactory.tunnelManager.stopAndRemove()
         Credentials.removeAll()
         Device.removeFromUserDefaults()
@@ -153,30 +154,13 @@ class AccountManager: AccountManaging, Navigating {
         availableServers = nil
     }
 
-    func startHeartbeat() {
-        heartbeatTimer = DispatchSource.makeTimerSource()
-        heartbeatTimer?.schedule(deadline: .now(), repeating: .seconds(3600), leeway: .seconds(1))
-        heartbeatTimer?.setEventHandler { [weak self] in
-            self?.pollUser()
-        }
-        heartbeatTimer?.activate()
-    }
-
-    func stopHeartbeat() {
-        heartbeatTimer = nil
-    }
-
-    private func pollUser() {
-        guard let account = account else { return }
-        account.getUser { result in
-            guard case .failure(let error) = result,
-                let subscriptionError = error as? GuardianAPIError,
-                subscriptionError.isAuthError else { return }
-
-            DispatchQueue.main.async {
-                self.resetAccount()
-                self.navigate(to: .landing)
-            }
-        }
+    private func subscribeToHeartbeat() {
+        DependencyFactory.sharedFactory.heartbeatMonitor
+            .subscriptionExpiredEvent
+            .observeOn(MainScheduler.instance)
+            .subscribe { [weak self] in
+                self?.resetAccount()
+                self?.navigate(to: .landing)
+        }.disposed(by: disposeBag)
     }
 }

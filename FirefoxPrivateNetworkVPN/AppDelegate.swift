@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let firstViewController = dependencyFactory?.navigationCoordinator.firstViewController
         window.rootViewController = firstViewController
         window.makeKeyAndVisible()
-        
+
         dependencyFactory?.releaseMonitor.start()
 
         return true
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dependencyFactory.releaseMonitor.start()
 
         if dependencyFactory.accountManager.account != nil {
-            dependencyFactory.accountManager.startHeartbeat()
+            dependencyFactory.heartbeatMonitor.start()
         }
 
         if dependencyFactory.tunnelManager.stateEvent.value == .on,
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         dependencyFactory?.connectionHealthMonitor.stop()
-        dependencyFactory?.accountManager.stopHeartbeat()
+        dependencyFactory?.heartbeatMonitor.stop()
         dependencyFactory?.releaseMonitor.stop()
     }
 }
