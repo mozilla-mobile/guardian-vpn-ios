@@ -46,11 +46,6 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
-
-        //refresh device list only if device has already been added to make sure current device gets added
-        if let account = account, account.hasDeviceBeenAdded {
-            account.getUser { _ in }
-        }
     }
 
     // MARK: UITableViewDataSource
@@ -60,9 +55,10 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? DeviceManagementCell,
-        indexPath.row < representedObject.count
+            indexPath.row < representedObject.count
             else { return UITableViewCell(frame: .zero) }
         cell.setup(with: representedObject[indexPath.row], event: removeDeviceEvent)
+
         return cell
     }
 }
