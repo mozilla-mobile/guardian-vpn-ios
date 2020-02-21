@@ -146,12 +146,17 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     private func resetAccount() {
-        DependencyFactory.sharedFactory.heartbeatMonitor.stop()
         DependencyFactory.sharedFactory.tunnelManager.stopAndRemove()
-        Credentials.removeAll()
-        Device.removeFromUserDefaults()
+        DependencyFactory.sharedFactory.heartbeatMonitor.stop()
+        DependencyFactory.sharedFactory.connectionHealthMonitor.stop()
+
         account = nil
         availableServers = nil
+
+        Credentials.removeAll()
+        Device.removeFromUserDefaults()
+        [VPNCountry].removeFromUserDefaults()
+        VPNCity.removeFromUserDefaults()
     }
 
     private func subscribeToHeartbeat() {
@@ -160,8 +165,9 @@ class AccountManager: AccountManaging, Navigating {
             .subscriptionExpiredEvent
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                self?.resetAccount()
-                self?.navigate(to: .landing)
+                self?.logout { _ in
+                    self?.navigate(to: .landing)
+                }
         }).disposed(by: disposeBag)
     }
 }
