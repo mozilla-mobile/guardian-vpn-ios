@@ -155,12 +155,13 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     private func subscribeToHeartbeat() {
+        //swiftlint:disable:next trailing_closure
         DependencyFactory.sharedFactory.heartbeatMonitor
             .subscriptionExpiredEvent
             .observeOn(MainScheduler.instance)
-            .subscribe { [weak self] in
+            .subscribe(onNext: { [weak self] in
                 self?.resetAccount()
                 self?.navigate(to: .landing)
-        }.disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
     }
 }
