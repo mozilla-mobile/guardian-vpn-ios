@@ -12,6 +12,8 @@
 import RxSwift
 import os.log
 
+typealias SectionExpansionState = (section: Int, rows: [IndexPath], isExpanded: Bool)
+
 class ServerListViewModel {
 
     // MARK: - Properties
@@ -19,7 +21,7 @@ class ServerListViewModel {
     private var serverList: [VPNCountry]
     private let disposeBag = DisposeBag()
     private let _vpnSelection = PublishSubject<Void>()
-    private let _toggleSection = PublishSubject<IndexPath>()
+    private let _toggleSection = PublishSubject<SectionExpansionState>()
 
     private lazy var sectionExpandedStates: [Int: Bool] = {
         var states = [Int: Bool]()
@@ -36,7 +38,7 @@ class ServerListViewModel {
         return _vpnSelection.asObservable()
     }
 
-    var toggleSection: Observable<IndexPath> {
+    var toggleSection: Observable<SectionExpansionState> {
         return _toggleSection.asObservable()
     }
 
@@ -80,6 +82,12 @@ class ServerListViewModel {
         return nil
     }
 
+    private func getCityRows(for section: Int) -> [IndexPath] {
+        return (1...self.serverList[section].cities.count).map {
+            return IndexPath(row: $0, section: section)
+        }
+    }
+
     //swiftlint:disable trailing_closure
     private func setupObservers() {
         cellSelection
@@ -110,9 +118,11 @@ class ServerListViewModel {
         cellSelection
             .filter { $0.isCountryHeader }
             .subscribe(onNext: { [weak self] indexPath in
-                self?.sectionExpandedStates[indexPath.section] = self?.sectionExpandedStates[indexPath.section] ?? false
-                self?.sectionExpandedStates[indexPath.section]?.toggle()
-                self?._toggleSection.onNext(indexPath)
+                guard let self = self else { return }
+                let currentExpansionState = self.sectionExpandedStates[indexPath.section] ?? false
+                let updatedExpansionState = !currentExpansionState
+                self.sectionExpandedStates[indexPath.section] = updatedExpansionState
+                self._toggleSection.onNext((indexPath.section, self.getCityRows(for: indexPath.section), updatedExpansionState))
             }).disposed(by: disposeBag)
     }
 }
