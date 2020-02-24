@@ -165,9 +165,12 @@ class AccountManager: AccountManaging, Navigating {
             .subscriptionExpiredEvent
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                self?.logout { _ in
-                    self?.navigate(to: .landing)
-                }
+                /*
+                 The user account info is wiped when the subscription becomes invalid.
+                 No need to explicitly log out remotely.
+                 */
+                self?.resetAccount()
+                self?.navigate(to: .landing)
         }).disposed(by: disposeBag)
     }
 }
