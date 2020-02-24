@@ -135,8 +135,10 @@ class VPNToggleView: UIView {
             setSubtitle(with: ConnectionHealth.stable)
             getConnectionTimeAndHealth()
         case .disconnecting:
-            stopRippleAnimation()
+            stoppingRippleAnimation()
             resetConnectionTimeAndHealth()
+        case .off:
+            resetRippleAnimation()
         default:
             resetConnectionTimeAndHealth()
         }
@@ -170,13 +172,13 @@ class VPNToggleView: UIView {
         }
     }
 
-    private func stopRippleAnimation() {
-        self.rippleAnimationView?.stop()
-        rippleAnimationView?.play(fromFrame: 120, toFrame: 210, loopMode: .playOnce) { [weak self] isComplete in
-            if isComplete {
-                self?.rippleAnimationView?.stop()
-            }
-        }
+    private func stoppingRippleAnimation() {
+        rippleAnimationView?.play(fromFrame: 120, toFrame: 210, loopMode: .playOnce)
+    }
+
+    private func resetRippleAnimation() {
+        rippleAnimationView?.stop()
+        rippleAnimationView?.currentFrame = 0
     }
 
     private func animateGlobe(to newState: VPNState) {
@@ -227,7 +229,7 @@ class VPNToggleView: UIView {
                 self.setSubtitle(with: connectionHealth)
 
                 if connectionHealth == .unstable || connectionHealth == .noSignal {
-                    self.rippleAnimationView?.stop()
+                    self.resetRippleAnimation()
                 } else {
                     if !self.isRippleAnimationPlaying {
                         self.startRippleAnimation()
