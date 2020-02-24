@@ -65,7 +65,7 @@ class AccountManager: AccountManaging, Navigating {
                 completion(.failure(error))
             case (.none, .some(let error)):
                 if let device = account.currentDevice {
-                    account.removeDevice(with: device.publicKey) { _ in }
+                    _ = account.remove(device: device)
                 }
                 completion(.failure(error))
             }

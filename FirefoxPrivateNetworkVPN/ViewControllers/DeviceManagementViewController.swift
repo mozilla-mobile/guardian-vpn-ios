@@ -20,13 +20,14 @@ class DeviceManagementViewController: UIViewController, Navigating {
     @IBOutlet weak var warningToastView: WarningToastView!
 
     private var dataSource: DeviceManagementDataSource?
+    private var viewModel: DeviceManagementViewModel
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
     private let disposeBag = DisposeBag()
 
     private var formattedDeviceCountTitle: String {
         guard let user = account?.user else { return "" }
-        let currentDevices = dataSource?.deviceCount ?? 0
-        return String(format: LocalizedString.devicesCount.value, "\(currentDevices)", "\(user.maxDevices)")
+        let count = viewModel.deviceList.count
+        return String(format: LocalizedString.devicesCount.value, "\(count)", "\(user.maxDevices)")
     }
 
     private lazy var backButtonItem: UIBarButtonItem = {
@@ -50,52 +51,58 @@ class DeviceManagementViewController: UIViewController, Navigating {
         return deviceCountItem
     }()
 
+    // MARK: - Initialization
+    init(viewModel: DeviceManagementViewModel = DeviceManagementViewModel()) {
+        self.viewModel = viewModel
+
+        super.init(nibName: String(describing: Self.self), bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: View Lifecycle
     //swiftlint:disable trailing_closure
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = DeviceManagementDataSource(with: tableView)
+        dataSource = DeviceManagementDataSource(with: tableView, viewModel: viewModel)
         tableView.tableFooterView = UIView()
 
-        dataSource?
-            .removeDeviceEvent
-            .subscribe(onNext: { [weak self] device in
+        viewModel.deletionCompletedSubject
+            .subscribe(onNext: { [weak self] result in
                 guard let self = self, let account = self.account else { return }
 
+                self.refreshViews()
+
+                guard case .failure(let error) = result,
+                    case .couldNotRemoveDevice(let device) = error else {
+                        if account.hasDeviceBeenAdded {
+                            DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                        }
+                        return
+                }
+
+                self.warningToastView.show(message: NSAttributedString.formattedError(GuardianError.couldNotRemoveDevice(device))) {
+                    self.viewModel.deletionConfirmedSubject.onNext(device)
+                }
+            }).disposed(by: disposeBag)
+
+        viewModel.trashTappedSubject
+            .subscribe(onNext: { [weak self] device in
+                guard let self = self else { return }
                 let confirmAlert = DependencyFactory
                     .sharedFactory
                     .navigationCoordinator
                     .createDeviceDeletionAlert(deviceName: device.name) { _ in
-                        account.removeDevice(with: device.publicKey) { result in
-                            switch result {
-                            case .success:
-                                if !account.hasDeviceBeenAdded {
-                                    self.addCurrentDeviceToAccount()
-                                } else {
-                                    self.navigationItem.rightBarButtonItem?.title = self.formattedDeviceCountTitle
-                                    self.tableView?.reloadData()
-                                }
-
-                            case .failure:
-                                self.tableView?.reloadData()
-                                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotRemoveDevice)) {
-                                    self.dataSource?.removeDeviceEvent.onNext(device)
-                                }
-                            }
-                        }
-                        self.tableView?.reloadData()
+                        self.viewModel.deletionConfirmedSubject.onNext(device)
+                        self.tableView.reloadData()
                 }
                 self.present(confirmAlert, animated: true, completion: nil)
             }).disposed(by: disposeBag)
 
-        //refresh device list only if device has already been added to make sure current device gets added
-        if let account = account, account.hasDeviceBeenAdded {
-            account.getUser { [weak self] result in
-                if case .success = result {
-                    self?.tableView.reloadData()
-                    self?.navigationItem.rightBarButtonItem?.title = self?.formattedDeviceCountTitle
-                }
-            }
+        account?.getUser { [weak self] _ in
+            self?.refreshViews()
         }
     }
 
@@ -117,21 +124,12 @@ class DeviceManagementViewController: UIViewController, Navigating {
         navigationItem.leftBarButtonItem = backButtonItem
     }
 
-    @objc func goBack() {
-        navigate(to: .settings)
+    private func refreshViews() {
+        tableView.reloadData()
+        navigationItem.rightBarButtonItem?.title = formattedDeviceCountTitle
     }
 
-    private func addCurrentDeviceToAccount() {
-        guard let account = account else {
-            tableView?.reloadData()
-            return
-        }
-        account.addCurrentDevice { [weak self] addDeviceResult in
-            if case .success = addDeviceResult {
-                DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
-            }
-            self?.navigationItem.rightBarButtonItem?.title = self?.formattedDeviceCountTitle
-            self?.tableView?.reloadData()
-        }
+    @objc func goBack() {
+        navigate(to: .settings)
     }
 }

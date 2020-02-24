@@ -15,28 +15,14 @@ import RxCocoa
 
 class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
-    var removeDeviceEvent = PublishSubject<Device>()
-
     private let headerName = String(describing: DeviceLimitReachedView.self)
     private let cellName = String(describing: DeviceManagementCell.self)
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
-
-    private var representedObject: [Device] {
-        guard let account = account else { return [] }
-
-        var devices = account.user?.deviceList
-        if !account.hasDeviceBeenAdded {
-            devices?.insert(Device.mock(name: UIDevice.current.name), at: 0)
-        }
-        return devices ?? []
-    }
-
-    var deviceCount: Int {
-        representedObject.count
-    }
+    private let viewModel: DeviceManagementViewModel
 
     // MARK: Initialization
-    init(with tableView: UITableView) {
+    init(with tableView: UITableView, viewModel: DeviceManagementViewModel) {
+        self.viewModel = viewModel
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
@@ -50,14 +36,14 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        representedObject.count
+        viewModel.deviceList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? DeviceManagementCell,
-            indexPath.row < representedObject.count
+            indexPath.row < viewModel.deviceList.count
             else { return UITableViewCell(frame: .zero) }
-        cell.setup(with: representedObject[indexPath.row], event: removeDeviceEvent)
+        cell.setup(with: viewModel.deviceList[indexPath.row], event: viewModel.trashTappedSubject)
 
         return cell
     }
