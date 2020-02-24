@@ -16,9 +16,9 @@ import UIKit
 class DeviceManagementViewModel {
     private let disposeBag = DisposeBag()
     private let account = { return DependencyFactory.sharedFactory.accountManager.account }()
+    
     let trashTappedSubject = PublishSubject<Device>()
     let deletionConfirmedSubject = PublishSubject<Device>()
-    let deletionErrorSubject = PublishSubject<Device>()
     let deletionCompletedSubject = PublishSubject<Result<Void, GuardianError>>()
 
     var deviceList: [Device] {

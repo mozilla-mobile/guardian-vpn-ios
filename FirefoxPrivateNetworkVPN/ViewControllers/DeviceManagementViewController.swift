@@ -69,38 +69,10 @@ class DeviceManagementViewController: UIViewController, Navigating {
         dataSource = DeviceManagementDataSource(with: tableView, viewModel: viewModel)
         tableView.tableFooterView = UIView()
 
-        viewModel.deletionCompletedSubject
-            .subscribe(onNext: { [weak self] result in
-                guard let self = self, let account = self.account else { return }
+        subscribeToTrashTappedObservable()
+        subscribeToDeviceDeletionObservable()
 
-                self.refreshViews()
-
-                guard case .failure(let error) = result,
-                    case .couldNotRemoveDevice(let device) = error else {
-                        if account.hasDeviceBeenAdded {
-                            DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
-                        }
-                        return
-                }
-
-                self.warningToastView.show(message: NSAttributedString.formattedError(GuardianError.couldNotRemoveDevice(device))) {
-                    self.viewModel.deletionConfirmedSubject.onNext(device)
-                }
-            }).disposed(by: disposeBag)
-
-        viewModel.trashTappedSubject
-            .subscribe(onNext: { [weak self] device in
-                guard let self = self else { return }
-                let confirmAlert = DependencyFactory
-                    .sharedFactory
-                    .navigationCoordinator
-                    .createDeviceDeletionAlert(deviceName: device.name) { _ in
-                        self.viewModel.deletionConfirmedSubject.onNext(device)
-                        self.tableView.reloadData()
-                }
-                self.present(confirmAlert, animated: true, completion: nil)
-            }).disposed(by: disposeBag)
-
+        //added as a checkpoint to refresh the device list
         account?.getUser { [weak self] _ in
             self?.refreshViews()
         }
@@ -109,6 +81,10 @@ class DeviceManagementViewController: UIViewController, Navigating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+    }
+    
+    @objc func goBack() {
+        navigate(to: .settings)
     }
 
     // MARK: Setup
@@ -128,8 +104,40 @@ class DeviceManagementViewController: UIViewController, Navigating {
         tableView.reloadData()
         navigationItem.rightBarButtonItem?.title = formattedDeviceCountTitle
     }
+    
+    private func subscribeToTrashTappedObservable() {
+        viewModel.trashTappedSubject
+            .subscribe(onNext: { [weak self] device in
+                guard let self = self else { return }
+                let confirmAlert = DependencyFactory
+                    .sharedFactory
+                    .navigationCoordinator
+                    .createDeviceDeletionAlert(deviceName: device.name) { _ in
+                        self.viewModel.deletionConfirmedSubject.onNext(device)
+                        self.tableView.reloadData()
+                }
+                self.present(confirmAlert, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
+    }
+    
+    private func subscribeToDeviceDeletionObservable() {
+        viewModel.deletionCompletedSubject
+            .subscribe(onNext: { [weak self] result in
+                guard let self = self, let account = self.account else { return }
 
-    @objc func goBack() {
-        navigate(to: .settings)
+                self.refreshViews()
+
+                guard case .failure(let error) = result,
+                    case .couldNotRemoveDevice(let device) = error else {
+                        if account.hasDeviceBeenAdded {
+                            DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                        }
+                        return
+                }
+
+                self.warningToastView.show(message: NSAttributedString.formattedError(GuardianError.couldNotRemoveDevice(device))) {
+                    self.viewModel.deletionConfirmedSubject.onNext(device)
+                }
+            }).disposed(by: disposeBag)
     }
 }
