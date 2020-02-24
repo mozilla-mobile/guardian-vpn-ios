@@ -53,7 +53,7 @@ enum GuardianError: Error {
     case missingData
     case needToLogin
     case deallocated
-    case couldNotRemoveDevice
+    case couldNotRemoveDevice(Device)
     case couldNotConnectVPN
 
     var description: String {
