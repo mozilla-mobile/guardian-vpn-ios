@@ -38,13 +38,17 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.deviceList.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? DeviceManagementCell,
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellName,
+                                                     for: indexPath) as? DeviceManagementCell,
+            // prevents crash if the device list changes and the tableview hasn't reloaded
             indexPath.row < viewModel.deviceList.count
             else { return UITableViewCell(frame: .zero) }
+        
         cell.setup(with: viewModel.deviceList[indexPath.row], event: viewModel.trashTappedSubject)
-
+        
         return cell
     }
 }
