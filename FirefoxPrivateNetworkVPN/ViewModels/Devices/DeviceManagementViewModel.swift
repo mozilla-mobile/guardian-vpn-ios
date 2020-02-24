@@ -16,7 +16,7 @@ import UIKit
 class DeviceManagementViewModel {
     private let disposeBag = DisposeBag()
     private let account = { return DependencyFactory.sharedFactory.accountManager.account }()
-    
+
     let trashTappedSubject = PublishSubject<Device>()
     let deletionConfirmedSubject = PublishSubject<Device>()
     let deletionCompletedSubject = PublishSubject<Result<Void, GuardianError>>()
@@ -31,16 +31,23 @@ class DeviceManagementViewModel {
     }
 
     init() {
-        subscribeToDeviceDeletion()
+        subscribeToDeletionConfirmedObservable()
     }
 
-    private func subscribeToDeviceDeletion() {
+    private func subscribeToDeletionConfirmedObservable() {
         deletionConfirmedSubject
-            .flatMap { [weak self] device -> Single<Void> in
+            .flatMap { [weak self] device -> Single<Result<Void, GuardianError>> in
                 return self?.account?.remove(device: device) ?? .never()
 
-        }.subscribe(onNext: { [weak self] _ in
+            }
+        .subscribe(onNext: { [weak self] result in
             guard let self = self, let account = self.account else { return }
+
+            if case .failure(let error) = result,
+                case GuardianError.couldNotRemoveDevice(let device) = error {
+                self.deletionCompletedSubject.onNext(.failure(GuardianError.couldNotRemoveDevice(device)))
+                return
+            }
 
             guard !account.hasDeviceBeenAdded else {
                 self.deletionCompletedSubject.onNext(.success(()))
@@ -49,11 +56,6 @@ class DeviceManagementViewModel {
             account.addCurrentDevice { _ in
                 self.deletionCompletedSubject.onNext(.success(()))
             }
-
-            }, onError: { [weak self] error in
-                if case GuardianError.couldNotRemoveDevice(let device) = error {
-                    self?.deletionCompletedSubject.onNext(.failure(GuardianError.couldNotRemoveDevice(device)))
-                }
         }).disposed(by: disposeBag)
     }
 

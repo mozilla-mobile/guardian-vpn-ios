@@ -82,7 +82,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
         super.viewWillAppear(animated)
         setupNavigationBar()
     }
-    
+
     @objc func goBack() {
         navigate(to: .settings)
     }
@@ -104,7 +104,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
         tableView.reloadData()
         navigationItem.rightBarButtonItem?.title = formattedDeviceCountTitle
     }
-    
+
     private func subscribeToTrashTappedObservable() {
         viewModel.trashTappedSubject
             .subscribe(onNext: { [weak self] device in
@@ -119,11 +119,12 @@ class DeviceManagementViewController: UIViewController, Navigating {
                 self.present(confirmAlert, animated: true, completion: nil)
             }).disposed(by: disposeBag)
     }
-    
+
     private func subscribeToDeviceDeletionObservable() {
         viewModel.deletionCompletedSubject
             .subscribe(onNext: { [weak self] result in
-                guard let self = self, let account = self.account else { return }
+                guard let self = self,
+                    let account = self.account else { return }
 
                 self.refreshViews()
 

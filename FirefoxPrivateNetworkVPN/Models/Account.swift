@@ -85,23 +85,23 @@ class Account {
         }
     }
 
-    func remove(device: Device) -> Single<Void> {
-        return Single<Void>.create { [weak self] resolver in
-            let deviceKey = device.publicKey
-
+    func remove(device: Device) -> Single<Result<Void, GuardianError>> {
+        return Single<Result<Void, GuardianError>>.create { [weak self] resolver in
             guard let self = self else {
-                resolver(.error(GuardianError.deallocated))
+                resolver(.success(.failure(GuardianError.deallocated)))
                 return Disposables.create()
             }
+            
+            let deviceKey = device.publicKey
             self.user?.deviceIsBeingRemoved(with: deviceKey)
             GuardianAPI.removeDevice(with: self.credentials.verificationToken, deviceKey: deviceKey) { result in
                 switch result {
                 case .success:
                     self.user?.removeDevice(with: deviceKey)
-                    resolver(.success(()))
+                    resolver(.success(.success(())))
                 case .failure:
                     self.user?.deviceFailedRemoval(with: deviceKey)
-                    resolver(.error(GuardianError.couldNotRemoveDevice(device)))
+                    resolver(.success(.failure(GuardianError.couldNotRemoveDevice(device))))
                 }
             }
             return Disposables.create()
