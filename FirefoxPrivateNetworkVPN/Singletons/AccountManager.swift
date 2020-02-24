@@ -20,6 +20,10 @@ class AccountManager: AccountManaging, Navigating {
     private(set) var availableServers: [VPNCountry]?
     private let disposeBag = DisposeBag()
 
+    init() {
+        subscribeToInactiveSubscriptionNotification()
+    }
+
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void) {
         Credentials.removeAll()
         let credentials = Credentials(with: verification)
@@ -50,14 +54,12 @@ class AccountManager: AccountManaging, Navigating {
             case (.none, .none):
                 credentials.saveAll()
                 self.account = account
-                self.subscribeToHeartbeat()
                 DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
                     credentials.saveAll()
                     self.account = account
-                    self.subscribeToHeartbeat()
                     DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 }
                 completion(.failure(error))
@@ -103,7 +105,7 @@ class AccountManager: AccountManaging, Navigating {
             case (.none, .none):
                 credentials.saveAll()
                 self.account = account
-                self.subscribeToHeartbeat()
+                self.subscribeToInactiveSubscriptionNotification()
                 DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 completion(.success(()))
             case (let userError, let serverError):
@@ -159,16 +161,12 @@ class AccountManager: AccountManaging, Navigating {
         VPNCity.removeFromUserDefaults()
     }
 
-    private func subscribeToHeartbeat() {
+    private func subscribeToInactiveSubscriptionNotification() {
         //swiftlint:disable:next trailing_closure
-        DependencyFactory.sharedFactory.heartbeatMonitor
-            .subscriptionExpiredEvent
+        NotificationCenter.default.rx
+            .notification(Notification.Name.inactiveSubscriptionNotification)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                /*
-                 The user account info is wiped when the subscription becomes invalid.
-                 No need to explicitly log out remotely.
-                 */
+            .subscribe(onNext: { [weak self] _ in
                 self?.resetAccount()
                 self?.navigate(to: .landing)
         }).disposed(by: disposeBag)

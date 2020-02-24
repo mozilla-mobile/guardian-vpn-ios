@@ -9,10 +9,13 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
-import RxSwift
+import UIKit
+
+extension Notification.Name {
+    static let inactiveSubscriptionNotification = Notification.Name("inactiveSubscription")
+}
 
 protocol HeartbeatMonitoring {
-    var subscriptionExpiredEvent: Observable<Void> { get }
 
     func start()
     func stop()
