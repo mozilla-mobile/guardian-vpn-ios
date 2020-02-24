@@ -14,7 +14,8 @@ import Foundation
 struct VPNCountry: Codable {
     let name: String
     let code: String
-    let cities: [VPNCity]
+    private let cities: [VPNCity]
+    let formattedCities: [VPNCity]
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -23,9 +24,9 @@ struct VPNCountry: Codable {
         code = try container.decode(String.self, forKey: .code)
 
         // Turn [city[1, 2, 3]] into [city1, city2, city3]
-        let multipleServerCities = try container.decode([VPNCity].self, forKey: .cities)
+        cities = try container.decode([VPNCity].self, forKey: .cities)
         var singleServerCities = [VPNCity]()
-        for originalCity in multipleServerCities {
+        for originalCity in cities {
             for server in originalCity.servers {
                 let newCity = VPNCity(
                     name: "\(originalCity.name) (\(server.hostname.split(separator: "-").first!))",
@@ -38,7 +39,7 @@ struct VPNCountry: Codable {
                 singleServerCities.append(newCity)
             }
         }
-        cities = singleServerCities
+        formattedCities = singleServerCities
     }
 
     enum CodingKeys: String, CodingKey {
@@ -95,10 +96,10 @@ extension Array: UserDefaulting where Element == VPNCountry {
     }
 
     func getRandomUSServer() -> VPNCity? {
-        return first { $0.code.uppercased() == "US" }?.cities.randomElement()
+        return first { $0.code.uppercased() == "US" }?.formattedCities.randomElement()
     }
 
     func getRandomServer() -> VPNCity? {
-        return randomElement()?.cities.randomElement()
+        return randomElement()?.formattedCities.randomElement()
     }
 }
