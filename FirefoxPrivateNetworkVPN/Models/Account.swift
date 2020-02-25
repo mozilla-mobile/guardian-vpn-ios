@@ -92,15 +92,14 @@ class Account {
                 return Disposables.create()
             }
 
-            let deviceKey = device.publicKey
-            self.user?.deviceIsBeingRemoved(with: deviceKey)
-            GuardianAPI.removeDevice(with: self.credentials.verificationToken, deviceKey: deviceKey) { result in
+            self.user?.markIsBeingRemoved(for: device)
+            GuardianAPI.removeDevice(with: self.credentials.verificationToken, deviceKey: device.publicKey) { result in
                 switch result {
                 case .success:
-                    self.user?.removeDevice(with: deviceKey)
+                    self.user?.remove(device: device)
                     resolver(.success(()))
                 case .failure:
-                    self.user?.deviceFailedRemoval(with: deviceKey)
+                    self.user?.failedRemoval(of: device)
                     resolver(.error(GuardianError.couldNotRemoveDevice(device)))
                 }
             }

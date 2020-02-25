@@ -36,20 +36,20 @@ struct User: Codable {
         vpnSubscription = try subscriptionsContainer.decode(Subscription.self, forKey: .vpn)
     }
 
-    mutating func deviceIsBeingRemoved(with key: String) {
-        if let index = devices.firstIndex(where: { $0.publicKey == key }) {
+    mutating func markIsBeingRemoved(for device: Device) {
+        if let index = devices.firstIndex(where: { $0 == device }) {
             devices[index].isBeingRemoved = true
         }
     }
 
-    mutating func deviceFailedRemoval(with key: String) {
-        if let index = devices.firstIndex(where: { $0.publicKey == key }) {
+    mutating func failedRemoval(of device: Device) {
+        if let index = devices.firstIndex(where: { $0 == device }) {
             devices[index].isBeingRemoved = false
         }
     }
 
-    mutating func removeDevice(with key: String) {
-        if let index = devices.firstIndex(where: { $0.publicKey == key }) {
+    mutating func remove(device: Device) {
+        if let index = devices.firstIndex(where: { $0 == device }) {
             devices.remove(at: index)
         }
     }
