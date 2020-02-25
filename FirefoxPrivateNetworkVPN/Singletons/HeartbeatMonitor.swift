@@ -9,19 +9,11 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
-import RxSwift
-import RxCocoa
-
 class HeartbeatMonitor: HeartbeatMonitoring {
     static let sharedManager = HeartbeatMonitor()
 
     private static let timeInterval: TimeInterval = 3600
     private var timer: DispatchSourceTimer?
-    private var _subscriptionExpiredEvent = PublishSubject<Void>()
-
-    var subscriptionExpiredEvent: Observable<Void> {
-        return _subscriptionExpiredEvent.asObservable()
-    }
 
     func start() {
         timer = DispatchSource.makeTimerSource()
@@ -43,7 +35,7 @@ class HeartbeatMonitor: HeartbeatMonitoring {
                 let subscriptionError = error as? GuardianAPIError,
                 subscriptionError.isAuthError else { return }
 
-            self._subscriptionExpiredEvent.onNext(())
+            NotificationCenter.default.post(name: NSNotification.Name.inactiveSubscriptionNotification, object: nil)
         }
     }
 }

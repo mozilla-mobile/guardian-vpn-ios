@@ -49,7 +49,13 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
         //refresh device list only if device has already been added to make sure current device gets added
         if let account = account, account.hasDeviceBeenAdded {
-            account.getUser { _ in }
+            account.getUser { result in
+                guard case .failure(let error) = result,
+                    let subscriptionError = error as? GuardianAPIError,
+                    subscriptionError.isAuthError else { return }
+
+                NotificationCenter.default.post(name: NSNotification.Name.inactiveSubscriptionNotification, object: nil)
+            }
         }
     }
 
