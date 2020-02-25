@@ -65,7 +65,9 @@ class AccountManager: AccountManaging, Navigating {
                 completion(.failure(error))
             case (.none, .some(let error)):
                 if let device = account.currentDevice {
-                    _ = account.remove(device: device)
+                    account.remove(device: device)
+                        .subscribe { _ in }
+                        .disposed(by: self.disposeBag)
                 }
                 completion(.failure(error))
             }

@@ -36,7 +36,7 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.deviceList.count
+        viewModel.sortedDevices.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,10 +44,10 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellName,
                                                      for: indexPath) as? DeviceManagementCell,
             // prevents crash if the device list changes and the tableview hasn't reloaded
-            indexPath.row < viewModel.deviceList.count
+            indexPath.row < viewModel.sortedDevices.count
             else { return UITableViewCell(frame: .zero) }
 
-        cell.setup(with: viewModel.deviceList[indexPath.row], event: viewModel.trashTappedSubject)
+        cell.setup(with: viewModel.sortedDevices[indexPath.row], event: viewModel.trashTappedSubject)
 
         return cell
     }

@@ -26,7 +26,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
     private var formattedDeviceCountTitle: String {
         guard let user = account?.user else { return "" }
-        let count = viewModel.deviceList.count
+        let count = viewModel.sortedDevices.count
         return String(format: LocalizedString.devicesCount.value, "\(count)", "\(user.maxDevices)")
     }
 

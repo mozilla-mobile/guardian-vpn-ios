@@ -21,13 +21,13 @@ class DeviceManagementViewModel {
     let deletionConfirmedSubject = PublishSubject<Device>()
     let deletionCompletedSubject = PublishSubject<Result<Void, GuardianError>>()
 
-    var deviceList: [Device] {
-        var deviceList = account?.user?.devices.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice } ?? []
+    var sortedDevices: [Device] {
+        var devices = account?.user?.devices.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice } ?? []
 
         if let account = account, !account.hasDeviceBeenAdded {
-            deviceList.insert(Device.mock(name: UIDevice.current.name), at: 0)
+            devices.insert(Device.mock(name: UIDevice.current.name), at: 0)
         }
-        return deviceList
+        return devices
     }
 
     init() {
@@ -60,11 +60,11 @@ class DeviceManagementViewModel {
     }
 
     private func formattedDeviceList(with devices: [Device]) -> [Device] {
-        var deviceList = devices.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice }
+        var devices = devices.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice }
 
         if let account = account, !account.hasDeviceBeenAdded {
-            deviceList.insert(Device.mock(name: UIDevice.current.name), at: 0)
+            devices.insert(Device.mock(name: UIDevice.current.name), at: 0)
         }
-        return deviceList
+        return devices
     }
 }

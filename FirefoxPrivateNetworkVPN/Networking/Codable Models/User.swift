@@ -38,23 +38,20 @@ struct User: Codable {
     }
 
     mutating func deviceIsBeingRemoved(with key: String) {
-        for (index, each) in devices.enumerated() where each.publicKey == key {
+        if let index = devices.firstIndex(where: { $0.publicKey == key }) {
             devices[index].isBeingRemoved = true
-            break
         }
     }
 
     mutating func deviceFailedRemoval(with key: String) {
-        for (index, each) in devices.enumerated() where each.publicKey == key {
+        if let index = devices.firstIndex(where: { $0.publicKey == key }) {
             devices[index].isBeingRemoved = false
-            break
         }
     }
 
     mutating func removeDevice(with key: String) {
-        for (index, each) in devices.enumerated() where each.publicKey == key {
+        if let index = devices.firstIndex(where: { $0.publicKey == key }) {
             devices.remove(at: index)
-            break
         }
     }
 
