@@ -19,7 +19,8 @@ class DeviceManagementViewModel {
 
     let trashTappedSubject = PublishSubject<Device>()
     let deletionConfirmedSubject = PublishSubject<Device>()
-    let deletionCompletedSubject = PublishSubject<Result<Void, GuardianError>>()
+    let deletionSuccessSubject = PublishSubject<Void>()
+    let deletionErrorSubject = PublishSubject<GuardianError>()
 
     var sortedDevices: [Device] {
         var devices = account?.user?.devices.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice } ?? []
@@ -35,26 +36,28 @@ class DeviceManagementViewModel {
     }
 
     private func subscribeToDeletionConfirmedObservable() {
+        //swiftlint:disable:next trailing_closure
         deletionConfirmedSubject
-            .flatMap { [weak self] device -> Single<Result<Void, GuardianError>> in
-                return self?.account?.remove(device: device) ?? .never()
+            .flatMap { [unowned self] device -> Observable<Event<Void>> in
+                guard let account = self.account else { return .never() }
 
-            }
-        .subscribe(onNext: { [weak self] result in
-            guard let self = self, let account = self.account else { return }
+                return account.remove(device: device).asObservable().materialize()
+        }.subscribe(onNext: { [unowned self] event in
+            guard let account = self.account else { return }
 
-            if case .failure(let error) = result,
-                case GuardianError.couldNotRemoveDevice(let device) = error {
-                self.deletionCompletedSubject.onNext(.failure(GuardianError.couldNotRemoveDevice(device)))
-                return
-            }
-
-            guard !account.hasDeviceBeenAdded else {
-                self.deletionCompletedSubject.onNext(.success(()))
-                return
-            }
-            account.addCurrentDevice { _ in
-                self.deletionCompletedSubject.onNext(.success(()))
+            switch event {
+            case .next:
+                if account.hasDeviceBeenAdded {
+                    self.deletionSuccessSubject.onNext(())
+                } else {
+                    account.addCurrentDevice { _ in
+                        self.deletionSuccessSubject.onNext(())
+                    }
+                }
+            case .error(let error):
+                guard case GuardianError.couldNotRemoveDevice(let device) = error else { return }
+                self.deletionErrorSubject.onNext(GuardianError.couldNotRemoveDevice(device))
+            default: break
             }
         }).disposed(by: disposeBag)
     }
