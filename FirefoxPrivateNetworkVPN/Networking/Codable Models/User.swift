@@ -9,8 +9,7 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-import RxSwift
-import RxCocoa
+import Foundation
 
 struct User: Codable {
     let email: String
