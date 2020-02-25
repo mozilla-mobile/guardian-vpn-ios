@@ -52,10 +52,6 @@ final class WarningToastView: UIView {
         action?()
     }
 
-    private var isShown: Bool {
-        return alpha == 1
-    }
-
     private func dismiss() {
         UIView.animate(withDuration: 0.5) {
             self.alpha = 0
