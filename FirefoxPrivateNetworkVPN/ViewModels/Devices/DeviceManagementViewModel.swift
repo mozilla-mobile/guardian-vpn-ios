@@ -19,7 +19,7 @@ class DeviceManagementViewModel {
 
     let trashTappedSubject = PublishSubject<Device>()
     let deletionConfirmedSubject = PublishSubject<Device>()
-    let deletionCompletedSubject = PublishSubject<Result<Void, GuardianError>>()
+    let deletionCompletedSubject = PublishSubject<GuardianError?>()
 
     var deviceList: [Device] {
         var deviceList = account?.user?.devices.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice } ?? []
@@ -35,26 +35,25 @@ class DeviceManagementViewModel {
     }
 
     private func subscribeToDeletionConfirmedObservable() {
+        //swiftlint:disable trailing_closure
         deletionConfirmedSubject
-            .flatMap { [weak self] device -> Single<Result<Void, GuardianError>> in
+            .flatMap { [weak self] device -> Single<GuardianError?> in
                 return self?.account?.remove(device: device) ?? .never()
-
-            }
-        .subscribe(onNext: { [weak self] result in
+        }
+        .subscribe(onNext: { [weak self] error in
             guard let self = self, let account = self.account else { return }
 
-            if case .failure(let error) = result,
-                case GuardianError.couldNotRemoveDevice(let device) = error {
-                self.deletionCompletedSubject.onNext(.failure(GuardianError.couldNotRemoveDevice(device)))
+            if let error = error {
+                self.deletionCompletedSubject.onNext(error)
                 return
             }
 
             guard !account.hasDeviceBeenAdded else {
-                self.deletionCompletedSubject.onNext(.success(()))
+                self.deletionCompletedSubject.onNext(nil)
                 return
             }
             account.addCurrentDevice { _ in
-                self.deletionCompletedSubject.onNext(.success(()))
+                self.deletionCompletedSubject.onNext(nil)
             }
         }).disposed(by: disposeBag)
     }

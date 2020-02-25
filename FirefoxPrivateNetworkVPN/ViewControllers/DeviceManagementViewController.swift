@@ -122,22 +122,22 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
     private func subscribeToDeviceDeletionObservable() {
         viewModel.deletionCompletedSubject
-            .subscribe(onNext: { [weak self] result in
+            .subscribe(onNext: { [weak self] error in
                 guard let self = self,
                     let account = self.account else { return }
 
                 self.refreshViews()
 
-                guard case .failure(let error) = result,
-                    case .couldNotRemoveDevice(let device) = error else {
-                        if account.hasDeviceBeenAdded {
-                            DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
-                        }
+                if let error = error,
+                    case .couldNotRemoveDevice(let device) = error {
+                    self.warningToastView.show(message: NSAttributedString.formattedError(GuardianError.couldNotRemoveDevice(device))) {
+                        self.viewModel.deletionConfirmedSubject.onNext(device)
                         return
-                }
+                    }
 
-                self.warningToastView.show(message: NSAttributedString.formattedError(GuardianError.couldNotRemoveDevice(device))) {
-                    self.viewModel.deletionConfirmedSubject.onNext(device)
+                    if account.hasDeviceBeenAdded {
+                        DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                    }
                 }
             }).disposed(by: disposeBag)
     }
