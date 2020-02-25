@@ -73,8 +73,12 @@ class DeviceManagementViewController: UIViewController, Navigating {
         subscribeToDeviceDeletionObservable()
 
         //added as a checkpoint to refresh the device list
-        account?.getUser { [weak self] _ in
-            self?.refreshViews()
+        account?.getUser { result in
+            guard case .failure(let error) = result,
+                let subscriptionError = error as? GuardianAPIError,
+                subscriptionError.isAuthError else { return }
+
+            NotificationCenter.default.post(name: NSNotification.Name.inactiveSubscriptionNotification, object: nil)
         }
     }
 
