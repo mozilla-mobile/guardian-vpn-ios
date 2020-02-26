@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-git submodule update --init --checkout
+CMD="git submodule update --init --checkout"
+echo $CMD
+`$CMD`
+
+cd WireGuard
+REV=`git rev-parse --short HEAD`
+echo "WireGuard submodule is at $REV"
