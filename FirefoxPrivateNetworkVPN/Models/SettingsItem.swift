@@ -15,20 +15,30 @@ enum SettingsItem {
     case device
     case help
     case about
+    case feedback
 
     var title: String {
         switch self {
         case .device: return LocalizedString.settingsItemDevices.value
         case .help: return LocalizedString.settingsItemHelp.value
         case .about: return LocalizedString.settingsItemAbout.value
+        case .feedback: return "Feedback"
         }
     }
 
-    var image: UIImage? {
+    var iconImage: UIImage? {
         switch self {
         case .device: return #imageLiteral(resourceName: "icon_device")
         case .help: return #imageLiteral(resourceName: "icon_help")
         case .about: return #imageLiteral(resourceName: "icon_about")
+        case .feedback: return #imageLiteral(resourceName: "icon_bug.pdf")
+        }
+    }
+
+    var disclosureImage: UIImage? {
+        switch self {
+        case .feedback: return #imageLiteral(resourceName: "icon_openIn.pdf")
+        default: return #imageLiteral(resourceName: "icon_forwardChevron.pdf")
         }
     }
 
@@ -37,6 +47,7 @@ enum SettingsItem {
         case .device: return .devices
         case .help: return .help
         case .about: return .about
+        case .feedback: return .hyperlink(FirefoxURL.feedback.value)
         }
     }
 }

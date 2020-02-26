@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class SettingsViewController: UIViewController, Navigating {
     // MARK: - Properties
@@ -19,6 +20,7 @@ class SettingsViewController: UIViewController, Navigating {
     @IBOutlet weak var signOutButton: UIButton!
 
     private var dataSource: SettingsDataSource?
+    private let disposeBag = DisposeBag()
 
     // MARK: - Initialization
     init() {
@@ -37,6 +39,9 @@ class SettingsViewController: UIViewController, Navigating {
 
         dataSource = SettingsDataSource(with: tableView)
         tableView.tableFooterView = UIView()
+
+        subscribeToRowSelected()
+        subscribeToButtonTapped()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -65,5 +70,25 @@ class SettingsViewController: UIViewController, Navigating {
 
     private func setStrings() {
         signOutButton.setTitle(LocalizedString.settingsSignOut.value, for: .normal)
+    }
+
+    private func subscribeToRowSelected() {
+        //swiftlint:disable:next trailing_closure
+        dataSource?.rowSelected
+            .subscribe(onNext: { [weak self] navigableItem in
+                self?.navigate(to: navigableItem)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func subscribeToButtonTapped() {
+        if let headerView = tableView.headerView(forSection: 0) as? AccountInformationHeader {
+            //swiftlint:disable:next trailing_closure
+            headerView.buttonTappedSubject
+                .subscribe(onNext: { [weak self] navigableItem in
+                    self?.navigate(to: navigableItem)
+                })
+                .disposed(by: disposeBag)
+        }
     }
 }

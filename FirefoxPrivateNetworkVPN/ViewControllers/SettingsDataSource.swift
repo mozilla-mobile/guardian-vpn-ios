@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class SettingsDataSource: NSObject, UITableViewDataSource {
     // MARK: - Properties
@@ -18,9 +19,11 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
     private let cellName = String(describing: AccountInformationCell.self)
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
 
+    let rowSelected = PublishSubject<NavigableItem>()
+
     // MARK: - Initialization
     init(with tableView: UITableView) {
-        representedObject = [.device, .help, .about]
+        representedObject = [.device, .help, .about, .feedback]
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
@@ -59,8 +62,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SettingsDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        DependencyFactory.sharedFactory.navigationCoordinator
-            .navigate(from: .settings, to: representedObject[indexPath.row].action)
+        rowSelected.onNext(representedObject[indexPath.row].action)
 
         tableView.deselectRow(at: indexPath, animated: false)
     }

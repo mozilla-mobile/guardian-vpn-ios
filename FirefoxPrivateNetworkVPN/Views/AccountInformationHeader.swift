@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class AccountInformationHeader: UITableViewHeaderFooterView {
     static let height: CGFloat = UIScreen.isiPad ? 400.0 : 294.0
@@ -18,6 +19,8 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var manageAccountButton: UIButton!
+
+    let buttonTappedSubject = PublishSubject<NavigableItem>()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,8 +55,6 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     }
 
     @IBAction func accountButtonTapped() {
-        if let url = HyperlinkItem.account.url {
-            UIApplication.shared.open(url)
-        }
+        buttonTappedSubject.onNext(.hyperlink(HyperlinkItem.account.url))
     }
 }
