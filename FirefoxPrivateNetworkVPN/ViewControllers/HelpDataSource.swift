@@ -10,11 +10,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class HelpDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
     private let representedObject: [HyperlinkItem]
     private let cellName = String(describing: HyperlinkCell.self)
+
+    let rowSelected = PublishSubject<URL?>()
 
     // MARK: Initialization
     init(with tableView: UITableView) {
@@ -45,9 +48,8 @@ class HelpDataSource: NSObject, UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension HelpDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let url = representedObject[indexPath.row].url {
-            UIApplication.shared.open(url)
-        }
+        rowSelected.onNext(representedObject[indexPath.row].url)
+
         tableView.deselectRow(at: indexPath, animated: false)
     }
 

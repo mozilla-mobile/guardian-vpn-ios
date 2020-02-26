@@ -38,9 +38,7 @@ class UpdateRequiredViewController: UIViewController, Navigating {
     }
 
     @IBAction func manageAccountTapped() {
-        if let url = HyperlinkItem.account.url {
-            UIApplication.shared.open(url)
-        }
+        navigate(to: .hyperlink(HyperlinkItem.account.url))
     }
 
     @IBAction func signoutTapped() {

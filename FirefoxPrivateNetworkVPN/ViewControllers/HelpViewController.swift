@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class HelpViewController: UIViewController, Navigating {
     // MARK: Properties
@@ -18,6 +19,7 @@ class HelpViewController: UIViewController, Navigating {
     @IBOutlet weak var tableView: UITableView!
 
     private var dataSource: HelpDataSource?
+    private let disposeBag = DisposeBag()
 
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -26,6 +28,8 @@ class HelpViewController: UIViewController, Navigating {
 
         dataSource = HelpDataSource(with: tableView)
         tableView.tableFooterView = UIView()
+
+        subscribeToRowSelected()
     }
 
     // MARK: Setup
@@ -41,5 +45,14 @@ class HelpViewController: UIViewController, Navigating {
 
     @objc func goBack() {
         navigate(to: .settings)
+    }
+
+    private func subscribeToRowSelected() {
+        //swiftlint:disable:next trailing_closure
+        dataSource?.rowSelected
+            .subscribe(onNext: { [weak self] url in
+                self?.navigate(to: .hyperlink(url))
+            })
+            .disposed(by: disposeBag)
     }
 }
