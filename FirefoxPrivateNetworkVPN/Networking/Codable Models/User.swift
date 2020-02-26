@@ -17,21 +17,9 @@ struct User: Codable {
     let avatarURL: URL?
     let vpnSubscription: Subscription
     let maxDevices: Int
-    private var devices: [Device]
+
+    private(set) var devices: [Device]
     private let avatarUrlString: String
-
-    var deviceList: [Device] {
-        get {
-            return devices
-        }
-        set {
-            devices = newValue.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice }
-        }
-    }
-
-    var hasReachedMaxDevices: Bool {
-        return devices.count >= maxDevices
-    }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -46,29 +34,32 @@ struct User: Codable {
 
         let subscriptionsContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .subscriptions)
         vpnSubscription = try subscriptionsContainer.decode(Subscription.self, forKey: .vpn)
-
-        deviceList = devices
     }
 
-    mutating func deviceIsBeingRemoved(with key: String) {
-        for (index, each) in deviceList.enumerated() where each.publicKey == key {
-            deviceList[index].isBeingRemoved = true
-            return
+    mutating func markIsBeingRemoved(for device: Device) {
+        if let index = devices.firstIndex(where: { $0 == device }) {
+            devices[index].isBeingRemoved = true
         }
     }
 
-    mutating func deviceFailedRemoval(with key: String) {
-        for (index, each) in deviceList.enumerated() where each.publicKey == key {
-            deviceList[index].isBeingRemoved = false
-            return
+    mutating func failedRemoval(of device: Device) {
+        if let index = devices.firstIndex(where: { $0 == device }) {
+            devices[index].isBeingRemoved = false
         }
     }
 
-    mutating func removeDevice(with key: String) {
-        for (index, each) in deviceList.enumerated() where each.publicKey == key {
-            deviceList.remove(at: index)
-            return
+    mutating func remove(device: Device) {
+        if let index = devices.firstIndex(where: { $0 == device }) {
+            devices.remove(at: index)
         }
+    }
+
+    func has(device: Device) -> Bool {
+        return devices.contains(device)
+    }
+
+    func device(with key: String) -> Device? {
+        return devices.filter { $0.publicKey == key }.first
     }
 
     func encode(to encoder: Encoder) throws {

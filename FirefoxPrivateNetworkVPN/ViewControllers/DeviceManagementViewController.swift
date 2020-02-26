@@ -20,13 +20,14 @@ class DeviceManagementViewController: UIViewController, Navigating {
     @IBOutlet weak var warningToastView: WarningToastView!
 
     private var dataSource: DeviceManagementDataSource?
+    private var viewModel: DeviceManagementViewModel
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
     private let disposeBag = DisposeBag()
 
     private var formattedDeviceCountTitle: String {
         guard let user = account?.user else { return "" }
-        let currentDevices = dataSource?.deviceCount ?? 0
-        return String(format: LocalizedString.devicesCount.value, "\(currentDevices)", "\(user.maxDevices)")
+        let count = viewModel.sortedDevices.count
+        return String(format: LocalizedString.devicesCount.value, "\(count)", "\(user.maxDevices)")
     }
 
     private lazy var backButtonItem: UIBarButtonItem = {
@@ -50,48 +51,44 @@ class DeviceManagementViewController: UIViewController, Navigating {
         return deviceCountItem
     }()
 
+    // MARK: - Initialization
+    init(viewModel: DeviceManagementViewModel = DeviceManagementViewModel()) {
+        self.viewModel = viewModel
+
+        super.init(nibName: String(describing: Self.self), bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: View Lifecycle
     //swiftlint:disable trailing_closure
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = DeviceManagementDataSource(with: tableView)
+        dataSource = DeviceManagementDataSource(with: tableView, viewModel: viewModel)
         tableView.tableFooterView = UIView()
 
-        dataSource?
-            .removeDeviceEvent
-            .subscribe(onNext: { [weak self] device in
-                guard let self = self, let account = self.account else { return }
+        subscribeToTrashTappedObservable()
+        subscribeToDeviceDeletionObservable()
 
-                let confirmAlert = DependencyFactory
-                    .sharedFactory
-                    .navigationCoordinator
-                    .createDeviceDeletionAlert(deviceName: device.name) { _ in
-                        account.removeDevice(with: device.publicKey) { result in
-                            switch result {
-                            case .success:
-                                if !account.hasDeviceBeenAdded {
-                                    self.addCurrentDeviceToAccount()
-                                } else {
-                                    self.navigationItem.rightBarButtonItem?.title = self.formattedDeviceCountTitle
-                                    self.tableView?.reloadData()
-                                }
+        //added as a checkpoint to refresh the device list
+        account?.getUser { result in
+            guard case .failure(let error) = result,
+                let subscriptionError = error as? GuardianAPIError,
+                subscriptionError.isAuthError else { return }
 
-                            case .failure:
-                                self.tableView?.reloadData()
-                                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotRemoveDevice)) {
-                                    self.dataSource?.removeDeviceEvent.onNext(device)
-                                }
-                            }
-                        }
-                        self.tableView?.reloadData()
-                }
-                self.present(confirmAlert, animated: true, completion: nil)
-            }).disposed(by: disposeBag)
+            NotificationCenter.default.post(name: NSNotification.Name.inactiveSubscriptionNotification, object: nil)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+    }
+
+    @objc func goBack() {
+        navigate(to: .settings)
     }
 
     // MARK: Setup
@@ -107,21 +104,49 @@ class DeviceManagementViewController: UIViewController, Navigating {
         navigationItem.leftBarButtonItem = backButtonItem
     }
 
-    @objc func goBack() {
-        navigate(to: .settings)
+    private func refreshViews() {
+        tableView.reloadData()
+        navigationItem.rightBarButtonItem?.title = formattedDeviceCountTitle
     }
 
-    private func addCurrentDeviceToAccount() {
-        guard let account = account else {
-            tableView?.reloadData()
-            return
-        }
-        account.addCurrentDevice { [weak self] addDeviceResult in
-            if case .success = addDeviceResult {
-                DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
-            }
-            self?.navigationItem.rightBarButtonItem?.title = self?.formattedDeviceCountTitle
-            self?.tableView?.reloadData()
-        }
+    private func subscribeToTrashTappedObservable() {
+        viewModel.trashTappedSubject
+            .subscribe(onNext: { [weak self] device in
+                guard let self = self else { return }
+                let confirmAlert = DependencyFactory
+                    .sharedFactory
+                    .navigationCoordinator
+                    .createDeviceDeletionAlert(deviceName: device.name) { _ in
+                        self.viewModel.deletionConfirmedSubject.onNext(device)
+                        self.tableView.reloadData()
+                }
+                self.present(confirmAlert, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
+    }
+
+    private func subscribeToDeviceDeletionObservable() {
+        viewModel.deletionSuccessSubject
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] _ in
+                guard let account = self.account else { return }
+
+                if account.hasDeviceBeenAdded {
+                    DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                }
+                self.refreshViews()
+
+            }).disposed(by: disposeBag)
+
+        viewModel.deletionErrorSubject
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] error in
+                self.refreshViews()
+
+                guard case .couldNotRemoveDevice(let device) = error else { return }
+
+                self.warningToastView.show(message: NSAttributedString.formattedError(GuardianError.couldNotRemoveDevice(device))) {
+                    self.viewModel.deletionConfirmedSubject.onNext(device)
+                }
+            }).disposed(by: disposeBag)
     }
 }

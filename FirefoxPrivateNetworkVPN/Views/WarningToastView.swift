@@ -31,8 +31,6 @@ final class WarningToastView: UIView {
     }
 
     func show(message: NSAttributedString, dismissAfter: TimeInterval = 3, action: Action? = nil) {
-        guard !isShown else { return }
-
         label.attributedText = message
         self.action = action
 
@@ -50,12 +48,8 @@ final class WarningToastView: UIView {
     }
 
     @IBAction func tapped(_ sender: Any) {
-        action?()
         dismiss()
-    }
-
-    private var isShown: Bool {
-        return alpha == 1
+        action?()
     }
 
     private func dismiss() {

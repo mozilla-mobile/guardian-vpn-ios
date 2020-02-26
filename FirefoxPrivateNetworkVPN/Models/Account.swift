@@ -9,8 +9,8 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-import Foundation
 import UIKit
+import RxSwift
 
 class Account {
     private var credentials: Credentials
@@ -85,21 +85,25 @@ class Account {
         }
     }
 
-    func removeDevice(with deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        user?.deviceIsBeingRemoved(with: deviceKey)
-        GuardianAPI.removeDevice(with: credentials.verificationToken, deviceKey: deviceKey) { [weak self] result in
+    func remove(device: Device) -> Single<Void> {
+        return Single<Void>.create { [weak self] resolver in
             guard let self = self else {
-                completion(.failure(GuardianError.deallocated))
-                return
+                resolver(.error(GuardianError.deallocated))
+                return Disposables.create()
             }
-            switch result {
-            case .success:
-                self.user?.removeDevice(with: deviceKey)
-                completion(.success(()))
-            case .failure(let error):
-                self.user?.deviceFailedRemoval(with: deviceKey)
-                completion(.failure(error))
+
+            self.user?.markIsBeingRemoved(for: device)
+            GuardianAPI.removeDevice(with: self.credentials.verificationToken, deviceKey: device.publicKey) { result in
+                switch result {
+                case .success:
+                    self.user?.remove(device: device)
+                    resolver(.success(()))
+                case .failure:
+                    self.user?.failedRemoval(of: device)
+                    resolver(.error(GuardianError.couldNotRemoveDevice(device)))
+                }
             }
+            return Disposables.create()
         }
     }
 
@@ -107,13 +111,13 @@ class Account {
         guard let user = user else {
             return
         }
-        if let current = currentDevice, !user.deviceList.contains(current) {
+        if let current = currentDevice, !user.has(device: current) {
             currentDevice = nil
             Device.removeFromUserDefaults()
             return
         }
-        let devices = user.deviceList.filter { $0.publicKey == credentials.deviceKeys.publicKey.base64Key() }
-        if let current = devices.first {
+
+        if let key = credentials.deviceKeys.publicKey.base64Key(), let current = user.device(with: key) {
             currentDevice = current
             current.saveToUserDefaults()
             return

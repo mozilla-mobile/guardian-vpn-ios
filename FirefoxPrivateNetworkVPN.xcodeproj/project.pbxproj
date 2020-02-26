@@ -16,6 +16,7 @@
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		F401097923FEE2D8006DFF96 /* HeartbeatMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */; };
 		F401097B23FEE829006DFF96 /* HeartbeatMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */; };
+		F401097D24002C8B006DFF96 /* DeviceManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */; };
 		F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056031239E9F31000A93CC /* KeychainStored.swift */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
@@ -285,6 +286,7 @@
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
 		F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitor.swift; sourceTree = "<group>"; };
 		F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitoring.swift; sourceTree = "<group>"; };
+		F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewModel.swift; sourceTree = "<group>"; };
 		F4056031239E9F31000A93CC /* KeychainStored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStored.swift; sourceTree = "<group>"; };
 		F40831CB233CF5BE00A60FCA /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		F40831CE233CFA2000A60FCA /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
@@ -596,6 +598,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F401097E240453B6006DFF96 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
 		F41CCA1823711C7A0018DC43 /* FirefoxPrivateNetworkVPN */ = {
 			isa = PBXGroup;
 			children = (
@@ -692,8 +702,6 @@
 		F41CCA2123711C7A0018DC43 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */,
-				F4483D0223F594E80094BE3E /* UpdateRequiredViewController.xib */,
 				527C7EB523752E9300368965 /* AboutDataSource.swift */,
 				527C7EB123752DCA00368965 /* AboutViewController.swift */,
 				527C7EB223752DCA00368965 /* AboutViewController.xib */,
@@ -724,6 +732,8 @@
 				F41FE9E6235F98E400CD05C4 /* SettingsViewController.xib */,
 				F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */,
 				F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */,
+				F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */,
+				F4483D0223F594E80094BE3E /* UpdateRequiredViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1053,6 +1063,7 @@
 		F4BAF48723F1C356000FDBB0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				F401097E240453B6006DFF96 /* Devices */,
 				F4BAF48A23F1C370000FDBB0 /* Server List */,
 			);
 			path = ViewModels;
@@ -1522,6 +1533,7 @@
 			files = (
 				F4E908C72371CAAD00EB9FE6 /* VPNState.swift in Sources */,
 				F4E908F92371CAAD00EB9FE6 /* UIView+Designing.swift in Sources */,
+				F401097D24002C8B006DFF96 /* DeviceManagementViewModel.swift in Sources */,
 				F4BAF48C23F1C392000FDBB0 /* CityCellModel.swift in Sources */,
 				F4DF5B1423CFBDAA006A7E4C /* UpdateRecommendedViewController.swift in Sources */,
 				F4A7FA22237AFF210034AF6C /* Result+Decode.swift in Sources */,
