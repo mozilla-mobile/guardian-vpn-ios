@@ -18,9 +18,6 @@ enum HyperlinkItem {
     case privacy
     case account
 
-    private static let base = "https://fpn.firefox.com"
-    private static let query = "?utm_medium=fx-vpn&utm_source=fx-vpn-iOSs&utm_campaign=download-client"
-
     var title: String {
         switch self {
         case .contact: return LocalizedString.helpContactUs.value
@@ -33,17 +30,11 @@ enum HyperlinkItem {
 
     var url: URL? {
         switch self {
-        case .contact:
-            return URL(string: HyperlinkItem.base + "/r/vpn/contact" + HyperlinkItem.query)
-        case .support:
-            // TODO: change support url when it's available
-            return URL(string: "https://support.mozilla.org/")
-        case .terms:
-            return URL(string: HyperlinkItem.base + "/r/vpn/terms" + HyperlinkItem.query)
-        case .privacy:
-            return URL(string: HyperlinkItem.base + "/r/vpn/privacy" + HyperlinkItem.query)
-        case .account:
-            return URL(string: HyperlinkItem.base + "/r/vpn/account/")
+        case .contact: return FirefoxURL.contact.value
+        case .support: return FirefoxURL.support.value
+        case .terms: return FirefoxURL.terms.value
+        case .privacy: return FirefoxURL.privacy.value
+        case .account: return FirefoxURL.account.value
         }
     }
 }
