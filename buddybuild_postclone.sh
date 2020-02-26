@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-git submodule update --checkout
+git submodule update --init --checkout
