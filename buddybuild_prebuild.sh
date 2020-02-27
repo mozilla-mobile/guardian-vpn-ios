@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CMD="git submodule deinit"
+CMD="git submodule deinit --all"
 echo $CMD
 `$CMD`
 
