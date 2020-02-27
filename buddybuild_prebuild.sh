@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-CMD="git submodule update --init --checkout"
+CMD="git submodule --deinit"
+echo $CMD
+`$CMD`
+
+CMD="git submodule update --init"
 echo $CMD
 `$CMD`
 
