@@ -4,9 +4,9 @@ CMD="git submodule deinit -f --all"
 echo $CMD
 `$CMD`
 
-CMD="git submodule update --init"
-echo $CMD
-`$CMD`
+CMD2="git submodule update --init"
+echo $CMD2
+`$CMD2`
 
 cd WireGuard
 REV=`git rev-parse --short HEAD`
