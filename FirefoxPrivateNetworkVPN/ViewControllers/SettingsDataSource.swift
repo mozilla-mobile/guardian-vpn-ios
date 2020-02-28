@@ -18,8 +18,10 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
     private let headerName = String(describing: AccountInformationHeader.self)
     private let cellName = String(describing: AccountInformationCell.self)
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
+    private let disposeBag = DisposeBag()
 
     let rowSelected = PublishSubject<NavigableItem>()
+    let headerButtonSelected = PublishSubject<NavigableItem>()
 
     // MARK: - Initialization
     init(with tableView: UITableView) {
@@ -81,6 +83,10 @@ extension SettingsDataSource: UITableViewDelegate {
             let user = DependencyFactory.sharedFactory.accountManager.account?.user
             else { return nil }
         headerView.setup(with: user)
+        //swiftlint:disable:next trailing_closure
+        headerView.buttonTappedSubject.subscribe(onNext: { [weak self] navigableItem in
+            self?.headerButtonSelected.onNext(navigableItem)
+            }).disposed(by: disposeBag)
         return headerView
     }
 }

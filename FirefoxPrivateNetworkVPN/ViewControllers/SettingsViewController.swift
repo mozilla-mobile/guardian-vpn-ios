@@ -82,13 +82,11 @@ class SettingsViewController: UIViewController, Navigating {
     }
 
     private func subscribeToButtonTapped() {
-        if let headerView = tableView.headerView(forSection: 0) as? AccountInformationHeader {
-            //swiftlint:disable:next trailing_closure
-            headerView.buttonTappedSubject
-                .subscribe(onNext: { [weak self] navigableItem in
-                    self?.navigate(to: navigableItem)
-                })
-                .disposed(by: disposeBag)
-        }
+        //swiftlint:disable:next trailing_closure
+        dataSource?.headerButtonSelected
+            .subscribe(onNext: { [weak self] navigableItem in
+                self?.navigate(to: navigableItem)
+            })
+            .disposed(by: self.disposeBag)
     }
 }
