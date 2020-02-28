@@ -22,7 +22,7 @@ enum SettingsItem {
         case .device: return LocalizedString.settingsItemDevices.value
         case .help: return LocalizedString.settingsItemHelp.value
         case .about: return LocalizedString.settingsItemAbout.value
-        case .feedback: return "Feedback"
+        case .feedback: return LocalizedString.settingsFeedback.value
         }
     }
 
