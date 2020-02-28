@@ -10,7 +10,7 @@ $ brew install swiftlint go carthage
 ## Cloning
 If the repository is already cloned without the submodule (if the `WireGuard` directory is empty), run:
 ```
-$ git submodule update --init --checkout
+$ git submodule update --init
 ```
 
 ## Building
