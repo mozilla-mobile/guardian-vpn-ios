@@ -22,6 +22,13 @@ class SettingsViewController: UIViewController, Navigating {
     private var dataSource: SettingsDataSource?
     private let disposeBag = DisposeBag()
 
+    private lazy var headerView: AccountInformationHeader = {
+        let view = AccountInformationHeader()
+        view.frame.size.height = AccountInformationHeader.height
+
+        return view
+    }()
+
     // MARK: - Initialization
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
@@ -39,6 +46,7 @@ class SettingsViewController: UIViewController, Navigating {
 
         dataSource = SettingsDataSource(with: tableView)
         tableView.tableFooterView = UIView()
+        tableView.tableHeaderView = headerView
 
         subscribeToRowSelected()
         subscribeToButtonTapped()
@@ -48,6 +56,10 @@ class SettingsViewController: UIViewController, Navigating {
         super.viewWillAppear(animated)
         setupNavigationBar()
         tableView.reloadData()
+    }
+
+    override func viewDidLayoutSubviews() {
+        tableView.isScrollEnabled = tableView.contentSize.height >= tableView.frame.height
     }
 
     // MARK: - IBActions
@@ -83,7 +95,7 @@ class SettingsViewController: UIViewController, Navigating {
 
     private func subscribeToButtonTapped() {
         //swiftlint:disable:next trailing_closure
-        dataSource?.headerButtonSelected
+        headerView.buttonTappedSubject
             .subscribe(onNext: { [weak self] navigableItem in
                 self?.navigate(to: navigableItem)
             })

@@ -15,13 +15,10 @@ import RxSwift
 class SettingsDataSource: NSObject, UITableViewDataSource {
     // MARK: - Properties
     private let representedObject: [SettingsItem]
-    private let headerName = String(describing: AccountInformationHeader.self)
     private let cellName = String(describing: AccountInformationCell.self)
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
-    private let disposeBag = DisposeBag()
 
     let rowSelected = PublishSubject<NavigableItem>()
-    let headerButtonSelected = PublishSubject<NavigableItem>()
 
     // MARK: - Initialization
     init(with tableView: UITableView) {
@@ -29,9 +26,6 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
-
-        let headerNib = UINib.init(nibName: headerName, bundle: nil)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
 
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
@@ -74,19 +68,6 @@ extension SettingsDataSource: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return AccountInformationHeader.height
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView
-            .dequeueReusableHeaderFooterView(withIdentifier: headerName) as? AccountInformationHeader,
-            let user = DependencyFactory.sharedFactory.accountManager.account?.user
-            else { return nil }
-        headerView.setup(with: user)
-        //swiftlint:disable:next trailing_closure
-        headerView.buttonTappedSubject.subscribe(onNext: { [weak self] navigableItem in
-            self?.headerButtonSelected.onNext(navigableItem)
-            }).disposed(by: disposeBag)
-        return headerView
+        return .zero
     }
 }

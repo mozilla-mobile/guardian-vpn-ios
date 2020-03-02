@@ -12,13 +12,15 @@
 import UIKit
 import RxSwift
 
-class AccountInformationHeader: UITableViewHeaderFooterView {
+class AccountInformationHeader: UIView {
     static let height: CGFloat = UIScreen.isiPad ? 400.0 : 294.0
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var manageAccountButton: UIButton!
+
+    var user = DependencyFactory.sharedFactory.accountManager.account?.user
 
     let buttonTappedSubject = PublishSubject<NavigableItem>()
 
@@ -28,22 +30,28 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
         setupManageAccountButton()
     }
 
+    override func reloadInputViews() {
+        refreshUserInfo()
+    }
+
     private func setupManageAccountButton() {
         manageAccountButton.setTitle(LocalizedString.settingsManageAccount.value, for: .normal)
         manageAccountButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
+        manageAccountButton.cornerRadius = manageAccountButton.frame.size.height/10
     }
 
-    func setup(with user: User) {
-        manageAccountButton.cornerRadius = manageAccountButton.frame.size.height/10
-        nameLabel.text = user.displayName.isEmpty ? LocalizedString.settingsDefaultName.value : user.displayName
-        emailLabel.text = user.email
+    private func refreshUserInfo() {
+        if let user = user {
+            nameLabel.text = user.displayName.isEmpty ? LocalizedString.settingsDefaultName.value : user.displayName
+            emailLabel.text = user.email
 
-        if let url = user.avatarURL {
-            downloadAvatar(url)
+            if let url = user.avatarURL {
+                downloadAvatar(url)
+            }
         }
     }
 
-    func downloadAvatar(_ url: URL) {
+    private func downloadAvatar(_ url: URL) {
         let dataTask = URLSession.shared.dataTask(with: url) { [weak self] maybeData, _, _ in
             if let data = maybeData, let image = UIImage(data: data) {
                 DispatchQueue.main.async {
