@@ -42,7 +42,7 @@ enum GuardianRelativeRequest {
         case .removeDevice(let deviceKey):
             return prefix + "device/" + deviceKey
         case .versions:
-            return prefix + "versions/"
+            return prefix + "versions"
         }
     }
 }
