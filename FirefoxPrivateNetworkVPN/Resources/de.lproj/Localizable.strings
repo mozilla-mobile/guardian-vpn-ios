@@ -1,0 +1,111 @@
+/*
+  Localizable.strings
+  FirefoxPrivateNetworkVPN
+ 
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+  Copyright © 2019 Mozilla Corporation.
+*/
+
+// MARK: - Landing Screen
+"landingTitle" = "Firefox Private Network";
+"landingSubtitle" = "Ein schnelles, sicheres und praktisches VPN
+   (Virtuelles Privates Netzwerk)";
+"noLogsTitle" = "Kein Aktivitätsprotokoll vorhanden";
+"noLogsSubtitle" = "Wir sind Mozilla. Wir speichern deine Aktivitäten nie.";
+"encryptionTitle" = "Verschlüsselung auf Geräteebene";
+"encryptionSubtitle" = "Niemand wird Ihren Standort oder Ihre Aktivität sehen, auch nicht in unsicheren Wi-Fi-Netzwerken.";
+"manyServersTitle" = "Server in 39 Ländern";
+"manyServersSubtitle" = "Schützen Sie Ihren Zugang zum Internet, indem Sie sich gegen Datenkraken wehren.";
+"getStartedTitle" = "Bis zu 5 Geräte verbinden";
+"getStartedSubtitle" = "Streaming, Downloads und Spiele. Wir werden die Bandbreite nicht beschränken.";
+"getStarted" = "Anmelden";
+"learnMore" = "Weitere Informationen";
+"landingSkip" = "Überspringen";
+
+// MARK: - VPN Home
+"homeTabName" = "VPN";
+
+"homeTitleOff" = "VPN ist aus";
+"homeTitleConnecting" = "Verbinden...";
+"homeTitleOn" = "VPN is on";
+"homeTitleSwitching" = "Wechselt...";
+"homeTitleDisconnecting" = "Trennen...";
+
+"homeSubtitleOff" = "Anschalten um das gesamte Gerät zu schützen";
+"homeSubtitleConnecting" = "Die Verbindung wird unterbrochen";
+"homeSubtitleOn" = "Sicher und geschützt • %@";
+"homeSubtitleSwitching" = "From %1$@ to %2$@";
+"homeSubtitleDisconnecting" = "Die Verbindung wird unterbrochen";
+"homeSubtitleCheckConnection" = "  •  Verbindung überprüfen";
+"homeSubtitleUnstable" = "  Instabil";
+"homeSubtitleNoSignal" = "  Kein Signal";
+"homeSubtitleWeek" = "1 Woche";
+"homeSubtitleWeekPlus" = "1 Woche +";
+
+"homeApplicationName" = "Firefox Private Network";
+"homeSelectConnection" = "Alles Verbindungen";
+
+// MARK: - Server Selection
+"serversNavTitle" = "Verbindungen";
+
+// MARK: - Settings
+"settingsTabName" = "Einstellungen";
+"settingsItemDevices" = "Meine Geräte";
+"settingsItemHelp" = "Hilfe";
+"settingsItemAbout" = "Über";
+"settingsSignOut" = "Abmelden";
+"settingsFeedback" = "Feedback geben";
+
+"settingsDefaultName" = "VPN Benutzer";
+"settingsManageAccount" = "Account verwalten";
+
+// MARK: - Device Management
+"devicesNavTitle" = "Meine Geräte";
+"devicesCount" = "%1$@ of %2$@";
+"devicesCurrentDevice" = "Aktuelles Gerät";
+"devicesAddedDate" = "Vor %@  Tagen hinzugefügt";
+"devicesLimitTitle" = "Gerätelimit erreicht";
+"devicesLimitSubtitle" = "Limit erreicht. Um den VPN auf diesem Gerät zu installieren, entferne zunächst ein andere.";
+"devicesConfirmDeletionTitle" = "Gerät entfernen?";
+"devicesConfirmDeletionMessage" = "Bitte bestätige das Entfernen von %@";
+"devicesConfirmDeletion" = "Entfernen";
+"devicesCancelDeletion" = "Abbrechen";
+
+// MARK: - Get Help
+"helpTitle" = "Hilfe";
+"helpContactUs" = "Kontakt";
+"helpSupport" = "Hilfe & Support";
+
+// MARK: - About
+"aboutTitle" = "Über";
+"aboutTerms" = "Nutzungsbedingungen";
+"aboutPrivacy" = "Datenschutz";
+"aboutAppName" = "Firefox Private Network";
+"aboutDescription" = "Ein schnelles, sicheres und praktisches VPN
+   (Virtuelles Privates Netzwerk). \nGebaut für Menschen, nicht für Profite.";
+"aboutReleaseVersion" = "Version";
+
+// MARK: - Warning toast
+"toastTryAgain" = "Nochmal versuchen";
+
+//Mark: - Update
+"updateConnection" = "Die Verbindung ist während des Updateprozesses nicht sicher.";
+"updateNow" = "Update Jetzt";
+
+// MARK: - Update toast
+"toastFeaturesAvailable" = "Neue Funktionen sind verfügbar!";
+
+// Mark: - Recommended Update
+"updateRecommended" = "Update empfohlen";
+"updateRecommendedSubtitle" = "Bitte aktualisieren Sie die App, bevor Sie das VPN weiter verwenden";
+
+// Mark: - Required Update
+"updateRequired" = "Update Erforderlich";
+"updateRequiredSubtitle" = "Wir haben einen schwerwiegenden Fehler entdeckt und behoben. Sie müssen Ihre App aktualisieren, um das VPN verwenden zu können.";
+
+//MARK: - Error Descriptions
+"errorDeviceRemoval" = "Gerät kann nicht entfernt werden.";
+"errorConnectVPN" = "Verbindung kann nicht hergestellt werden.";

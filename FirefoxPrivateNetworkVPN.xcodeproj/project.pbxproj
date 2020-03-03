@@ -121,6 +121,7 @@
 		F4BAF48623EC820D000FDBB0 /* ServerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48523EC820D000FDBB0 /* ServerListViewModel.swift */; };
 		F4BAF48923F1C36C000FDBB0 /* CountryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48823F1C36C000FDBB0 /* CountryCellModel.swift */; };
 		F4BAF48C23F1C392000FDBB0 /* CityCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48B23F1C392000FDBB0 /* CityCellModel.swift */; };
+		F4D3D1E62406C7A7001B73D1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4D3D1E52406C7A7001B73D1 /* Settings.bundle */; };
 		F4DF5B1423CFBDAA006A7E4C /* UpdateRecommendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */; };
 		F4DF5B1523CFBDAA006A7E4C /* UpdateRecommendedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
@@ -479,6 +480,8 @@
 		F4D150CF2347975C00739CDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4D150D5234797B700739CDA /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		F4D150D7234797C700739CDA /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		F4D3D1E42406C690001B73D1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F4D3D1E52406C7A7001B73D1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F4D8D94A236A207600BE5FFC /* AccountInformationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationHeader.swift; sourceTree = "<group>"; };
 		F4D8D94B236A207600BE5FFC /* AccountInformationHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInformationHeader.xib; sourceTree = "<group>"; };
 		F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationCell.swift; sourceTree = "<group>"; };
@@ -660,6 +663,7 @@
 				F45D70B1234242EE00871447 /* Fonts */,
 				F41CCA2E2371215E0018DC43 /* Localizable.strings */,
 				F4A4947F23709033007595C3 /* Strings.swift */,
+				F4D3D1E52406C7A7001B73D1 /* Settings.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1244,6 +1248,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 6FF4AC0B211EC46F002C96EB;
 			productRefGroup = 6FF4AC15211EC46F002C96EB /* Products */;
@@ -1298,6 +1303,7 @@
 				F4E909182371CAAD00EB9FE6 /* VPNToggleView.xib in Resources */,
 				F4E908FB2371CAAD00EB9FE6 /* DeviceManagementViewController.xib in Resources */,
 				F4E908E12371CAAD00EB9FE6 /* Metropolis-ExtraLightItalic.otf in Resources */,
+				F4D3D1E62406C7A7001B73D1 /* Settings.bundle in Resources */,
 				F4E908E22371CAAD00EB9FE6 /* Metropolis-Light.otf in Resources */,
 				F477A20A23E3508F00585066 /* LandingViewController.xib in Resources */,
 				F4E908D92371CAAD00EB9FE6 /* Inter-SemiBold.otf in Resources */,
@@ -1710,6 +1716,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F41CCA2F2371215E0018DC43 /* Base */,
+				F4D3D1E42406C690001B73D1 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1799,6 +1806,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1865,6 +1873,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
