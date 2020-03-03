@@ -42,7 +42,7 @@ enum GuardianRelativeRequest {
         case .removeDevice(let deviceKey):
             return prefix + "device/" + deviceKey
         case .versions:
-            return prefix + "versions/"
+            return prefix + "versions"
         }
     }
 }
@@ -54,7 +54,7 @@ enum GuardianError: Error {
     case missingData
     case needToLogin
     case deallocated
-    case couldNotRemoveDevice
+    case couldNotRemoveDevice(Device)
     case couldNotConnectVPN
 
     var description: String {

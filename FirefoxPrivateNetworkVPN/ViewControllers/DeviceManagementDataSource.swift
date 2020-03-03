@@ -15,28 +15,14 @@ import RxCocoa
 
 class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
-    var removeDeviceEvent = PublishSubject<Device>()
-
     private let headerName = String(describing: DeviceLimitReachedView.self)
     private let cellName = String(describing: DeviceManagementCell.self)
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
-
-    private var representedObject: [Device] {
-        guard let account = account else { return [] }
-
-        var devices = account.user?.deviceList
-        if !account.hasDeviceBeenAdded {
-            devices?.insert(Device.mock(name: UIDevice.current.name), at: 0)
-        }
-        return devices ?? []
-    }
-
-    var deviceCount: Int {
-        representedObject.count
-    }
+    private let viewModel: DeviceManagementViewModel
 
     // MARK: Initialization
-    init(with tableView: UITableView) {
+    init(with tableView: UITableView, viewModel: DeviceManagementViewModel) {
+        self.viewModel = viewModel
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
@@ -46,29 +32,23 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
-
-        //refresh device list only if device has already been added to make sure current device gets added
-        if let account = account, account.hasDeviceBeenAdded {
-            account.getUser { result in
-                guard case .failure(let error) = result,
-                    let subscriptionError = error as? GuardianAPIError,
-                    subscriptionError.isAuthError else { return }
-
-                NotificationCenter.default.post(name: NSNotification.Name.inactiveSubscriptionNotification, object: nil)
-            }
-        }
     }
 
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        representedObject.count
+        viewModel.sortedDevices.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? DeviceManagementCell,
-        indexPath.row < representedObject.count
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellName,
+                                                     for: indexPath) as? DeviceManagementCell,
+            // prevents crash if the device list changes and the tableview hasn't reloaded
+            indexPath.row < viewModel.sortedDevices.count
             else { return UITableViewCell(frame: .zero) }
-        cell.setup(with: representedObject[indexPath.row], event: removeDeviceEvent)
+
+        cell.setup(with: viewModel.sortedDevices[indexPath.row], event: viewModel.trashTappedSubject)
+
         return cell
     }
 }
