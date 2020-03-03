@@ -47,6 +47,8 @@ class ServerListViewModel {
     }
 
     init() {
+        // remove duplicate cities
+        
         self.serverList = [VPNCountry].fetchFromUserDefaults() ?? []
         self.selectedCityIndexPath = getIndexPathOfCurrentCity()
         setupObservers()
