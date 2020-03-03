@@ -15,12 +15,12 @@ import RxSwift
 class AccountInformationHeader: UITableViewHeaderFooterView {
     static let height: CGFloat = UIScreen.isiPad ? 400.0 : 294.0
 
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var manageAccountButton: UIButton!
+    @IBOutlet weak private var avatarImageView: UIImageView!
+    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var emailLabel: UILabel!
+    @IBOutlet weak private var manageAccountButton: UIButton!
 
-    var user = DependencyFactory.sharedFactory.accountManager.account?.user
+    private var user: User? { return DependencyFactory.sharedFactory.accountManager.account?.user }
 
     let buttonTappedSubject = PublishSubject<NavigableItem>()
 
@@ -31,14 +31,14 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
         refreshUser()
     }
 
+    override func prepareForReuse() {
+        refreshUser()
+    }
+
     private func setupManageAccountButton() {
         manageAccountButton.setTitle(LocalizedString.settingsManageAccount.value, for: .normal)
         manageAccountButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
         manageAccountButton.cornerRadius = manageAccountButton.frame.size.height/10
-    }
-
-    override func prepareForReuse() {
-        refreshUser()
     }
 
     private func refreshUser() {
