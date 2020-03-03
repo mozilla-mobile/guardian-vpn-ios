@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class SettingsViewController: UIViewController, Navigating {
     // MARK: - Properties
@@ -19,6 +20,14 @@ class SettingsViewController: UIViewController, Navigating {
     @IBOutlet weak var signOutButton: UIButton!
 
     private var dataSource: SettingsDataSource?
+    private let disposeBag = DisposeBag()
+
+    private lazy var headerView: AccountInformationHeader = {
+        let view = AccountInformationHeader()
+        view.frame.size.height = AccountInformationHeader.height
+
+        return view
+    }()
 
     // MARK: - Initialization
     init() {
@@ -37,12 +46,19 @@ class SettingsViewController: UIViewController, Navigating {
 
         dataSource = SettingsDataSource(with: tableView)
         tableView.tableFooterView = UIView()
+
+        subscribeToRowSelected()
+        subscribeToButtonTapped()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
         tableView.reloadData()
+    }
+
+    override func viewDidLayoutSubviews() {
+        tableView.isScrollEnabled = tableView.contentSize.height >= tableView.frame.height
     }
 
     // MARK: - IBActions
@@ -65,5 +81,23 @@ class SettingsViewController: UIViewController, Navigating {
 
     private func setStrings() {
         signOutButton.setTitle(LocalizedString.settingsSignOut.value, for: .normal)
+    }
+
+    private func subscribeToRowSelected() {
+        //swiftlint:disable:next trailing_closure
+        dataSource?.rowSelected
+            .subscribe(onNext: { [weak self] navigableItem in
+                self?.navigate(to: navigableItem)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func subscribeToButtonTapped() {
+        //swiftlint:disable:next trailing_closure
+        dataSource?.headerButtonSelected
+            .subscribe(onNext: { [weak self] navigableItem in
+                self?.navigate(to: navigableItem)
+            })
+            .disposed(by: self.disposeBag)
     }
 }

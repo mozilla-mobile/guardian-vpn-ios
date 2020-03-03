@@ -55,6 +55,7 @@ enum LocalizedString: String {
     case settingsItemHelp
     case settingsItemAbout
     case settingsSignOut
+    case settingsFeedback
 
     case settingsDefaultName
     case settingsManageAccount

@@ -114,6 +114,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="accessoryIconImageView" destination="Cy6-7K-pHk" id="Fo1-jv-Eu4"/>
+                <outlet property="disclosureImageView" destination="K8r-qX-Wy7" id="SZI-KB-mFa"/>
                 <outlet property="iconImageView" destination="Pry-B6-vED" id="OIG-wG-MMD"/>
                 <outlet property="titleLabel" destination="Yj1-se-YSD" id="kkS-4e-gJy"/>
             </connections>

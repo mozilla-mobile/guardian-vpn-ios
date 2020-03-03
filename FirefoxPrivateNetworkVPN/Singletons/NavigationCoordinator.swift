@@ -14,7 +14,7 @@
 import UIKit
 import os.log
 
-enum NavigableItem {
+enum NavigableItem: Hashable {
     case about
     case carousel
     case devices
@@ -30,6 +30,7 @@ enum NavigableItem {
     case appStore
     case recommendedUpdate
     case requiredUpdate
+    case hyperlink(URL?)
 }
 
 enum NavigableContext {
@@ -69,7 +70,7 @@ class NavigationCoordinator: NavigationCoordinating {
             case (.login, .landing):
                 self.currentViewController?.dismiss(animated: true, completion: nil)
 
-                if context == .maxDevicesError {
+                if case .maxDevicesError = context {
                     self.navigate(from: .landing, to: .home, context: context)
                 }
 
@@ -80,7 +81,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.appDelegate?.window?.rootViewController = tabBarController
                 self.currentViewController = tabBarController
 
-                if context == .maxDevicesError {
+                if case .maxDevicesError = context {
                     self.navigate(from: .home, to: .settings)
                     self.navigate(from: .settings, to: .devices, context: .maxDevicesError)
                 }
@@ -133,7 +134,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(devicesViewController, animated: true)
 
-                if context == .maxDevicesError {
+                if case .maxDevicesError = context {
                     self.homeTab(isEnabled: false)
                 }
 
@@ -148,6 +149,11 @@ class NavigationCoordinator: NavigationCoordinating {
                 let aboutViewController = AboutViewController()
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
+
+            case (_, .hyperlink(let url)):
+                if let url = url {
+                    UIApplication.shared.open(url)
+                }
 
             case (_, .appStore):
                 UIApplication.shared.openAppStore()

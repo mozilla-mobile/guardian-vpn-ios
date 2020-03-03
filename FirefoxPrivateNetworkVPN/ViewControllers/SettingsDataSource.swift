@@ -10,26 +10,31 @@
 //
 
 import UIKit
+import RxSwift
 
 class SettingsDataSource: NSObject, UITableViewDataSource {
     // MARK: - Properties
     private let representedObject: [SettingsItem]
-    private let headerName = String(describing: AccountInformationHeader.self)
     private let cellName = String(describing: AccountInformationCell.self)
+    private let headerName = String(describing: AccountInformationHeader.self)
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
+    private let disposeBag = DisposeBag()
+
+    let rowSelected = PublishSubject<NavigableItem>()
+    let headerButtonSelected = PublishSubject<NavigableItem>()
 
     // MARK: - Initialization
     init(with tableView: UITableView) {
-        representedObject = [.device, .help, .about]
+        representedObject = [.device, .help, .about, .feedback]
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
 
-        let headerNib = UINib.init(nibName: headerName, bundle: nil)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
-
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
+
+        let headerNib = UINib.init(nibName: headerName, bundle: nil)
+        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
     }
 
     // MARK: - UITableViewDataSource
@@ -41,16 +46,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? AccountInformationCell
             else { return UITableViewCell(frame: .zero) }
         let settingsItem = representedObject[indexPath.row]
-        cell.setup(settingsItem)
-
-        if settingsItem.action == .devices,
-            let account = account,
-            !account.hasDeviceBeenAdded {
-            cell.accessoryIconImageView.image = UIImage(named: "icon_alert")
-            cell.accessoryIconImageView.isHidden = false
-        } else {
-            cell.accessoryIconImageView.isHidden = true
-        }
+        cell.setup(settingsItem, isDeviceAdded: account?.hasDeviceBeenAdded ?? false)
 
         return cell
     }
@@ -59,8 +55,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SettingsDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        DependencyFactory.sharedFactory.navigationCoordinator
-            .navigate(from: .settings, to: representedObject[indexPath.row].action)
+        rowSelected.onNext(representedObject[indexPath.row].action)
 
         tableView.deselectRow(at: indexPath, animated: false)
     }
@@ -74,11 +69,13 @@ extension SettingsDataSource: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView
-            .dequeueReusableHeaderFooterView(withIdentifier: headerName) as? AccountInformationHeader,
-            let user = DependencyFactory.sharedFactory.accountManager.account?.user
-            else { return nil }
-        headerView.setup(with: user)
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName) as? AccountInformationHeader
+
+        //swiftlint:disable:next trailing_closure
+        headerView?.buttonTappedSubject.subscribe(onNext: { [weak self] navigableItem in
+            self?.headerButtonSelected.onNext(navigableItem)
+            }).disposed(by: disposeBag)
+
         return headerView
     }
 }

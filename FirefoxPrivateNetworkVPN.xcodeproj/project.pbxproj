@@ -16,6 +16,7 @@
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		F401097923FEE2D8006DFF96 /* HeartbeatMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */; };
 		F401097B23FEE829006DFF96 /* HeartbeatMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */; };
+		F40109802406F303006DFF96 /* FirefoxURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097F2406F303006DFF96 /* FirefoxURL.swift */; };
 		F401097D24002C8B006DFF96 /* DeviceManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */; };
 		F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056031239E9F31000A93CC /* KeychainStored.swift */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
@@ -286,6 +287,7 @@
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
 		F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitor.swift; sourceTree = "<group>"; };
 		F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitoring.swift; sourceTree = "<group>"; };
+		F401097F2406F303006DFF96 /* FirefoxURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirefoxURL.swift; sourceTree = "<group>"; };
 		F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewModel.swift; sourceTree = "<group>"; };
 		F4056031239E9F31000A93CC /* KeychainStored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStored.swift; sourceTree = "<group>"; };
 		F40831CB233CF5BE00A60FCA /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
@@ -668,6 +670,7 @@
 				F4A7FA23237C5C960034AF6C /* Account.swift */,
 				F42DE7C92395A824000B79C3 /* CarouselViewType.swift */,
 				F4A7FA25237C5CE00034AF6C /* Credentials.swift */,
+				F401097F2406F303006DFF96 /* FirefoxURL.swift */,
 				F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */,
 				F49090BD2379D43200C8430A /* SettingsItem.swift */,
 				F4E8B2342368C39C001CEC8A /* TunnelAction.swift */,
@@ -1567,6 +1570,7 @@
 				F4E909152371CAAD00EB9FE6 /* DeviceManagementCell.swift in Sources */,
 				527C7EB823752F6500368965 /* AboutHeaderView.swift in Sources */,
 				F4AED251235F835200F80ABF /* Data+KeyEncoding.swift in Sources */,
+				F40109802406F303006DFF96 /* FirefoxURL.swift in Sources */,
 				F4E908C52371CAAD00EB9FE6 /* DeviceKeys.swift in Sources */,
 				F4E908CC2371CAAD00EB9FE6 /* VPNLocations.swift in Sources */,
 				F4E908C42371CAAD00EB9FE6 /* SettingsDataSource.swift in Sources */,

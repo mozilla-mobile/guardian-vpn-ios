@@ -10,37 +10,49 @@
 //
 
 import UIKit
+import RxSwift
 
 class AccountInformationHeader: UITableViewHeaderFooterView {
     static let height: CGFloat = UIScreen.isiPad ? 400.0 : 294.0
 
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var manageAccountButton: UIButton!
+    @IBOutlet weak private var avatarImageView: UIImageView!
+    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var emailLabel: UILabel!
+    @IBOutlet weak private var manageAccountButton: UIButton!
+
+    private var user: User? { return DependencyFactory.sharedFactory.accountManager.account?.user }
+
+    let buttonTappedSubject = PublishSubject<NavigableItem>()
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         setupManageAccountButton()
+        refreshUser()
+    }
+
+    override func prepareForReuse() {
+        refreshUser()
     }
 
     private func setupManageAccountButton() {
         manageAccountButton.setTitle(LocalizedString.settingsManageAccount.value, for: .normal)
         manageAccountButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
+        manageAccountButton.cornerRadius = manageAccountButton.frame.size.height/10
     }
 
-    func setup(with user: User) {
-        manageAccountButton.cornerRadius = manageAccountButton.frame.size.height/10
-        nameLabel.text = user.displayName.isEmpty ? LocalizedString.settingsDefaultName.value : user.displayName
-        emailLabel.text = user.email
+    private func refreshUser() {
+        if let user = user {
+            nameLabel.text = user.displayName.isEmpty ? LocalizedString.settingsDefaultName.value : user.displayName
+            emailLabel.text = user.email
 
-        if let url = user.avatarURL {
-            downloadAvatar(url)
+            if let url = user.avatarURL {
+                downloadAvatar(url)
+            }
         }
     }
 
-    func downloadAvatar(_ url: URL) {
+    private func downloadAvatar(_ url: URL) {
         let dataTask = URLSession.shared.dataTask(with: url) { [weak self] maybeData, _, _ in
             if let data = maybeData, let image = UIImage(data: data) {
                 DispatchQueue.main.async {
@@ -52,8 +64,6 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     }
 
     @IBAction func accountButtonTapped() {
-        if let url = HyperlinkItem.account.url {
-            UIApplication.shared.open(url)
-        }
+        buttonTappedSubject.onNext(.hyperlink(HyperlinkItem.account.url))
     }
 }
