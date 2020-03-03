@@ -20,10 +20,17 @@ class AccountInformationCell: UITableViewCell {
 
     static let height: CGFloat = UIScreen.isiPad ? 88.0 : 55.0
 
-    func setup(_ type: SettingsItem) {
+    func setup(_ type: SettingsItem, isDeviceAdded: Bool) {
         titleLabel.text = type.title
         iconImageView.image = type.iconImage
         disclosureImageView.image = type.disclosureImage
+        accessoryIconImageView.isHidden = true
+
+        if type.action == .devices,
+            !isDeviceAdded {
+            accessoryIconImageView.image = UIImage(named: "icon_alert")
+            accessoryIconImageView.isHidden = false
+        }
     }
 
     override func awakeFromNib() {

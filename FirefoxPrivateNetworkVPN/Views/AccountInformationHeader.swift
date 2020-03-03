@@ -12,7 +12,7 @@
 import UIKit
 import RxSwift
 
-class AccountInformationHeader: UIView {
+class AccountInformationHeader: UITableViewHeaderFooterView {
     static let height: CGFloat = UIScreen.isiPad ? 400.0 : 294.0
 
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -28,10 +28,7 @@ class AccountInformationHeader: UIView {
         super.awakeFromNib()
 
         setupManageAccountButton()
-    }
-
-    override func reloadInputViews() {
-        refreshUserInfo()
+        refreshUser()
     }
 
     private func setupManageAccountButton() {
@@ -40,7 +37,11 @@ class AccountInformationHeader: UIView {
         manageAccountButton.cornerRadius = manageAccountButton.frame.size.height/10
     }
 
-    private func refreshUserInfo() {
+    override func prepareForReuse() {
+        refreshUser()
+    }
+
+    private func refreshUser() {
         if let user = user {
             nameLabel.text = user.displayName.isEmpty ? LocalizedString.settingsDefaultName.value : user.displayName
             emailLabel.text = user.email

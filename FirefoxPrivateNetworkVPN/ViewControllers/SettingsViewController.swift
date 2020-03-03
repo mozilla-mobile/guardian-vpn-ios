@@ -46,7 +46,6 @@ class SettingsViewController: UIViewController, Navigating {
 
         dataSource = SettingsDataSource(with: tableView)
         tableView.tableFooterView = UIView()
-        tableView.tableHeaderView = headerView
 
         subscribeToRowSelected()
         subscribeToButtonTapped()
@@ -95,7 +94,7 @@ class SettingsViewController: UIViewController, Navigating {
 
     private func subscribeToButtonTapped() {
         //swiftlint:disable:next trailing_closure
-        headerView.buttonTappedSubject
+        dataSource?.headerButtonSelected
             .subscribe(onNext: { [weak self] navigableItem in
                 self?.navigate(to: navigableItem)
             })
