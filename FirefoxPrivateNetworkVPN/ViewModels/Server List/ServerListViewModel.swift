@@ -47,8 +47,6 @@ class ServerListViewModel {
     }
 
     init() {
-        // remove duplicate cities
-        
         self.serverList = [VPNCountry].fetchFromUserDefaults() ?? []
         self.selectedCityIndexPath = getIndexPathOfCurrentCity()
         setupObservers()
@@ -56,7 +54,7 @@ class ServerListViewModel {
 
     func getRowCount(for section: Int) -> Int {
         if let isExpanded = sectionExpandedStates[section], isExpanded == true {
-            return serverList[section].formattedCities.count + ServerListViewModel.sectionHeaderCount
+            return serverList[section].cities.count + ServerListViewModel.sectionHeaderCount
         }
         return ServerListViewModel.sectionHeaderCount
     }
@@ -68,16 +66,16 @@ class ServerListViewModel {
     }
 
     func getCityCellModel(at indexPath: IndexPath) -> CityCellModel {
-        let city = serverList[indexPath.section].formattedCities[indexPath.row - ServerListViewModel.sectionHeaderCount]
+        let city = serverList[indexPath.section].cities[indexPath.row - ServerListViewModel.sectionHeaderCount]
         return CityCellModel(name: city.name,
                              isSelected: indexPath == selectedCityIndexPath)
     }
 
     //Find the saved city in the server list each time in case the list has changed
     private func getIndexPathOfCurrentCity() -> IndexPath? {
-        let currentCity = VPNCity.fetchFromUserDefaults() ?? serverList.getRandomUSServer()
+        let currentCity = VPNCity.fetchFromUserDefaults() ?? serverList.getRandomUSCity()
         for (countryIndex, country) in serverList.enumerated() {
-            for (cityIndex, city) in country.formattedCities.enumerated() where city == currentCity {
+            for (cityIndex, city) in country.cities.enumerated() where city == currentCity {
                 return IndexPath(row: cityIndex + ServerListViewModel.sectionHeaderCount, section: countryIndex)
             }
         }
@@ -85,7 +83,7 @@ class ServerListViewModel {
     }
 
     private func getCityRows(for section: Int) -> [IndexPath] {
-        return (1...self.serverList[section].formattedCities.count).map {
+        return (1...self.serverList[section].cities.count).map {
             return IndexPath(row: $0, section: section)
         }
     }
@@ -97,7 +95,7 @@ class ServerListViewModel {
             .do(onNext: { [weak self] indexPath in
                 guard let self = self, indexPath != self.selectedCityIndexPath else { return }
                 self.selectedCityIndexPath = indexPath
-                let newCity = self.serverList[indexPath.section].formattedCities[indexPath.row - ServerListViewModel.sectionHeaderCount]
+                let newCity = self.serverList[indexPath.section].cities[indexPath.row - ServerListViewModel.sectionHeaderCount]
                 newCity.saveToUserDefaults()
                 DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.onNext(newCity)
             })
