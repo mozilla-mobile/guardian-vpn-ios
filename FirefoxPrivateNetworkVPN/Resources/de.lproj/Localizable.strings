@@ -57,6 +57,7 @@
 "settingsItemHelp" = "Hilfe";
 "settingsItemAbout" = "Über";
 "settingsSignOut" = "Abmelden";
+"settingsFeedback" = "Feedback geben";
 
 "settingsDefaultName" = "VPN Benutzer";
 "settingsManageAccount" = "Account verwalten";
