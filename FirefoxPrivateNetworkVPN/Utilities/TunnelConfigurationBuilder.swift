@@ -26,7 +26,7 @@ struct TunnelConfigurationBuilder {
         // peers
         var peerConfigurations: [PeerConfiguration] = []
 
-        if let server = city.highestWeightedServer {
+        if let server = city.fastestServer {
             var peerConfiguration = PeerConfiguration(publicKey: Data(base64Key: server.publicKey)!) // TODO: dont force unwrap
             let endpoint = Endpoint(from: server.ipv4AddrIn + ":\(server.randomPort ?? 53)")
             peerConfiguration.endpoint = endpoint

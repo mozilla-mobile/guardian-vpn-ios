@@ -35,8 +35,12 @@ struct VPNCity: UserDefaulting, Equatable {
     let servers: [VPNServer]
     let flagCode: String?
 
-    var highestWeightedServer: VPNServer? {
-        return servers.sorted { $0.weight > $1.weight }.first
+    var fastestServer: VPNServer? {
+        let highestToLowest = servers.sorted { $0.weight > $1.weight }
+        guard let highest = highestToLowest.first else {
+            return highestToLowest.randomElement()
+        }
+        return highestToLowest.filter { $0.weight == highest.weight }.randomElement()
     }
 
     var isCurrentCity: Bool {
