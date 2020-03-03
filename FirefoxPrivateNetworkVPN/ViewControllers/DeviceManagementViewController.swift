@@ -147,7 +147,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
     private func subscribeToActiveSubscriptionNotification() {
         //swiftlint:disable:next trailing_closure
         NotificationCenter.default.rx
-            .notification(Notification.Name.inactiveSubscriptionNotification)
+            .notification(Notification.Name.activeSubscriptionNotification)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
