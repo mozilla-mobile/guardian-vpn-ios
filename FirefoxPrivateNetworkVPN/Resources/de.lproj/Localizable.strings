@@ -84,8 +84,6 @@
 "aboutTerms" = "Nutzungsbedingungen";
 "aboutPrivacy" = "Datenschutz";
 "aboutAppName" = "Firefox Private Network";
-"aboutDescription" = "Ein schnelles, sicheres und praktisches VPN
-   (Virtuelles Privates Netzwerk). \nGebaut für Menschen, nicht für Profite.";
 "aboutReleaseVersion" = "Version";
 
 // MARK: - Warning toast

@@ -30,7 +30,7 @@ class AboutHeaderView: UITableViewHeaderFooterView {
                                        font: UIFont.custom(.metropolisSemiBold, size: 15),
                                        color: UIColor.custom(.grey50))
 
-        appDescriptionLabel.setAttributedText(title: LocalizedString.aboutDescription.value,
+        appDescriptionLabel.setAttributedText(title: LocalizedString.landingSubtitle.value,
                                               lineHeightMultiple: 1.33,
                                               font: UIFont.custom(.inter, size: 13),
                                               color: UIColor.custom(.grey40))
