@@ -72,14 +72,8 @@ class DeviceManagementViewController: UIViewController, Navigating {
         subscribeToTrashTappedObservable()
         subscribeToDeviceDeletionObservable()
 
-        //added as a checkpoint to refresh the device list
-        account?.getUser { result in
-            guard case .failure(let error) = result,
-                let subscriptionError = error as? GuardianAPIError,
-                subscriptionError.isAuthError else { return }
-
-            NotificationCenter.default.post(name: NSNotification.Name.inactiveSubscriptionNotification, object: nil)
-        }
+        subscribeToActiveSubscriptionNotification()
+        DependencyFactory.sharedFactory.heartbeatMonitor.pollNow()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -147,6 +141,17 @@ class DeviceManagementViewController: UIViewController, Navigating {
                 self.warningToastView.show(message: NSAttributedString.formattedError(GuardianError.couldNotRemoveDevice(device))) {
                     self.viewModel.deletionConfirmedSubject.onNext(device)
                 }
+            }).disposed(by: disposeBag)
+    }
+
+    private func subscribeToActiveSubscriptionNotification() {
+        //swiftlint:disable:next trailing_closure
+        NotificationCenter.default.rx
+            .notification(Notification.Name.activeSubscriptionNotification)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+                self?.navigationItem.rightBarButtonItem?.title = self?.formattedDeviceCountTitle
             }).disposed(by: disposeBag)
     }
 }

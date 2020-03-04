@@ -12,11 +12,12 @@
 import UIKit
 
 extension Notification.Name {
-    static let inactiveSubscriptionNotification = Notification.Name("inactiveSubscription")
+    static let expiredSubscriptionNotification = Notification.Name("expiredSubscription")
+    static let activeSubscriptionNotification = Notification.Name("activeSubscription")
 }
 
 protocol HeartbeatMonitoring {
-
     func start()
     func stop()
+    func pollNow()
 }

@@ -9,6 +9,8 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
+import RxSwift
+
 class HeartbeatMonitor: HeartbeatMonitoring {
     static let sharedManager = HeartbeatMonitor()
 
@@ -28,14 +30,25 @@ class HeartbeatMonitor: HeartbeatMonitoring {
         timer = nil
     }
 
+    //poll now and restart the timer
+    func pollNow() {
+        stop()
+        start()
+    }
+
     private func poll() {
-        guard let account = DependencyFactory.sharedFactory.accountManager.account else { return }
+        guard let account = DependencyFactory.sharedFactory.accountManager.account,
+            account.hasDeviceBeenAdded else { return }
+
         account.getUser { result in
+            if case .success = result {
+                NotificationCenter.default.post(name: NSNotification.Name.activeSubscriptionNotification, object: nil)
+            }
             guard case .failure(let error) = result,
                 let subscriptionError = error as? GuardianAPIError,
                 subscriptionError.isAuthError else { return }
 
-            NotificationCenter.default.post(name: NSNotification.Name.inactiveSubscriptionNotification, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.expiredSubscriptionNotification, object: nil)
         }
     }
 }

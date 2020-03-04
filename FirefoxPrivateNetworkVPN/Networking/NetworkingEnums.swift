@@ -139,7 +139,7 @@ enum GuardianAPIError: Int, Error {
 
     var isAuthError: Bool {
         switch self {
-        case .inactiveSubscription, .tokenExpired, .tokenInvalid, .tokenNotFound, .userNotFound, .tokenNotVerified:
+        case .inactiveSubscription, .tokenExpired, .tokenInvalid, .tokenNotFound, .userNotFound, .tokenNotVerified, .deviceNotFound:
             return true
         default:
             return false
