@@ -35,7 +35,7 @@
 
 "homeSubtitleOff" = "Turn it on to protect your entire device";
 "homeSubtitleConnecting" = "You will be protected shortly";
-"homeSubtitleOn" = "Secure and protected • %@";
+"homeSubtitleOn" = "Secure and protected  •  %@";
 "homeSubtitleSwitching" = "From %1$@ to %2$@";
 "homeSubtitleDisconnecting" = "You will be disconnected shortly";
 "homeSubtitleCheckConnection" = "  •  Check connection";
@@ -56,7 +56,7 @@
 "settingsItemHelp" = "Get help";
 "settingsItemAbout" = "About";
 "settingsSignOut" = "Sign out";
-"settingsFeedback" = "Give Feedback";
+"settingsFeedback" = "Give feedback";
 
 "settingsDefaultName" = "VPN User";
 "settingsManageAccount" = "Manage account";

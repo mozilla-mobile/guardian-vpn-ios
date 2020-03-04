@@ -36,7 +36,7 @@
 
 "homeSubtitleOff" = "Anschalten um das gesamte Gerät zu schützen";
 "homeSubtitleConnecting" = "Die Verbindung wird unterbrochen";
-"homeSubtitleOn" = "Sicher und geschützt • %@";
+"homeSubtitleOn" = "Sicher und geschützt  •  %@";
 "homeSubtitleSwitching" = "From %1$@ to %2$@";
 "homeSubtitleDisconnecting" = "Die Verbindung wird unterbrochen";
 "homeSubtitleCheckConnection" = "  •  Verbindung überprüfen";
