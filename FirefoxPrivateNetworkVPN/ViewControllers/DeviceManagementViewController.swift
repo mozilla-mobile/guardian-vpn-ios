@@ -73,7 +73,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
         subscribeToDeviceDeletionObservable()
 
         subscribeToActiveSubscriptionNotification()
-        DependencyFactory.sharedFactory.heartbeatMonitor.poll()
+        DependencyFactory.sharedFactory.heartbeatMonitor.pollNow()
     }
 
     override func viewWillAppear(_ animated: Bool) {

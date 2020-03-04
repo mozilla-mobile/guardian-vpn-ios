@@ -30,7 +30,13 @@ class HeartbeatMonitor: HeartbeatMonitoring {
         timer = nil
     }
 
-    func poll() {
+    //poll now and restart the timer
+    func pollNow() {
+        stop()
+        start()
+    }
+
+    private func poll() {
         guard let account = DependencyFactory.sharedFactory.accountManager.account,
             account.hasDeviceBeenAdded else { return }
 
@@ -42,7 +48,7 @@ class HeartbeatMonitor: HeartbeatMonitoring {
                 let subscriptionError = error as? GuardianAPIError,
                 subscriptionError.isAuthError else { return }
 
-            NotificationCenter.default.post(name: NSNotification.Name.inactiveSubscriptionNotification, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.expiredSubscriptionNotification, object: nil)
         }
     }
 }

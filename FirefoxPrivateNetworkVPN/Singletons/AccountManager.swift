@@ -21,7 +21,7 @@ class AccountManager: AccountManaging, Navigating {
     private let disposeBag = DisposeBag()
 
     init() {
-        subscribeToInactiveSubscriptionNotification()
+        subscribeToExpiredSubscriptionNotification()
     }
 
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void) {
@@ -107,7 +107,7 @@ class AccountManager: AccountManaging, Navigating {
             case (.none, .none):
                 credentials.saveAll()
                 self.account = account
-                self.subscribeToInactiveSubscriptionNotification()
+                self.subscribeToExpiredSubscriptionNotification()
                 DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 completion(.success(()))
             case (let userError, let serverError):
@@ -163,10 +163,10 @@ class AccountManager: AccountManaging, Navigating {
         VPNCity.removeFromUserDefaults()
     }
 
-    private func subscribeToInactiveSubscriptionNotification() {
+    private func subscribeToExpiredSubscriptionNotification() {
         //swiftlint:disable:next trailing_closure
         NotificationCenter.default.rx
-            .notification(Notification.Name.inactiveSubscriptionNotification)
+            .notification(Notification.Name.expiredSubscriptionNotification)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.resetAccount()
