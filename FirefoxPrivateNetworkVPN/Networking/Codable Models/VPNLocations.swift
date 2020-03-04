@@ -14,7 +14,7 @@ import Foundation
 struct VPNCountry: Codable {
     let name: String
     let code: String
-    let cities: [VPNCity]
+    var cities: [VPNCity]
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -22,6 +22,16 @@ struct VPNCountry: Codable {
         name = try container.decode(String.self, forKey: .name)
         code = try container.decode(String.self, forKey: .code)
         cities = try container.decode([VPNCity].self, forKey: .cities)
+
+        //sets the flagCode as the VPNCountry code
+        cities = cities.map {
+            return VPNCity(name: $0.name,
+                           code: $0.code,
+                           latitude: $0.latitude,
+                           longitude: $0.longitude,
+                           servers: $0.servers,
+                           flagCode: code)
+        }
     }
 }
 
