@@ -49,12 +49,15 @@ class SettingsViewController: UIViewController, Navigating {
 
         subscribeToRowSelected()
         subscribeToButtonTapped()
+        subscribeToActiveSubscriptionNotification()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
         tableView.reloadData()
+        
+        DependencyFactory.sharedFactory.heartbeatMonitor.pollNow()
     }
 
     override func viewDidLayoutSubviews() {
@@ -99,5 +102,15 @@ class SettingsViewController: UIViewController, Navigating {
                 self?.navigate(to: navigableItem)
             })
             .disposed(by: self.disposeBag)
+    }
+
+    private func subscribeToActiveSubscriptionNotification() {
+        //swiftlint:disable:next trailing_closure
+        NotificationCenter.default.rx
+            .notification(Notification.Name.activeSubscriptionNotification)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+            }).disposed(by: disposeBag)
     }
 }
