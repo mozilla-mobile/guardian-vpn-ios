@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9X-Ir-z8h">
-                    <rect key="frame" x="16" y="60" width="88.5" height="28"/>
+                    <rect key="frame" x="16" y="60" width="95.5" height="24"/>
                     <attributedString key="attributedText">
                         <fragment content="Lorem Ipsum">
                             <attributes>
@@ -29,7 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYF-mf-Dqe">
-                    <rect key="frame" x="16" y="88" width="399.5" height="20.5"/>
+                    <rect key="frame" x="16" y="84" width="449" height="21"/>
                     <attributedString key="attributedText">
                         <fragment content="Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra.">
                             <attributes>
@@ -42,7 +42,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKd-dh-qhR">
-                    <rect key="frame" x="16" y="132.5" width="94" height="28"/>
+                    <rect key="frame" x="16" y="129" width="103.5" height="24"/>
                     <attributedString key="attributedText">
                         <fragment content="Dolor sit amet">
                             <attributes>
@@ -55,7 +55,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpa-Iu-g5i">
-                    <rect key="frame" x="16" y="160.5" width="48" height="21"/>
+                    <rect key="frame" x="16" y="153" width="51" height="21"/>
                     <attributedString key="attributedText">
                         <fragment content="vehicula">
                             <attributes>
@@ -81,6 +81,9 @@
                 <constraint firstItem="rHg-Ly-jtl" firstAttribute="bottom" secondItem="NlP-ns-2zB" secondAttribute="bottom" id="30X-sJ-RqC"/>
                 <constraint firstItem="A9X-Ir-z8h" firstAttribute="top" secondItem="rHg-Ly-jtl" secondAttribute="top" constant="16" id="3va-Lb-gYW"/>
                 <constraint firstItem="NlP-ns-2zB" firstAttribute="leading" secondItem="mP1-GX-pUa" secondAttribute="leading" constant="32" id="6SS-IL-ugW"/>
+                <constraint firstItem="rHg-Ly-jtl" firstAttribute="trailing" secondItem="UYF-mf-Dqe" secondAttribute="trailing" constant="16" id="ASV-M0-7UH">
+                    <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                </constraint>
                 <constraint firstItem="Mpa-Iu-g5i" firstAttribute="top" secondItem="pKd-dh-qhR" secondAttribute="bottom" constant="4" id="Iid-Y2-pdB"/>
                 <constraint firstItem="Mpa-Iu-g5i" firstAttribute="top" secondItem="pKd-dh-qhR" secondAttribute="bottom" id="MaA-NY-j7r"/>
                 <constraint firstItem="A9X-Ir-z8h" firstAttribute="leading" secondItem="mP1-GX-pUa" secondAttribute="leading" constant="32" id="N6q-51-TLX"/>
