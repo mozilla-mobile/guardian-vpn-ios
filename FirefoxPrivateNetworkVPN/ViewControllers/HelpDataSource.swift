@@ -11,18 +11,21 @@
 
 import UIKit
 import RxSwift
+import MessageUI
 
 class HelpDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
     private let representedObject: [HyperlinkItem]
     private let cellName = String(describing: HyperlinkCell.self)
 
-    let rowSelected = PublishSubject<URL?>()
+    let rowSelected = PublishSubject<HyperlinkItem>()
+    let emailLogsSelected = PublishSubject<MFMailComposeViewController?>()
 
     // MARK: Initialization
     init(with tableView: UITableView) {
         representedObject = [.contact,
-                             .support]
+                             .support,
+                             .debug]
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
@@ -48,7 +51,7 @@ class HelpDataSource: NSObject, UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension HelpDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        rowSelected.onNext(representedObject[indexPath.row].url)
+        rowSelected.onNext(representedObject[indexPath.row])
 
         tableView.deselectRow(at: indexPath, animated: false)
     }

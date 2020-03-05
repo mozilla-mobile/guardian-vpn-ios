@@ -11,6 +11,7 @@
 
 import UIKit
 import RxSwift
+import MessageUI
 
 class HelpViewController: UIViewController, Navigating {
     // MARK: Properties
@@ -50,9 +51,29 @@ class HelpViewController: UIViewController, Navigating {
     private func subscribeToRowSelected() {
         //swiftlint:disable:next trailing_closure
         dataSource?.rowSelected
-            .subscribe(onNext: { [weak self] url in
-                self?.navigate(to: .hyperlink(url))
+            .subscribe(onNext: { [weak self] item in
+                if item == .debug {
+                    self?.presentMailForDebugSupport()
+                    return
+                }
+
+                self?.navigate(to: .hyperlink(item.url))
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension HelpViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        //handle fail case
+        controller.dismiss(animated: true)
+    }
+
+    private func presentMailForDebugSupport() {
+        let emailManager = EmailManager()
+        if let emailVC = emailManager.getMailWithDebugLogs() {
+            emailVC.mailComposeDelegate = self
+            present(emailVC, animated: true)
+        }
     }
 }
