@@ -18,6 +18,8 @@
 		F401097B23FEE829006DFF96 /* HeartbeatMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */; };
 		F401097D24002C8B006DFF96 /* DeviceManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */; };
 		F40109802406F303006DFF96 /* FirefoxURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097F2406F303006DFF96 /* FirefoxURL.swift */; };
+		F40109842411877E006DFF96 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40109832411877E006DFF96 /* EmailManager.swift */; };
+		F40109882411AF3E006DFF96 /* FileManager+Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40109872411AF3E006DFF96 /* FileManager+Logs.swift */; };
 		F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056031239E9F31000A93CC /* KeychainStored.swift */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
@@ -290,6 +292,8 @@
 		F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitoring.swift; sourceTree = "<group>"; };
 		F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewModel.swift; sourceTree = "<group>"; };
 		F401097F2406F303006DFF96 /* FirefoxURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirefoxURL.swift; sourceTree = "<group>"; };
+		F40109832411877E006DFF96 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
+		F40109872411AF3E006DFF96 /* FileManager+Logs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+Logs.swift"; sourceTree = "<group>"; };
 		F4056031239E9F31000A93CC /* KeychainStored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStored.swift; sourceTree = "<group>"; };
 		F40831CB233CF5BE00A60FCA /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		F40831CE233CFA2000A60FCA /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
@@ -638,6 +642,7 @@
 				F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */,
 				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
 				F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */,
+				F40109832411877E006DFF96 /* EmailManager.swift */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";
@@ -687,6 +692,7 @@
 		F41CCA1F23711C7A0018DC43 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
+				F40109822411827C006DFF96 /* wireguard.h */,
 				F4AED248235F7B4900F80ABF /* Bridging-Header.h */,
 				6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */,
 				6FF4AC23211EC472002C96EB /* Info.plist */,
@@ -892,6 +898,7 @@
 			isa = PBXGroup;
 			children = (
 				F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */,
+				F40109872411AF3E006DFF96 /* FileManager+Logs.swift */,
 				F422FEF523970752009413E2 /* Notification+Extensions.swift */,
 				F422FEF723980C1D009413E2 /* NSAttributedString+Extensions.swift */,
 				F4F868F62391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift */,
@@ -1586,8 +1593,10 @@
 				F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */,
 				F4AED249235F7BB800F80ABF /* WireGuardAppError.swift in Sources */,
 				F4E909052371CAAD00EB9FE6 /* ServersViewController.swift in Sources */,
+				F40109842411877E006DFF96 /* EmailManager.swift in Sources */,
 				F4E908CB2371CAAD00EB9FE6 /* VerifyResponse.swift in Sources */,
 				F4AED259235F838F00F80ABF /* ringlogger.c in Sources */,
+				F40109882411AF3E006DFF96 /* FileManager+Logs.swift in Sources */,
 				F4E908F22371CAAD00EB9FE6 /* CAShapeLayer+Animation.swift in Sources */,
 				F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */,
 				F4E909042371CAAD00EB9FE6 /* LoginViewController.swift in Sources */,
