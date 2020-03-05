@@ -56,7 +56,7 @@ class SettingsViewController: UIViewController, Navigating {
         super.viewWillAppear(animated)
         setupNavigationBar()
         tableView.reloadData()
-        
+
         DependencyFactory.sharedFactory.heartbeatMonitor.pollNow()
     }
 

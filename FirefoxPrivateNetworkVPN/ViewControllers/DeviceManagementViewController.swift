@@ -61,25 +61,25 @@ class DeviceManagementViewController: UIViewController, Navigating {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: View Lifecycle
     //swiftlint:disable trailing_closure
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = DeviceManagementDataSource(with: tableView, viewModel: viewModel)
         tableView.tableFooterView = UIView()
-        
+
         subscribeToTrashTappedObservable()
         subscribeToDeviceDeletionObservable()
         subscribeToActiveSubscriptionNotification()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
         DependencyFactory.sharedFactory.heartbeatMonitor.pollNow()
     }
-    
+
     @objc func goBack() {
         navigate(to: .settings)
     }
