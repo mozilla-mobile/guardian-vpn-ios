@@ -21,6 +21,8 @@ class AboutHeaderView: UITableViewHeaderFooterView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        contentView.backgroundColor = UIColor.custom(.grey5)
         setupLabels()
     }
 
