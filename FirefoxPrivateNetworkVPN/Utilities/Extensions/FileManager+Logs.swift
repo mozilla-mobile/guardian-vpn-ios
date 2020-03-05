@@ -12,7 +12,7 @@
 import Foundation
 
 extension FileManager {
-    static var logsAsData: Data? {
+    static var debugLogs: Data? {
         do {
             guard let fileURL = FileManager.logFileURL,
                 try fileURL.checkResourceIsReachable()

@@ -45,7 +45,7 @@ class EmailManager: NSObject, MFMailComposeViewControllerDelegate {
 
     func getMailWithDebugLogs() -> MFMailComposeViewController? {
         guard MFMailComposeViewController.canSendMail(),
-            let attachment = FileManager.logsAsData
+            let attachment = FileManager.debugLogs
             else { return nil }
 
         let mail = MFMailComposeViewController()
