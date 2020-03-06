@@ -76,7 +76,6 @@ class DeviceManagementViewController: UIViewController, Navigating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
-        DependencyFactory.sharedFactory.heartbeatMonitor.pollNow()
     }
 
     @objc func goBack() {
