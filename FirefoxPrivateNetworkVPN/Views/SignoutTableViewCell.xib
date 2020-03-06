@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETg-9M-Q3q">
-                        <rect key="frame" x="178.5" y="32" width="96" height="27"/>
+                        <rect key="frame" x="182" y="30.5" width="89" height="30"/>
                         <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                         <state key="normal" title="Lorem Ipsum">
                             <color key="titleColor" name="custom_red50"/>
