@@ -45,7 +45,10 @@ class EmailManager: NSObject, MFMailComposeViewControllerDelegate {
     }
 
     func getDebugLogMailTemplate() -> MFMailComposeViewController? {
-        guard MFMailComposeViewController.canSendMail()else { return nil }
+        guard MFMailComposeViewController.canSendMail()else {
+            Logger.global?.log(message: "Device cannot access mail")
+            return nil
+        }
 
         let mail = MFMailComposeViewController()
         mail.setToRecipients([EmailManager.supportEmailAddress])

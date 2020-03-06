@@ -164,7 +164,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.currentViewController = updateRequiredViewController
 
             default: // You can't get there from here.
-                // Breakpoint here to catch unhandled transitions
+                Logger.global?.log(message: "Navigation is unhandled: From: \(origin), To: \(destination)")
                 return
             }
         }
