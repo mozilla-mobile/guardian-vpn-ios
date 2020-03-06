@@ -139,8 +139,8 @@ class AccountManager: AccountManaging, Navigating {
             case .success (let servers):
                 self.availableServers = servers
                 self.availableServers?.saveToUserDefaults()
-                if !VPNCity.existsInDefaults, let randomUSServer = servers.getRandomUSServer() {
-                    randomUSServer.saveToUserDefaults()
+                if !VPNCity.existsInDefaults, let randomUSCity = servers.getRandomUSCity() {
+                    randomUSCity.saveToUserDefaults()
                 }
                 completion(.success(()))
             case .failure(let error):

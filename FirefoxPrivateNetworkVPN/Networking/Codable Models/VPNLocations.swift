@@ -14,38 +14,24 @@ import Foundation
 struct VPNCountry: Codable {
     let name: String
     let code: String
-    private let cities: [VPNCity]
-    let formattedCities: [VPNCity]
+    var cities: [VPNCity]
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         name = try container.decode(String.self, forKey: .name)
         code = try container.decode(String.self, forKey: .code)
-
-        // Turn [city[1, 2, 3]] into [city1, city2, city3]
         cities = try container.decode([VPNCity].self, forKey: .cities)
-        var singleServerCities = [VPNCity]()
-        for originalCity in cities {
-            for server in originalCity.servers {
-                let newCity = VPNCity(
-                    name: "\(originalCity.name) (\(server.hostname.split(separator: "-").first!))",
-                    code: originalCity.code,
-                    latitude: originalCity.latitude,
-                    longitude: originalCity.longitude,
-                    servers: [server],
-                    flagCode: code
-                )
-                singleServerCities.append(newCity)
-            }
-        }
-        formattedCities = singleServerCities
-    }
 
-    enum CodingKeys: String, CodingKey {
-        case name
-        case code
-        case cities
+        //sets the flagCode as the VPNCountry code
+        cities = cities.map {
+            return VPNCity(name: $0.name,
+                           code: $0.code,
+                           latitude: $0.latitude,
+                           longitude: $0.longitude,
+                           servers: $0.servers,
+                           flagCode: code)
+        }
     }
 }
 
@@ -58,6 +44,15 @@ struct VPNCity: UserDefaulting, Equatable {
     let longitude: Float
     let servers: [VPNServer]
     let flagCode: String?
+
+    //the higher the weight, the faster the server
+    //randomly selects one of the servers with the highest weights
+    var fastestServer: VPNServer? {
+        let maxWeightedServer = servers.max { $0.weight < $1.weight }
+        guard let maxWeight = maxWeightedServer?.weight else { return nil }
+
+        return servers.filter { return $0.weight == maxWeight }.randomElement()
+    }
 
     var isCurrentCity: Bool {
         return self == VPNCity.fetchFromUserDefaults()
@@ -95,11 +90,11 @@ extension Array: UserDefaulting where Element == VPNCountry {
         "serverList"
     }
 
-    func getRandomUSServer() -> VPNCity? {
-        return first { $0.code.uppercased() == "US" }?.formattedCities.randomElement()
+    func getRandomUSCity() -> VPNCity? {
+        return first { $0.code.uppercased() == "US" }?.cities.randomElement()
     }
 
-    func getRandomServer() -> VPNCity? {
-        return randomElement()?.formattedCities.randomElement()
+    func getRandomCity() -> VPNCity? {
+        return randomElement()?.cities.randomElement()
     }
 }
