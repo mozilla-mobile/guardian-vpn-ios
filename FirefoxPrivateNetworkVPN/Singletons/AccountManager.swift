@@ -163,7 +163,7 @@ class AccountManager: AccountManaging, Navigating {
         Device.removeFromUserDefaults()
         [VPNCountry].removeFromUserDefaults()
         VPNCity.removeFromUserDefaults()
-        
+
         Logger.global?.log(message: "Reset account")
     }
 

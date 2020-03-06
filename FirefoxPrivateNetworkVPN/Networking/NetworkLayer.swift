@@ -37,7 +37,6 @@ struct ErrorResponse: Codable {
     let error: String
 
     var guardianAPIError: GuardianAPIError {
-        Logger.global?.log(message: "Unknown Guardian Error: \(self)")
         return GuardianAPIError(rawValue: errno) ?? .unknown
     }
 }

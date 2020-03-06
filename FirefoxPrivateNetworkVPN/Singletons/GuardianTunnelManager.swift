@@ -197,12 +197,12 @@ class GuardianTunnelManager: TunnelManaging {
             completion?(error)
         }
     }
-    
+
     func stop() {
         guard let tunnel = tunnel else { return }
         (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
-    
+
     func stopAndRemove() {
         guard let tunnel = tunnel else { return }
         stop()
