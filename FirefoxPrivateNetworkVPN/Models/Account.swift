@@ -67,6 +67,7 @@ class Account {
                     completion(.success(()))
                 }
             case .failure(let error):
+                Logger.global?.log(message: "Add Device Error: \(error)")
                 completion(.failure(error))
             }
         }
@@ -78,10 +79,14 @@ class Account {
                 completion(.failure(GuardianError.deallocated))
                 return
             }
-            completion(result.map { user in
+            switch result {
+            case .success(let user):
                 self.user = user
-                return ()
-            })
+                completion(.success(()))
+            case .failure(let error):
+                Logger.global?.log(message: "Account Error: \(error)")
+                completion(.failure(error))
+            }
         }
     }
 
@@ -98,8 +103,9 @@ class Account {
                 case .success:
                     self.user?.remove(device: device)
                     resolver(.success(()))
-                case .failure:
+                case .failure(let error):
                     self.user?.failedRemoval(of: device)
+                    Logger.global?.log(message: "Remove Device Error: \(error)")
                     resolver(.error(GuardianError.couldNotRemoveDevice(device)))
                 }
             }
@@ -114,18 +120,21 @@ class Account {
         if let current = currentDevice, !user.has(device: current) {
             currentDevice = nil
             Device.removeFromUserDefaults()
+            Logger.global?.log(message: "Removed device from cache")
             return
         }
 
         if let key = credentials.deviceKeys.publicKey.base64Key(), let current = user.device(with: key) {
             currentDevice = current
             current.saveToUserDefaults()
+            Logger.global?.log(message: "Saved device to cache")
             return
         }
 
         if let current = Device.fetchFromUserDefaults(), current.publicKey != credentials.deviceKeys.publicKey.base64Key() {
             currentDevice = nil
             Device.removeFromUserDefaults()
+            Logger.global?.log(message: "Removed device from cache")
         }
     }
 }

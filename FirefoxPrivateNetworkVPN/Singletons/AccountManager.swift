@@ -128,6 +128,7 @@ class AccountManager: AccountManaging, Navigating {
                 self.resetAccount()
                 completion(.success(()))
             case .failure(let error):
+                Logger.global?.log(message: "Logout Error: \(error)")
                 completion(.failure(error))
             }
         }
@@ -144,6 +145,7 @@ class AccountManager: AccountManaging, Navigating {
                 }
                 completion(.success(()))
             case .failure(let error):
+                Logger.global?.log(message: "Server list retrieval Error: \(error)")
                 completion(.failure(error))
             }
         }
@@ -161,6 +163,8 @@ class AccountManager: AccountManaging, Navigating {
         Device.removeFromUserDefaults()
         [VPNCountry].removeFromUserDefaults()
         VPNCity.removeFromUserDefaults()
+        
+        Logger.global?.log(message: "Reset account")
     }
 
     private func subscribeToExpiredSubscriptionNotification() {
