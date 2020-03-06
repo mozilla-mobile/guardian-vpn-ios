@@ -16,7 +16,7 @@ struct GuardianURLRequest {
     private static let stagingBaseURL = "https://stage.guardian.nonprod.cloudops.mozgcp.net/"
 
     private static var baseURL: String {
-        #if DEBUG
+        #if STAGING
         return GuardianURLRequest.stagingBaseURL
         #else
         return GuardianURLRequest.productionBaseURL
