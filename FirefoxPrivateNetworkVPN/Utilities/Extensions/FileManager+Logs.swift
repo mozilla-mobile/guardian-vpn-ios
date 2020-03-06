@@ -12,15 +12,21 @@
 import Foundation
 
 extension FileManager {
-    static var debugLogs: Data? {
-        do {
-            guard let fileURL = FileManager.logFileURL,
-                try fileURL.checkResourceIsReachable()
-                else { return nil }
-            //decode and then encode back to data??
-            return try NSData(contentsOf: fileURL) as Data
-        } catch {
-            return nil
+    static func getDebugLogs(completion: @escaping (Data?) -> Void) {
+        guard let destinationDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            completion(nil)
+            return
+        }
+
+        let destinationURL = destinationDir.appendingPathComponent("log.txt")
+        DispatchQueue.global(qos: .userInitiated).async {
+            if FileManager.default.fileExists(atPath: destinationURL.path) {
+                _ = FileManager.deleteFile(at: destinationURL)
+            }
+
+            _ = Logger.global?.writeLog(to: destinationURL.path)
+            let data = try? Data(contentsOf: destinationURL)
+            completion(data)
         }
     }
 }

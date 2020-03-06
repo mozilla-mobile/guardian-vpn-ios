@@ -12,9 +12,10 @@
 import MessageUI
 
 class EmailManager: NSObject, MFMailComposeViewControllerDelegate {
-    private let supportEmailAddress = "firefox-team@mozilla.com"
-    private let logsFileName = "debug_logs"
-    private let logsMimeType = "text/strings"
+    private static let supportEmailAddress = "firefox-team@mozilla.com"
+    fileprivate static let logsFileName = "debug_logs.txt"
+    fileprivate static let logsMimeType = "text/plain"
+
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
 
     private var logsSubject: String {
@@ -43,20 +44,25 @@ class EmailManager: NSObject, MFMailComposeViewControllerDelegate {
         return deviceName + "\n" + createdDate + "\n" + publicKey
     }
 
-    func getMailWithDebugLogs() -> MFMailComposeViewController? {
-        guard MFMailComposeViewController.canSendMail(),
-            let attachment = FileManager.debugLogs
-            else { return nil }
+    func getDebugLogMailTemplate() -> MFMailComposeViewController? {
+        guard MFMailComposeViewController.canSendMail()else { return nil }
 
         let mail = MFMailComposeViewController()
-        mail.setToRecipients([supportEmailAddress])
+        mail.setToRecipients([EmailManager.supportEmailAddress])
         mail.setSubject(logsSubject)
         mail.setMessageBody(logsBody, isHTML: false)
 
-        mail.addAttachmentData(attachment,
-                               mimeType: logsMimeType,
-                               fileName: logsFileName)
-
         return mail
+    }
+}
+
+extension MFMailComposeViewController {
+
+    func setDebugLogAttachment(with data: Data?) {
+        guard let data = data else { return }
+
+        addAttachmentData(data,
+                          mimeType: EmailManager.logsMimeType,
+                          fileName: EmailManager.logsFileName)
     }
 }

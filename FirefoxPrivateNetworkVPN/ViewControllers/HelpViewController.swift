@@ -71,9 +71,20 @@ extension HelpViewController: MFMailComposeViewControllerDelegate {
 
     private func presentMailForDebugSupport() {
         let emailManager = EmailManager()
-        if let emailVC = emailManager.getMailWithDebugLogs() {
-            emailVC.mailComposeDelegate = self
-            present(emailVC, animated: true)
+        guard let emailVC = emailManager.getDebugLogMailTemplate() else {
+            // Open the Mail app if the user has not set up email accounts
+            let destinationURL = URL(string: "message://")!
+            if UIApplication.shared.canOpenURL(destinationURL) {
+                UIApplication.shared.open(destinationURL, options: [:])
+            }
+            return
+        }
+
+        emailVC.mailComposeDelegate = self
+        
+        FileManager.getDebugLogs { [weak self] logData in
+            emailVC.setDebugLogAttachment(with: logData)
+            self?.present(emailVC, animated: true)
         }
     }
 }
