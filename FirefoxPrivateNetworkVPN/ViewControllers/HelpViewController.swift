@@ -84,7 +84,9 @@ extension HelpViewController: MFMailComposeViewControllerDelegate {
 
         FileManager.getDebugLogs { [weak self] logData in
             emailVC.setDebugLogAttachment(with: logData)
-            self?.present(emailVC, animated: true)
+            DispatchQueue.main.async {
+                self?.present(emailVC, animated: true)
+            }
         }
     }
 }
