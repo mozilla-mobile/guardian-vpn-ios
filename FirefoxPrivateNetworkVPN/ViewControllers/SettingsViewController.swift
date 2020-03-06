@@ -17,7 +17,6 @@ class SettingsViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .settings
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var signOutButton: UIButton!
 
     private var dataSource: SettingsDataSource?
     private let disposeBag = DisposeBag()
@@ -42,7 +41,6 @@ class SettingsViewController: UIViewController, Navigating {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setStrings()
 
         dataSource = SettingsDataSource(with: tableView)
         tableView.tableFooterView = UIView()
@@ -64,13 +62,6 @@ class SettingsViewController: UIViewController, Navigating {
         tableView.isScrollEnabled = tableView.contentSize.height >= tableView.frame.height
     }
 
-    // MARK: - IBActions
-    @IBAction func signOut() {
-        DependencyFactory.sharedFactory.accountManager.logout { [weak self] _ in
-            self?.navigate(to: .landing)
-        }
-    }
-
     // MARK: - Setup
     private func setupTabBar() {
         let tag: TabTag = .settings
@@ -80,10 +71,6 @@ class SettingsViewController: UIViewController, Navigating {
     private func setupNavigationBar() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationItem.backBarButtonItem = nil
-    }
-
-    private func setStrings() {
-        signOutButton.setTitle(LocalizedString.settingsSignOut.value, for: .normal)
     }
 
     private func subscribeToRowSelected() {
