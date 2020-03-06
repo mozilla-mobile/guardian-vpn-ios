@@ -34,6 +34,8 @@
 		F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C92395A824000B79C3 /* CarouselViewType.swift */; };
 		F42DE7CC2395B9D3000B79C3 /* WarningToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42DE7CB2395B9D3000B79C3 /* WarningToastView.xib */; };
 		F42DE7CE2395B9E7000B79C3 /* WarningToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */; };
+		F43BEA5E2412F7DE000249C3 /* SignoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43BEA5C2412F7DE000249C3 /* SignoutTableViewCell.swift */; };
+		F43BEA5F2412F7DE000249C3 /* SignoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F43BEA5D2412F7DE000249C3 /* SignoutTableViewCell.xib */; };
 		F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */; };
 		F4483D0323F594E80094BE3E /* UpdateRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */; };
 		F4483D0423F594E80094BE3E /* UpdateRequiredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4483D0223F594E80094BE3E /* UpdateRequiredViewController.xib */; };
@@ -328,6 +330,8 @@
 		F42DE7C92395A824000B79C3 /* CarouselViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewType.swift; sourceTree = "<group>"; };
 		F42DE7CB2395B9D3000B79C3 /* WarningToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningToastView.xib; sourceTree = "<group>"; };
 		F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningToastView.swift; sourceTree = "<group>"; };
+		F43BEA5C2412F7DE000249C3 /* SignoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignoutTableViewCell.swift; sourceTree = "<group>"; };
+		F43BEA5D2412F7DE000249C3 /* SignoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignoutTableViewCell.xib; sourceTree = "<group>"; };
 		F43DCC7A2379A780000C60E3 /* OSLog+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Custom.swift"; sourceTree = "<group>"; };
 		F43DCC7D2379AC35000C60E3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F43DCC7E2379AC36000C60E3 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -766,6 +770,8 @@
 				F499C0F5234E301900126CDA /* DeviceManagementCell.xib */,
 				F42304872372101000572A93 /* HyperlinkCell.swift */,
 				F42304882372101000572A93 /* HyperlinkCell.xib */,
+				F43BEA5C2412F7DE000249C3 /* SignoutTableViewCell.swift */,
+				F43BEA5D2412F7DE000249C3 /* SignoutTableViewCell.xib */,
 				F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */,
 				F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */,
 				F420F4192368840A00CD48BF /* VPNToggleView.swift */,
@@ -1293,6 +1299,7 @@
 				F4E909142371CAAD00EB9FE6 /* DeviceLimitReachedView.xib in Resources */,
 				F4E909032371CAAD00EB9FE6 /* LoadingViewController.xib in Resources */,
 				F4E9090C2371CAAD00EB9FE6 /* AccountInformationHeader.xib in Resources */,
+				F43BEA5F2412F7DE000249C3 /* SignoutTableViewCell.xib in Resources */,
 				F4E908D72371CAAD00EB9FE6 /* Inter-Medium.otf in Resources */,
 				F4E908E52371CAAD00EB9FE6 /* Metropolis-MediumItalic.otf in Resources */,
 				F4E908DB2371CAAD00EB9FE6 /* Metropolis-BlackItalic.otf in Resources */,
@@ -1612,6 +1619,7 @@
 				F478E47F23C7842D00D17FE0 /* ReleaseInfo.swift in Sources */,
 				F4E908D22371CAAD00EB9FE6 /* Navigating.swift in Sources */,
 				F4AED21D235F55EA00F80ABF /* Keychain.swift in Sources */,
+				F43BEA5E2412F7DE000249C3 /* SignoutTableViewCell.swift in Sources */,
 				F4B42C08238F1652001F64F7 /* ConnectionRxValue.swift in Sources */,
 				F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */,
 				F4A7FA26237C5CE00034AF6C /* Credentials.swift in Sources */,
