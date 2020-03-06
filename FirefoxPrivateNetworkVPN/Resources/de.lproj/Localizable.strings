@@ -36,7 +36,7 @@
 
 "homeSubtitleOff" = "Anschalten um das gesamte Gerät zu schützen";
 "homeSubtitleConnecting" = "Die Verbindung wird unterbrochen";
-"homeSubtitleOn" = "Sicher und geschützt • %@";
+"homeSubtitleOn" = "Sicher und geschützt  •  %@";
 "homeSubtitleSwitching" = "From %1$@ to %2$@";
 "homeSubtitleDisconnecting" = "Die Verbindung wird unterbrochen";
 "homeSubtitleCheckConnection" = "  •  Verbindung überprüfen";
@@ -84,8 +84,6 @@
 "aboutTerms" = "Nutzungsbedingungen";
 "aboutPrivacy" = "Datenschutz";
 "aboutAppName" = "Firefox Private Network";
-"aboutDescription" = "Ein schnelles, sicheres und praktisches VPN
-   (Virtuelles Privates Netzwerk). \nGebaut für Menschen, nicht für Profite.";
 "aboutReleaseVersion" = "Version";
 
 // MARK: - Warning toast

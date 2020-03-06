@@ -88,6 +88,7 @@ class VPNToggleView: UIView {
         rippleAnimationView = createAnimation(for: "ripples", in: backgroundAnimationContainerView)
         rippleAnimationView?.respectAnimationFrameRate = true
         rippleAnimationView?.animationSpeed = 0.5
+        view.cornerRadius = UIScreen.isiPad ? 16 : 8
     }
 
     private func createAnimation(for name: String, in containerView: UIView) -> AnimationView {
