@@ -30,7 +30,7 @@
 
 "homeTitleOff" = "VPN ist aus";
 "homeTitleConnecting" = "Verbinden...";
-"homeTitleOn" = "VPN is on";
+"homeTitleOn" = "VPN ist an";
 "homeTitleSwitching" = "Wechselt...";
 "homeTitleDisconnecting" = "Trennen...";
 
