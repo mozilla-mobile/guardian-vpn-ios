@@ -49,9 +49,7 @@ struct VPNCity: UserDefaulting, Equatable {
     //randomly selects one of the servers with the highest weights
     var fastestServer: VPNServer? {
         let maxWeightedServer = servers.max { $0.weight < $1.weight }
-        guard let maxWeight = maxWeightedServer?.weight else {
-            return nil
-        }
+        guard let maxWeight = maxWeightedServer?.weight else { return nil }
 
         return servers.filter { return $0.weight == maxWeight }.randomElement()
     }
