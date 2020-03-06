@@ -59,6 +59,7 @@ class GuardianTunnelManager: TunnelManaging {
         return Single<Void>.create { [unowned self] resolver in
             self.loadTunnel { error in
                 if let error = error {
+                    Logger.global?.log(message: "Connect Tunnel Load Error: \(error)")
                     resolver(.error(error))
                     return
                 }
@@ -71,12 +72,14 @@ class GuardianTunnelManager: TunnelManaging {
                 tunnelProviderManager.saveToPreferences { [unowned self] saveError in
                     if let error = saveError {
                         self.tunnel = nil
+                        Logger.global?.log(message: "Connect Tunnel Save Error: \(error)")
                         resolver(.error(error))
                         return
                     }
                     self.tunnel = tunnelProviderManager
                     self.tunnel?.loadFromPreferences { error in
                         if let error = error {
+                            Logger.global?.log(message: "Connect Tunnel Load Error: \(error)")
                             resolver(.error(error))
                             return
                         }
@@ -84,6 +87,7 @@ class GuardianTunnelManager: TunnelManaging {
                             try self.startTunnel()
                             resolver(.success(()))
                         } catch {
+                            Logger.global?.log(message: "Connect Tunnel Start Error: \(error)")
                             resolver(.error(error))
                         }
                     }
@@ -118,12 +122,14 @@ class GuardianTunnelManager: TunnelManaging {
                     if case .switching(_, _) = self.stateEvent.value {
                         self.stateEvent.accept(.on)
                     }
+                    Logger.global?.log(message: "Switch Tunnel Save Error: \(error)")
                     resolver(.error(error))
                     return
                 }
 
                 tunnel.loadFromPreferences { error in
                     if let error = error {
+                        Logger.global?.log(message: "Switch Tunnel Load Error: \(error)")
                         resolver(.error(error))
                         return
                     }
@@ -191,19 +197,23 @@ class GuardianTunnelManager: TunnelManaging {
             completion?(error)
         }
     }
-
+    
     func stop() {
         guard let tunnel = tunnel else { return }
         (tunnel.connection as? NETunnelProviderSession)?.stopTunnel()
     }
-
+    
     func stopAndRemove() {
         guard let tunnel = tunnel else { return }
         stop()
-        tunnel.removeFromPreferences { _ in
+        tunnel.removeFromPreferences { error in
+            if let error = error {
+                Logger.global?.log(message: "Tunnel Removal Error: \(error)")
+            }
             self.tunnel = nil
             NETunnelProviderManager.loadAllFromPreferences { _, _ in }
         }
+        Logger.global?.log(message: "Tunnel Stopped and Removed")
     }
 
     @objc private func vpnConfigurationDidChange(notification: Notification) {
