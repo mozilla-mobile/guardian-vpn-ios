@@ -10,12 +10,56 @@
 //
 
 import Foundation
+import UIKit
 
 class GuardianAPI: NetworkRequesting {
 
     private static func headers(with token: String) -> [String: String] {
         return ["Authorization": "Bearer \(token)",
-            "Content-Type": "application/json"]
+            "Content-Type": "application/json",
+            "User-Agent": getUserAgentString()]
+    }
+
+    private static func getUserAgentString() -> String {
+        return "\(getAppNameAndVersion()) \(getDeviceModel())/\(getDeviceOSVersion())"
+    }
+
+    private static func getAppNameAndVersion() -> String {
+        guard let bundleDictionary = Bundle.main.infoDictionary else {
+            return ""
+        }
+
+        guard let fullAppName = bundleDictionary["CFBundleName"] as? String else {
+            return ""
+        }
+        let appName = fullAppName.replacingOccurrences(of: " ", with: "")
+
+        guard let appVersion = bundleDictionary["CFBundleShortVersionString"] as? String else {
+            return appName
+        }
+
+        return "\(appName)/\(appVersion)"
+    }
+
+    private static func getDeviceModel() -> String {
+        // This retrieves the model in the form 'iPhone10,2', for example.
+        // See https://medium.com/ios-os-x-development/get-model-info-of-ios-devices-18bc8f32c254
+        // for reference
+
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+
+        return machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else {
+                return identifier
+            }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+    }
+
+    private static func getDeviceOSVersion() -> String {
+        return "\(UIDevice.current.systemVersion)"
     }
 
     static func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
