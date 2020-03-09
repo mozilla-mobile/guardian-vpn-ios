@@ -16,6 +16,7 @@ enum SettingsItem {
     case help
     case about
     case feedback
+    case signout
 
     var title: String {
         switch self {
@@ -23,6 +24,7 @@ enum SettingsItem {
         case .help: return LocalizedString.settingsItemHelp.value
         case .about: return LocalizedString.settingsItemAbout.value
         case .feedback: return LocalizedString.settingsFeedback.value
+        case .signout: return LocalizedString.settingsSignOut.value
         }
     }
 
@@ -32,6 +34,7 @@ enum SettingsItem {
         case .help: return #imageLiteral(resourceName: "icon_help")
         case .about: return #imageLiteral(resourceName: "icon_about")
         case .feedback: return #imageLiteral(resourceName: "icon_bug.pdf")
+        case .signout: return nil
         }
     }
 
@@ -42,12 +45,13 @@ enum SettingsItem {
         }
     }
 
-    var action: NavigableItem {
+    var action: NavigableItem? {
         switch self {
         case .device: return .devices
         case .help: return .help
         case .about: return .about
         case .feedback: return .hyperlink(FirefoxURL.feedback.value)
+        case .signout: return nil
         }
     }
 }

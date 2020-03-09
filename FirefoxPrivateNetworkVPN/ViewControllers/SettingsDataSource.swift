@@ -16,22 +16,27 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
     // MARK: - Properties
     private let representedObject: [SettingsItem]
     private let cellName = String(describing: AccountInformationCell.self)
+    private let signoutCellName = String(describing: SignoutTableViewCell.self)
     private let headerName = String(describing: AccountInformationHeader.self)
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
     private let disposeBag = DisposeBag()
 
     let rowSelected = PublishSubject<NavigableItem>()
     let headerButtonSelected = PublishSubject<NavigableItem>()
+    let signoutSelected = PublishSubject<Void>()
 
     // MARK: - Initialization
     init(with tableView: UITableView) {
-        representedObject = [.device, .help, .about, .feedback]
+        representedObject = [.device, .help, .about, .feedback, .signout]
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
 
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
+
+        let signoutCellNib = UINib.init(nibName: signoutCellName, bundle: nil)
+        tableView.register(signoutCellNib, forCellReuseIdentifier: signoutCellName)
 
         let headerNib = UINib.init(nibName: headerName, bundle: nil)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
@@ -43,10 +48,26 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if representedObject[indexPath.row] == .signout {
+            return setupSignoutCell(tableView, cellForRowAt: indexPath) ?? UITableViewCell(frame: .zero)
+        }
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? AccountInformationCell
             else { return UITableViewCell(frame: .zero) }
+
         let settingsItem = representedObject[indexPath.row]
         cell.setup(settingsItem, isDeviceAdded: account?.hasDeviceBeenAdded ?? false)
+
+        return cell
+    }
+
+    private func setupSignoutCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> SignoutTableViewCell? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: signoutCellName, for: indexPath) as? SignoutTableViewCell
+
+        //swiftlint:disable:next trailing_closure
+        cell?.signoutSubject.subscribe(onNext: { [weak self] in
+            self?.signoutSelected.onNext(())
+        }).disposed(by: disposeBag)
 
         return cell
     }
@@ -55,12 +76,17 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SettingsDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        rowSelected.onNext(representedObject[indexPath.row].action)
+        if let action = representedObject[indexPath.row].action {
+            rowSelected.onNext(action)
+        }
 
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if representedObject[indexPath.row] == .signout {
+            return SignoutTableViewCell.height
+        }
         return AccountInformationCell.height
     }
 
