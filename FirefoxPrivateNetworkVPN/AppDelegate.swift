@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         dependencyFactory?.releaseMonitor.start()
 
+        Logger.configureGlobal(tagged: "APP", withFilePath: FileManager.logFileURL?.path)
+
         return true
     }
 

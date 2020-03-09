@@ -41,14 +41,15 @@ class HeartbeatMonitor: HeartbeatMonitoring {
             account.hasDeviceBeenAdded else { return }
 
         account.getUser { result in
-            if case .success = result {
+            switch result {
+            case .success:
                 NotificationCenter.default.post(name: NSNotification.Name.activeSubscriptionNotification, object: nil)
+            case .failure(let error):
+                if let subscriptionError = error as? GuardianAPIError,
+                subscriptionError.isAuthError {
+                    NotificationCenter.default.post(name: NSNotification.Name.expiredSubscriptionNotification, object: nil)
+                }
             }
-            guard case .failure(let error) = result,
-                let subscriptionError = error as? GuardianAPIError,
-                subscriptionError.isAuthError else { return }
-
-            NotificationCenter.default.post(name: NSNotification.Name.expiredSubscriptionNotification, object: nil)
         }
     }
 }

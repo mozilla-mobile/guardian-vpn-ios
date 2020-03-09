@@ -17,6 +17,7 @@ enum HyperlinkItem {
     case terms
     case privacy
     case account
+    case debug
 
     var title: String {
         switch self {
@@ -25,6 +26,7 @@ enum HyperlinkItem {
         case .terms: return LocalizedString.aboutTerms.value
         case .privacy: return LocalizedString.aboutPrivacy.value
         case .account: return LocalizedString.settingsManageAccount.value
+        case .debug: return LocalizedString.helpDebug.value
         }
     }
 
@@ -35,6 +37,7 @@ enum HyperlinkItem {
         case .terms: return FirefoxURL.terms.value
         case .privacy: return FirefoxURL.privacy.value
         case .account: return FirefoxURL.account.value
+        case .debug: return nil
         }
     }
 }

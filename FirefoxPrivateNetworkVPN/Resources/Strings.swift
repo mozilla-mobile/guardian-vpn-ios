@@ -74,6 +74,7 @@ enum LocalizedString: String {
     case helpTitle
     case helpContactUs
     case helpSupport
+    case helpDebug
 
     case aboutTitle
     case aboutTerms
@@ -96,6 +97,13 @@ enum LocalizedString: String {
 
     case errorDeviceRemoval
     case errorConnectVPN
+
+    case logsFileName
+    case logsMailSubject
+    case logsMailBody
+    case logsMailDeviceName
+    case logsMailDeviceDate
+    case logsMailDeviceKey
 
     var value: String {
         NSLocalizedString(rawValue, comment: "")

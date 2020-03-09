@@ -68,6 +68,8 @@ class LoginViewController: UIViewController, Navigating {
                     case .success:
                         self.navigate(to: .home)
                     case .failure(let error):
+                        Logger.global?.log(message: "Authentication Error: \(error)")
+
                         var context: NavigableContext?
                         if let guardianAPIError = error as? GuardianAPIError, guardianAPIError == .maxDevicesReached {
                             context = .maxDevicesError

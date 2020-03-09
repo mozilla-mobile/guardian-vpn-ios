@@ -30,7 +30,7 @@
 
 "homeTitleOff" = "VPN ist aus";
 "homeTitleConnecting" = "Verbinden...";
-"homeTitleOn" = "VPN is on";
+"homeTitleOn" = "VPN ist an";
 "homeTitleSwitching" = "Wechselt...";
 "homeTitleDisconnecting" = "Trennen...";
 
@@ -78,6 +78,7 @@
 "helpTitle" = "Hilfe";
 "helpContactUs" = "Kontakt";
 "helpSupport" = "Hilfe & Support";
+"helpDebug" = "Debug";
 
 // MARK: - About
 "aboutTitle" = "Über";
@@ -107,3 +108,11 @@
 //MARK: - Error Descriptions
 "errorDeviceRemoval" = "Gerät kann nicht entfernt werden.";
 "errorConnectVPN" = "Verbindung kann nicht hergestellt werden.";
+
+//MARK: - Email Logs
+"logsFileName" = "debug_logs";
+"logsMailSubject" = "User Help Request: ";
+"logsMailBody" = "User requesting assistance:";
+"logsMailDeviceName" = "Device name: ";
+"logsMailDeviceDate" = "Added: ";
+"logsMailDeviceKey" = "Device public key: ";

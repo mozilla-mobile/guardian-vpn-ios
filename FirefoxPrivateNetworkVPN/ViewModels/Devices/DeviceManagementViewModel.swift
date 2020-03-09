@@ -50,6 +50,7 @@ class DeviceManagementViewModel {
                 if account.hasDeviceBeenAdded {
                     self.deletionSuccessSubject.onNext(())
                 } else {
+                    Logger.global?.log(message: "Adding current device after removal")
                     account.addCurrentDevice { _ in
                         self.deletionSuccessSubject.onNext(())
                     }

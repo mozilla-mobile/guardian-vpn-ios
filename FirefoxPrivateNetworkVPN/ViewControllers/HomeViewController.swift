@@ -139,6 +139,7 @@ class HomeViewController: UIViewController, Navigating {
                 case .optional:
                     self.versionUpdateToastView.isHidden = false
                 case .required:
+                    Logger.global?.log(message: "Required update detected")
                     self.versionUpdateToastView.isHidden = true
                     self.navigate(to: .requiredUpdate)
                 default: //.none or nil
