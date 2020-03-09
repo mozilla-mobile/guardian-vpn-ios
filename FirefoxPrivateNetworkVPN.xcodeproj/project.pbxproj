@@ -124,6 +124,7 @@
 		F4BAF48923F1C36C000FDBB0 /* CountryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48823F1C36C000FDBB0 /* CountryCellModel.swift */; };
 		F4BAF48C23F1C392000FDBB0 /* CityCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48B23F1C392000FDBB0 /* CityCellModel.swift */; };
 		F4D3D1E62406C7A7001B73D1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4D3D1E52406C7A7001B73D1 /* Settings.bundle */; };
+		F4D3D2042416C5F3001B73D1 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3D2032416C5F2001B73D1 /* UIDevice+Extensions.swift */; };
 		F4DF5B1423CFBDAA006A7E4C /* UpdateRecommendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */; };
 		F4DF5B1523CFBDAA006A7E4C /* UpdateRecommendedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
@@ -486,6 +487,7 @@
 		F4D150D7234797C700739CDA /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		F4D3D1E42406C690001B73D1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F4D3D1E52406C7A7001B73D1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		F4D3D2032416C5F2001B73D1 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		F4D8D94A236A207600BE5FFC /* AccountInformationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationHeader.swift; sourceTree = "<group>"; };
 		F4D8D94B236A207600BE5FFC /* AccountInformationHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInformationHeader.xib; sourceTree = "<group>"; };
 		F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationCell.swift; sourceTree = "<group>"; };
@@ -692,7 +694,6 @@
 		F41CCA1F23711C7A0018DC43 /* Project Files */ = {
 			isa = PBXGroup;
 			children = (
-				F40109822411827C006DFF96 /* wireguard.h */,
 				F4AED248235F7B4900F80ABF /* Bridging-Header.h */,
 				6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */,
 				6FF4AC23211EC472002C96EB /* Info.plist */,
@@ -907,6 +908,7 @@
 				F4A7FA21237AFF210034AF6C /* Result+Decode.swift */,
 				F478E48023C784C400D17FE0 /* UIApplication+Extensions.swift */,
 				F4A4947823709033007595C3 /* UIColor+Named.swift */,
+				F4D3D2032416C5F2001B73D1 /* UIDevice+Extensions.swift */,
 				F4720258238C3D620033A14B /* UIFont+Custom.swift */,
 				F422FEF923983E85009413E2 /* UIImage+Color.swift */,
 				F4FFF3B023E8BDC700C365F3 /* UILabel+AttributedText.swift */,
@@ -1635,6 +1637,7 @@
 				F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */,
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,
 				F4E9090B2371CAAD00EB9FE6 /* AccountInformationHeader.swift in Sources */,
+				F4D3D2042416C5F3001B73D1 /* UIDevice+Extensions.swift in Sources */,
 				F4BAF48323EC68D8000FDBB0 /* CountryVPNCell.swift in Sources */,
 				F4FFF3B123E8BDC700C365F3 /* UILabel+AttributedText.swift in Sources */,
 				F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */,
