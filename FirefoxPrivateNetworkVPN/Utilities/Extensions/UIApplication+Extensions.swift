@@ -12,8 +12,17 @@
 import UIKit
 
 extension UIApplication {
-    private static let bundleVersionKey = "CFBundleShortVersionString"
     private static let appStoreURL = "itms-apps://itunes.apple.com/app/id"
+    private static let bundleAppNameKey = "CFBundleName"
+    private static let bundleVersionKey = "CFBundleShortVersionString"
+
+    static var appName: String {
+        return Bundle.main.object(forInfoDictionaryKey: UIApplication.bundleAppNameKey) as? String ?? ""
+    }
+
+    static var appNameWithoutSpaces: String {
+        return appName.replacingOccurrences(of: " ", with: "")
+    }
 
     static var appVersion: String {
         return Bundle.main.object(forInfoDictionaryKey: UIApplication.bundleVersionKey) as? String ?? ""

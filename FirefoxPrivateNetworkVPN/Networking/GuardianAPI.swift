@@ -10,12 +10,19 @@
 //
 
 import Foundation
+import UIKit
 
 class GuardianAPI: NetworkRequesting {
 
+    private static var userAgentInfo: String {
+        return UIApplication.appNameWithoutSpaces + "/" + UIApplication.appVersion
+            + " " + UIDevice.modelName + "/" + UIDevice.current.systemVersion
+    }
+
     private static func headers(with token: String) -> [String: String] {
         return ["Authorization": "Bearer \(token)",
-            "Content-Type": "application/json"]
+            "Content-Type": "application/json",
+            "User-Agent": userAgentInfo]
     }
 
     static func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
