@@ -33,7 +33,7 @@ enum SettingsItem {
         case .device: return #imageLiteral(resourceName: "icon_device")
         case .help: return #imageLiteral(resourceName: "icon_help")
         case .about: return #imageLiteral(resourceName: "icon_about")
-        case .feedback: return #imageLiteral(resourceName: "icon_bug.pdf")
+        case .feedback: return #imageLiteral(resourceName: "icon_smile")
         case .signout: return nil
         }
     }
