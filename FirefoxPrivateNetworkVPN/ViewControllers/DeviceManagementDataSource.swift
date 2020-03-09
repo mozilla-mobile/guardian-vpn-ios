@@ -56,13 +56,13 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension DeviceManagementDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let account = account, !account.hasDeviceBeenAdded else { return 0 }
+        guard let account = account, !account.hasDeviceBeenAdded else { return .leastNonzeroMagnitude }
 
         return DeviceLimitReachedView.height
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let account = account, !account.hasDeviceBeenAdded else { return nil }
+        guard let account = account, !account.hasDeviceBeenAdded else { return UIView() }
 
         return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
     }
