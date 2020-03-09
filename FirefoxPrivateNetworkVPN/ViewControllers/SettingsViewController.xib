@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="55" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="280" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fpn-Et-fLv">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="55" sectionHeaderHeight="18" estimatedSectionHeaderHeight="280" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="fpn-Et-fLv">
                     <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
                     <color key="backgroundColor" name="custom_grey5"/>
                 </tableView>
