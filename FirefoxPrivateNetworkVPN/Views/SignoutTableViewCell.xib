@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETg-9M-Q3q">
-                        <rect key="frame" x="182" y="30.5" width="89" height="30"/>
+                        <rect key="frame" x="182" y="32" width="89" height="30"/>
                         <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
                         <state key="normal" title="Lorem Ipsum">
                             <color key="titleColor" name="custom_red50"/>
@@ -33,25 +33,13 @@
                             <action selector="signoutSelected" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vSI-OX-Vgc"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ygl-M7-dXQ">
-                        <rect key="frame" x="56" y="90" width="381" height="1"/>
-                        <color key="backgroundColor" name="custom_grey10"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="NAa-j0-qBS"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" name="custom_grey5"/>
                 <constraints>
-                    <constraint firstItem="Ygl-M7-dXQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="B0J-ES-Wag">
-                        <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                    </constraint>
-                    <constraint firstAttribute="trailing" secondItem="Ygl-M7-dXQ" secondAttribute="trailing" constant="16" id="lxx-gW-0Kb">
-                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    <constraint firstItem="ETg-9M-Q3q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="3m3-1K-miH">
+                        <variation key="heightClass=regular-widthClass=regular" constant="48"/>
                     </constraint>
                     <constraint firstItem="ETg-9M-Q3q" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="pIW-S8-h57"/>
-                    <constraint firstItem="ETg-9M-Q3q" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qCt-T2-iIf"/>
-                    <constraint firstAttribute="bottom" secondItem="Ygl-M7-dXQ" secondAttribute="bottom" id="qKY-3F-Oyp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -62,9 +50,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <namedColor name="custom_grey10">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="custom_grey5">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -84,6 +84,9 @@ extension SettingsDataSource: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if representedObject[indexPath.row] == .signout {
+            return SignoutTableViewCell.height
+        }
         return AccountInformationCell.height
     }
 

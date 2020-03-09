@@ -13,6 +13,8 @@ import UIKit
 import RxSwift
 
 class SignoutTableViewCell: UITableViewCell {
+    static let height: CGFloat = UIScreen.isiPad ? 104.0 : 71.0
+
     @IBOutlet weak var signoutButton: UIButton!
     let signoutSubject = PublishSubject<Void>()
 
