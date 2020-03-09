@@ -65,8 +65,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: signoutCellName, for: indexPath) as? SignoutTableViewCell
 
         //swiftlint:disable:next trailing_closure
-        cell?.signoutSubject.subscribe(onNext: {
-            self.signoutSelected.onNext(())
+        cell?.signoutSubject.subscribe(onNext: { [weak self] in
+            self?.signoutSelected.onNext(())
         }).disposed(by: disposeBag)
 
         return cell

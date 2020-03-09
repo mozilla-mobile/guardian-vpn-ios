@@ -34,7 +34,7 @@ enum SettingsItem {
         case .help: return #imageLiteral(resourceName: "icon_help")
         case .about: return #imageLiteral(resourceName: "icon_about")
         case .feedback: return #imageLiteral(resourceName: "icon_bug.pdf")
-        default: return nil
+        case .signout: return nil
         }
     }
 
