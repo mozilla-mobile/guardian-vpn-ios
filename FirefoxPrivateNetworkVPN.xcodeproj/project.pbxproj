@@ -704,8 +704,8 @@
 		F41CCA2023711C7A0018DC43 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				F478E48223C7865300D17FE0 /* Extensions */,
 				F4B42C02238DD1FA001F64F7 /* Connection Heath Monitor */,
+				F478E48223C7865300D17FE0 /* Extensions */,
 				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
 				F4056031239E9F31000A93CC /* KeychainStored.swift */,
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
