@@ -1,28 +1,27 @@
 //
-//  AboutHeaderView
+//  AboutHeaderTableViewCell
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
-//  Copyright © 2019 Mozilla Corporation.
+//  Copyright © 2020 Mozilla Corporation.
 //
 
 import UIKit
 
-class AboutHeaderView: UITableViewHeaderFooterView {
-    static let height: CGFloat = UIScreen.isiPad ? 224.0 : 175.0
+class AboutHeaderTableViewCell: UITableViewCell {
+    @IBOutlet weak private var appNameLabel: UILabel!
+    @IBOutlet weak private var appDescriptionLabel: UILabel!
+    @IBOutlet weak private var releaseLabel: UILabel!
+    @IBOutlet weak private var versionLabel: UILabel!
 
-    @IBOutlet weak var appNameLabel: UILabel!
-    @IBOutlet weak var appDescriptionLabel: UILabel!
-    @IBOutlet weak var releaseLabel: UILabel!
-    @IBOutlet weak var versionLabel: UILabel!
+    static let estimatedHeight: CGFloat = UIScreen.isiPad ? 224.0 : 175.0
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        contentView.backgroundColor = UIColor.custom(.grey5)
         setupLabels()
     }
 

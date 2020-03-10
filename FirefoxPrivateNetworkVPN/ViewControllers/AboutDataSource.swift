@@ -15,7 +15,7 @@ import RxSwift
 class AboutDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
     private let representedObject: [HyperlinkItem]
-    private let headerName = String(describing: AboutHeaderView.self)
+    private let headerName = String(describing: AboutHeaderTableViewCell.self)
     private let cellName = String(describing: HyperlinkCell.self)
 
     let rowSelected = PublishSubject<URL?>()
@@ -29,7 +29,7 @@ class AboutDataSource: NSObject, UITableViewDataSource {
         tableView.dataSource = self
 
         let headerNib = UINib.init(nibName: headerName, bundle: nil)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
+        tableView.register(headerNib, forCellReuseIdentifier: headerName)
 
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
@@ -60,11 +60,19 @@ extension AboutDataSource: UITableViewDelegate {
         return HyperlinkCell.height
     }
 
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return HyperlinkCell.height
+    }
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return AboutHeaderView.height
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return AboutHeaderTableViewCell.estimatedHeight
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
+        return tableView.dequeueReusableCell(withIdentifier: headerName)
     }
 }
