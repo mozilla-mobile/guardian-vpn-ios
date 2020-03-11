@@ -10,8 +10,6 @@
 		527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB123752DCA00368965 /* AboutViewController.swift */; };
 		527C7EB423752DCA00368965 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527C7EB223752DCA00368965 /* AboutViewController.xib */; };
 		527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB523752E9300368965 /* AboutDataSource.swift */; };
-		527C7EB823752F6500368965 /* AboutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB723752F6500368965 /* AboutHeaderView.swift */; };
-		527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527C7EB923752FBB00368965 /* AboutHeaderView.xib */; };
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		F401097923FEE2D8006DFF96 /* HeartbeatMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */; };
@@ -31,6 +29,8 @@
 		F423048623720A7400572A93 /* HelpDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423048523720A7400572A93 /* HelpDataSource.swift */; };
 		F42304892372101000572A93 /* HyperlinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42304872372101000572A93 /* HyperlinkCell.swift */; };
 		F423048A2372101000572A93 /* HyperlinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42304882372101000572A93 /* HyperlinkCell.xib */; };
+		F429A87D2417FC3200D6F0C0 /* AboutHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429A87B2417FC3100D6F0C0 /* AboutHeaderTableViewCell.swift */; };
+		F429A87E2417FC3200D6F0C0 /* AboutHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F429A87C2417FC3100D6F0C0 /* AboutHeaderTableViewCell.xib */; };
 		F42DE7C62395A61C000B79C3 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C52395A61C000B79C3 /* LandingViewController.swift */; };
 		F42DE7C82395A64A000B79C3 /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C72395A64A000B79C3 /* CarouselViewController.swift */; };
 		F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42DE7C92395A824000B79C3 /* CarouselViewType.swift */; };
@@ -281,8 +281,6 @@
 		527C7EB123752DCA00368965 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		527C7EB223752DCA00368965 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		527C7EB523752E9300368965 /* AboutDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDataSource.swift; sourceTree = "<group>"; };
-		527C7EB723752F6500368965 /* AboutHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHeaderView.swift; sourceTree = "<group>"; };
-		527C7EB923752FBB00368965 /* AboutHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutHeaderView.xib; sourceTree = "<group>"; };
 		6F5D0C1A218352EF000F85AD /* WireGuardTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WireGuardTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB1BDA021D4E00A00A991BF /* libwg-go.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libwg-go.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB1BDB621D4F8B800A991BF /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/NetworkExtension.framework; sourceTree = DEVELOPER_DIR; };
@@ -328,6 +326,8 @@
 		F423048523720A7400572A93 /* HelpDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpDataSource.swift; sourceTree = "<group>"; };
 		F42304872372101000572A93 /* HyperlinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkCell.swift; sourceTree = "<group>"; };
 		F42304882372101000572A93 /* HyperlinkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HyperlinkCell.xib; sourceTree = "<group>"; };
+		F429A87B2417FC3100D6F0C0 /* AboutHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		F429A87C2417FC3100D6F0C0 /* AboutHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		F42A23042347D22100763B0D /* DependencyProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProviding.swift; sourceTree = "<group>"; };
 		F42A23062347D37F00763B0D /* AccountManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManaging.swift; sourceTree = "<group>"; };
 		F42DE7C52395A61C000B79C3 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -759,8 +759,8 @@
 		F41CCA2623711C7A0018DC43 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				527C7EB723752F6500368965 /* AboutHeaderView.swift */,
-				527C7EB923752FBB00368965 /* AboutHeaderView.xib */,
+				F429A87B2417FC3100D6F0C0 /* AboutHeaderTableViewCell.swift */,
+				F429A87C2417FC3100D6F0C0 /* AboutHeaderTableViewCell.xib */,
 				F4D8D94E236A259400BE5FFC /* AccountInformationCell.swift */,
 				F4D8D94F236A259400BE5FFC /* AccountInformationCell.xib */,
 				F4D8D94A236A207600BE5FFC /* AccountInformationHeader.swift */,
@@ -1315,6 +1315,7 @@
 				F471537823C3D17A00226CB8 /* VersionUpdateToastView.xib in Resources */,
 				F4E908E42371CAAD00EB9FE6 /* Metropolis-Medium.otf in Resources */,
 				F4E908E72371CAAD00EB9FE6 /* Metropolis-RegularItalic.otf in Resources */,
+				F429A87E2417FC3200D6F0C0 /* AboutHeaderTableViewCell.xib in Resources */,
 				F4E9090A2371CAAD00EB9FE6 /* AccountInformationCell.xib in Resources */,
 				F4E909182371CAAD00EB9FE6 /* VPNToggleView.xib in Resources */,
 				F4E908FB2371CAAD00EB9FE6 /* DeviceManagementViewController.xib in Resources */,
@@ -1329,7 +1330,6 @@
 				F42DE7CC2395B9D3000B79C3 /* WarningToastView.xib in Resources */,
 				F4E908E62371CAAD00EB9FE6 /* Metropolis-Regular.otf in Resources */,
 				F4E908E92371CAAD00EB9FE6 /* Metropolis-SemiBoldItalic.otf in Resources */,
-				527C7EBA23752FBB00368965 /* AboutHeaderView.xib in Resources */,
 				F4DF5B1523CFBDAA006A7E4C /* UpdateRecommendedViewController.xib in Resources */,
 				F4E909122371CAAD00EB9FE6 /* CurrentVPNSelectorView.xib in Resources */,
 				F4E908E82371CAAD00EB9FE6 /* Metropolis-SemiBold.otf in Resources */,
@@ -1590,7 +1590,6 @@
 				F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */,
 				F4E908CA2371CAAD00EB9FE6 /* User.swift in Sources */,
 				F4E909152371CAAD00EB9FE6 /* DeviceManagementCell.swift in Sources */,
-				527C7EB823752F6500368965 /* AboutHeaderView.swift in Sources */,
 				F4AED251235F835200F80ABF /* Data+KeyEncoding.swift in Sources */,
 				F40109802406F303006DFF96 /* FirefoxURL.swift in Sources */,
 				F4E908C52371CAAD00EB9FE6 /* DeviceKeys.swift in Sources */,
@@ -1679,6 +1678,7 @@
 				F4E908F72371CAAD00EB9FE6 /* UIColor+Named.swift in Sources */,
 				F4BAF48623EC820D000FDBB0 /* ServerListViewModel.swift in Sources */,
 				F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */,
+				F429A87D2417FC3200D6F0C0 /* AboutHeaderTableViewCell.swift in Sources */,
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
 				F42304892372101000572A93 /* HyperlinkCell.swift in Sources */,
 				F4E9090D2371CAAD00EB9FE6 /* CityVPNCell.swift in Sources */,

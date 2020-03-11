@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="AboutHeaderTableViewCell" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7L-zP-kNf">
+                        <rect key="frame" x="16" y="16" width="288" height="17.5"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Name Label">
+                                <attributes>
+                                    <font key="NSFont" size="15" name="Metropolis-SemiBold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNp-HT-UQx">
+                        <rect key="frame" x="16" y="33.5" width="288" height="20.5"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Description Label">
+                                <attributes>
+                                    <font key="NSFont" metaFont="system" size="17"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vro-ox-M1o">
+                        <rect key="frame" x="16" y="78" width="288" height="20.5"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Release Label">
+                                <attributes>
+                                    <font key="NSFont" metaFont="system" size="17"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaM-7a-kIj">
+                        <rect key="frame" x="16" y="98.5" width="288" height="31.5"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Version Label">
+                                <attributes>
+                                    <font key="NSFont" metaFont="system" size="17"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdS-mi-2OL">
+                        <rect key="frame" x="16" y="146" width="288" height="1"/>
+                        <color key="backgroundColor" name="custom_grey10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="tk7-Oo-vid"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="custom_grey5"/>
+                <constraints>
+                    <constraint firstItem="GdS-mi-2OL" firstAttribute="leading" secondItem="M7L-zP-kNf" secondAttribute="leading" id="33n-Xa-h0f"/>
+                    <constraint firstItem="RaM-7a-kIj" firstAttribute="top" secondItem="vro-ox-M1o" secondAttribute="bottom" id="41u-2g-TuN">
+                        <variation key="heightClass=regular-widthClass=regular" constant="4"/>
+                    </constraint>
+                    <constraint firstItem="iNp-HT-UQx" firstAttribute="top" secondItem="M7L-zP-kNf" secondAttribute="bottom" id="8RV-go-yVL">
+                        <variation key="heightClass=regular-widthClass=regular" constant="4"/>
+                    </constraint>
+                    <constraint firstItem="RaM-7a-kIj" firstAttribute="leading" secondItem="M7L-zP-kNf" secondAttribute="leading" id="CJ8-sQ-JCG"/>
+                    <constraint firstItem="GdS-mi-2OL" firstAttribute="top" secondItem="RaM-7a-kIj" secondAttribute="bottom" constant="16" id="VZZ-TR-6fr">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                    <constraint firstItem="GdS-mi-2OL" firstAttribute="trailing" secondItem="M7L-zP-kNf" secondAttribute="trailing" id="WXq-GW-1ZX"/>
+                    <constraint firstItem="vro-ox-M1o" firstAttribute="leading" secondItem="M7L-zP-kNf" secondAttribute="leading" id="WuW-x4-VPT"/>
+                    <constraint firstAttribute="trailing" secondItem="M7L-zP-kNf" secondAttribute="trailing" constant="16" id="YNd-ca-4un">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                    <constraint firstAttribute="bottom" secondItem="GdS-mi-2OL" secondAttribute="bottom" id="bh3-Am-xd2"/>
+                    <constraint firstItem="M7L-zP-kNf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="gCA-0e-cUi">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                    <constraint firstItem="M7L-zP-kNf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="gbC-fb-q3S">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                    <constraint firstItem="RaM-7a-kIj" firstAttribute="trailing" secondItem="M7L-zP-kNf" secondAttribute="trailing" id="lAz-4g-ggd"/>
+                    <constraint firstItem="iNp-HT-UQx" firstAttribute="trailing" secondItem="M7L-zP-kNf" secondAttribute="trailing" id="rHZ-bY-LXK"/>
+                    <constraint firstItem="iNp-HT-UQx" firstAttribute="leading" secondItem="M7L-zP-kNf" secondAttribute="leading" id="vDP-fD-35t"/>
+                    <constraint firstItem="vro-ox-M1o" firstAttribute="trailing" secondItem="M7L-zP-kNf" secondAttribute="trailing" id="xDJ-kI-kSY"/>
+                    <constraint firstItem="vro-ox-M1o" firstAttribute="top" secondItem="iNp-HT-UQx" secondAttribute="bottom" constant="24" id="xNU-Pq-fOR">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="appDescriptionLabel" destination="iNp-HT-UQx" id="lLV-Xa-7vF"/>
+                <outlet property="appNameLabel" destination="M7L-zP-kNf" id="td1-kR-Qan"/>
+                <outlet property="releaseLabel" destination="vro-ox-M1o" id="i96-Ha-860"/>
+                <outlet property="versionLabel" destination="RaM-7a-kIj" id="U3o-BD-YDz"/>
+            </connections>
+            <point key="canvasLocation" x="128.98550724637681" y="60.602678571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="custom_grey10">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey5">
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

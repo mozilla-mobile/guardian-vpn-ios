@@ -14,22 +14,23 @@ import RxSwift
 
 class AboutDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
-    private let representedObject: [HyperlinkItem]
-    private let headerName = String(describing: AboutHeaderView.self)
+    private let representedObject: [AboutCell]
+    private let headerName = String(describing: AboutHeaderTableViewCell.self)
     private let cellName = String(describing: HyperlinkCell.self)
 
     let rowSelected = PublishSubject<URL?>()
 
     // MARK: Initialization
     init(with tableView: UITableView) {
-        representedObject = [.terms,
-                             .privacy]
+        representedObject = [.header,
+                             .row(.terms),
+                             .row(.privacy)]
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
 
         let headerNib = UINib.init(nibName: headerName, bundle: nil)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerName)
+        tableView.register(headerNib, forCellReuseIdentifier: headerName)
 
         let cellNib = UINib.init(nibName: cellName, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: cellName)
@@ -41,30 +42,49 @@ class AboutDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? HyperlinkCell
-            else { return UITableViewCell(frame: .zero) }
-        cell.setup(as: representedObject[indexPath.row])
-        return cell
+        guard case .row(let hyperLink) = representedObject[indexPath.row] else {
+            return tableView.dequeueReusableCell(withIdentifier: headerName) ?? UITableViewCell(frame: .zero)
+        }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? HyperlinkCell
+        cell?.setup(as: hyperLink)
+
+        return cell ?? UITableViewCell(frame: .zero)
     }
 }
 
 // MARK: UITableViewDelegate
 extension AboutDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        rowSelected.onNext(representedObject[indexPath.row].url)
+        guard case .row(let hyperLink) = representedObject[indexPath.row] else { return }
+
+        rowSelected.onNext(hyperLink.url)
 
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard case .row = representedObject[indexPath.row] else {
+            return UITableView.automaticDimension
+        }
+
+        return HyperlinkCell.height
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard case .row = representedObject[indexPath.row] else {
+            return AboutHeaderTableViewCell.estimatedHeight
+        }
+
         return HyperlinkCell.height
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return AboutHeaderView.height
+        return .leastNonzeroMagnitude
     }
+}
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName)
-    }
+private enum AboutCell {
+    case header
+    case row(HyperlinkItem)
 }
