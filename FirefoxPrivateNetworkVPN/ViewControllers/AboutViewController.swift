@@ -24,12 +24,9 @@ class AboutViewController: UIViewController, Navigating {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupNavigationBar()
-
         dataSource = AboutDataSource(with: tableView)
-        tableView.tableFooterView = UIView()
-        tableView.tableHeaderView = UIView()
-
         subscribeToRowSelected()
     }
 
