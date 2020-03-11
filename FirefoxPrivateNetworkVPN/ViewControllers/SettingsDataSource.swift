@@ -52,13 +52,11 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
             return setupSignoutCell(tableView, cellForRowAt: indexPath) ?? UITableViewCell(frame: .zero)
         }
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? AccountInformationCell
-            else { return UITableViewCell(frame: .zero) }
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? AccountInformationCell
         let settingsItem = representedObject[indexPath.row]
-        cell.setup(settingsItem, isDeviceAdded: account?.hasDeviceBeenAdded ?? false)
+        cell?.setup(settingsItem, isDeviceAdded: account?.hasDeviceBeenAdded ?? false)
 
-        return cell
+        return cell ?? UITableViewCell(frame: .zero)
     }
 
     private func setupSignoutCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> SignoutTableViewCell? {
