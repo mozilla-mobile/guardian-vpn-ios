@@ -47,7 +47,6 @@ class SettingsViewController: UIViewController, Navigating {
 
         subscribeToRowSelected()
         subscribeToButtonTapped()
-        subscribeToSignoutSelected()
         subscribeToActiveSubscriptionNotification()
     }
 
@@ -90,9 +89,7 @@ class SettingsViewController: UIViewController, Navigating {
                 self?.navigate(to: navigableItem)
             })
             .disposed(by: self.disposeBag)
-    }
 
-    private func subscribeToSignoutSelected() {
         //swiftlint:disable:next trailing_closure
         dataSource?.signoutSelectedSubject
             .subscribe(onNext: { _ in
