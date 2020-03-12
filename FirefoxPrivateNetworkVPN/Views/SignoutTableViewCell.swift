@@ -16,7 +16,7 @@ class SignoutTableViewCell: UITableViewCell {
     static let height: CGFloat = UIScreen.isiPad ? 104.0 : 71.0
 
     @IBOutlet weak var signoutButton: UIButton!
-    let signoutSubject = PublishSubject<Void>()
+    weak var signoutSubject: PublishSubject<Void>?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +25,6 @@ class SignoutTableViewCell: UITableViewCell {
     }
 
     @IBAction func signoutSelected() {
-        signoutSubject.onNext(())
+        signoutSubject?.onNext(())
     }
 }

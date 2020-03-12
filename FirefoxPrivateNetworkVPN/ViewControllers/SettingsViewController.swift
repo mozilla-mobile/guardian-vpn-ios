@@ -94,7 +94,7 @@ class SettingsViewController: UIViewController, Navigating {
 
     private func subscribeToSignoutSelected() {
         //swiftlint:disable:next trailing_closure
-        dataSource?.signoutSelected
+        dataSource?.signoutSelectedSubject
             .subscribe(onNext: { _ in
                 DependencyFactory.sharedFactory.accountManager.logout { [weak self] _ in
                     self?.navigate(to: .landing)
