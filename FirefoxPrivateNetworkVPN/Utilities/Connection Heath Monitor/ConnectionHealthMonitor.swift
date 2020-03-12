@@ -42,15 +42,31 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
     }
 
     func start(hostAddress: String) {
-
         self.hostAddress = hostAddress
 
+        configureLogging()
+        startStateMachine()
+        startPinging()
+        observeRxValue()
+    }
+
+    private func configureLogging() {
+        //swiftlint:disable:next trailing_closure
+        _currentState
+            .distinctUntilChanged()
+            .withPrevious(startWith: _currentState.value)
+            .subscribe(onNext: { prevState, currentState in
+                  Logger.global?.log(message: "Connection health updated: \(prevState) -> \(currentState)")
+            }).disposed(by: disposeBag)
+    }
+
+    private func startStateMachine() {
         if _currentState.value == .initial {
             move(to: .stable)
         }
+    }
 
-        startPinging()
-
+    private func observeRxValue() {
         //swiftlint:disable:next trailing_closure
         rxValueObserving
             .rx
@@ -82,10 +98,9 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
     }
 
     private func move(to destinationState: ConnectionHealth) {
-        OSLog.log(.debug, "[Connection health monitor] %@ -> %@",
-                  args: String(describing: _currentState.value), String(describing: destinationState))
+        let originalState = _currentState.value
 
-        switch (_currentState.value, destinationState) {
+        switch (originalState, destinationState) {
         case (_, .stable):
             _currentState.accept(.stable)
             startUnstableTimer()
