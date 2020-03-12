@@ -52,11 +52,11 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
             }
         }
     }
-    
+
     @IBAction func accountButtonTapped() {
         buttonTappedSubject.onNext(.hyperlink(HyperlinkItem.account.url))
     }
-    
+
     private func setAvatar(_ result: Result<Data?, GuardianAPIError>) {
         guard case .success(let data) = result,
             let imageData = data,

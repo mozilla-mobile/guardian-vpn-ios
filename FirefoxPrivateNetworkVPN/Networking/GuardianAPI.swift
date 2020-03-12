@@ -104,7 +104,7 @@ class GuardianAPI: NetworkRequesting {
             completion(result.decode(to: Release.self))
         }
     }
-    
+
     static func downloadAvatar(_ url: URL, completion: @escaping (Result<Data?, GuardianAPIError>) -> Void) {
         let urlRequest = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         NetworkLayer.fire(urlRequest: urlRequest, completion: completion)
