@@ -45,25 +45,26 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
         if let user = user {
             nameLabel.text = user.displayName.isEmpty ? LocalizedString.settingsDefaultName.value : user.displayName
             emailLabel.text = user.email
-
             if let url = user.avatarURL {
-                downloadAvatar(url)
-            }
-        }
-    }
-
-    private func downloadAvatar(_ url: URL) {
-        let dataTask = URLSession.shared.dataTask(with: url) { [weak self] maybeData, _, _ in
-            if let data = maybeData, let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self?.avatarImageView.image = image
+                GuardianAPI.downloadAvatar(url) { [weak self] result in
+                    self?.setAvatar(result)
                 }
             }
         }
-        dataTask.resume()
     }
-
+    
     @IBAction func accountButtonTapped() {
         buttonTappedSubject.onNext(.hyperlink(HyperlinkItem.account.url))
+    }
+    
+    private func setAvatar(_ result: Result<Data?, GuardianAPIError>) {
+        guard case .success(let data) = result,
+            let imageData = data,
+            let image = UIImage(data: imageData) else {
+                return
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.avatarImageView.image = image
+        }
     }
 }
