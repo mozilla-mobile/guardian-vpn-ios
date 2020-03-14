@@ -19,6 +19,8 @@ class LandingViewController: UIViewController, Navigating {
     @IBOutlet weak private var getStartedButton: UIButton!
     @IBOutlet weak private var learnMoreButton: UIButton!
     @IBOutlet weak private var imageView: UIImageView!
+    @IBOutlet weak private var centerView: UIView!
+    @IBOutlet weak private var stackView: UIStackView!
 
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
@@ -38,6 +40,11 @@ class LandingViewController: UIViewController, Navigating {
         getStartedButton.cornerRadius = getStartedButton.frame.height/10
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        layoutCenterView()
+    }
+
     @IBAction func getStarted() {
         navigate(to: .login)
     }
@@ -53,5 +60,10 @@ class LandingViewController: UIViewController, Navigating {
         getStartedButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
         learnMoreButton.setTitle(LocalizedString.learnMore.value, for: .normal)
         imageView.image = UIImage(named: "logo")
+    }
+
+    private func layoutCenterView() {
+        centerView.translatesAutoresizingMaskIntoConstraints = true
+        centerView.center.y = stackView.frame.minY/2
     }
 }

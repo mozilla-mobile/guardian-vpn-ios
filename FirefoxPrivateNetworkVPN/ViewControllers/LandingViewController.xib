@@ -22,9 +22,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LandingViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
+                <outlet property="centerView" destination="sBV-6t-Eg4" id="wZp-9p-MXT"/>
                 <outlet property="getStartedButton" destination="E5n-2e-PN9" id="GTY-bb-J5x"/>
                 <outlet property="imageView" destination="Xtd-yb-bAs" id="vdD-gC-iLd"/>
                 <outlet property="learnMoreButton" destination="Xsj-jW-6dB" id="cn0-zz-K9f"/>
+                <outlet property="stackView" destination="eEb-rt-3fv" id="cYZ-Nd-KB7"/>
                 <outlet property="subtitleLabel" destination="aKt-Ai-EeU" id="YS3-dN-8v2"/>
                 <outlet property="titleLabel" destination="hn5-H4-ufw" id="lSz-4h-jgn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="bv5-qa-dEa"/>
@@ -36,7 +38,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBV-6t-Eg4">
-                    <rect key="frame" x="0.0" y="413.5" width="834" height="167.5"/>
+                    <rect key="frame" x="0.0" y="415" width="834" height="164.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xtd-yb-bAs">
                             <rect key="frame" x="377" y="0.0" width="80" height="80"/>
@@ -46,13 +48,13 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum Dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn5-H4-ufw">
-                            <rect key="frame" x="64" y="112" width="706" height="26"/>
+                            <rect key="frame" x="64" y="112" width="706" height="22"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                             <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKt-Ai-EeU">
-                            <rect key="frame" x="32" y="150" width="770" height="17.5"/>
+                            <rect key="frame" x="32" y="146" width="770" height="18.5"/>
                             <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                             <color key="textColor" name="custom_grey40"/>
                             <nil key="highlightedColor"/>
@@ -165,12 +167,12 @@
                 <constraint firstItem="eEb-rt-3fv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="0Yh-Ae-3lh"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0ce-vF-XyJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sBV-6t-Eg4" secondAttribute="trailing" id="2F6-EW-b1R"/>
-                <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="NqX-TW-nV6"/>
+                <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" priority="999" constant="-100" id="NqX-TW-nV6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="eEb-rt-3fv" secondAttribute="bottom" constant="16" id="Ykw-uO-0Fb"/>
                 <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aT5-lV-kfi"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="eEb-rt-3fv" secondAttribute="bottom" constant="32" id="sKc-I3-33H"/>
                 <constraint firstItem="eEb-rt-3fv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wYh-eS-DLO"/>
-                <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-80" id="wgH-oM-zTo"/>
+                <constraint firstItem="sBV-6t-Eg4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" priority="999" constant="-80" id="wgH-oM-zTo"/>
                 <constraint firstItem="eEb-rt-3fv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="64" id="zt7-DO-idw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
