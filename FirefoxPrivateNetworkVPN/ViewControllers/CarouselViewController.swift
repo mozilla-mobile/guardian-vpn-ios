@@ -18,7 +18,7 @@ class CarouselViewController: UIViewController, Navigating {
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var subtitleLabel: UILabel!
     @IBOutlet weak private var getStartedButton: UIButton!
-    @IBOutlet weak var centerView: UIView!
+    @IBOutlet weak private var centerView: UIView!
 
     var type: CarouselViewType
 
