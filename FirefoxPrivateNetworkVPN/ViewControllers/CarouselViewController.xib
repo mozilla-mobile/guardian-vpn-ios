@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -36,7 +36,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBV-6t-Eg4">
-                    <rect key="frame" x="0.0" y="515" width="834" height="164.5"/>
+                    <rect key="frame" x="0.0" y="506" width="834" height="182.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xtd-yb-bAs">
                             <rect key="frame" x="377" y="0.0" width="80" height="80"/>
@@ -52,7 +52,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKt-Ai-EeU">
-                            <rect key="frame" x="32" y="146" width="770" height="18.5"/>
+                            <rect key="frame" x="261.5" y="146" width="311" height="36.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" priority="999" constant="311" id="Ni8-cc-dfU"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                             <color key="textColor" name="custom_grey40"/>
                             <nil key="highlightedColor"/>
@@ -61,6 +64,7 @@
                     <constraints>
                         <constraint firstItem="aKt-Ai-EeU" firstAttribute="centerX" secondItem="sBV-6t-Eg4" secondAttribute="centerX" id="50T-Hn-SeL"/>
                         <constraint firstItem="aKt-Ai-EeU" firstAttribute="top" secondItem="hn5-H4-ufw" secondAttribute="bottom" constant="8" id="6Jn-Pp-V41"/>
+                        <constraint firstItem="aKt-Ai-EeU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sBV-6t-Eg4" secondAttribute="leading" constant="32" id="Aup-4R-gIB"/>
                         <constraint firstItem="aKt-Ai-EeU" firstAttribute="top" secondItem="hn5-H4-ufw" secondAttribute="bottom" constant="10" id="FUu-T2-p3z">
                             <variation key="heightClass=regular-widthClass=regular" constant="12"/>
                         </constraint>
@@ -72,7 +76,6 @@
                         <constraint firstItem="hn5-H4-ufw" firstAttribute="top" secondItem="Xtd-yb-bAs" secondAttribute="bottom" constant="32" id="miP-sx-sQc"/>
                         <constraint firstAttribute="bottom" secondItem="aKt-Ai-EeU" secondAttribute="bottom" id="suo-Xo-WXf"/>
                         <constraint firstItem="hn5-H4-ufw" firstAttribute="leading" secondItem="sBV-6t-Eg4" secondAttribute="leading" constant="64" id="xNc-hd-HzE"/>
-                        <constraint firstItem="aKt-Ai-EeU" firstAttribute="leading" secondItem="sBV-6t-Eg4" secondAttribute="leading" constant="32" id="xc6-ni-Dm5"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
