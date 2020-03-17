@@ -161,6 +161,7 @@ class AccountManager: AccountManaging, Navigating {
 
         Credentials.removeAll()
         Device.removeFromUserDefaults()
+        User.removeFromUserDefaults()
         [VPNCountry].removeFromUserDefaults()
         VPNCity.removeFromUserDefaults()
 
