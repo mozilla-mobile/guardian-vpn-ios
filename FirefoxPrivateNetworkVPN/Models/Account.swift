@@ -37,8 +37,6 @@ class Account {
         self.credentials = credentials
         self.user = user
         self.currentDevice = currentDevice
-
-//        verifyCurrentDevice()
     }
 
     func addCurrentDevice(completion: @escaping (Result<Void, Error>) -> Void) {
@@ -111,28 +109,6 @@ class Account {
                 }
             }
             return Disposables.create()
-        }
-    }
-
-    private func verifyCurrentDevice() {
-        if let current = currentDevice, !user.has(device: current) {
-            currentDevice = nil
-            Device.removeFromUserDefaults()
-            Logger.global?.log(message: "Removed device from cache")
-            return
-        }
-
-        if let key = credentials.deviceKeys.publicKey.base64Key(), let current = user.device(with: key) {
-            currentDevice = current
-            current.saveToUserDefaults()
-            Logger.global?.log(message: "Saved device to cache")
-            return
-        }
-
-        if let current = Device.fetchFromUserDefaults(), current.publicKey != credentials.deviceKeys.publicKey.base64Key() {
-            currentDevice = nil
-            Device.removeFromUserDefaults()
-            Logger.global?.log(message: "Removed device from cache")
         }
     }
 }
