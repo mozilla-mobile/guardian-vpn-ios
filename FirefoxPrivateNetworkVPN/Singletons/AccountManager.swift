@@ -74,18 +74,19 @@ class AccountManager: AccountManaging, Navigating {
         }
     }
 
-    func loginWithStoredCredentials(completion: @escaping (Result<Void, Error>) -> Void) {
+    func loginWithStoredCredentials() -> Bool {
         guard let credentials = Credentials.fetchAll(),
             let currentDevice = Device.fetchFromUserDefaults(),
-            let user = User.fetchFromUserDefaults() else {
-                completion(.failure(GuardianError.needToLogin))
-                return
+            let user = User.fetchFromUserDefaults(),
+            let serverList = [VPNCountry].fetchFromUserDefaults() else {
+                return false
         }
 
         self.account = Account(credentials: credentials, user: user, currentDevice: currentDevice)
+        self.availableServers = serverList
         DependencyFactory.sharedFactory.heartbeatMonitor.start()
 
-        completion(.success(()))
+        return true
     }
 
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {

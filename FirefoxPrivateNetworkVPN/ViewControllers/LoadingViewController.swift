@@ -35,14 +35,11 @@ class LoadingViewController: UIViewController, Navigating {
 
         delayNavigation(timeInterval: Self.navigationDelay)
 
-        DependencyFactory.sharedFactory.accountManager.loginWithStoredCredentials { [weak self] result in
-            switch result {
-            case .success:
-                self?.navigateRelay.accept(.home)
-            case .failure:
-                self?.navigateRelay.accept(.landing)
-            }
+        guard DependencyFactory.sharedFactory.accountManager.loginWithStoredCredentials() else {
+            navigateRelay.accept(.landing)
+            return
         }
+        navigateRelay.accept(.home)
     }
 
     private func delayNavigation(timeInterval: DispatchTimeInterval) {

@@ -17,7 +17,7 @@ protocol AccountManaging {
     var availableServers: [VPNCountry]? { get }
 
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void)
-    func loginWithStoredCredentials(completion: @escaping (Result<Void, Error>) -> Void)
+    func loginWithStoredCredentials() -> Bool
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
     func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void)
 }
