@@ -23,7 +23,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
 
     let rowSelected = PublishSubject<NavigableItem>()
     let headerButtonSelected = PublishSubject<NavigableItem>()
-    let signoutSelected = PublishSubject<Void>()
+    let signoutSelectedSubject = PublishSubject<Void>()
 
     // MARK: - Initialization
     init(with tableView: UITableView) {
@@ -52,22 +52,16 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
             return setupSignoutCell(tableView, cellForRowAt: indexPath) ?? UITableViewCell(frame: .zero)
         }
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? AccountInformationCell
-            else { return UITableViewCell(frame: .zero) }
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? AccountInformationCell
         let settingsItem = representedObject[indexPath.row]
-        cell.setup(settingsItem, isDeviceAdded: account?.hasDeviceBeenAdded ?? false)
+        cell?.setup(settingsItem, isDeviceAdded: account?.hasDeviceBeenAdded ?? false)
 
-        return cell
+        return cell ?? UITableViewCell(frame: .zero)
     }
 
     private func setupSignoutCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> SignoutTableViewCell? {
         let cell = tableView.dequeueReusableCell(withIdentifier: signoutCellName, for: indexPath) as? SignoutTableViewCell
-
-        //swiftlint:disable:next trailing_closure
-        cell?.signoutSubject.subscribe(onNext: { [weak self] in
-            self?.signoutSelected.onNext(())
-        }).disposed(by: disposeBag)
+        cell?.signoutSubject = signoutSelectedSubject
 
         return cell
     }

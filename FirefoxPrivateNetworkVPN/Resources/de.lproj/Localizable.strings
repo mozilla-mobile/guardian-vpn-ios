@@ -11,8 +11,7 @@
 
 // MARK: - Landing Screen
 "landingTitle" = "Firefox Private Network";
-"landingSubtitle" = "Ein schnelles, sicheres und praktisches VPN
-   (Virtuelles Privates Netzwerk)";
+"landingSubtitle" = "Ein schnelles, sicheres und praktisches VPN (Virtuelles Privates Netzwerk)";
 "noLogsTitle" = "Kein Aktivitätsprotokoll vorhanden";
 "noLogsSubtitle" = "Wir sind Mozilla. Wir speichern deine Aktivitäten nie.";
 "encryptionTitle" = "Verschlüsselung auf Geräteebene";
