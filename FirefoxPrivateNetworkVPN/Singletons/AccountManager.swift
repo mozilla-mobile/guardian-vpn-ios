@@ -75,46 +75,17 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     func loginWithStoredCredentials(completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let credentials = Credentials.fetchAll(), let currentDevice = Device.fetchFromUserDefaults() else {
-            completion(.failure(GuardianError.needToLogin))
-            return
+        guard let credentials = Credentials.fetchAll(),
+            let currentDevice = Device.fetchFromUserDefaults(),
+            let user = User.fetchFromUserDefaults() else {
+                completion(.failure(GuardianError.needToLogin))
+                return
         }
 
-        let account = Account(credentials: credentials, currentDevice: currentDevice)
+        self.account = Account(credentials: credentials, user: user, currentDevice: currentDevice)
+        DependencyFactory.sharedFactory.heartbeatMonitor.start()
 
-        let dispatchGroup = DispatchGroup()
-        var setUserError: Error?
-        var retrieveServersError: Error?
-
-        dispatchGroup.enter()
-        account.getUser { result in
-            if case .failure(let error) = result {
-                setUserError = error
-            }
-            dispatchGroup.leave()
-        }
-
-        dispatchGroup.enter()
-        retrieveVPNServers(with: account.token) { result in
-            if case .failure(let error) = result {
-                retrieveServersError = error
-            }
-            dispatchGroup.leave()
-        }
-
-        dispatchGroup.notify(queue: .main) {
-            switch (setUserError, retrieveServersError) {
-            case (.none, .none):
-                credentials.saveAll()
-                self.account = account
-                self.subscribeToExpiredSubscriptionNotification()
-                DependencyFactory.sharedFactory.heartbeatMonitor.start()
-                completion(.success(()))
-            case (let userError, let serverError):
-                let error = userError ?? serverError
-                completion(.failure(error ?? GuardianAPIError.unknown))
-            }
-        }
+        completion(.success(()))
     }
 
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
