@@ -134,7 +134,7 @@ class AccountManager: AccountManaging, Navigating {
         }
     }
 
-    private func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void) {
         GuardianAPI.availableServers(with: token) { result in
             switch result {
             case .success (let servers):

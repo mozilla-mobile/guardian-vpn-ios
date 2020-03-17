@@ -16,12 +16,14 @@ class HeartbeatMonitor: HeartbeatMonitoring {
 
     private static let timeInterval: TimeInterval = 3600
     private var timer: DispatchSourceTimer?
+    private var accountManager: AccountManaging { return DependencyFactory.sharedFactory.accountManager }
 
     func start() {
         timer = DispatchSource.makeTimerSource()
         timer?.schedule(deadline: .now(), repeating: .seconds(3600), leeway: .seconds(1))
         timer?.setEventHandler { [weak self] in
-            self?.poll()
+            self?.pollUser()
+            self?.pollVPNServers()
         }
         timer?.activate()
     }
@@ -30,14 +32,8 @@ class HeartbeatMonitor: HeartbeatMonitoring {
         timer = nil
     }
 
-    //poll now and restart the timer
-    func pollNow() {
-        stop()
-        start()
-    }
-
-    private func poll() {
-        guard let account = DependencyFactory.sharedFactory.accountManager.account,
+    private func pollUser() {
+        guard let account = accountManager.account,
             account.hasDeviceBeenAdded else { return }
 
         account.getUser { result in
@@ -46,10 +42,16 @@ class HeartbeatMonitor: HeartbeatMonitoring {
                 NotificationCenter.default.post(name: NSNotification.Name.activeSubscriptionNotification, object: nil)
             case .failure(let error):
                 if let subscriptionError = error as? GuardianAPIError,
-                subscriptionError.isAuthError {
+                    subscriptionError.isAuthError {
                     NotificationCenter.default.post(name: NSNotification.Name.expiredSubscriptionNotification, object: nil)
                 }
             }
         }
+    }
+
+    private func pollVPNServers() {
+        guard let account = accountManager.account else { return }
+
+        accountManager.retrieveVPNServers(with: account.token) { _ in }
     }
 }

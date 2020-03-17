@@ -55,7 +55,8 @@ class SettingsViewController: UIViewController, Navigating {
         setupNavigationBar()
         tableView.reloadData()
 
-        DependencyFactory.sharedFactory.heartbeatMonitor.pollNow()
+        //this restarts the timer and makes the getUser call immediately
+        DependencyFactory.sharedFactory.heartbeatMonitor.start()
     }
 
     override func viewDidLayoutSubviews() {
