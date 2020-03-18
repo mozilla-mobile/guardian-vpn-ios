@@ -23,8 +23,12 @@ class DeviceManagementViewModel {
     let deletionErrorSubject = PublishSubject<GuardianError>()
 
     var sortedDevices: [Device] {
-        var devices = account?.user.devices.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice } ?? []
+        //sort so the current device is always first in the list
+        var devices = account?.user.devices.sorted {
+            return $0 == account?.currentDevice && !($1 == account?.currentDevice)
+            } ?? []
 
+        //if their device could not be added because they're over their device limit, add a mock device to display as their current one
         if let account = account, !account.hasDeviceBeenAdded {
             devices.insert(Device.mock(name: UIDevice.current.name), at: 0)
         }
@@ -61,14 +65,5 @@ class DeviceManagementViewModel {
             default: break
             }
         }).disposed(by: disposeBag)
-    }
-
-    private func formattedDeviceList(with devices: [Device]) -> [Device] {
-        var devices = devices.sorted { return $0.isCurrentDevice && !$1.isCurrentDevice }
-
-        if let account = account, !account.hasDeviceBeenAdded {
-            devices.insert(Device.mock(name: UIDevice.current.name), at: 0)
-        }
-        return devices
     }
 }

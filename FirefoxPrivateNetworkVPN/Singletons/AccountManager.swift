@@ -19,6 +19,7 @@ class AccountManager: AccountManaging, Navigating {
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry]?
     private let disposeBag = DisposeBag()
+    private let accountStore = AccountStore()
 
     init() {
         subscribeToExpiredSubscriptionNotification()
@@ -27,7 +28,9 @@ class AccountManager: AccountManaging, Navigating {
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void) {
         Credentials.removeAll()
         let credentials = Credentials(with: verification)
-        let account = Account(credentials: credentials, user: verification.user)
+        let account = Account(credentials: credentials,
+                              user: verification.user,
+                              accountStore: accountStore)
 
         let dispatchGroup = DispatchGroup()
         var addDeviceError: Error?
@@ -76,13 +79,17 @@ class AccountManager: AccountManaging, Navigating {
 
     func loginWithStoredCredentials() -> Bool {
         guard let credentials = Credentials.fetchAll(),
-            let currentDevice = Device.fetchFromUserDefaults(),
+            let currentDevice: Device = accountStore.readValue(forKey: .device),
             let user = User.fetchFromUserDefaults(),
             let serverList = [VPNCountry].fetchFromUserDefaults() else {
                 return false
         }
 
-        self.account = Account(credentials: credentials, user: user, currentDevice: currentDevice)
+        self.account = Account(credentials: credentials,
+                               user: user,
+                               currentDevice: currentDevice,
+                               accountStore: accountStore)
+
         self.availableServers = serverList
         DependencyFactory.sharedFactory.heartbeatMonitor.start()
 
@@ -131,11 +138,12 @@ class AccountManager: AccountManaging, Navigating {
         account = nil
         availableServers = nil
 
+        accountStore.removeAll()
         Credentials.removeAll()
-        Device.removeFromUserDefaults()
-        User.removeFromUserDefaults()
-        [VPNCountry].removeFromUserDefaults()
-        VPNCity.removeFromUserDefaults()
+//        Device.removeFromUserDefaults()
+//        User.removeFromUserDefaults()
+//        [VPNCountry].removeFromUserDefaults()
+//        VPNCity.removeFromUserDefaults()
 
         Logger.global?.log(message: "Reset account")
     }

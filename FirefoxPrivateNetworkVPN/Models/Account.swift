@@ -16,6 +16,7 @@ class Account {
     private var credentials: Credentials
     private(set) var currentDevice: Device?
     private(set) var user: User
+    private let accountStore: AccountStore
 
     var token: String {
         return credentials.verificationToken
@@ -33,7 +34,8 @@ class Account {
         return currentDevice != nil
     }
 
-    init(credentials: Credentials, user: User, currentDevice: Device? = nil) {
+    init(credentials: Credentials, user: User, currentDevice: Device? = nil, accountStore: AccountStore) {
+        self.accountStore = accountStore
         self.credentials = credentials
         self.user = user
         self.currentDevice = currentDevice
@@ -60,7 +62,8 @@ class Account {
             switch result {
             case .success(let device):
                 self.currentDevice = device
-                device.saveToUserDefaults()
+                self.accountStore.saveValue(forKey: .device, value: device)
+
                 self.getUser { _ in //TODO: Change this to make get devices call when its available
                     completion(.success(()))
                 }

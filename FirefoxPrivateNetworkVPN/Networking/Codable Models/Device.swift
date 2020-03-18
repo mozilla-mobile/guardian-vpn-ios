@@ -11,9 +11,8 @@
 
 import Foundation
 
-struct Device: Codable, UserDefaulting {
+struct Device: Codable {
 
-    static let userDefaultsKey = "device"
     let name: String
     let publicKey: String
     let ipv4Address: String
@@ -21,13 +20,6 @@ struct Device: Codable, UserDefaulting {
     let createdAtDate: Date
     private let createdAtDateString: String
     var isBeingRemoved: Bool = false
-    var isMockDevice: Bool?
-
-    var isCurrentDevice: Bool {
-        if isMockDevice == true { return true }
-
-        return self == Device.fetchFromUserDefaults()
-    }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -75,8 +67,6 @@ extension Device {
         ipv4Address = ""
         ipv6Address = ""
         createdAtDateString = ""
-        isMockDevice = true
-
     }
 
     static func mock(name: String) -> Device {

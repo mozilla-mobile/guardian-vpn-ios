@@ -51,7 +51,6 @@
 		F471537A23C4E81F00226CB8 /* ReleaseMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */; };
 		F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4720258238C3D620033A14B /* UIFont+Custom.swift */; };
 		F474281024214C7B00056A81 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474280F24214C7B00056A81 /* Subscription.swift */; };
-		F47428122421711400056A81 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47428112421711400056A81 /* AccountRepository.swift */; };
 		F477A20A23E3508F00585066 /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F477A20923E3508F00585066 /* LandingViewController.xib */; };
 		F477A20C23E352E900585066 /* CarouselViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F477A20B23E352E900585066 /* CarouselViewController.xib */; };
 		F478E47F23C7842D00D17FE0 /* ReleaseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E47E23C7842D00D17FE0 /* ReleaseInfo.swift */; };
@@ -131,6 +130,7 @@
 		F4D3D2042416C5F3001B73D1 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3D2032416C5F2001B73D1 /* UIDevice+Extensions.swift */; };
 		F4DF5B1423CFBDAA006A7E4C /* UpdateRecommendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */; };
 		F4DF5B1523CFBDAA006A7E4C /* UpdateRecommendedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */; };
+		F4DFBB262422D14F007D27FA /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DFBB252422D14F007D27FA /* AccountStore.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
 		F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E908B92371C45600EB9FE6 /* Lottie.framework */; };
@@ -394,7 +394,6 @@
 		F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitor.swift; sourceTree = "<group>"; };
 		F4720258238C3D620033A14B /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
 		F474280F24214C7B00056A81 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
-		F47428112421711400056A81 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		F477A20923E3508F00585066 /* LandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
 		F477A20B23E352E900585066 /* CarouselViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselViewController.xib; sourceTree = "<group>"; };
 		F478E47E23C7842D00D17FE0 /* ReleaseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseInfo.swift; sourceTree = "<group>"; };
@@ -503,6 +502,7 @@
 		F4D8D952236A2BA000BE5FFC /* SettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
 		F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRecommendedViewController.swift; sourceTree = "<group>"; };
 		F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateRecommendedViewController.xib; sourceTree = "<group>"; };
+		F4DFBB252422D14F007D27FA /* AccountStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
 		F4E33D802358BF1500B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4E8B2342368C39C001CEC8A /* TunnelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelAction.swift; sourceTree = "<group>"; };
 		F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkItem.swift; sourceTree = "<group>"; };
@@ -647,7 +647,7 @@
 			isa = PBXGroup;
 			children = (
 				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
-				F47428112421711400056A81 /* AccountRepository.swift */,
+				F4DFBB252422D14F007D27FA /* AccountStore.swift */,
 				F41CCA1A23711C7A0018DC43 /* DependencyFactory.swift */,
 				F40109832411877E006DFF96 /* EmailManager.swift */,
 				F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */,
@@ -1673,6 +1673,7 @@
 				F4E908CE2371CAAD00EB9FE6 /* NetworkingEnums.swift in Sources */,
 				F471537A23C4E81F00226CB8 /* ReleaseMonitor.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
+				F4DFBB262422D14F007D27FA /* AccountStore.swift in Sources */,
 				F401097923FEE2D8006DFF96 /* HeartbeatMonitor.swift in Sources */,
 				527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */,
 				F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */,
@@ -1689,7 +1690,6 @@
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
 				F42304892372101000572A93 /* HyperlinkCell.swift in Sources */,
 				F4E9090D2371CAAD00EB9FE6 /* CityVPNCell.swift in Sources */,
-				F47428122421711400056A81 /* AccountRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
