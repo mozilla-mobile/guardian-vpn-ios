@@ -18,6 +18,7 @@ class CarouselViewController: UIViewController, Navigating {
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var subtitleLabel: UILabel!
     @IBOutlet weak private var getStartedButton: UIButton!
+    @IBOutlet weak private var centerView: UIView!
 
     var type: CarouselViewType
 
@@ -40,6 +41,10 @@ class CarouselViewController: UIViewController, Navigating {
         getStartedButton.cornerRadius = getStartedButton.frame.height/10
     }
 
+    override func viewDidLayoutSubviews() {
+        layoutCenterView()
+    }
+
     private func setupView() {
         imageView.image = type.image
         titleLabel.text = type.title
@@ -52,6 +57,11 @@ class CarouselViewController: UIViewController, Navigating {
         default:
             getStartedButton.isHidden = true
         }
+    }
+
+    private func layoutCenterView() {
+        centerView.translatesAutoresizingMaskIntoConstraints = true
+        centerView.center.y = getStartedButton.frame.minY/2
     }
 
     @IBAction func getStarted() {

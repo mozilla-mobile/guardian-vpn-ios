@@ -74,7 +74,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     }
 
     override func viewDidLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+        super.viewDidLayoutSubviews()
         layoutPageControl()
     }
 
