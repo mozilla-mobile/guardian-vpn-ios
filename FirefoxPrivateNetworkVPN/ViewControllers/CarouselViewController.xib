@@ -45,7 +45,7 @@
                                 <constraint firstAttribute="width" constant="80" id="9ah-6o-3m6"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum Dolor" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn5-H4-ufw">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum Dolor" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn5-H4-ufw">
                             <rect key="frame" x="64" y="112" width="706" height="22"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                             <color key="textColor" name="custom_grey50"/>
