@@ -1869,7 +1869,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "$(VERSION_NAME)";
+				MARKETING_VERSION = 100;
 				OTHER_SWIFT_FLAGS = "";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG -DSTAGING";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
@@ -1964,7 +1964,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "$(VERSION_NAME)";
+				MARKETING_VERSION = 100;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DSTAGING";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "Firefox Private Network VPN";
@@ -2145,7 +2145,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "$(VERSION_NAME)";
+				MARKETING_VERSION = 100;
 				OTHER_SWIFT_FLAGS = "";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
