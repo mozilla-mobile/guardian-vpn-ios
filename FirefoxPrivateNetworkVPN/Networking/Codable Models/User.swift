@@ -11,9 +11,7 @@
 
 import Foundation
 
-struct User: Codable, UserDefaulting {
-    static var userDefaultsKey: String = "user"
-
+struct User: Codable {
     let email: String
     let displayName: String
     let avatarURL: URL?

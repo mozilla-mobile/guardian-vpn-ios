@@ -81,7 +81,7 @@ class AccountManager: AccountManaging, Navigating {
     func loginWithStoredCredentials() -> Bool {
         guard let credentials = Credentials.fetchAll(),
             let currentDevice: Device = accountStore.readValue(forKey: .device),
-            let user = User.fetchFromUserDefaults(),
+            let user: User = accountStore.readValue(forKey: .user),
             let serverList = [VPNCountry].fetchFromUserDefaults() else {
                 return false
         }

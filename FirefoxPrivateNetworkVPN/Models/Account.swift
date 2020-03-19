@@ -83,7 +83,7 @@ class Account {
             switch result {
             case .success(let user):
                 self.user = user
-                user.saveToUserDefaults()
+                self.accountStore.saveValue(forKey: .user, value: user)
                 completion(.success(()))
             case .failure(let error):
                 Logger.global?.log(message: "Account Error: \(error)")
