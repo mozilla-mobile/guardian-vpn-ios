@@ -18,18 +18,26 @@ class ReleaseMonitor: ReleaseMonitoring {
 
     private static let timeInterval: TimeInterval = 21600
     private var timer: DispatchSourceTimer?
-    private var _updateStatus = BehaviorRelay<UpdateStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus())
+    private var releaseInfo: ReleaseInfo?
+    private var _updateStatus: BehaviorRelay<UpdateStatus?>
+    //pass this in somehow
+    private let store = DependencyFactory.sharedFactory.accountManager.accountStore
 
     var updateStatus: Observable<UpdateStatus?> {
         return _updateStatus.asObservable()
     }
 
     private var pollingDelay: DispatchTime {
-        guard let latestRelease = ReleaseInfo.fetchFromUserDefaults() else { return .now() }
+        guard let latestRelease = releaseInfo else { return .now() }
         let delayInSeconds = ReleaseMonitor.timeInterval + latestRelease.dateRetrieved.timeIntervalSinceNow
         guard delayInSeconds > 0 else { return .now() }
 
         return .now() + DispatchTimeInterval.seconds(Int(delayInSeconds))
+    }
+
+    init() {
+        self.releaseInfo = store.readValue(forKey: .releaseInfo)
+        _updateStatus = BehaviorRelay<UpdateStatus?>(value: releaseInfo?.getUpdateStatus())
     }
 
     func start() {
@@ -49,7 +57,8 @@ class ReleaseMonitor: ReleaseMonitoring {
         GuardianAPI.latestVersion { [weak self] response in
             guard case .success(let release) = response else { return }
             let releaseInfo = ReleaseInfo(with: release)
-            releaseInfo.saveToUserDefaults()
+            self?.releaseInfo = releaseInfo
+            self?.store.saveValue(forKey: .releaseInfo, value: releaseInfo)
 
             self?._updateStatus.accept(releaseInfo.getUpdateStatus())
         }

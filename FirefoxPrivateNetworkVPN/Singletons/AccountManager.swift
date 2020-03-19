@@ -19,7 +19,8 @@ class AccountManager: AccountManaging, Navigating {
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry]?
     private let disposeBag = DisposeBag()
-    private let accountStore = AccountStore()
+    //make private
+    let accountStore = AccountStore()
 
     init() {
         subscribeToExpiredSubscriptionNotification()

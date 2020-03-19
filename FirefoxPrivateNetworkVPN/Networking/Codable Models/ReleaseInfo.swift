@@ -11,8 +11,7 @@
 
 import UIKit
 
-struct ReleaseInfo: UserDefaulting {
-    static var userDefaultsKey = "LatestRelease"
+struct ReleaseInfo: Codable {
 
     private let latestVersion: String
     private let minimumVersion: String
@@ -39,7 +38,6 @@ struct ReleaseInfo: UserDefaulting {
     }
 
     func getUpdateStatus(of currentVersion: String = UIApplication.appVersion) -> UpdateStatus {
-
         switch (currentVersion.compare(with: latestVersion), currentVersion.compare(with: minimumVersion)) {
         case (_, .orderedAscending):
             return .required
