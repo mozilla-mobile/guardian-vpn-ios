@@ -140,6 +140,8 @@ class VPNToggleView: UIView {
             stoppingRippleAnimation()
             resetConnectionTimeAndHealth()
         case .off:
+            connectionHealthMonitor.stop()
+            resetConnectionTimeAndHealth()
             resetRippleAnimation()
         default:
             resetConnectionTimeAndHealth()
