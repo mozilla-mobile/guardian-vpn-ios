@@ -20,6 +20,7 @@ class AccountStore {
         case releaseInfo
     }
 
+    static let sharedManager = AccountStore()
     let userDefaults: UserDefaults
 
     // MARK: - Lifecycle

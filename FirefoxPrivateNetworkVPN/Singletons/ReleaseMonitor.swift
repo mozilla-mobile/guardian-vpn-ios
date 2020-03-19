@@ -14,14 +14,11 @@ import RxSwift
 import RxCocoa
 
 class ReleaseMonitor: ReleaseMonitoring {
-    static let sharedManager = ReleaseMonitor()
-
     private static let timeInterval: TimeInterval = 21600
+    private let accountStore: AccountStore
     private var timer: DispatchSourceTimer?
     private var releaseInfo: ReleaseInfo?
     private var _updateStatus: BehaviorRelay<UpdateStatus?>
-    //pass this in somehow
-    private let store = DependencyFactory.sharedFactory.accountManager.accountStore
 
     var updateStatus: Observable<UpdateStatus?> {
         return _updateStatus.asObservable()
@@ -35,8 +32,9 @@ class ReleaseMonitor: ReleaseMonitoring {
         return .now() + DispatchTimeInterval.seconds(Int(delayInSeconds))
     }
 
-    init() {
-        self.releaseInfo = store.readValue(forKey: .releaseInfo)
+    init(accountStore: AccountStore) {
+        self.accountStore = accountStore
+        self.releaseInfo = accountStore.readValue(forKey: .releaseInfo)
         _updateStatus = BehaviorRelay<UpdateStatus?>(value: releaseInfo?.getUpdateStatus())
     }
 
@@ -58,7 +56,7 @@ class ReleaseMonitor: ReleaseMonitoring {
             guard case .success(let release) = response else { return }
             let releaseInfo = ReleaseInfo(with: release)
             self?.releaseInfo = releaseInfo
-            self?.store.saveValue(forKey: .releaseInfo, value: releaseInfo)
+            self?.accountStore.saveValue(forKey: .releaseInfo, value: releaseInfo)
 
             self?._updateStatus.accept(releaseInfo.getUpdateStatus())
         }

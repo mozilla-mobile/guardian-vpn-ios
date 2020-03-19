@@ -14,16 +14,15 @@ import RxSwift
 
 class AccountManager: AccountManaging, Navigating {
     static var navigableItem: NavigableItem = .account
-    static let sharedManager = AccountManager()
 
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry]?
     private(set) var selectedCity: VPNCity?
     private let disposeBag = DisposeBag()
-    //make private
-    let accountStore = AccountStore()
+    private let accountStore: AccountStore
 
-    init() {
+    init(accountStore: AccountStore) {
+        self.accountStore = accountStore
         subscribeToExpiredSubscriptionNotification()
     }
 

@@ -16,8 +16,6 @@ protocol AccountManaging {
     var account: Account? { get }
     var availableServers: [VPNCountry]? { get }
     var selectedCity: VPNCity? { get }
-    //remove later
-    var accountStore: AccountStore { get }
 
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void)
     func loginWithStoredCredentials() -> Bool

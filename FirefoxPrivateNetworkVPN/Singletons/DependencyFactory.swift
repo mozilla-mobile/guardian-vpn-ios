@@ -19,9 +19,13 @@ class DependencyFactory: DependencyProviding {
 
     private init() { }
 
-    var accountManager: AccountManaging {
-        return AccountManager.sharedManager
+    private var accountStore: AccountStore {
+        return AccountStore.sharedManager
     }
+
+    lazy var accountManager: AccountManaging = {
+        return AccountManager(accountStore: accountStore)
+    }()
 
     var tunnelManager: TunnelManaging {
         return GuardianTunnelManager.sharedManager
@@ -35,9 +39,9 @@ class DependencyFactory: DependencyProviding {
         return ConnectionHealthMonitor()
     }()
 
-    var releaseMonitor: ReleaseMonitoring {
-        return ReleaseMonitor.sharedManager
-    }
+    lazy var releaseMonitor: ReleaseMonitoring = {
+        return ReleaseMonitor(accountStore: accountStore)
+    }()
 
     var heartbeatMonitor: HeartbeatMonitoring {
         return HeartbeatMonitor.sharedManager
