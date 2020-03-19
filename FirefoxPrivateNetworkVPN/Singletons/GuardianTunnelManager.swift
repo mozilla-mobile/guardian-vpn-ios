@@ -123,8 +123,10 @@ class GuardianTunnelManager: TunnelManaging {
                     resolver(.error(GuardianError.needToLogin))
                     return Disposables.create()
             }
-            tunnel.setNewConfiguration(for: device, city: newCity, key: account.privateKey)
-
+            tunnel.setNewConfiguration(for: device,
+                                       city: newCity,
+                                       key: account.privateKey)
+            
             tunnel.saveToPreferences { saveError in
                 if let error = saveError {
                     if case .switching(_, _) = self.stateEvent.value {
