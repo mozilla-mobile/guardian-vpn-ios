@@ -18,7 +18,9 @@ class ServerListViewModel {
 
     // MARK: - Properties
     private static let sectionHeaderCount = 1
-    private var serverList: [VPNCountry]
+    private var serverList: [VPNCountry] {
+        return DependencyFactory.sharedFactory.accountManager.availableServers ?? []
+    }
     private let disposeBag = DisposeBag()
     private let _vpnSelection = PublishSubject<Void>()
     private let _toggleSection = PublishSubject<SectionExpansionState>()
@@ -47,7 +49,6 @@ class ServerListViewModel {
     }
 
     init() {
-        self.serverList = [VPNCountry].fetchFromUserDefaults() ?? []
         self.selectedCityIndexPath = getIndexPathOfCurrentCity()
         setupObservers()
     }

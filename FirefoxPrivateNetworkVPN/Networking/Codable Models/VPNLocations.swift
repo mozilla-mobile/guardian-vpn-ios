@@ -85,11 +85,7 @@ struct VPNServer: Codable, Equatable {
     }
 }
 
-extension Array: UserDefaulting where Element == VPNCountry {
-    static var userDefaultsKey: String {
-        "serverList"
-    }
-
+extension Array where Element == VPNCountry {
     func getRandomUSCity() -> VPNCity? {
         return first { $0.code.uppercased() == "US" }?.cities.randomElement()
     }

@@ -82,7 +82,7 @@ class AccountManager: AccountManaging, Navigating {
         guard let credentials = Credentials.fetchAll(),
             let currentDevice: Device = accountStore.readValue(forKey: .device),
             let user: User = accountStore.readValue(forKey: .user),
-            let serverList = [VPNCountry].fetchFromUserDefaults() else {
+            let serverList: [VPNCountry] = accountStore.readValue(forKey: .vpnServers) else {
                 return false
         }
 
@@ -119,7 +119,7 @@ class AccountManager: AccountManaging, Navigating {
             switch result {
             case .success (let servers):
                 self.availableServers = servers
-                self.availableServers?.saveToUserDefaults()
+                self.accountStore.saveValue(forKey: .vpnServers, value: servers)
                 if !VPNCity.existsInDefaults, let randomUSCity = servers.getRandomUSCity() {
                     randomUSCity.saveToUserDefaults()
                 }
