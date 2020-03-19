@@ -73,6 +73,8 @@ class ServersViewController: UIViewController, Navigating {
     }
 
     private func setupTableView() {
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 32, right: 0)
+
         if let viewModel = viewModel {
             dataSource = ServersDataSource(with: tableView, viewModel: viewModel)
         }
