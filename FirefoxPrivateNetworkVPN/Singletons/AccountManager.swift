@@ -18,6 +18,7 @@ class AccountManager: AccountManaging, Navigating {
 
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry]?
+    private(set) var selectedCity: VPNCity?
     private let disposeBag = DisposeBag()
     //make private
     let accountStore = AccountStore()
@@ -58,12 +59,14 @@ class AccountManager: AccountManaging, Navigating {
             case (.none, .none):
                 credentials.saveAll()
                 self.account = account
+                self.selectedCity = self.accountStore.readValue(forKey: .selectedCity) ?? self.availableServers?.getRandomUSCity()
                 DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
                     credentials.saveAll()
                     self.account = account
+                    self.selectedCity = self.accountStore.readValue(forKey: .selectedCity) ?? self.availableServers?.getRandomUSCity()
                     DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 }
                 completion(.failure(error))
@@ -92,6 +95,7 @@ class AccountManager: AccountManaging, Navigating {
                                accountStore: accountStore)
 
         self.availableServers = serverList
+        self.selectedCity = accountStore.readValue(forKey: .selectedCity) ?? self.availableServers?.getRandomUSCity()
         DependencyFactory.sharedFactory.heartbeatMonitor.start()
 
         return true
@@ -120,9 +124,6 @@ class AccountManager: AccountManaging, Navigating {
             case .success (let servers):
                 self.availableServers = servers
                 self.accountStore.saveValue(forKey: .vpnServers, value: servers)
-                if !VPNCity.existsInDefaults, let randomUSCity = servers.getRandomUSCity() {
-                    randomUSCity.saveToUserDefaults()
-                }
                 completion(.success(()))
             case .failure(let error):
                 Logger.global?.log(message: "Server list retrieval Error: \(error)")
@@ -138,15 +139,17 @@ class AccountManager: AccountManaging, Navigating {
 
         account = nil
         availableServers = nil
+        selectedCity = nil
 
         accountStore.removeAll()
         Credentials.removeAll()
-//        Device.removeFromUserDefaults()
-//        User.removeFromUserDefaults()
-//        [VPNCountry].removeFromUserDefaults()
-//        VPNCity.removeFromUserDefaults()
 
         Logger.global?.log(message: "Reset account")
+    }
+
+    func updateSelectedCity(with newCity: VPNCity) {
+        self.selectedCity = newCity
+        self.accountStore.saveValue(forKey: .selectedCity, value: newCity)
     }
 
     private func subscribeToExpiredSubscriptionNotification() {

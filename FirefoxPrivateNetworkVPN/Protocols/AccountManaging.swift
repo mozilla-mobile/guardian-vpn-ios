@@ -15,6 +15,7 @@ import RxSwift
 protocol AccountManaging {
     var account: Account? { get }
     var availableServers: [VPNCountry]? { get }
+    var selectedCity: VPNCity? { get }
     //remove later
     var accountStore: AccountStore { get }
 
@@ -22,4 +23,5 @@ protocol AccountManaging {
     func loginWithStoredCredentials() -> Bool
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
     func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func updateSelectedCity(with newCity: VPNCity)
 }

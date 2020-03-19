@@ -31,8 +31,9 @@ class VPNToggleView: UIView {
     private var currentState = VPNState.off
     private let disposeBag = DisposeBag()
     private var timerDisposeBag = DisposeBag()
-    private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
-    private var connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
+    private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
+    private let accountManager = DependencyFactory.sharedFactory.accountManager
+    private let connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
     private var globeAnimationView: AnimationView?
     private var rippleAnimationView: AnimationView?
     private var tapHaptics = UIImpactFeedbackGenerator(style: .light)
@@ -238,7 +239,7 @@ class VPNToggleView: UIView {
                 }
             }).disposed(by: timerDisposeBag)
 
-        if let hostAddress = VPNCity.fetchFromUserDefaults()?.servers.first?.ipv4Gateway {
+        if let hostAddress = accountManager.selectedCity?.fastestServer?.ipv4Gateway {
             connectionHealthMonitor.start(hostAddress: hostAddress)
         }
     }

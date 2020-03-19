@@ -16,7 +16,7 @@ class AccountStore {
         case user
         case device
         case vpnServers
-        case selectedVPNCity
+        case selectedCity
         case releaseInfo
     }
 

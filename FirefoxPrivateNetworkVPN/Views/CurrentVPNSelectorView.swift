@@ -26,7 +26,7 @@ class CurrentVPNSelectorView: UIView {
         addSubview(view)
         DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent
             .map { Optional($0) }
-            .startWith(VPNCity.fetchFromUserDefaults())
+            .startWith(DependencyFactory.sharedFactory.accountManager.selectedCity)
             .compactMap { $0 }
             .subscribe { cityEvent in
                 guard let city = cityEvent.element else { return }
