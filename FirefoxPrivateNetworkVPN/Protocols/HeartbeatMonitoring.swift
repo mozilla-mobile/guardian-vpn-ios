@@ -19,4 +19,5 @@ extension Notification.Name {
 protocol HeartbeatMonitoring {
     func start()
     func stop()
+    func pollNow()
 }

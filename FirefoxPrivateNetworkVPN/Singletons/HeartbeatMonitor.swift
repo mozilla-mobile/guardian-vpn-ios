@@ -18,6 +18,9 @@ class HeartbeatMonitor: HeartbeatMonitoring {
     private var timer: DispatchSourceTimer?
     private var accountManager: AccountManaging { return DependencyFactory.sharedFactory.accountManager }
 
+    /**
+     Starts the heart beat and polls the service end points for data immediately.
+     */
     func start() {
         timer = DispatchSource.makeTimerSource()
         timer?.schedule(deadline: .now(), repeating: .seconds(3600), leeway: .seconds(1))
@@ -30,6 +33,11 @@ class HeartbeatMonitor: HeartbeatMonitoring {
 
     func stop() {
         timer = nil
+    }
+
+    func pollNow() {
+        stop()
+        start()
     }
 
     private func pollUser() {
