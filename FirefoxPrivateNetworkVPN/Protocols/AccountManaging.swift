@@ -14,7 +14,7 @@ import RxSwift
 
 protocol AccountManaging {
     var account: Account? { get }
-    var availableServers: [VPNCountry]? { get }
+    var availableServers: [VPNCountry] { get }
     var selectedCity: VPNCity? { get }
 
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void)

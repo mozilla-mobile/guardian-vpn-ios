@@ -24,7 +24,7 @@ class ServerListViewModel {
     private let _toggleSection = PublishSubject<SectionExpansionState>()
 
     private var serverList: [VPNCountry] {
-        return accountManager.availableServers ?? []
+        return accountManager.availableServers
     }
 
     private lazy var sectionExpandedStates: [Int: Bool] = {

@@ -16,7 +16,7 @@ class AccountManager: AccountManaging, Navigating {
     static var navigableItem: NavigableItem = .account
 
     private(set) var account: Account?
-    private(set) var availableServers: [VPNCountry]?
+    private(set) var availableServers: [VPNCountry] = []
     private(set) var selectedCity: VPNCity?
     private let disposeBag = DisposeBag()
     private let accountStore: AccountStoring
@@ -57,14 +57,14 @@ class AccountManager: AccountManaging, Navigating {
             case (.none, .none):
                 self.accountStore.save(credentials: credentials)
                 self.account = account
-                self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers?.getRandomUSCity()
+                self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
                 DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
                     self.accountStore.save(credentials: credentials)
                     self.account = account
-                    self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers?.getRandomUSCity()
+                    self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
                     DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 }
                 completion(.failure(error))
@@ -82,8 +82,7 @@ class AccountManager: AccountManaging, Navigating {
     func loginWithStoredCredentials() -> Bool {
         guard let credentials = accountStore.getCredentials(),
             let currentDevice: Device = accountStore.getCurrentDevice(),
-            let user: User = accountStore.getUser()
-        else {
+            let user: User = accountStore.getUser() else {
                 return false
         }
 
@@ -93,7 +92,7 @@ class AccountManager: AccountManaging, Navigating {
                                accountStore: accountStore)
 
         self.availableServers = accountStore.getVpnServers()
-        self.selectedCity = accountStore.getSelectedCity() ?? self.availableServers?.getRandomUSCity()
+        self.selectedCity = accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
         DependencyFactory.sharedFactory.heartbeatMonitor.start()
 
         return true
@@ -136,7 +135,7 @@ class AccountManager: AccountManaging, Navigating {
         DependencyFactory.sharedFactory.connectionHealthMonitor.stop()
 
         account = nil
-        availableServers = nil
+        availableServers = []
         selectedCity = nil
 
         accountStore.removeAll()
