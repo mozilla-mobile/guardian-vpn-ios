@@ -126,7 +126,7 @@ class GuardianTunnelManager: TunnelManaging {
             tunnel.setNewConfiguration(for: device,
                                        city: newCity,
                                        key: account.privateKey)
-            
+
             tunnel.saveToPreferences { saveError in
                 if let error = saveError {
                     if case .switching(_, _) = self.stateEvent.value {

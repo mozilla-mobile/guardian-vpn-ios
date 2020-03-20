@@ -11,8 +11,9 @@
 
 import Foundation
 
-class AccountStore {
-    enum Key: String, CaseIterable {
+class AccountStore: AccountStoring {
+
+    private enum Key: String, CaseIterable {
         case user
         case device
         case vpnServers
@@ -20,36 +21,73 @@ class AccountStore {
         case releaseInfo
     }
 
+    private let persistenceLayer: Persisting
+
+    init(persistenceLayer: Persisting = PersistenceLayer.shared) {
+        self.persistenceLayer = persistenceLayer
+    }
+
     static let sharedManager = AccountStore()
-    let userDefaults: UserDefaults
 
-    // MARK: - Lifecycle
-    init(userDefaults: UserDefaults = .standard) {
-        self.userDefaults = userDefaults
+    func save(user: User) {
+        persistenceLayer.save(value: user, for: Key.user.rawValue)
     }
 
-    // MARK: - API
-    func saveValue<T>(forKey key: Key, value: T) where T: Codable {
-        do {
-            let encoded = try JSONEncoder().encode(value)
-            userDefaults.set(encoded, forKey: key.rawValue)
-            userDefaults.synchronize()
-
-        } catch {
-            print(error) // TODO: Handle this
-        }
+    func getUser() -> User? {
+        return persistenceLayer.readValue(for: Key.user
+            .rawValue)
     }
 
-    func readValue<T>(forKey key: Key) -> T? where T: Codable {
-        guard let decoded = userDefaults.object(forKey: key.rawValue) as? Data else {
-            return nil
-        }
-        return try? JSONDecoder().decode(T.self, from: decoded)
+    func save(vpnServers: [VPNCountry]) {
+        persistenceLayer.save(value: vpnServers, for: Key.vpnServers.rawValue)
+    }
+
+    func getVpnServers() -> [VPNCountry] {
+        return persistenceLayer.readValue(for: Key.vpnServers
+            .rawValue) ?? []
+    }
+
+    func save(currentDevice: Device) {
+        persistenceLayer.save(value: currentDevice, for: Key.device.rawValue)
+    }
+
+    func getCurrentDevice() -> Device? {
+        return persistenceLayer.readValue(for: Key.device
+            .rawValue)
+    }
+
+    func save(selectedCity: VPNCity) {
+        persistenceLayer.save(value: selectedCity, for: Key.selectedCity.rawValue)
+    }
+
+    func getSelectedCity() -> VPNCity? {
+        return persistenceLayer.readValue(for: Key.selectedCity
+            .rawValue)
+
+    }
+
+    func save(releaseInfo: ReleaseInfo) {
+        persistenceLayer.save(value: releaseInfo, for: Key.releaseInfo.rawValue)
+    }
+
+    func getReleaseInfo() -> ReleaseInfo? {
+        return persistenceLayer.readValue(for: Key.releaseInfo
+            .rawValue)
+    }
+
+    func save(credentials: Credentials) {
+        persistenceLayer.saveCredentials(credentials)
+    }
+
+    func getCredentials() -> Credentials? {
+        return persistenceLayer.readCredentials()
     }
 
     func removeAll() {
-        Key
-            .allCases
-            .forEach { userDefaults.removeObject(forKey: $0.rawValue) }
+        Key.allCases
+            .forEach {
+                persistenceLayer.removeValue(for: $0.rawValue)
+        }
+        persistenceLayer.removeCredentials()
     }
 }

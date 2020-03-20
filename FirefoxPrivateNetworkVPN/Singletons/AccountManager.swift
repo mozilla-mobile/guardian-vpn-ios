@@ -19,15 +19,14 @@ class AccountManager: AccountManaging, Navigating {
     private(set) var availableServers: [VPNCountry]?
     private(set) var selectedCity: VPNCity?
     private let disposeBag = DisposeBag()
-    private let accountStore: AccountStore
+    private let accountStore: AccountStoring
 
-    init(accountStore: AccountStore) {
+    init(accountStore: AccountStoring) {
         self.accountStore = accountStore
         subscribeToExpiredSubscriptionNotification()
     }
 
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void) {
-        Credentials.removeAll()
         let credentials = Credentials(with: verification)
         let account = Account(credentials: credentials,
                               user: verification.user,
@@ -56,16 +55,16 @@ class AccountManager: AccountManaging, Navigating {
         dispatchGroup.notify(queue: .main) {
             switch (addDeviceError, retrieveServersError) {
             case (.none, .none):
-                credentials.saveAll()
+                self.accountStore.save(credentials: credentials)
                 self.account = account
-                self.selectedCity = self.accountStore.readValue(forKey: .selectedCity) ?? self.availableServers?.getRandomUSCity()
+                self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers?.getRandomUSCity()
                 DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
-                    credentials.saveAll()
+                    self.accountStore.save(credentials: credentials)
                     self.account = account
-                    self.selectedCity = self.accountStore.readValue(forKey: .selectedCity) ?? self.availableServers?.getRandomUSCity()
+                    self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers?.getRandomUSCity()
                     DependencyFactory.sharedFactory.heartbeatMonitor.start()
                 }
                 completion(.failure(error))
@@ -81,10 +80,10 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     func loginWithStoredCredentials() -> Bool {
-        guard let credentials = Credentials.fetchAll(),
-            let currentDevice: Device = accountStore.readValue(forKey: .device),
-            let user: User = accountStore.readValue(forKey: .user),
-            let serverList: [VPNCountry] = accountStore.readValue(forKey: .vpnServers) else {
+        guard let credentials = accountStore.getCredentials(),
+            let currentDevice: Device = accountStore.getCurrentDevice(),
+            let user: User = accountStore.getUser()
+        else {
                 return false
         }
 
@@ -93,8 +92,8 @@ class AccountManager: AccountManaging, Navigating {
                                currentDevice: currentDevice,
                                accountStore: accountStore)
 
-        self.availableServers = serverList
-        self.selectedCity = accountStore.readValue(forKey: .selectedCity) ?? self.availableServers?.getRandomUSCity()
+        self.availableServers = accountStore.getVpnServers()
+        self.selectedCity = accountStore.getSelectedCity() ?? self.availableServers?.getRandomUSCity()
         DependencyFactory.sharedFactory.heartbeatMonitor.start()
 
         return true
@@ -122,7 +121,7 @@ class AccountManager: AccountManaging, Navigating {
             switch result {
             case .success (let servers):
                 self.availableServers = servers
-                self.accountStore.saveValue(forKey: .vpnServers, value: servers)
+                self.accountStore.save(vpnServers: servers)
                 completion(.success(()))
             case .failure(let error):
                 Logger.global?.log(message: "Server list retrieval Error: \(error)")
@@ -141,14 +140,13 @@ class AccountManager: AccountManaging, Navigating {
         selectedCity = nil
 
         accountStore.removeAll()
-        Credentials.removeAll()
 
         Logger.global?.log(message: "Reset account")
     }
 
     func updateSelectedCity(with newCity: VPNCity) {
         self.selectedCity = newCity
-        self.accountStore.saveValue(forKey: .selectedCity, value: newCity)
+        self.accountStore.save(selectedCity: newCity)
     }
 
     private func subscribeToExpiredSubscriptionNotification() {

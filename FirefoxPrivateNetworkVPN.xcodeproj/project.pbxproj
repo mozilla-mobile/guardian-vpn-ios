@@ -53,6 +53,9 @@
 		F474281024214C7B00056A81 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474280F24214C7B00056A81 /* Subscription.swift */; };
 		F477A20A23E3508F00585066 /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F477A20923E3508F00585066 /* LandingViewController.xib */; };
 		F477A20C23E352E900585066 /* CarouselViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F477A20B23E352E900585066 /* CarouselViewController.xib */; };
+		F47865912424F90D00598AAF /* AccountStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47865902424F90D00598AAF /* AccountStoring.swift */; };
+		F47865952424FE1400598AAF /* Persisting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47865942424FE1400598AAF /* Persisting.swift */; };
+		F47865972425069700598AAF /* PersistenceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47865962425069700598AAF /* PersistenceLayer.swift */; };
 		F478E47F23C7842D00D17FE0 /* ReleaseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E47E23C7842D00D17FE0 /* ReleaseInfo.swift */; };
 		F478E48123C784C400D17FE0 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48023C784C400D17FE0 /* UIApplication+Extensions.swift */; };
 		F478E48423C787B600D17FE0 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48323C787B600D17FE0 /* Release.swift */; };
@@ -161,7 +164,6 @@
 		F4E908D32371CAAD00EB9FE6 /* NavigationCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947923709033007595C3 /* NavigationCoordinating.swift */; };
 		F4E908D42371CAAD00EB9FE6 /* NetworkRequesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947E23709033007595C3 /* NetworkRequesting.swift */; };
 		F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947A23709033007595C3 /* TunnelManaging.swift */; };
-		F4E908D62371CAAD00EB9FE6 /* UserDefaulting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */; };
 		F4E908D72371CAAD00EB9FE6 /* Inter-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70E92342775000871447 /* Inter-Medium.otf */; };
 		F4E908D82371CAAD00EB9FE6 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70EB2342775000871447 /* Inter-Regular.otf */; };
 		F4E908D92371CAAD00EB9FE6 /* Inter-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70EA2342775000871447 /* Inter-SemiBold.otf */; };
@@ -345,7 +347,6 @@
 		F43DFC05234BB32C003EA64A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfigurationBuilder.swift; sourceTree = "<group>"; };
 		F43DFC0D234D1361003EA64A /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaulting.swift; sourceTree = "<group>"; };
 		F43DFC13234E436E003EA64A /* DeviceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceKeys.swift; sourceTree = "<group>"; };
 		F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianTunnelManager.swift; sourceTree = "<group>"; };
 		F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRequiredViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +397,9 @@
 		F474280F24214C7B00056A81 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		F477A20923E3508F00585066 /* LandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
 		F477A20B23E352E900585066 /* CarouselViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselViewController.xib; sourceTree = "<group>"; };
+		F47865902424F90D00598AAF /* AccountStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStoring.swift; sourceTree = "<group>"; };
+		F47865942424FE1400598AAF /* Persisting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persisting.swift; sourceTree = "<group>"; };
+		F47865962425069700598AAF /* PersistenceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceLayer.swift; sourceTree = "<group>"; };
 		F478E47E23C7842D00D17FE0 /* ReleaseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseInfo.swift; sourceTree = "<group>"; };
 		F478E48023C784C400D17FE0 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		F478E48323C787B600D17FE0 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
@@ -654,6 +658,7 @@
 				F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */,
 				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
 				F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */,
+				F47865962425069700598AAF /* PersistenceLayer.swift */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";
@@ -798,14 +803,15 @@
 			isa = PBXGroup;
 			children = (
 				F42A23062347D37F00763B0D /* AccountManaging.swift */,
+				F47865902424F90D00598AAF /* AccountStoring.swift */,
 				F42A23042347D22100763B0D /* DependencyProviding.swift */,
 				F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */,
 				F45D70A0233D3BC000871447 /* Navigating.swift */,
 				F4A4947923709033007595C3 /* NavigationCoordinating.swift */,
 				F4A4947E23709033007595C3 /* NetworkRequesting.swift */,
+				F47865942424FE1400598AAF /* Persisting.swift */,
 				F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */,
 				F4A4947A23709033007595C3 /* TunnelManaging.swift */,
-				F43DFC0F234D1EE4003EA64A /* UserDefaulting.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1581,13 +1587,13 @@
 				F478E48A23C78F4F00D17FE0 /* URLRequestBuilder.swift in Sources */,
 				F4E908F12371CAAD00EB9FE6 /* NavigationCoordinator.swift in Sources */,
 				F4AED255235F835300F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */,
+				F47865912424F90D00598AAF /* AccountStoring.swift in Sources */,
 				F422FEF823980C1D009413E2 /* NSAttributedString+Extensions.swift in Sources */,
 				F4AED257235F835300F80ABF /* IPAddressRange.swift in Sources */,
 				F4E908D32371CAAD00EB9FE6 /* NavigationCoordinating.swift in Sources */,
 				F4E909092371CAAD00EB9FE6 /* AccountInformationCell.swift in Sources */,
 				F42DE7C82395A64A000B79C3 /* CarouselViewController.swift in Sources */,
 				F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */,
-				F4E908D62371CAAD00EB9FE6 /* UserDefaulting.swift in Sources */,
 				F4A7FA24237C5C960034AF6C /* Account.swift in Sources */,
 				F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */,
 				F4B42BFB238D88EE001F64F7 /* SimplePing.m in Sources */,
@@ -1595,6 +1601,7 @@
 				F4AED254235F835200F80ABF /* TunnelConfiguration.swift in Sources */,
 				F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */,
 				F4E908CA2371CAAD00EB9FE6 /* User.swift in Sources */,
+				F47865972425069700598AAF /* PersistenceLayer.swift in Sources */,
 				F4E909152371CAAD00EB9FE6 /* DeviceManagementCell.swift in Sources */,
 				F4AED251235F835200F80ABF /* Data+KeyEncoding.swift in Sources */,
 				F40109802406F303006DFF96 /* FirefoxURL.swift in Sources */,
@@ -1638,6 +1645,7 @@
 				F4AED21D235F55EA00F80ABF /* Keychain.swift in Sources */,
 				F43BEA5E2412F7DE000249C3 /* SignoutTableViewCell.swift in Sources */,
 				F4B42C08238F1652001F64F7 /* ConnectionRxValue.swift in Sources */,
+				F47865952424FE1400598AAF /* Persisting.swift in Sources */,
 				F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */,
 				F4A7FA26237C5CE00034AF6C /* Credentials.swift in Sources */,
 				F4E908EF2371CAAD00EB9FE6 /* GuardianTunnelManager.swift in Sources */,

@@ -19,7 +19,7 @@ class DependencyFactory: DependencyProviding {
 
     private init() { }
 
-    private var accountStore: AccountStore {
+    private var accountStore: AccountStoring {
         return AccountStore.sharedManager
     }
 
