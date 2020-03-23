@@ -35,6 +35,7 @@ enum NavigableItem: Hashable {
 
 enum NavigableContext {
     case maxDevicesError
+    case loginError(Error)
 }
 
 class NavigationCoordinator: NavigationCoordinating {
@@ -62,16 +63,30 @@ class NavigationCoordinator: NavigationCoordinating {
 
             switch (origin, destination) {
             // To Landing
-            case (.loading, .landing), (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
+            case (.loading, .landing):
                 let landingViewController = LandingViewController()
                 self.appDelegate?.window?.rootViewController = landingViewController
                 self.currentViewController = landingViewController
 
+            case (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
+                self.navigate(from: .loading, to: .landing)
+                if let landingViewController = self.currentViewController as? LandingViewController {
+                    landingViewController.showSuccessfulLogoutToast()
+                }
+
             case (.login, .landing):
                 self.currentViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
 
-                if case .maxDevicesError = context {
+                switch context {
+                case .maxDevicesError:
                     self.navigate(from: .landing, to: .home, context: context)
+
+                case .loginError(let error):
+                    if let landingViewController = self.currentViewController as? LandingViewController {
+                        landingViewController.showErrorToast(for: error)
+                    }
+
+                case .none: return
                 }
 
             // To Home
@@ -115,7 +130,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             case (.carousel, .login):
                 self.currentViewController?.presentedViewController?.dismiss(animated: true) {
-                    self.navigate(from: .landing(nil), to: .login)
+                    self.navigate(from: .landing, to: .login)
                 }
 
             // To Onboarding carousel

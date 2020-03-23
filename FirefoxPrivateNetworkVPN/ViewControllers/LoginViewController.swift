@@ -37,8 +37,8 @@ class LoginViewController: UIViewController, Navigating {
                 }
                 safariViewController.delegate = self
                 self?.safariViewController = safariViewController
-            case .failure:
-                self?.navigate(to: .landing)
+            case .failure(let error):
+                self?.navigate(to: .landing, context: .loginError(error))
             }
         }
     }
@@ -71,8 +71,9 @@ class LoginViewController: UIViewController, Navigating {
                         Logger.global?.log(message: "Authentication Error: \(error)")
 
                         var context: NavigableContext?
-                        if let guardianAPIError = error as? GuardianAPIError, guardianAPIError == .maxDevicesReached {
-                            context = .maxDevicesError
+                        if let guardianAPIError = error as? GuardianAPIError {
+                            let isMaxDevicesError = guardianAPIError == .maxDevicesReached
+                            context = isMaxDevicesError ? .maxDevicesError : .loginError(error)
                         }
                         self.navigate(to: .landing, context: context)
                     }
