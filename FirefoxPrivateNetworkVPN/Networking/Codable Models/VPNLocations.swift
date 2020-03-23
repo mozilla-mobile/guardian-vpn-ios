@@ -35,7 +35,7 @@ struct VPNCountry: Codable {
     }
 }
 
-struct VPNCity: Codable, Equatable {
+struct VPNCity: Codable {
     let name: String
     let code: String
     let latitude: Float
@@ -60,6 +60,16 @@ struct VPNCity: Codable, Equatable {
             return
         }
         fastestServer = servers.filter { return $0.weight == maxWeight }.randomElement()
+    }
+}
+
+extension VPNCity: Equatable {
+    static func == (lhs: VPNCity, rhs: VPNCity) -> Bool {
+        return lhs.name == rhs.name &&
+            lhs.code == rhs.code &&
+            lhs.latitude == rhs.latitude &&
+            lhs.longitude == rhs.longitude &&
+            lhs.flagCode == rhs.flagCode
     }
 }
 
