@@ -21,6 +21,7 @@ class LandingViewController: UIViewController, Navigating {
     @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var centerView: UIView!
     @IBOutlet weak private var stackView: UIStackView!
+    @IBOutlet weak private var warningToastView: WarningToastView!
 
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
@@ -43,6 +44,20 @@ class LandingViewController: UIViewController, Navigating {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layoutCenterView()
+    }
+
+    func showErrorToast(for error: Error) {
+        let errorMessage = true ? LocalizedString.toastNoConnection.value : LocalizedString.toastAuthenticationError.value
+        let string = NSAttributedString.formatted(errorMessage,
+                                                  actionMessage: LocalizedString.toastTryAgain.value)
+        warningToastView.show(message: string) { [weak self] in
+            self?.navigate(to: .login)
+        }
+    }
+
+    func showSuccessfulLogoutToast() {
+        let message = NSAttributedString.formatted(LocalizedString.toastLoggedOut.value, actionMessage: nil)
+        warningToastView.show(message: message)
     }
 
     @IBAction func getStarted() {

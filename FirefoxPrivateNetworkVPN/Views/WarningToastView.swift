@@ -38,15 +38,13 @@ final class WarningToastView: UIView {
             animations: {
                 self.alpha = 1
             },
-            completion: { isComplete in
-                if isComplete {
-                    self.dismissTimer = Timer.scheduledTimer(withTimeInterval: dismissAfter, repeats: false) { [weak self] _ in
-                        self?.dismiss()
-                    }
+            completion: { _ in
+                self.dismissTimer = Timer.scheduledTimer(withTimeInterval: dismissAfter, repeats: false) { [weak self] _ in
+                    self?.dismiss()
                 }
-            })
+        })
     }
-
+    
     @IBAction func tapped(_ sender: Any) {
         dismiss()
         action?()

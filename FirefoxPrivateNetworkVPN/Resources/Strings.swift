@@ -83,6 +83,9 @@ enum LocalizedString: String {
     case aboutReleaseVersion
 
     case toastTryAgain
+    case toastLoggedOut
+    case toastNoConnection
+    case toastAuthenticationError
 
     case toastFeaturesAvailable
 
