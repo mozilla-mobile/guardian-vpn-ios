@@ -68,7 +68,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.currentViewController = landingViewController
 
             case (.login, .landing):
-                self.currentViewController?.dismiss(animated: true, completion: nil)
+                self.currentViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
 
                 if case .maxDevicesError = context {
                     self.navigate(from: .landing, to: .home, context: context)
@@ -114,8 +114,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.currentViewController?.present(loginViewController, animated: true, completion: nil)
 
             case (.carousel, .login):
-                self.navigate(from: .carousel, to: .landing)
-                self.navigate(from: .landing, to: .login)
+                self.currentViewController?.presentedViewController?.dismiss(animated: true) {
+                    self.navigate(from: .landing(nil), to: .login)
+                }
 
             // To Onboarding carousel
             case (.landing, .carousel):
@@ -126,7 +127,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 }
 
             case (.carousel, .landing):
-                self.currentViewController?.dismiss(animated: true, completion: nil)
+                self.currentViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
 
             // To Devices
             case (.settings, .devices):
