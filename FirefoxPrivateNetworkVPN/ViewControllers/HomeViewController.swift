@@ -101,8 +101,6 @@ class HomeViewController: UIViewController, Navigating {
         .subscribe(onNext: { [weak self] state in
             self?.vpnToggleView.update(with: state)
         }).disposed(by: disposeBag)
-
-        vpnToggleView.update(with: tunnelManager.stateEvent.value)
     }
 
     private func connectToTunnel() {
