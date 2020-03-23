@@ -19,8 +19,8 @@ class EmailManager: NSObject, MFMailComposeViewControllerDelegate {
     private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
 
     private var logsSubject: String {
-        let username = account?.user?.displayName ?? ""
-        let email = account?.user?.email ?? ""
+        let username = account?.user.displayName ?? ""
+        let email = account?.user.email ?? ""
 
         return LocalizedString.logsMailSubject.value + "\(username)/\(email)"
     }

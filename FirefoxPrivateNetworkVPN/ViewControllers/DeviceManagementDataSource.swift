@@ -47,7 +47,7 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
             indexPath.row < viewModel.sortedDevices.count
             else { return UITableViewCell(frame: .zero) }
 
-        cell.setup(with: viewModel.sortedDevices[indexPath.row], event: viewModel.trashTappedSubject)
+        cell.setup(with: viewModel.sortedDevices[indexPath.row], isCurrentDevice: indexPath.row == 0, event: viewModel.trashTappedSubject)
 
         return cell
     }

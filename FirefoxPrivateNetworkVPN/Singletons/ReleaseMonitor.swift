@@ -14,22 +14,28 @@ import RxSwift
 import RxCocoa
 
 class ReleaseMonitor: ReleaseMonitoring {
-    static let sharedManager = ReleaseMonitor()
-
     private static let timeInterval: TimeInterval = 21600
+    private let accountStore: AccountStoring
     private var timer: DispatchSourceTimer?
-    private var _updateStatus = BehaviorRelay<UpdateStatus?>(value: ReleaseInfo.fetchFromUserDefaults()?.getUpdateStatus())
+    private var releaseInfo: ReleaseInfo?
+    private var _updateStatus: BehaviorRelay<UpdateStatus?>
 
     var updateStatus: Observable<UpdateStatus?> {
         return _updateStatus.asObservable()
     }
 
     private var pollingDelay: DispatchTime {
-        guard let latestRelease = ReleaseInfo.fetchFromUserDefaults() else { return .now() }
+        guard let latestRelease = releaseInfo else { return .now() }
         let delayInSeconds = ReleaseMonitor.timeInterval + latestRelease.dateRetrieved.timeIntervalSinceNow
         guard delayInSeconds > 0 else { return .now() }
 
         return .now() + DispatchTimeInterval.seconds(Int(delayInSeconds))
+    }
+
+    init(accountStore: AccountStoring) {
+        self.accountStore = accountStore
+        self.releaseInfo = accountStore.getReleaseInfo()
+        _updateStatus = BehaviorRelay<UpdateStatus?>(value: releaseInfo?.getUpdateStatus())
     }
 
     func start() {
@@ -49,7 +55,8 @@ class ReleaseMonitor: ReleaseMonitoring {
         GuardianAPI.latestVersion { [weak self] response in
             guard case .success(let release) = response else { return }
             let releaseInfo = ReleaseInfo(with: release)
-            releaseInfo.saveToUserDefaults()
+            self?.releaseInfo = releaseInfo
+            self?.accountStore.save(releaseInfo: releaseInfo)
 
             self?._updateStatus.accept(releaseInfo.getUpdateStatus())
         }

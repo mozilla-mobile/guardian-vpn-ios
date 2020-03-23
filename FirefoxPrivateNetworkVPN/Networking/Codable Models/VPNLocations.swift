@@ -35,27 +35,31 @@ struct VPNCountry: Codable {
     }
 }
 
-struct VPNCity: UserDefaulting, Equatable {
-    static var userDefaultsKey = "savedCity"
-
+struct VPNCity: Codable, Equatable {
     let name: String
     let code: String
     let latitude: Float
     let longitude: Float
     let servers: [VPNServer]
     let flagCode: String?
-
     //the higher the weight, the faster the server
-    //randomly selects one of the servers with the highest weights
-    var fastestServer: VPNServer? {
+    let fastestServer: VPNServer?
+
+    init(name: String, code: String, latitude: Float, longitude: Float, servers: [VPNServer], flagCode: String) {
+        self.name = name
+        self.code = code
+        self.latitude = latitude
+        self.longitude = longitude
+        self.servers = servers
+        self.flagCode = flagCode
+
+        //randomly selects one of the servers with the highest weights
         let maxWeightedServer = servers.max { $0.weight < $1.weight }
-        guard let maxWeight = maxWeightedServer?.weight else { return nil }
-
-        return servers.filter { return $0.weight == maxWeight }.randomElement()
-    }
-
-    var isCurrentCity: Bool {
-        return self == VPNCity.fetchFromUserDefaults()
+        guard let maxWeight = maxWeightedServer?.weight else {
+            fastestServer = nil
+            return
+        }
+        fastestServer = servers.filter { return $0.weight == maxWeight }.randomElement()
     }
 }
 
@@ -85,11 +89,7 @@ struct VPNServer: Codable, Equatable {
     }
 }
 
-extension Array: UserDefaulting where Element == VPNCountry {
-    static var userDefaultsKey: String {
-        "serverList"
-    }
-
+extension Array where Element == VPNCountry {
     func getRandomUSCity() -> VPNCity? {
         return first { $0.code.uppercased() == "US" }?.cities.randomElement()
     }

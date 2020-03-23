@@ -15,7 +15,8 @@ import RxSwift
 class Account {
     private var credentials: Credentials
     private(set) var currentDevice: Device?
-    private(set) var user: User?
+    private(set) var user: User
+    private let accountStore: AccountStoring
 
     var token: String {
         return credentials.verificationToken
@@ -33,12 +34,11 @@ class Account {
         return currentDevice != nil
     }
 
-    init(credentials: Credentials, user: User? = nil, currentDevice: Device? = nil) {
+    init(credentials: Credentials, user: User, currentDevice: Device? = nil, accountStore: AccountStoring) {
+        self.accountStore = accountStore
         self.credentials = credentials
         self.user = user
         self.currentDevice = currentDevice
-
-        verifyCurrentDevice()
     }
 
     func addCurrentDevice(completion: @escaping (Result<Void, Error>) -> Void) {
@@ -62,7 +62,7 @@ class Account {
             switch result {
             case .success(let device):
                 self.currentDevice = device
-                device.saveToUserDefaults()
+                self.accountStore.save(currentDevice: device)
                 self.getUser { _ in //TODO: Change this to make get devices call when its available
                     completion(.success(()))
                 }
@@ -82,6 +82,7 @@ class Account {
             switch result {
             case .success(let user):
                 self.user = user
+                self.accountStore.save(user: user)
                 completion(.success(()))
             case .failure(let error):
                 Logger.global?.log(message: "Account Error: \(error)")
@@ -97,44 +98,19 @@ class Account {
                 return Disposables.create()
             }
 
-            self.user?.markIsBeingRemoved(for: device)
+            self.user.markIsBeingRemoved(for: device)
             GuardianAPI.removeDevice(with: self.credentials.verificationToken, deviceKey: device.publicKey) { result in
                 switch result {
                 case .success:
-                    self.user?.remove(device: device)
+                    self.user.remove(device: device)
                     resolver(.success(()))
                 case .failure(let error):
-                    self.user?.failedRemoval(of: device)
+                    self.user.failedRemoval(of: device)
                     Logger.global?.log(message: "Remove Device Error: \(error)")
                     resolver(.error(GuardianError.couldNotRemoveDevice(device)))
                 }
             }
             return Disposables.create()
-        }
-    }
-
-    private func verifyCurrentDevice() {
-        guard let user = user else {
-            return
-        }
-        if let current = currentDevice, !user.has(device: current) {
-            currentDevice = nil
-            Device.removeFromUserDefaults()
-            Logger.global?.log(message: "Removed device from cache")
-            return
-        }
-
-        if let key = credentials.deviceKeys.publicKey.base64Key(), let current = user.device(with: key) {
-            currentDevice = current
-            current.saveToUserDefaults()
-            Logger.global?.log(message: "Saved device to cache")
-            return
-        }
-
-        if let current = Device.fetchFromUserDefaults(), current.publicKey != credentials.deviceKeys.publicKey.base64Key() {
-            currentDevice = nil
-            Device.removeFromUserDefaults()
-            Logger.global?.log(message: "Removed device from cache")
         }
     }
 }

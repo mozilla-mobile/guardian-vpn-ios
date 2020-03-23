@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         if dependencyFactory.tunnelManager.stateEvent.value == .on,
-            let hostAddress = VPNCity.fetchFromUserDefaults()?.servers.first?.ipv4Gateway {
+            let hostAddress = dependencyFactory.accountManager.selectedCity?.fastestServer?.ipv4Gateway {
             self.dependencyFactory?.connectionHealthMonitor.start(hostAddress: hostAddress)
         }
     }

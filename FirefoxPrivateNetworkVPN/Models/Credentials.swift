@@ -11,16 +11,6 @@
 
 import Foundation
 
-private class CredentialsKeyStore {
-
-    static let shared = CredentialsKeyStore()
-
-    private static let containerKey = "org.mozilla.guardian.credentials"
-    @KeychainStored<Credentials>(service: containerKey) var credentials: Credentials?
-
-    private init() { }
-}
-
 class Credentials: Codable {
     private(set) var deviceKeys: DeviceKeys
     private(set) var verificationToken: String
@@ -30,19 +20,5 @@ class Credentials: Codable {
         let publicKey = Curve25519.generatePublicKey(fromPrivateKey: privateKey)
         deviceKeys = DeviceKeys(privateKey: privateKey, publicKey: publicKey)
         verificationToken = verification.token
-    }
-
-    // MARK: - Helpers
-
-    static func fetchAll() -> Credentials? {
-        return CredentialsKeyStore.shared.credentials
-    }
-
-    func saveAll() {
-        CredentialsKeyStore.shared.credentials = self
-    }
-
-    static func removeAll() {
-        CredentialsKeyStore.shared.credentials = nil
     }
 }

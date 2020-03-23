@@ -18,10 +18,14 @@ class ServerListViewModel {
 
     // MARK: - Properties
     private static let sectionHeaderCount = 1
-    private var serverList: [VPNCountry]
+    private let accountManager = DependencyFactory.sharedFactory.accountManager
     private let disposeBag = DisposeBag()
     private let _vpnSelection = PublishSubject<Void>()
     private let _toggleSection = PublishSubject<SectionExpansionState>()
+
+    private var serverList: [VPNCountry] {
+        return accountManager.availableServers
+    }
 
     private lazy var sectionExpandedStates: [Int: Bool] = {
         var states = [Int: Bool]()
@@ -47,7 +51,6 @@ class ServerListViewModel {
     }
 
     init() {
-        self.serverList = [VPNCountry].fetchFromUserDefaults() ?? []
         self.selectedCityIndexPath = getIndexPathOfCurrentCity()
         setupObservers()
     }
@@ -73,9 +76,8 @@ class ServerListViewModel {
 
     //Find the saved city in the server list each time in case the list has changed
     private func getIndexPathOfCurrentCity() -> IndexPath? {
-        let currentCity = VPNCity.fetchFromUserDefaults() ?? serverList.getRandomUSCity()
         for (countryIndex, country) in serverList.enumerated() {
-            for (cityIndex, city) in country.cities.enumerated() where city == currentCity {
+            for (cityIndex, city) in country.cities.enumerated() where city == accountManager.selectedCity {
                 return IndexPath(row: cityIndex + ServerListViewModel.sectionHeaderCount, section: countryIndex)
             }
         }
@@ -96,7 +98,7 @@ class ServerListViewModel {
                 guard let self = self, indexPath != self.selectedCityIndexPath else { return }
                 self.selectedCityIndexPath = indexPath
                 let newCity = self.serverList[indexPath.section].cities[indexPath.row - ServerListViewModel.sectionHeaderCount]
-                newCity.saveToUserDefaults()
+                self.accountManager.updateSelectedCity(with: newCity)
                 DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.onNext(newCity)
             })
             .flatMap { _ -> Single<Void> in

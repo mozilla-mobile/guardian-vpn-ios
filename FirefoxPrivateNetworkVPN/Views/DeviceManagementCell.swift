@@ -33,12 +33,12 @@ class DeviceManagementCell: UITableViewCell {
         nameLabel.text = nil
     }
 
-    func setup(with device: Device, event: PublishSubject<Device>) {
+    func setup(with device: Device, isCurrentDevice: Bool, event: PublishSubject<Device>) {
         nameLabel.text = device.name
         self.device = device
         removeDeviceEvent = event
 
-        if device.isCurrentDevice {
+        if isCurrentDevice {
             subtitleLabel.text = LocalizedString.devicesCurrentDevice.value
             applyCurrentDeviceStyle()
         } else if device.isBeingRemoved {

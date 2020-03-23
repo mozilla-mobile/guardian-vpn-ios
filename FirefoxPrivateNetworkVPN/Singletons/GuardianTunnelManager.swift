@@ -20,8 +20,9 @@ class GuardianTunnelManager: TunnelManaging {
 
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
+    private let accountManager = DependencyFactory.sharedFactory.accountManager
     private var account: Account? {
-        return DependencyFactory.sharedFactory.accountManager.account
+        return accountManager.account
     }
 
     private var tunnel: NETunnelProviderManager?
@@ -64,9 +65,13 @@ class GuardianTunnelManager: TunnelManaging {
                     return
                 }
                 let tunnelProviderManager = self.tunnel ?? NETunnelProviderManager()
-                guard let device = device, let account = self.account else { return }
+                guard let device = device,
+                    let account = self.account,
+                    let city = self.accountManager.selectedCity else { return }
 
-                tunnelProviderManager.setNewConfiguration(for: device, key: account.privateKey)
+                tunnelProviderManager.setNewConfiguration(for: device,
+                                                          city: city,
+                                                          key: account.privateKey)
                 tunnelProviderManager.isEnabled = true
 
                 tunnelProviderManager.saveToPreferences { [unowned self] saveError in
@@ -109,13 +114,18 @@ class GuardianTunnelManager: TunnelManaging {
             }
 
             if self.stateEvent.value != .off {
-                self.stateEvent.accept(.switching(tunnel.localizedDescription ?? "", VPNCity.fetchFromUserDefaults()?.name ?? ""))
+                let cityName = tunnel.localizedDescription ?? ""
+                let newCityName = self.accountManager.selectedCity?.name ?? ""
+                self.stateEvent.accept(.switching(cityName, newCityName))
             }
-            guard let account = self.account else {
-                resolver(.error(GuardianError.needToLogin))
-                return Disposables.create()
+            guard let account = self.account,
+                let newCity = self.accountManager.selectedCity else {
+                    resolver(.error(GuardianError.needToLogin))
+                    return Disposables.create()
             }
-            tunnel.setNewConfiguration(for: device, key: account.privateKey)
+            tunnel.setNewConfiguration(for: device,
+                                       city: newCity,
+                                       key: account.privateKey)
 
             tunnel.saveToPreferences { saveError in
                 if let error = saveError {
@@ -192,7 +202,7 @@ class GuardianTunnelManager: TunnelManaging {
     private func loadTunnel(completion: ((Error?) -> Void)? = nil) {
         NETunnelProviderManager.loadAllFromPreferences { [weak self] managers, error in
             if let self = self, error == nil {
-                self.tunnel = managers?.first { $0.localizedDescription == VPNCity.fetchFromUserDefaults()?.name }
+                self.tunnel = managers?.first { $0.localizedDescription == self.accountManager.selectedCity?.name }
             }
             completion?(error)
         }
@@ -245,8 +255,7 @@ class GuardianTunnelManager: TunnelManaging {
 }
 
 private extension NETunnelProviderManager {
-    func setNewConfiguration(for device: Device, key: Data) {
-        guard let city = VPNCity.fetchFromUserDefaults() else { return }
+    func setNewConfiguration(for device: Device, city: VPNCity, key: Data) {
         guard let newConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: key) else { return }
 
         self.protocolConfiguration = NETunnelProviderProtocol(tunnelConfiguration: newConfiguration)
