@@ -20,7 +20,7 @@ enum NavigableItem: Hashable {
     case devices
     case help
     case home
-    case landing
+    case landing(GuardianAPIError? = nil)
     case loading
     case login
     case servers
@@ -35,7 +35,6 @@ enum NavigableItem: Hashable {
 
 enum NavigableContext {
     case maxDevicesError
-    case loginError(Error)
 }
 
 class NavigationCoordinator: NavigationCoordinating {
@@ -69,24 +68,24 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.currentViewController = landingViewController
 
             case (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
-                self.navigate(from: .loading, to: .landing)
+                self.navigate(from: .loading, to: .landing())
                 if let landingViewController = self.currentViewController as? LandingViewController {
                     landingViewController.showSuccessfulLogoutToast()
                 }
 
-            case (.login, .landing):
+            case (.login, .landing(let error)):
                 self.currentViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
 
-                switch context {
-                case .maxDevicesError:
-                    self.navigate(from: .landing, to: .home, context: context)
-
-                case .loginError(let error):
-                    if let landingViewController = self.currentViewController as? LandingViewController {
-                        landingViewController.showErrorToast(for: error)
-                    }
-
+                switch error {
                 case .none: return
+                case .maxDevicesReached:
+                    self.navigate(from: .landing(), to: .home, context: .maxDevicesError)
+                    return
+                case .some(let error):
+                    if let landingViewController = self.currentViewController as? LandingViewController {
+                        landingViewController.showToast(with: error)
+                    }
+                    return
                 }
 
             // To Home
@@ -130,7 +129,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             case (.carousel, .login):
                 self.currentViewController?.presentedViewController?.dismiss(animated: true) {
-                    self.navigate(from: .landing, to: .login)
+                    self.navigate(from: .landing(), to: .login)
                 }
 
             // To Onboarding carousel

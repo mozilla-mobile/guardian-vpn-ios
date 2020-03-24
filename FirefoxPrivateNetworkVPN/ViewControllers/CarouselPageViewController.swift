@@ -125,7 +125,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     }
 
     @objc override func closeModal() {
-        navigate(to: .landing)
+        navigate(to: .landing())
     }
 
     @objc func skipToLastPage() {
