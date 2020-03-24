@@ -30,6 +30,18 @@ final class WarningToastView: UIView {
         addSubview(view)
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        layoutIfNeeded()
+        setCornerRadius()
+    }
+
+    private func setCornerRadius() {
+        view.cornerRadius = view.frame.height/10
+        view.shadowRadius = view.frame.height/10
+    }
+
     func show(message: NSAttributedString, dismissAfter: TimeInterval = 3, action: Action? = nil) {
         label.attributedText = message
         self.action = action
@@ -44,7 +56,7 @@ final class WarningToastView: UIView {
                 }
         })
     }
-    
+
     @IBAction func tapped(_ sender: Any) {
         dismiss()
         action?()
