@@ -17,12 +17,14 @@ class NetworkLayer {
         let defaultSession = URLSession(configuration: .default)
         defaultSession.configuration.timeoutIntervalForRequest = 120
 
-        let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, _ in
+        let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, error in
             if let response = response as? HTTPURLResponse, 200...210 ~= response.statusCode {
                 completion(.success(data))
-            } else if let data = data {
-                let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data)
-                completion(.failure(errorResponse?.guardianAPIError ?? .unknown))
+            } else if let data = data,
+                let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                completion(.failure(errorResponse.guardianAPIError))
+            } else if let error = error as NSError?, error.code == -1009 {
+                completion(.failure(.offline))
             } else {
                 completion(.failure(.unknown))
             }
