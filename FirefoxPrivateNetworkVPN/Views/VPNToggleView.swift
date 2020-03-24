@@ -160,10 +160,8 @@ class VPNToggleView: UIView {
              (.disconnecting, .off):
             vpnSwitch.setOn(newState.isToggleOn, animated: true)
             tapHaptics.impactOccurred()
-        case (.off, .on), (.on, .off): // handles app re-launch
-            vpnSwitch.setOn(newState.isToggleOn, animated: false)
         default:
-            vpnSwitch.setOn(newState.isToggleOn, animated: true)
+            vpnSwitch.setOn(newState.isToggleOn, animated: false)
         }
 
         vpnSwitch.isUserInteractionEnabled = newState.isEnabled
