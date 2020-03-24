@@ -90,6 +90,8 @@ class VPNToggleView: UIView {
         rippleAnimationView?.respectAnimationFrameRate = true
         rippleAnimationView?.animationSpeed = 0.5
         view.cornerRadius = UIScreen.isiPad ? 16 : 8
+
+        update(with: .off)
     }
 
     private func createAnimation(for name: String, in containerView: UIView) -> AnimationView {
@@ -150,15 +152,20 @@ class VPNToggleView: UIView {
 
     private func updateToggle(to newState: VPNState) {
         switch (currentState, newState) {
-        case (.off, .on): // handles app re-launch
-            vpnSwitch.setOn(newState.isToggleOn, animated: false)
-        default:
+        case (.off, .connecting),
+             (.connecting, .on),
+             (.on, .switching),
+             (.switching, .on),
+             (.on, .disconnecting),
+             (.disconnecting, .off):
             vpnSwitch.setOn(newState.isToggleOn, animated: true)
+            tapHaptics.impactOccurred()
+        default:
+            vpnSwitch.setOn(newState.isToggleOn, animated: false)
         }
 
         vpnSwitch.isUserInteractionEnabled = newState.isEnabled
         vpnSwitch.alpha = newState.isEnabled ? 1 : 0.5
-        tapHaptics.impactOccurred()
 
         vpnToggleButton.isUserInteractionEnabled = newState.isEnabled
     }
