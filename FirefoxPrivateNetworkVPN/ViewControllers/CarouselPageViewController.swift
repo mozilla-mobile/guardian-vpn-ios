@@ -15,10 +15,6 @@ class CarouselPageViewController: UIPageViewController, Navigating {
 
     static var navigableItem: NavigableItem = .carousel
 
-    private struct Constant {
-        static let pageControlOffsetY: CGFloat = -100
-    }
-
     private let carouselDataSource = CarouselDataSource()
     private var currentIndex = 0
     private var pendingIndex: Int?
@@ -35,6 +31,12 @@ class CarouselPageViewController: UIPageViewController, Navigating {
     private var shouldHideControls: Bool {
         return isLastPage || isLastPageNext
     }
+
+    // Offset to align page indicator to center of Get Started button.
+    private lazy var pageControlOffsetY: CGFloat = {
+        let offsetConstant: CGFloat = UIScreen.isiPad ? -92: -52
+        return offsetConstant - view.safeAreaInsets.bottom
+    }()
 
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 43, height: 6))
@@ -116,7 +118,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         let viewHeight = view.frame.height
         let viewWidth = view.frame.width
         pageControl.center.x = viewWidth/2.0
-        pageControl.center.y = viewHeight + Constant.pageControlOffsetY
+        pageControl.center.y = viewHeight + pageControlOffsetY
     }
 
     private func reloadPage() {
