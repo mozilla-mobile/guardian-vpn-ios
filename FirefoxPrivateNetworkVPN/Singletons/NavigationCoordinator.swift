@@ -68,7 +68,10 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.currentViewController = landingViewController
 
             case (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
-                self.navigate(from: .loading, to: .landing())
+                let landingViewController = LandingViewController()
+                self.appDelegate?.window?.rootViewController = landingViewController
+                self.currentViewController = landingViewController
+
                 if let landingViewController = self.currentViewController as? LandingViewController {
                     landingViewController.showSuccessfulLogoutToast()
                 }
