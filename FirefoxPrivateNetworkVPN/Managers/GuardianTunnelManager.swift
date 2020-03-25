@@ -16,8 +16,6 @@ import RxRelay
 
 class GuardianTunnelManager: TunnelManaging {
 
-    static let sharedManager = GuardianTunnelManager()
-
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
     private let accountManager = DependencyManager.shared.accountManager
@@ -32,7 +30,7 @@ class GuardianTunnelManager: TunnelManaging {
         return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
     }
 
-    private init() {
+    init() {
         loadTunnel { _ in
             guard let tunnel = self.tunnel else { return }
             self.stateEvent.accept(VPNState(with: tunnel.connection.status))

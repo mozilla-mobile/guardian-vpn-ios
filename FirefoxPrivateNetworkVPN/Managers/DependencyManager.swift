@@ -24,12 +24,13 @@ class DependencyManager: DependencyProviding {
 
     // MARK: -
     lazy var guardianAPI = GuardianAPI(networkLayer: networkLayer, userAgentInfo: userAgentInfo)
-    lazy var accountManager: AccountManaging = AccountManager(guardianAPI: guardianAPI, accountStore: accountStore)
-    lazy var tunnelManager: TunnelManaging = GuardianTunnelManager.sharedManager
-    lazy var navigationCoordinator: NavigationCoordinating = NavigationCoordinator.sharedCoordinator
+    lazy var accountManager: AccountManaging = AccountManager(guardianAPI: guardianAPI,
+                                                              accountStore: accountStore)
+    lazy var tunnelManager: TunnelManaging = GuardianTunnelManager()
+    lazy var navigationCoordinator: NavigationCoordinating = NavigationCoordinator()
     lazy var connectionHealthMonitor: ConnectionHealthMonitoring = ConnectionHealthMonitor()
     lazy var releaseMonitor: ReleaseMonitoring = ReleaseMonitor(accountStore: accountStore, guardianAPI: guardianAPI)
-    lazy var heartbeatMonitor: HeartbeatMonitoring = HeartbeatMonitor.sharedManager
+    lazy var heartbeatMonitor: HeartbeatMonitoring = HeartbeatMonitor()
 
     // MARK: - Utils
     private var userAgentInfo: String {

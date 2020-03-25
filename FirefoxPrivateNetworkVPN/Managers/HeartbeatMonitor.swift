@@ -12,7 +12,6 @@
 import RxSwift
 
 class HeartbeatMonitor: HeartbeatMonitoring {
-    static let sharedManager = HeartbeatMonitor()
 
     private static let timeInterval: TimeInterval = 3600
     private var timer: DispatchSourceTimer?

@@ -38,11 +38,6 @@ enum NavigableContext {
 }
 
 class NavigationCoordinator: NavigationCoordinating {
-    static let sharedCoordinator: NavigationCoordinating = {
-        let instance = NavigationCoordinator()
-        //
-        return instance
-    }()
 
     private var currentViewController: (UIViewController & Navigating)?
     private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -52,8 +47,6 @@ class NavigationCoordinator: NavigationCoordinating {
         currentViewController = loadingViewController
         return loadingViewController
     }
-
-    private init() { }
 
     func navigate(from origin: NavigableItem, to destination: NavigableItem, context: NavigableContext?) {
         OSLog.logUI(.info, "Navigating from %@ to %@.", args: "\(origin)", "\(destination)")
