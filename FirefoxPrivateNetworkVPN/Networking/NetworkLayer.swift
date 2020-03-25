@@ -23,13 +23,18 @@ class NetworkLayer {
             } else if let data = data,
                 let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                 completion(.failure(errorResponse.guardianAPIError))
-            } else if let error = error as NSError?, error.code == -1009 {
+            } else if let error = error as NSError?,
+                error.code == errorCode(of: .cfurlErrorNotConnectedToInternet) {
                 completion(.failure(.offline))
             } else {
                 completion(.failure(.unknown))
             }
         }
         dataTask.resume()
+    }
+    
+    fileprivate static func errorCode(of error: CFNetworkErrors) -> Int {
+        return Int(error.rawValue)
     }
 }
 
