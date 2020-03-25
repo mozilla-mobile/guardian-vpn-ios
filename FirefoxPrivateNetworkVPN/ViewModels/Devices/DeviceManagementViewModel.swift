@@ -15,7 +15,7 @@ import UIKit
 
 class DeviceManagementViewModel {
     private let disposeBag = DisposeBag()
-    private let accountManager = DependencyFactory.sharedFactory.accountManager
+    private let accountManager = DependencyManager.shared.accountManager
     private var account: Account? { accountManager.account }
 
     let trashTappedSubject = PublishSubject<Device>()

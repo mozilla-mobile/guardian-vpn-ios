@@ -42,7 +42,7 @@ class UpdateRequiredViewController: UIViewController, Navigating {
     }
 
     @IBAction func signoutTapped() {
-        DependencyFactory.sharedFactory.accountManager.logout { [weak self] _ in
+        DependencyManager.shared.accountManager.logout { [weak self] _ in
             self?.navigate(to: .landing())
         }
     }

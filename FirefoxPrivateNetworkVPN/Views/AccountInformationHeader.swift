@@ -20,8 +20,8 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     @IBOutlet weak private var emailLabel: UILabel!
     @IBOutlet weak private var manageAccountButton: UIButton!
 
-    private var user: User? { return DependencyFactory.sharedFactory.accountManager.account?.user }
-
+    private var user: User? { return DependencyManager.shared.accountManager.account?.user }
+    private var guardianAPI = DependencyManager.shared.guardianAPI
     let buttonTappedSubject = PublishSubject<NavigableItem>()
 
     override func awakeFromNib() {
@@ -46,7 +46,7 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
             nameLabel.text = user.displayName.isEmpty ? LocalizedString.settingsDefaultName.value : user.displayName
             emailLabel.text = user.email
             if let url = user.avatarURL {
-                GuardianAPI.downloadAvatar(url) { [weak self] result in
+                guardianAPI.downloadAvatar(url) { [weak self] result in
                     self?.setAvatar(result)
                 }
             }

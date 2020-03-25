@@ -19,10 +19,12 @@ class AccountManager: AccountManaging, Navigating {
     private(set) var availableServers: [VPNCountry] = []
     private(set) var selectedCity: VPNCity?
     private let disposeBag = DisposeBag()
+    private let guardianAPI: GuardianAPI
     private let accountStore: AccountStoring
 
-    init(accountStore: AccountStoring) {
+    init(guardianAPI: GuardianAPI, accountStore: AccountStoring) {
         self.accountStore = accountStore
+        self.guardianAPI = guardianAPI
         subscribeToExpiredSubscriptionNotification()
     }
 
@@ -57,13 +59,13 @@ class AccountManager: AccountManaging, Navigating {
             case (.none, .none):
                 self.accountStore.save(credentials: credentials)
                 self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
-                DependencyFactory.sharedFactory.heartbeatMonitor.start()
+                DependencyManager.shared.heartbeatMonitor.start()
                 completion(.success(()))
             case (.some(let error), _):
                 if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
                     self.accountStore.save(credentials: credentials)
                     self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
-                    DependencyFactory.sharedFactory.heartbeatMonitor.start()
+                    DependencyManager.shared.heartbeatMonitor.start()
                 }
                 completion(.failure(error))
             case (.none, .some(let error)):
@@ -90,7 +92,7 @@ class AccountManager: AccountManaging, Navigating {
 
         self.availableServers = accountStore.getVpnServers()
         self.selectedCity = accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
-        DependencyFactory.sharedFactory.heartbeatMonitor.start()
+        DependencyManager.shared.heartbeatMonitor.start()
 
         return true
     }
@@ -100,7 +102,7 @@ class AccountManager: AccountManaging, Navigating {
             completion(Result.failure(GuardianError.needToLogin))
             return
         }
-        GuardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { result in
+        guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { result in
             switch result {
             case .success:
                 self.resetAccount()
@@ -130,7 +132,7 @@ class AccountManager: AccountManaging, Navigating {
             return
         }
 
-        GuardianAPI.addDevice(with: account.credentials.verificationToken, body: body) { [weak self] result in
+        guardianAPI.addDevice(with: account.credentials.verificationToken, body: body) { [weak self] result in
             guard let self = self else {
                 completion(.failure(GuardianError.deallocated))
                 return
@@ -155,7 +157,7 @@ class AccountManager: AccountManaging, Navigating {
             return
         }
 
-        GuardianAPI.accountInfo(token: account.credentials.verificationToken) { [weak self] result in
+        guardianAPI.accountInfo(token: account.credentials.verificationToken) { [weak self] result in
             guard let self = self else {
                 completion(.failure(GuardianError.deallocated))
                 return
@@ -180,7 +182,7 @@ class AccountManager: AccountManaging, Navigating {
             }
 
             account.user.markIsBeingRemoved(for: device)
-            GuardianAPI.removeDevice(with: account.credentials.verificationToken, deviceKey: device.publicKey) { result in
+            self?.guardianAPI.removeDevice(with: account.credentials.verificationToken, deviceKey: device.publicKey) { result in
                 switch result {
                 case .success:
                     account.user.remove(device: device)
@@ -198,7 +200,7 @@ class AccountManager: AccountManaging, Navigating {
     // MARK: - VPN Server Operations
 
     func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        GuardianAPI.availableServers(with: token) { result in
+        guardianAPI.availableServers(with: token) { result in
             switch result {
             case .success (let servers):
                 self.availableServers = servers
@@ -212,9 +214,9 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     private func resetAccount() {
-    DependencyFactory.sharedFactory.tunnelManager.stopAndRemove()
-        DependencyFactory.sharedFactory.heartbeatMonitor.stop()
-        DependencyFactory.sharedFactory.connectionHealthMonitor.stop()
+    DependencyManager.shared.tunnelManager.stopAndRemove()
+        DependencyManager.shared.heartbeatMonitor.stop()
+        DependencyManager.shared.connectionHealthMonitor.stop()
 
         account = nil
         availableServers = []

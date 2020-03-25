@@ -16,7 +16,7 @@ class HeartbeatMonitor: HeartbeatMonitoring {
 
     private static let timeInterval: TimeInterval = 3600
     private var timer: DispatchSourceTimer?
-    private var accountManager: AccountManaging { return DependencyFactory.sharedFactory.accountManager }
+    private var accountManager: AccountManaging { return DependencyManager.shared.accountManager }
 
     /**
      Starts the heart beat and polls the service end points for data immediately.

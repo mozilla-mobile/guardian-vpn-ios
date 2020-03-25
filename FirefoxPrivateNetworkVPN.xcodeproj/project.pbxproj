@@ -19,6 +19,7 @@
 		F40109842411877E006DFF96 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40109832411877E006DFF96 /* EmailManager.swift */; };
 		F40109882411AF3E006DFF96 /* FileManager+Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40109872411AF3E006DFF96 /* FileManager+Logs.swift */; };
 		F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056031239E9F31000A93CC /* KeychainStored.swift */; };
+		F410804D242BCB6200973421 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410804C242BCB6200973421 /* Networking.swift */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
 		F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422FEF523970752009413E2 /* Notification+Extensions.swift */; };
@@ -186,7 +187,7 @@
 		F4E908EB2371CAAD00EB9FE6 /* Metropolis-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70C22342431F00871447 /* Metropolis-ThinItalic.otf */; };
 		F4E908EC2371CAAD00EB9FE6 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947F23709033007595C3 /* Strings.swift */; };
 		F4E908ED2371CAAD00EB9FE6 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40831CE233CFA2000A60FCA /* AccountManager.swift */; };
-		F4E908EE2371CAAD00EB9FE6 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA1A23711C7A0018DC43 /* DependencyFactory.swift */; };
+		F4E908EE2371CAAD00EB9FE6 /* DependencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA1A23711C7A0018DC43 /* DependencyManager.swift */; };
 		F4E908EF2371CAAD00EB9FE6 /* GuardianTunnelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */; };
 		F4E908F12371CAAD00EB9FE6 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D709A233D384E00871447 /* NavigationCoordinator.swift */; };
 		F4E908F22371CAAD00EB9FE6 /* CAShapeLayer+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B21E40236650E700136316 /* CAShapeLayer+Animation.swift */; };
@@ -303,9 +304,10 @@
 		F40831CE233CFA2000A60FCA /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		F40831D0233CFD5600A60FCA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPIDateFormatter.swift; sourceTree = "<group>"; };
+		F410804C242BCB6200973421 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F41B9C7D2368933F00ACC414 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
-		F41CCA1A23711C7A0018DC43 /* DependencyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
+		F41CCA1A23711C7A0018DC43 /* DependencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
 		F41CCA1D23711C7A0018DC43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F41CCA2423711C7A0018DC43 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F41CCA2F2371215E0018DC43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -660,7 +662,7 @@
 			children = (
 				F4B42C02238DD1FA001F64F7 /* Connection Heath Monitor */,
 				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
-				F41CCA1A23711C7A0018DC43 /* DependencyFactory.swift */,
+				F41CCA1A23711C7A0018DC43 /* DependencyManager.swift */,
 				F40109832411877E006DFF96 /* EmailManager.swift */,
 				F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */,
 				F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */,
@@ -822,6 +824,7 @@
 				F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */,
 				F45D70A0233D3BC000871447 /* Navigating.swift */,
 				F4A4947923709033007595C3 /* NavigationCoordinating.swift */,
+				F410804C242BCB6200973421 /* Networking.swift */,
 				F4A4947E23709033007595C3 /* NetworkRequesting.swift */,
 				F47865942424FE1400598AAF /* Persisting.swift */,
 				F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */,
@@ -1638,6 +1641,7 @@
 				F4A7FA26237C5CE00034AF6C /* Credentials.swift in Sources */,
 				F4E908EF2371CAAD00EB9FE6 /* GuardianTunnelManager.swift in Sources */,
 				F47112A223E218AC00539A15 /* UIViewController+Modal.swift in Sources */,
+				F410804D242BCB6200973421 /* Networking.swift in Sources */,
 				F4E908C62371CAAD00EB9FE6 /* TunnelAction.swift in Sources */,
 				F4E908F42371CAAD00EB9FE6 /* GuardianAPIDateFormatter.swift in Sources */,
 				F478E48423C787B600D17FE0 /* Release.swift in Sources */,
@@ -1655,7 +1659,7 @@
 				F4B42BFF238D8A44001F64F7 /* LongPinger.swift in Sources */,
 				F4E909072371CAAD00EB9FE6 /* SettingsViewController.swift in Sources */,
 				F4AED210235F52AE00F80ABF /* Curve25519.swift in Sources */,
-				F4E908EE2371CAAD00EB9FE6 /* DependencyFactory.swift in Sources */,
+				F4E908EE2371CAAD00EB9FE6 /* DependencyManager.swift in Sources */,
 				F478E48623C7881900D17FE0 /* UpdateStatus.swift in Sources */,
 				F4AED258235F835300F80ABF /* Endpoint.swift in Sources */,
 				F4E909022371CAAD00EB9FE6 /* LoadingViewController.swift in Sources */,

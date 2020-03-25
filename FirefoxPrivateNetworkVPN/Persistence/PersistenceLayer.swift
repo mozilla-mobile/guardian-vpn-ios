@@ -16,10 +16,6 @@ private class CredentialsKeyChain {
 
 class PersistenceLayer: Persisting {
 
-    private init() { }
-
-    static let shared = PersistenceLayer()
-
     private let userDefaults = UserDefaults.standard
     private let credentialsKeyChain = CredentialsKeyChain()
 

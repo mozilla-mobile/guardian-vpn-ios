@@ -20,7 +20,7 @@ class GuardianTunnelManager: TunnelManaging {
 
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
-    private let accountManager = DependencyFactory.sharedFactory.accountManager
+    private let accountManager = DependencyManager.shared.accountManager
     private var account: Account? {
         return accountManager.account
     }
@@ -48,7 +48,7 @@ class GuardianTunnelManager: TunnelManaging {
 
     private func subscribeToVersionUpdates() {
         //swiftlint:disable:next trailing_closure
-        DependencyFactory.sharedFactory.releaseMonitor.updateStatus
+        DependencyManager.shared.releaseMonitor.updateStatus
             .distinctUntilChanged()
             .filter { $0 == .required }
             .subscribe(onNext: { [weak self] _ in

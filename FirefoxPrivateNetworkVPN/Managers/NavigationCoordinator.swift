@@ -203,7 +203,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
         return alert
     }
-    
+
     private func initializeWithLandingScreen() {
         let landingViewController = LandingViewController()
         self.appDelegate?.window?.rootViewController = landingViewController

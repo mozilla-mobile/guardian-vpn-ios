@@ -23,11 +23,9 @@ class AccountStore: AccountStoring {
 
     private let persistenceLayer: Persisting
 
-    init(persistenceLayer: Persisting = PersistenceLayer.shared) {
+    init(persistenceLayer: Persisting) {
         self.persistenceLayer = persistenceLayer
     }
-
-    static let sharedManager = AccountStore()
 
     func save(user: User) {
         persistenceLayer.save(value: user, for: Key.user.rawValue)

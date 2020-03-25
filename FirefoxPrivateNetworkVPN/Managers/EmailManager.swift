@@ -16,7 +16,7 @@ class EmailManager: NSObject, MFMailComposeViewControllerDelegate {
     fileprivate static let logsFileName = "debug_logs.txt"
     fileprivate static let logsMimeType = "text/plain"
 
-    private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
+    private var account: Account? { return DependencyManager.shared.accountManager.account }
 
     private var logsSubject: String {
         let username = account?.user.displayName ?? ""

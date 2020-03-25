@@ -12,6 +12,7 @@
 import Foundation
 
 protocol DependencyProviding {
+    var guardianAPI: GuardianAPI { get }
     var accountManager: AccountManaging { get }
     var tunnelManager: TunnelManaging { get }
     var navigationCoordinator: NavigationCoordinating { get }

@@ -18,7 +18,7 @@ class ServerListViewModel {
 
     // MARK: - Properties
     private static let sectionHeaderCount = 1
-    private let accountManager = DependencyFactory.sharedFactory.accountManager
+    private let accountManager = DependencyManager.shared.accountManager
     private let disposeBag = DisposeBag()
     private let _vpnSelection = PublishSubject<Void>()
     private let _toggleSection = PublishSubject<SectionExpansionState>()
@@ -99,14 +99,14 @@ class ServerListViewModel {
                 self.selectedCityIndexPath = indexPath
                 let newCity = self.serverList[indexPath.section].cities[indexPath.row - ServerListViewModel.sectionHeaderCount]
                 self.accountManager.updateSelectedCity(with: newCity)
-                DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent.onNext(newCity)
+                DependencyManager.shared.tunnelManager.cityChangedEvent.onNext(newCity)
             })
             .flatMap { _ -> Single<Void> in
-                guard let device = DependencyFactory.sharedFactory.accountManager.account?.currentDevice else {
+                guard let device = DependencyManager.shared.accountManager.account?.currentDevice else {
                     OSLog.log(.error, "No device found when switching VPN server")
                     return .never()
                 }
-                return DependencyFactory.sharedFactory.tunnelManager.switchServer(with: device)
+                return DependencyManager.shared.tunnelManager.switchServer(with: device)
         }
         .catchError { error -> Observable<Void> in
             OSLog.logTunnel(.error, error.localizedDescription)

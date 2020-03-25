@@ -26,8 +26,8 @@ class HomeViewController: UIViewController, Navigating {
     private let pinger = LongPinger()
     private let timerFactory = ConnectionTimerFactory()
     private let rxValueObserving = ConnectionRxValue()
-    private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
-    private let releaseMonitor = DependencyFactory.sharedFactory.releaseMonitor
+    private let tunnelManager = DependencyManager.shared.tunnelManager
+    private let releaseMonitor = DependencyManager.shared.releaseMonitor
     private let disposeBag = DisposeBag()
 
     init() {
@@ -100,7 +100,7 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func connectToTunnel() {
-        let currentDevice = DependencyFactory.sharedFactory.accountManager.account?.currentDevice
+        let currentDevice = DependencyManager.shared.accountManager.account?.currentDevice
 
         //swiftlint:disable:next trailing_closure
         tunnelManager.connect(with: currentDevice)

@@ -35,7 +35,7 @@ class LoadingViewController: UIViewController, Navigating {
 
         delayNavigation(timeInterval: Self.navigationDelay)
 
-        guard DependencyFactory.sharedFactory.accountManager.loginWithStoredCredentials() else {
+        guard DependencyManager.shared.accountManager.loginWithStoredCredentials() else {
             navigateRelay.accept(.landing())
             return
         }
