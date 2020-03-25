@@ -61,7 +61,6 @@
 		F478E48423C787B600D17FE0 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48323C787B600D17FE0 /* Release.swift */; };
 		F478E48623C7881900D17FE0 /* UpdateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48523C7881900D17FE0 /* UpdateStatus.swift */; };
 		F478E48823C78A1700D17FE0 /* ReleaseMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */; };
-		F478E48A23C78F4F00D17FE0 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */; };
 		F478E48F23C7906C00D17FE0 /* GuardianURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */; };
 		F48A595C23DBA03400BB2A0A /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48A595B23DBA03400BB2A0A /* UIScreen+Extensions.swift */; };
 		F49090BE2379D43200C8430A /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49090BD2379D43200C8430A /* SettingsItem.swift */; };
@@ -405,7 +404,6 @@
 		F478E48323C787B600D17FE0 /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
 		F478E48523C7881900D17FE0 /* UpdateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStatus.swift; sourceTree = "<group>"; };
 		F478E48723C78A1700D17FE0 /* ReleaseMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitoring.swift; sourceTree = "<group>"; };
-		F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuardianURLRequest.swift; sourceTree = "<group>"; };
 		F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FirefoxPrivateNetworkVPN.xcconfig; sourceTree = "<group>"; };
 		F48A595B23DBA03400BB2A0A /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
@@ -666,7 +664,7 @@
 		F41CCA1B23711C7A0018DC43 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				F478E48B23C78F6900D17FE0 /* URLRequestBuilders */,
+				F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */,
 				F4658544233BB7690081D7D7 /* GuardianAPI.swift */,
 				F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */,
 				F4658542233BB44A0081D7D7 /* NetworkLayer.swift */,
@@ -930,15 +928,6 @@
 				F47112A123E218AC00539A15 /* UIViewController+Modal.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		F478E48B23C78F6900D17FE0 /* URLRequestBuilders */ = {
-			isa = PBXGroup;
-			children = (
-				F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */,
-				F478E48923C78F4F00D17FE0 /* URLRequestBuilder.swift */,
-			);
-			path = URLRequestBuilders;
 			sourceTree = "<group>";
 		};
 		F484429623CD059000D140B1 /* Config */ = {
@@ -1576,7 +1565,6 @@
 				F4B42C04238DD22D001F64F7 /* ConnectionHealthMonitor.swift in Sources */,
 				F478E48F23C7906C00D17FE0 /* GuardianURLRequest.swift in Sources */,
 				F4B42C2323916A90001F64F7 /* ConnectionHealthMonitoring.swift in Sources */,
-				F478E48A23C78F4F00D17FE0 /* URLRequestBuilder.swift in Sources */,
 				F4E908F12371CAAD00EB9FE6 /* NavigationCoordinator.swift in Sources */,
 				F4AED255235F835300F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */,
 				F47865912424F90D00598AAF /* AccountStoring.swift in Sources */,

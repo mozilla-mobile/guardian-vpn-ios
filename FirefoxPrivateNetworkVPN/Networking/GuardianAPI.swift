@@ -44,7 +44,7 @@ class GuardianAPI: NetworkRequesting {
     }
 
     static func verify(urlString: String, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
-        let urlRequest = URLRequestBuilder.urlRequest(with: urlString, type: .GET)
+        let urlRequest = GuardianURLRequest.urlRequest(with: urlString, type: .GET)
         NetworkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: VerifyResponse.self))
