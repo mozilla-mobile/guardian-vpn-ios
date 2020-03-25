@@ -63,10 +63,10 @@ class NavigationCoordinator: NavigationCoordinating {
             switch (origin, destination) {
             // To Landing
             case (.loading, .landing):
-                self.createAndSetLandingViewController()
+                self.initializeWithLandingScreen()
 
             case (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
-                self.createAndSetLandingViewController()
+                self.initializeWithLandingScreen()
 
                 if let landingViewController = self.currentViewController as? LandingViewController {
                     landingViewController.showSuccessfulLogoutToast()
@@ -204,7 +204,7 @@ class NavigationCoordinator: NavigationCoordinating {
         return alert
     }
     
-    private func createAndSetLandingViewController() {
+    private func initializeWithLandingScreen() {
         let landingViewController = LandingViewController()
         self.appDelegate?.window?.rootViewController = landingViewController
         self.currentViewController = landingViewController
