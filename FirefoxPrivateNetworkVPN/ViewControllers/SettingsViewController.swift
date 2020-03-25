@@ -94,7 +94,7 @@ class SettingsViewController: UIViewController, Navigating {
         dataSource?.signoutSelectedSubject
             .subscribe(onNext: { _ in
                 DependencyFactory.sharedFactory.accountManager.logout { [weak self] _ in
-                    self?.navigate(to: .landing)
+                    self?.navigate(to: .landing())
                 }
             })
             .disposed(by: self.disposeBag)

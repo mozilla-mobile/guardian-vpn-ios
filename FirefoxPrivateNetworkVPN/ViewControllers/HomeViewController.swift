@@ -30,10 +30,6 @@ class HomeViewController: UIViewController, Navigating {
     private let releaseMonitor = DependencyFactory.sharedFactory.releaseMonitor
     private let disposeBag = DisposeBag()
 
-//    private lazy var connectionHealthMonitor = {
-//        ConnectionHealthMonitor(pinger: self.pinger, timerFactory: self.timerFactory, rxValueObserving: self.rxValueObserving)
-//    }()
-
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
         setupTabBar()

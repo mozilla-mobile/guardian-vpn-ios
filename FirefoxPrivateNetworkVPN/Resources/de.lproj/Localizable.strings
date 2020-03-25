@@ -88,6 +88,9 @@
 
 // MARK: - Warning toast
 "toastTryAgain" = "Nochmal versuchen";
+"toastLoggedOut" = "Logged out and device removed";
+"toastNoConnection" = "No internet connection.";
+"toastAuthenticationError" = "Authentication error.";
 
 //Mark: - Update
 "updateConnection" = "Die Verbindung ist während des Updateprozesses nicht sicher.";

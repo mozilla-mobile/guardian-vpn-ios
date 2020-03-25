@@ -101,6 +101,9 @@ enum GuardianAPIError: Int, Error {
     case tokenExpired = 125
     case tokenNotVerified = 126
 
+    // No internet connection
+    case offline = -1009
+
     // Unknown
     case unknown = 500
 
@@ -132,6 +135,8 @@ enum GuardianAPIError: Int, Error {
             return "Login token expired"
         case .tokenNotVerified:
             return "Login token isn't verified"
+        case .offline:
+            return "The Internet connection appears to be offline."
         default:
             return "Unknown error"
         }
