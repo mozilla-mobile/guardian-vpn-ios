@@ -34,7 +34,7 @@ class AccountManager: AccountManaging, Navigating {
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void) {
         let credentials = Credentials(with: verification)
         account = Account(credentials: credentials,
-                              user: verification.user)
+                          user: verification.user)
 
         let dispatchGroup = DispatchGroup()
         var addDeviceError: Error?
@@ -104,10 +104,10 @@ class AccountManager: AccountManaging, Navigating {
             completion(Result.failure(GuardianError.needToLogin))
             return
         }
-        guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { result in
+        guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [weak self] result in
             switch result {
             case .success:
-                self.resetAccount()
+                self?.resetAccount()
                 completion(.success(()))
             case .failure(let error):
                 Logger.global?.log(message: "Logout Error: \(error)")
@@ -216,7 +216,7 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     private func resetAccount() {
-    DependencyManager.shared.tunnelManager.stopAndRemove()
+        DependencyManager.shared.tunnelManager.stopAndRemove()
         DependencyManager.shared.heartbeatMonitor.stop()
         DependencyManager.shared.connectionHealthMonitor.stop()
 
