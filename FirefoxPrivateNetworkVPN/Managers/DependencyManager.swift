@@ -25,7 +25,8 @@ class DependencyManager: DependencyProviding {
     // MARK: -
     lazy var guardianAPI = GuardianAPI(networkLayer: networkLayer, userAgentInfo: userAgentInfo)
     lazy var accountManager: AccountManaging = AccountManager(guardianAPI: guardianAPI,
-                                                              accountStore: accountStore)
+                                                              accountStore: accountStore,
+                                                              deviceName: UIDevice.current.name)
     lazy var tunnelManager: TunnelManaging = GuardianTunnelManager()
     lazy var navigationCoordinator: NavigationCoordinating = NavigationCoordinator()
     lazy var connectionHealthMonitor: ConnectionHealthMonitoring = ConnectionHealthMonitor()

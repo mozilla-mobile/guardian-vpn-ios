@@ -9,8 +9,6 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-// TODO: Add back heartbeat.
-
 import UIKit
 import os.log
 

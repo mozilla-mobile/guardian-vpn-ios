@@ -9,7 +9,6 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-import UIKit // TODO: remove this dependency
 import RxSwift
 
 class AccountManager: AccountManaging, Navigating {
@@ -21,10 +20,13 @@ class AccountManager: AccountManaging, Navigating {
     private let disposeBag = DisposeBag()
     private let guardianAPI: GuardianAPI
     private let accountStore: AccountStoring
+    private let deviceName: String
 
-    init(guardianAPI: GuardianAPI, accountStore: AccountStoring) {
-        self.accountStore = accountStore
+    init(guardianAPI: GuardianAPI, accountStore: AccountStoring, deviceName: String) {
         self.guardianAPI = guardianAPI
+        self.accountStore = accountStore
+        self.deviceName = deviceName
+
         subscribeToExpiredSubscriptionNotification()
     }
 
@@ -124,7 +126,7 @@ class AccountManager: AccountManaging, Navigating {
             completion(Result.failure(GuardianError.couldNotEncodeData))
             return
         }
-        let body: [String: Any] = ["name": UIDevice.current.name,
+        let body: [String: Any] = ["name": deviceName,
                                    "pubkey": devicePublicKey]
 
         guard !account.hasDeviceBeenAdded else {
