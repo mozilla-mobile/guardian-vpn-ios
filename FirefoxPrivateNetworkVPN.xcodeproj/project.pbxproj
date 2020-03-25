@@ -627,16 +627,26 @@
 			path = Devices;
 			sourceTree = "<group>";
 		};
+		F410804B242BC83E00973421 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				F4DFBB252422D14F007D27FA /* AccountStore.swift */,
+				F47865962425069700598AAF /* PersistenceLayer.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		F41CCA1823711C7A0018DC43 /* FirefoxPrivateNetworkVPN */ = {
 			isa = PBXGroup;
 			children = (
 				F41CCA2423711C7A0018DC43 /* AppDelegate.swift */,
+				F41CCA1923711C7A0018DC43 /* Managers */,
 				F41CCA1E23711C7A0018DC43 /* Models */,
 				F41CCA1B23711C7A0018DC43 /* Networking */,
+				F410804B242BC83E00973421 /* Persistence */,
 				F41CCA1F23711C7A0018DC43 /* Project Files */,
 				F41CCA2723711C7A0018DC43 /* Protocols */,
 				F41CCA1C23711C7A0018DC43 /* Resources */,
-				F41CCA1923711C7A0018DC43 /* Singletons */,
 				F41CCA2023711C7A0018DC43 /* Utilities */,
 				F41CCA2123711C7A0018DC43 /* ViewControllers */,
 				F4BAF48723F1C356000FDBB0 /* ViewModels */,
@@ -645,20 +655,19 @@
 			path = FirefoxPrivateNetworkVPN;
 			sourceTree = "<group>";
 		};
-		F41CCA1923711C7A0018DC43 /* Singletons */ = {
+		F41CCA1923711C7A0018DC43 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				F4B42C02238DD1FA001F64F7 /* Connection Heath Monitor */,
 				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
-				F4DFBB252422D14F007D27FA /* AccountStore.swift */,
 				F41CCA1A23711C7A0018DC43 /* DependencyFactory.swift */,
 				F40109832411877E006DFF96 /* EmailManager.swift */,
 				F43DFC15234FBBB5003EA64A /* GuardianTunnelManager.swift */,
 				F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */,
 				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
 				F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */,
-				F47865962425069700598AAF /* PersistenceLayer.swift */,
 			);
-			path = Singletons;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		F41CCA1B23711C7A0018DC43 /* Networking */ = {
@@ -724,7 +733,6 @@
 		F41CCA2023711C7A0018DC43 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				F4B42C02238DD1FA001F64F7 /* Connection Heath Monitor */,
 				F478E48223C7865300D17FE0 /* Extensions */,
 				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
 				F4056031239E9F31000A93CC /* KeychainStored.swift */,
