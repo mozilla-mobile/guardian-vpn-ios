@@ -15,7 +15,8 @@ import UIKit
 
 class DeviceManagementViewModel {
     private let disposeBag = DisposeBag()
-    private let account = { return DependencyFactory.sharedFactory.accountManager.account }()
+    private let accountManager = DependencyFactory.sharedFactory.accountManager
+    private var account: Account? { accountManager.account }
 
     let trashTappedSubject = PublishSubject<Device>()
     let deletionConfirmedSubject = PublishSubject<Device>()
@@ -43,11 +44,9 @@ class DeviceManagementViewModel {
         //swiftlint:disable:next trailing_closure
         deletionConfirmedSubject
             .flatMap { [unowned self] device -> Observable<Event<Void>> in
-                guard let account = self.account else { return .never() }
-
-                return account.remove(device: device).asObservable().materialize()
+                return self.accountManager.remove(device: device).asObservable().materialize()
         }.subscribe(onNext: { [unowned self] event in
-            guard let account = self.account else { return }
+            guard let account = self.accountManager.account else { return }
 
             switch event {
             case .next:
@@ -55,7 +54,7 @@ class DeviceManagementViewModel {
                     self.deletionSuccessSubject.onNext(())
                 } else {
                     Logger.global?.log(message: "Adding current device after removal")
-                    account.addCurrentDevice { _ in
+                    self.accountManager.addCurrentDevice { _ in
                         self.deletionSuccessSubject.onNext(())
                     }
                 }

@@ -44,7 +44,7 @@ class HeartbeatMonitor: HeartbeatMonitoring {
         guard let account = accountManager.account,
             account.hasDeviceBeenAdded else { return }
 
-        account.getUser { result in
+        accountManager.getUser { result in
             switch result {
             case .success:
                 NotificationCenter.default.post(name: NSNotification.Name.activeSubscriptionNotification, object: nil)

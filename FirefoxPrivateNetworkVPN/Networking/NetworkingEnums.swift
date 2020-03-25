@@ -48,6 +48,7 @@ enum GuardianRelativeRequest {
 }
 
 enum GuardianError: Error {
+    case noValidAccount
     case couldNotDecodeFromJson
     case couldNotCreateBody
     case couldNotEncodeData
@@ -59,6 +60,8 @@ enum GuardianError: Error {
 
     var description: String {
         switch self {
+        case .noValidAccount:
+            return "No valid account exists"
         case .couldNotDecodeFromJson:
             return "Could not decode from JSON"
         case .couldNotCreateBody:
@@ -74,7 +77,7 @@ enum GuardianError: Error {
         case .couldNotRemoveDevice:
             return LocalizedString.errorDeviceRemoval.value
         case .couldNotConnectVPN:
-        return LocalizedString.errorConnectVPN.value
+            return LocalizedString.errorConnectVPN.value
         }
     }
 }
