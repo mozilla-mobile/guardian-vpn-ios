@@ -63,14 +63,10 @@ class NavigationCoordinator: NavigationCoordinating {
             switch (origin, destination) {
             // To Landing
             case (.loading, .landing):
-                let landingViewController = LandingViewController()
-                self.appDelegate?.window?.rootViewController = landingViewController
-                self.currentViewController = landingViewController
+                self.createAndSetLandingViewController()
 
             case (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
-                let landingViewController = LandingViewController()
-                self.appDelegate?.window?.rootViewController = landingViewController
-                self.currentViewController = landingViewController
+                self.createAndSetLandingViewController()
 
                 if let landingViewController = self.currentViewController as? LandingViewController {
                     landingViewController.showSuccessfulLogoutToast()
@@ -206,5 +202,11 @@ class NavigationCoordinator: NavigationCoordinating {
           handler: handler))
 
         return alert
+    }
+    
+    private func createAndSetLandingViewController() {
+        let landingViewController = LandingViewController()
+        self.appDelegate?.window?.rootViewController = landingViewController
+        self.currentViewController = landingViewController
     }
 }
