@@ -667,7 +667,6 @@
 			isa = PBXGroup;
 			children = (
 				F478E48B23C78F6900D17FE0 /* URLRequestBuilders */,
-				F41CCA31237122050018DC43 /* Codable Models */,
 				F4658544233BB7690081D7D7 /* GuardianAPI.swift */,
 				F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */,
 				F4658542233BB44A0081D7D7 /* NetworkLayer.swift */,
@@ -695,11 +694,20 @@
 				F4A7FA23237C5C960034AF6C /* Account.swift */,
 				F42DE7C92395A824000B79C3 /* CarouselViewType.swift */,
 				F4A7FA25237C5CE00034AF6C /* Credentials.swift */,
+				F43DFC0D234D1361003EA64A /* Device.swift */,
+				F43DFC13234E436E003EA64A /* DeviceKeys.swift */,
 				F401097F2406F303006DFF96 /* FirefoxURL.swift */,
 				F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */,
+				F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */,
+				F478E48323C787B600D17FE0 /* Release.swift */,
+				F478E47E23C7842D00D17FE0 /* ReleaseInfo.swift */,
 				F49090BD2379D43200C8430A /* SettingsItem.swift */,
+				F474280F24214C7B00056A81 /* Subscription.swift */,
 				F4E8B2342368C39C001CEC8A /* TunnelAction.swift */,
 				F478E48523C7881900D17FE0 /* UpdateStatus.swift */,
+				F40831D0233CFD5600A60FCA /* User.swift */,
+				F45D7097233D34B100871447 /* VerifyResponse.swift */,
+				F4F25E102343F7D3004BA245 /* VPNLocations.swift */,
 				F4B21E422366514700136316 /* VPNState.swift */,
 			);
 			path = Models;
@@ -814,22 +822,6 @@
 				F4A4947A23709033007595C3 /* TunnelManaging.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		F41CCA31237122050018DC43 /* Codable Models */ = {
-			isa = PBXGroup;
-			children = (
-				F43DFC0D234D1361003EA64A /* Device.swift */,
-				F43DFC13234E436E003EA64A /* DeviceKeys.swift */,
-				F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */,
-				F478E48323C787B600D17FE0 /* Release.swift */,
-				F478E47E23C7842D00D17FE0 /* ReleaseInfo.swift */,
-				F474280F24214C7B00056A81 /* Subscription.swift */,
-				F40831D0233CFD5600A60FCA /* User.swift */,
-				F45D7097233D34B100871447 /* VerifyResponse.swift */,
-				F4F25E102343F7D3004BA245 /* VPNLocations.swift */,
-			);
-			path = "Codable Models";
 			sourceTree = "<group>";
 		};
 		F41CCA32237128F10018DC43 /* WireGuardTunnel */ = {
