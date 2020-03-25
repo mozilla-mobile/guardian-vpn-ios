@@ -27,7 +27,13 @@ class DependencyManager: DependencyProviding {
     lazy var accountManager: AccountManaging = AccountManager(guardianAPI: guardianAPI,
                                                               accountStore: accountStore,
                                                               deviceName: UIDevice.current.name)
-    lazy var tunnelManager: TunnelManaging = GuardianTunnelManager()
+    lazy var tunnelManager: TunnelManaging = {
+        #if targetEnvironment(simulator)
+          return SimulatorTunnelManager()
+        #else
+          return GuardianTunnelManager()
+        #endif
+    }()
     lazy var navigationCoordinator: NavigationCoordinating = NavigationCoordinator()
     lazy var connectionHealthMonitor: ConnectionHealthMonitoring = ConnectionHealthMonitor()
     lazy var releaseMonitor: ReleaseMonitoring = ReleaseMonitor(accountStore: accountStore, guardianAPI: guardianAPI)
