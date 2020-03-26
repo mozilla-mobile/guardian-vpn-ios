@@ -21,7 +21,7 @@ class ConnectionRxValue: ConnectionRxValueObserving {
 
     private static let timerInterval: TimeInterval = 1
 
-    private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
+    private let tunnelManager = DependencyManager.shared.tunnelManager
     private var timer: Timer?
 
     var rx: Observable<UInt?> {

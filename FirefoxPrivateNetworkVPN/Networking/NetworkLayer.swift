@@ -11,9 +11,9 @@
 
 import Foundation
 
-class NetworkLayer {
+class NetworkLayer: Networking {
 
-    static func fire(urlRequest: URLRequest, completion: @escaping (Result<Data?, GuardianAPIError>) -> Void) {
+    func fire(urlRequest: URLRequest, completion: @escaping (Result<Data?, GuardianAPIError>) -> Void) {
         let defaultSession = URLSession(configuration: .default)
         defaultSession.configuration.timeoutIntervalForRequest = 120
 
@@ -24,7 +24,7 @@ class NetworkLayer {
                 let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                 completion(.failure(errorResponse.guardianAPIError))
             } else if let error = error as NSError?,
-                error.code == errorCode(of: .cfurlErrorNotConnectedToInternet) {
+            error.code == CFNetworkErrors.cfurlErrorNotConnectedToInternet.errorCode {
                 completion(.failure(.offline))
             } else {
                 completion(.failure(.unknown))
@@ -32,13 +32,15 @@ class NetworkLayer {
         }
         dataTask.resume()
     }
-    
-    fileprivate static func errorCode(of error: CFNetworkErrors) -> Int {
-        return Int(error.rawValue)
+}
+
+fileprivate extension CFNetworkErrors {
+    var errorCode: Int {
+        return Int(rawValue)
     }
 }
 
-struct ErrorResponse: Codable {
+private struct ErrorResponse: Codable {
     let code: Int
     let errno: Int
     let error: String

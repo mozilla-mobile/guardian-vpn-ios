@@ -55,7 +55,7 @@ class SettingsViewController: UIViewController, Navigating {
         setupNavigationBar()
         tableView.reloadData()
 
-        DependencyFactory.sharedFactory.heartbeatMonitor.pollNow()
+        DependencyManager.shared.heartbeatMonitor.pollNow()
     }
 
     override func viewDidLayoutSubviews() {
@@ -93,7 +93,7 @@ class SettingsViewController: UIViewController, Navigating {
         //swiftlint:disable:next trailing_closure
         dataSource?.signoutSelectedSubject
             .subscribe(onNext: { _ in
-                DependencyFactory.sharedFactory.accountManager.logout { [weak self] _ in
+                DependencyManager.shared.accountManager.logout { [weak self] _ in
                     self?.navigate(to: .landing())
                 }
             })

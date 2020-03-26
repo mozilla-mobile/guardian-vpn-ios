@@ -16,11 +16,9 @@ import RxRelay
 
 class GuardianTunnelManager: TunnelManaging {
 
-    static let sharedManager = GuardianTunnelManager()
-
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
-    private let accountManager = DependencyFactory.sharedFactory.accountManager
+    private let accountManager = DependencyManager.shared.accountManager
     private var account: Account? {
         return accountManager.account
     }
@@ -32,7 +30,7 @@ class GuardianTunnelManager: TunnelManaging {
         return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
     }
 
-    private init() {
+    init() {
         loadTunnel { _ in
             guard let tunnel = self.tunnel else { return }
             self.stateEvent.accept(VPNState(with: tunnel.connection.status))
@@ -48,7 +46,7 @@ class GuardianTunnelManager: TunnelManaging {
 
     private func subscribeToVersionUpdates() {
         //swiftlint:disable:next trailing_closure
-        DependencyFactory.sharedFactory.releaseMonitor.updateStatus
+        DependencyManager.shared.releaseMonitor.updateStatus
             .distinctUntilChanged()
             .filter { $0 == .required }
             .subscribe(onNext: { [weak self] _ in
@@ -120,7 +118,7 @@ class GuardianTunnelManager: TunnelManaging {
             }
             guard let account = self.account,
                 let newCity = self.accountManager.selectedCity else {
-                    resolver(.error(GuardianError.needToLogin))
+                    resolver(.error(GuardianAppError.needToLogin))
                     return Disposables.create()
             }
             tunnel.setNewConfiguration(for: device,

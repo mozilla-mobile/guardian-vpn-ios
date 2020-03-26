@@ -9,52 +9,47 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-import Foundation
-import UIKit
-
 class GuardianAPI: NetworkRequesting {
 
-    private static var userAgentInfo: String {
-        return UIApplication.appNameWithoutSpaces + "/" + UIApplication.appVersion
-            + " " + UIDevice.modelName + "/" + UIDevice.current.systemVersion
+    private let networkLayer: Networking
+    private let userAgentInfo: String
+
+    init(networkLayer: Networking, userAgentInfo: String) {
+        self.networkLayer = networkLayer
+        self.userAgentInfo = userAgentInfo
     }
 
-    private static func headers(with token: String) -> [String: String] {
-        return ["Authorization": "Bearer \(token)",
-            "Content-Type": "application/json",
-            "User-Agent": userAgentInfo]
-    }
-
-    static func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
+    // MARK: -
+    func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .login, type: .POST)
-        NetworkLayer.fire(urlRequest: urlRequest) { result in
+        networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: LoginCheckpointModel.self))
             }
         }
     }
 
-    static func accountInfo(token: String, completion: @escaping (Result<User, Error>) -> Void) {
+    func accountInfo(token: String, completion: @escaping (Result<User, Error>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .account, type: .GET, httpHeaderParams: headers(with: token))
-        NetworkLayer.fire(urlRequest: urlRequest) { result in
+        networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: User.self))
             }
         }
     }
 
-    static func verify(urlString: String, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
-        let urlRequest = URLRequestBuilder.urlRequest(with: urlString, type: .GET)
-        NetworkLayer.fire(urlRequest: urlRequest) { result in
+    func verify(urlString: String, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
+        let urlRequest = GuardianURLRequest.urlRequest(with: urlString, type: .GET)
+        networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: VerifyResponse.self))
             }
         }
     }
 
-    static func availableServers(with token: String, completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
+    func availableServers(with token: String, completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .retrieveServers, type: .GET, httpHeaderParams: headers(with: token))
-        NetworkLayer.fire(urlRequest: urlRequest) { result in
+        networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result
                     .decode(to: [String: [VPNCountry]].self)
@@ -64,29 +59,29 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    static func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, Error>) -> Void) {
+    func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, Error>) -> Void) {
         guard let data = try? JSONSerialization.data(withJSONObject: body) else {
-            completion(.failure(GuardianError.couldNotCreateBody))
+            completion(.failure(GuardianAppError.couldNotCreateBody))
             return
         }
 
         let urlRequest = GuardianURLRequest.urlRequest(request: .addDevice, type: .POST, httpHeaderParams: headers(with: token), body: data)
-        NetworkLayer.fire(urlRequest: urlRequest) { result in
+        networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: Device.self))
             }
         }
     }
 
-    static func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let encodedKey = deviceKey.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            completion(.failure(GuardianError.couldNotEncodeData))
+            completion(.failure(GuardianAppError.couldNotEncodeData))
             return
         }
 
         let urlRequest = GuardianURLRequest.urlRequest(request: .removeDevice(encodedKey), type: .DELETE, httpHeaderParams: headers(with: token))
 
-        NetworkLayer.fire(urlRequest: urlRequest) { result in
+        networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
@@ -98,15 +93,22 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    static func latestVersion(completion: @escaping (Result<Release, Error>) -> Void) {
+    func latestVersion(completion: @escaping (Result<Release, Error>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .versions, type: .GET)
-        NetworkLayer.fire(urlRequest: urlRequest) { result in
+        networkLayer.fire(urlRequest: urlRequest) { result in
             completion(result.decode(to: Release.self))
         }
     }
 
-    static func downloadAvatar(_ url: URL, completion: @escaping (Result<Data?, GuardianAPIError>) -> Void) {
+    func downloadAvatar(_ url: URL, completion: @escaping (Result<Data?, GuardianAPIError>) -> Void) {
         let urlRequest = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
-        NetworkLayer.fire(urlRequest: urlRequest, completion: completion)
+        networkLayer.fire(urlRequest: urlRequest, completion: completion)
+    }
+
+    // MARK: - Utils
+    private func headers(with token: String) -> [String: String] {
+        return ["Authorization": "Bearer \(token)",
+            "Content-Type": "application/json",
+            "User-Agent": userAgentInfo]
     }
 }

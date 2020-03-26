@@ -17,14 +17,14 @@ extension Result where Success == Data? {
             return .failure(error)
         }
         guard case .success(let optionalData) = self, let data = optionalData else {
-            return .failure(GuardianError.missingData)
+            return .failure(GuardianAppError.missingData)
         }
         do {
             let decoder = JSONDecoder()
             let decodedResponse = try decoder.decode(type, from: data)
             return .success(decodedResponse)
         } catch {
-            return .failure(GuardianError.couldNotDecodeFromJson)
+            return .failure(GuardianAppError.couldNotDecodeFromJson)
         }
     }
 }

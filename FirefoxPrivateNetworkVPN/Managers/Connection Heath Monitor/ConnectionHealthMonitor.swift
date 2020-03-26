@@ -16,9 +16,6 @@ import os.log
 
 class ConnectionHealthMonitor: ConnectionHealthMonitoring {
 
-    static let scheduler = ConcurrentDispatchQueueScheduler(qos: .background)
-
-    // TODO: DI here
     private let pinger: Pinging
     private let timerFactory: TimerFactory
     private let rxValueObserving: ConnectionRxValueObserving

@@ -15,6 +15,7 @@ import SafariServices
 class LoginViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .login
 
+    private let guardianAPI = DependencyManager.shared.guardianAPI
     private var safariViewController: SFSafariViewController?
     private var verificationURL: URL?
     private var verifyTimer: Timer?
@@ -22,7 +23,7 @@ class LoginViewController: UIViewController, Navigating {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        GuardianAPI.initiateUserLogin { [weak self] result in
+        guardianAPI.initiateUserLogin { [weak self] result in
             switch result {
             case .success(let checkpointModel):
                 guard let loginURL = checkpointModel.loginUrl else { return }
@@ -57,12 +58,12 @@ class LoginViewController: UIViewController, Navigating {
         if isVerifying { return }
         isVerifying = true
 
-        GuardianAPI.verify(urlString: verificationURL.absoluteString) { [weak self] result in
+        guardianAPI.verify(urlString: verificationURL.absoluteString) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .success(let verification):
-                DependencyFactory.sharedFactory.accountManager.login(with: verification) { loginResult in
+                DependencyManager.shared.accountManager.login(with: verification) { loginResult in
                     self.isVerifying = false
                     self.verifyTimer?.invalidate()
                     switch loginResult {

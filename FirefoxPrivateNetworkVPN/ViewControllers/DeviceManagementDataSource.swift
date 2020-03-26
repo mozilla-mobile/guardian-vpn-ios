@@ -17,7 +17,7 @@ class DeviceManagementDataSource: NSObject, UITableViewDataSource {
     // MARK: Properties
     private let headerName = String(describing: DeviceLimitReachedView.self)
     private let cellName = String(describing: DeviceManagementCell.self)
-    private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
+    private var account: Account? { return DependencyManager.shared.accountManager.account }
     private let viewModel: DeviceManagementViewModel
 
     // MARK: Initialization

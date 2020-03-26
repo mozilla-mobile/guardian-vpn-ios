@@ -24,9 +24,9 @@ class CurrentVPNSelectorView: UIView {
         Bundle.main.loadNibNamed(String(describing: CurrentVPNSelectorView.self), owner: self, options: nil)
         view.frame = bounds
         addSubview(view)
-        DependencyFactory.sharedFactory.tunnelManager.cityChangedEvent
+        DependencyManager.shared.tunnelManager.cityChangedEvent
             .map { Optional($0) }
-            .startWith(DependencyFactory.sharedFactory.accountManager.selectedCity)
+            .startWith(DependencyManager.shared.accountManager.selectedCity)
             .compactMap { $0 }
             .subscribe { cityEvent in
                 guard let city = cityEvent.element else { return }

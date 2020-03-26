@@ -14,21 +14,21 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var dependencyFactory: DependencyProviding?
+    var dependencyManager: DependencyProviding?
 
     func application(
         _ application: UIApplication,
         willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        dependencyFactory = DependencyFactory.sharedFactory
+        dependencyManager = DependencyManager.shared
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
-        let firstViewController = dependencyFactory?.navigationCoordinator.firstViewController
+        let firstViewController = dependencyManager?.navigationCoordinator.firstViewController
         window.rootViewController = firstViewController
         window.makeKeyAndVisible()
 
-        dependencyFactory?.releaseMonitor.start()
+        dependencyManager?.releaseMonitor.start()
 
         Logger.configureGlobal(tagged: "APP", withFilePath: FileManager.logFileURL?.path)
 
@@ -36,23 +36,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        guard let dependencyFactory = dependencyFactory else { return }
+        guard let dependencyManager = dependencyManager else { return }
 
-        dependencyFactory.releaseMonitor.start()
+        dependencyManager.releaseMonitor.start()
 
-        if dependencyFactory.accountManager.account != nil {
-            dependencyFactory.heartbeatMonitor.start()
+        if dependencyManager.accountManager.account != nil {
+            dependencyManager.heartbeatMonitor.start()
         }
 
-        if dependencyFactory.tunnelManager.stateEvent.value == .on,
-            let hostAddress = dependencyFactory.accountManager.selectedCity?.fastestServer?.ipv4Gateway {
-            self.dependencyFactory?.connectionHealthMonitor.start(hostAddress: hostAddress)
+        if dependencyManager.tunnelManager.stateEvent.value == .on,
+            let hostAddress = dependencyManager.accountManager.selectedCity?.fastestServer?.ipv4Gateway {
+            self.dependencyManager?.connectionHealthMonitor.start(hostAddress: hostAddress)
         }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        dependencyFactory?.connectionHealthMonitor.stop()
-        dependencyFactory?.heartbeatMonitor.stop()
-        dependencyFactory?.releaseMonitor.stop()
+        dependencyManager?.connectionHealthMonitor.stop()
+        dependencyManager?.heartbeatMonitor.stop()
+        dependencyManager?.releaseMonitor.stop()
     }
 }

@@ -12,11 +12,10 @@
 import RxSwift
 
 class HeartbeatMonitor: HeartbeatMonitoring {
-    static let sharedManager = HeartbeatMonitor()
 
     private static let timeInterval: TimeInterval = 3600
     private var timer: DispatchSourceTimer?
-    private var accountManager: AccountManaging { return DependencyFactory.sharedFactory.accountManager }
+    private var accountManager: AccountManaging { return DependencyManager.shared.accountManager }
 
     /**
      Starts the heart beat and polls the service end points for data immediately.
@@ -44,7 +43,7 @@ class HeartbeatMonitor: HeartbeatMonitoring {
         guard let account = accountManager.account,
             account.hasDeviceBeenAdded else { return }
 
-        account.getUser { result in
+        accountManager.getUser { result in
             switch result {
             case .success:
                 NotificationCenter.default.post(name: NSNotification.Name.activeSubscriptionNotification, object: nil)

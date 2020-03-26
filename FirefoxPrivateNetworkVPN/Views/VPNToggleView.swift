@@ -31,9 +31,9 @@ class VPNToggleView: UIView {
     private var currentState = VPNState.off
     private let disposeBag = DisposeBag()
     private var timerDisposeBag = DisposeBag()
-    private let tunnelManager = DependencyFactory.sharedFactory.tunnelManager
-    private let accountManager = DependencyFactory.sharedFactory.accountManager
-    private let connectionHealthMonitor = DependencyFactory.sharedFactory.connectionHealthMonitor
+    private let tunnelManager = DependencyManager.shared.tunnelManager
+    private let accountManager = DependencyManager.shared.accountManager
+    private let connectionHealthMonitor = DependencyManager.shared.connectionHealthMonitor
     private var globeAnimationView: AnimationView?
     private var rippleAnimationView: AnimationView?
     private var tapHaptics = UIImpactFeedbackGenerator(style: .light)

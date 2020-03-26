@@ -18,7 +18,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
     private let cellName = String(describing: AccountInformationCell.self)
     private let signoutCellName = String(describing: SignoutTableViewCell.self)
     private let headerName = String(describing: AccountInformationHeader.self)
-    private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
+    private var account: Account? { return DependencyManager.shared.accountManager.account }
     private let disposeBag = DisposeBag()
 
     let rowSelected = PublishSubject<NavigableItem>()

@@ -9,8 +9,6 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-// TODO: Add back heartbeat.
-
 import UIKit
 import os.log
 
@@ -38,11 +36,6 @@ enum NavigableContext {
 }
 
 class NavigationCoordinator: NavigationCoordinating {
-    static let sharedCoordinator: NavigationCoordinating = {
-        let instance = NavigationCoordinator()
-        //
-        return instance
-    }()
 
     private var currentViewController: (UIViewController & Navigating)?
     private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -52,8 +45,6 @@ class NavigationCoordinator: NavigationCoordinating {
         currentViewController = loadingViewController
         return loadingViewController
     }
-
-    private init() { }
 
     func navigate(from origin: NavigableItem, to destination: NavigableItem, context: NavigableContext?) {
         OSLog.logUI(.info, "Navigating from %@ to %@.", args: "\(origin)", "\(destination)")
@@ -203,7 +194,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
         return alert
     }
-    
+
     private func initializeWithLandingScreen() {
         let landingViewController = LandingViewController()
         self.appDelegate?.window?.rootViewController = landingViewController

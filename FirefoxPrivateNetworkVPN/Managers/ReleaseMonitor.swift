@@ -15,6 +15,7 @@ import RxCocoa
 
 class ReleaseMonitor: ReleaseMonitoring {
     private static let timeInterval: TimeInterval = 21600
+    private let guardianAPI: GuardianAPI
     private let accountStore: AccountStoring
     private var timer: DispatchSourceTimer?
     private var releaseInfo: ReleaseInfo?
@@ -32,9 +33,10 @@ class ReleaseMonitor: ReleaseMonitoring {
         return .now() + DispatchTimeInterval.seconds(Int(delayInSeconds))
     }
 
-    init(accountStore: AccountStoring) {
+    init(accountStore: AccountStoring, guardianAPI: GuardianAPI) {
         self.accountStore = accountStore
-        self.releaseInfo = accountStore.getReleaseInfo()
+        self.guardianAPI = guardianAPI
+
         _updateStatus = BehaviorRelay<UpdateStatus?>(value: releaseInfo?.getUpdateStatus())
     }
 
@@ -52,7 +54,7 @@ class ReleaseMonitor: ReleaseMonitoring {
     }
 
     private func pollLatestVersion() {
-        GuardianAPI.latestVersion { [weak self] response in
+        guardianAPI.latestVersion { [weak self] response in
             guard case .success(let release) = response else { return }
             let releaseInfo = ReleaseInfo(with: release)
             self?.releaseInfo = releaseInfo

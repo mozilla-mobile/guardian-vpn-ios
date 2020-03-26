@@ -17,9 +17,17 @@ protocol AccountManaging {
     var availableServers: [VPNCountry] { get }
     var selectedCity: VPNCity? { get }
 
+    // MARK: - Authentication
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void)
     func loginWithStoredCredentials() -> Bool
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
+
+    // MARK: - Account Operations
+    func addCurrentDevice(completion: @escaping (Result<Void, Error>) -> Void)
+    func getUser(completion: @escaping (Result<Void, Error>) -> Void)
+    func remove(device: Device) -> Single<Void>
+
+    // MARK: - VPN Server Operations
     func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void)
     func updateSelectedCity(with newCity: VPNCity)
 }

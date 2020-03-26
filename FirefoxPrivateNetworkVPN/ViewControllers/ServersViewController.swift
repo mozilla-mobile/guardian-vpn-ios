@@ -22,7 +22,7 @@ class ServersViewController: UIViewController, Navigating {
 
     private var dataSource: ServersDataSource?
     private var viewModel: ServerListViewModel?
-    private var tunnelManager = DependencyFactory.sharedFactory.tunnelManager
+    private var tunnelManager = DependencyManager.shared.tunnelManager
     private var disposeBag = DisposeBag()
 
     // MARK: - Initialization

@@ -21,7 +21,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
     private var dataSource: DeviceManagementDataSource?
     private var viewModel: DeviceManagementViewModel
-    private var account: Account? { return DependencyFactory.sharedFactory.accountManager.account }
+    private var account: Account? { return DependencyManager.shared.accountManager.account }
     private let disposeBag = DisposeBag()
 
     private var formattedDeviceCountTitle: String {
@@ -104,8 +104,8 @@ class DeviceManagementViewController: UIViewController, Navigating {
         viewModel.trashTappedSubject
             .subscribe(onNext: { [weak self] device in
                 guard let self = self else { return }
-                let confirmAlert = DependencyFactory
-                    .sharedFactory
+                let confirmAlert = DependencyManager
+                    .shared
                     .navigationCoordinator
                     .createDeviceDeletionAlert(deviceName: device.name) { _ in
                         self.viewModel.deletionConfirmedSubject.onNext(device)
@@ -122,7 +122,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
                 guard let account = self.account else { return }
 
                 if account.hasDeviceBeenAdded {
-                    DependencyFactory.sharedFactory.navigationCoordinator.homeTab(isEnabled: true)
+                    DependencyManager.shared.navigationCoordinator.homeTab(isEnabled: true)
                 }
                 self.refreshViews()
 
@@ -135,7 +135,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
                 guard case .couldNotRemoveDevice(let device) = error else { return }
 
-                self.warningToastView.show(message: NSAttributedString.formattedError(GuardianError.couldNotRemoveDevice(device))) {
+                self.warningToastView.show(message: NSAttributedString.formattedError(GuardianAppError.couldNotRemoveDevice(device))) {
                     self.viewModel.deletionConfirmedSubject.onNext(device)
                 }
             }).disposed(by: disposeBag)
