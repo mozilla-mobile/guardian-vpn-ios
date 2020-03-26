@@ -135,7 +135,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
 
                 guard case .couldNotRemoveDevice(let device) = error else { return }
 
-                self.warningToastView.show(message: NSAttributedString.formattedError(GuardianError.couldNotRemoveDevice(device))) {
+                self.warningToastView.show(message: NSAttributedString.formattedError(GuardianAppError.couldNotRemoveDevice(device))) {
                     self.viewModel.deletionConfirmedSubject.onNext(device)
                 }
             }).disposed(by: disposeBag)

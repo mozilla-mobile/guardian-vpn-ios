@@ -1,5 +1,5 @@
 //
-//  NetworkingEnums
+//  GuardianAPIError
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,79 +8,6 @@
 //
 //  Copyright © 2019 Mozilla Corporation.
 //
-
-import Foundation
-
-enum HTTPMethod: String {
-    case GET
-    case POST
-    case DELETE
-}
-
-enum GuardianRelativeRequest {
-    case login
-    case verify(String)
-    case retrieveServers
-    case account
-    case addDevice
-    case removeDevice(String)
-    case versions
-
-    var endpoint: String {
-        let prefix = "api/v1/vpn/"
-        switch self {
-        case .login:
-            return prefix + "login/"
-        case .verify(let token):
-            return prefix + "login/verify/" + token
-        case .retrieveServers:
-            return prefix + "servers/"
-        case .account:
-            return prefix + "account/"
-        case .addDevice:
-            return prefix + "device/"
-        case .removeDevice(let deviceKey):
-            return prefix + "device/" + deviceKey
-        case .versions:
-            return prefix + "versions"
-        }
-    }
-}
-
-enum GuardianError: Error {
-    case noValidAccount
-    case couldNotDecodeFromJson
-    case couldNotCreateBody
-    case couldNotEncodeData
-    case missingData
-    case needToLogin
-    case deallocated
-    case couldNotRemoveDevice(Device)
-    case couldNotConnectVPN
-
-    var description: String {
-        switch self {
-        case .noValidAccount:
-            return "No valid account exists"
-        case .couldNotDecodeFromJson:
-            return "Could not decode from JSON"
-        case .couldNotCreateBody:
-            return "Could not create body"
-        case .couldNotEncodeData:
-            return "Could not encode data"
-        case .missingData:
-            return "Missing data"
-        case .needToLogin:
-            return "Need to login"
-        case .deallocated:
-            return "Object has been deallocated"
-        case .couldNotRemoveDevice:
-            return LocalizedString.errorDeviceRemoval.value
-        case .couldNotConnectVPN:
-            return LocalizedString.errorConnectVPN.value
-        }
-    }
-}
 
 enum GuardianAPIError: Int, Error {
     // Add Device

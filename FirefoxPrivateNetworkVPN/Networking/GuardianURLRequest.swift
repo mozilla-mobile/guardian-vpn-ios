@@ -20,8 +20,8 @@ struct GuardianURLRequest {
         #endif
     }
 
-    static func urlRequest(request: GuardianRelativeRequest,
-                           type: HTTPMethod,
+    static func urlRequest(request: GuardianURLRequestPath,
+                           type: HttpMethod,
                            queryParameters: [String: String]? = nil,
                            httpHeaderParams: [String: String]? = nil,
                            body: Data? = nil) -> URLRequest {
@@ -32,7 +32,7 @@ struct GuardianURLRequest {
     }
 
     static func urlRequest(with urlString: String,
-                           type: HTTPMethod,
+                           type: HttpMethod,
                            queryParameters: [String: String]? = nil,
                            httpHeaderParams: [String: String]? = nil,
                            body: Data? = nil) -> URLRequest {

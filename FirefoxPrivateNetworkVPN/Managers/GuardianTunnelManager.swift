@@ -118,7 +118,7 @@ class GuardianTunnelManager: TunnelManaging {
             }
             guard let account = self.account,
                 let newCity = self.accountManager.selectedCity else {
-                    resolver(.error(GuardianError.needToLogin))
+                    resolver(.error(GuardianAppError.needToLogin))
                     return Disposables.create()
             }
             tunnel.setNewConfiguration(for: device,

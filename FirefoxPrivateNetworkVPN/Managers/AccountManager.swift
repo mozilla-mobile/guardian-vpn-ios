@@ -101,7 +101,7 @@ class AccountManager: AccountManaging, Navigating {
 
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let device = account?.currentDevice, let token = account?.token else {
-            completion(Result.failure(GuardianError.needToLogin))
+            completion(Result.failure(GuardianAppError.needToLogin))
             return
         }
         guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [weak self] result in
@@ -119,11 +119,11 @@ class AccountManager: AccountManaging, Navigating {
     // MARK: - Account Operations
     func addCurrentDevice(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let account = account else {
-            completion(Result.failure(GuardianError.noValidAccount))
+            completion(Result.failure(GuardianAppError.noValidAccount))
             return
         }
         guard let devicePublicKey = account.credentials.deviceKeys.publicKey.base64Key() else {
-            completion(Result.failure(GuardianError.couldNotEncodeData))
+            completion(Result.failure(GuardianAppError.couldNotEncodeData))
             return
         }
         let body: [String: Any] = ["name": deviceName,
@@ -136,7 +136,7 @@ class AccountManager: AccountManaging, Navigating {
 
         guardianAPI.addDevice(with: account.credentials.verificationToken, body: body) { [weak self] result in
             guard let self = self else {
-                completion(.failure(GuardianError.deallocated))
+                completion(.failure(GuardianAppError.deallocated))
                 return
             }
             switch result {
@@ -155,13 +155,13 @@ class AccountManager: AccountManaging, Navigating {
 
     func getUser(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let account = account else {
-            completion(Result.failure(GuardianError.noValidAccount))
+            completion(Result.failure(GuardianAppError.noValidAccount))
             return
         }
 
         guardianAPI.accountInfo(token: account.credentials.verificationToken) { [weak self] result in
             guard let self = self else {
-                completion(.failure(GuardianError.deallocated))
+                completion(.failure(GuardianAppError.deallocated))
                 return
             }
             switch result {
@@ -179,7 +179,7 @@ class AccountManager: AccountManaging, Navigating {
     func remove(device: Device) -> Single<Void> {
         return Single<Void>.create { [weak self] resolver in
             guard let account = self?.account else {
-                resolver(.error(GuardianError.noValidAccount))
+                resolver(.error(GuardianAppError.noValidAccount))
                 return Disposables.create()
             }
 
@@ -192,7 +192,7 @@ class AccountManager: AccountManaging, Navigating {
                 case .failure(let error):
                     account.user.failedRemoval(of: device)
                     Logger.global?.log(message: "Remove Device Error: \(error)")
-                    resolver(.error(GuardianError.couldNotRemoveDevice(device)))
+                    resolver(.error(GuardianAppError.couldNotRemoveDevice(device)))
                 }
             }
             return Disposables.create()

@@ -22,6 +22,9 @@
 		F410804D242BCB6200973421 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410804C242BCB6200973421 /* Networking.swift */; };
 		F410804F242BE2CA00973421 /* SimulatorTunnelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410804E242BE2CA00973421 /* SimulatorTunnelManager.swift */; };
 		F4108051242CDAB300973421 /* NetworkingUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108050242CDAB300973421 /* NetworkingUtilities.swift */; };
+		F4108053242CDE5300973421 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108052242CDE5300973421 /* HttpMethod.swift */; };
+		F4108055242CDE9F00973421 /* GuardianURLRequestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108054242CDE9F00973421 /* GuardianURLRequestPath.swift */; };
+		F4108058242CDF8200973421 /* GuardianAppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108057242CDF8200973421 /* GuardianAppError.swift */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
 		F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422FEF523970752009413E2 /* Notification+Extensions.swift */; };
@@ -158,7 +161,7 @@
 		F4E908CB2371CAAD00EB9FE6 /* VerifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D7097233D34B100871447 /* VerifyResponse.swift */; };
 		F4E908CC2371CAAD00EB9FE6 /* VPNLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F25E102343F7D3004BA245 /* VPNLocations.swift */; };
 		F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658544233BB7690081D7D7 /* GuardianAPI.swift */; };
-		F4E908CE2371CAAD00EB9FE6 /* NetworkingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */; };
+		F4E908CE2371CAAD00EB9FE6 /* GuardianAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658540233BB3D00081D7D7 /* GuardianAPIError.swift */; };
 		F4E908CF2371CAAD00EB9FE6 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658542233BB44A0081D7D7 /* NetworkLayer.swift */; };
 		F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23062347D37F00763B0D /* AccountManaging.swift */; };
 		F4E908D12371CAAD00EB9FE6 /* DependencyProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A23042347D22100763B0D /* DependencyProviding.swift */; };
@@ -309,6 +312,9 @@
 		F410804C242BCB6200973421 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F410804E242BE2CA00973421 /* SimulatorTunnelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorTunnelManager.swift; sourceTree = "<group>"; };
 		F4108050242CDAB300973421 /* NetworkingUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingUtilities.swift; sourceTree = "<group>"; };
+		F4108052242CDE5300973421 /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		F4108054242CDE9F00973421 /* GuardianURLRequestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestPath.swift; sourceTree = "<group>"; };
+		F4108057242CDF8200973421 /* GuardianAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAppError.swift; sourceTree = "<group>"; };
 		F41B9C7D2368933F00ACC414 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		F41CCA1A23711C7A0018DC43 /* DependencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
@@ -388,7 +394,7 @@
 		F45D70EB2342775000871447 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
 		F45D70FB23428DCE00871447 /* ServersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersViewController.swift; sourceTree = "<group>"; };
 		F45D70FC23428DCE00871447 /* ServersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServersViewController.xib; sourceTree = "<group>"; };
-		F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingEnums.swift; sourceTree = "<group>"; };
+		F4658540233BB3D00081D7D7 /* GuardianAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPIError.swift; sourceTree = "<group>"; };
 		F4658542233BB44A0081D7D7 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		F4658544233BB7690081D7D7 /* GuardianAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPI.swift; sourceTree = "<group>"; };
 		F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckpointModel.swift; sourceTree = "<group>"; };
@@ -642,10 +648,20 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		F4108056242CDF7300973421 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				F4108057242CDF8200973421 /* GuardianAppError.swift */,
+				F4658540233BB3D00081D7D7 /* GuardianAPIError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		F41CCA1823711C7A0018DC43 /* FirefoxPrivateNetworkVPN */ = {
 			isa = PBXGroup;
 			children = (
 				F41CCA2423711C7A0018DC43 /* AppDelegate.swift */,
+				F4108056242CDF7300973421 /* Errors */,
 				F41CCA1923711C7A0018DC43 /* Managers */,
 				F41CCA1E23711C7A0018DC43 /* Models */,
 				F41CCA1B23711C7A0018DC43 /* Networking */,
@@ -680,9 +696,10 @@
 		F41CCA1B23711C7A0018DC43 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */,
 				F4658544233BB7690081D7D7 /* GuardianAPI.swift */,
-				F4658540233BB3D00081D7D7 /* NetworkingEnums.swift */,
+				F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */,
+				F4108054242CDE9F00973421 /* GuardianURLRequestPath.swift */,
+				F4108052242CDE5300973421 /* HttpMethod.swift */,
 				F4658542233BB44A0081D7D7 /* NetworkLayer.swift */,
 				F4B42BF8238D88B7001F64F7 /* SimplePing */,
 			);
@@ -1576,6 +1593,7 @@
 				F4B42C06238EFF83001F64F7 /* ConnectionTimerFactory.swift in Sources */,
 				F4AED252235F835200F80ABF /* PeerConfiguration.swift in Sources */,
 				F4AED25A235F838F00F80ABF /* Logger.swift in Sources */,
+				F4108053242CDE5300973421 /* HttpMethod.swift in Sources */,
 				F4E908C82371CAAD00EB9FE6 /* Device.swift in Sources */,
 				F4E908FC2371CAAD00EB9FE6 /* GuardianTabBarController.swift in Sources */,
 				F4BAF48923F1C36C000FDBB0 /* CountryCellModel.swift in Sources */,
@@ -1602,6 +1620,7 @@
 				F4E909152371CAAD00EB9FE6 /* DeviceManagementCell.swift in Sources */,
 				F4AED251235F835200F80ABF /* Data+KeyEncoding.swift in Sources */,
 				F40109802406F303006DFF96 /* FirefoxURL.swift in Sources */,
+				F4108055242CDE9F00973421 /* GuardianURLRequestPath.swift in Sources */,
 				F4E908C52371CAAD00EB9FE6 /* DeviceKeys.swift in Sources */,
 				F4E908CC2371CAAD00EB9FE6 /* VPNLocations.swift in Sources */,
 				F4E908C42371CAAD00EB9FE6 /* SettingsDataSource.swift in Sources */,
@@ -1667,6 +1686,7 @@
 				F4B42BFF238D8A44001F64F7 /* LongPinger.swift in Sources */,
 				F4E909072371CAAD00EB9FE6 /* SettingsViewController.swift in Sources */,
 				F4AED210235F52AE00F80ABF /* Curve25519.swift in Sources */,
+				F4108058242CDF8200973421 /* GuardianAppError.swift in Sources */,
 				F4E908EE2371CAAD00EB9FE6 /* DependencyManager.swift in Sources */,
 				F478E48623C7881900D17FE0 /* UpdateStatus.swift in Sources */,
 				F4AED258235F835300F80ABF /* Endpoint.swift in Sources */,
@@ -1678,7 +1698,7 @@
 				F478E48823C78A1700D17FE0 /* ReleaseMonitoring.swift in Sources */,
 				F4E908F62371CAAD00EB9FE6 /* TunnelConfigurationBuilder.swift in Sources */,
 				F4E908D12371CAAD00EB9FE6 /* DependencyProviding.swift in Sources */,
-				F4E908CE2371CAAD00EB9FE6 /* NetworkingEnums.swift in Sources */,
+				F4E908CE2371CAAD00EB9FE6 /* GuardianAPIError.swift in Sources */,
 				F471537A23C4E81F00226CB8 /* ReleaseMonitor.swift in Sources */,
 				F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */,
 				F4DFBB262422D14F007D27FA /* AccountStore.swift in Sources */,

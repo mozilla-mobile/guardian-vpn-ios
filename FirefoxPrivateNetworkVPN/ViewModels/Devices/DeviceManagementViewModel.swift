@@ -21,7 +21,7 @@ class DeviceManagementViewModel {
     let trashTappedSubject = PublishSubject<Device>()
     let deletionConfirmedSubject = PublishSubject<Device>()
     let deletionSuccessSubject = PublishSubject<Void>()
-    let deletionErrorSubject = PublishSubject<GuardianError>()
+    let deletionErrorSubject = PublishSubject<GuardianAppError>()
 
     var sortedDevices: [Device] {
         //sort so the current device is always first in the list
@@ -59,8 +59,8 @@ class DeviceManagementViewModel {
                     }
                 }
             case .error(let error):
-                guard case GuardianError.couldNotRemoveDevice(let device) = error else { return }
-                self.deletionErrorSubject.onNext(GuardianError.couldNotRemoveDevice(device))
+                guard case GuardianAppError.couldNotRemoveDevice(let device) = error else { return }
+                self.deletionErrorSubject.onNext(GuardianAppError.couldNotRemoveDevice(device))
             default: break
             }
         }).disposed(by: disposeBag)

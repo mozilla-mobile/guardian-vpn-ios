@@ -61,7 +61,7 @@ class GuardianAPI: NetworkRequesting {
 
     func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, Error>) -> Void) {
         guard let data = try? JSONSerialization.data(withJSONObject: body) else {
-            completion(.failure(GuardianError.couldNotCreateBody))
+            completion(.failure(GuardianAppError.couldNotCreateBody))
             return
         }
 
@@ -75,7 +75,7 @@ class GuardianAPI: NetworkRequesting {
 
     func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let encodedKey = deviceKey.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            completion(.failure(GuardianError.couldNotEncodeData))
+            completion(.failure(GuardianAppError.couldNotEncodeData))
             return
         }
 
