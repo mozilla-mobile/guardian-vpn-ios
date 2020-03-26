@@ -29,7 +29,7 @@
                     <rect key="frame" x="8" y="814" width="398" height="40"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="d4q-rH-xr9">
+                        <constraint firstAttribute="height" constant="40" id="d4q-rH-xr9">
                             <variation key="heightClass=regular-widthClass=regular" constant="56"/>
                         </constraint>
                     </constraints>

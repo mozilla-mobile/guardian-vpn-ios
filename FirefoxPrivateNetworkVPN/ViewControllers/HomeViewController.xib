@@ -144,7 +144,7 @@
                     <rect key="frame" x="16" y="1040" width="802" height="56"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="Lgb-Ah-GOx">
+                        <constraint firstAttribute="height" constant="40" id="Lgb-Ah-GOx">
                             <variation key="heightClass=regular-widthClass=regular" constant="56"/>
                         </constraint>
                     </constraints>
