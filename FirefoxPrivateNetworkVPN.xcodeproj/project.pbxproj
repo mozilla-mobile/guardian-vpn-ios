@@ -21,6 +21,7 @@
 		F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056031239E9F31000A93CC /* KeychainStored.swift */; };
 		F410804D242BCB6200973421 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410804C242BCB6200973421 /* Networking.swift */; };
 		F410804F242BE2CA00973421 /* SimulatorTunnelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410804E242BE2CA00973421 /* SimulatorTunnelManager.swift */; };
+		F4108051242CDAB300973421 /* NetworkingUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108050242CDAB300973421 /* NetworkingUtilities.swift */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
 		F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422FEF523970752009413E2 /* Notification+Extensions.swift */; };
@@ -307,6 +308,7 @@
 		F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPIDateFormatter.swift; sourceTree = "<group>"; };
 		F410804C242BCB6200973421 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F410804E242BE2CA00973421 /* SimulatorTunnelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorTunnelManager.swift; sourceTree = "<group>"; };
+		F4108050242CDAB300973421 /* NetworkingUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingUtilities.swift; sourceTree = "<group>"; };
 		F41B9C7D2368933F00ACC414 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		F41CCA1A23711C7A0018DC43 /* DependencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
@@ -742,6 +744,7 @@
 				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
 				F4056031239E9F31000A93CC /* KeychainStored.swift */,
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
+				F4108050242CDAB300973421 /* NetworkingUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1631,6 +1634,7 @@
 				F4E908C22371CAAD00EB9FE6 /* DeviceManagementDataSource.swift in Sources */,
 				F4E908FA2371CAAD00EB9FE6 /* DeviceManagementViewController.swift in Sources */,
 				F4E909172371CAAD00EB9FE6 /* VPNToggleView.swift in Sources */,
+				F4108051242CDAB300973421 /* NetworkingUtilities.swift in Sources */,
 				F4E908D42371CAAD00EB9FE6 /* NetworkRequesting.swift in Sources */,
 				F4AED256235F835300F80ABF /* String+ArrayConversion.swift in Sources */,
 				F478E47F23C7842D00D17FE0 /* ReleaseInfo.swift in Sources */,

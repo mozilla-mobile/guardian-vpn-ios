@@ -23,7 +23,8 @@ class DependencyManager: DependencyProviding {
     private lazy var accountStore: AccountStoring = AccountStore(persistenceLayer: persistenceLayer)
 
     // MARK: -
-    lazy var guardianAPI = GuardianAPI(networkLayer: networkLayer, userAgentInfo: userAgentInfo)
+    lazy var guardianAPI = GuardianAPI(networkLayer: networkLayer,
+                                       userAgentInfo: NetworkingUtilities.userAgentInfo)
     lazy var accountManager: AccountManaging = AccountManager(guardianAPI: guardianAPI,
                                                               accountStore: accountStore,
                                                               deviceName: UIDevice.current.name)
@@ -38,10 +39,4 @@ class DependencyManager: DependencyProviding {
     lazy var connectionHealthMonitor: ConnectionHealthMonitoring = ConnectionHealthMonitor()
     lazy var releaseMonitor: ReleaseMonitoring = ReleaseMonitor(accountStore: accountStore, guardianAPI: guardianAPI)
     lazy var heartbeatMonitor: HeartbeatMonitoring = HeartbeatMonitor()
-
-    // MARK: - Utils
-    private var userAgentInfo: String {
-        return UIApplication.appNameWithoutSpaces + "/" + UIApplication.appVersion
-            + " " + UIDevice.modelName + "/" + UIDevice.current.systemVersion
-    }
 }
