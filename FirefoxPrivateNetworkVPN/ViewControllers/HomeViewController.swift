@@ -146,7 +146,7 @@ class HomeViewController: UIViewController, Navigating {
     // MARK: - VPN Selection handling
     @IBAction private func vpnSelectionTouchUpInside() {
         UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseOut, animations: {
-            self.vpnSelectionView.transform = CGAffineTransform.identity
+            self.vpnSelectionView.showUnselected()
         }, completion: { isComplete in
             if isComplete {
                 self.navigate(to: .servers)
@@ -156,13 +156,13 @@ class HomeViewController: UIViewController, Navigating {
 
     @IBAction private func vpnSelectionTouchDown() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
-            self.vpnSelectionView.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
+            self.vpnSelectionView.showSelected()
         }, completion: nil)
     }
 
     @IBAction private func vpnSelectionTouchDragOutside() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.vpnSelectionView.transform = CGAffineTransform.identity
+            self.vpnSelectionView.showUnselected()
         }, completion: nil)
     }
 }
