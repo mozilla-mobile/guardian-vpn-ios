@@ -17,14 +17,14 @@ class NetworkLayer: Networking {
         let defaultSession = URLSession(configuration: .default)
         defaultSession.configuration.timeoutIntervalForRequest = 120
 
-        let dataTask = defaultSession.dataTask(with: urlRequest) { [weak self] data, response, error in
+        let dataTask = defaultSession.dataTask(with: urlRequest) { data, response, error in
             if let response = response as? HTTPURLResponse, 200...210 ~= response.statusCode {
                 completion(.success(data))
             } else if let data = data,
                 let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                 completion(.failure(errorResponse.guardianAPIError))
             } else if let error = error as NSError?,
-                error.code == self?.errorCode(of: .cfurlErrorNotConnectedToInternet) {
+            error.code == CFNetworkErrors.cfurlErrorNotConnectedToInternet.errorCode {
                 completion(.failure(.offline))
             } else {
                 completion(.failure(.unknown))
@@ -32,13 +32,15 @@ class NetworkLayer: Networking {
         }
         dataTask.resume()
     }
+}
 
-    fileprivate func errorCode(of error: CFNetworkErrors) -> Int {
-        return Int(error.rawValue)
+fileprivate extension CFNetworkErrors {
+    var errorCode: Int {
+        return Int(rawValue)
     }
 }
 
-struct ErrorResponse: Codable {
+private struct ErrorResponse: Codable {
     let code: Int
     let errno: Int
     let error: String
