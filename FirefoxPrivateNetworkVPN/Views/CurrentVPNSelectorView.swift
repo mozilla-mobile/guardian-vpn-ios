@@ -38,4 +38,14 @@ class CurrentVPNSelectorView: UIView {
                 }
         }.disposed(by: disposeBag)
     }
+
+    func showSelected() {
+        self.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
+        self.view.backgroundColor = UIColor.custom(.buttonHighlight)
+    }
+
+    func showUnselected() {
+        self.transform = CGAffineTransform.identity
+        self.view.backgroundColor = UIColor.custom(.grey5)
+    }
 }

@@ -15,6 +15,7 @@ enum CustomColor: String {
     case blue50 = "custom_blue50"
     case blue60 = "custom_blue60"
     case blue80 = "custom_blue80"
+    case buttonHighlight = "custom_buttonHighlight"
     case green50 = "custom_green50"
     case grey5 = "custom_grey5"
     case grey10 = "custom_grey10"
