@@ -21,8 +21,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
     private var account: Account? { return DependencyManager.shared.accountManager.account }
     private let disposeBag = DisposeBag()
 
-    let rowSelected = PublishSubject<NavigableItem>()
-    let headerButtonSelected = PublishSubject<NavigableItem>()
+    let settingSelected = PublishSubject<SettingsItem>()
     let signoutSelectedSubject = PublishSubject<Void>()
 
     // MARK: - Initialization
@@ -70,10 +69,10 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SettingsDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let action = representedObject[indexPath.row].action {
-            rowSelected.onNext(action)
-        }
+        let settingsItem = representedObject[indexPath.row]
+        guard settingsItem != .signout else { return }
 
+        settingSelected.onNext(settingsItem)
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
@@ -92,9 +91,9 @@ extension SettingsDataSource: UITableViewDelegate {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerName) as? AccountInformationHeader
 
         //swiftlint:disable:next trailing_closure
-        headerView?.buttonTappedSubject.subscribe(onNext: { [weak self] navigableItem in
-            self?.headerButtonSelected.onNext(navigableItem)
-            }).disposed(by: disposeBag)
+        headerView?.buttonTappedSubject.subscribe(onNext: { [weak self] _ in
+            self?.settingSelected.onNext(.account)
+        }).disposed(by: disposeBag)
 
         return headerView
     }

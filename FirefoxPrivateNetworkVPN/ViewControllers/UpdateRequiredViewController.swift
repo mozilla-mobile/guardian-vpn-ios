@@ -38,12 +38,12 @@ class UpdateRequiredViewController: UIViewController, Navigating {
     }
 
     @IBAction func manageAccountTapped() {
-        navigate(to: .hyperlink(HyperlinkItem.account.url))
+        navigate(to: .safari, context: .url(HyperlinkItem.account.url))
     }
 
     @IBAction func signoutTapped() {
         DependencyManager.shared.accountManager.logout { [weak self] _ in
-            self?.navigate(to: .landing())
+            self?.navigate(to: .landing)
         }
     }
 

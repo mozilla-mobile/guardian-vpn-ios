@@ -241,7 +241,7 @@ class AccountManager: AccountManaging, Navigating {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.resetAccount()
-                self?.navigate(to: .landing())
+                self?.navigate(to: .landing)
         }).disposed(by: disposeBag)
     }
 }

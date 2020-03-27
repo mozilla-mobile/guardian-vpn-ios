@@ -12,7 +12,7 @@
 import UIKit
 
 class LandingViewController: UIViewController, Navigating {
-    static var navigableItem: NavigableItem = .landing()
+    static var navigableItem: NavigableItem = .landing
 
     @IBOutlet weak private var subtitleLabel: UILabel!
     @IBOutlet weak private var titleLabel: UILabel!

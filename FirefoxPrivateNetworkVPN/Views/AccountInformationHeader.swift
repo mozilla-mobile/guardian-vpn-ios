@@ -22,7 +22,7 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
 
     private var user: User? { return DependencyManager.shared.accountManager.account?.user }
     private var guardianAPI = DependencyManager.shared.guardianAPI
-    let buttonTappedSubject = PublishSubject<NavigableItem>()
+    let buttonTappedSubject = PublishSubject<Void>()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,7 +54,7 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     }
 
     @IBAction func accountButtonTapped() {
-        buttonTappedSubject.onNext(.hyperlink(HyperlinkItem.account.url))
+        buttonTappedSubject.onNext(())
     }
 
     private func setAvatar(_ result: Result<Data?, GuardianAPIError>) {

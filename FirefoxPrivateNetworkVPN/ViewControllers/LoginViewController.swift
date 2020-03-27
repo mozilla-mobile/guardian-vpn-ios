@@ -39,8 +39,8 @@ class LoginViewController: UIViewController, Navigating {
                 safariViewController.delegate = self
                 self?.safariViewController = safariViewController
             case .failure(let error):
-                let guardianAPIError = error as? GuardianAPIError
-                self?.navigate(to: .landing(guardianAPIError))
+                let context: NavigableContext = error == .maxDevicesReached ? .maxDevicesReached : .error(error)
+                self?.navigate(to: .landing, context: context)
             }
         }
     }
@@ -71,8 +71,7 @@ class LoginViewController: UIViewController, Navigating {
                         self.navigate(to: .home)
                     case .failure(let error):
                         Logger.global?.log(message: "Authentication Error: \(error)")
-                        let guardianAPIError = error as? GuardianAPIError
-                        self.navigate(to: .landing(guardianAPIError))
+                        self.navigate(to: .landing, context: .error(error))
                     }
                 }
             case .failure:
@@ -93,6 +92,6 @@ extension LoginViewController: SFSafariViewControllerDelegate {
 
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         self.verifyTimer?.invalidate()
-        navigate(to: .landing())
+        navigate(to: .landing)
     }
 }

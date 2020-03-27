@@ -49,7 +49,7 @@ class AboutViewController: UIViewController, Navigating {
         //swiftlint:disable:next trailing_closure
         dataSource?.rowSelected
             .subscribe(onNext: { [weak self] url in
-                self?.navigate(to: .hyperlink(url))
+                self?.navigate(to: .safari, context: .url(url))
             })
             .disposed(by: disposeBag)
     }
