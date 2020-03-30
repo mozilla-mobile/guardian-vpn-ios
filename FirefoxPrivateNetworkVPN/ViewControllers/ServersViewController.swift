@@ -103,7 +103,6 @@ class ServersViewController: UIViewController, Navigating {
 
         tunnelManager
             .stateEvent
-            .skip(1)
             .asDriver(onErrorJustReturn: .off)
             .drive(onNext: { [weak self] state in
                 switch state {

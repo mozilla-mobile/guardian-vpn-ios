@@ -9,7 +9,7 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
-enum TunnelError: LocalizedError {
+enum TunnelError: LocalizedError, Equatable {
     case couldNotConnect
     case couldNotSwitch
 

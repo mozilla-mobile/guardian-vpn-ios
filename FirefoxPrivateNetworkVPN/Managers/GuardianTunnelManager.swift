@@ -16,6 +16,7 @@ import RxRelay
 
 class GuardianTunnelManager: TunnelManaging {
 
+    private var intervalState = BehaviorRelay<VPNState>(value: .off)
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
     private let accountManager = DependencyManager.shared.accountManager
@@ -31,9 +32,30 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     init() {
-        loadTunnel { _ in
-            guard let tunnel = self.tunnel else { return }
-            self.stateEvent.accept(VPNState(with: tunnel.connection.status))
+        loadTunnel { [weak self] _ in
+            guard
+                let self = self,
+                let tunnel = self.tunnel
+            else { return }
+
+            self.intervalState.accept(VPNState(with: tunnel.connection.status))
+
+            self.intervalState
+                .withPrevious(startWith: self.intervalState.value)
+                .filter { previous, current in
+                    return previous != current
+            }.flatMap { previous, current -> Observable<VPNState> in
+                switch (previous, current) {
+                case (VPNState.connecting, VPNState.on), (VPNState.disconnecting, VPNState.off):
+                    return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
+                case (VPNState.switching, VPNState.on):
+                    return Observable.just(current).delay(DispatchTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
+                case (VPNState.off, VPNState.disconnecting):
+                    return Observable.just(VPNState.error(.couldNotConnect))
+                default: return Observable.just(current)
+                }
+            }.bind(to: self.stateEvent)
+            .disposed(by: self.disposeBag)
         }
 
         DispatchQueue.main.async {
@@ -111,10 +133,10 @@ class GuardianTunnelManager: TunnelManaging {
                 return Disposables.create()
             }
 
-            if self.stateEvent.value != .off {
+            if self.intervalState.value != .off {
                 let cityName = tunnel.localizedDescription ?? ""
                 let newCityName = self.accountManager.selectedCity?.name ?? ""
-                self.stateEvent.accept(.switching(cityName, newCityName))
+                self.intervalState.accept(.switching(cityName, newCityName))
             }
             guard let account = self.account,
                 let newCity = self.accountManager.selectedCity else {
@@ -127,8 +149,8 @@ class GuardianTunnelManager: TunnelManaging {
 
             tunnel.saveToPreferences { saveError in
                 if let error = saveError {
-                    if case .switching(_, _) = self.stateEvent.value {
-                        self.stateEvent.accept(.on)
+                    if case .switching(_, _) = self.intervalState.value {
+                        self.intervalState.accept(.on)
                     }
                     Logger.global?.log(message: "Switch Tunnel Save Error: \(error)")
                     resolver(.error(error))
@@ -150,7 +172,7 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     func getReceivedBytes(completionHandler: @escaping ((UInt?) -> Void)) {
-        guard stateEvent.value != .off,
+        guard intervalState.value != .off,
             let session = tunnel?.connection as? NETunnelProviderSession
         else {
             completionHandler(nil)
@@ -159,7 +181,7 @@ class GuardianTunnelManager: TunnelManaging {
 
         do {
             try session.sendProviderMessage(Data([UInt8(0)])) { [weak self] data in
-                guard self?.stateEvent.value != .off,
+                guard self?.intervalState.value != .off,
                     let data = data,
                     let configString = String(data: data, encoding: .utf8)
                 else {
@@ -225,7 +247,7 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     @objc private func vpnConfigurationDidChange(notification: Notification) {
-        if case .switching(_, _) = stateEvent.value {
+        if case .switching(_, _) = intervalState.value {
             stop()
         }
     }
@@ -233,7 +255,7 @@ class GuardianTunnelManager: TunnelManaging {
     @objc private func vpnStatusDidChange(notification: Notification) {
         guard let session = (notification.object as? NETunnelProviderSession), tunnel?.connection == session else { return }
 
-        if case .switching(_, _) = stateEvent.value {
+        if case .switching(_, _) = intervalState.value {
             switch session.status {
             case .disconnecting, .connecting:
                 return
@@ -248,7 +270,7 @@ class GuardianTunnelManager: TunnelManaging {
                 break
             }
         }
-        stateEvent.accept(VPNState(with: session.status))
+        intervalState.accept(VPNState(with: session.status))
     }
 }
 
