@@ -51,6 +51,9 @@ class ServersViewController: UIViewController, Navigating {
         super.viewWillAppear(animated)
 
         initialVpnState = tunnelManager.stateEvent.value
+        if let state = initialVpnState {
+            updateView(with: state)
+        }
 
         if #available(iOS 13.0, *) {
             isPresentingViewControllerDimmed = true
@@ -116,22 +119,15 @@ class ServersViewController: UIViewController, Navigating {
             .stateEvent
             .asDriver(onErrorJustReturn: .off)
             .drive(onNext: { [weak self] state in
-                switch state {
-                case .connecting, .switching, .disconnecting:
-                    self?.title = state.title
-                default:
-                    self?.title = LocalizedString.serversNavTitle.value
-                }
+                self?.updateView(with: state)
             }).disposed(by: disposeBag)
 
         viewModel?.vpnSelection
             .do(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
-                self?.dataSource?.isVPNSelectionDisabled = true
             })
-            .delay(.milliseconds(1200), scheduler: MainScheduler.instance)
+            .delay(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                self?.dataSource?.isVPNSelectionDisabled = false
                 self?.closeModal()
             }).disposed(by: disposeBag)
 
@@ -150,5 +146,27 @@ class ServersViewController: UIViewController, Navigating {
                     self.tableView.reloadRows(at: [sectionHeader], with: .none)
                 })
             }).disposed(by: disposeBag)
+    }
+
+    private func updateView(with state: VPNState) {
+        switch state {
+        case .switching:
+            title = state.title
+
+            if initialVpnState == state {
+                dataSource?.isVPNSelectionDisabled = true
+                tableView.reloadData()
+            }
+        case .connecting, .disconnecting:
+            title = state.title
+
+            dataSource?.isVPNSelectionDisabled = true
+            tableView.reloadData()
+        default:
+            title = LocalizedString.serversNavTitle.value
+
+            dataSource?.isVPNSelectionDisabled = false
+            tableView.reloadData()
+        }
     }
 }
