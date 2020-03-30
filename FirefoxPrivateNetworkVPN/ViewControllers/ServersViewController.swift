@@ -117,11 +117,13 @@ class ServersViewController: UIViewController, Navigating {
         viewModel?.vpnSelection
             .do(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
+                self?.dataSource?.isVPNSelectionDisabled = true
             })
             .map { [weak self] in self?.tunnelManager.stateEvent.value }
             .filter { state in state == .off }
             .delay(.milliseconds(600), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
+                self?.dataSource?.isVPNSelectionDisabled = false
                 self?.closeModal()
             }).disposed(by: disposeBag)
 
@@ -135,11 +137,9 @@ class ServersViewController: UIViewController, Navigating {
                     } else {
                         self.tableView.deleteRows(at: rows, with: .top)
                     }
-                }, completion: { isComplete in
-                    if isComplete {
-                        let sectionHeader = IndexPath(row: 0, section: section)
-                        self.tableView.reloadRows(at: [sectionHeader], with: .none)
-                    }
+                }, completion: { _ in
+                    let sectionHeader = IndexPath(row: 0, section: section)
+                    self.tableView.reloadRows(at: [sectionHeader], with: .none)
                 })
             }).disposed(by: disposeBag)
     }
