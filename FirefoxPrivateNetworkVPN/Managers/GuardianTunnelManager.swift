@@ -32,19 +32,11 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     init() {
-        loadTunnel { [weak self] _ in
-            guard
-                let self = self,
-                let tunnel = self.tunnel
-            else { return }
-
-            self.intervalState.accept(VPNState(with: tunnel.connection.status))
-
-            self.intervalState
-                .withPrevious(startWith: self.intervalState.value)
-                .filter { previous, current in
-                    return previous != current
-            }.flatMap { previous, current -> Observable<VPNState> in
+        self.intervalState
+            .withPrevious(startWith: self.intervalState.value)
+            .filter { previous, current in
+                return previous != current
+            }.flatMapLatest { previous, current -> Observable<VPNState> in
                 switch (previous, current) {
                 case (VPNState.connecting, VPNState.on), (VPNState.disconnecting, VPNState.off):
                     return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
@@ -56,6 +48,14 @@ class GuardianTunnelManager: TunnelManaging {
                 }
             }.bind(to: self.stateEvent)
             .disposed(by: self.disposeBag)
+
+        loadTunnel { [weak self] _ in
+            guard
+                let self = self,
+                let tunnel = self.tunnel
+            else { return }
+
+            self.intervalState.accept(VPNState(with: tunnel.connection.status))
         }
 
         DispatchQueue.main.async {
