@@ -58,6 +58,7 @@ class ServersDataSource: NSObject, UITableViewDataSource {
 
         let cityCell = tableView.dequeueReusableCell(withIdentifier: cityCellIdentifier, for: indexPath) as? CityVPNCell
         cityCell?.setup(with: viewModel.getCityCellModel(at: indexPath))
+        cityCell?.isDisabled = isVPNSelectionDisabled
 
         return cityCell ?? UITableViewCell(frame: .zero)
     }
