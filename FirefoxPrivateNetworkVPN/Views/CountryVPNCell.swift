@@ -21,7 +21,8 @@ class CountryVPNCell: UITableViewCell {
     @IBOutlet weak var flagImageView: UIImageView!
     @IBOutlet weak var chevronImageView: UIImageView!
 
-    func setup(with cellModel: CountryCellModel) {
+    func setup(with cellModel: CountryCellModel, shouldHideTopLine: Bool = false) {
+        topLineView.isHidden = shouldHideTopLine
         flagImageView.image = UIImage(named: "flag_\(cellModel.countryCode.lowercased())")
         nameLabel.text = cellModel.name
         chevronImageView.image = cellModel.isExpanded ? #imageLiteral(resourceName: "icon_sectionOpen") : #imageLiteral(resourceName: "icon_sectionClosed")
