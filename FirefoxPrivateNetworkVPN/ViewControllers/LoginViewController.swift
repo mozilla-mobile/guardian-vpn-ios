@@ -92,6 +92,7 @@ extension LoginViewController: SFSafariViewControllerDelegate {
     }
 
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        self.verifyTimer?.invalidate()
         navigate(to: .landing())
     }
 }
