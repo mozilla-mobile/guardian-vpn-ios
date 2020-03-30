@@ -117,18 +117,15 @@ class ServersViewController: UIViewController, Navigating {
             }).disposed(by: disposeBag)
 
         viewModel?.vpnSelection
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-
-                self.tableView.reloadData()
-
-                // Dismisses server list if tunnel is not already established
-                let currentState = self.tunnelManager.stateEvent.value
-                if currentState == .off {
-                    self.closeModal()
-                }
+            .do(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
             })
-            .disposed(by: disposeBag)
+            .map { [weak self] in self?.tunnelManager.stateEvent.value }
+            .filter { state in state == .off }
+            .delay(.milliseconds(600), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.closeModal()
+            }).disposed(by: disposeBag)
 
         viewModel?.toggleSection
             .subscribe(onNext: { [weak self] section, rows, isExpanded in
