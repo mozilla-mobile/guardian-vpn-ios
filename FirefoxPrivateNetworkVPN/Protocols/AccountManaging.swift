@@ -23,7 +23,7 @@ protocol AccountManaging {
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
 
     // MARK: - Account Operations
-    func addCurrentDevice(completion: @escaping (Result<Void, Error>) -> Void)
+    func addCurrentDevice(completion: @escaping (Result<Void, DeviceManagementError>) -> Void)
     func getUser(completion: @escaping (Result<Void, AccountError>) -> Void)
     func remove(device: Device) -> Single<Void>
 
