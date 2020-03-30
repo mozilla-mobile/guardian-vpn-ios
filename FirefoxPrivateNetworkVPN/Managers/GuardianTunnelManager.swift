@@ -118,7 +118,7 @@ class GuardianTunnelManager: TunnelManaging {
             }
             guard let account = self.account,
                 let newCity = self.accountManager.selectedCity else {
-                    resolver(.error(GuardianAppError.needToLogin))
+                    resolver(.error(TunnelError.couldNotSwitch))
                     return Disposables.create()
             }
             tunnel.setNewConfiguration(for: device,
