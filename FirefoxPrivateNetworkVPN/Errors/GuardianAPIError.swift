@@ -9,7 +9,16 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-enum GuardianAPIError: Int, Error {
+enum GuardianAPIError: Int, LocalizedError {
+    /** Errors from Guardian App
+     */
+    case offline = -1009
+    case couldNotEncodeData = 4
+    case couldNotDecodeJSON = 5
+
+    /**
+    Errors directly from Guardian API
+    */
     // Add Device
     case missingPubKey = 100
     case missingName = 101
@@ -31,13 +40,10 @@ enum GuardianAPIError: Int, Error {
     case tokenExpired = 125
     case tokenNotVerified = 126
 
-    // No internet connection
-    case offline = -1009
-
     // Unknown
     case unknown = 500
 
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .missingPubKey:
             return "Missing key argument"
@@ -72,12 +78,23 @@ enum GuardianAPIError: Int, Error {
         }
     }
 
-    var isAuthError: Bool {
+    func getAccountError() -> AccountError {
         switch self {
         case .inactiveSubscription, .tokenExpired, .tokenInvalid, .tokenNotFound, .userNotFound, .tokenNotVerified, .deviceNotFound:
-            return true
+            return .subscriptionError
         default:
-            return false
+            return .couldNotGetUser
+        }
+    }
+
+    func getLoginError() -> LoginError {
+        switch self {
+        case .offline:
+            return .noConnection
+        case .maxDevicesReached:
+            return .maxDevicesReached
+        default:
+            return .other(rawValue)
         }
     }
 }

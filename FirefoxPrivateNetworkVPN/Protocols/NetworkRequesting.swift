@@ -12,10 +12,10 @@
 import Foundation
 
 protocol NetworkRequesting {
-    func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void)
-    func accountInfo(token: String, completion: @escaping (Result<User, Error>) -> Void)
-    func verify(urlString: String, completion: @escaping (Result<VerifyResponse, Error>) -> Void)
-    func availableServers(with token: String, completion: @escaping (Result<[VPNCountry], Error>) -> Void)
-    func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, Error>) -> Void)
-    func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, GuardianAPIError>) -> Void)
+    func accountInfo(token: String, completion: @escaping (Result<User, GuardianAPIError>) -> Void)
+    func verify(urlString: String, completion: @escaping (Result<VerifyResponse, GuardianAPIError>) -> Void)
+    func availableServers(with token: String, completion: @escaping (Result<[VPNCountry], GuardianAPIError>) -> Void)
+    func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, GuardianAPIError>) -> Void)
+    func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void)
 }

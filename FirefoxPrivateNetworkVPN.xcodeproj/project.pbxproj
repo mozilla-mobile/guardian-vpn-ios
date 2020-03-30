@@ -24,7 +24,6 @@
 		F4108051242CDAB300973421 /* NetworkingUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108050242CDAB300973421 /* NetworkingUtilities.swift */; };
 		F4108053242CDE5300973421 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108052242CDE5300973421 /* HttpMethod.swift */; };
 		F4108055242CDE9F00973421 /* GuardianURLRequestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108054242CDE9F00973421 /* GuardianURLRequestPath.swift */; };
-		F4108058242CDF8200973421 /* GuardianAppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108057242CDF8200973421 /* GuardianAppError.swift */; };
 		F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		F41CCA302371215E0018DC43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
 		F422FEF623970752009413E2 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422FEF523970752009413E2 /* Notification+Extensions.swift */; };
@@ -139,6 +138,11 @@
 		F4DF5B1423CFBDAA006A7E4C /* UpdateRecommendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */; };
 		F4DF5B1523CFBDAA006A7E4C /* UpdateRecommendedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */; };
 		F4DFBB262422D14F007D27FA /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DFBB252422D14F007D27FA /* AccountStore.swift */; };
+		F4E2C2292432626300060B19 /* DeviceManagementError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C2282432626300060B19 /* DeviceManagementError.swift */; };
+		F4E2C22B243262B200060B19 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C22A243262B200060B19 /* LoginError.swift */; };
+		F4E2C22D2432633A00060B19 /* TunnelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C22C2432633A00060B19 /* TunnelError.swift */; };
+		F4E2C22F2432635500060B19 /* LogoutError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C22E2432635500060B19 /* LogoutError.swift */; };
+		F4E2C231243263A100060B19 /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C230243263A100060B19 /* AccountError.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
 		F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E908B92371C45600EB9FE6 /* Lottie.framework */; };
@@ -314,7 +318,6 @@
 		F4108050242CDAB300973421 /* NetworkingUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingUtilities.swift; sourceTree = "<group>"; };
 		F4108052242CDE5300973421 /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		F4108054242CDE9F00973421 /* GuardianURLRequestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianURLRequestPath.swift; sourceTree = "<group>"; };
-		F4108057242CDF8200973421 /* GuardianAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAppError.swift; sourceTree = "<group>"; };
 		F41B9C7D2368933F00ACC414 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F41B9C7F236894CB00ACC414 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		F41CCA1A23711C7A0018DC43 /* DependencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
@@ -517,6 +520,11 @@
 		F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRecommendedViewController.swift; sourceTree = "<group>"; };
 		F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateRecommendedViewController.xib; sourceTree = "<group>"; };
 		F4DFBB252422D14F007D27FA /* AccountStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
+		F4E2C2282432626300060B19 /* DeviceManagementError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementError.swift; sourceTree = "<group>"; };
+		F4E2C22A243262B200060B19 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
+		F4E2C22C2432633A00060B19 /* TunnelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelError.swift; sourceTree = "<group>"; };
+		F4E2C22E2432635500060B19 /* LogoutError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutError.swift; sourceTree = "<group>"; };
+		F4E2C230243263A100060B19 /* AccountError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountError.swift; sourceTree = "<group>"; };
 		F4E33D802358BF1500B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4E8B2342368C39C001CEC8A /* TunnelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelAction.swift; sourceTree = "<group>"; };
 		F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkItem.swift; sourceTree = "<group>"; };
@@ -651,8 +659,12 @@
 		F4108056242CDF7300973421 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				F4108057242CDF8200973421 /* GuardianAppError.swift */,
+				F4E2C230243263A100060B19 /* AccountError.swift */,
+				F4E2C2282432626300060B19 /* DeviceManagementError.swift */,
 				F4658540233BB3D00081D7D7 /* GuardianAPIError.swift */,
+				F4E2C22A243262B200060B19 /* LoginError.swift */,
+				F4E2C22E2432635500060B19 /* LogoutError.swift */,
+				F4E2C22C2432633A00060B19 /* TunnelError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -1611,9 +1623,11 @@
 				F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */,
 				F4A7FA24237C5C960034AF6C /* Account.swift in Sources */,
 				F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */,
+				F4E2C22B243262B200060B19 /* LoginError.swift in Sources */,
 				F4B42BFB238D88EE001F64F7 /* SimplePing.m in Sources */,
 				F4E908C32371CAAD00EB9FE6 /* ServersDataSource.swift in Sources */,
 				F4AED254235F835200F80ABF /* TunnelConfiguration.swift in Sources */,
+				F4E2C22D2432633A00060B19 /* TunnelError.swift in Sources */,
 				F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */,
 				F4E908CA2371CAAD00EB9FE6 /* User.swift in Sources */,
 				F47865972425069700598AAF /* PersistenceLayer.swift in Sources */,
@@ -1674,6 +1688,7 @@
 				F4AED20F235F52AE00F80ABF /* x25519.c in Sources */,
 				F4E909112371CAAD00EB9FE6 /* CurrentVPNSelectorView.swift in Sources */,
 				F4E908ED2371CAAD00EB9FE6 /* AccountManager.swift in Sources */,
+				F4E2C22F2432635500060B19 /* LogoutError.swift in Sources */,
 				F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */,
 				F410804F242BE2CA00973421 /* SimulatorTunnelManager.swift in Sources */,
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,
@@ -1683,10 +1698,10 @@
 				F4FFF3B123E8BDC700C365F3 /* UILabel+AttributedText.swift in Sources */,
 				F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */,
 				F48A595C23DBA03400BB2A0A /* UIScreen+Extensions.swift in Sources */,
+				F4E2C231243263A100060B19 /* AccountError.swift in Sources */,
 				F4B42BFF238D8A44001F64F7 /* LongPinger.swift in Sources */,
 				F4E909072371CAAD00EB9FE6 /* SettingsViewController.swift in Sources */,
 				F4AED210235F52AE00F80ABF /* Curve25519.swift in Sources */,
-				F4108058242CDF8200973421 /* GuardianAppError.swift in Sources */,
 				F4E908EE2371CAAD00EB9FE6 /* DependencyManager.swift in Sources */,
 				F478E48623C7881900D17FE0 /* UpdateStatus.swift in Sources */,
 				F4AED258235F835300F80ABF /* Endpoint.swift in Sources */,
@@ -1716,6 +1731,7 @@
 				F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */,
 				F429A87D2417FC3200D6F0C0 /* AboutHeaderTableViewCell.swift in Sources */,
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
+				F4E2C2292432626300060B19 /* DeviceManagementError.swift in Sources */,
 				F42304892372101000572A93 /* HyperlinkCell.swift in Sources */,
 				F4E9090D2371CAAD00EB9FE6 /* CityVPNCell.swift in Sources */,
 			);
