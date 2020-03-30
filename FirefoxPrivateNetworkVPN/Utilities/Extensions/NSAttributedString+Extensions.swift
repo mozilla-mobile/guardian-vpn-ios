@@ -12,8 +12,8 @@
 import UIKit
 
 extension NSAttributedString {
-    static func formattedError(_ error: GuardianAppError, canTryAgain: Bool = true) -> NSAttributedString {
-        return formatted(error.description, actionMessage: canTryAgain ? LocalizedString.toastTryAgain.value : nil)
+    static func formattedError(_ error: LocalizedError, canTryAgain: Bool = true) -> NSAttributedString {
+        return formatted(error.localizedDescription, actionMessage: canTryAgain ? LocalizedString.toastTryAgain.value : nil)
     }
 
     static func formatted(_ message: String, actionMessage: String?) -> NSAttributedString {

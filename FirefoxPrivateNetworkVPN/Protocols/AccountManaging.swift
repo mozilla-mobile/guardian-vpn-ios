@@ -18,7 +18,7 @@ protocol AccountManaging {
     var selectedCity: VPNCity? { get }
 
     // MARK: - Authentication
-    func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void)
+    func login(with verification: VerifyResponse, completion: @escaping (Result<Void, LoginError>) -> Void)
     func loginWithStoredCredentials() -> Bool
     func logout(completion: @escaping (Result<Void, Error>) -> Void)
 

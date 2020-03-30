@@ -39,7 +39,8 @@ class LoginViewController: UIViewController, Navigating {
                 safariViewController.delegate = self
                 self?.safariViewController = safariViewController
             case .failure(let error):
-                let context: NavigableContext = error == .maxDevicesReached ? .maxDevicesReached : .error(error)
+                let loginError = error.getLoginError()
+                let context: NavigableContext = loginError == .maxDevicesReached ? .maxDevicesReached : .error(loginError)
                 self?.navigate(to: .landing, context: context)
             }
         }

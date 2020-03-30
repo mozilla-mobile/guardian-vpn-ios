@@ -31,13 +31,13 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     // MARK: - Authentication
-    func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void) {
+    func login(with verification: VerifyResponse, completion: @escaping (Result<Void, LoginError>) -> Void) {
         let credentials = Credentials(with: verification)
         account = Account(credentials: credentials,
                           user: verification.user)
 
         let dispatchGroup = DispatchGroup()
-        var addDeviceError: Error?
+        var addDeviceError: DeviceManagementError?
         var retrieveServersError: Error?
 
         dispatchGroup.enter()
@@ -64,19 +64,21 @@ class AccountManager: AccountManaging, Navigating {
                 DependencyManager.shared.heartbeatMonitor.start()
                 completion(.success(()))
             case (.some(let error), _):
-                if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
+                guard error != .maxDevicesReached else {
                     self.accountStore.save(credentials: credentials)
                     self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
                     DependencyManager.shared.heartbeatMonitor.start()
+                    completion(.failure(.maxDevicesReached))
+                    return
                 }
-                completion(.failure(error))
-            case (.none, .some(let error)):
+                completion(.failure(.couldNotAddDevice))
+            case (.none, .some):
                 if let device = self.account?.currentDevice {
                     self.remove(device: device)
                         .subscribe { _ in }
                         .disposed(by: self.disposeBag)
                 }
-                completion(.failure(error))
+                completion(.failure(.couldNotGetServers))
             }
         }
     }
