@@ -129,9 +129,7 @@ class ServersViewController: UIViewController, Navigating {
                 self?.tableView.reloadData()
                 self?.dataSource?.isVPNSelectionDisabled = true
             })
-            .map { [weak self] in self?.tunnelManager.stateEvent.value }
-            .filter { state in state == .off }
-            .delay(.milliseconds(600), scheduler: MainScheduler.instance)
+            .delay(.milliseconds(1200), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.dataSource?.isVPNSelectionDisabled = false
                 self?.closeModal()
