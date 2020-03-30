@@ -24,7 +24,7 @@ protocol AccountManaging {
 
     // MARK: - Account Operations
     func addCurrentDevice(completion: @escaping (Result<Void, Error>) -> Void)
-    func getUser(completion: @escaping (Result<Void, Error>) -> Void)
+    func getUser(completion: @escaping (Result<Void, AccountError>) -> Void)
     func remove(device: Device) -> Single<Void>
 
     // MARK: - VPN Server Operations

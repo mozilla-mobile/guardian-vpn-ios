@@ -155,9 +155,9 @@ class AccountManager: AccountManaging, Navigating {
         }
     }
 
-    func getUser(completion: @escaping (Result<Void, Error>) -> Void) {
+    func getUser(completion: @escaping (Result<Void, AccountError>) -> Void) {
         guard let account = account else {
-            completion(Result.failure(GuardianAppError.noValidAccount))
+            completion(Result.failure(.noAccountFound))
             return
         }
 
@@ -173,7 +173,7 @@ class AccountManager: AccountManaging, Navigating {
                 completion(.success(()))
             case .failure(let error):
                 Logger.global?.log(message: "Account Error: \(error)")
-                completion(.failure(error))
+                completion(.failure(error.getAccountError()))
             }
         }
     }

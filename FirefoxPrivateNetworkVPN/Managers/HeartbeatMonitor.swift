@@ -48,8 +48,7 @@ class HeartbeatMonitor: HeartbeatMonitoring {
             case .success:
                 NotificationCenter.default.post(name: NSNotification.Name.activeSubscriptionNotification, object: nil)
             case .failure(let error):
-                if let subscriptionError = error as? GuardianAPIError,
-                    subscriptionError.isAuthError {
+                if error == .subscriptionError {
                     NotificationCenter.default.post(name: NSNotification.Name.expiredSubscriptionNotification, object: nil)
                 }
             }
