@@ -11,10 +11,10 @@
 
 import Foundation
 
-extension Result where Success == Data? {
+extension Result where Success == Data?, Failure == GuardianAPIError {
     func decode<T>(to type: T.Type) -> Result<T, GuardianAPIError> where T: Decodable {
-        if case .failure = self {
-            return .failure(.couldNotDecodeJSON)
+        if case .failure(let error) = self {
+            return .failure(error)
         }
         guard case .success(let optionalData) = self, let data = optionalData else {
             return .failure(.couldNotDecodeJSON)
