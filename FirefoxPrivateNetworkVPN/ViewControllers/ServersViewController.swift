@@ -20,6 +20,7 @@ class ServersViewController: UIViewController, Navigating {
 
     @IBOutlet weak var tableView: UITableView!
 
+    private var initialVpnState: VPNState?
     private var dataSource: ServersDataSource?
     private var viewModel: ServerListViewModel?
     private var tunnelManager = DependencyManager.shared.tunnelManager
@@ -49,6 +50,8 @@ class ServersViewController: UIViewController, Navigating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        initialVpnState = tunnelManager.stateEvent.value
+
         if #available(iOS 13.0, *) {
             isPresentingViewControllerDimmed = true
         }
@@ -60,6 +63,8 @@ class ServersViewController: UIViewController, Navigating {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        initialVpnState = nil
 
         if #available(iOS 13.0, *) {
             isPresentingViewControllerDimmed = false
@@ -93,9 +98,15 @@ class ServersViewController: UIViewController, Navigating {
             .subscribe(onNext: { [weak self] prevState, currentState in
             switch (prevState, currentState) {
             case (.connecting, .on):
-                self?.closeModal()
+                // Prevents modal from closing unintentionally
+                if self?.initialVpnState != prevState {
+                    self?.closeModal()
+                }
             case (.switching, .on):
-                self?.closeModal()
+                // Prevents modal from closing unintentionally
+                if self?.initialVpnState != prevState {
+                    self?.closeModal()
+                }
             default:
                 break
             }
