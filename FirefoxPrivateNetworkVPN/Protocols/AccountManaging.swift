@@ -20,7 +20,7 @@ protocol AccountManaging {
     // MARK: - Authentication
     func login(with verification: VerifyResponse, completion: @escaping (Result<Void, LoginError>) -> Void)
     func loginWithStoredCredentials() -> Bool
-    func logout(completion: @escaping (Result<Void, Error>) -> Void)
+    func logout(completion: @escaping (Result<Void, GuardianAPIError>) -> Void)
 
     // MARK: - Account Operations
     func addCurrentDevice(completion: @escaping (Result<Void, DeviceManagementError>) -> Void)
@@ -28,6 +28,6 @@ protocol AccountManaging {
     func remove(device: Device) -> Single<Void>
 
     // MARK: - VPN Server Operations
-    func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void)
     func updateSelectedCity(with newCity: VPNCity)
 }

@@ -141,7 +141,6 @@
 		F4E2C2292432626300060B19 /* DeviceManagementError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C2282432626300060B19 /* DeviceManagementError.swift */; };
 		F4E2C22B243262B200060B19 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C22A243262B200060B19 /* LoginError.swift */; };
 		F4E2C22D2432633A00060B19 /* TunnelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C22C2432633A00060B19 /* TunnelError.swift */; };
-		F4E2C22F2432635500060B19 /* LogoutError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C22E2432635500060B19 /* LogoutError.swift */; };
 		F4E2C231243263A100060B19 /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C230243263A100060B19 /* AccountError.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
@@ -523,7 +522,6 @@
 		F4E2C2282432626300060B19 /* DeviceManagementError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementError.swift; sourceTree = "<group>"; };
 		F4E2C22A243262B200060B19 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		F4E2C22C2432633A00060B19 /* TunnelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelError.swift; sourceTree = "<group>"; };
-		F4E2C22E2432635500060B19 /* LogoutError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutError.swift; sourceTree = "<group>"; };
 		F4E2C230243263A100060B19 /* AccountError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountError.swift; sourceTree = "<group>"; };
 		F4E33D802358BF1500B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4E8B2342368C39C001CEC8A /* TunnelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelAction.swift; sourceTree = "<group>"; };
@@ -663,7 +661,6 @@
 				F4E2C2282432626300060B19 /* DeviceManagementError.swift */,
 				F4658540233BB3D00081D7D7 /* GuardianAPIError.swift */,
 				F4E2C22A243262B200060B19 /* LoginError.swift */,
-				F4E2C22E2432635500060B19 /* LogoutError.swift */,
 				F4E2C22C2432633A00060B19 /* TunnelError.swift */,
 			);
 			path = Errors;
@@ -1688,7 +1685,6 @@
 				F4AED20F235F52AE00F80ABF /* x25519.c in Sources */,
 				F4E909112371CAAD00EB9FE6 /* CurrentVPNSelectorView.swift in Sources */,
 				F4E908ED2371CAAD00EB9FE6 /* AccountManager.swift in Sources */,
-				F4E2C22F2432635500060B19 /* LogoutError.swift in Sources */,
 				F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */,
 				F410804F242BE2CA00973421 /* SimulatorTunnelManager.swift in Sources */,
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,

@@ -101,9 +101,9 @@ class AccountManager: AccountManaging, Navigating {
         return true
     }
 
-    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+    func logout(completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
         guard let device = account?.currentDevice, let token = account?.token else {
-            completion(Result.failure(GuardianAppError.needToLogin))
+            completion(Result.failure(.unknown))
             return
         }
         guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [weak self] result in
@@ -113,7 +113,7 @@ class AccountManager: AccountManaging, Navigating {
                 completion(.success(()))
             case .failure(let error):
                 Logger.global?.log(message: "Logout Error: \(error)")
-                completion(.failure(.couldNotRemoveDevice))
+                completion(.failure(error))
             }
         }
     }
@@ -204,7 +204,7 @@ class AccountManager: AccountManaging, Navigating {
 
     // MARK: - VPN Server Operations
 
-    func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
         guardianAPI.availableServers(with: token) { result in
             switch result {
             case .success (let servers):
