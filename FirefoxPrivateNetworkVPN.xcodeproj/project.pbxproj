@@ -133,6 +133,7 @@
 		F4BAF48623EC820D000FDBB0 /* ServerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48523EC820D000FDBB0 /* ServerListViewModel.swift */; };
 		F4BAF48923F1C36C000FDBB0 /* CountryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48823F1C36C000FDBB0 /* CountryCellModel.swift */; };
 		F4BAF48C23F1C392000FDBB0 /* CityCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BAF48B23F1C392000FDBB0 /* CityCellModel.swift */; };
+		F4BE1E502433C4C10061FECD /* TunnelManagerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE1E4F2433C4C10061FECD /* TunnelManagerUtilities.swift */; };
 		F4D3D1E62406C7A7001B73D1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4D3D1E52406C7A7001B73D1 /* Settings.bundle */; };
 		F4D3D2042416C5F3001B73D1 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3D2032416C5F2001B73D1 /* UIDevice+Extensions.swift */; };
 		F4DF5B1423CFBDAA006A7E4C /* UpdateRecommendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF5B1223CFBDAA006A7E4C /* UpdateRecommendedViewController.swift */; };
@@ -502,6 +503,7 @@
 		F4BAF48523EC820D000FDBB0 /* ServerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListViewModel.swift; sourceTree = "<group>"; };
 		F4BAF48823F1C36C000FDBB0 /* CountryCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCellModel.swift; sourceTree = "<group>"; };
 		F4BAF48B23F1C392000FDBB0 /* CityCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCellModel.swift; sourceTree = "<group>"; };
+		F4BE1E4F2433C4C10061FECD /* TunnelManagerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelManagerUtilities.swift; sourceTree = "<group>"; };
 		F4D150B423453F9900739CDA /* CityVPNCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVPNCell.swift; sourceTree = "<group>"; };
 		F4D150B523453F9900739CDA /* CityVPNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityVPNCell.xib; sourceTree = "<group>"; };
 		F4D150B92345438500739CDA /* ServersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersDataSource.swift; sourceTree = "<group>"; };
@@ -767,6 +769,7 @@
 			isa = PBXGroup;
 			children = (
 				F478E48223C7865300D17FE0 /* Extensions */,
+				F4BE1E4F2433C4C10061FECD /* TunnelManagerUtilities.swift */,
 				F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */,
 				F4056031239E9F31000A93CC /* KeychainStored.swift */,
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
@@ -1726,6 +1729,7 @@
 				F4BAF48623EC820D000FDBB0 /* ServerListViewModel.swift in Sources */,
 				F4F868F72391C5D200BBC2F4 /* NSTextAttachment+Extensions.swift in Sources */,
 				F429A87D2417FC3200D6F0C0 /* AboutHeaderTableViewCell.swift in Sources */,
+				F4BE1E502433C4C10061FECD /* TunnelManagerUtilities.swift in Sources */,
 				F4E908D02371CAAD00EB9FE6 /* AccountManaging.swift in Sources */,
 				F4E2C2292432626300060B19 /* DeviceManagementError.swift in Sources */,
 				F42304892372101000572A93 /* HyperlinkCell.swift in Sources */,
