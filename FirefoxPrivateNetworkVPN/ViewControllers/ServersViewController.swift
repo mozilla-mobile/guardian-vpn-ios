@@ -52,7 +52,7 @@ class ServersViewController: UIViewController, Navigating {
 
         initialVpnState = tunnelManager.stateEvent.value
         if let state = initialVpnState {
-            updateView(with: state)
+            updateTitle(with: state)
         }
 
         if #available(iOS 13.0, *) {
@@ -119,7 +119,7 @@ class ServersViewController: UIViewController, Navigating {
             .stateEvent
             .asDriver(onErrorJustReturn: .off)
             .drive(onNext: { [weak self] state in
-                self?.updateView(with: state)
+                self?.updateTitle(with: state)
             }).disposed(by: disposeBag)
 
         viewModel?.vpnSelection
@@ -148,25 +148,14 @@ class ServersViewController: UIViewController, Navigating {
             }).disposed(by: disposeBag)
     }
 
-    private func updateView(with state: VPNState) {
+    private func updateTitle(with state: VPNState) {
         switch state {
-        case .switching:
+        case .switching, .connecting, .disconnecting:
             title = state.title
-
-            if initialVpnState == state {
-                dataSource?.isVPNSelectionDisabled = true
-                tableView.reloadData()
-            }
-        case .connecting, .disconnecting:
-            title = state.title
-
-            dataSource?.isVPNSelectionDisabled = true
-            tableView.reloadData()
         default:
             title = LocalizedString.serversNavTitle.value
-
-            dataSource?.isVPNSelectionDisabled = false
-            tableView.reloadData()
         }
+
+        tableView.reloadData()
     }
 }

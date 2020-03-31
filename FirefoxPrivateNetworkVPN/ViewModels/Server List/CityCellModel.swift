@@ -14,4 +14,5 @@ import Foundation
 struct CityCellModel {
     let name: String
     let isSelected: Bool
+    let isDisabled: Bool
 }
