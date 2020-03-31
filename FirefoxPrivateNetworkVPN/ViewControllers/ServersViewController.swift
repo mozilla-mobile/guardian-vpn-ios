@@ -20,6 +20,7 @@ class ServersViewController: UIViewController, Navigating {
 
     @IBOutlet weak var tableView: UITableView!
 
+    private var initialVpnState: VPNState?
     private var dataSource: ServersDataSource?
     private var viewModel: ServerListViewModel?
     private var tunnelManager = DependencyManager.shared.tunnelManager
@@ -49,6 +50,11 @@ class ServersViewController: UIViewController, Navigating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        initialVpnState = tunnelManager.stateEvent.value
+        if let state = initialVpnState {
+            updateView(with: state)
+        }
+
         if #available(iOS 13.0, *) {
             isPresentingViewControllerDimmed = true
         }
@@ -60,6 +66,8 @@ class ServersViewController: UIViewController, Navigating {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        initialVpnState = nil
 
         if #available(iOS 13.0, *) {
             isPresentingViewControllerDimmed = false
@@ -93,9 +101,15 @@ class ServersViewController: UIViewController, Navigating {
             .subscribe(onNext: { [weak self] prevState, currentState in
             switch (prevState, currentState) {
             case (.connecting, .on):
-                self?.closeModal()
+                // Prevents modal from closing unintentionally
+                if self?.initialVpnState != prevState {
+                    self?.closeModal()
+                }
             case (.switching, .on):
-                self?.closeModal()
+                // Prevents modal from closing unintentionally
+                if self?.initialVpnState != prevState {
+                    self?.closeModal()
+                }
             default:
                 break
             }
@@ -103,32 +117,19 @@ class ServersViewController: UIViewController, Navigating {
 
         tunnelManager
             .stateEvent
-            .skip(1)
             .asDriver(onErrorJustReturn: .off)
             .drive(onNext: { [weak self] state in
-                switch state {
-                case .connecting, .switching, .disconnecting:
-                    self?.title = state.title
-                    self?.tableView.isUserInteractionEnabled = false
-                default:
-                    self?.title = LocalizedString.serversNavTitle.value
-                    self?.tableView.isUserInteractionEnabled = true
-                }
+                self?.updateView(with: state)
             }).disposed(by: disposeBag)
 
         viewModel?.vpnSelection
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-
-                self.tableView.reloadData()
-
-                // Dismisses server list if tunnel is not already established
-                let currentState = self.tunnelManager.stateEvent.value
-                if currentState == .off {
-                    self.closeModal()
-                }
+            .do(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
             })
-            .disposed(by: disposeBag)
+            .delay(.milliseconds(500), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.closeModal()
+            }).disposed(by: disposeBag)
 
         viewModel?.toggleSection
             .subscribe(onNext: { [weak self] section, rows, isExpanded in
@@ -140,12 +141,32 @@ class ServersViewController: UIViewController, Navigating {
                     } else {
                         self.tableView.deleteRows(at: rows, with: .top)
                     }
-                }, completion: { isComplete in
-                    if isComplete {
-                        let sectionHeader = IndexPath(row: 0, section: section)
-                        self.tableView.reloadRows(at: [sectionHeader], with: .none)
-                    }
+                }, completion: { _ in
+                    let sectionHeader = IndexPath(row: 0, section: section)
+                    self.tableView.reloadRows(at: [sectionHeader], with: .none)
                 })
             }).disposed(by: disposeBag)
+    }
+
+    private func updateView(with state: VPNState) {
+        switch state {
+        case .switching:
+            title = state.title
+
+            if initialVpnState == state {
+                dataSource?.isVPNSelectionDisabled = true
+                tableView.reloadData()
+            }
+        case .connecting, .disconnecting:
+            title = state.title
+
+            dataSource?.isVPNSelectionDisabled = true
+            tableView.reloadData()
+        default:
+            title = LocalizedString.serversNavTitle.value
+
+            dataSource?.isVPNSelectionDisabled = false
+            tableView.reloadData()
+        }
     }
 }

@@ -76,27 +76,18 @@ class HomeViewController: UIViewController, Navigating {
 
         //swiftlint:disable trailing_closure
         tunnelManager.stateEvent
-            .withPrevious(startWith: tunnelManager.stateEvent.value)
-            .filter { previous, current in
-                return previous != current
-            }.flatMap { [weak self] previous, current -> Observable<VPNState> in
-                switch (previous, current) {
-                case (VPNState.connecting, VPNState.on), (VPNState.disconnecting, VPNState.off):
-                    return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
-                case (VPNState.switching, VPNState.on):
-                    return Observable.just(current).delay(DispatchTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
-                case (VPNState.off, VPNState.disconnecting):
-                    self?.warningToastView.show(message: NSAttributedString.formattedError(TunnelError.couldNotConnect),
-                                                action: self?.connectToTunnel)
-
-                    return Observable.just(current)
-                default: return Observable.just(current)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] state in
+                switch state {
+                case .error(let error):
+                    if error == .couldNotConnect {
+                        self?.warningToastView.show(message: NSAttributedString.formattedError(error),
+                                                    action: self?.connectToTunnel)
+                    }
+                default:
+                    self?.vpnToggleView.update(with: state)
                 }
-        }
-        .observeOn(MainScheduler.instance)
-        .subscribe(onNext: { [weak self] state in
-            self?.vpnToggleView.update(with: state)
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
 
     private func connectToTunnel() {

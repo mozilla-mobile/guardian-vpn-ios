@@ -15,8 +15,9 @@ import RxCocoa
 
 class SimulatorTunnelManager: TunnelManaging {
 
-    var cityChangedEvent = PublishSubject<VPNCity>()
+    private var internalState = BehaviorRelay<VPNState>(value: .off)
     var stateEvent = BehaviorRelay<VPNState>(value: .off)
+    var cityChangedEvent = PublishSubject<VPNCity>()
     var timeSinceConnected: Double {
         guard let connectionEstablishedTime = connectionEstablishedTime else { return 0 }
 
@@ -29,6 +30,10 @@ class SimulatorTunnelManager: TunnelManaging {
     private let disposeBag = DisposeBag()
 
     init() {
+        TunnelManagerUtilities.observe(internalState,
+                                       bindTo: stateEvent,
+                                       disposedBy: disposeBag)
+
         //swiftlint:disable:next trailing_closure
         cityChangedEvent.subscribe(onNext: { [weak self] newSelectedCity in
             self?.lastSelectedCity = self?.currentSelectedCity
@@ -37,22 +42,22 @@ class SimulatorTunnelManager: TunnelManaging {
     }
 
     func connect(with device: Device?) -> Single<Void> {
-        stateEvent.accept(.connecting)
-        stateEvent.accept(.on)
+        internalState.accept(.connecting)
+        internalState.accept(.on)
         connectionEstablishedTime = Date()
         return Single.just(())
     }
 
     func switchServer(with device: Device) -> Single<Void> {
-        stateEvent.accept(.switching(lastSelectedCity?.name ?? "", currentSelectedCity?.name ?? ""))
-        stateEvent.accept(.on)
+        internalState.accept(.switching(lastSelectedCity?.name ?? "", currentSelectedCity?.name ?? ""))
+        internalState.accept(.on)
         connectionEstablishedTime = Date()
         return Single.just(())
     }
 
     func stop() {
-        stateEvent.accept(.disconnecting)
-        stateEvent.accept(.off)
+        internalState.accept(.disconnecting)
+        internalState.accept(.off)
     }
 
     func stopAndRemove() {
