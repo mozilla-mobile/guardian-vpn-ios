@@ -49,7 +49,7 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.isFirstRowInSection {
             let countryCell = tableView.dequeueReusableCell(withIdentifier: countryCellIdentifier, for: indexPath) as? CountryVPNCell
-            countryCell?.setup(with: viewModel.getCountryCellModel(at: indexPath.section))
+            countryCell?.setup(with: viewModel.getCountryCellModel(at: indexPath.section), shouldHideTopLine: indexPath.isFirstSection)
 
             return countryCell ?? UITableViewCell(frame: .zero)
         }
@@ -76,5 +76,9 @@ extension ServersDataSource: UITableViewDelegate {
 private extension IndexPath {
     var isFirstRowInSection: Bool {
         return row == 0
+    }
+
+    var isFirstSection: Bool {
+        return section == 0
     }
 }
