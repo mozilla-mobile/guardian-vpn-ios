@@ -18,7 +18,7 @@ enum NavigableItem: Hashable {
     case devices
     case help
     case home
-    case landing(GuardianAPIError? = nil)
+    case landing
     case loading
     case login
     case servers
@@ -28,11 +28,13 @@ enum NavigableItem: Hashable {
     case appStore
     case recommendedUpdate
     case requiredUpdate
-    case hyperlink(URL?)
+    case safari
 }
 
 enum NavigableContext {
-    case maxDevicesError
+    case maxDevicesReached
+    case url(URL?)
+    case error(LocalizedError)
 }
 
 class NavigationCoordinator: NavigationCoordinating {
@@ -63,19 +65,19 @@ class NavigationCoordinator: NavigationCoordinating {
                     landingViewController.showSuccessfulLogoutToast()
                 }
 
-            case (.login, .landing(let error)):
+            case (.login, .landing):
                 self.currentViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
 
-                switch error {
-                case .none: return
+                switch context {
                 case .maxDevicesReached:
-                    self.navigate(from: .landing(), to: .home, context: .maxDevicesError)
+                    self.navigate(from: .landing, to: .home, context: .maxDevicesReached)
                     return
-                case .some(let error):
+                case .error(let error):
                     if let landingViewController = self.currentViewController as? LandingViewController {
                         landingViewController.showToast(with: error)
                     }
                     return
+                default: return
                 }
 
             // To Home
@@ -85,9 +87,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 self.appDelegate?.window?.rootViewController = tabBarController
                 self.currentViewController = tabBarController
 
-                if case .maxDevicesError = context {
+                if case .maxDevicesReached = context {
                     self.navigate(from: .home, to: .settings)
-                    self.navigate(from: .settings, to: .devices, context: .maxDevicesError)
+                    self.navigate(from: .settings, to: .devices, context: .maxDevicesReached)
                 }
 
             // To Home
@@ -119,7 +121,7 @@ class NavigationCoordinator: NavigationCoordinating {
 
             case (.carousel, .login):
                 self.currentViewController?.presentedViewController?.dismiss(animated: true) {
-                    self.navigate(from: .landing(), to: .login)
+                    self.navigate(from: .landing, to: .login)
                 }
 
             // To Onboarding carousel
@@ -139,7 +141,7 @@ class NavigationCoordinator: NavigationCoordinating {
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(devicesViewController, animated: true)
 
-                if case .maxDevicesError = context {
+                if case .maxDevicesReached = context {
                     self.homeTab(isEnabled: false)
                 }
 
@@ -155,8 +157,9 @@ class NavigationCoordinator: NavigationCoordinating {
                 let navController = (self.currentViewController as? GuardianTabBarController)?.tab(.settings) as? UINavigationController
                 navController?.pushViewController(aboutViewController, animated: true)
 
-            case (_, .hyperlink(let url)):
-                if let url = url {
+            case (_, .safari):
+                if case .url(let value) = context,
+                    let url = value {
                     UIApplication.shared.open(url)
                 }
 

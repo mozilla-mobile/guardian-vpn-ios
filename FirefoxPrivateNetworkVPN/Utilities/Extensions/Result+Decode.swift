@@ -11,20 +11,20 @@
 
 import Foundation
 
-extension Result where Success == Data? {
-    func decode<T>(to type: T.Type) -> Result<T, Error> where T: Decodable {
+extension Result where Success == Data?, Failure == GuardianAPIError {
+    func decode<T>(to type: T.Type) -> Result<T, GuardianAPIError> where T: Decodable {
         if case .failure(let error) = self {
             return .failure(error)
         }
         guard case .success(let optionalData) = self, let data = optionalData else {
-            return .failure(GuardianAppError.missingData)
+            return .failure(.couldNotDecodeJSON)
         }
         do {
             let decoder = JSONDecoder()
             let decodedResponse = try decoder.decode(type, from: data)
             return .success(decodedResponse)
         } catch {
-            return .failure(GuardianAppError.couldNotDecodeFromJson)
+            return .failure(.couldNotDecodeJSON)
         }
     }
 }

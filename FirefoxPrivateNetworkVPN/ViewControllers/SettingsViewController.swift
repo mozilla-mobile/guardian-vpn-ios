@@ -45,8 +45,8 @@ class SettingsViewController: UIViewController, Navigating {
         dataSource = SettingsDataSource(with: tableView)
         tableView.tableFooterView = UIView()
 
-        subscribeToRowSelected()
-        subscribeToButtonTapped()
+        subscribeToSettingSelected()
+        subscribeToSignoutTapped()
         subscribeToActiveSubscriptionNotification()
     }
 
@@ -73,28 +73,23 @@ class SettingsViewController: UIViewController, Navigating {
         navigationItem.backBarButtonItem = nil
     }
 
-    private func subscribeToRowSelected() {
+    private func subscribeToSettingSelected() {
         //swiftlint:disable:next trailing_closure
-        dataSource?.rowSelected
-            .subscribe(onNext: { [weak self] navigableItem in
-                self?.navigate(to: navigableItem)
+        dataSource?.settingSelected
+            .subscribe(onNext: { [weak self] item in
+                if let navigableItem = item.navigableItem {
+                    self?.navigate(to: navigableItem, context: item.navigableContext)
+                }
             })
             .disposed(by: disposeBag)
     }
 
-    private func subscribeToButtonTapped() {
-        //swiftlint:disable:next trailing_closure
-        dataSource?.headerButtonSelected
-            .subscribe(onNext: { [weak self] navigableItem in
-                self?.navigate(to: navigableItem)
-            })
-            .disposed(by: self.disposeBag)
-
+    private func subscribeToSignoutTapped() {
         //swiftlint:disable:next trailing_closure
         dataSource?.signoutSelectedSubject
             .subscribe(onNext: { _ in
                 DependencyManager.shared.accountManager.logout { [weak self] _ in
-                    self?.navigate(to: .landing())
+                    self?.navigate(to: .landing)
                 }
             })
             .disposed(by: self.disposeBag)

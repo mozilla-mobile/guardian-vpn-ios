@@ -31,13 +31,13 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     // MARK: - Authentication
-    func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void) {
+    func login(with verification: VerifyResponse, completion: @escaping (Result<Void, LoginError>) -> Void) {
         let credentials = Credentials(with: verification)
         account = Account(credentials: credentials,
                           user: verification.user)
 
         let dispatchGroup = DispatchGroup()
-        var addDeviceError: Error?
+        var addDeviceError: DeviceManagementError?
         var retrieveServersError: Error?
 
         dispatchGroup.enter()
@@ -64,19 +64,21 @@ class AccountManager: AccountManaging, Navigating {
                 DependencyManager.shared.heartbeatMonitor.start()
                 completion(.success(()))
             case (.some(let error), _):
-                if let error = error as? GuardianAPIError, error == GuardianAPIError.maxDevicesReached {
+                guard error != .maxDevicesReached else {
                     self.accountStore.save(credentials: credentials)
                     self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
                     DependencyManager.shared.heartbeatMonitor.start()
+                    completion(.failure(.maxDevicesReached))
+                    return
                 }
-                completion(.failure(error))
-            case (.none, .some(let error)):
+                completion(.failure(.couldNotAddDevice))
+            case (.none, .some):
                 if let device = self.account?.currentDevice {
                     self.remove(device: device)
                         .subscribe { _ in }
                         .disposed(by: self.disposeBag)
                 }
-                completion(.failure(error))
+                completion(.failure(.couldNotGetServers))
             }
         }
     }
@@ -99,9 +101,9 @@ class AccountManager: AccountManaging, Navigating {
         return true
     }
 
-    func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+    func logout(completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
         guard let device = account?.currentDevice, let token = account?.token else {
-            completion(Result.failure(GuardianAppError.needToLogin))
+            completion(Result.failure(.unknown))
             return
         }
         guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [weak self] result in
@@ -117,13 +119,13 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     // MARK: - Account Operations
-    func addCurrentDevice(completion: @escaping (Result<Void, Error>) -> Void) {
+    func addCurrentDevice(completion: @escaping (Result<Void, DeviceManagementError>) -> Void) {
         guard let account = account else {
-            completion(Result.failure(GuardianAppError.noValidAccount))
+            completion(Result.failure(.couldNotAddDevice))
             return
         }
         guard let devicePublicKey = account.credentials.deviceKeys.publicKey.base64Key() else {
-            completion(Result.failure(GuardianAppError.couldNotEncodeData))
+            completion(Result.failure(.noPublicKey))
             return
         }
         let body: [String: Any] = ["name": deviceName,
@@ -136,7 +138,7 @@ class AccountManager: AccountManaging, Navigating {
 
         guardianAPI.addDevice(with: account.credentials.verificationToken, body: body) { [weak self] result in
             guard let self = self else {
-                completion(.failure(GuardianAppError.deallocated))
+                completion(.failure(.couldNotAddDevice))
                 return
             }
             switch result {
@@ -148,20 +150,21 @@ class AccountManager: AccountManaging, Navigating {
                 }
             case .failure(let error):
                 Logger.global?.log(message: "Add Device Error: \(error)")
-                completion(.failure(error))
+                let deviceError: DeviceManagementError = error == .maxDevicesReached ? .maxDevicesReached : .couldNotAddDevice
+                completion(.failure(deviceError))
             }
         }
     }
 
-    func getUser(completion: @escaping (Result<Void, Error>) -> Void) {
+    func getUser(completion: @escaping (Result<Void, AccountError>) -> Void) {
         guard let account = account else {
-            completion(Result.failure(GuardianAppError.noValidAccount))
+            completion(Result.failure(.noAccountFound))
             return
         }
 
         guardianAPI.accountInfo(token: account.credentials.verificationToken) { [weak self] result in
             guard let self = self else {
-                completion(.failure(GuardianAppError.deallocated))
+                completion(.failure(.noAccountFound))
                 return
             }
             switch result {
@@ -171,7 +174,7 @@ class AccountManager: AccountManaging, Navigating {
                 completion(.success(()))
             case .failure(let error):
                 Logger.global?.log(message: "Account Error: \(error)")
-                completion(.failure(error))
+                completion(.failure(error.getAccountError()))
             }
         }
     }
@@ -179,7 +182,7 @@ class AccountManager: AccountManaging, Navigating {
     func remove(device: Device) -> Single<Void> {
         return Single<Void>.create { [weak self] resolver in
             guard let account = self?.account else {
-                resolver(.error(GuardianAppError.noValidAccount))
+                resolver(.error(DeviceManagementError.couldNotRemoveDevice(device)))
                 return Disposables.create()
             }
 
@@ -192,7 +195,7 @@ class AccountManager: AccountManaging, Navigating {
                 case .failure(let error):
                     account.user.failedRemoval(of: device)
                     Logger.global?.log(message: "Remove Device Error: \(error)")
-                    resolver(.error(GuardianAppError.couldNotRemoveDevice(device)))
+                    resolver(.error(DeviceManagementError.couldNotRemoveDevice(device)))
                 }
             }
             return Disposables.create()
@@ -201,7 +204,7 @@ class AccountManager: AccountManaging, Navigating {
 
     // MARK: - VPN Server Operations
 
-    func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
         guardianAPI.availableServers(with: token) { result in
             switch result {
             case .success (let servers):
@@ -241,7 +244,7 @@ class AccountManager: AccountManaging, Navigating {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.resetAccount()
-                self?.navigate(to: .landing())
+                self?.navigate(to: .landing)
         }).disposed(by: disposeBag)
     }
 }

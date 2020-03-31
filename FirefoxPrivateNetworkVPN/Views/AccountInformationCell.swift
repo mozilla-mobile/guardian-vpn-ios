@@ -26,7 +26,7 @@ class AccountInformationCell: UITableViewCell {
         disclosureImageView.image = type.disclosureImage
         accessoryIconImageView.isHidden = true
 
-        if type.action == .devices,
+        if type.navigableItem == .devices,
             !isDeviceAdded {
             accessoryIconImageView.image = UIImage(named: "icon_alert")
             accessoryIconImageView.isHidden = false

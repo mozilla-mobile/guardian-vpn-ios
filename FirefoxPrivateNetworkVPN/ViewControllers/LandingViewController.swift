@@ -12,7 +12,7 @@
 import UIKit
 
 class LandingViewController: UIViewController, Navigating {
-    static var navigableItem: NavigableItem = .landing()
+    static var navigableItem: NavigableItem = .landing
 
     @IBOutlet weak private var subtitleLabel: UILabel!
     @IBOutlet weak private var titleLabel: UILabel!
@@ -46,12 +46,8 @@ class LandingViewController: UIViewController, Navigating {
         layoutCenterView()
     }
 
-    func showToast(with error: GuardianAPIError) {
-        let errorMessage = error == .offline ? LocalizedString.toastNoConnection.value : LocalizedString.toastAuthenticationError.value
-
-        let attributedString = NSAttributedString.formatted(errorMessage,
-                                                            actionMessage: LocalizedString.toastTryAgain.value)
-
+    func showToast(with error: LocalizedError) {
+        let attributedString = NSAttributedString.formattedError(error)
         warningToastView.show(message: attributedString) { [weak self] in
             self?.navigate(to: .login)
         }

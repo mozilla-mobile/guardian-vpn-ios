@@ -56,8 +56,7 @@ class HelpViewController: UIViewController, Navigating {
                     self?.presentMailForDebugSupport()
                     return
                 }
-
-                self?.navigate(to: .hyperlink(item.url))
+                self?.navigate(to: .safari, context: .url(item.url))
             })
             .disposed(by: disposeBag)
     }

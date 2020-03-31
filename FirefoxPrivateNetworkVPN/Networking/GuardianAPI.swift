@@ -20,7 +20,7 @@ class GuardianAPI: NetworkRequesting {
     }
 
     // MARK: -
-    func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, Error>) -> Void) {
+    func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, GuardianAPIError>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .login, type: .POST)
         networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
@@ -29,7 +29,7 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    func accountInfo(token: String, completion: @escaping (Result<User, Error>) -> Void) {
+    func accountInfo(token: String, completion: @escaping (Result<User, GuardianAPIError>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .account, type: .GET, httpHeaderParams: headers(with: token))
         networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
@@ -38,7 +38,7 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    func verify(urlString: String, completion: @escaping (Result<VerifyResponse, Error>) -> Void) {
+    func verify(urlString: String, completion: @escaping (Result<VerifyResponse, GuardianAPIError>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(with: urlString, type: .GET)
         networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
@@ -47,7 +47,7 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    func availableServers(with token: String, completion: @escaping (Result<[VPNCountry], Error>) -> Void) {
+    func availableServers(with token: String, completion: @escaping (Result<[VPNCountry], GuardianAPIError>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .retrieveServers, type: .GET, httpHeaderParams: headers(with: token))
         networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
@@ -59,9 +59,9 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, Error>) -> Void) {
+    func addDevice(with token: String, body: [String: Any], completion: @escaping (Result<Device, GuardianAPIError>) -> Void) {
         guard let data = try? JSONSerialization.data(withJSONObject: body) else {
-            completion(.failure(GuardianAppError.couldNotCreateBody))
+            completion(.failure(.couldNotEncodeData))
             return
         }
 
@@ -73,9 +73,9 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func removeDevice(with token: String, deviceKey: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
         guard let encodedKey = deviceKey.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            completion(.failure(GuardianAppError.couldNotEncodeData))
+            completion(.failure(.couldNotEncodeData))
             return
         }
 
@@ -93,7 +93,7 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    func latestVersion(completion: @escaping (Result<Release, Error>) -> Void) {
+    func latestVersion(completion: @escaping (Result<Release, GuardianAPIError>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .versions, type: .GET)
         networkLayer.fire(urlRequest: urlRequest) { result in
             completion(result.decode(to: Release.self))
@@ -102,7 +102,9 @@ class GuardianAPI: NetworkRequesting {
 
     func downloadAvatar(_ url: URL, completion: @escaping (Result<Data?, GuardianAPIError>) -> Void) {
         let urlRequest = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
-        networkLayer.fire(urlRequest: urlRequest, completion: completion)
+        networkLayer.fire(urlRequest: urlRequest) { result in
+            completion(result.decode(to: Data?.self))
+        }
     }
 
     // MARK: - Utils

@@ -86,7 +86,7 @@ class HomeViewController: UIViewController, Navigating {
                 case (VPNState.switching, VPNState.on):
                     return Observable.just(current).delay(DispatchTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
                 case (VPNState.off, VPNState.disconnecting):
-                    self?.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
+                    self?.warningToastView.show(message: NSAttributedString.formattedError(TunnelError.couldNotConnect),
                                                 action: self?.connectToTunnel)
 
                     return Observable.just(current)
@@ -106,7 +106,7 @@ class HomeViewController: UIViewController, Navigating {
         tunnelManager.connect(with: currentDevice)
             .subscribe(onError: { [weak self] _ in
                 guard let self = self else { return }
-                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
+                self.warningToastView.show(message: NSAttributedString.formattedError(TunnelError.couldNotConnect),
                                            action: self.connectToTunnel)
             }).disposed(by: self.disposeBag)
     }
@@ -118,7 +118,7 @@ class HomeViewController: UIViewController, Navigating {
             NotificationCenter.default.rx.notification(.startTunnelError))
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.warningToastView.show(message: NSAttributedString.formattedError(.couldNotConnectVPN),
+                self.warningToastView.show(message: NSAttributedString.formattedError(TunnelError.couldNotConnect),
                                            action: self.connectToTunnel)
             })
         .disposed(by: disposeBag)

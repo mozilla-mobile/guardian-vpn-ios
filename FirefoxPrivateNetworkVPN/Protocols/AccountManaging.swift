@@ -18,16 +18,16 @@ protocol AccountManaging {
     var selectedCity: VPNCity? { get }
 
     // MARK: - Authentication
-    func login(with verification: VerifyResponse, completion: @escaping (Result<Void, Error>) -> Void)
+    func login(with verification: VerifyResponse, completion: @escaping (Result<Void, LoginError>) -> Void)
     func loginWithStoredCredentials() -> Bool
-    func logout(completion: @escaping (Result<Void, Error>) -> Void)
+    func logout(completion: @escaping (Result<Void, GuardianAPIError>) -> Void)
 
     // MARK: - Account Operations
-    func addCurrentDevice(completion: @escaping (Result<Void, Error>) -> Void)
-    func getUser(completion: @escaping (Result<Void, Error>) -> Void)
+    func addCurrentDevice(completion: @escaping (Result<Void, DeviceManagementError>) -> Void)
+    func getUser(completion: @escaping (Result<Void, AccountError>) -> Void)
     func remove(device: Device) -> Single<Void>
 
     // MARK: - VPN Server Operations
-    func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void)
     func updateSelectedCity(with newCity: VPNCity)
 }
