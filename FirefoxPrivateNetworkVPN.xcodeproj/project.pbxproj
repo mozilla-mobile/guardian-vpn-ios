@@ -143,6 +143,7 @@
 		F4E2C22B243262B200060B19 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C22A243262B200060B19 /* LoginError.swift */; };
 		F4E2C22D2432633A00060B19 /* TunnelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C22C2432633A00060B19 /* TunnelError.swift */; };
 		F4E2C231243263A100060B19 /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C230243263A100060B19 /* AccountError.swift */; };
+		F4E2C23524353AE900060B19 /* SwitchingSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C23424353AE900060B19 /* SwitchingSessionManager.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
 		F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E908B92371C45600EB9FE6 /* Lottie.framework */; };
@@ -525,6 +526,7 @@
 		F4E2C22A243262B200060B19 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		F4E2C22C2432633A00060B19 /* TunnelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelError.swift; sourceTree = "<group>"; };
 		F4E2C230243263A100060B19 /* AccountError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountError.swift; sourceTree = "<group>"; };
+		F4E2C23424353AE900060B19 /* SwitchingSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchingSessionManager.swift; sourceTree = "<group>"; };
 		F4E33D802358BF1500B2003A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4E8B2342368C39C001CEC8A /* TunnelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelAction.swift; sourceTree = "<group>"; };
 		F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkItem.swift; sourceTree = "<group>"; };
@@ -700,6 +702,7 @@
 				F45D709A233D384E00871447 /* NavigationCoordinator.swift */,
 				F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */,
 				F410804E242BE2CA00973421 /* SimulatorTunnelManager.swift */,
+				F4E2C23424353AE900060B19 /* SwitchingSessionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1618,6 +1621,7 @@
 				F422FEF823980C1D009413E2 /* NSAttributedString+Extensions.swift in Sources */,
 				F4AED257235F835300F80ABF /* IPAddressRange.swift in Sources */,
 				F4E908D32371CAAD00EB9FE6 /* NavigationCoordinating.swift in Sources */,
+				F4E2C23524353AE900060B19 /* SwitchingSessionManager.swift in Sources */,
 				F4E909092371CAAD00EB9FE6 /* AccountInformationCell.swift in Sources */,
 				F42DE7C82395A64A000B79C3 /* CarouselViewController.swift in Sources */,
 				F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */,

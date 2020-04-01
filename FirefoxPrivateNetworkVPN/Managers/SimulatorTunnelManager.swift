@@ -56,12 +56,16 @@ class SimulatorTunnelManager: TunnelManaging {
     }
 
     func stop() {
-        internalState.accept(.disconnecting)
+        internalState.accept(.disconnecting())
         internalState.accept(.off)
     }
 
     func stopAndRemove() {
         stop()
+    }
+
+    func startTunnel() throws {
+
     }
 
     func getReceivedBytes(completionHandler: @escaping ((UInt?) -> Void)) {

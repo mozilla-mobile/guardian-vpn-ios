@@ -16,17 +16,22 @@ import RxRelay
 
 class GuardianTunnelManager: TunnelManaging {
 
+    private let disposeBag = DisposeBag()
+    private let accountManager = DependencyManager.shared.accountManager
+    
+    private var account: Account? { return accountManager.account }
+    private var tunnel: NETunnelProviderManager?
     private var internalState = BehaviorRelay<VPNState>(value: .off)
+    
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
-    private let accountManager = DependencyManager.shared.accountManager
-    private var account: Account? {
-        return accountManager.account
-    }
-
-    private var tunnel: NETunnelProviderManager?
-    private let disposeBag = DisposeBag()
-
+    
+    private lazy var switchingManager: SwitchingSessionManager = {
+        return SwitchingSessionManager { [weak self] status in
+            self?.internalState.accept(VPNState(with: status))
+        }
+    }()
+    
     var timeSinceConnected: Double {
         return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
     }
@@ -120,6 +125,7 @@ class GuardianTunnelManager: TunnelManaging {
                 return Disposables.create()
             }
 
+            //update VPNState to switching
             if self.internalState.value != .off {
                 let cityName = tunnel.localizedDescription ?? ""
                 let newCityName = self.accountManager.selectedCity?.name ?? ""
@@ -200,7 +206,7 @@ class GuardianTunnelManager: TunnelManaging {
         }
     }
 
-    private func startTunnel() throws {
+    func startTunnel() throws {
         guard let tunnel = tunnel else { return }
 
         try (tunnel.connection as? NETunnelProviderSession)?.startTunnel()
@@ -245,22 +251,12 @@ class GuardianTunnelManager: TunnelManaging {
                 return
         }
 
-        if case .switching(_, _) = internalState.value {
-            switch session.status {
-            case .disconnecting, .connecting:
-                return
-            case .disconnected:
-                do {
-                    try startTunnel()
-                } catch {
-                    NotificationCenter.default.post(Notification(name: .switchServerError))
-                }
-                return
-            default:
-                break
-            }
+        guard case .switching(_, _) = internalState.value else {
+            internalState.accept(VPNState(with: session.status))
+            return
         }
-        internalState.accept(VPNState(with: session.status))
+
+        switchingManager.update(with: session.status)
     }
 }
 
