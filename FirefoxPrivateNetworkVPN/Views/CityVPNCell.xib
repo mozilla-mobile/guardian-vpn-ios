@@ -58,7 +58,9 @@
                         <variation key="heightClass=regular-widthClass=regular" constant="32"/>
                     </constraint>
                     <constraint firstItem="iQ5-3b-fki" firstAttribute="leading" secondItem="9tF-ua-oZ9" secondAttribute="trailing" constant="24" id="jBA-9G-sD4"/>
-                    <constraint firstAttribute="trailing" secondItem="1Lz-LU-sua" secondAttribute="trailing" constant="21.5" id="lhl-eL-3z5"/>
+                    <constraint firstAttribute="trailing" secondItem="1Lz-LU-sua" secondAttribute="trailing" constant="21.5" id="lhl-eL-3z5">
+                        <variation key="heightClass=regular-widthClass=regular" constant="43"/>
+                    </constraint>
                     <constraint firstItem="iQ5-3b-fki" firstAttribute="leading" secondItem="9tF-ua-oZ9" secondAttribute="trailing" constant="16" id="wLx-1l-LXV"/>
                     <constraint firstItem="9tF-ua-oZ9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="ylo-CJ-XQC">
                         <variation key="heightClass=regular-widthClass=regular" constant="24"/>
