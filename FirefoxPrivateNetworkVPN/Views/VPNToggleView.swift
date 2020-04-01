@@ -204,7 +204,7 @@ class VPNToggleView: UIView {
             globeAnimationView?.play(fromFrame: 45, toFrame: 30)
         case (.on, .disconnecting):
             globeAnimationView?.play(fromFrame: 30, toFrame: 45)
-        case (.disconnecting, .off):
+        case (.disconnecting, .off), (.switching, .off):
             globeAnimationView?.play(fromFrame: 45, toFrame: 60)
         case (.off, .on): // handles app re-launch
             globeAnimationView?.play(fromFrame: 30, toFrame: 30)
