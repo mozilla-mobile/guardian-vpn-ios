@@ -88,8 +88,8 @@ class ServerListViewModel {
         let isSelected = indexPath == selectedCityIndexPath
 
         return CityCellModel(name: city.name,
-                             isSelected: isSelected,
-                             isDisabled: isCellSelectionDisabled,
+                             isCellSelected: isSelected,
+                             isCellDisabled: isCellSelectionDisabled,
                              connectionHealthSubject: connectionHealthMonitor.currentState)
     }
 
