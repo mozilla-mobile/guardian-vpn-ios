@@ -18,21 +18,10 @@ class CityVPNCell: UITableViewCell {
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var radioImageView: UIImageView!
 
-    var isDisabled = false {
-        didSet {
-            radioImageView.alpha = isDisabled ? 0.5 : 1
-        }
-    }
-
     func setup(with cellModel: CityCellModel) {
         cityLabel.text = cellModel.name
         radioImageView.image = cellModel.isSelected ? UIImage(named: "icon_radioOn") : UIImage(named: "icon_radioOff")
         radioImageView.tintColor = cellModel.isSelected ? UIColor.custom(.blue50) : UIColor.custom(.grey40)
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-
-        radioImageView.alpha = 1
+        radioImageView.alpha = cellModel.isDisabled ? 0.5 : 1
     }
 }

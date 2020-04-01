@@ -21,8 +21,6 @@ class ServersDataSource: NSObject, UITableViewDataSource {
     private let countryCellIdentifier = String(describing: CountryVPNCell.self)
     private let cityCellIdentifier = String(describing: CityVPNCell.self)
 
-    var isVPNSelectionDisabled = false
-
     // MARK: - Initialization
     init(with tableView: UITableView, viewModel: ServerListViewModel) {
         self.tableView = tableView
@@ -58,7 +56,6 @@ class ServersDataSource: NSObject, UITableViewDataSource {
 
         let cityCell = tableView.dequeueReusableCell(withIdentifier: cityCellIdentifier, for: indexPath) as? CityVPNCell
         cityCell?.setup(with: viewModel.getCityCellModel(at: indexPath))
-        cityCell?.isDisabled = isVPNSelectionDisabled
 
         return cityCell ?? UITableViewCell(frame: .zero)
     }
@@ -67,15 +64,7 @@ class ServersDataSource: NSObject, UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ServersDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let isHeaderCell = indexPath.isFirstRowInSection
-        if isHeaderCell {
-            viewModel.cellSelection.onNext(indexPath)
-            return
-        }
-
-        if !isVPNSelectionDisabled {
-            viewModel.cellSelection.onNext(indexPath)
-        }
+        viewModel.cellSelection.onNext(indexPath)
     }
 
     //Need to set the estimatedHeightForRow since using automatic dimensions

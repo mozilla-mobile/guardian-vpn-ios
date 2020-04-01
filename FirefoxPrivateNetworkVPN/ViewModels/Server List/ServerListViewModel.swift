@@ -19,6 +19,7 @@ class ServerListViewModel {
     // MARK: - Properties
     private static let sectionHeaderCount = 1
     private let accountManager = DependencyManager.shared.accountManager
+    private let tunnelManager = DependencyManager.shared.tunnelManager
     private let disposeBag = DisposeBag()
     private let _vpnSelection = PublishSubject<Void>()
     private let _toggleSection = PublishSubject<SectionExpansionState>()
@@ -34,6 +35,19 @@ class ServerListViewModel {
         }
         return states
     }()
+
+    private lazy var vpnStates: (previous: VPNState, current: VPNState) = {
+        return (tunnelManager.stateEvent.value, tunnelManager.stateEvent.value)
+    }()
+
+    private var isCellSelectionDisabled: Bool {
+        switch vpnStates.current {
+        case .switching, .connecting, .disconnecting:
+            return vpnStates.previous == vpnStates.current
+        default:
+            return false
+        }
+    }
 
     let cellSelection = PublishSubject<IndexPath>()
     var selectedCityIndexPath: IndexPath?
@@ -70,8 +84,10 @@ class ServerListViewModel {
 
     func getCityCellModel(at indexPath: IndexPath) -> CityCellModel {
         let city = serverList[indexPath.section].cities[indexPath.row - ServerListViewModel.sectionHeaderCount]
+
         return CityCellModel(name: city.name,
-                             isSelected: indexPath == selectedCityIndexPath)
+                             isSelected: indexPath == selectedCityIndexPath,
+                             isDisabled: isCellSelectionDisabled)
     }
 
     //Find the saved city in the server list each time in case the list has changed
@@ -93,7 +109,7 @@ class ServerListViewModel {
     //swiftlint:disable trailing_closure
     private func setupObservers() {
         cellSelection
-            .filter { $0.isCityCell }
+            .filter { $0.isCityCell && !self.isCellSelectionDisabled }
             .do(onNext: { [weak self] indexPath in
                 guard let self = self, indexPath != self.selectedCityIndexPath else { return }
                 self.selectedCityIndexPath = indexPath
@@ -125,6 +141,12 @@ class ServerListViewModel {
                 let updatedExpansionState = !currentExpansionState
                 self.sectionExpandedStates[indexPath.section] = updatedExpansionState
                 self._toggleSection.onNext((indexPath.section, self.getCityRows(for: indexPath.section), updatedExpansionState))
+            }).disposed(by: disposeBag)
+
+        tunnelManager.stateEvent
+            .withPrevious(startWith: .off)
+            .subscribe(onNext: { [weak self] previous, new in
+                self?.vpnStates = (previous, new)
             }).disposed(by: disposeBag)
     }
 }
