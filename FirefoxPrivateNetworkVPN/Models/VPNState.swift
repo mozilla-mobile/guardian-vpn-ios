@@ -17,8 +17,7 @@ enum VPNState {
     case off
     case connecting
     case switching(String, String)
-    case disconnecting
-    case error(TunnelError)
+    case disconnecting(TunnelError? = nil)
 
     init(with status: NEVPNStatus) {
         switch status {
@@ -29,7 +28,7 @@ enum VPNState {
         case .connected:
             self = .on
         case .disconnecting:
-            self = .disconnecting
+            self = .disconnecting()
         default:
             self = .off
         }
@@ -67,7 +66,6 @@ extension VPNState {
             return LocalizedString.homeTitleSwitching.value
         case .disconnecting:
             return LocalizedString.homeTitleDisconnecting.value
-        default: return ""
         }
     }
 
@@ -83,7 +81,6 @@ extension VPNState {
             return ""
         case .disconnecting:
             return LocalizedString.homeSubtitleDisconnecting.value
-        default: return ""
         }
     }
 
@@ -93,7 +90,6 @@ extension VPNState {
             return 1.0
         case .connecting, .switching, .disconnecting:
             return 0.5
-        default: return 1.0
         }
     }
 

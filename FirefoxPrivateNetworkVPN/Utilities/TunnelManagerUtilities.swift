@@ -39,7 +39,7 @@ class TunnelManagerUtilities {
                 case (.switching, .on), (.switching, .off):
                     return Observable.just(current).delay(DispatchTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
                 case (.off, .disconnecting):
-                    return Observable.just(.error(.couldNotConnect))
+                    return Observable.just(.disconnecting(.couldNotConnect))
                 default: return Observable.just(current)
                 }
             }.bind(to: processedStateSubject)
