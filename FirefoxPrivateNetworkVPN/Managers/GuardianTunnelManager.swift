@@ -240,7 +240,10 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     @objc private func vpnStatusDidChange(notification: Notification) {
-        guard let session = (notification.object as? NETunnelProviderSession), tunnel?.connection == session else { return }
+        guard let session = (notification.object as? NETunnelProviderSession),
+            tunnel?.connection == session else {
+                return
+        }
 
         if case .switching(_, _) = internalState.value {
             switch session.status {
