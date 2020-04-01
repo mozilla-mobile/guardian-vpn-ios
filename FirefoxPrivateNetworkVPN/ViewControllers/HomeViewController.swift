@@ -81,15 +81,12 @@ class HomeViewController: UIViewController, Navigating {
         tunnelManager.stateEvent
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] state in
-                switch state {
-                case .error(let error):
-                    if error == .couldNotConnect {
-                        self?.warningToastView.show(message: NSAttributedString.formattedError(error),
-                                                    action: self?.connectToTunnel)
-                    }
-                default:
+                guard case .disconnecting(.some(let error)) = state else {
                     self?.vpnToggleView.update(with: state)
+                    return
                 }
+                self?.warningToastView.show(message: NSAttributedString.formattedError(error),
+                                            action: self?.connectToTunnel)
             }).disposed(by: disposeBag)
 
         tunnelManager.stateEvent
