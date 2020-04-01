@@ -20,29 +20,29 @@ class CityVPNCell: UITableViewCell {
     @IBOutlet var radioImageView: UIImageView!
     @IBOutlet weak var connectionHealthIcon: UIImageView!
 
-    //swiftlint:disable:next implicitly_unwrapped_optional
-    private var model: CityCellModel!
     private let disposeBag = DisposeBag()
 
     func setup(with cellModel: CityCellModel) {
-        model = cellModel
+        cityLabel.text = cellModel.name
+        radioImageView.image = cellModel.isCellSelected ? UIImage(named: "icon_radioOn") : UIImage(named: "icon_radioOff")
+        radioImageView.tintColor = cellModel.isCellSelected ? UIColor.custom(.blue50) : UIColor.custom(.grey40)
+        radioImageView.alpha = cellModel.isCellDisabled ? 0.5 : 1
 
-        cityLabel.text = model.name
-        radioImageView.image = model.isCellSelected ? UIImage(named: "icon_radioOn") : UIImage(named: "icon_radioOff")
-        radioImageView.tintColor = model.isCellSelected ? UIColor.custom(.blue50) : UIColor.custom(.grey40)
-        radioImageView.alpha = model.isCellDisabled ? 0.5 : 1
+        if cellModel.isCellSelected {
+            //swiftlint:disable:next trailing_closure
+            cellModel.connectionHealthSubject
+                .asDriver(onErrorJustReturn: .initial)
+                .distinctUntilChanged()
+                .drive(onNext: { [unowned self] connectionHealth in
+                    self.connectionHealthIcon.image = connectionHealth.icon
+                    self.connectionHealthIcon.isHidden = false
+                }).disposed(by: disposeBag)
+        }
+    }
 
-        //swiftlint:disable:next trailing_closure
-        model.connectionHealthSubject
-            .asDriver(onErrorJustReturn: .initial)
-            .drive(onNext: { [unowned self] connectionHealth in
-                guard self.model.isCellSelected else {
-                    self.connectionHealthIcon.isHidden = true
-                    return
-                }
+    override func prepareForReuse() {
+        super.prepareForReuse()
 
-                self.connectionHealthIcon.image = connectionHealth.icon
-                self.connectionHealthIcon.isHidden = false
-            }).disposed(by: disposeBag)
+        self.connectionHealthIcon.isHidden = true
     }
 }
