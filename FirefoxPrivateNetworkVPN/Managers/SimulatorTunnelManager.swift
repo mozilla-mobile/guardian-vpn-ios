@@ -64,10 +64,6 @@ class SimulatorTunnelManager: TunnelManaging {
         stop()
     }
 
-    func startTunnel() throws {
-
-    }
-
     func getReceivedBytes(completionHandler: @escaping ((UInt?) -> Void)) {
         completionHandler(UInt(Date().timeIntervalSince1970)) // Fake receiving bytes
     }

@@ -202,7 +202,7 @@ class GuardianTunnelManager: TunnelManaging {
         }
     }
 
-    func startTunnel() throws {
+    private func startTunnel() throws {
         guard let tunnel = tunnel else { return }
 
         try (tunnel.connection as? NETunnelProviderSession)?.startTunnel()
@@ -278,7 +278,7 @@ class GuardianTunnelManager: TunnelManaging {
                 NotificationCenter.default.post(Notification(name: .switchServerError))
             case .off where twoPrevious != .off:
                 do {
-                    try DependencyManager.shared.tunnelManager.startTunnel()
+                    try self.startTunnel()
                 } catch {
                     self.internalState.accept(current)
                 }
