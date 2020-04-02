@@ -20,6 +20,7 @@ class ServerListViewModel {
     private static let sectionHeaderCount = 1
     private let accountManager = DependencyManager.shared.accountManager
     private let tunnelManager = DependencyManager.shared.tunnelManager
+    private let connectionHealthMonitor = DependencyManager.shared.connectionHealthMonitor
     private let disposeBag = DisposeBag()
     private let _vpnSelection = PublishSubject<Void>()
     private let _toggleSection = PublishSubject<SectionExpansionState>()
@@ -84,10 +85,12 @@ class ServerListViewModel {
 
     func getCityCellModel(at indexPath: IndexPath) -> CityCellModel {
         let city = serverList[indexPath.section].cities[indexPath.row - ServerListViewModel.sectionHeaderCount]
+        let isSelected = indexPath == selectedCityIndexPath
 
         return CityCellModel(name: city.name,
-                             isSelected: indexPath == selectedCityIndexPath,
-                             isDisabled: isCellSelectionDisabled)
+                             isCellSelected: isSelected,
+                             isCellDisabled: isCellSelectionDisabled,
+                             connectionHealthSubject: connectionHealthMonitor.currentState)
     }
 
     //Find the saved city in the server list each time in case the list has changed

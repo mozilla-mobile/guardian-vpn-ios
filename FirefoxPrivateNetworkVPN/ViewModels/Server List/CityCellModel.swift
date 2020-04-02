@@ -9,10 +9,11 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
-import Foundation
+import RxSwift
 
 struct CityCellModel {
     let name: String
-    let isSelected: Bool
-    let isDisabled: Bool
+    let isCellSelected: Bool
+    let isCellDisabled: Bool
+    let connectionHealthSubject: Observable<ConnectionHealth>
 }

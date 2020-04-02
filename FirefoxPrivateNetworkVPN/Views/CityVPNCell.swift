@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class CityVPNCell: UITableViewCell {
 
@@ -17,11 +18,31 @@ class CityVPNCell: UITableViewCell {
 
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var radioImageView: UIImageView!
+    @IBOutlet weak var connectionHealthIcon: UIImageView!
+
+    private let disposeBag = DisposeBag()
 
     func setup(with cellModel: CityCellModel) {
         cityLabel.text = cellModel.name
-        radioImageView.image = cellModel.isSelected ? UIImage(named: "icon_radioOn") : UIImage(named: "icon_radioOff")
-        radioImageView.tintColor = cellModel.isSelected ? UIColor.custom(.blue50) : UIColor.custom(.grey40)
-        radioImageView.alpha = cellModel.isDisabled ? 0.5 : 1
+        radioImageView.image = cellModel.isCellSelected ? UIImage(named: "icon_radioOn") : UIImage(named: "icon_radioOff")
+        radioImageView.tintColor = cellModel.isCellSelected ? UIColor.custom(.blue50) : UIColor.custom(.grey40)
+        radioImageView.alpha = cellModel.isCellDisabled ? 0.5 : 1
+
+        if cellModel.isCellSelected {
+            //swiftlint:disable:next trailing_closure
+            cellModel.connectionHealthSubject
+                .asDriver(onErrorJustReturn: .initial)
+                .distinctUntilChanged()
+                .drive(onNext: { [unowned self] connectionHealth in
+                    self.connectionHealthIcon.image = connectionHealth.icon
+                    self.connectionHealthIcon.isHidden = false
+                }).disposed(by: disposeBag)
+        }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        self.connectionHealthIcon.isHidden = true
     }
 }
