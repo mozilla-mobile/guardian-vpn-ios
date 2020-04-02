@@ -18,20 +18,15 @@ class GuardianTunnelManager: TunnelManaging {
 
     private let disposeBag = DisposeBag()
     private let accountManager = DependencyManager.shared.accountManager
-    
+
     private var account: Account? { return accountManager.account }
     private var tunnel: NETunnelProviderManager?
     private var internalState = BehaviorRelay<VPNState>(value: .off)
-    
+    private var switchingState = PublishSubject<VPNState>()
+
     private(set) var cityChangedEvent = PublishSubject<VPNCity>()
     private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
-    
-    private lazy var switchingManager: SwitchingSessionManager = {
-        return SwitchingSessionManager { [weak self] status in
-            self?.internalState.accept(VPNState(with: status))
-        }
-    }()
-    
+
     var timeSinceConnected: Double {
         return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
     }
@@ -40,6 +35,8 @@ class GuardianTunnelManager: TunnelManaging {
         TunnelManagerUtilities.observe(internalState,
                                        bindTo: stateEvent,
                                        disposedBy: disposeBag)
+
+        setUpTunnelSwitchingObserver()
 
         loadTunnel { [weak self] _ in
             guard
@@ -125,7 +122,6 @@ class GuardianTunnelManager: TunnelManaging {
                 return Disposables.create()
             }
 
-            //update VPNState to switching
             if self.internalState.value != .off {
                 let cityName = tunnel.localizedDescription ?? ""
                 let newCityName = self.accountManager.selectedCity?.name ?? ""
@@ -256,7 +252,39 @@ class GuardianTunnelManager: TunnelManaging {
             return
         }
 
-        switchingManager.update(with: session.status)
+        switchingState.onNext(VPNState(with: session.status))
+    }
+
+    /// Manages actions to take while switching tunnels
+    /// - Before the first attempt of connecting to the new tunnel, the previous vpn states in order of least to most recent are: [.on, .disconnecting]
+    /// - After the second attempt of connecting to the new tunnel, the previous vpn states in order of least to most recent are: [.off, .disconnecting]
+
+    private func setUpTunnelSwitchingObserver() {
+        //swiftlint:disable:next trailing_closure
+        switchingState
+            .scan([]) { lastSlice, newValue in
+                return Array(lastSlice + [newValue]).suffix(3)
+        }
+        .subscribe(onNext: { [unowned self] values in
+            var lastThree = values
+            let current = lastThree.removeLast()
+            _ = lastThree.popLast()
+            let twoPrevious = lastThree.first
+            switch current {
+            case .on:
+                self.internalState.accept(current)
+            case .off where twoPrevious == .off:
+                self.internalState.accept(current)
+                NotificationCenter.default.post(Notification(name: .switchServerError))
+            case .off where twoPrevious != .off:
+                do {
+                    try DependencyManager.shared.tunnelManager.startTunnel()
+                } catch {
+                    self.internalState.accept(current)
+                }
+            default: break
+            }
+        }).disposed(by: disposeBag)
     }
 }
 
