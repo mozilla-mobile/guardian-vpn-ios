@@ -19,11 +19,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7L-zP-kNf">
-                        <rect key="frame" x="16" y="16" width="288" height="17.5"/>
+                        <rect key="frame" x="16" y="16" width="288" height="18"/>
                         <attributedString key="attributedText">
                             <fragment content="Name Label">
                                 <attributes>
-                                    <font key="NSFont" size="15" name="Metropolis-SemiBold"/>
+                                    <font key="NSFont" metaFont="system" size="15"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNp-HT-UQx">
-                        <rect key="frame" x="16" y="33.5" width="288" height="20.5"/>
+                        <rect key="frame" x="16" y="34" width="288" height="20.5"/>
                         <attributedString key="attributedText">
                             <fragment content="Description Label">
                                 <attributes>
@@ -43,7 +43,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vro-ox-M1o">
-                        <rect key="frame" x="16" y="78" width="288" height="20.5"/>
+                        <rect key="frame" x="16" y="70.5" width="288" height="20.5"/>
                         <attributedString key="attributedText">
                             <fragment content="Release Label">
                                 <attributes>
@@ -54,7 +54,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaM-7a-kIj">
-                        <rect key="frame" x="16" y="98.5" width="288" height="31.5"/>
+                        <rect key="frame" x="16" y="91" width="288" height="31"/>
                         <attributedString key="attributedText">
                             <fragment content="Version Label">
                                 <attributes>
@@ -82,7 +82,7 @@
                         <variation key="heightClass=regular-widthClass=regular" constant="4"/>
                     </constraint>
                     <constraint firstItem="RaM-7a-kIj" firstAttribute="leading" secondItem="M7L-zP-kNf" secondAttribute="leading" id="CJ8-sQ-JCG"/>
-                    <constraint firstItem="GdS-mi-2OL" firstAttribute="top" secondItem="RaM-7a-kIj" secondAttribute="bottom" constant="16" id="VZZ-TR-6fr">
+                    <constraint firstItem="GdS-mi-2OL" firstAttribute="top" secondItem="RaM-7a-kIj" secondAttribute="bottom" constant="24" id="VZZ-TR-6fr">
                         <variation key="heightClass=regular-widthClass=regular" constant="32"/>
                     </constraint>
                     <constraint firstItem="GdS-mi-2OL" firstAttribute="trailing" secondItem="M7L-zP-kNf" secondAttribute="trailing" id="WXq-GW-1ZX"/>
@@ -101,7 +101,7 @@
                     <constraint firstItem="iNp-HT-UQx" firstAttribute="trailing" secondItem="M7L-zP-kNf" secondAttribute="trailing" id="rHZ-bY-LXK"/>
                     <constraint firstItem="iNp-HT-UQx" firstAttribute="leading" secondItem="M7L-zP-kNf" secondAttribute="leading" id="vDP-fD-35t"/>
                     <constraint firstItem="vro-ox-M1o" firstAttribute="trailing" secondItem="M7L-zP-kNf" secondAttribute="trailing" id="xDJ-kI-kSY"/>
-                    <constraint firstItem="vro-ox-M1o" firstAttribute="top" secondItem="iNp-HT-UQx" secondAttribute="bottom" constant="24" id="xNU-Pq-fOR">
+                    <constraint firstItem="vro-ox-M1o" firstAttribute="top" secondItem="iNp-HT-UQx" secondAttribute="bottom" constant="16" id="xNU-Pq-fOR">
                         <variation key="heightClass=regular-widthClass=regular" constant="32"/>
                     </constraint>
                 </constraints>
