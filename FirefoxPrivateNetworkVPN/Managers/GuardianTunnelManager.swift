@@ -256,32 +256,32 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     /// Manages actions to take while switching tunnels
-    /// - Before the first attempt of connecting to the new tunnel, the previous vpn states in order of least to most recent are: [.on, .disconnecting]
-    /// - After the second attempt of connecting to the new tunnel, the previous vpn states in order of least to most recent are: [.off, .disconnecting]
-
+    /// After the second attempt of connecting to the new tunnel, the previous vpn states in order of least to most recent are: [.disconnecting, .off, .disconnecting]
     private func setUpTunnelSwitchingObserver() {
         //swiftlint:disable:next trailing_closure
         switchingState
             .scan([]) { lastSlice, newValue in
                 return Array(lastSlice + [newValue]).suffix(3)
-        }
-        .subscribe(onNext: { [unowned self] values in
+        }.map({ values -> (VPNState?, VPNState?, VPNState) in
             var lastThree = values
             let current = lastThree.removeLast()
-            _ = lastThree.popLast()
+            let previous = lastThree.popLast()
             let twoPrevious = lastThree.first
-            switch current {
-            case .on:
+            return (twoPrevious, previous, current)
+        }).subscribe(onNext: { [unowned self] twoPrevious, previous, current in
+            switch (twoPrevious, previous, current) {
+            case (_, _, .on):
                 self.internalState.accept(current)
-            case .off where twoPrevious == .off:
-                self.internalState.accept(current)
-                NotificationCenter.default.post(Notification(name: .switchServerError))
-            case .off where twoPrevious != .off:
+            // Once off, ready to connect to new tunnel
+            case (_, _, .off):
                 do {
                     try self.startTunnel()
                 } catch {
                     self.internalState.accept(current)
                 }
+            case (.disconnecting(.none), .off, .disconnecting(.none)):
+                self.internalState.accept(current)
+                NotificationCenter.default.post(Notification(name: .switchServerError))
             default: break
             }
         }).disposed(by: disposeBag)
