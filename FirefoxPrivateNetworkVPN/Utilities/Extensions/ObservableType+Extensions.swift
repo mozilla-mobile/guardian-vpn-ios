@@ -15,7 +15,9 @@ import RxSwift
 // Reference: https://stackoverflow.com/a/36050818
 extension ObservableType {
 
-    func withPrevious(startWith first: Element) -> Observable<(Element, Element)> {
-        return scan((first, first)) { ($0.1, $1) }.skip(1)
+    func withPrevious(count: Int = 2) -> Observable<[Element]> {
+        return scan([]) { lastSlice, newValue in
+            Array(lastSlice + [newValue]).suffix(count)
+        }.filter { $0.count == count }
     }
 }

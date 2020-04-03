@@ -14,7 +14,7 @@ import RxSwift
 import os.log
 
 protocol ConnectionRxValueObserving {
-    var rx: Observable<UInt?> { get }
+    var rx: Observable<UInt> { get }
 }
 
 class ConnectionRxValue: ConnectionRxValueObserving {
@@ -24,7 +24,7 @@ class ConnectionRxValue: ConnectionRxValueObserving {
     private let tunnelManager = DependencyManager.shared.tunnelManager
     private var timer: Timer?
 
-    var rx: Observable<UInt?> {
+    var rx: Observable<UInt> {
         return .create { [weak self] observer -> Disposable in
             guard let self = self else { return Disposables.create() }
 
@@ -33,9 +33,8 @@ class ConnectionRxValue: ConnectionRxValueObserving {
 
                     if let rxValue = rxValue {
                         OSLog.log(.debug, "Rx value retrieved: \(String(describing: rxValue))")
+                        observer.on(.next(rxValue))
                     }
-
-                    observer.on(.next(rxValue))
                 }
             }
 
