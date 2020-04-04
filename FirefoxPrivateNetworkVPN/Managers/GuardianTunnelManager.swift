@@ -82,7 +82,6 @@ class GuardianTunnelManager: TunnelManaging {
                     self.isSwitchingInProgress = false
                 case (.switching, .disconnecting, .off, .disconnecting, .off): // Server switching failed
                     self.isSwitchingInProgress = false
-                    NotificationCenter.default.post(Notification(name: .switchServerError))
                 default:
                     break
                 }

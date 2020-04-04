@@ -43,6 +43,7 @@ class HomeViewController: UIViewController, Navigating {
         super.viewDidLoad()
         setStrings()
         setupToggleView()
+        subscribeToVpnStates()
         subscribeToErrors()
         subscribeToVersionUpdates()
     }
@@ -73,7 +74,9 @@ class HomeViewController: UIViewController, Navigating {
         vpnToggleView.disconnectionHandler = { [weak self] in
             self?.tunnelManager.stop()
         }
+    }
 
+    private func subscribeToVpnStates() {
         //swiftlint:disable trailing_closure
         tunnelManager.stateEvent
             .observeOn(MainScheduler.instance)
@@ -86,6 +89,17 @@ class HomeViewController: UIViewController, Navigating {
                     }
                 default:
                     self?.vpnToggleView.update(with: state)
+                }
+            }).disposed(by: disposeBag)
+
+        tunnelManager.stateEvent
+            .withPrevious()
+            .map { return (previous: $0[0], current: $0[1]) }
+            .subscribe(onNext: { previous, current in
+                switch (previous, current) {
+                case (.switching, .off):
+                    NotificationCenter.default.post(Notification(name: .switchServerError))
+                default: break
                 }
             }).disposed(by: disposeBag)
     }
