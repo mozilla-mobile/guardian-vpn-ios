@@ -156,6 +156,7 @@ class VPNToggleView: UIView {
              (.connecting, .on),
              (.on, .switching),
              (.switching, .on),
+             (.switching, .off),
              (.on, .disconnecting),
              (.disconnecting, .off):
             vpnSwitch.setOn(newState.isToggleOn, animated: true)

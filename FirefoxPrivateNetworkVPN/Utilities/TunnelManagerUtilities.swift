@@ -36,7 +36,7 @@ class TunnelManagerUtilities {
                 switch (previous, current) {
                 case (.connecting, .on), (.disconnecting, .off):
                     return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
-                case (.switching, .on):
+                case (.switching, .on), (.switching, .off):
                     return Observable.just(current).delay(DispatchTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
                 case (.off, .disconnecting):
                     return Observable.just(.error(.couldNotConnect))
