@@ -20,41 +20,31 @@ class GuardianTunnelManager: TunnelManaging {
     private var internalState = BehaviorRelay<VPNState>(value: .off)
     let cityChangedEvent = PublishSubject<VPNCity>()
     let stateEvent = BehaviorRelay<VPNState>(value: .off)
-    private let accountManager = DependencyManager.shared.accountManager
-    private var account: Account? {
-        return accountManager.account
-    }
 
     private var tunnel: NETunnelProviderManager?
+    private let accountManager = DependencyManager.shared.accountManager
+    private var account: Account? { return accountManager.account }
     private let disposeBag = DisposeBag()
 
     var timeSinceConnected: Double {
         return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
     }
 
+    // MARK: - Intialization
+
     init() {
         handleVpnServerSwitching()
+        subscribeToInternalStates()
+        observeVpnStatusChange()
+        initializeTunnel()
+        subscribeToVersionUpdates()
+    }
 
+    private func subscribeToInternalStates() {
         TunnelManagerUtilities
             .observe(internalState.filter { [unowned self] _ in !self.isSwitchingInProgress },
                      bindTo: stateEvent,
                      disposedBy: disposeBag)
-
-        loadTunnel { [weak self] _ in
-            guard
-                let self = self,
-                let tunnel = self.tunnel
-            else { return }
-
-            self.internalState.accept(VPNState(with: tunnel.connection.status))
-        }
-
-        DispatchQueue.main.async {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(self.vpnConfigurationDidChange(notification:)), name: Notification.Name.NEVPNConfigurationChange, object: nil)
-        }
-
-        subscribeToVersionUpdates()
     }
 
     private func subscribeToVersionUpdates() {
@@ -65,6 +55,24 @@ class GuardianTunnelManager: TunnelManaging {
             .subscribe(onNext: { [weak self] _ in
                 self?.stopAndRemove()
             }).disposed(by: disposeBag)
+    }
+
+    private func initializeTunnel() {
+        loadTunnel { [weak self] _ in
+            guard
+                let self = self,
+                let tunnel = self.tunnel
+            else { return }
+
+            self.internalState.accept(VPNState(with: tunnel.connection.status))
+        }
+    }
+
+    private func observeVpnStatusChange() {
+        DispatchQueue.main.async {
+            NotificationCenter.default.addObserver(self, selector: #selector(self.vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.vpnConfigurationDidChange(notification:)), name: Notification.Name.NEVPNConfigurationChange, object: nil)
+        }
     }
 
     private func handleVpnServerSwitching() {
@@ -87,6 +95,8 @@ class GuardianTunnelManager: TunnelManaging {
                 }
             }).disposed(by: disposeBag)
     }
+
+    // MARK: -
 
     func connect(with device: Device?) -> Single<Void> {
         return Single<Void>.create { [unowned self] resolver in
@@ -260,6 +270,8 @@ class GuardianTunnelManager: TunnelManaging {
         Logger.global?.log(message: "Tunnel Stopped and Removed")
     }
 
+    // MARK: - Observers
+
     @objc private func vpnConfigurationDidChange(notification: Notification) {
         if case .switching(_, _) = internalState.value {
             stop()
@@ -272,6 +284,8 @@ class GuardianTunnelManager: TunnelManaging {
         internalState.accept(VPNState(with: session.status))
     }
 }
+
+// MARK: -
 
 private extension NETunnelProviderManager {
     func setNewConfiguration(for device: Device, city: VPNCity, key: Data) {
