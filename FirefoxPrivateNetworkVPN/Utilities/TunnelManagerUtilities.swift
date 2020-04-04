@@ -20,7 +20,7 @@ class TunnelManagerUtilities {
     ///   - vpnStateSubject: the raw VPN state events
     ///   - processedStateEvent: the processed VPN state events with the delays
     ///   - disposeBag: Rx dispose bag
-    static func observe(_ rawStateSubject: BehaviorRelay<VPNState>,
+    static func observe(_ rawStateSubject: Observable<VPNState>,
                         bindTo processedStateSubject: BehaviorRelay<VPNState>,
                         disposedBy disposeBag: DisposeBag) {
         rawStateSubject

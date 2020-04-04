@@ -30,7 +30,7 @@ class SimulatorTunnelManager: TunnelManaging {
     private let disposeBag = DisposeBag()
 
     init() {
-        TunnelManagerUtilities.observe(internalState,
+        TunnelManagerUtilities.observe(internalState.asObservable(),
                                        bindTo: stateEvent,
                                        disposedBy: disposeBag)
 
