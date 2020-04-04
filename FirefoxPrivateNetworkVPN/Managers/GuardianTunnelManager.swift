@@ -16,9 +16,10 @@ import RxRelay
 
 class GuardianTunnelManager: TunnelManaging {
 
+    private var isSwitchingInProgress = false
     private var internalState = BehaviorRelay<VPNState>(value: .off)
-    private(set) var cityChangedEvent = PublishSubject<VPNCity>()
-    private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
+    let cityChangedEvent = PublishSubject<VPNCity>()
+    let stateEvent = BehaviorRelay<VPNState>(value: .off)
     private let accountManager = DependencyManager.shared.accountManager
     private var account: Account? {
         return accountManager.account
@@ -32,9 +33,12 @@ class GuardianTunnelManager: TunnelManaging {
     }
 
     init() {
-        TunnelManagerUtilities.observe(internalState,
-                                       bindTo: stateEvent,
-                                       disposedBy: disposeBag)
+        handleVpnServerSwitching()
+
+        TunnelManagerUtilities
+            .observe(internalState.filter { [unowned self] _ in !self.isSwitchingInProgress },
+                     bindTo: stateEvent,
+                     disposedBy: disposeBag)
 
         loadTunnel { [weak self] _ in
             guard
@@ -60,6 +64,28 @@ class GuardianTunnelManager: TunnelManaging {
             .filter { $0 == .required }
             .subscribe(onNext: { [weak self] _ in
                 self?.stopAndRemove()
+            }).disposed(by: disposeBag)
+    }
+
+    private func handleVpnServerSwitching() {
+        //swiftlint:disable:next trailing_closure
+        internalState
+            .distinctUntilChanged()
+            .withPrevious(count: 5)
+            .map { states -> (VPNState, VPNState, VPNState, VPNState, VPNState) in
+                return (states[0], states[1], states[2], states[3], states[4])
+            }.subscribe(onNext: { [unowned self] states in
+                switch states {
+                case (_, _, .switching, .disconnecting, .off):
+                    try? self.startTunnel()
+                case (.switching, .disconnecting, .off, .connecting, .on): // Server switching successful
+                    self.isSwitchingInProgress = false
+                case (.switching, .disconnecting, .off, .disconnecting, .off): // Server switching failed
+                    self.isSwitchingInProgress = false
+                    NotificationCenter.default.post(Notification(name: .switchServerError))
+                default:
+                    break
+                }
             }).disposed(by: disposeBag)
     }
 
@@ -124,6 +150,7 @@ class GuardianTunnelManager: TunnelManaging {
                 let cityName = tunnel.localizedDescription ?? ""
                 let newCityName = self.accountManager.selectedCity?.name ?? ""
                 self.internalState.accept(.switching(cityName, newCityName))
+                self.isSwitchingInProgress = true
             }
             guard let account = self.account,
                 let newCity = self.accountManager.selectedCity else {
@@ -138,6 +165,7 @@ class GuardianTunnelManager: TunnelManaging {
                 if let error = saveError {
                     if case .switching(_, _) = self.internalState.value {
                         self.internalState.accept(.on)
+                        self.isSwitchingInProgress = false
                     }
                     Logger.global?.log(message: "Switch Tunnel Save Error: \(error)")
                     resolver(.error(error))
@@ -242,21 +270,6 @@ class GuardianTunnelManager: TunnelManaging {
     @objc private func vpnStatusDidChange(notification: Notification) {
         guard let session = (notification.object as? NETunnelProviderSession), tunnel?.connection == session else { return }
 
-        if case .switching(_, _) = internalState.value {
-            switch session.status {
-            case .disconnecting, .connecting:
-                return
-            case .disconnected:
-                do {
-                    try startTunnel()
-                } catch {
-                    NotificationCenter.default.post(Notification(name: .switchServerError))
-                }
-                return
-            default:
-                break
-            }
-        }
         internalState.accept(VPNState(with: session.status))
     }
 }
