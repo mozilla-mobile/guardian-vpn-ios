@@ -16,41 +16,35 @@ import RxRelay
 
 class GuardianTunnelManager: TunnelManaging {
 
+    private var isSwitchingInProgress = false
     private var internalState = BehaviorRelay<VPNState>(value: .off)
-    private(set) var cityChangedEvent = PublishSubject<VPNCity>()
-    private(set) var stateEvent = BehaviorRelay<VPNState>(value: .off)
-    private let accountManager = DependencyManager.shared.accountManager
-    private var account: Account? {
-        return accountManager.account
-    }
+    let cityChangedEvent = PublishSubject<VPNCity>()
+    let stateEvent = BehaviorRelay<VPNState>(value: .off)
 
     private var tunnel: NETunnelProviderManager?
+    private let accountManager = DependencyManager.shared.accountManager
+    private var account: Account? { return accountManager.account }
     private let disposeBag = DisposeBag()
 
     var timeSinceConnected: Double {
         return Date().timeIntervalSince(tunnel?.connection.connectedDate ?? Date())
     }
 
+    // MARK: - Intialization
+
     init() {
-        TunnelManagerUtilities.observe(internalState,
-                                       bindTo: stateEvent,
-                                       disposedBy: disposeBag)
-
-        loadTunnel { [weak self] _ in
-            guard
-                let self = self,
-                let tunnel = self.tunnel
-            else { return }
-
-            self.internalState.accept(VPNState(with: tunnel.connection.status))
-        }
-
-        DispatchQueue.main.async {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(self.vpnConfigurationDidChange(notification:)), name: Notification.Name.NEVPNConfigurationChange, object: nil)
-        }
-
+        handleVpnServerSwitching()
+        subscribeToInternalStates()
+        observeVpnStatusChange()
+        initializeTunnel()
         subscribeToVersionUpdates()
+    }
+
+    private func subscribeToInternalStates() {
+        TunnelManagerUtilities
+            .observe(internalState.filter { [unowned self] _ in !self.isSwitchingInProgress },
+                     bindTo: stateEvent,
+                     disposedBy: disposeBag)
     }
 
     private func subscribeToVersionUpdates() {
@@ -62,6 +56,51 @@ class GuardianTunnelManager: TunnelManaging {
                 self?.stopAndRemove()
             }).disposed(by: disposeBag)
     }
+
+    private func initializeTunnel() {
+        loadTunnel { [weak self] _ in
+            guard
+                let self = self,
+                let tunnel = self.tunnel
+            else { return }
+
+            self.internalState.accept(VPNState(with: tunnel.connection.status))
+        }
+    }
+
+    private func observeVpnStatusChange() {
+        DispatchQueue.main.async {
+            NotificationCenter.default.addObserver(self, selector: #selector(self.vpnStatusDidChange(notification:)), name: Notification.Name.NEVPNStatusDidChange, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.vpnConfigurationDidChange(notification:)), name: Notification.Name.NEVPNConfigurationChange, object: nil)
+        }
+    }
+
+    private func handleVpnServerSwitching() {
+        //swiftlint:disable:next trailing_closure
+        internalState
+            .distinctUntilChanged()
+            .withPrevious(count: 5)
+            .map { states -> (VPNState, VPNState, VPNState, VPNState, VPNState) in
+                return (states[0], states[1], states[2], states[3], states[4])
+            }.subscribe(onNext: { [unowned self] states in
+                switch states {
+                case (_, _, .switching, .disconnecting, .off):
+                    do {
+                        try self.startTunnel()
+                    } catch {
+                        self.isSwitchingInProgress = false
+                    }
+                case (.switching, .disconnecting, .off, .connecting, .on): // Server switching successful
+                    self.isSwitchingInProgress = false
+                case (.switching, .disconnecting, .off, .disconnecting, .off): // Server switching failed
+                    self.isSwitchingInProgress = false
+                default:
+                    break
+                }
+            }).disposed(by: disposeBag)
+    }
+
+    // MARK: -
 
     func connect(with device: Device?) -> Single<Void> {
         return Single<Void>.create { [unowned self] resolver in
@@ -124,6 +163,7 @@ class GuardianTunnelManager: TunnelManaging {
                 let cityName = tunnel.localizedDescription ?? ""
                 let newCityName = self.accountManager.selectedCity?.name ?? ""
                 self.internalState.accept(.switching(cityName, newCityName))
+                self.isSwitchingInProgress = true
             }
             guard let account = self.account,
                 let newCity = self.accountManager.selectedCity else {
@@ -138,6 +178,7 @@ class GuardianTunnelManager: TunnelManaging {
                 if let error = saveError {
                     if case .switching(_, _) = self.internalState.value {
                         self.internalState.accept(.on)
+                        self.isSwitchingInProgress = false
                     }
                     Logger.global?.log(message: "Switch Tunnel Save Error: \(error)")
                     resolver(.error(error))
@@ -233,6 +274,8 @@ class GuardianTunnelManager: TunnelManaging {
         Logger.global?.log(message: "Tunnel Stopped and Removed")
     }
 
+    // MARK: - Observers
+
     @objc private func vpnConfigurationDidChange(notification: Notification) {
         if case .switching(_, _) = internalState.value {
             stop()
@@ -242,24 +285,11 @@ class GuardianTunnelManager: TunnelManaging {
     @objc private func vpnStatusDidChange(notification: Notification) {
         guard let session = (notification.object as? NETunnelProviderSession), tunnel?.connection == session else { return }
 
-        if case .switching(_, _) = internalState.value {
-            switch session.status {
-            case .disconnecting, .connecting:
-                return
-            case .disconnected:
-                do {
-                    try startTunnel()
-                } catch {
-                    NotificationCenter.default.post(Notification(name: .switchServerError))
-                }
-                return
-            default:
-                break
-            }
-        }
         internalState.accept(VPNState(with: session.status))
     }
 }
+
+// MARK: -
 
 private extension NETunnelProviderManager {
     func setNewConfiguration(for device: Device, city: VPNCity, key: Data) {

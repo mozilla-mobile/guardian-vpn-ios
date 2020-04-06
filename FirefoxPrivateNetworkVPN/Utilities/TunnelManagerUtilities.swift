@@ -20,7 +20,7 @@ class TunnelManagerUtilities {
     ///   - vpnStateSubject: the raw VPN state events
     ///   - processedStateEvent: the processed VPN state events with the delays
     ///   - disposeBag: Rx dispose bag
-    static func observe(_ rawStateSubject: BehaviorRelay<VPNState>,
+    static func observe(_ rawStateSubject: Observable<VPNState>,
                         bindTo processedStateSubject: BehaviorRelay<VPNState>,
                         disposedBy disposeBag: DisposeBag) {
         rawStateSubject
@@ -36,10 +36,10 @@ class TunnelManagerUtilities {
                 switch (previous, current) {
                 case (.connecting, .on), (.disconnecting, .off):
                     return Observable.just(current).delay(DispatchTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
-                case (.switching, .on):
+                case (.switching, .on), (.switching, .off):
                     return Observable.just(current).delay(DispatchTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
                 case (.off, .disconnecting):
-                    return Observable.just(.error(.couldNotConnect))
+                    return Observable.just(.disconnecting(.couldNotConnect))
                 default: return Observable.just(current)
                 }
             }.bind(to: processedStateSubject)
