@@ -145,7 +145,7 @@ class AccountManager: AccountManaging, Navigating {
             case .success(let device):
                 self.account?.currentDevice = device
                 self.accountStore.save(currentDevice: device)
-                self.getUser { _ in //TODO: Change this to make get devices call when its available
+                self.getUser { _ in //TODO: Change this to make get devices call when the web servive endpoint is ready
                     completion(.success(()))
                 }
             case .failure(let error):
