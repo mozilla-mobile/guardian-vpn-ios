@@ -56,7 +56,7 @@ class SimulatorTunnelManager: TunnelManaging {
     }
 
     func stop() {
-        internalState.accept(.disconnecting)
+        internalState.accept(.disconnecting())
         internalState.accept(.off)
     }
 
