@@ -12,7 +12,7 @@
 import UIKit
 
 extension UIApplication {
-    private static let appStoreURL = "itms-apps://itunes.apple.com/app/id"
+    private static let appStoreURL = "itms-apps://itunes.apple.com/app/id1489407738"
     private static let bundleAppNameKey = "CFBundleName"
     private static let bundleVersionKey = "CFBundleShortVersionString"
 
