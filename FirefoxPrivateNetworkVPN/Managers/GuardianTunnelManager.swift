@@ -85,7 +85,11 @@ class GuardianTunnelManager: TunnelManaging {
             }.subscribe(onNext: { [unowned self] states in
                 switch states {
                 case (_, _, .switching, .disconnecting, .off):
-                    try? self.startTunnel()
+                    do {
+                        try self.startTunnel()
+                    } catch {
+                        self.isSwitchingInProgress = false
+                    }
                 case (.switching, .disconnecting, .off, .connecting, .on): // Server switching successful
                     self.isSwitchingInProgress = false
                 case (.switching, .disconnecting, .off, .disconnecting, .off): // Server switching failed
