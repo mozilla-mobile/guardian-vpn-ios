@@ -16,8 +16,8 @@ import RxCocoa
 
 class MockConnectionRxValue: ConnectionRxValueObserving {
 
-    var rxRelay = BehaviorRelay<UInt?>(value: nil)
-    var rx: Observable<UInt?> {
+    var rxRelay = BehaviorRelay<UInt>(value: 0)
+    var rx: Observable<UInt> {
         return rxRelay.asObservable()
     }
 }

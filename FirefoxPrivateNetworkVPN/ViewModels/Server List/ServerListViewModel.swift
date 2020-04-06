@@ -147,9 +147,9 @@ class ServerListViewModel {
             }).disposed(by: disposeBag)
 
         tunnelManager.stateEvent
-            .withPrevious(startWith: .off)
-            .subscribe(onNext: { [weak self] previous, new in
-                self?.vpnStates = (previous, new)
+            .withPrevious()
+            .subscribe(onNext: { [weak self] states in
+                self?.vpnStates = (previous: states[0], current: states[1])
             }).disposed(by: disposeBag)
     }
 }

@@ -24,7 +24,12 @@ class TunnelManagerUtilities {
                         bindTo processedStateSubject: BehaviorRelay<VPNState>,
                         disposedBy disposeBag: DisposeBag) {
         rawStateSubject
-            .withPrevious(startWith: rawStateSubject.value)
+            .withPrevious()
+            .map { states -> (VPNState, VPNState) in
+                let previousState = states[0]
+                let currentState = states[1]
+                return (previousState, currentState)
+            }
             .filter { previous, current in
                 return previous != current
             }.flatMapLatest { previous, current -> Observable<VPNState> in

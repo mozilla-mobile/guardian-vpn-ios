@@ -97,22 +97,25 @@ class ServersViewController: UIViewController, Navigating {
     private func setupObservers() {
         tunnelManager
             .stateEvent
-            .withPrevious(startWith: .off)
-            .subscribe(onNext: { [weak self] prevState, currentState in
-            switch (prevState, currentState) {
-            case (.connecting, .on):
-                // Prevents modal from closing unintentionally
-                if self?.initialVpnState != prevState {
-                    self?.closeModal()
+            .withPrevious()
+            .subscribe(onNext: { [weak self] states in
+                let prevState = states[0]
+                let currentState = states[1]
+
+                switch (prevState, currentState) {
+                case (.connecting, .on):
+                    // Prevents modal from closing unintentionally
+                    if self?.initialVpnState != prevState {
+                        self?.closeModal()
+                    }
+                case (.switching, .on):
+                    // Prevents modal from closing unintentionally
+                    if self?.initialVpnState != prevState {
+                        self?.closeModal()
+                    }
+                default:
+                    break
                 }
-            case (.switching, .on):
-                // Prevents modal from closing unintentionally
-                if self?.initialVpnState != prevState {
-                    self?.closeModal()
-                }
-            default:
-                break
-            }
         }).disposed(by: disposeBag)
 
         tunnelManager

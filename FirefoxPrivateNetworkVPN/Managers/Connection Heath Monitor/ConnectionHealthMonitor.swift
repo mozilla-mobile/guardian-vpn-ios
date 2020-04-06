@@ -51,9 +51,12 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
         //swiftlint:disable:next trailing_closure
         _currentState
             .distinctUntilChanged()
-            .withPrevious(startWith: _currentState.value)
-            .subscribe(onNext: { prevState, currentState in
-                  Logger.global?.log(message: "Connection health updated: \(prevState) -> \(currentState)")
+            .withPrevious()
+            .subscribe(onNext: { states in
+                let prevState = states[0]
+                let currentState = states[1]
+
+                Logger.global?.log(message: "Connection health updated: \(prevState) -> \(currentState)")
             }).disposed(by: disposeBag)
     }
 
@@ -67,12 +70,10 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
         //swiftlint:disable:next trailing_closure
         rxValueObserving
             .rx
-            .withPrevious(startWith: nil)
-            .subscribe(onNext: { [unowned self] previousRx, newRx in
-                guard
-                    let previousRx = previousRx,
-                    let newRx = newRx
-                else { return }
+            .withPrevious()
+            .subscribe(onNext: { [unowned self] receivedBytes in
+                let previousRx = receivedBytes[0]
+                let newRx = receivedBytes[1]
 
                 if newRx > previousRx {
                     self.move(to: .stable)
