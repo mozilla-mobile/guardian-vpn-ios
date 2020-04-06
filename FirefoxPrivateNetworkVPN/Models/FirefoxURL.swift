@@ -27,8 +27,7 @@ enum FirefoxURL {
         case .contact:
             return URL(string: FirefoxURL.base + "/r/vpn/contact" + FirefoxURL.query)
         case .support:
-            // TODO: change support url when it's available
-            return URL(string: "https://support.mozilla.org/")
+            return URL(string: "https://fpn.firefox.com/r/vpn/support")
         case .terms:
             return URL(string: FirefoxURL.base + "/r/vpn/terms" + FirefoxURL.query)
         case .privacy:
