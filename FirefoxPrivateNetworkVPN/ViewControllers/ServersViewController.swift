@@ -139,15 +139,15 @@ class ServersViewController: UIViewController, Navigating {
                 guard let self = self else { return }
 
                 self.tableView.performBatchUpdates({
+                    let sectionHeader = IndexPath(row: 0, section: section)
+                    self.tableView.reloadRows(at: [sectionHeader], with: .none)
+
                     if isExpanded {
                         self.tableView.insertRows(at: rows, with: .top)
                     } else {
                         self.tableView.deleteRows(at: rows, with: .top)
                     }
-                }, completion: { _ in
-                    let sectionHeader = IndexPath(row: 0, section: section)
-                    self.tableView.reloadRows(at: [sectionHeader], with: .none)
-                })
+                }, completion: nil)
             }).disposed(by: disposeBag)
     }
 
