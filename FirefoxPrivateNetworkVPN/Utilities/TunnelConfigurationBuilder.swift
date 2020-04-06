@@ -19,15 +19,19 @@ struct TunnelConfigurationBuilder {
 
         // interface
         var interface = InterfaceConfiguration(privateKey: privateKey)
-        let ipv4Address = IPAddressRange(from: device.ipv4Address)! // TODO: Handle force unwrap, return nils
-        let ipv6Address = IPAddressRange(from: device.ipv6Address)!
-        interface.addresses = [ipv4Address, ipv6Address]
+        if let ipv4Address = IPAddressRange(from: device.ipv4Address),
+            let ipv6Address = IPAddressRange(from: device.ipv6Address) {
+            interface.addresses = [ipv4Address, ipv6Address]
+        }
 
         // peers
         var peerConfigurations: [PeerConfiguration] = []
 
-        if let server = city.fastestServer {
-            var peerConfiguration = PeerConfiguration(publicKey: Data(base64Key: server.publicKey)!) // TODO: dont force unwrap
+        if let server = city.fastestServer,
+            let keyData = Data(base64Key: server.publicKey),
+            let ipv4GatewayIP = IPv4Address(server.ipv4Gateway),
+            let ipv6GatewayIP = IPv6Address(server.ipv6Gateway) {
+            var peerConfiguration = PeerConfiguration(publicKey: keyData)
             let endpoint = Endpoint(from: server.ipv4AddrIn + ":\(server.randomPort ?? 53)")
             peerConfiguration.endpoint = endpoint
             peerConfiguration.allowedIPs = [
@@ -35,8 +39,8 @@ struct TunnelConfigurationBuilder {
                 IPAddressRange(address: IPv6Address("::")!, networkPrefixLength: 0)
             ]
             peerConfigurations.append(peerConfiguration)
-            interface.dns = [ DNSServer(address: IPv4Address(server.ipv4Gateway)!),
-                              DNSServer(address: IPv6Address(server.ipv6Gateway)!) ]
+            interface.dns = [ DNSServer(address: ipv4GatewayIP),
+                              DNSServer(address: ipv6GatewayIP) ]
         }
 
         return TunnelConfiguration(name: name, interface: interface, peers: peerConfigurations)
