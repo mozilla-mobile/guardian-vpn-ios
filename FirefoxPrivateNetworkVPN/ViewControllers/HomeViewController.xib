@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad10_5" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Regular.otf">
+            <string>Inter-Regular</string>
+        </array>
+        <array key="Metropolis-SemiBold.otf">
+            <string>Metropolis-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+            <connections>
+                <outlet property="navigationTitleLabel" destination="Rpo-Dd-s6i" id="iLn-NZ-4zI"/>
+                <outlet property="selectConnectionLabel" destination="oGq-Iz-V78" id="kph-nE-1mz"/>
+                <outlet property="versionUpdateToastView" destination="Yry-ba-MAs" id="ik3-ib-RVg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="vpnSelectionView" destination="6xU-vI-Kl7" id="P7N-x9-c9b"/>
+                <outlet property="vpnStackView" destination="d5Z-V5-CBU" id="4f5-ZT-iU4"/>
+                <outlet property="vpnToggleView" destination="mRl-G2-VBt" id="Rrg-HE-azY"/>
+                <outlet property="warningToastView" destination="yL4-fg-Uhn" id="Lgl-oV-wt2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="b76-ij-pGQ" userLabel="Logo View">
+                    <rect key="frame" x="353.5" y="48" width="127.5" height="24"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="bGv-w5-bfc">
+                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="qI3-8P-eOY"/>
+                                <constraint firstAttribute="width" secondItem="bGv-w5-bfc" secondAttribute="height" multiplier="1:1" id="qxY-kM-ig7"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpo-Dd-s6i">
+                            <rect key="frame" x="32" y="4.5" width="95.5" height="15"/>
+                            <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
+                            <color key="textColor" name="custom_grey50"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Rpo-Dd-s6i" firstAttribute="centerY" secondItem="bGv-w5-bfc" secondAttribute="centerY" id="1XE-0C-tUA"/>
+                        <constraint firstItem="Rpo-Dd-s6i" firstAttribute="centerY" secondItem="b76-ij-pGQ" secondAttribute="centerY" id="49f-UG-gP2"/>
+                        <constraint firstAttribute="trailing" secondItem="Rpo-Dd-s6i" secondAttribute="trailing" id="DXq-24-Py9"/>
+                        <constraint firstAttribute="height" constant="24" id="beC-CC-S76"/>
+                        <constraint firstItem="Rpo-Dd-s6i" firstAttribute="leading" secondItem="bGv-w5-bfc" secondAttribute="trailing" constant="8" id="enn-Id-gwe"/>
+                        <constraint firstItem="bGv-w5-bfc" firstAttribute="leading" secondItem="b76-ij-pGQ" secondAttribute="leading" id="npb-BY-4VZ"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d5Z-V5-CBU" userLabel="VPN Stack View">
+                    <rect key="frame" x="32" y="120" width="770" height="434"/>
+                    <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yry-ba-MAs" customClass="VersionUpdateToastView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="770" height="56"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="VfZ-fR-WI1">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="56"/>
+                                </constraint>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mRl-G2-VBt" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="770" height="434"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="249" constant="311.5" id="3gJ-NP-1EL"/>
+                                <constraint firstAttribute="height" constant="434" id="RH9-kl-hDS"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="RH9-kl-hDS"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <mask key="constraints">
+                                    <exclude reference="3gJ-NP-1EL"/>
+                                    <include reference="RH9-kl-hDS"/>
+                                </mask>
+                            </variation>
+                        </view>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hE9-aK-nXZ" userLabel="Vpn Selection View Container">
+                    <rect key="frame" x="64" y="602" width="706" height="72"/>
+                    <subviews>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xU-vI-Kl7" customClass="CurrentVPNSelectorView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="706" height="72"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="72" id="d87-YO-YCs"/>
+                                <constraint firstAttribute="height" constant="48" id="ru6-oW-6SW"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="d87-YO-YCs"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="d87-YO-YCs"/>
+                                    <exclude reference="ru6-oW-6SW"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3N-FP-4an" userLabel="Vpn Selection Button">
+                            <rect key="frame" x="0.0" y="0.0" width="706" height="72"/>
+                            <connections>
+                                <action selector="vpnSelectionTouchDown" destination="-1" eventType="touchDown" id="yUn-jt-Ocd"/>
+                                <action selector="vpnSelectionTouchDragOutside" destination="-1" eventType="touchDragOutside" id="Hm5-NI-qG3"/>
+                                <action selector="vpnSelectionTouchUpInside" destination="-1" eventType="touchUpInside" id="aE3-rC-gIa"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="M3N-FP-4an" secondAttribute="trailing" id="AMi-04-cyo"/>
+                        <constraint firstAttribute="trailing" secondItem="6xU-vI-Kl7" secondAttribute="trailing" id="IE3-mw-iNr"/>
+                        <constraint firstAttribute="bottom" secondItem="M3N-FP-4an" secondAttribute="bottom" id="Nha-Fl-XPY"/>
+                        <constraint firstItem="M3N-FP-4an" firstAttribute="top" secondItem="hE9-aK-nXZ" secondAttribute="top" id="SE2-jp-6aX"/>
+                        <constraint firstItem="6xU-vI-Kl7" firstAttribute="leading" secondItem="hE9-aK-nXZ" secondAttribute="leading" id="amH-VW-Gzx"/>
+                        <constraint firstItem="M3N-FP-4an" firstAttribute="leading" secondItem="hE9-aK-nXZ" secondAttribute="leading" id="dcf-1B-hH4"/>
+                        <constraint firstItem="6xU-vI-Kl7" firstAttribute="top" secondItem="hE9-aK-nXZ" secondAttribute="top" id="mna-Mf-rRR"/>
+                        <constraint firstAttribute="bottom" secondItem="6xU-vI-Kl7" secondAttribute="bottom" id="zO0-06-gQc"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGq-Iz-V78">
+                    <rect key="frame" x="383.5" y="690" width="67" height="13.5"/>
+                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
+                    <color key="textColor" name="custom_grey40"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yL4-fg-Uhn" customClass="WarningToastView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+                    <rect key="frame" x="16" y="1040" width="802" height="56"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Lgb-Ah-GOx">
+                            <variation key="heightClass=regular-widthClass=regular" constant="56"/>
+                        </constraint>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" name="custom_grey5"/>
+            <constraints>
+                <constraint firstItem="yL4-fg-Uhn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="1rz-Bf-dnh">
+                    <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                </constraint>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yL4-fg-Uhn" secondAttribute="trailing" constant="8" id="6Dh-XY-jTm">
+                    <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                </constraint>
+                <constraint firstItem="b76-ij-pGQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Aye-h4-0R0"/>
+                <constraint firstItem="d5Z-V5-CBU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NFm-ZZ-lkh"/>
+                <constraint firstItem="oGq-Iz-V78" firstAttribute="top" secondItem="hE9-aK-nXZ" secondAttribute="bottom" constant="10" id="NKU-mO-U19"/>
+                <constraint firstItem="hE9-aK-nXZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="64" id="PAc-52-AaV"/>
+                <constraint firstItem="d5Z-V5-CBU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="QLB-Bg-Tz8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yL4-fg-Uhn" secondAttribute="bottom" constant="8" id="UEO-Ud-15u">
+                    <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                </constraint>
+                <constraint firstItem="hE9-aK-nXZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="Uh0-tm-kfe"/>
+                <constraint firstItem="b76-ij-pGQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="48" id="X3t-fW-eBD"/>
+                <constraint firstItem="d5Z-V5-CBU" firstAttribute="top" secondItem="b76-ij-pGQ" secondAttribute="bottom" constant="24" id="YMy-38-S9k"/>
+                <constraint firstItem="d5Z-V5-CBU" firstAttribute="top" secondItem="b76-ij-pGQ" secondAttribute="bottom" constant="48" id="aU0-Mb-UUs"/>
+                <constraint firstItem="oGq-Iz-V78" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="apr-3l-aqJ"/>
+                <constraint firstItem="hE9-aK-nXZ" firstAttribute="top" secondItem="d5Z-V5-CBU" secondAttribute="bottom" constant="48" id="i8y-8g-ZEy"/>
+                <constraint firstItem="hE9-aK-nXZ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="k6K-AA-TZD"/>
+                <constraint firstItem="oGq-Iz-V78" firstAttribute="top" secondItem="hE9-aK-nXZ" secondAttribute="bottom" constant="16" id="sqc-tf-Xp4"/>
+                <constraint firstItem="hE9-aK-nXZ" firstAttribute="top" secondItem="d5Z-V5-CBU" secondAttribute="bottom" constant="32" id="t1P-BE-6Se"/>
+                <constraint firstItem="d5Z-V5-CBU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="t1T-GG-ubu"/>
+                <constraint firstItem="b76-ij-pGQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="wmI-Iq-zeC"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="QLB-Bg-Tz8"/>
+                    <exclude reference="aU0-Mb-UUs"/>
+                    <exclude reference="X3t-fW-eBD"/>
+                    <exclude reference="PAc-52-AaV"/>
+                    <exclude reference="i8y-8g-ZEy"/>
+                    <exclude reference="sqc-tf-Xp4"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <exclude reference="NFm-ZZ-lkh"/>
+                    <include reference="QLB-Bg-Tz8"/>
+                    <exclude reference="YMy-38-S9k"/>
+                    <include reference="aU0-Mb-UUs"/>
+                    <include reference="X3t-fW-eBD"/>
+                    <exclude reference="wmI-Iq-zeC"/>
+                    <include reference="PAc-52-AaV"/>
+                    <exclude reference="Uh0-tm-kfe"/>
+                    <include reference="i8y-8g-ZEy"/>
+                    <exclude reference="t1P-BE-6Se"/>
+                    <exclude reference="NKU-mO-U19"/>
+                    <include reference="sqc-tf-Xp4"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="47.200000000000003" y="39.130434782608695"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo" width="80" height="80"/>
+        <namedColor name="custom_grey40">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey5">
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey50">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

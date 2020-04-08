@@ -1,0 +1,120 @@
+/*
+  Localizable.strings
+  FirefoxPrivateNetworkVPN
+ 
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+  Copyright © 2019 Mozilla Corporation.
+*/
+
+// MARK: - Landing Screen
+"landingTitle" = "Firefox Private Network";
+"landingSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
+"noLogsTitle" = "No activity logs";
+"noLogsSubtitle" = "We’re Mozilla. We don’t log your activity and we’re always on your side.";
+"encryptionTitle" = "Device level encryption";
+"encryptionSubtitle" = "No one will see your location or activity, even on unsecure Wi-Fi networks.";
+"manyServersTitle" = "Servers in 39 countries";
+"manyServersSubtitle" = "Stand up to tech bullies and protect your access to the web.";
+"getStartedTitle" = "Connect up to 5 devices";
+"getStartedSubtitle" = "Stream, download and game. We won’t restrict your bandwidth.";
+"getStarted" = "Get started";
+"learnMore" = "Learn more";
+"landingSkip" = "Skip";
+
+// MARK: - VPN Home
+"homeTabName" = "VPN";
+
+"homeTitleOff" = "VPN is off";
+"homeTitleConnecting" = "Connecting…";
+"homeTitleOn" = "VPN is on";
+"homeTitleSwitching" = "Switching…";
+"homeTitleDisconnecting" = "Disconnecting…";
+
+"homeSubtitleOff" = "Turn it on to protect your entire device";
+"homeSubtitleConnecting" = "You will be protected shortly";
+"homeSubtitleOn" = "Secure and protected  •  %@";
+"homeSubtitleSwitching" = "From %1$@ to %2$@";
+"homeSubtitleDisconnecting" = "You will be disconnected shortly";
+"homeSubtitleCheckConnection" = "  •  Check connection";
+"homeSubtitleUnstable" = "  Unstable";
+"homeSubtitleNoSignal" = "  No signal";
+"homeSubtitleWeek" = "1 week";
+"homeSubtitleWeekPlus" = "1 week +";
+
+"homeApplicationName" = "Firefox Private Network";
+"homeSelectConnection" = "Select connection";
+
+// MARK: - Server Selection
+"serversNavTitle" = "Connection";
+
+// MARK: - Settings
+"settingsTabName" = "Settings";
+"settingsItemDevices" = "My devices";
+"settingsItemHelp" = "Get help";
+"settingsItemAbout" = "About";
+"settingsSignOut" = "Sign out";
+"settingsFeedback" = "Give feedback";
+
+"settingsDefaultName" = "VPN User";
+"settingsManageAccount" = "Manage account";
+
+// MARK: - Device Management
+"devicesNavTitle" = "My devices";
+"devicesCount" = "%1$@ of %2$@";
+"devicesCurrentDevice" = "Current device";
+"devicesAddedDate" = "Added %@ ago";
+"devicesLimitTitle" = "Remove a device";
+"devicesLimitSubtitle" = "You've reached your limit. To install the VPN on this device, you'll need to remove one.";
+"devicesConfirmDeletionTitle" = "Remove device?";
+"devicesConfirmDeletionMessage" = "Please confirm you would like to remove %@";
+"devicesConfirmDeletion" = "Remove";
+"devicesCancelDeletion" = "Cancel";
+
+// MARK: - Get Help
+"helpTitle" = "Get help";
+"helpContactUs" = "Contact us";
+"helpSupport" = "Help & Support";
+"helpDebug" = "Debug";
+
+// MARK: - About
+"aboutTitle" = "About";
+"aboutTerms" = "Terms of Service";
+"aboutPrivacy" = "Privacy Policy";
+"aboutAppName" = "Firefox Private Network";
+"aboutReleaseVersion" = "Release version";
+
+// MARK: - Warning toast
+"toastTryAgain" = "Try again";
+"toastLoggedOut" = "Logged out and device removed";
+"toastNoConnection" = "No internet connection.";
+"toastAuthenticationError" = "Authentication error.";
+
+//Mark: - Update
+"updateConnection" = "Your connection will not be secure while you update.";
+"updateNow" = "Update now";
+
+// MARK: - Update toast
+"toastFeaturesAvailable" = "New features are available!";
+
+// Mark: - Recommended Update
+"updateRecommended" = "Update recommended";
+"updateRecommendedSubtitle" = "Please update the app before you continue to use the VPN";
+
+// Mark: - Required Update
+"updateRequired" = "Update required";
+"updateRequiredSubtitle" = "We detected and fixed a serious bug. You must update your app in order to use Firefox Private Network.";
+
+//MARK: - Error Descriptions
+"errorDeviceRemoval" = "Unable to remove device.";
+"errorConnectVPN" = "Unable to connect.";
+
+//MARK: - Email Logs
+"logsFileName" = "debug_logs";
+"logsMailSubject" = "User Help Request: ";
+"logsMailBody" = "User requesting assistance:";
+"logsMailDeviceName" = "Device name: ";
+"logsMailDeviceDate" = "Added: ";
+"logsMailDeviceKey" = "Device public key: ";
