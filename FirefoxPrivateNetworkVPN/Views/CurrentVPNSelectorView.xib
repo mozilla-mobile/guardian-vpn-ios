@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Regular.otf">
+            <string>Inter-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CurrentVPNSelectorView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+            <connections>
+                <outlet property="countryFlagImageView" destination="7CV-M4-QcD" id="Tfr-uj-T8P"/>
+                <outlet property="countryTitleLabel" destination="5Wd-Aa-2ej" id="GYk-w0-Dye"/>
+                <outlet property="view" destination="iN0-l3-epB" id="uGz-C7-7cf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="317" height="68"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7CV-M4-QcD">
+                    <rect key="frame" x="36" y="26" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="7CV-M4-QcD" secondAttribute="height" multiplier="1:1" id="IT2-ai-Yxy"/>
+                        <constraint firstAttribute="width" constant="16" id="oCb-gk-cYO"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wd-Aa-2ej">
+                    <rect key="frame" x="68" y="25" width="91.5" height="18.5"/>
+                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
+                    <color key="textColor" name="custom_grey50"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_filterArrows" translatesAutoresizingMaskIntoConstraints="NO" id="ecD-Kr-Lq5">
+                    <rect key="frame" x="261" y="22" width="24" height="24"/>
+                    <color key="tintColor" name="custom_grey40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ecD-Kr-Lq5" secondAttribute="height" multiplier="1:1" id="lL9-IQ-SAe"/>
+                        <constraint firstAttribute="width" constant="24" id="we0-GV-1zv"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ecD-Kr-Lq5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0T4-iX-zXL"/>
+                <constraint firstItem="7CV-M4-QcD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2qu-6s-Zi9"/>
+                <constraint firstItem="7CV-M4-QcD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="6e5-2a-Tgf"/>
+                <constraint firstItem="5Wd-Aa-2ej" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="APy-wy-exw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ecD-Kr-Lq5" secondAttribute="trailing" constant="16" id="V7y-zF-JTP"/>
+                <constraint firstItem="5Wd-Aa-2ej" firstAttribute="leading" secondItem="7CV-M4-QcD" secondAttribute="trailing" constant="12" id="WO1-sW-oja"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ecD-Kr-Lq5" secondAttribute="trailing" constant="32" id="fDk-jM-TNw"/>
+                <constraint firstItem="7CV-M4-QcD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="36" id="gAS-S0-6Zo"/>
+                <constraint firstItem="5Wd-Aa-2ej" firstAttribute="leading" secondItem="7CV-M4-QcD" secondAttribute="trailing" constant="16" id="jWQ-lC-QGp"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                    <color key="value" name="custom_grey10"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                    <real key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="fDk-jM-TNw"/>
+                    <exclude reference="gAS-S0-6Zo"/>
+                    <exclude reference="jWQ-lC-QGp"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <exclude reference="V7y-zF-JTP"/>
+                    <include reference="fDk-jM-TNw"/>
+                    <exclude reference="6e5-2a-Tgf"/>
+                    <include reference="gAS-S0-6Zo"/>
+                    <exclude reference="WO1-sW-oja"/>
+                    <include reference="jWQ-lC-QGp"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="136.80000000000001" y="212.29385307346328"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_filterArrows" width="24" height="24"/>
+        <namedColor name="custom_grey10">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey40">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey50">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

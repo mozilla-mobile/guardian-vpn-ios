@@ -1,0 +1,3385 @@
+{
+  "countries": [
+    {
+      "name": "Australia",
+      "code": "au",
+      "cities": [
+        {
+          "name": "Melbourne",
+          "code": "mel",
+          "latitude": -37.815018,
+          "longitude": 144.946014,
+          "servers": [
+            {
+              "hostname": "au3-wireguard",
+              "ipv4_addr_in": "103.231.88.2",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Rzh64qPcg8W8klJq0H4EZdVCH7iaPuQ9falc99GTgRA=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "au4-wireguard",
+              "ipv4_addr_in": "103.231.88.18",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Y3yfOLqFCCioEzEV8kB+qD3euGIlc1vCHOzclkSyXSg=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Sydney",
+          "code": "syd",
+          "latitude": -33.861481,
+          "longitude": 151.205475,
+          "servers": [
+            {
+              "hostname": "au1-wireguard",
+              "ipv4_addr_in": "43.245.162.234",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "H9bSjJ1hNwZ98EzcBpyBmtTY7ps6IgNSZVbbu2T/Sx8=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "au2-wireguard",
+              "ipv4_addr_in": "103.77.233.50",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "26Ad1I9IZJC4gLdSw9sAQrfW5+ahys2Jp9vzRsMMLmE=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Austria",
+      "code": "at",
+      "cities": [
+        {
+          "name": "Wien",
+          "code": "vie",
+          "latitude": 48.210033,
+          "longitude": 16.363449,
+          "servers": [
+            {
+              "hostname": "at1-wireguard",
+              "ipv4_addr_in": "185.210.219.242",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "iE7SukqspT1UtQxce9S5plJ+GpAXdl4zG2oqpbhzvAw=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "at2-wireguard",
+              "ipv4_addr_in": "5.253.207.34",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "ngwwZX8DV5/0e3P/Sm+GqlYapk6ZkDET7FDY/wfESTw=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Belgium",
+      "code": "be",
+      "cities": [
+        {
+          "name": "Brussels",
+          "code": "bru",
+          "latitude": 50.833333,
+          "longitude": 4.333333,
+          "servers": [
+            {
+              "hostname": "be1-wireguard",
+              "ipv4_addr_in": "193.9.114.2",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "lR7ybZ85cLro9mIE6jSFgGCWQ3Bi2So83X7K0CMh3W8=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "be2-wireguard",
+              "ipv4_addr_in": "5.253.205.162",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "nC7CiDrSykOYqSDEYoPYWUCtvOhe4sKhnqCZbKrsTXo=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Brazil",
+      "code": "br",
+      "cities": [
+        {
+          "name": "Sao Paulo",
+          "code": "sao",
+          "latitude": -23.533773,
+          "longitude": -46.62529,
+          "servers": [
+            {
+              "hostname": "br1-wireguard",
+              "ipv4_addr_in": "45.162.228.186",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "iFQ2FKfShwumBtWdpfa/C3FSff8vkJdOfM067aN0Z0M=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bulgaria",
+      "code": "bg",
+      "cities": [
+        {
+          "name": "Sofia",
+          "code": "sof",
+          "latitude": 42.6833333,
+          "longitude": 23.3166667,
+          "servers": [
+            {
+              "hostname": "bg1-wireguard",
+              "ipv4_addr_in": "82.102.23.26",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "fvrfiHhg+Zw8wrEBtFW8Ys2CjEePQhQaLHymYiHm+nI=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "bg2-wireguard",
+              "ipv4_addr_in": "37.120.152.114",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Su+Uk3Po7tZpkx6CykMSjv9wIujKbgngQevXGx+xHGY=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "bg3-wireguard",
+              "ipv4_addr_in": "37.120.152.146",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "87p9U/EtZAKSGFbn0ModFhuQ0FhQ2SEnvgP4wx4QcH8=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Canada",
+      "code": "ca",
+      "cities": [
+        {
+          "name": "Montreal",
+          "code": "mtr",
+          "latitude": 45.5053,
+          "longitude": -73.5525,
+          "servers": [
+            {
+              "hostname": "ca1-wireguard",
+              "ipv4_addr_in": "37.120.205.210",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "egUEj3B7BVaN4ncwheYklIR96+6T0SfpkMH49jm6aUo=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "ca3-wireguard",
+              "ipv4_addr_in": "87.101.92.154",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "N3TIJnj6HDEGmeKmJ0g3s3h9TnvtC7e6yuP/jpKmExg=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "ca4-wireguard",
+              "ipv4_addr_in": "37.120.205.98",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "VgHX+1vswpoOYOBXKV2H64dCUqg++r8SRe6xdet0c10=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "ca5-wireguard",
+              "ipv4_addr_in": "37.120.205.194",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "JdSt7WR/eeiHeGdj3W5XrTDrkyv4EdM3+3P/Jkg6CHk=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "ca6-wireguard",
+              "ipv4_addr_in": "37.120.205.226",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "rBXViNSYo0qogVdm50vHX/9SLsPJ38F1NHENa5Jjb3s=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Vancouver",
+          "code": "van",
+          "latitude": 49.25,
+          "longitude": -123.133333,
+          "servers": [
+            {
+              "hostname": "ca2-wireguard",
+              "ipv4_addr_in": "107.181.189.206",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "quPBSdtRAfoUVkbRWvjXF5d5cYwhURobppSVd5Uz3xA=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Czech Republic",
+      "code": "cz",
+      "cities": [
+        {
+          "name": "Prague",
+          "code": "prg",
+          "latitude": 50.083333,
+          "longitude": 14.466667,
+          "servers": [
+            {
+              "hostname": "cz1-wireguard",
+              "ipv4_addr_in": "185.242.6.18",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "/LNuMn2Q3PXMjc5c84bAgf5efyXsKTQxPm45ywSK/Gg=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "cz2-wireguard",
+              "ipv4_addr_in": "193.9.112.114",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "5cnukfXHWIBm3FxF6uJSsG3jPuZM6NtSK05vl2a84Ug=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "cz3-wireguard",
+              "ipv4_addr_in": "185.242.6.194",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "sTYtbdXVJFJgtLKzmlg6WKiOdRZ00DSnu+8mwLQxFQk=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Denmark",
+      "code": "dk",
+      "cities": [
+        {
+          "name": "Copenhagen",
+          "code": "cph",
+          "latitude": 55.666667,
+          "longitude": 12.583333,
+          "servers": [
+            {
+              "hostname": "dk1-wireguard",
+              "ipv4_addr_in": "185.245.84.122",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "ny9u5anjMGsoe2Yrf3wqZMvSifNtTknVMz3KfblWpi0=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "dk2-wireguard",
+              "ipv4_addr_in": "141.98.254.66",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "rZf+c8apRARS25iEKRWg7/QTnMUqyf26fOulgG+SCE8=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Finland",
+      "code": "fi",
+      "cities": [
+        {
+          "name": "Helsinki",
+          "code": "hel",
+          "latitude": 60.192059,
+          "longitude": 24.945831,
+          "servers": [
+            {
+              "hostname": "fi1-wireguard",
+              "ipv4_addr_in": "185.204.1.203",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "lA7gRTmiY9IcSQGXjOEaJjvgtO76BwYJsaaNQqemMWU=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "fi2-wireguard",
+              "ipv4_addr_in": "185.204.1.211",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "HjKLtlLs1RRTS8OhxBO7HaDizaWcVVieefKn2gPPTRQ=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "fi3-wireguard",
+              "ipv4_addr_in": "185.204.1.219",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Jv9FNGbb9T4ZYCXTjn/ib3ozCRvZ1ccYILuiJ1+1IgQ=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "France",
+      "code": "fr",
+      "cities": [
+        {
+          "name": "Paris",
+          "code": "par",
+          "latitude": 48.866667,
+          "longitude": 2.333333,
+          "servers": [
+            {
+              "hostname": "fr1-wireguard",
+              "ipv4_addr_in": "185.156.173.26",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "9zpV9nBENx8DsjjRe2GLqmFk4jlfQhTkMG5V0xpZESc=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "fr2-wireguard",
+              "ipv4_addr_in": "37.120.204.2",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "sVCNHjo0cuMamPO9NB939+sPL5oSHIoi6bUFvW/b4So=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "fr3-wireguard",
+              "ipv4_addr_in": "37.120.204.18",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "r9EuN7LbzdplrD/TAu/+uyhhL06VhghJhYizrmBqhHc=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Germany",
+      "code": "de",
+      "cities": [
+        {
+          "name": "Frankfurt",
+          "code": "fra",
+          "latitude": 50.110924,
+          "longitude": 8.682127,
+          "servers": [
+            {
+              "hostname": "de1-wireguard",
+              "ipv4_addr_in": "185.216.33.114",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "IF4ROzAOkRKdz+Hy+TWS1LTOZPGaLsm9PW5EN5AEOkc=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "de2-wireguard",
+              "ipv4_addr_in": "185.62.205.102",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Ko5Vhr1L11DRpKBRw6TMXvCaZby6N32R4NQsdTGzfE0=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "de4-wireguard",
+              "ipv4_addr_in": "185.213.155.130",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "XTdlx3YmLb1vg1NsruXYmfzP6FZKmZR90Vr3u9kJ7S0=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "de5-wireguard",
+              "ipv4_addr_in": "185.213.155.222",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "bRcOjl6Yc+2x0dHCO6eSGoo9Y9euv9DljDJEYoLA0ks=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "de6-wireguard",
+              "ipv4_addr_in": "37.120.223.66",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "wemUaSnT9wBRHgPHhlFnlMTAyFvXb2DzgnPM7ZzXwE4=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hong Kong",
+      "code": "hk",
+      "cities": [
+        {
+          "name": "Hong Kong",
+          "code": "hkg",
+          "latitude": 22.2833333,
+          "longitude": 114.15,
+          "servers": [
+            {
+              "hostname": "hk1-wireguard",
+              "ipv4_addr_in": "209.58.188.180",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "ZlAoBnq2CCqVfyHVkohdXRGGRdEXax65TdsS+CjjKmA=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hungary",
+      "code": "hu",
+      "cities": [
+        {
+          "name": "Budapest",
+          "code": "bud",
+          "latitude": 47.5,
+          "longitude": 19.083333,
+          "servers": [
+            {
+              "hostname": "hu1-wireguard",
+              "ipv4_addr_in": "37.120.144.162",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "JuE+mcnmUItys3FhPyofglAE1VYXGQKw6CSY5IsogFo=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "hu2-wireguard",
+              "ipv4_addr_in": "37.120.144.178",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Qr6DdlH05Kqts37Vz4YlFm53imCRMzrcKeJsUsWmiw8=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "India",
+      "code": "in",
+      "cities": [
+        {
+          "name": "Pune",
+          "code": "pnq",
+          "latitude": 18.516726,
+          "longitude": 73.856255,
+          "servers": [
+            {
+              "hostname": "in1-wireguard",
+              "ipv4_addr_in": "103.250.186.81",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "a8aifl4OSdqZ5MiIJsnHvekO2F7Ykk0MzFRxkoMLQF4=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ireland",
+      "code": "ie",
+      "cities": [
+        {
+          "name": "Dublin",
+          "code": "dub",
+          "latitude": 53.35014,
+          "longitude": -6.266155,
+          "servers": [
+            {
+              "hostname": "ie1-wireguard",
+              "ipv4_addr_in": "185.108.128.6",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "R+lTz5QUcbF1V0dn0uRtaceOoa7Rvk0UQCFks3GA8Xo=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Italy",
+      "code": "it",
+      "cities": [
+        {
+          "name": "Milan",
+          "code": "mil",
+          "latitude": 45.466667,
+          "longitude": 9.2,
+          "servers": [
+            {
+              "hostname": "it1-wireguard",
+              "ipv4_addr_in": "95.174.64.42",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "fEq76eJ+YYvOZMZB+5TVJ0T1mlRqdTKl1kWZsOQqQkU=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "it2-wireguard",
+              "ipv4_addr_in": "37.120.201.82",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "oxMyCDEc9GGNYXQn8+5WOZ2wj5D2zBx0YgwoIzCzHW0=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "it3-wireguard",
+              "ipv4_addr_in": "37.120.201.114",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "gbZmhzIr2K7ruQliYVIz4MX9PJUKUEmGxIhksgqm4wE=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Japan",
+      "code": "jp",
+      "cities": [
+        {
+          "name": "Tokyo",
+          "code": "tyo",
+          "latitude": 35.685,
+          "longitude": 139.751389,
+          "servers": [
+            {
+              "hostname": "jp1-wireguard",
+              "ipv4_addr_in": "91.207.174.226",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "jBqu/2AJK3sIL38qF30l1QhEBmipNTdrbvnF4xIOnXk=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "jp2-wireguard",
+              "ipv4_addr_in": "45.87.213.146",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "qfCMAKcNb58YuN9aM1EoL/5C+Uo5bm94rLFBJ5R9hHw=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Latvia",
+      "code": "lv",
+      "cities": [
+        {
+          "name": "Riga",
+          "code": "rix",
+          "latitude": 56.946285,
+          "longitude": 24.105078,
+          "servers": [
+            {
+              "hostname": "lv1-wireguard",
+              "ipv4_addr_in": "31.170.22.15",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "jVpHWBkAboRoarIs4bztmbxcjevaC4dPCxw/ZzpL9GU=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Moldova",
+      "code": "md",
+      "cities": [
+        {
+          "name": "Chisinau",
+          "code": "kiv",
+          "latitude": 47.00367,
+          "longitude": 28.907089,
+          "servers": [
+            {
+              "hostname": "md1-wireguard",
+              "ipv4_addr_in": "178.175.131.98",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "BQobp2UXHJguYGz06WWJGJV6QytNIZlgMwr6Joufhx8=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Netherlands",
+      "code": "nl",
+      "cities": [
+        {
+          "name": "Amsterdam",
+          "code": "ams",
+          "latitude": 52.35,
+          "longitude": 4.916667,
+          "servers": [
+            {
+              "hostname": "nl1-wireguard",
+              "ipv4_addr_in": "185.65.134.130",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "nLFb+Clb4zlw9wPfeD1vqy5mqEyOd9cIGWmn7ajwemw=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "nl2-wireguard",
+              "ipv4_addr_in": "185.65.134.222",
+              "weight": 400,
+              "include_in_country": true,
+              "public_key": "P0NpAUCe/gfL4lgs/PH4nDd5kA5zNDtHbUcqfYmSdmg=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "nl3-wireguard",
+              "ipv4_addr_in": "185.65.134.223",
+              "weight": 400,
+              "include_in_country": true,
+              "public_key": "xztxDsbwo9HMG4+yIFEnpjl/afQL4xvcI5CL65aFEQA=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "New Zealand",
+      "code": "nz",
+      "cities": [
+        {
+          "name": "Auckland",
+          "code": "akl",
+          "latitude": -36.848461,
+          "longitude": 174.763336,
+          "servers": [
+            {
+              "hostname": "nz1-wireguard",
+              "ipv4_addr_in": "103.108.94.34",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "SA0OXEdreWBr/R8ly9OT+1iEx94ymu9t+tw2tJai4Bc=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "nz2-wireguard",
+              "ipv4_addr_in": "103.231.91.226",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "bOYonpr+hzbdqFCP4KN4lPcfY4q74271BTGD3irjU08=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Norway",
+      "code": "no",
+      "cities": [
+        {
+          "name": "Oslo",
+          "code": "osl",
+          "latitude": 59.916667,
+          "longitude": 10.75,
+          "servers": [
+            {
+              "hostname": "no1-wireguard",
+              "ipv4_addr_in": "176.125.235.71",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "jOUZjMq2PWHDzQxu3jPXktYB7EKeFwBzGZx56cTXXQg=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "no2-wireguard",
+              "ipv4_addr_in": "176.125.235.72",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "IhhpKphSFWpwja1P4HBctZ367G3Q53EgdeFGZro29Tc=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "no3-wireguard",
+              "ipv4_addr_in": "176.125.235.73",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "zOBWmQ3BEOZKsYKbj4dC2hQjxCbr3eKa6wGWyEDYbC4=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "no4-wireguard",
+              "ipv4_addr_in": "176.125.235.74",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "veeEoYS9a2T6K8WMs/MvRCdNJG580XbhnLfbFjp3B0M=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Poland",
+      "code": "pl",
+      "cities": [
+        {
+          "name": "Warsaw",
+          "code": "waw",
+          "latitude": 52.25,
+          "longitude": 21,
+          "servers": [
+            {
+              "hostname": "pl1-wireguard",
+              "ipv4_addr_in": "185.244.214.58",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "6m4oQHDitNtJ5iMeHXW2fT3IkvHNVcluN+eG2fbyX00=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "pl2-wireguard",
+              "ipv4_addr_in": "37.120.156.242",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "oBI4UftALJbZqjbzLq3kAxv/8Pr94GG/ls66S5V/+x4=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "pl3-wireguard",
+              "ipv4_addr_in": "5.253.206.210",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "GQpCLsh9Lipxw5XOxCKDXhzHuKEJp9qBS/erGrck/ko=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Romania",
+      "code": "ro",
+      "cities": [
+        {
+          "name": "Bucharest",
+          "code": "buh",
+          "latitude": 44.433333,
+          "longitude": 26.1,
+          "servers": [
+            {
+              "hostname": "ro1-wireguard",
+              "ipv4_addr_in": "185.195.16.178",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "LKU2opNCTQfG/5Rzj3ez7LchwXk0GXcctkiGJ1oXOks=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "ro2-wireguard",
+              "ipv4_addr_in": "185.210.216.114",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "rDHmG1O5dgP0kxKsgZ59ToEob04j5fnHcoC0awE29FU=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "ro3-wireguard",
+              "ipv4_addr_in": "45.89.175.114",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "qZEChZ//7enT5kVFSE2F9M6QZ4/GhrXWxZHgVgYBjgE=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Serbia",
+      "code": "rs",
+      "cities": [
+        {
+          "name": "Belgrade",
+          "code": "beg",
+          "latitude": 44.787197,
+          "longitude": 20.457273,
+          "servers": [
+            {
+              "hostname": "rs1-wireguard",
+              "ipv4_addr_in": "141.98.103.58",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "vzkvSeh2PLpWJnTQuP8ni63Sd+YHNDQckgNE6ZBQeD0=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "rs2-wireguard",
+              "ipv4_addr_in": "152.89.160.178",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "69Hs7s4NKa/sO6T/FOUrPfwZe5QvQy/MWtmtz/5IjEY=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Singapore",
+      "code": "sg",
+      "cities": [
+        {
+          "name": "Singapore",
+          "code": "sin",
+          "latitude": 1.2930556,
+          "longitude": 103.8558333,
+          "servers": [
+            {
+              "hostname": "sg1-wireguard",
+              "ipv4_addr_in": "185.128.24.42",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "IEaL4ujeMNhY8w3Dhtw/opsnhoQLeC5SQ0oywwLQESM=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spain",
+      "code": "es",
+      "cities": [
+        {
+          "name": "Madrid",
+          "code": "mad",
+          "latitude": 40.408566,
+          "longitude": -3.69222,
+          "servers": [
+            {
+              "hostname": "es1-wireguard",
+              "ipv4_addr_in": "194.99.104.10",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "hDflDse0Nz7GsZ0q5uylWOJaJQ6woJPCGy8IvTXKjzo=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "es2-wireguard",
+              "ipv4_addr_in": "37.120.199.34",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "fMYx8zLs1oBQvXtkdpdCwhy0UUx9QhbF0kaXp1QJJSY=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "es3-wireguard",
+              "ipv4_addr_in": "195.12.50.194",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "FxQSlSrU3RQJRjv8lKzOzQRu9qAm5DTR2L7ByS7WAFM=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sweden",
+      "code": "se",
+      "cities": [
+        {
+          "name": "Gothenburg",
+          "code": "got",
+          "latitude": 57.70887,
+          "longitude": 11.97456,
+          "servers": [
+            {
+              "hostname": "se10-wireguard",
+              "ipv4_addr_in": "185.213.154.69",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "veGD6/aEY6sMfN3Ls7YWPmNgu3AheO7nQqsFT47YSws=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "se3-wireguard",
+              "ipv4_addr_in": "185.213.154.130",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "5JMPeO7gXIbR5CnUa/NPNK4L5GqUnreF0/Bozai4pl4=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "se5-wireguard",
+              "ipv4_addr_in": "185.213.154.67",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "AtvE5KdPeQtOcE2QyXaPt9eQoBV3GBxzimQ2FIuGQ2U=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Malmö",
+          "code": "mma",
+          "latitude": 55.607075,
+          "longitude": 13.002716,
+          "servers": [
+            {
+              "hostname": "se1-wireguard",
+              "ipv4_addr_in": "193.138.218.220",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Qn1QaXYTJJSmJSMw18CGdnFiVM0/Gj/15OdkxbXCSG0=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "se4-wireguard",
+              "ipv4_addr_in": "193.138.218.130",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "m4jnogFbACz7LByjo++8z5+1WV0BuR1T7E1OWA+n8h0=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Stockholm",
+          "code": "sto",
+          "latitude": 59.3289,
+          "longitude": 18.0649,
+          "servers": [
+            {
+              "hostname": "se2-wireguard",
+              "ipv4_addr_in": "185.65.135.130",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "BfyxzL1mtigKIfM51OhxD+FBBSk+/SHEUE9UlDJ45W4=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "se6-wireguard",
+              "ipv4_addr_in": "185.65.135.222",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "pKcMMeC4jMUxSU5pH1orvp4//GrY8is+y9JRfVP3+BY=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "se7-wireguard",
+              "ipv4_addr_in": "185.65.135.223",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Io+BJ9lxGxi8jhvy95tqwudkzzy5zrvrf8KLxWRGs0w=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "se8-wireguard",
+              "ipv4_addr_in": "185.65.135.224",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "CNn6UoRrPYQYUYt19fXJb75MI6a24Mgq/+OKAahfI0I=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Switzerland",
+      "code": "ch",
+      "cities": [
+        {
+          "name": "Zurich",
+          "code": "zrh",
+          "latitude": 47.366667,
+          "longitude": 8.55,
+          "servers": [
+            {
+              "hostname": "ch1-wireguard",
+              "ipv4_addr_in": "185.212.170.226",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "SzmAUqFzWRHazql4EGVgphTdUBFq8Wus980nCl99TgI=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "ch2-wireguard",
+              "ipv4_addr_in": "31.7.59.250",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "W9eD8dkodIi1DAh18xChTOBmIT6kPxgFG872toGOwVk=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "ch3-wireguard",
+              "ipv4_addr_in": "45.12.222.210",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "7D3kOdMQfJME3SpXfyXKn+kelHBDHR/QAfxhNwmaVWk=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "ch4-wireguard",
+              "ipv4_addr_in": "45.12.222.226",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "PL7gl7c8rQt5RgMNofQwX5WwUN8JKiKn8zkxcYPh4Bs=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "UK",
+      "code": "gb",
+      "cities": [
+        {
+          "name": "London",
+          "code": "lon",
+          "latitude": 51.514125,
+          "longitude": -0.093689,
+          "servers": [
+            {
+              "hostname": "gb1-wireguard",
+              "ipv4_addr_in": "185.200.118.100",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "TMOEAxpcv5xz+PvcvqP0Iy4+px+hrCJUJHGcy45DVQI=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "gb4-wireguard",
+              "ipv4_addr_in": "141.98.252.130",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "IJJe0TQtuQOyemL4IZn6oHEsMKSPqOuLfD5HoAWEPTY=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "gb5-wireguard",
+              "ipv4_addr_in": "141.98.252.222",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "J57ba81Q8bigy9RXBXvl0DgABTrbl81nb37GuX50gnY=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "gb6-wireguard",
+              "ipv4_addr_in": "37.120.198.68",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "JjW17MW+Z537zJt7SFi3h9OUcGh9aehTLNIq0oG4ak8=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Manchester",
+          "code": "mnc",
+          "latitude": 53.5,
+          "longitude": -2.216667,
+          "servers": [
+            {
+              "hostname": "gb3-wireguard",
+              "ipv4_addr_in": "89.238.167.244",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "UMnM3Zphy4LsrPFYqdjJZmXV428tGmaCbpdYm74UrgQ=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "gb7-wireguard",
+              "ipv4_addr_in": "185.206.227.130",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "eq/a62rKaftdwwb0wpOAniBZuHZzBZALh85JTyKQ1jA=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "USA",
+      "code": "us",
+      "cities": [
+        {
+          "name": "Atlanta, GA",
+          "code": "atl",
+          "latitude": 33.753746,
+          "longitude": -84.38633,
+          "servers": [
+            {
+              "hostname": "us6-wireguard",
+              "ipv4_addr_in": "66.71.242.170",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "ti5M7ntXuq8mk0NR9mhD0T3cPJ+/tA3fahijDb31RQ4=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Chicago, IL",
+          "code": "chi",
+          "latitude": 41.881832,
+          "longitude": -87.623177,
+          "servers": [
+            {
+              "hostname": "us18-wireguard",
+              "ipv4_addr_in": "68.235.52.35",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "J7kRI51rpEiFy3HMxXS6azAhvdOqAbvLKwiDI8SyKU0=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "us4-wireguard",
+              "ipv4_addr_in": "208.77.22.99",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "9BIWByBn70uCB9qVj9Vf02yzar4RJQjgHyVpo+yLk2c=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Dallas, TX",
+          "code": "dal",
+          "latitude": 32.89748,
+          "longitude": -97.040443,
+          "servers": [
+            {
+              "hostname": "us17-wireguard",
+              "ipv4_addr_in": "50.2.184.146",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Zwq2wD/zih0mnTuFwxArrOtTPYSFTdGESaI0eLmBClk=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "us7-wireguard",
+              "ipv4_addr_in": "192.111.140.130",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "42L1l0u+/iKN/KDTcjSMM6vyNqNwWN9o453KCTet8iA=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Los Angeles, CA",
+          "code": "lax",
+          "latitude": 34.052235,
+          "longitude": -118.243683,
+          "servers": [
+            {
+              "hostname": "us10-wireguard",
+              "ipv4_addr_in": "176.113.73.2",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "AgMEistVMTjFvQtNip/RZw0cbQCp1wqHMhbXFza/B14=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "us11-wireguard",
+              "ipv4_addr_in": "185.242.5.50",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "vBN7qyUTb5lJtWYJ8LhbPio1Z4RcyBPGnqFBGn6O6Qg=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "us2-wireguard",
+              "ipv4_addr_in": "185.236.200.247",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "5YT2bFSXrp8fkCKJ9MCxgtLJnsajJAqmqE+GGFnZjwg=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "us8-wireguard",
+              "ipv4_addr_in": "149.248.24.2",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "kG0nUI2PNUxgDRexvW0NUDTpdsRBtSpHwU6JjLLGi1Q=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Miami, FL",
+          "code": "mia",
+          "latitude": 25.761681,
+          "longitude": -80.191788,
+          "servers": [
+            {
+              "hostname": "us19-wireguard",
+              "ipv4_addr_in": "45.87.214.242",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "+my5MqkcNIEVw4yWeFoi5nOmRJwfBOTN8nMRO8GBKlE=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "us20-wireguard",
+              "ipv4_addr_in": "173.44.37.58",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "14NFSTIeIpVG+cz/Eqm/tAl01xwSeYAuJfSVX+7OeCo=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "us3-wireguard",
+              "ipv4_addr_in": "193.37.252.146",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "RXVzV6fA8nDqHP3zMkqrh5v2TBpcW+0o+TXjJfGpGxU=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "New York, NY",
+          "code": "nyc",
+          "latitude": 40.73061,
+          "longitude": -73.935242,
+          "servers": [
+            {
+              "hostname": "us13-wireguard",
+              "ipv4_addr_in": "193.148.18.210",
+              "weight": 400,
+              "include_in_country": true,
+              "public_key": "AnfOP57FBVtz2qsQmJEANDrbhORJ/e1uHIWhXUd+EUc=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "us16-wireguard",
+              "ipv4_addr_in": "38.131.126.42",
+              "weight": 400,
+              "include_in_country": true,
+              "public_key": "86imR6XxhjJrJmhRA1oJHNmQeYkc8fsGu6U4XXWfs24=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            },
+            {
+              "hostname": "us1-wireguard",
+              "ipv4_addr_in": "185.232.22.58",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "Wy2FhqDJcZU03O/D9IUG/U5BL0PLbF06nvsfgIwrmGk=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Phoenix, AZ",
+          "code": "phx",
+          "latitude": 33.448376,
+          "longitude": -112.074036,
+          "servers": [
+            {
+              "hostname": "us15-wireguard",
+              "ipv4_addr_in": "205.234.124.66",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "7ehlAyFxcThGWc3Rr1Vfq0gN+S8apa9fdCN58COJKCM=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Piscataway, NJ",
+          "code": "pil",
+          "latitude": 39.833851,
+          "longitude": -74.871826,
+          "servers": [
+            {
+              "hostname": "us14-wireguard",
+              "ipv4_addr_in": "108.61.143.186",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "yRimUx86+EjVtQUedKbwoJlR6VwvGsUNUatxQIJM5i0=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Salt Lake City, UT",
+          "code": "slc",
+          "latitude": 40.758701,
+          "longitude": -111.876183,
+          "servers": [
+            {
+              "hostname": "us9-wireguard",
+              "ipv4_addr_in": "107.182.233.23",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "aRvqiUQfbburTDq4ueAaDPYh8SDqEWy0JeNm9qsaeT4=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        },
+        {
+          "name": "Seattle, WA",
+          "code": "sea",
+          "latitude": 47.608013,
+          "longitude": -122.335167,
+          "servers": [
+            {
+              "hostname": "us5-wireguard",
+              "ipv4_addr_in": "104.200.129.102",
+              "weight": 100,
+              "include_in_country": true,
+              "public_key": "0idpgcRimndYSaoRYQZsi6vgSefXbS1GWKiGhLRyEyg=",
+              "port_ranges": [
+                [
+                  53,
+                  53
+                ],
+                [
+                  10000,
+                  33433
+                ],
+                [
+                  33565,
+                  51820
+                ],
+                [
+                  52000,
+                  60000
+                ]
+              ],
+              "ipv4_gateway": "10.64.0.1",
+              "ipv6_gateway": "fc00:bbbb:bbbb:bb01::1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
