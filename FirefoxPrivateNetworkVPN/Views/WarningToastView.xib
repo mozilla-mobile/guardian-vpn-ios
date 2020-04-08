@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Regular.otf">
+            <string>Inter-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WarningToastView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+            <connections>
+                <outlet property="label" destination="spa-uT-lU5" id="m2f-Xs-3S8"/>
+                <outlet property="view" destination="iN0-l3-epB" id="9w0-ht-vUW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="444" height="137"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spa-uT-lU5">
+                    <rect key="frame" x="30" y="54" width="384" height="39"/>
+                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" name="custom_red40"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="spa-uT-lU5" secondAttribute="trailing" constant="30" id="0Ag-CM-ESV"/>
+                <constraint firstItem="spa-uT-lU5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="6PI-Ya-N3Z"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="spa-uT-lU5" secondAttribute="bottom" constant="10" id="7i2-1w-7Rv"/>
+                <constraint firstItem="spa-uT-lU5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="N9E-CB-fEg"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="DeZ-s7-UHR" appends="YES" id="4wq-Tj-BzX"/>
+            </connections>
+            <point key="canvasLocation" x="-76.811594202898561" y="27.790178571428569"/>
+        </view>
+        <tapGestureRecognizer id="DeZ-s7-UHR">
+            <connections>
+                <action selector="tapped:" destination="-1" id="oGN-g1-DdL"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <namedColor name="custom_red40">
+            <color red="1" green="0.41568627450980394" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Regular.otf">
+            <string>Inter-Regular</string>
+        </array>
+        <array key="Metropolis-Regular.otf">
+            <string>Metropolis-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPNToggleView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundAnimationContainerView" destination="m89-A7-vt0" id="vMK-4N-prT"/>
+                <outlet property="containingView" destination="UwE-Bk-tlK" id="bgE-6X-79I"/>
+                <outlet property="globeAnimationContainer" destination="MYo-vc-qhs" id="Byx-lN-xYv"/>
+                <outlet property="subtitleLabel" destination="2xu-al-pMZ" id="Va5-yw-5W8"/>
+                <outlet property="titleLabel" destination="CVT-rn-kQN" id="DGC-lR-th3"/>
+                <outlet property="view" destination="iN0-l3-epB" id="lsA-1R-49L"/>
+                <outlet property="vpnSwitch" destination="sYv-xh-0Gx" id="Qae-Ma-lwG"/>
+                <outlet property="vpnToggleButton" destination="0B4-MW-iTo" id="9Ln-Im-Hci"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgm-YP-nOg" userLabel="Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
+                    <subviews>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m89-A7-vt0" userLabel="Animation Container">
+                            <rect key="frame" x="0.0" y="-80.5" width="350" height="350"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="350" id="8cK-6I-GgL"/>
+                                <constraint firstAttribute="width" secondItem="m89-A7-vt0" secondAttribute="height" multiplier="1:1" id="VyB-iW-wzj"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="8cK-6I-GgL"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="8cK-6I-GgL"/>
+                                </mask>
+                            </variation>
+                        </view>
+                    </subviews>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Bk-tlK">
+                    <rect key="frame" x="0.0" y="54.5" width="350" height="241"/>
+                    <subviews>
+                        <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-vc-qhs" userLabel="Globe Animation Container">
+                            <rect key="frame" x="135" y="0.0" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="81c-rs-ldf"/>
+                                <constraint firstAttribute="width" secondItem="MYo-vc-qhs" secondAttribute="height" multiplier="1:1" id="E5R-WH-qCj"/>
+                                <constraint firstAttribute="width" constant="80" id="THC-Kr-URY"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVT-rn-kQN">
+                            <rect key="frame" x="32" y="112" width="286" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="Ykt-00-txh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
+                            <color key="textColor" name="custom_grey50"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xu-al-pMZ">
+                            <rect key="frame" x="32" y="156" width="286" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="jkG-Fz-RTN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
+                            <color key="textColor" name="custom_grey40"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-xh-0Gx">
+                            <rect key="frame" x="150.5" y="210" width="51" height="31"/>
+                            <color key="backgroundColor" name="custom_grey30"/>
+                            <gestureRecognizers/>
+                            <color key="tintColor" name="custom_grey30"/>
+                            <color key="onTintColor" name="custom_green50"/>
+                            <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </switch>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-MW-iTo" userLabel="Toggle Button">
+                            <rect key="frame" x="150.5" y="210" width="49" height="31"/>
+                            <connections>
+                                <action selector="toggleTapped" destination="-1" eventType="touchUpInside" id="SsJ-hE-bTx"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="0B4-MW-iTo" firstAttribute="leading" secondItem="sYv-xh-0Gx" secondAttribute="leading" id="4Of-5b-N2c"/>
+                        <constraint firstItem="MYo-vc-qhs" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="5qD-KN-Mj8"/>
+                        <constraint firstItem="0B4-MW-iTo" firstAttribute="top" secondItem="sYv-xh-0Gx" secondAttribute="top" id="61z-2r-7zA"/>
+                        <constraint firstItem="0B4-MW-iTo" firstAttribute="bottom" secondItem="sYv-xh-0Gx" secondAttribute="bottom" id="CK2-HK-JBB"/>
+                        <constraint firstItem="sYv-xh-0Gx" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="NWa-iA-uqq"/>
+                        <constraint firstItem="CVT-rn-kQN" firstAttribute="leading" secondItem="UwE-Bk-tlK" secondAttribute="leading" constant="32" id="OkC-YO-DaK"/>
+                        <constraint firstItem="CVT-rn-kQN" firstAttribute="top" secondItem="MYo-vc-qhs" secondAttribute="bottom" constant="32" id="VSb-iT-ggK"/>
+                        <constraint firstItem="sYv-xh-0Gx" firstAttribute="top" secondItem="2xu-al-pMZ" secondAttribute="bottom" constant="32" id="btN-DC-2Cc"/>
+                        <constraint firstItem="CVT-rn-kQN" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="cAG-S8-McH"/>
+                        <constraint firstItem="2xu-al-pMZ" firstAttribute="centerX" secondItem="UwE-Bk-tlK" secondAttribute="centerX" id="fWl-mB-qPT"/>
+                        <constraint firstItem="2xu-al-pMZ" firstAttribute="top" secondItem="CVT-rn-kQN" secondAttribute="bottom" constant="12" id="gN3-cw-4AU"/>
+                        <constraint firstAttribute="bottom" secondItem="sYv-xh-0Gx" secondAttribute="bottom" id="gNj-fm-aJV"/>
+                        <constraint firstItem="MYo-vc-qhs" firstAttribute="top" secondItem="UwE-Bk-tlK" secondAttribute="top" id="i4v-va-vvr"/>
+                        <constraint firstItem="2xu-al-pMZ" firstAttribute="top" secondItem="CVT-rn-kQN" secondAttribute="bottom" constant="8" id="jSh-nk-kdq"/>
+                        <constraint firstItem="sYv-xh-0Gx" firstAttribute="top" secondItem="2xu-al-pMZ" secondAttribute="bottom" constant="24" id="jor-nk-3Am"/>
+                        <constraint firstItem="0B4-MW-iTo" firstAttribute="trailing" secondItem="sYv-xh-0Gx" secondAttribute="trailing" id="kJA-F5-Ie0"/>
+                        <constraint firstItem="CVT-rn-kQN" firstAttribute="top" secondItem="MYo-vc-qhs" secondAttribute="bottom" constant="24" id="pKB-nH-Phg"/>
+                        <constraint firstItem="2xu-al-pMZ" firstAttribute="leading" secondItem="UwE-Bk-tlK" secondAttribute="leading" constant="32" id="qUe-ai-48U"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="VSb-iT-ggK"/>
+                            <exclude reference="gN3-cw-4AU"/>
+                            <exclude reference="btN-DC-2Cc"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="VSb-iT-ggK"/>
+                            <exclude reference="pKB-nH-Phg"/>
+                            <include reference="gN3-cw-4AU"/>
+                            <exclude reference="jSh-nk-kdq"/>
+                            <include reference="btN-DC-2Cc"/>
+                            <exclude reference="jor-nk-3Am"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="m89-A7-vt0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="5IX-Cv-Zob"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sgm-YP-nOg" secondAttribute="trailing" id="5UR-va-4jw"/>
+                <constraint firstItem="sgm-YP-nOg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7Ff-Yy-eCy"/>
+                <constraint firstItem="sgm-YP-nOg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="D57-3W-5Y5"/>
+                <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HCC-4h-gbe"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="sgm-YP-nOg" secondAttribute="bottom" id="XLj-uY-zxN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UwE-Bk-tlK" secondAttribute="trailing" id="dG3-Rc-Qeg"/>
+                <constraint firstItem="m89-A7-vt0" firstAttribute="centerY" secondItem="MYo-vc-qhs" secondAttribute="centerY" id="pBW-PE-AHW"/>
+                <constraint firstItem="UwE-Bk-tlK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="s59-Ul-aCr"/>
+                <constraint firstItem="m89-A7-vt0" firstAttribute="centerX" secondItem="MYo-vc-qhs" secondAttribute="centerX" id="std-Ua-fRL"/>
+                <constraint firstItem="UwE-Bk-tlK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="t4U-39-j8n"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                    <size key="value" width="0.0" height="1"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                    <real key="value" value="0.20000000000000001"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                    <real key="value" value="2"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <exclude reference="5IX-Cv-Zob"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="35.200000000000003" y="-137.6311844077961"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="custom_green50">
+            <color red="0.24705882352941178" green="0.88235294117647056" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey30">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey40">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey50">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

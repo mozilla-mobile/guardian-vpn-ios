@@ -1,0 +1,30 @@
+//
+//  ServerSectionHeaderViewCell
+//  FirefoxPrivateNetworkVPN
+//
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+//  Copyright © 2020 Mozilla Corporation.
+//
+
+import UIKit
+import RxSwift
+
+class CountryVPNCell: UITableViewCell {
+
+    static let estimatedHeight: CGFloat = UIScreen.isiPad ? 88 : 56
+
+    @IBOutlet weak var topLineView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var flagImageView: UIImageView!
+    @IBOutlet weak var chevronImageView: UIImageView!
+
+    func setup(with cellModel: CountryCellModel, shouldHideTopLine: Bool = false) {
+        topLineView.isHidden = shouldHideTopLine
+        flagImageView.image = UIImage(named: "flag_\(cellModel.countryCode.lowercased())")
+        nameLabel.text = cellModel.name
+        chevronImageView.image = cellModel.isExpanded ? #imageLiteral(resourceName: "icon_sectionOpen") : #imageLiteral(resourceName: "icon_sectionClosed")
+    }
+}

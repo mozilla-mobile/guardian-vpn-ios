@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Metropolis-SemiBold.otf">
+            <string>Metropolis-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="CountryVPNCell" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="415" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7H-8Z-4du">
+                        <rect key="frame" x="60" y="0.0" width="339" height="1"/>
+                        <color key="backgroundColor" name="custom_grey10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="VBr-6B-Xvu"/>
+                        </constraints>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_forwardChevron" translatesAutoresizingMaskIntoConstraints="NO" id="66t-8x-8bc">
+                        <rect key="frame" x="16" y="16" width="24" height="24"/>
+                        <color key="tintColor" name="custom_grey40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="iBd-1A-KWm"/>
+                            <constraint firstAttribute="width" secondItem="66t-8x-8bc" secondAttribute="height" multiplier="1:1" id="tly-Vp-yJT"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flag_au" translatesAutoresizingMaskIntoConstraints="NO" id="O6p-JA-idl">
+                        <rect key="frame" x="60" y="20" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="O6p-JA-idl" secondAttribute="height" multiplier="1:1" id="pU8-mf-8rZ"/>
+                            <constraint firstAttribute="height" constant="16" id="xk0-e6-N5f"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKA-OB-099">
+                        <rect key="frame" x="96" y="20.5" width="95.5" height="15"/>
+                        <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
+                        <color key="textColor" name="custom_grey50"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="custom_grey5"/>
+                <constraints>
+                    <constraint firstItem="O6p-JA-idl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0Zw-jh-g7i"/>
+                    <constraint firstItem="HKA-OB-099" firstAttribute="centerY" secondItem="O6p-JA-idl" secondAttribute="centerY" id="4B2-S4-rQL"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HKA-OB-099" secondAttribute="trailing" constant="16" id="4Hd-lH-4l5">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                    <constraint firstItem="O6p-JA-idl" firstAttribute="leading" secondItem="66t-8x-8bc" secondAttribute="trailing" constant="20" id="CXJ-2a-0hv">
+                        <variation key="heightClass=regular-widthClass=regular" constant="24"/>
+                    </constraint>
+                    <constraint firstItem="I7H-8Z-4du" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FXd-Rc-8x7"/>
+                    <constraint firstItem="66t-8x-8bc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="HNQ-Mr-bdc">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                    <constraint firstAttribute="trailing" secondItem="I7H-8Z-4du" secondAttribute="trailing" constant="16" id="JgP-Vm-oah">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                    <constraint firstItem="HKA-OB-099" firstAttribute="leading" secondItem="O6p-JA-idl" secondAttribute="trailing" constant="20" id="R94-ur-jlc">
+                        <variation key="heightClass=regular-widthClass=regular" constant="28"/>
+                    </constraint>
+                    <constraint firstItem="O6p-JA-idl" firstAttribute="centerY" secondItem="66t-8x-8bc" secondAttribute="centerY" id="R9v-6e-XkW"/>
+                    <constraint firstItem="O6p-JA-idl" firstAttribute="leading" secondItem="I7H-8Z-4du" secondAttribute="leading" id="c8e-Vn-XfQ"/>
+                    <constraint firstAttribute="bottom" secondItem="66t-8x-8bc" secondAttribute="bottom" constant="16" id="ih5-3e-Gop">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                    <constraint firstItem="66t-8x-8bc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="lN9-Dy-Alt">
+                        <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                    </constraint>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="chevronImageView" destination="66t-8x-8bc" id="DAe-oM-njE"/>
+                <outlet property="flagImageView" destination="O6p-JA-idl" id="fhO-pD-sQU"/>
+                <outlet property="nameLabel" destination="HKA-OB-099" id="FPg-Z0-PaC"/>
+                <outlet property="topLineView" destination="I7H-8Z-4du" id="hGs-Kb-MO7"/>
+            </connections>
+            <point key="canvasLocation" x="200.72463768115944" y="158.03571428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="flag_au" width="72" height="72"/>
+        <image name="icon_forwardChevron" width="24" height="24"/>
+        <namedColor name="custom_grey10">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey40">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey5">
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="custom_grey50">
+            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
