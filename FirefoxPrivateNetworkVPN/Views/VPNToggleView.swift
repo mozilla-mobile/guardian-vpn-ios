@@ -249,7 +249,7 @@ class VPNToggleView: UIView {
                 }
             }).disposed(by: timerDisposeBag)
 
-        if let hostAddress = accountManager.selectedCity?.fastestServer?.ipv4Gateway {
+        if let hostAddress = accountManager.selectedCity?.selectedServer?.ipv4Gateway {
             connectionHealthMonitor.start(hostAddress: hostAddress)
         }
     }
