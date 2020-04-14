@@ -42,8 +42,8 @@ struct VPNCity: Codable {
     let longitude: Float
     let servers: [VPNServer]
     let flagCode: String?
-    //the higher the weight, the faster the server
-    let fastestServer: VPNServer?
+    //the higher the weight, the faster the server -> more likely the server is selected
+    var selectedServer: VPNServer?
 
     init(name: String, code: String, latitude: Float, longitude: Float, servers: [VPNServer], flagCode: String) {
         self.name = name
@@ -52,14 +52,29 @@ struct VPNCity: Codable {
         self.longitude = longitude
         self.servers = servers
         self.flagCode = flagCode
+    }
 
-        //randomly selects one of the servers with the highest weights
-        let maxWeightedServer = servers.max { $0.weight < $1.weight }
-        guard let maxWeight = maxWeightedServer?.weight else {
-            fastestServer = nil
-            return
+    mutating func setServer() -> VPNServer? {
+        let weightSum = servers.reduce(0) {
+            $0 + $1.weight
         }
-        fastestServer = servers.filter { return $0.weight == maxWeight }.randomElement()
+
+        guard weightSum != 0 else {
+            selectedServer = nil
+            return nil
+        }
+
+        var r = Int.random(in: 0...weightSum)
+
+        for server in servers {
+            r -= server.weight
+
+            if r <= 0 {
+                selectedServer = server
+                return selectedServer
+            }
+        }
+        return nil
     }
 }
 

@@ -27,7 +27,9 @@ struct TunnelConfigurationBuilder {
         // peers
         var peerConfigurations: [PeerConfiguration] = []
 
-        if let server = city.fastestServer,
+        var serverCity = city
+
+        if let server = serverCity.setServer(),
             let keyData = Data(base64Key: server.publicKey),
             let ipv4GatewayIP = IPv4Address(server.ipv4Gateway),
             let ipv6GatewayIP = IPv6Address(server.ipv6Gateway) {

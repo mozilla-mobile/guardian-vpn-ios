@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         if dependencyManager.tunnelManager.stateEvent.value == .on,
-            let hostAddress = dependencyManager.accountManager.selectedCity?.fastestServer?.ipv4Gateway {
+            let hostAddress = dependencyManager.accountManager.selectedCity?.selectedServer?.ipv4Gateway {
             self.dependencyManager?.connectionHealthMonitor.start(hostAddress: hostAddress)
         }
     }
