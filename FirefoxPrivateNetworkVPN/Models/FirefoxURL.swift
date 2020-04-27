@@ -16,7 +16,7 @@ enum FirefoxURL {
     case support
     case terms
     case privacy
-    case account
+    case account(email: String?)
     case feedback
 
     private static let base = "https://fpn.firefox.com"
@@ -32,8 +32,9 @@ enum FirefoxURL {
             return URL(string: FirefoxURL.base + "/r/vpn/terms" + FirefoxURL.query)
         case .privacy:
             return URL(string: FirefoxURL.base + "/r/vpn/privacy" + FirefoxURL.query)
-        case .account:
-            return URL(string: FirefoxURL.base + "/r/vpn/account/")
+        case .account(let email):
+            let query = email != nil ? "?email=\(email!)" : ""
+            return URL(string: FirefoxURL.base + "/r/vpn/account/" + query)
         case .feedback:
             return URL(string: FirefoxURL.base + "/r/vpn/client/feedback/")
         }

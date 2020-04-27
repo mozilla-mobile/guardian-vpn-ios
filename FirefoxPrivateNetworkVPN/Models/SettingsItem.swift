@@ -17,7 +17,7 @@ enum SettingsItem: Equatable {
     case about
     case feedback
     case signout
-    case account
+    case account(email: String?)
 
     var title: String {
         switch self {
@@ -60,7 +60,7 @@ enum SettingsItem: Equatable {
     var navigableContext: NavigableContext? {
         switch self {
         case .feedback: return .url(FirefoxURL.feedback.value)
-        case .account: return .url(FirefoxURL.account.value)
+        case .account(let email): return .url(FirefoxURL.account(email: email).value)
         case .device, .about, .help, .signout: return nil
         }
     }

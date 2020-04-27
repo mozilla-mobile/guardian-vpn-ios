@@ -11,12 +11,12 @@
 
 import Foundation
 
-enum HyperlinkItem {
+enum HyperlinkItem: Equatable {
     case contact
     case support
     case terms
     case privacy
-    case account
+    case account(email: String?)
     case debug
 
     var title: String {
@@ -36,7 +36,7 @@ enum HyperlinkItem {
         case .support: return FirefoxURL.support.value
         case .terms: return FirefoxURL.terms.value
         case .privacy: return FirefoxURL.privacy.value
-        case .account: return FirefoxURL.account.value
+        case .account(let email): return FirefoxURL.account(email: email).value
         case .debug: return nil
         }
     }

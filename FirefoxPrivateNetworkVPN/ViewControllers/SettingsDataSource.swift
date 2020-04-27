@@ -92,7 +92,7 @@ extension SettingsDataSource: UITableViewDelegate {
 
         //swiftlint:disable:next trailing_closure
         headerView?.buttonTappedSubject.subscribe(onNext: { [weak self] _ in
-            self?.settingSelected.onNext(.account)
+            self?.settingSelected.onNext(.account(email: self?.account?.user.email))
         }).disposed(by: disposeBag)
 
         return headerView
