@@ -21,6 +21,8 @@ class UpdateRequiredViewController: UIViewController, Navigating {
     @IBOutlet weak var manageAccountButton: UIButton!
     @IBOutlet weak var signoutButton: UIButton!
 
+    private var user: User? { return DependencyManager.shared.accountManager.account?.user }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +40,7 @@ class UpdateRequiredViewController: UIViewController, Navigating {
     }
 
     @IBAction func manageAccountTapped() {
-        navigate(to: .safari, context: .url(HyperlinkItem.account.url))
+        navigate(to: .safari, context: .url(HyperlinkItem.account(email: self.user?.email).url))
     }
 
     @IBAction func signoutTapped() {
