@@ -43,6 +43,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AA7E29DA245979D200CC1FEB"
+               BuildableName = "FirefoxPrivateNetworkVPNSnapshotsTests.xctest"
+               BlueprintName = "FirefoxPrivateNetworkVPNSnapshotsTests"
+               ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
