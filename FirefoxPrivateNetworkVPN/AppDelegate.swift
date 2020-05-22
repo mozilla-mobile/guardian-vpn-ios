@@ -50,6 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        UIDevice.current.userInterfaceIdiom == .pad ? .all : [.portrait, .portraitUpsideDown]
+    }
+
     func applicationDidEnterBackground(_ application: UIApplication) {
         dependencyManager?.connectionHealthMonitor.stop()
         dependencyManager?.heartbeatMonitor.stop()
