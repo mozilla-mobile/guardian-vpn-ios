@@ -61,7 +61,7 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
     }
 
     private func startStateMachine() {
-        if _currentState.value == .initial {
+        if _currentState.value == .initial || _currentState.value == .stable {
             move(to: .stable)
         }
     }
