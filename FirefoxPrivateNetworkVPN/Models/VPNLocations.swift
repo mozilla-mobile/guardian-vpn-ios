@@ -43,7 +43,7 @@ struct VPNCity: Codable {
     let servers: [VPNServer]
     let flagCode: String?
     //the higher the weight, the faster the server -> more likely the server is selected
-    var selectedServer: VPNServer?
+    private(set) var selectedServer: VPNServer?
 
     init(name: String, code: String, latitude: Float, longitude: Float, servers: [VPNServer], flagCode: String) {
         self.name = name
@@ -52,16 +52,18 @@ struct VPNCity: Codable {
         self.longitude = longitude
         self.servers = servers
         self.flagCode = flagCode
+
+        setSelectedServer()
     }
 
-    mutating func setServer() -> VPNServer? {
+    private mutating func setSelectedServer() {
         let weightSum = servers.reduce(0) {
             $0 + $1.weight
         }
 
         guard weightSum != 0 else {
             selectedServer = nil
-            return nil
+            return
         }
 
         var r = Int.random(in: 0...weightSum)
@@ -71,10 +73,9 @@ struct VPNCity: Codable {
 
             if r <= 0 {
                 selectedServer = server
-                return selectedServer
+                return
             }
         }
-        return nil
     }
 }
 
