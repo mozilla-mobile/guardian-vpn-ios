@@ -13,7 +13,7 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // Default values for Mozilla's development team.
-VERSION_NAME = 1.0.2
+VERSION_NAME = 1.0.3
 VERSION_ID = 1
 DEVELOPMENT_TEAM = 43AQ936H96
 FIREFOX_VPN_BUNDLE_IDENTIFIER = org.mozilla.ios.FirefoxVPN
