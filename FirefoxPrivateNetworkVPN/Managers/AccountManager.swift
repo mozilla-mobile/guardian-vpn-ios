@@ -16,7 +16,13 @@ class AccountManager: AccountManaging, Navigating {
 
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry] = []
-    private(set) var selectedCity: VPNCity?
+    private(set) var selectedCity: VPNCity? {
+        didSet {
+            if let selectedCity = selectedCity {
+                self.accountStore.save(selectedCity: selectedCity)
+            }
+        }
+    }
     private let disposeBag = DisposeBag()
     private let guardianAPI: GuardianAPI
     private let accountStore: AccountStoring
@@ -234,7 +240,6 @@ class AccountManager: AccountManaging, Navigating {
 
     func updateSelectedCity(with newCity: VPNCity) {
         self.selectedCity = newCity
-        self.accountStore.save(selectedCity: newCity)
     }
 
     private func subscribeToExpiredSubscriptionNotification() {
