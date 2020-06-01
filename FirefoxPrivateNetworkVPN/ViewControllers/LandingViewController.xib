@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad10_2" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,26 +39,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBV-6t-Eg4">
-                    <rect key="frame" x="0.0" y="283" width="414" height="170.5"/>
+                    <rect key="frame" x="0.0" y="358" width="810" height="164.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xtd-yb-bAs">
-                            <rect key="frame" x="167" y="0.0" width="80" height="80"/>
+                            <rect key="frame" x="365" y="0.0" width="80" height="80"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Xtd-yb-bAs" secondAttribute="height" multiplier="1:1" id="0NK-ne-pSN"/>
                                 <constraint firstAttribute="width" constant="80" id="9ah-6o-3m6"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum Dolor" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn5-H4-ufw">
-                            <rect key="frame" x="32" y="104" width="350" height="22"/>
+                            <rect key="frame" x="64" y="112" width="682" height="22"/>
                             <fontDescription key="fontDescription" name="Metropolis-Regular" family="Metropolis" pointSize="22"/>
                             <color key="textColor" name="custom_grey50"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKt-Ai-EeU">
-                            <rect key="frame" x="51.5" y="134" width="311" height="36.5"/>
-                            <constraints>
-                                <constraint firstAttribute="width" priority="999" constant="311" id="oiY-hN-ZDi"/>
-                            </constraints>
+                            <rect key="frame" x="64" y="146" width="682" height="18.5"/>
                             <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
                             <color key="textColor" name="custom_grey40"/>
                             <nil key="highlightedColor"/>
@@ -72,7 +69,9 @@
                         </constraint>
                         <constraint firstItem="hn5-H4-ufw" firstAttribute="leading" secondItem="sBV-6t-Eg4" secondAttribute="leading" constant="32" id="GET-wS-OID"/>
                         <constraint firstItem="Xtd-yb-bAs" firstAttribute="top" secondItem="sBV-6t-Eg4" secondAttribute="top" id="R7p-XJ-gsn"/>
-                        <constraint firstItem="aKt-Ai-EeU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sBV-6t-Eg4" secondAttribute="leading" constant="32" id="Vcb-JK-gTY"/>
+                        <constraint firstItem="aKt-Ai-EeU" firstAttribute="leading" secondItem="sBV-6t-Eg4" secondAttribute="leading" constant="32" id="Vcb-JK-gTY">
+                            <variation key="heightClass=regular-widthClass=regular" constant="64"/>
+                        </constraint>
                         <constraint firstItem="hn5-H4-ufw" firstAttribute="centerX" secondItem="sBV-6t-Eg4" secondAttribute="centerX" id="ZXg-Ra-Znn"/>
                         <constraint firstItem="hn5-H4-ufw" firstAttribute="top" secondItem="Xtd-yb-bAs" secondAttribute="bottom" constant="24" id="aqP-di-Zoq"/>
                         <constraint firstItem="Xtd-yb-bAs" firstAttribute="centerX" secondItem="sBV-6t-Eg4" secondAttribute="centerX" id="cQv-3u-fiw"/>
@@ -99,10 +98,10 @@
                     </variation>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eEb-rt-3fv">
-                    <rect key="frame" x="32" y="750" width="350" height="96"/>
+                    <rect key="frame" x="64" y="912" width="682" height="136"/>
                     <subviews>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-2e-PN9">
-                            <rect key="frame" x="0.0" y="0.0" width="350" height="40"/>
+                            <rect key="frame" x="0.0" y="0.0" width="682" height="56"/>
                             <color key="backgroundColor" name="custom_blue50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="OsL-yV-li7"/>
@@ -133,7 +132,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsj-jW-6dB">
-                            <rect key="frame" x="0.0" y="56" width="350" height="40"/>
+                            <rect key="frame" x="0.0" y="80" width="682" height="56"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="U8f-Wn-TXn"/>
                                 <constraint firstAttribute="height" constant="56" id="fRR-CI-xZc"/>
@@ -166,7 +165,7 @@
                     <variation key="heightClass=regular-widthClass=regular" spacing="24"/>
                 </stackView>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HVJ-N1-BuC" userLabel="Warning Toast View" customClass="WarningToastView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
-                    <rect key="frame" x="8" y="814" width="398" height="40"/>
+                    <rect key="frame" x="16" y="1008" width="778" height="56"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Mc1-2Z-Wcf">
