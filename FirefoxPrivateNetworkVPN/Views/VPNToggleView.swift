@@ -106,8 +106,8 @@ class VPNToggleView: UIView {
     }
 
     override func layoutSubviews() {
+        super.layoutSubviews()
         globeAnimationView?.frame = globeAnimationContainer.bounds
-        globeAnimationView?.play(toFrame: 0)
         rippleAnimationView?.frame = backgroundAnimationContainerView.bounds
     }
 
