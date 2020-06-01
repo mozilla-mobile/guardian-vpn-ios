@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad10_5" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -77,7 +77,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="770" height="434"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="249" constant="311.5" id="3gJ-NP-1EL"/>
-                                <constraint firstAttribute="height" constant="434" id="RH9-kl-hDS"/>
+                                <constraint firstAttribute="height" priority="999" constant="434" id="RH9-kl-hDS"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -135,7 +135,10 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGq-Iz-V78">
-                    <rect key="frame" x="383.5" y="690" width="67" height="13.5"/>
+                    <rect key="frame" x="383.5" y="690" width="67" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="EoQ-rU-uXe"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
                     <color key="textColor" name="custom_grey40"/>
                     <nil key="highlightedColor"/>
@@ -161,6 +164,9 @@
                 <constraint firstItem="b76-ij-pGQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Aye-h4-0R0"/>
                 <constraint firstItem="d5Z-V5-CBU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NFm-ZZ-lkh"/>
                 <constraint firstItem="oGq-Iz-V78" firstAttribute="top" secondItem="hE9-aK-nXZ" secondAttribute="bottom" constant="10" id="NKU-mO-U19"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oGq-Iz-V78" secondAttribute="bottom" constant="24" id="OEH-Yt-Jej">
+                    <variation key="heightClass=regular-widthClass=regular" constant="48"/>
+                </constraint>
                 <constraint firstItem="hE9-aK-nXZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="64" id="PAc-52-AaV"/>
                 <constraint firstItem="d5Z-V5-CBU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="QLB-Bg-Tz8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yL4-fg-Uhn" secondAttribute="bottom" constant="8" id="UEO-Ud-15u">
