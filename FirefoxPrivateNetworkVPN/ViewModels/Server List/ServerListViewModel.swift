@@ -43,7 +43,9 @@ class ServerListViewModel {
 
     private var isCellSelectionDisabled: Bool {
         switch vpnStates.current {
-        case .switching, .connecting, .disconnecting:
+        case .switching:
+            return true
+        case .connecting, .disconnecting:
             return vpnStates.previous == vpnStates.current
         default:
             return false
