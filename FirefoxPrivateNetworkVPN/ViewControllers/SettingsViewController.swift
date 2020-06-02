@@ -58,10 +58,6 @@ class SettingsViewController: UIViewController, Navigating {
         DependencyManager.shared.heartbeatMonitor.pollNow()
     }
 
-    override func viewDidLayoutSubviews() {
-        tableView.isScrollEnabled = tableView.contentSize.height >= tableView.frame.height
-    }
-
     // MARK: - Setup
     private func setupTabBar() {
         let tag: TabTag = .settings
