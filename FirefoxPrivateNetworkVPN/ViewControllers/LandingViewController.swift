@@ -41,11 +41,6 @@ class LandingViewController: UIViewController, Navigating {
         getStartedButton.cornerRadius = getStartedButton.frame.height/10
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        layoutCenterView()
-    }
-
     func showToast(with error: LocalizedError) {
         let attributedString = NSAttributedString.formattedError(error)
         warningToastView.show(message: attributedString) { [weak self] in
@@ -73,10 +68,5 @@ class LandingViewController: UIViewController, Navigating {
         getStartedButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
         learnMoreButton.setTitle(LocalizedString.learnMore.value, for: .normal)
         imageView.image = UIImage(named: "logo")
-    }
-
-    private func layoutCenterView() {
-        centerView.translatesAutoresizingMaskIntoConstraints = true
-        centerView.center.y = stackView.frame.minY/2
     }
 }

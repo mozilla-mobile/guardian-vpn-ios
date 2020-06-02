@@ -11,7 +11,6 @@
 
 import UIKit
 
-@IBDesignable
 final class WarningToastView: UIView {
 
     @IBOutlet var view: UIView!

@@ -11,7 +11,6 @@
 
 import UIKit
 
-@IBDesignable
 final class VersionUpdateToastView: UIView {
 
     @IBOutlet private weak var label: UILabel!
