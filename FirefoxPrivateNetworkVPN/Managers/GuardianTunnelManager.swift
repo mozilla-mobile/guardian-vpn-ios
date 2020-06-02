@@ -162,8 +162,10 @@ class GuardianTunnelManager: TunnelManaging {
             if self.internalState.value != .off {
                 let cityName = tunnel.localizedDescription ?? ""
                 let newCityName = self.accountManager.selectedCity?.name ?? ""
-                self.internalState.accept(.switching(cityName, newCityName))
-                self.isSwitchingInProgress = true
+                if cityName != newCityName {
+                    self.internalState.accept(.switching(cityName, newCityName))
+                    self.isSwitchingInProgress = true
+                }
             }
             guard let account = self.account,
                 let newCity = self.accountManager.selectedCity else {
