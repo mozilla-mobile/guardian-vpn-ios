@@ -14,6 +14,7 @@ import RxSwift
 import RxCocoa
 import NetworkExtension
 import Lottie
+import UserNotifications
 
 class VPNToggleView: UIView {
     @IBOutlet private var view: UIView!
@@ -83,6 +84,7 @@ class VPNToggleView: UIView {
     }
 
     override func awakeFromNib() {
+        super.awakeFromNib()
         globeAnimationView = createAnimation(for: "globe", in: globeAnimationContainer)
         globeAnimationView?.respectAnimationFrameRate = true
         globeAnimationView?.loopMode = .playOnce
@@ -249,6 +251,13 @@ class VPNToggleView: UIView {
                 }
             }).disposed(by: timerDisposeBag)
 
+        connectionState.subscribe { [weak self] connectionHealth in
+            if let connectionHealth = connectionHealth.element,
+                connectionHealth == .noSignal {
+                self?.sendNoSignalNotification()
+            }
+        }.disposed(by: timerDisposeBag)
+
         if let hostAddress = accountManager.selectedCity?.selectedServer?.ipv4Gateway {
             connectionHealthMonitor.start(hostAddress: hostAddress)
         }
@@ -282,5 +291,15 @@ class VPNToggleView: UIView {
         fullString.append(stateString)
         fullString.append(checkConnectionString)
         self.subtitleLabel.attributedText = NSAttributedString(attributedString: fullString)
+    }
+
+    private func sendNoSignalNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = LocalizedString.notificationTitleNoSignal.value
+        content.body = LocalizedString.notificationBodyNoSignal.value
+        content.sound = UNNotificationSound.default
+
+        let request = UNNotificationRequest(identifier: "noSignalNotification", content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 }
