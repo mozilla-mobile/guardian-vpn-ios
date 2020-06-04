@@ -118,3 +118,7 @@
 "logsMailDeviceName" = "Device name: ";
 "logsMailDeviceDate" = "Added: ";
 "logsMailDeviceKey" = "Device public key: ";
+
+//MARK: - Notification
+"notificationTitleNoSignal" = "No signal";
+"notificationBodyNoSignal" = "Check your connection.";

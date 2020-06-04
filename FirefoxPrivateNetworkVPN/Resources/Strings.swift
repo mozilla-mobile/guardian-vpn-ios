@@ -108,6 +108,9 @@ enum LocalizedString: String {
     case logsMailDeviceDate
     case logsMailDeviceKey
 
+    case notificationTitleNoSignal
+    case notificationBodyNoSignal
+
     var value: String {
         NSLocalizedString(rawValue, comment: "")
     }
