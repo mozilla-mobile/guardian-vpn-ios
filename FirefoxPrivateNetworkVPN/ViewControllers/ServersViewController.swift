@@ -65,7 +65,7 @@ class ServersViewController: UIViewController, Navigating {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillDisappear(animated)
 
         initialVpnState = nil
 
