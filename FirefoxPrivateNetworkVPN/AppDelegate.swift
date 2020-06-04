@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dependencyManager?.releaseMonitor.start()
 
         Logger.configureGlobal(tagged: "APP", withFilePath: FileManager.logFileURL?.path)
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }
 
         return true
     }
