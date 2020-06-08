@@ -167,10 +167,7 @@ class VPNToggleView: UIView {
             vpnSwitch.setOn(newState.isToggleOn, animated: false)
         }
 
-        vpnSwitch.isUserInteractionEnabled = newState.isEnabled
         vpnSwitch.alpha = newState.isEnabled ? 1 : 0.5
-
-        vpnToggleButton.isUserInteractionEnabled = newState.isEnabled
     }
 
     // MARK: - Animations
