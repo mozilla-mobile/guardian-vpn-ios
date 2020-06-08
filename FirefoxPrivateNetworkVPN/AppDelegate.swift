@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dependencyManager?.releaseMonitor.start()
 
         Logger.configureGlobal(tagged: "APP", withFilePath: FileManager.logFileURL?.path)
+
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }
 
         return true
     }
@@ -58,5 +62,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dependencyManager?.connectionHealthMonitor.stop()
         dependencyManager?.heartbeatMonitor.stop()
         dependencyManager?.releaseMonitor.stop()
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
     }
 }
