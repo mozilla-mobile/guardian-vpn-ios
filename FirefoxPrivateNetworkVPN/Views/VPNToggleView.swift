@@ -150,6 +150,8 @@ class VPNToggleView: UIView {
         default:
             resetConnectionTimeAndHealth()
         }
+
+        currentState = state
     }
 
     private func updateToggle(to newState: VPNState) {
@@ -215,8 +217,6 @@ class VPNToggleView: UIView {
             globeAnimationView?.play(fromFrame: 60, toFrame: 60)
         default: break
         }
-
-        currentState = newState
     }
 
     private func animateGlobe(connected: Bool) {
