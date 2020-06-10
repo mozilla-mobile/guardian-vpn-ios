@@ -42,7 +42,7 @@ class UpdateRecommendedViewController: UIViewController, Navigating {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillDisappear(animated)
 
         if #available(iOS 13.0, *) {
             isPresentingViewControllerDimmed = false

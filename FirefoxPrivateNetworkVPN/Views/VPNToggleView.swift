@@ -167,10 +167,7 @@ class VPNToggleView: UIView {
             vpnSwitch.setOn(newState.isToggleOn, animated: false)
         }
 
-        vpnSwitch.isUserInteractionEnabled = newState.isEnabled
         vpnSwitch.alpha = newState.isEnabled ? 1 : 0.5
-
-        vpnToggleButton.isUserInteractionEnabled = newState.isEnabled
     }
 
     // MARK: - Animations
@@ -197,7 +194,7 @@ class VPNToggleView: UIView {
 
     private func animateGlobe(to newState: VPNState) {
         switch (currentState, newState) {
-        case (.off, .connecting):
+        case (.off, .connecting), (.disconnecting, .connecting):
             globeAnimationView?.play(fromFrame: 0, toFrame: 15)
         case (.connecting, .on):
             globeAnimationView?.play(fromFrame: 15, toFrame: 30)
@@ -205,7 +202,7 @@ class VPNToggleView: UIView {
             globeAnimationView?.play(fromFrame: 30, toFrame: 45)
         case (.switching, .on):
             globeAnimationView?.play(fromFrame: 45, toFrame: 30)
-        case (.on, .disconnecting):
+        case (.on, .disconnecting), (.connecting, .disconnecting):
             globeAnimationView?.play(fromFrame: 30, toFrame: 45)
         case (.disconnecting, .off), (.switching, .off):
             globeAnimationView?.play(fromFrame: 45, toFrame: 60)

@@ -42,6 +42,7 @@ class CarouselViewController: UIViewController, Navigating {
     }
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         layoutCenterView()
     }
 

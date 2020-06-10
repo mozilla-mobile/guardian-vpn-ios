@@ -32,6 +32,7 @@ class AccountInformationHeader: UITableViewHeaderFooterView {
     }
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         refreshUser()
     }
 
