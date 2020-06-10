@@ -108,6 +108,13 @@ enum LocalizedString: String {
     case logsMailDeviceDate
     case logsMailDeviceKey
 
+    case notificationTitleOn
+    case notificationBodyOn
+    case notificationTitleOff
+    case notificationBodyOff
+    case notificationBodySwitched
+    case notificationTitleUnstable
+    case notificationBodyUnstable
     case notificationTitleNoSignal
     case notificationBodyNoSignal
 

@@ -120,5 +120,12 @@
 "logsMailDeviceKey" = "Device public key: ";
 
 //MARK: - Notification
+"notificationTitleOn" = "VPN is on";
+"notificationBodyOn" = "You’re secure and private";
+"notificationTitleOff" = "VPN is off";
+"notificationBodyOff" = "You disconnected";
+"notificationBodySwitched" = "You switched servers";
+"notificationTitleUnstable" = "Unstable";
+"notificationBodyUnstable" = "Check your connection";
 "notificationTitleNoSignal" = "No signal";
-"notificationBodyNoSignal" = "Check your connection.";
+"notificationBodyNoSignal" = "Check your connection";
