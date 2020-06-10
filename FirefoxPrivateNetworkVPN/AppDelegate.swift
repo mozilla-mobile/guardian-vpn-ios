@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.configureGlobal(tagged: "APP", withFilePath: FileManager.logFileURL?.path)
 
         UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .provisional]) { _, _ in }
 
         return true
     }
