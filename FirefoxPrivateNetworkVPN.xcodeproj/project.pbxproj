@@ -12,6 +12,7 @@
 		527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB523752E9300368965 /* AboutDataSource.swift */; };
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
+		D535B6552490B699007171EC /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
 		F401097923FEE2D8006DFF96 /* HeartbeatMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */; };
 		F401097B23FEE829006DFF96 /* HeartbeatMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */; };
 		F401097D24002C8B006DFF96 /* DeviceManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */; };
@@ -302,6 +303,7 @@
 		6FF4AC23211EC472002C96EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
+		D535B6542490B699007171EC /* LocalNotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationFactory.swift; sourceTree = "<group>"; };
 		F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitor.swift; sourceTree = "<group>"; };
 		F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitoring.swift; sourceTree = "<group>"; };
 		F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewModel.swift; sourceTree = "<group>"; };
@@ -771,6 +773,7 @@
 				F4056031239E9F31000A93CC /* KeychainStored.swift */,
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
 				F4108050242CDAB300973421 /* NetworkingUtilities.swift */,
+				D535B6542490B699007171EC /* LocalNotificationFactory.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1677,6 +1680,7 @@
 				F4E909112371CAAD00EB9FE6 /* CurrentVPNSelectorView.swift in Sources */,
 				F4E908ED2371CAAD00EB9FE6 /* AccountManager.swift in Sources */,
 				F43DCC7B2379A780000C60E3 /* OSLog+Custom.swift in Sources */,
+				D535B6552490B699007171EC /* LocalNotificationFactory.swift in Sources */,
 				F410804F242BE2CA00973421 /* SimulatorTunnelManager.swift in Sources */,
 				F4E908F82371CAAD00EB9FE6 /* UITabBarItem+Tagging.swift in Sources */,
 				F4E9090B2371CAAD00EB9FE6 /* AccountInformationHeader.swift in Sources */,
