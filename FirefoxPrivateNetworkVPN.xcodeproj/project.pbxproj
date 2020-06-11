@@ -15,6 +15,11 @@
 		D535B6552490B699007171EC /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
 		D54700DB2491D3B100FA40A2 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D54700D92491D3B100FA40A2 /* error_noSignal.png */; };
 		D54700DC2491D3B100FA40A2 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D54700DA2491D3B100FA40A2 /* error_unstable.png */; };
+		D54700E32491D90C00FA40A2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54700E22491D90C00FA40A2 /* UserNotifications.framework */; };
+		D54700E52491D90C00FA40A2 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54700E42491D90C00FA40A2 /* UserNotificationsUI.framework */; };
+		D54700E82491D90C00FA40A2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54700E72491D90C00FA40A2 /* NotificationViewController.swift */; };
+		D54700EB2491D90C00FA40A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54700E92491D90C00FA40A2 /* MainInterface.storyboard */; };
+		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F401097923FEE2D8006DFF96 /* HeartbeatMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */; };
 		F401097B23FEE829006DFF96 /* HeartbeatMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */; };
 		F401097D24002C8B006DFF96 /* DeviceManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */; };
@@ -263,6 +268,13 @@
 			remoteGlobalIDString = 6FDEF7DD21846BC100D8FBF6;
 			remoteInfo = WireGuardGoBridge;
 		};
+		D54700ED2491D90C00FA40A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6FF4AC0C211EC46F002C96EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D54700E02491D90C00FA40A2;
+			remoteInfo = NotificationContentExtension;
+		};
 		F4E908A62371C31400EB9FE6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6FF4AC0C211EC46F002C96EB /* Project object */;
@@ -287,6 +299,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				F4E908C02371C8C500EB9FE6 /* WireGuardTunnel.appex in Embed App Extensions */,
+				D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +321,12 @@
 		D535B6542490B699007171EC /* LocalNotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationFactory.swift; sourceTree = "<group>"; };
 		D54700D92491D3B100FA40A2 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
 		D54700DA2491D3B100FA40A2 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
+		D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D54700E22491D90C00FA40A2 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		D54700E42491D90C00FA40A2 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		D54700E72491D90C00FA40A2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		D54700EA2491D90C00FA40A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitor.swift; sourceTree = "<group>"; };
 		F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitoring.swift; sourceTree = "<group>"; };
 		F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewModel.swift; sourceTree = "<group>"; };
@@ -570,6 +589,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D54700DE2491D90C00FA40A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D54700E52491D90C00FA40A2 /* UserNotificationsUI.framework in Frameworks */,
+				D54700E32491D90C00FA40A2 /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F4E9089E2371C31400EB9FE6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -601,6 +629,7 @@
 				F41CCA1823711C7A0018DC43 /* FirefoxPrivateNetworkVPN */,
 				F41CCA33237128F10018DC43 /* FirefoxPrivateNetworkVPNTests */,
 				F4E908A22371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests */,
+				D54700E62491D90C00FA40A2 /* NotificationContentExtension */,
 				6FF4AC452120B9E0002C96EB /* Frameworks */,
 				F43DCC7E2379AC36000C60E3 /* LICENSE.txt */,
 				6FF4AC15211EC46F002C96EB /* Products */,
@@ -617,6 +646,7 @@
 				6F5D0C1A218352EF000F85AD /* WireGuardTunnel.appex */,
 				F4E908A12371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.xctest */,
 				F4E908AF2371C35100EB9FE6 /* FirefoxPrivateNetworkVPNTests.xctest */,
+				D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -638,6 +668,8 @@
 				F40831CB233CF5BE00A60FCA /* SafariServices.framework */,
 				F465854C233BF0850081D7D7 /* WebKit.framework */,
 				6FB1BDA021D4E00A00A991BF /* libwg-go.a */,
+				D54700E22491D90C00FA40A2 /* UserNotifications.framework */,
+				D54700E42491D90C00FA40A2 /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -658,6 +690,16 @@
 				D54700DA2491D3B100FA40A2 /* error_unstable.png */,
 			);
 			path = LocalNotification;
+			sourceTree = "<group>";
+		};
+		D54700E62491D90C00FA40A2 /* NotificationContentExtension */ = {
+			isa = PBXGroup;
+			children = (
+				D54700E72491D90C00FA40A2 /* NotificationViewController.swift */,
+				D54700E92491D90C00FA40A2 /* MainInterface.storyboard */,
+				D54700EC2491D90C00FA40A2 /* Info.plist */,
+			);
+			path = NotificationContentExtension;
 			sourceTree = "<group>";
 		};
 		F401097E240453B6006DFF96 /* Devices */ = {
@@ -1220,11 +1262,29 @@
 			);
 			dependencies = (
 				6F5D0C21218352EF000F85AD /* PBXTargetDependency */,
+				D54700EE2491D90C00FA40A2 /* PBXTargetDependency */,
 			);
 			name = FirefoxPrivateNetworkVPN;
 			productName = WireGuard;
 			productReference = 6FF4AC14211EC46F002C96EB /* Firefox Private Network VPN.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D54700E02491D90C00FA40A2 /* NotificationContentExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D54700F02491D90C00FA40A2 /* Build configuration list for PBXNativeTarget "NotificationContentExtension" */;
+			buildPhases = (
+				D54700DD2491D90C00FA40A2 /* Sources */,
+				D54700DE2491D90C00FA40A2 /* Frameworks */,
+				D54700DF2491D90C00FA40A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationContentExtension;
+			productName = NotificationContentExtension;
+			productReference = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		F4E908A02371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests */ = {
 			isa = PBXNativeTarget;
@@ -1269,7 +1329,7 @@
 		6FF4AC0C211EC46F002C96EB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1110;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Mozilla Corporation";
 				TargetAttributes = {
@@ -1297,6 +1357,9 @@
 								enabled = 0;
 							};
 						};
+					};
+					D54700E02491D90C00FA40A2 = {
+						CreatedOnToolsVersion = 11.5;
 					};
 					F4E908A02371C31400EB9FE6 = {
 						CreatedOnToolsVersion = 11.1;
@@ -1327,6 +1390,7 @@
 				6FDEF7DD21846BC100D8FBF6 /* WireGuardGoBridge */,
 				F4E908A02371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests */,
 				F4E908AE2371C35100EB9FE6 /* FirefoxPrivateNetworkVPNTests */,
+				D54700E02491D90C00FA40A2 /* NotificationContentExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1395,6 +1459,14 @@
 				F4483D0423F594E80094BE3E /* UpdateRequiredViewController.xib in Resources */,
 				F4E908EB2371CAAD00EB9FE6 /* Metropolis-ThinItalic.otf in Resources */,
 				F4E908DA2371CAAD00EB9FE6 /* Metropolis-Black.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D54700DF2491D90C00FA40A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D54700EB2491D90C00FA40A2 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1753,6 +1825,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D54700DD2491D90C00FA40A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D54700E82491D90C00FA40A2 /* NotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F4E9089D2371C31400EB9FE6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1787,6 +1867,11 @@
 			target = 6FDEF7DD21846BC100D8FBF6 /* WireGuardGoBridge */;
 			targetProxy = 6FDEF7E121846C0000D8FBF6 /* PBXContainerItemProxy */;
 		};
+		D54700EE2491D90C00FA40A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D54700E02491D90C00FA40A2 /* NotificationContentExtension */;
+			targetProxy = D54700ED2491D90C00FA40A2 /* PBXContainerItemProxy */;
+		};
 		F4E908A72371C31400EB9FE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6FF4AC13211EC46F002C96EB /* FirefoxPrivateNetworkVPN */;
@@ -1800,6 +1885,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D54700E92491D90C00FA40A2 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D54700EA2491D90C00FA40A2 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		F41CCA2E2371215E0018DC43 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1921,6 +2014,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = "Firefox VPN";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha";
 				CODE_SIGN_ENTITLEMENTS = "FirefoxPrivateNetworkVPN/Project Files/FirefoxPrivateNetworkVPN.entitlements";
@@ -1948,6 +2042,167 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		D54700F12491D90C00FA40A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mozilla.ios.FirefoxVPN.NotificationContentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D54700F22491D90C00FA40A2 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mozilla.ios.FirefoxVPN.NotificationContentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Staging;
+		};
+		D54700F32491D90C00FA40A2 /* Prod */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mozilla.ios.FirefoxVPN.NotificationContentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Prod;
 		};
 		F4D3D1F32412D967001B73D1 /* Staging */ = {
 			isa = XCBuildConfiguration;
@@ -2016,6 +2271,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = "Staging - Firefox VPN";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha";
 				CODE_SIGN_ENTITLEMENTS = "FirefoxPrivateNetworkVPN/Project Files/FirefoxPrivateNetworkVPN.entitlements";
@@ -2197,6 +2453,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = "Firefox VPN";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "FirefoxPrivateNetworkVPN/Project Files/FirefoxPrivateNetworkVPN.entitlements";
@@ -2406,6 +2663,16 @@
 				6FF4AC27211EC472002C96EB /* Debug */,
 				F4D3D1F42412D967001B73D1 /* Staging */,
 				F4D3D1FA2412D970001B73D1 /* Prod */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D54700F02491D90C00FA40A2 /* Build configuration list for PBXNativeTarget "NotificationContentExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D54700F12491D90C00FA40A2 /* Debug */,
+				D54700F22491D90C00FA40A2 /* Staging */,
+				D54700F32491D90C00FA40A2 /* Prod */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
