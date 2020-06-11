@@ -56,15 +56,13 @@ struct LocalNotificationFactory {
         private var attachments: [UNNotificationAttachment] {
             switch self {
             case .vpnUnstable:
-                // TODO: update image URL
-                guard let imageURL: URL = Bundle.main.url(forResource: "Error", withExtension: "png"),
+                guard let imageURL: URL = Bundle.main.url(forResource: "error_unstable", withExtension: "png"),
                     let attachment = try? UNNotificationAttachment(identifier: identifier, url: imageURL, options: nil) else {
                     return []
                 }
                 return [attachment]
             case .vpnNoSignal:
-                // TODO: update image URL
-                guard let imageURL: URL = Bundle.main.url(forResource: "Error", withExtension: "png"),
+                guard let imageURL: URL = Bundle.main.url(forResource: "error_noSignal", withExtension: "png"),
                     let attachment = try? UNNotificationAttachment(identifier: identifier, url: imageURL, options: nil) else {
                     return []
                 }
