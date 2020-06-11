@@ -14,6 +14,31 @@ import UserNotifications
 
 struct LocalNotificationFactory {
 
+    // MARK: - Init
+
+    static let shared = LocalNotificationFactory()
+
+    private init() {
+        let category = UNNotificationCategory(identifier: LocalNotificationFactory.vpnWarningCategory, actions: [], intentIdentifiers: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+    }
+
+    // MARK: - Property
+
+    private static let vpnWarningCategory = "vpnWarningCategory"
+
+    // MARK: - Method
+
+    func showNotification(when option: LocalNotificationOption) {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { settings in
+            guard (settings.authorizationStatus == .authorized) || (settings.authorizationStatus == .provisional) else { return }
+            center.add(option.request, withCompletionHandler: nil)
+        }
+    }
+
+    // MARK: - internal enum
+
     enum LocalNotificationOption {
         case vpnConnected
         case vpnDisconnected
@@ -53,23 +78,23 @@ struct LocalNotificationFactory {
 
         private var sound: UNNotificationSound? { .default }
 
-        private var attachments: [UNNotificationAttachment] {
+        private var imageURL: URL? {
             switch self {
             case .vpnUnstable:
-                guard let imageURL: URL = Bundle.main.url(forResource: "error_unstable", withExtension: "png"),
-                    let attachment = try? UNNotificationAttachment(identifier: identifier, url: imageURL, options: nil) else {
-                    return []
-                }
-                return [attachment]
+                return Bundle.main.url(forResource: "error_unstable", withExtension: "png")
             case .vpnNoSignal:
-                guard let imageURL: URL = Bundle.main.url(forResource: "error_noSignal", withExtension: "png"),
-                    let attachment = try? UNNotificationAttachment(identifier: identifier, url: imageURL, options: nil) else {
-                    return []
-                }
-                return [attachment]
+                return Bundle.main.url(forResource: "error_noSignal", withExtension: "png")
             default:
+                return nil
+            }
+        }
+
+        private var attachments: [UNNotificationAttachment] {
+            guard let imageURL = imageURL,
+                let attachment = try? UNNotificationAttachment(identifier: identifier, url: imageURL, options: nil) else {
                 return []
             }
+            return [attachment]
         }
 
         private var identifier: String {
@@ -87,6 +112,15 @@ struct LocalNotificationFactory {
             }
         }
 
+        private var category: String {
+            switch self {
+            case .vpnUnstable, .vpnNoSignal:
+                return LocalNotificationFactory.vpnWarningCategory
+            default:
+                return ""
+            }
+        }
+
         private var trigger: UNNotificationTrigger? { nil }
 
         var request: UNNotificationRequest {
@@ -95,15 +129,8 @@ struct LocalNotificationFactory {
             content.body = body
             content.sound = sound
             content.attachments = attachments
+            content.categoryIdentifier = category
             return UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        }
-    }
-
-    static func showNotification(when option: LocalNotificationOption) {
-        let center = UNUserNotificationCenter.current()
-        center.getNotificationSettings { settings in
-            guard (settings.authorizationStatus == .authorized) || (settings.authorizationStatus == .provisional) else { return }
-            center.add(option.request, withCompletionHandler: nil)
         }
     }
 }
