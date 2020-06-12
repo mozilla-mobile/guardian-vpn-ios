@@ -14,7 +14,7 @@ import Foundation
 struct GuardianURLRequest {
     private static var baseURL: String {
         #if STAGING
-        return "https://stage.guardian.nonprod.cloudops.mozgcp.net/"
+        return "https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/"
         #else
         return "https://fpn.firefox.com/"
         #endif
