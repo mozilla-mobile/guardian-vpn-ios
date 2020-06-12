@@ -14,7 +14,6 @@ import RxSwift
 import RxCocoa
 import NetworkExtension
 import Lottie
-import UserNotifications
 
 class VPNToggleView: UIView {
     @IBOutlet private var view: UIView!
@@ -130,6 +129,7 @@ class VPNToggleView: UIView {
         subtitleLabel.text = state.subtitle
         subtitleLabel.textColor = state.subtitleColor
 
+        sendNotification(to: state)
         updateToggle(to: state)
         animateGlobe(to: state)
 
@@ -150,6 +150,8 @@ class VPNToggleView: UIView {
         default:
             resetConnectionTimeAndHealth()
         }
+
+        currentState = state
     }
 
     private func updateToggle(to newState: VPNState) {
@@ -212,8 +214,6 @@ class VPNToggleView: UIView {
             globeAnimationView?.play(fromFrame: 60, toFrame: 60)
         default: break
         }
-
-        currentState = newState
     }
 
     private func animateGlobe(connected: Bool) {
@@ -248,10 +248,21 @@ class VPNToggleView: UIView {
                 }
             }).disposed(by: timerDisposeBag)
 
-        connectionState.subscribe { [weak self] connectionHealth in
-            if let connectionHealth = connectionHealth.element,
-                connectionHealth == .noSignal {
-                self?.sendNoSignalNotification()
+        connectionState.subscribe { connectionHealth in
+            if let connectionHealth = connectionHealth.element {
+                switch connectionHealth {
+                case .stable:
+                    guard case .switching(_, _) = self.currentState else {
+                        LocalNotificationFactory.shared.showNotification(when: .vpnConnected)
+                        return
+                    }
+                case .unstable:
+                    LocalNotificationFactory.shared.showNotification(when: .vpnUnstable)
+                case .noSignal:
+                    LocalNotificationFactory.shared.showNotification(when: .vpnNoSignal)
+                default:
+                    break
+                }
             }
         }.disposed(by: timerDisposeBag)
 
@@ -290,13 +301,13 @@ class VPNToggleView: UIView {
         self.subtitleLabel.attributedText = NSAttributedString(attributedString: fullString)
     }
 
-    private func sendNoSignalNotification() {
-        let content = UNMutableNotificationContent()
-        content.title = LocalizedString.notificationTitleNoSignal.value
-        content.body = LocalizedString.notificationBodyNoSignal.value
-        content.sound = UNNotificationSound.default
-
-        let request = UNNotificationRequest(identifier: "noSignalNotification", content: content, trigger: nil)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    private func sendNotification(to newState: VPNState) {
+        switch (currentState, newState) {
+        case (.switching, .on):
+            LocalNotificationFactory.shared.showNotification(when: .vpnSwitched(currentState.subtitle))
+        case (.disconnecting, .off), (.switching, .off):
+            LocalNotificationFactory.shared.showNotification(when: .vpnDisconnected)
+        default: break
+        }
     }
 }
