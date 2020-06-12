@@ -22,15 +22,15 @@ enum GuardianURLRequestPath {
         let prefix = "api/v1/vpn/"
         switch self {
         case .login:
-            return prefix + "login/"
+            return prefix + "login"
         case .verify(let token):
             return prefix + "login/verify/" + token
         case .retrieveServers:
-            return prefix + "servers/"
+            return prefix + "servers"
         case .account:
-            return prefix + "account/"
+            return prefix + "account"
         case .addDevice:
-            return prefix + "device/"
+            return prefix + "device"
         case .removeDevice(let deviceKey):
             return prefix + "device/" + deviceKey
         case .versions:
