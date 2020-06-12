@@ -61,9 +61,7 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
     }
 
     private func startStateMachine() {
-        if _currentState.value == .initial || _currentState.value == .stable {
-            move(to: .stable)
-        }
+        move(to: _currentState.value)
     }
 
     private func observeRxValue() {
@@ -96,21 +94,17 @@ class ConnectionHealthMonitor: ConnectionHealthMonitoring {
     }
 
     private func move(to destinationState: ConnectionHealth) {
-        let originalState = _currentState.value
-
-        switch (originalState, destinationState) {
-        case (_, .stable):
+        switch destinationState {
+        case.initial:
+            move(to: .stable)
+        case .stable:
             _currentState.accept(.stable)
             startUnstableTimer()
-
-        case (.stable, .unstable):
+        case .unstable:
             _currentState.accept(.unstable)
             startNoSignalTimer()
-
-        case (.unstable, .noSignal):
+        case .noSignal:
             _currentState.accept(.noSignal)
-
-        default: break
         }
     }
 
