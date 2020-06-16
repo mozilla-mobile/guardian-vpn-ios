@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,16 +43,6 @@
                                 <constraint firstAttribute="width" constant="350" id="8cK-6I-GgL"/>
                                 <constraint firstAttribute="width" secondItem="m89-A7-vt0" secondAttribute="height" multiplier="1:1" id="VyB-iW-wzj"/>
                             </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="8cK-6I-GgL"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=regular">
-                                <mask key="constraints">
-                                    <include reference="8cK-6I-GgL"/>
-                                </mask>
-                            </variation>
                         </view>
                     </subviews>
                 </view>
@@ -150,7 +140,6 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="m89-A7-vt0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="5IX-Cv-Zob"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sgm-YP-nOg" secondAttribute="trailing" id="5UR-va-4jw"/>
                 <constraint firstItem="sgm-YP-nOg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7Ff-Yy-eCy"/>
                 <constraint firstItem="sgm-YP-nOg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="D57-3W-5Y5"/>
@@ -178,11 +167,6 @@
                     <real key="value" value="2"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <variation key="heightClass=regular-widthClass=regular">
-                <mask key="constraints">
-                    <exclude reference="5IX-Cv-Zob"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="35.200000000000003" y="-137.6311844077961"/>
         </view>
     </objects>
