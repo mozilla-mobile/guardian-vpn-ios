@@ -30,11 +30,7 @@ struct LocalNotificationFactory {
     // MARK: - Method
 
     func showNotification(when option: LocalNotificationOption) {
-        let center = UNUserNotificationCenter.current()
-        center.getNotificationSettings { settings in
-            guard (settings.authorizationStatus == .authorized) || (settings.authorizationStatus == .provisional) else { return }
-            center.add(option.request, withCompletionHandler: nil)
-        }
+        UNUserNotificationCenter.current().add(option.request, withCompletionHandler: nil)
     }
 
     // MARK: - internal enum

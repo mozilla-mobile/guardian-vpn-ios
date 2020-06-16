@@ -20,6 +20,10 @@
 		D54700E82491D90C00FA40A2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54700E72491D90C00FA40A2 /* NotificationViewController.swift */; };
 		D54700EB2491D90C00FA40A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54700E92491D90C00FA40A2 /* MainInterface.storyboard */; };
 		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D5F693A824976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F693A724976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift */; };
+		D5F693A924976247009BDA0A /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
+		D5F693AA24976260009BDA0A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947F23709033007595C3 /* Strings.swift */; };
+		D5F693AB24976465009BDA0A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA2E2371215E0018DC43 /* Localizable.strings */; };
 		F401097923FEE2D8006DFF96 /* HeartbeatMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */; };
 		F401097B23FEE829006DFF96 /* HeartbeatMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */; };
 		F401097D24002C8B006DFF96 /* DeviceManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */; };
@@ -327,6 +331,7 @@
 		D54700E72491D90C00FA40A2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D54700EA2491D90C00FA40A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5F693A724976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireGuardTunnelPacketTunnelProvider.swift; sourceTree = "<group>"; };
 		F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitor.swift; sourceTree = "<group>"; };
 		F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitoring.swift; sourceTree = "<group>"; };
 		F401097C24002C8B006DFF96 /* DeviceManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewModel.swift; sourceTree = "<group>"; };
@@ -937,6 +942,7 @@
 			children = (
 				F4AED25B235F83CB00F80ABF /* Info.plist */,
 				F4AED23A235F5B2E00F80ABF /* WireGuardTunnel.entitlements */,
+				D5F693A724976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift */,
 			);
 			path = WireGuardTunnel;
 			sourceTree = "<group>";
@@ -1400,6 +1406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F693AB24976465009BDA0A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1656,6 +1663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F693A924976247009BDA0A /* LocalNotificationFactory.swift in Sources */,
 				F4AED1D6235F4A3900F80ABF /* Logger.swift in Sources */,
 				F4AED1D7235F4A6F00F80ABF /* FileManager+Extension.swift in Sources */,
 				F4AED1D4235F4A0200F80ABF /* ErrorNotifier.swift in Sources */,
@@ -1665,7 +1673,9 @@
 				F4AED1DE235F4C5700F80ABF /* TunnelConfiguration.swift in Sources */,
 				F4AED1DC235F4C5700F80ABF /* PeerConfiguration.swift in Sources */,
 				F4AED1E0235F4C5700F80ABF /* String+ArrayConversion.swift in Sources */,
+				D5F693A824976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift in Sources */,
 				F4AED1E2235F4C5700F80ABF /* IPAddressRange.swift in Sources */,
+				D5F693AA24976260009BDA0A /* Strings.swift in Sources */,
 				F4AED1DB235F4C5700F80ABF /* Data+KeyEncoding.swift in Sources */,
 				F4AED1E3235F4C5700F80ABF /* Endpoint.swift in Sources */,
 				F4AED1D9235F4C5700F80ABF /* InterfaceConfiguration.swift in Sources */,
