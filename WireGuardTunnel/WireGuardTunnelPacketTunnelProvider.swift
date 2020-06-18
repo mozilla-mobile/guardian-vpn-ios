@@ -17,7 +17,10 @@ class WireGuardTunnelPacketTunnelProvider: PacketTunnelProvider {
     override func startTunnel(options: [String: NSObject]?, completionHandler startTunnelCompletionHandler: @escaping (Error?) -> Void) {
         super.startTunnel(options: options) { error in
             if error == nil {
-                LocalNotificationFactory.shared.showNotification(when: .vpnConnected)
+                if let isSwitchingInProgress = AppExtensionUserDefaults.standard.value(forKey: .isSwitchingInProgress) as? Bool,
+                    !isSwitchingInProgress {
+                    LocalNotificationFactory.shared.showNotification(when: .vpnConnected)
+                }
             }
             startTunnelCompletionHandler(error)
         }
@@ -25,7 +28,10 @@ class WireGuardTunnelPacketTunnelProvider: PacketTunnelProvider {
 
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
         super.stopTunnel(with: reason) {
-            LocalNotificationFactory.shared.showNotification(when: .vpnDisconnected)
+            if let isSwitchingInProgress = AppExtensionUserDefaults.standard.value(forKey: .isSwitchingInProgress) as? Bool,
+                !isSwitchingInProgress {
+                LocalNotificationFactory.shared.showNotification(when: .vpnDisconnected)
+            }
             completionHandler()
         }
     }
