@@ -251,11 +251,6 @@ class VPNToggleView: UIView {
         connectionState.subscribe { connectionHealth in
             if let connectionHealth = connectionHealth.element {
                 switch connectionHealth {
-                case .stable:
-                    guard case .switching(_, _) = self.currentState else {
-                        LocalNotificationFactory.shared.showNotification(when: .vpnConnected)
-                        return
-                    }
                 case .unstable:
                     LocalNotificationFactory.shared.showNotification(when: .vpnUnstable)
                 case .noSignal:
@@ -305,8 +300,6 @@ class VPNToggleView: UIView {
         switch (currentState, newState) {
         case (.switching, .on):
             LocalNotificationFactory.shared.showNotification(when: .vpnSwitched(currentState.subtitle))
-        case (.disconnecting, .off), (.switching, .off):
-            LocalNotificationFactory.shared.showNotification(when: .vpnDisconnected)
         default: break
         }
     }
