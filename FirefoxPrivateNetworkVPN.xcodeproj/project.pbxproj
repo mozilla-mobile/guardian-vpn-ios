@@ -20,6 +20,8 @@
 		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D5D349B3249A73FB00DD9F50 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B1249A73FA00DD9F50 /* error_noSignal.png */; };
 		D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B2249A73FA00DD9F50 /* error_unstable.png */; };
+		D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
+		D5D349B7249B744C00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
 		D5F693A824976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F693A724976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift */; };
 		D5F693A924976247009BDA0A /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
 		D5F693AA24976260009BDA0A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947F23709033007595C3 /* Strings.swift */; };
@@ -331,6 +333,7 @@
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5D349B1249A73FA00DD9F50 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
 		D5D349B2249A73FA00DD9F50 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
+		D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensionUserDefaults.swift; sourceTree = "<group>"; };
 		D5F693A724976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireGuardTunnelPacketTunnelProvider.swift; sourceTree = "<group>"; };
 		F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitor.swift; sourceTree = "<group>"; };
 		F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitoring.swift; sourceTree = "<group>"; };
@@ -720,6 +723,7 @@
 			children = (
 				F4DFBB252422D14F007D27FA /* AccountStore.swift */,
 				F47865962425069700598AAF /* PersistenceLayer.swift */,
+				D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -1681,6 +1685,7 @@
 				F4AED1D9235F4C5700F80ABF /* InterfaceConfiguration.swift in Sources */,
 				F4AED1D2235F49FC00F80ABF /* DNSResolver.swift in Sources */,
 				F4AED1E1235F4C5700F80ABF /* key.c in Sources */,
+				D5D349B7249B744C00DD9F50 /* AppExtensionUserDefaults.swift in Sources */,
 				F4AED1DD235F4C5700F80ABF /* DNSServer.swift in Sources */,
 				F4AED1D3235F49FF00F80ABF /* PacketTunnelSettingsGenerator.swift in Sources */,
 				F4AED24E235F82BD00F80ABF /* ringlogger.c in Sources */,
@@ -1803,6 +1808,7 @@
 				F478E48623C7881900D17FE0 /* UpdateStatus.swift in Sources */,
 				F4AED258235F835300F80ABF /* Endpoint.swift in Sources */,
 				F4E909022371CAAD00EB9FE6 /* LoadingViewController.swift in Sources */,
+				D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */,
 				F4E908CF2371CAAD00EB9FE6 /* NetworkLayer.swift in Sources */,
 				F478E48123C784C400D17FE0 /* UIApplication+Extensions.swift in Sources */,
 				F4E908EC2371CAAD00EB9FE6 /* Strings.swift in Sources */,
