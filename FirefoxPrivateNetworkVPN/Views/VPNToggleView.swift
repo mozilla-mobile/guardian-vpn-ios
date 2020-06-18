@@ -299,7 +299,11 @@ class VPNToggleView: UIView {
     private func sendNotification(to newState: VPNState) {
         switch (currentState, newState) {
         case (.switching, .on):
-            LocalNotificationFactory.shared.showNotification(when: .vpnSwitched(currentState.subtitle))
+            if let isSwitchingInProgress = AppExtensionUserDefaults.standard.value(forKey: .isSwitchingInProgress) as? Bool,
+                isSwitchingInProgress {
+                LocalNotificationFactory.shared.showNotification(when: .vpnSwitched(currentState.subtitle))
+            }
+            AppExtensionUserDefaults.standard.set(false, forKey: .isSwitchingInProgress)
         default: break
         }
     }

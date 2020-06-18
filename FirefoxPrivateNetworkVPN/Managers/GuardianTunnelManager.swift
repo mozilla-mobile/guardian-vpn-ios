@@ -165,6 +165,7 @@ class GuardianTunnelManager: TunnelManaging {
                 if cityName != newCityName {
                     self.internalState.accept(.switching(cityName, newCityName))
                     self.isSwitchingInProgress = true
+                    AppExtensionUserDefaults.standard.set(true, forKey: .isSwitchingInProgress)
                 }
             }
             guard let account = self.account,

@@ -16,6 +16,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var dependencyManager: DependencyProviding?
+    let userDedaults = AppExtensionUserDefaults.standard
 
     func application(
         _ application: UIApplication,
@@ -48,9 +49,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dependencyManager.heartbeatMonitor.start()
         }
 
-        if dependencyManager.tunnelManager.stateEvent.value == .on,
-            let hostAddress = dependencyManager.accountManager.selectedCity?.selectedServer?.ipv4Gateway {
-            self.dependencyManager?.connectionHealthMonitor.start(hostAddress: hostAddress)
+        switch dependencyManager.tunnelManager.stateEvent.value {
+        case .on:
+            if let hostAddress = dependencyManager.accountManager.selectedCity?.selectedServer?.ipv4Gateway {
+                self.dependencyManager?.connectionHealthMonitor.start(hostAddress: hostAddress)
+            }
+        case .switching:
+            userDedaults.set(true, forKey: .isSwitchingInProgress)
+        default:
+            break
         }
     }
 
@@ -62,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dependencyManager?.connectionHealthMonitor.stop()
         dependencyManager?.heartbeatMonitor.stop()
         dependencyManager?.releaseMonitor.stop()
+        userDedaults.set(false, forKey: .isSwitchingInProgress)
     }
 }
 
