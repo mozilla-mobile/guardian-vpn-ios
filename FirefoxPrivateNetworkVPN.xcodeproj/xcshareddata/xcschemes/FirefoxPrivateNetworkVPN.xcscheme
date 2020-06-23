@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6FF4AC13211EC46F002C96EB"
-            BuildableName = "Firefox Private Network VPN.app"
+            BuildableName = "Mozilla VPN.app"
             BlueprintName = "FirefoxPrivateNetworkVPN"
             ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
          </BuildableReference>
