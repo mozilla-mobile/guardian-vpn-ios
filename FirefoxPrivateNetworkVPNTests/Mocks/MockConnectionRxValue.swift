@@ -12,7 +12,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
-@testable import Firefox_Private_Network_VPN
+@testable import Mozilla_VPN
 
 class MockConnectionRxValue: ConnectionRxValueObserving {
 

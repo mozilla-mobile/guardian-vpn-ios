@@ -10,7 +10,7 @@
 //
 
 import Foundation
-@testable import Firefox_Private_Network_VPN
+@testable import Mozilla_VPN
 
 class MockLongPinger: Pinging {
 

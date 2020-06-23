@@ -318,7 +318,7 @@
 		6FB1BDA021D4E00A00A991BF /* libwg-go.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libwg-go.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB1BDB621D4F8B800A991BF /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/NetworkExtension.framework; sourceTree = DEVELOPER_DIR; };
 		6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libwg-go.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FF4AC14211EC46F002C96EB /* Firefox Private Network VPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firefox Private Network VPN.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FF4AC14211EC46F002C96EB /* Mozilla VPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mozilla VPN.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF4AC23211EC472002C96EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
@@ -647,7 +647,7 @@
 		6FF4AC15211EC46F002C96EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6FF4AC14211EC46F002C96EB /* Firefox Private Network VPN.app */,
+				6FF4AC14211EC46F002C96EB /* Mozilla VPN.app */,
 				6F5D0C1A218352EF000F85AD /* WireGuardTunnel.appex */,
 				F4E908A12371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.xctest */,
 				F4E908AF2371C35100EB9FE6 /* FirefoxPrivateNetworkVPNTests.xctest */,
@@ -1272,7 +1272,7 @@
 			);
 			name = FirefoxPrivateNetworkVPN;
 			productName = WireGuard;
-			productReference = 6FF4AC14211EC46F002C96EB /* Firefox Private Network VPN.app */;
+			productReference = 6FF4AC14211EC46F002C96EB /* Mozilla VPN.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D54700E02491D90C00FA40A2 /* NotificationContentExtension */ = {
@@ -2045,7 +2045,7 @@
 				OTHER_SWIFT_FLAGS = "";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG -DSTAGING";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "Firefox Private Network VPN";
+				PRODUCT_NAME = "Mozilla VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FirefoxPrivateNetworkVPN/Project Files/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2310,7 +2310,7 @@
 				MARKETING_VERSION = "$(VERSION_NAME)";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DSTAGING";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "Firefox Private Network VPN";
+				PRODUCT_NAME = "Mozilla VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FirefoxPrivateNetworkVPN/Project Files/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2401,7 +2401,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Firefox Private Network VPN.app/Firefox Private Network VPN";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mozilla VPN.app/Mozilla VPN";
 			};
 			name = Staging;
 		};
@@ -2493,7 +2493,7 @@
 				OTHER_SWIFT_FLAGS = "";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DPROD";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(FIREFOX_VPN_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "Firefox Private Network VPN";
+				PRODUCT_NAME = "Mozilla VPN";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FirefoxPrivateNetworkVPN/Project Files/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2584,7 +2584,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Firefox Private Network VPN.app/Firefox Private Network VPN";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mozilla VPN.app/Mozilla VPN";
 			};
 			name = Prod;
 		};
@@ -2639,7 +2639,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Firefox Private Network VPN.app/Firefox Private Network VPN";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mozilla VPN.app/Mozilla VPN";
 			};
 			name = Debug;
 		};

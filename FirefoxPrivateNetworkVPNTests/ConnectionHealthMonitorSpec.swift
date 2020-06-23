@@ -15,7 +15,7 @@ import Nimble
 import RxSwift
 import RxCocoa
 import RxTest
-@testable import Firefox_Private_Network_VPN
+@testable import Mozilla_VPN
 
 //swiftlint:disable implicitly_unwrapped_optional
 class ConnectionHealthMonitorSpec: QuickSpec {

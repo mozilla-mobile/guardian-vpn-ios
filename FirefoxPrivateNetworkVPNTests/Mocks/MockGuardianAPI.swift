@@ -11,7 +11,7 @@
 
 import Foundation
 import RxSwift
-@testable import Firefox_Private_Network_VPN
+@testable import Mozilla_VPN
 
 class MockGuardianAPI: NetworkRequesting {
 
