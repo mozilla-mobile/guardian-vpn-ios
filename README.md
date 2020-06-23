@@ -1,4 +1,4 @@
-# Firefox Private Network VPN (iOS)
+# Mozilla VPN (iOS)
 This project contains an application for iOS. It uses components from the [WireGuard](http://www.wireguard.com/) project as a git submodule.
 
 ## Environment Setup
