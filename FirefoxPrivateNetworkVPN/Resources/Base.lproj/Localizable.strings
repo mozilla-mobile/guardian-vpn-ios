@@ -48,7 +48,7 @@
 "homeSelectConnection" = "Select location";
 
 // MARK: - Server Selection
-"serversNavTitle" = "Connection";
+"serversNavTitle" = "Select location";
 
 // MARK: - Settings
 "settingsTabName" = "Settings";
