@@ -106,7 +106,7 @@
 
 // Mark: - Required Update
 "updateRequired" = "Update required";
-"updateRequiredSubtitle" = "We detected and fixed a serious bug. You must update your app in order to use Mozilla VPN.";
+"updateRequiredSubtitle" = "We detected and fixed a serious bug. \nYou must update your app.";
 
 //MARK: - Error Descriptions
 "errorDeviceRemoval" = "Unable to remove device.";
