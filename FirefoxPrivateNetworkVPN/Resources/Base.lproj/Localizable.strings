@@ -12,14 +12,14 @@
 // MARK: - Landing Screen
 "landingTitle" = "Mozilla VPN";
 "landingSubtitle" = "A fast, secure and easy to use VPN. \nBuilt by the makers of Firefox.";
-"noLogsTitle" = "No activity logs";
-"noLogsSubtitle" = "We’re Mozilla. We don’t log your activity and we’re always on your side.";
-"encryptionTitle" = "Device level encryption";
-"encryptionSubtitle" = "No one will see your location or activity, even on unsecure Wi-Fi networks.";
-"manyServersTitle" = "Servers in 39 countries";
-"manyServersSubtitle" = "Stand up to tech bullies and protect your access to the web.";
-"getStartedTitle" = "Connect up to 5 devices";
-"getStartedSubtitle" = "Stream, download and game. We won’t restrict your bandwidth.";
+"noLogsTitle" = "No online activity logs";
+"noLogsSubtitle" = "We are committed to not monitoring or logging your browsing or network history.";
+"encryptionTitle" = "Device-level encryption";
+"encryptionSubtitle" = "Encrypt your traffic so that it can’t be read by your ISP or eavesdroppers.";
+"manyServersTitle" = "Servers in 30+ countries";
+"manyServersSubtitle" = "Pick a server in any country you want and hide your location to throw off trackers.";
+"noRestrictionsTitle" = "No bandwidth restrictions";
+"noRestrictionsSubtitle" = "Stream, download, and game without limits, monthly caps or ISP throttling.";
 "getStarted" = "Get started";
 "learnMore" = "Learn more";
 "landingSkip" = "Skip";

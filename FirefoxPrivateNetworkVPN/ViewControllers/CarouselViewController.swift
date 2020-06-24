@@ -52,7 +52,7 @@ class CarouselViewController: UIViewController, Navigating {
         subtitleLabel.text = type.subtitle
 
         switch type {
-        case .getStarted:
+        case .noLogs:
             getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
             getStartedButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
         default:
