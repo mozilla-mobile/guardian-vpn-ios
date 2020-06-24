@@ -33,11 +33,11 @@
 "homeTitleSwitching" = "Switching…";
 "homeTitleDisconnecting" = "Disconnecting…";
 
-"homeSubtitleOff" = "Turn it on to protect your entire device";
-"homeSubtitleConnecting" = "You will be protected shortly";
-"homeSubtitleOn" = "Secure and protected  •  %@";
+"homeSubtitleOff" = "Turn on to protect your privacy";
+"homeSubtitleConnecting" = "Masking connection and location";
+"homeSubtitleOn" = "Secure and private  •  %@";
 "homeSubtitleSwitching" = "From %1$@ to %2$@";
-"homeSubtitleDisconnecting" = "You will be disconnected shortly";
+"homeSubtitleDisconnecting" = "Unmasking connection and location";
 "homeSubtitleCheckConnection" = "  •  Check connection";
 "homeSubtitleUnstable" = "  Unstable";
 "homeSubtitleNoSignal" = "  No signal";
@@ -45,7 +45,7 @@
 "homeSubtitleWeekPlus" = "1 week +";
 
 "homeApplicationName" = "Mozilla VPN";
-"homeSelectConnection" = "Select connection";
+"homeSelectConnection" = "Select location";
 
 // MARK: - Server Selection
 "serversNavTitle" = "Connection";
