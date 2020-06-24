@@ -84,6 +84,7 @@
 "aboutTerms" = "Nutzungsbedingungen";
 "aboutPrivacy" = "Datenschutz";
 "aboutAppName" = "Mozilla VPN";
+"aboutAppDescription" = "A fast, secure and easy to use VPN. Built by the makers of Firefox.";
 "aboutReleaseVersion" = "Version";
 
 // MARK: - Warning toast

@@ -80,10 +80,11 @@
 "helpDebug" = "Debug";
 
 // MARK: - About
-"aboutTitle" = "About";
+"aboutTitle" = "About us";
 "aboutTerms" = "Terms of Service";
 "aboutPrivacy" = "Privacy Policy";
 "aboutAppName" = "Mozilla VPN";
+"aboutAppDescription" = "A fast, secure and easy to use VPN. Built by the makers of Firefox.";
 "aboutReleaseVersion" = "Release version";
 
 // MARK: - Warning toast
