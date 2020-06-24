@@ -63,7 +63,11 @@ class LandingViewController: UIViewController, Navigating {
 
     private func setupView() {
         titleLabel.text = LocalizedString.landingTitle.value
-        subtitleLabel.text = LocalizedString.landingSubtitle.value
+        subtitleLabel.setAttributedText(title: LocalizedString.landingSubtitle.value,
+                                        lineHeightMultiple: 1.21,
+                                        alignment: .center,
+                                        font: UIFont.custom(.inter, size: 15),
+                                        color: UIColor.custom(.grey40))
         getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
         getStartedButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
         learnMoreButton.setTitle(LocalizedString.learnMore.value, for: .normal)

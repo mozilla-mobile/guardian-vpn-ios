@@ -12,11 +12,12 @@
 import UIKit
 
 extension UILabel {
-    func setAttributedText(title: String, lineHeightMultiple: CGFloat, font: UIFont, color: UIColor) {
+    func setAttributedText(title: String, lineHeightMultiple: CGFloat, alignment: NSTextAlignment = .left, font: UIFont, color: UIColor) {
         let attributedString = NSMutableAttributedString(string: title)
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = lineHeightMultiple
+        paragraphStyle.alignment = alignment
 
         let attributedDict = [NSAttributedString.Key.paragraphStyle: paragraphStyle,
                               NSAttributedString.Key.font: font,
