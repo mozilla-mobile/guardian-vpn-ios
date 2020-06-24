@@ -18,8 +18,8 @@
 "encryptionSubtitle" = "Niemand wird Ihren Standort oder Ihre Aktivität sehen, auch nicht in unsicheren Wi-Fi-Netzwerken.";
 "manyServersTitle" = "Server in 39 Ländern";
 "manyServersSubtitle" = "Schützen Sie Ihren Zugang zum Internet, indem Sie sich gegen Datenkraken wehren.";
-"getStartedTitle" = "Bis zu 5 Geräte verbinden";
-"getStartedSubtitle" = "Streaming, Downloads und Spiele. Wir werden die Bandbreite nicht beschränken.";
+"noRestrictionsTitle" = "Bis zu 5 Geräte verbinden";
+"noRestrictionsSubtitle" = "Streaming, Downloads und Spiele. Wir werden die Bandbreite nicht beschränken.";
 "getStarted" = "Anmelden";
 "learnMore" = "Weitere Informationen";
 "landingSkip" = "Überspringen";

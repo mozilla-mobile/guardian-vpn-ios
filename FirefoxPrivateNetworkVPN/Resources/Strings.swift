@@ -20,8 +20,8 @@ enum LocalizedString: String {
     case encryptionSubtitle
     case manyServersTitle
     case manyServersSubtitle
-    case getStartedTitle
-    case getStartedSubtitle
+    case noRestrictionsTitle
+    case noRestrictionsSubtitle
     case getStarted
     case learnMore
     case landingSkip

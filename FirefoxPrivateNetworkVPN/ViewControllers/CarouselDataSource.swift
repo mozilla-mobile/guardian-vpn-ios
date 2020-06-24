@@ -21,9 +21,9 @@ class CarouselDataSource: NSObject, UIPageViewControllerDataSource {
         let noLogsViewController = CarouselViewController(for: .noLogs)
         let encryptionViewController = CarouselViewController(for: .encryption)
         let manyServersViewController = CarouselViewController(for: .manyServers)
-        let getStartedViewController = CarouselViewController(for: .getStarted)
+        let noRestrictionsViewController = CarouselViewController(for: .noRestrictions)
 
-        return [noLogsViewController, encryptionViewController, manyServersViewController, getStartedViewController]
+        return [encryptionViewController, manyServersViewController, noRestrictionsViewController, noLogsViewController]
     }()
 
     func index(of viewController: UIViewController) -> Int? {

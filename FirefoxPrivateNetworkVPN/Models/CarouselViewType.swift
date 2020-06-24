@@ -15,7 +15,7 @@ enum CarouselViewType {
     case noLogs
     case encryption
     case manyServers
-    case getStarted
+    case noRestrictions
 
     var title: String {
         switch self {
@@ -25,8 +25,8 @@ enum CarouselViewType {
             return LocalizedString.encryptionTitle.value
         case .manyServers:
             return LocalizedString.manyServersTitle.value
-        case .getStarted:
-            return LocalizedString.getStartedTitle.value
+        case .noRestrictions:
+            return LocalizedString.noRestrictionsTitle.value
         }
     }
 
@@ -38,8 +38,8 @@ enum CarouselViewType {
             return LocalizedString.encryptionSubtitle.value
         case .manyServers:
             return LocalizedString.manyServersSubtitle.value
-        case .getStarted:
-            return LocalizedString.getStartedSubtitle.value
+        case .noRestrictions:
+            return LocalizedString.noRestrictionsSubtitle.value
         }
     }
 
@@ -51,7 +51,7 @@ enum CarouselViewType {
             return UIImage(named: "carousel_encryption")
         case .manyServers:
             return UIImage(named: "carousel_globe")
-        case .getStarted:
+        case .noRestrictions:
             return UIImage(named: "carousel_meter")
         }
     }
