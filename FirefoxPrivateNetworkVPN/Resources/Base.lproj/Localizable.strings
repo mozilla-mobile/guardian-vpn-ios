@@ -11,7 +11,7 @@
 
 // MARK: - Landing Screen
 "landingTitle" = "Mozilla VPN";
-"landingSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
+"landingSubtitle" = "A fast, secure and easy to use VPN. \nBuilt by the makers of Firefox.";
 "noLogsTitle" = "No activity logs";
 "noLogsSubtitle" = "We’re Mozilla. We don’t log your activity and we’re always on your side.";
 "encryptionTitle" = "Device level encryption";
