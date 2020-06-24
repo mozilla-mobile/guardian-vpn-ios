@@ -26,7 +26,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
 
     // MARK: - Initialization
     init(with tableView: UITableView) {
-        representedObject = [.device, .help, .about, .feedback, .signout]
+        representedObject = [.device, .about, .help, .feedback, .signout]
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
