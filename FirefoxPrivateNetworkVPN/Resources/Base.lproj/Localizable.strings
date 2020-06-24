@@ -89,7 +89,7 @@
 
 // MARK: - Warning toast
 "toastTryAgain" = "Try again";
-"toastLoggedOut" = "Logged out and device removed";
+"toastLoggedOut" = "Signed out and device removed";
 "toastNoConnection" = "No internet connection.";
 "toastAuthenticationError" = "Authentication error.";
 
