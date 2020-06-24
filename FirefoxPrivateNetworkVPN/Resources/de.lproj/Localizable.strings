@@ -10,7 +10,7 @@
 */
 
 // MARK: - Landing Screen
-"landingTitle" = "Firefox Private Network";
+"landingTitle" = "Mozilla VPN";
 "landingSubtitle" = "Ein schnelles, sicheres und praktisches VPN (Virtuelles Privates Netzwerk)";
 "noLogsTitle" = "Kein Aktivitätsprotokoll vorhanden";
 "noLogsSubtitle" = "Wir sind Mozilla. Wir speichern deine Aktivitäten nie.";
@@ -44,7 +44,7 @@
 "homeSubtitleWeek" = "1 Woche";
 "homeSubtitleWeekPlus" = "1 Woche +";
 
-"homeApplicationName" = "Firefox Private Network";
+"homeApplicationName" = "Mozilla VPN";
 "homeSelectConnection" = "Alles Verbindungen";
 
 // MARK: - Server Selection
@@ -83,7 +83,7 @@
 "aboutTitle" = "Über";
 "aboutTerms" = "Nutzungsbedingungen";
 "aboutPrivacy" = "Datenschutz";
-"aboutAppName" = "Firefox Private Network";
+"aboutAppName" = "Mozilla VPN";
 "aboutReleaseVersion" = "Version";
 
 // MARK: - Warning toast

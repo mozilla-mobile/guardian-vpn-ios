@@ -10,7 +10,7 @@
 */
 
 // MARK: - Landing Screen
-"landingTitle" = "Firefox Private Network";
+"landingTitle" = "Mozilla VPN";
 "landingSubtitle" = "A fast, secure and easy to use VPN (Virtual Private Network).";
 "noLogsTitle" = "No activity logs";
 "noLogsSubtitle" = "We’re Mozilla. We don’t log your activity and we’re always on your side.";
@@ -44,7 +44,7 @@
 "homeSubtitleWeek" = "1 week";
 "homeSubtitleWeekPlus" = "1 week +";
 
-"homeApplicationName" = "Firefox Private Network";
+"homeApplicationName" = "Mozilla VPN";
 "homeSelectConnection" = "Select connection";
 
 // MARK: - Server Selection
@@ -83,7 +83,7 @@
 "aboutTitle" = "About";
 "aboutTerms" = "Terms of Service";
 "aboutPrivacy" = "Privacy Policy";
-"aboutAppName" = "Firefox Private Network";
+"aboutAppName" = "Mozilla VPN";
 "aboutReleaseVersion" = "Release version";
 
 // MARK: - Warning toast
@@ -105,7 +105,7 @@
 
 // Mark: - Required Update
 "updateRequired" = "Update required";
-"updateRequiredSubtitle" = "We detected and fixed a serious bug. You must update your app in order to use Firefox Private Network.";
+"updateRequiredSubtitle" = "We detected and fixed a serious bug. You must update your app in order to use Mozilla VPN.";
 
 //MARK: - Error Descriptions
 "errorDeviceRemoval" = "Unable to remove device.";
