@@ -80,6 +80,7 @@ enum LocalizedString: String {
     case aboutTerms
     case aboutPrivacy
     case aboutAppName
+    case aboutAppDescription
     case aboutReleaseVersion
 
     case toastTryAgain
