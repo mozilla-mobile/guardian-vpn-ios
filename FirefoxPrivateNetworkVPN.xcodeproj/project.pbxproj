@@ -13,13 +13,15 @@
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		D535B6552490B699007171EC /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
-		D54700DB2491D3B100FA40A2 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D54700D92491D3B100FA40A2 /* error_noSignal.png */; };
-		D54700DC2491D3B100FA40A2 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D54700DA2491D3B100FA40A2 /* error_unstable.png */; };
 		D54700E32491D90C00FA40A2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54700E22491D90C00FA40A2 /* UserNotifications.framework */; };
 		D54700E52491D90C00FA40A2 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54700E42491D90C00FA40A2 /* UserNotificationsUI.framework */; };
 		D54700E82491D90C00FA40A2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54700E72491D90C00FA40A2 /* NotificationViewController.swift */; };
 		D54700EB2491D90C00FA40A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54700E92491D90C00FA40A2 /* MainInterface.storyboard */; };
 		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D5D349B3249A73FB00DD9F50 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B1249A73FA00DD9F50 /* error_noSignal.png */; };
+		D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B2249A73FA00DD9F50 /* error_unstable.png */; };
+		D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
+		D5D349B7249B744C00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
 		D5F693A824976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F693A724976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift */; };
 		D5F693A924976247009BDA0A /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
 		D5F693AA24976260009BDA0A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947F23709033007595C3 /* Strings.swift */; };
@@ -323,14 +325,15 @@
 		6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
 		D535B6542490B699007171EC /* LocalNotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationFactory.swift; sourceTree = "<group>"; };
-		D54700D92491D3B100FA40A2 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
-		D54700DA2491D3B100FA40A2 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
 		D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54700E22491D90C00FA40A2 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D54700E42491D90C00FA40A2 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		D54700E72491D90C00FA40A2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D54700EA2491D90C00FA40A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5D349B1249A73FA00DD9F50 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
+		D5D349B2249A73FA00DD9F50 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
+		D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensionUserDefaults.swift; sourceTree = "<group>"; };
 		D5F693A724976192009BDA0A /* WireGuardTunnelPacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireGuardTunnelPacketTunnelProvider.swift; sourceTree = "<group>"; };
 		F401097823FEE2D8006DFF96 /* HeartbeatMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitor.swift; sourceTree = "<group>"; };
 		F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatMonitoring.swift; sourceTree = "<group>"; };
@@ -691,8 +694,8 @@
 			isa = PBXGroup;
 			children = (
 				D535B6542490B699007171EC /* LocalNotificationFactory.swift */,
-				D54700D92491D3B100FA40A2 /* error_noSignal.png */,
-				D54700DA2491D3B100FA40A2 /* error_unstable.png */,
+				D5D349B1249A73FA00DD9F50 /* error_noSignal.png */,
+				D5D349B2249A73FA00DD9F50 /* error_unstable.png */,
 			);
 			path = LocalNotification;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 			children = (
 				F4DFBB252422D14F007D27FA /* AccountStore.swift */,
 				F47865962425069700598AAF /* PersistenceLayer.swift */,
+				D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -1422,7 +1426,6 @@
 				F4E909062371CAAD00EB9FE6 /* ServersViewController.xib in Resources */,
 				F41CCA2923711C7A0018DC43 /* Assets.xcassets in Resources */,
 				F4E908E32371CAAD00EB9FE6 /* Metropolis-LightItalic.otf in Resources */,
-				D54700DC2491D3B100FA40A2 /* error_unstable.png in Resources */,
 				F4E908D82371CAAD00EB9FE6 /* Inter-Regular.otf in Resources */,
 				F4E908DF2371CAAD00EB9FE6 /* Metropolis-ExtraBoldItalic.otf in Resources */,
 				F4E908E02371CAAD00EB9FE6 /* Metropolis-ExtraLight.otf in Resources */,
@@ -1430,7 +1433,7 @@
 				F4230484237209B000572A93 /* HelpViewController.xib in Resources */,
 				F4E908DD2371CAAD00EB9FE6 /* Metropolis-BoldItalic.otf in Resources */,
 				F4E909142371CAAD00EB9FE6 /* DeviceLimitReachedView.xib in Resources */,
-				D54700DB2491D3B100FA40A2 /* error_noSignal.png in Resources */,
+				D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */,
 				F4E909032371CAAD00EB9FE6 /* LoadingViewController.xib in Resources */,
 				F4E9090C2371CAAD00EB9FE6 /* AccountInformationHeader.xib in Resources */,
 				F43BEA5F2412F7DE000249C3 /* SignoutTableViewCell.xib in Resources */,
@@ -1444,6 +1447,7 @@
 				F4E9090A2371CAAD00EB9FE6 /* AccountInformationCell.xib in Resources */,
 				F4E909182371CAAD00EB9FE6 /* VPNToggleView.xib in Resources */,
 				F4E908FB2371CAAD00EB9FE6 /* DeviceManagementViewController.xib in Resources */,
+				D5D349B3249A73FB00DD9F50 /* error_noSignal.png in Resources */,
 				F4E908E12371CAAD00EB9FE6 /* Metropolis-ExtraLightItalic.otf in Resources */,
 				F4D3D1E62406C7A7001B73D1 /* Settings.bundle in Resources */,
 				F4E908E22371CAAD00EB9FE6 /* Metropolis-Light.otf in Resources */,
@@ -1681,6 +1685,7 @@
 				F4AED1D9235F4C5700F80ABF /* InterfaceConfiguration.swift in Sources */,
 				F4AED1D2235F49FC00F80ABF /* DNSResolver.swift in Sources */,
 				F4AED1E1235F4C5700F80ABF /* key.c in Sources */,
+				D5D349B7249B744C00DD9F50 /* AppExtensionUserDefaults.swift in Sources */,
 				F4AED1DD235F4C5700F80ABF /* DNSServer.swift in Sources */,
 				F4AED1D3235F49FF00F80ABF /* PacketTunnelSettingsGenerator.swift in Sources */,
 				F4AED24E235F82BD00F80ABF /* ringlogger.c in Sources */,
@@ -1803,6 +1808,7 @@
 				F478E48623C7881900D17FE0 /* UpdateStatus.swift in Sources */,
 				F4AED258235F835300F80ABF /* Endpoint.swift in Sources */,
 				F4E909022371CAAD00EB9FE6 /* LoadingViewController.swift in Sources */,
+				D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */,
 				F4E908CF2371CAAD00EB9FE6 /* NetworkLayer.swift in Sources */,
 				F478E48123C784C400D17FE0 /* UIApplication+Extensions.swift in Sources */,
 				F4E908EC2371CAAD00EB9FE6 /* Strings.swift in Sources */,
