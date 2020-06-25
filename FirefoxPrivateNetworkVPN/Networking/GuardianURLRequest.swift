@@ -16,7 +16,7 @@ struct GuardianURLRequest {
         #if STAGING
         return "https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/"
         #else
-        return "https://fpn.firefox.com/"
+        return "https://vpn.mozilla.org/"
         #endif
     }
 
