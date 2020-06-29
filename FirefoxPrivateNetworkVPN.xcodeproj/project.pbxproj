@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,13 @@
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		D535B6552490B699007171EC /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
+		D536D40724A9E62100FE00C9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D536D40624A9E62100FE00C9 /* RxSwift */; };
+		D536D40B24A9E62100FE00C9 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = D536D40A24A9E62100FE00C9 /* RxRelay */; };
+		D536D40D24A9E62100FE00C9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D536D40C24A9E62100FE00C9 /* RxCocoa */; };
+		D536D40F24A9E62100FE00C9 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = D536D40E24A9E62100FE00C9 /* RxBlocking */; };
+		D536D41224A9E6AD00FE00C9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D536D41124A9E6AD00FE00C9 /* Lottie */; };
+		D536D41524A9E70000FE00C9 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = D536D41424A9E70000FE00C9 /* Quick */; };
+		D536D41824A9E72600FE00C9 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = D536D41724A9E72600FE00C9 /* Nimble */; };
 		D54700E32491D90C00FA40A2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54700E22491D90C00FA40A2 /* UserNotifications.framework */; };
 		D54700E52491D90C00FA40A2 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54700E42491D90C00FA40A2 /* UserNotificationsUI.framework */; };
 		D54700E82491D90C00FA40A2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54700E72491D90C00FA40A2 /* NotificationViewController.swift */; };
@@ -159,10 +166,6 @@
 		F4E2C231243263A100060B19 /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C230243263A100060B19 /* AccountError.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
-		F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E908B92371C45600EB9FE6 /* Lottie.framework */; };
-		F4E908BB2371C48600EB9FE6 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */; };
-		F4E908BC2371C48600EB9FE6 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF5235612F500A06D7B /* RxCocoa.framework */; };
-		F4E908BD2371C48600EB9FE6 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF32356111A00A06D7B /* RxSwift.framework */; };
 		F4E908BE2371C48E00EB9FE6 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		F4E908BF2371C49300EB9FE6 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40831CB233CF5BE00A60FCA /* SafariServices.framework */; };
 		F4E908C02371C8C500EB9FE6 /* WireGuardTunnel.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F5D0C1A218352EF000F85AD /* WireGuardTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -588,12 +591,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D536D40B24A9E62100FE00C9 /* RxRelay in Frameworks */,
+				D536D40D24A9E62100FE00C9 /* RxCocoa in Frameworks */,
 				F4E908BF2371C49300EB9FE6 /* SafariServices.framework in Frameworks */,
 				F4E908BE2371C48E00EB9FE6 /* NetworkExtension.framework in Frameworks */,
-				F4E908BB2371C48600EB9FE6 /* RxRelay.framework in Frameworks */,
-				F4E908BC2371C48600EB9FE6 /* RxCocoa.framework in Frameworks */,
-				F4E908BD2371C48600EB9FE6 /* RxSwift.framework in Frameworks */,
-				F4E908BA2371C45600EB9FE6 /* Lottie.framework in Frameworks */,
+				D536D40F24A9E62100FE00C9 /* RxBlocking in Frameworks */,
+				D536D40724A9E62100FE00C9 /* RxSwift in Frameworks */,
+				D536D41224A9E6AD00FE00C9 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,9 +623,11 @@
 			files = (
 				F4B42C1823900E6D001F64F7 /* RxBlocking.framework in Frameworks */,
 				F4B42C1923900E6D001F64F7 /* RxTest.framework in Frameworks */,
+				D536D41524A9E70000FE00C9 /* Quick in Frameworks */,
 				F4B42C1123900E6C001F64F7 /* Nimble.framework in Frameworks */,
 				F4B42C1223900E6C001F64F7 /* Quick.framework in Frameworks */,
 				F4B42C1323900E6C001F64F7 /* RxCocoa.framework in Frameworks */,
+				D536D41824A9E72600FE00C9 /* Nimble in Frameworks */,
 				F4B42C1423900E6C001F64F7 /* RxRelay.framework in Frameworks */,
 				F4B42C1523900E6C001F64F7 /* RxSwift.framework in Frameworks */,
 			);
@@ -1266,7 +1272,6 @@
 				6FF4AC11211EC46F002C96EB /* Frameworks */,
 				6FF4AC12211EC46F002C96EB /* Resources */,
 				6F5D0C26218352EF000F85AD /* Embed App Extensions */,
-				F41310902358A276000CE779 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1275,6 +1280,13 @@
 				D54700EE2491D90C00FA40A2 /* PBXTargetDependency */,
 			);
 			name = FirefoxPrivateNetworkVPN;
+			packageProductDependencies = (
+				D536D40624A9E62100FE00C9 /* RxSwift */,
+				D536D40A24A9E62100FE00C9 /* RxRelay */,
+				D536D40C24A9E62100FE00C9 /* RxCocoa */,
+				D536D40E24A9E62100FE00C9 /* RxBlocking */,
+				D536D41124A9E6AD00FE00C9 /* Lottie */,
+			);
 			productName = WireGuard;
 			productReference = 6FF4AC14211EC46F002C96EB /* Firefox Private Network VPN.app */;
 			productType = "com.apple.product-type.application";
@@ -1329,6 +1341,10 @@
 				F4E908B52371C35100EB9FE6 /* PBXTargetDependency */,
 			);
 			name = FirefoxPrivateNetworkVPNTests;
+			packageProductDependencies = (
+				D536D41424A9E70000FE00C9 /* Quick */,
+				D536D41724A9E72600FE00C9 /* Nimble */,
+			);
 			productName = FirefoxPrivateNetworkVPNTests;
 			productReference = F4E908AF2371C35100EB9FE6 /* FirefoxPrivateNetworkVPNTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1391,6 +1407,12 @@
 				de,
 			);
 			mainGroup = 6FF4AC0B211EC46F002C96EB;
+			packageReferences = (
+				D536D40524A9E62100FE00C9 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				D536D41024A9E6AD00FE00C9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				D536D41324A9E70000FE00C9 /* XCRemoteSwiftPackageReference "Quick" */,
+				D536D41624A9E72600FE00C9 /* XCRemoteSwiftPackageReference "Nimble" */,
+			);
 			productRefGroup = 6FF4AC15211EC46F002C96EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1612,28 +1634,6 @@
 			shellPath = /bin/sh;
 			shellScript = "exec make -C \"$PROJECT_DIR/WireGuard/wireguard-go-bridge\" version-header\n";
 			showEnvVarsInLog = 0;
-		};
-		F41310902358A276000CE779 /* Carthage Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/RxRelay.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
-			);
-			name = "Carthage Copy Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		F4B42C1A23900E76001F64F7 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1999,6 +1999,7 @@
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 2;
@@ -2038,10 +2039,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(VERSION_ID)";
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/FirefoxPrivateNetworkVPN/Project Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2269,6 +2267,7 @@
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = fast;
@@ -2304,10 +2303,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(VERSION_ID)";
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/FirefoxPrivateNetworkVPN/Project Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2392,10 +2388,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = FirefoxPrivateNetworkVPNTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2451,6 +2444,7 @@
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = fast;
@@ -2486,10 +2480,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(VERSION_ID)";
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/FirefoxPrivateNetworkVPN/Project Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2575,10 +2566,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = FirefoxPrivateNetworkVPNTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2627,10 +2615,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = FirefoxPrivateNetworkVPNTests/Info.plist;
@@ -2723,6 +2708,79 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D536D40524A9E62100FE00C9 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = revision;
+				revision = 9b31a15520306b073cb9d46456f64826c1d6dcab;
+			};
+		};
+		D536D41024A9E6AD00FE00C9 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D536D41324A9E70000FE00C9 /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		D536D41624A9E72600FE00C9 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D536D40624A9E62100FE00C9 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D536D40524A9E62100FE00C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		D536D40A24A9E62100FE00C9 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D536D40524A9E62100FE00C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		D536D40C24A9E62100FE00C9 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D536D40524A9E62100FE00C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		D536D40E24A9E62100FE00C9 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D536D40524A9E62100FE00C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		D536D41124A9E6AD00FE00C9 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D536D41024A9E6AD00FE00C9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		D536D41424A9E70000FE00C9 /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D536D41324A9E70000FE00C9 /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		D536D41724A9E72600FE00C9 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D536D41624A9E72600FE00C9 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6FF4AC0C211EC46F002C96EB /* Project object */;
 }
