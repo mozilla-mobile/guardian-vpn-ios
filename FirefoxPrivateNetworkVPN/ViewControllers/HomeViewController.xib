@@ -47,7 +47,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpo-Dd-s6i">
                             <rect key="frame" x="32" y="3.5" width="88.5" height="17.5"/>
                             <fontDescription key="fontDescription" name="Metropolis-SemiBold" family="Metropolis" pointSize="15"/>
-                            <color key="textColor" name="custom_grey50"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -221,9 +221,6 @@
         </namedColor>
         <namedColor name="custom_grey5">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="custom_grey50">
-            <color red="0.047058823529411764" green="0.047058823529411764" blue="0.050980392156862744" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
