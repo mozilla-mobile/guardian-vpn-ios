@@ -10,8 +10,6 @@
 		527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB123752DCA00368965 /* AboutViewController.swift */; };
 		527C7EB423752DCA00368965 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527C7EB223752DCA00368965 /* AboutViewController.xib */; };
 		527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB523752E9300368965 /* AboutDataSource.swift */; };
-		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
-		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		D535B6552490B699007171EC /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
 		D536D40724A9E62100FE00C9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D536D40624A9E62100FE00C9 /* RxSwift */; };
 		D536D40B24A9E62100FE00C9 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = D536D40A24A9E62100FE00C9 /* RxRelay */; };
@@ -20,11 +18,13 @@
 		D536D41224A9E6AD00FE00C9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D536D41124A9E6AD00FE00C9 /* Lottie */; };
 		D536D41524A9E70000FE00C9 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = D536D41424A9E70000FE00C9 /* Quick */; };
 		D536D41824A9E72600FE00C9 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = D536D41724A9E72600FE00C9 /* Nimble */; };
-		D54700E32491D90C00FA40A2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54700E22491D90C00FA40A2 /* UserNotifications.framework */; };
-		D54700E52491D90C00FA40A2 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54700E42491D90C00FA40A2 /* UserNotificationsUI.framework */; };
 		D54700E82491D90C00FA40A2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54700E72491D90C00FA40A2 /* NotificationViewController.swift */; };
 		D54700EB2491D90C00FA40A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54700E92491D90C00FA40A2 /* MainInterface.storyboard */; };
 		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D5C8F0EC24AA3A9100E7118B /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C8F0EB24AA3A9100E7118B /* NetworkExtension.framework */; };
+		D5C8F0ED24AA3B0C00E7118B /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C8F0EB24AA3A9100E7118B /* NetworkExtension.framework */; };
+		D5C8F0F224AA3EBA00E7118B /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C8F0F124AA3EBA00E7118B /* libwg-go.a */; };
+		D5C8F0F324AA3EBA00E7118B /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C8F0F124AA3EBA00E7118B /* libwg-go.a */; };
 		D5D349B3249A73FB00DD9F50 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B1249A73FA00DD9F50 /* error_noSignal.png */; };
 		D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B2249A73FA00DD9F50 /* error_unstable.png */; };
 		D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
@@ -137,13 +137,6 @@
 		F4B42C06238EFF83001F64F7 /* ConnectionTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C05238EFF83001F64F7 /* ConnectionTimerFactory.swift */; };
 		F4B42C08238F1652001F64F7 /* ConnectionRxValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C07238F1652001F64F7 /* ConnectionRxValue.swift */; };
 		F4B42C0A238F2195001F64F7 /* ObservableType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C09238F2195001F64F7 /* ObservableType+Extensions.swift */; };
-		F4B42C1123900E6C001F64F7 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D150D5234797B700739CDA /* Nimble.framework */; };
-		F4B42C1223900E6C001F64F7 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D150D7234797C700739CDA /* Quick.framework */; };
-		F4B42C1323900E6C001F64F7 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF5235612F500A06D7B /* RxCocoa.framework */; };
-		F4B42C1423900E6C001F64F7 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */; };
-		F4B42C1523900E6C001F64F7 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0EFF32356111A00A06D7B /* RxSwift.framework */; };
-		F4B42C1823900E6D001F64F7 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B42C1623900E6D001F64F7 /* RxBlocking.framework */; };
-		F4B42C1923900E6D001F64F7 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B42C1723900E6D001F64F7 /* RxTest.framework */; };
 		F4B42C1B23901DA3001F64F7 /* MockLongPinger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C00238DC6A7001F64F7 /* MockLongPinger.swift */; };
 		F4B42C1D239021F4001F64F7 /* MockConnectionTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1C239021F4001F64F7 /* MockConnectionTimerFactory.swift */; };
 		F4B42C1F2390230B001F64F7 /* MockConnectionRxValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */; };
@@ -166,8 +159,6 @@
 		F4E2C231243263A100060B19 /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2C230243263A100060B19 /* AccountError.swift */; };
 		F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */; };
-		F4E908BE2371C48E00EB9FE6 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
-		F4E908BF2371C49300EB9FE6 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40831CB233CF5BE00A60FCA /* SafariServices.framework */; };
 		F4E908C02371C8C500EB9FE6 /* WireGuardTunnel.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F5D0C1A218352EF000F85AD /* WireGuardTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA2423711C7A0018DC43 /* AppDelegate.swift */; };
 		F4E908C22371CAAD00EB9FE6 /* DeviceManagementDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */; };
@@ -320,20 +311,16 @@
 		527C7EB223752DCA00368965 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		527C7EB523752E9300368965 /* AboutDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDataSource.swift; sourceTree = "<group>"; };
 		6F5D0C1A218352EF000F85AD /* WireGuardTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WireGuardTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FB1BDA021D4E00A00A991BF /* libwg-go.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libwg-go.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FB1BDB621D4F8B800A991BF /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/NetworkExtension.framework; sourceTree = DEVELOPER_DIR; };
-		6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libwg-go.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF4AC14211EC46F002C96EB /* Firefox Private Network VPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firefox Private Network VPN.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF4AC23211EC472002C96EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
 		D535B6542490B699007171EC /* LocalNotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationFactory.swift; sourceTree = "<group>"; };
 		D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		D54700E22491D90C00FA40A2 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		D54700E42491D90C00FA40A2 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		D54700E72491D90C00FA40A2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D54700EA2491D90C00FA40A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5C8F0EB24AA3A9100E7118B /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		D5C8F0F124AA3EBA00E7118B /* libwg-go.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libwg-go.a"; path = "../../Library/Developer/Xcode/DerivedData/WireGuard-fgavjhzegablrncgmydaawdrywcf/Build/Products/Debug-iphoneos/libwg-go.a"; sourceTree = "<group>"; };
 		D5D349B1249A73FA00DD9F50 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
 		D5D349B2249A73FA00DD9F50 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
 		D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensionUserDefaults.swift; sourceTree = "<group>"; };
@@ -345,7 +332,6 @@
 		F40109832411877E006DFF96 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
 		F40109872411AF3E006DFF96 /* FileManager+Logs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+Logs.swift"; sourceTree = "<group>"; };
 		F4056031239E9F31000A93CC /* KeychainStored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStored.swift; sourceTree = "<group>"; };
-		F40831CB233CF5BE00A60FCA /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		F40831CE233CFA2000A60FCA /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		F40831D0233CFD5600A60FCA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F40831D3233D04B600A60FCA /* GuardianAPIDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPIDateFormatter.swift; sourceTree = "<group>"; };
@@ -437,7 +423,6 @@
 		F4658542233BB44A0081D7D7 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		F4658544233BB7690081D7D7 /* GuardianAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAPI.swift; sourceTree = "<group>"; };
 		F4658547233BBBF30081D7D7 /* LoginCheckpointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckpointModel.swift; sourceTree = "<group>"; };
-		F465854C233BF0850081D7D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+HandleBar.swift"; sourceTree = "<group>"; };
 		F47112A123E218AC00539A15 /* UIViewController+Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Modal.swift"; sourceTree = "<group>"; };
 		F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdateToastView.swift; sourceTree = "<group>"; };
@@ -458,7 +443,6 @@
 		F478E48E23C7906B00D17FE0 /* GuardianURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuardianURLRequest.swift; sourceTree = "<group>"; };
 		F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FirefoxPrivateNetworkVPN.xcconfig; sourceTree = "<group>"; };
 		F48A595B23DBA03400BB2A0A /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
-		F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		F49090BD2379D43200C8430A /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		F499C0F0234E29B300126CDA /* DeviceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementViewController.swift; sourceTree = "<group>"; };
 		F499C0F1234E29B300126CDA /* DeviceManagementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceManagementViewController.xib; sourceTree = "<group>"; };
@@ -467,8 +451,6 @@
 		F499C0F8234E3F5500126CDA /* DeviceManagementDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagementDataSource.swift; sourceTree = "<group>"; };
 		F499C0FA234E41B800126CDA /* DeviceLimitReachedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceLimitReachedView.xib; sourceTree = "<group>"; };
 		F499C0FC234E490600126CDA /* DeviceLimitReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLimitReachedView.swift; sourceTree = "<group>"; };
-		F4A0EFF32356111A00A06D7B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
-		F4A0EFF5235612F500A06D7B /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		F4A4947823709033007595C3 /* UIColor+Named.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Named.swift"; sourceTree = "<group>"; };
 		F4A4947923709033007595C3 /* NavigationCoordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinating.swift; sourceTree = "<group>"; };
 		F4A4947A23709033007595C3 /* TunnelManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunnelManaging.swift; sourceTree = "<group>"; };
@@ -528,8 +510,6 @@
 		F4B42C05238EFF83001F64F7 /* ConnectionTimerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTimerFactory.swift; sourceTree = "<group>"; };
 		F4B42C07238F1652001F64F7 /* ConnectionRxValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRxValue.swift; sourceTree = "<group>"; };
 		F4B42C09238F2195001F64F7 /* ObservableType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extensions.swift"; sourceTree = "<group>"; };
-		F4B42C1623900E6D001F64F7 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
-		F4B42C1723900E6D001F64F7 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
 		F4B42C1C239021F4001F64F7 /* MockConnectionTimerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectionTimerFactory.swift; sourceTree = "<group>"; };
 		F4B42C1E2390230B001F64F7 /* MockConnectionRxValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectionRxValue.swift; sourceTree = "<group>"; };
 		F4B42C202390504F001F64F7 /* ConnectionHealthMonitorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHealthMonitorSpec.swift; sourceTree = "<group>"; };
@@ -544,8 +524,6 @@
 		F4D150B523453F9900739CDA /* CityVPNCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityVPNCell.xib; sourceTree = "<group>"; };
 		F4D150B92345438500739CDA /* ServersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersDataSource.swift; sourceTree = "<group>"; };
 		F4D150CF2347975C00739CDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4D150D5234797B700739CDA /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		F4D150D7234797C700739CDA /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		F4D3D1E42406C690001B73D1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F4D3D1E52406C7A7001B73D1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F4D3D2032416C5F2001B73D1 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
@@ -568,7 +546,6 @@
 		F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirefoxPrivateNetworkVPNUITests.swift; sourceTree = "<group>"; };
 		F4E908A52371C31400EB9FE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4E908AF2371C35100EB9FE6 /* FirefoxPrivateNetworkVPNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirefoxPrivateNetworkVPNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4E908B92371C45600EB9FE6 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		F4EB6C0023D22DDF00A7D081 /* ReleaseInfoSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseInfoSpec.swift; sourceTree = "<group>"; };
 		F4F00E0123A2E1C5000E9DCA /* Animations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Animations; sourceTree = "<group>"; };
 		F4F25E102343F7D3004BA245 /* VPNLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLocations.swift; sourceTree = "<group>"; };
@@ -582,8 +559,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */,
-				6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */,
+				D5C8F0EC24AA3A9100E7118B /* NetworkExtension.framework in Frameworks */,
+				D5C8F0F324AA3EBA00E7118B /* libwg-go.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,11 +569,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D536D40B24A9E62100FE00C9 /* RxRelay in Frameworks */,
+				D5C8F0ED24AA3B0C00E7118B /* NetworkExtension.framework in Frameworks */,
 				D536D40D24A9E62100FE00C9 /* RxCocoa in Frameworks */,
-				F4E908BF2371C49300EB9FE6 /* SafariServices.framework in Frameworks */,
-				F4E908BE2371C48E00EB9FE6 /* NetworkExtension.framework in Frameworks */,
 				D536D40F24A9E62100FE00C9 /* RxBlocking in Frameworks */,
 				D536D40724A9E62100FE00C9 /* RxSwift in Frameworks */,
+				D5C8F0F224AA3EBA00E7118B /* libwg-go.a in Frameworks */,
 				D536D41224A9E6AD00FE00C9 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,8 +582,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D54700E52491D90C00FA40A2 /* UserNotificationsUI.framework in Frameworks */,
-				D54700E32491D90C00FA40A2 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,15 +596,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4B42C1823900E6D001F64F7 /* RxBlocking.framework in Frameworks */,
-				F4B42C1923900E6D001F64F7 /* RxTest.framework in Frameworks */,
 				D536D41524A9E70000FE00C9 /* Quick in Frameworks */,
-				F4B42C1123900E6C001F64F7 /* Nimble.framework in Frameworks */,
-				F4B42C1223900E6C001F64F7 /* Quick.framework in Frameworks */,
-				F4B42C1323900E6C001F64F7 /* RxCocoa.framework in Frameworks */,
 				D536D41824A9E72600FE00C9 /* Nimble in Frameworks */,
-				F4B42C1423900E6C001F64F7 /* RxRelay.framework in Frameworks */,
-				F4B42C1523900E6C001F64F7 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,12 +612,12 @@
 				F41CCA33237128F10018DC43 /* FirefoxPrivateNetworkVPNTests */,
 				F4E908A22371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests */,
 				D54700E62491D90C00FA40A2 /* NotificationContentExtension */,
-				6FF4AC452120B9E0002C96EB /* Frameworks */,
 				F43DCC7E2379AC36000C60E3 /* LICENSE.txt */,
 				6FF4AC15211EC46F002C96EB /* Products */,
 				F43DCC7D2379AC35000C60E3 /* README.md */,
 				F4AED107235F450D00F80ABF /* WireGuard */,
 				F41CCA32237128F10018DC43 /* WireGuardTunnel */,
+				D5C8F0EA24AA3A9100E7118B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -663,29 +631,6 @@
 				D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		6FF4AC452120B9E0002C96EB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F4B42C1623900E6D001F64F7 /* RxBlocking.framework */,
-				F4B42C1723900E6D001F64F7 /* RxTest.framework */,
-				6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */,
-				F4E908B92371C45600EB9FE6 /* Lottie.framework */,
-				6FB1BDB621D4F8B800A991BF /* NetworkExtension.framework */,
-				6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */,
-				F4D150D5234797B700739CDA /* Nimble.framework */,
-				F4D150D7234797C700739CDA /* Quick.framework */,
-				F4A0EFF5235612F500A06D7B /* RxCocoa.framework */,
-				F48ED2BB23561C4900F6D0C5 /* RxRelay.framework */,
-				F4A0EFF32356111A00A06D7B /* RxSwift.framework */,
-				F40831CB233CF5BE00A60FCA /* SafariServices.framework */,
-				F465854C233BF0850081D7D7 /* WebKit.framework */,
-				6FB1BDA021D4E00A00A991BF /* libwg-go.a */,
-				D54700E22491D90C00FA40A2 /* UserNotifications.framework */,
-				D54700E42491D90C00FA40A2 /* UserNotificationsUI.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D54700D72491D31500FA40A2 /* Notifications */ = {
@@ -714,6 +659,15 @@
 				D54700EC2491D90C00FA40A2 /* Info.plist */,
 			);
 			path = NotificationContentExtension;
+			sourceTree = "<group>";
+		};
+		D5C8F0EA24AA3A9100E7118B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5C8F0F124AA3EBA00E7118B /* libwg-go.a */,
+				D5C8F0EB24AA3A9100E7118B /* NetworkExtension.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F401097E240453B6006DFF96 /* Devices */ = {
