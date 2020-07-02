@@ -38,9 +38,41 @@ class CarouselPageViewController: UIPageViewController, Navigating {
         return offsetConstant - view.safeAreaInsets.bottom
     }()
 
+    private var pageIndicatorTintColor: UIColor = {
+        if #available(iOS 13, *) {
+            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    /// Return the color for Dark Mode
+                    return UIColor.white
+                } else {
+                    /// Return the color for Light Mode
+                    return .custom(.grey20)
+                }
+            }
+        }
+
+        return .custom(.grey20)
+    }()
+
+    private var doneButtonTintColor: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    /// Return the color for Dark Mode
+                    return UIColor.white
+                } else {
+                    /// Return the color for Light Mode
+                    return .custom(.blue50)
+                }
+            }
+        }
+
+        return .custom(.blue50)
+    }
+
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 43, height: 6))
-        pageControl.pageIndicatorTintColor = .custom(.grey20)
+        pageControl.pageIndicatorTintColor = pageIndicatorTintColor
         pageControl.currentPageIndicatorTintColor = .custom(.blue50)
         pageControl.numberOfPages = carouselDataSource.viewControllers.count
 
@@ -52,7 +84,7 @@ class CarouselPageViewController: UIPageViewController, Navigating {
                         style: .done,
                         target: self,
                         action: #selector(self.skipToLastPage))
-        skipButton.tintColor = .custom(.blue50)
+        skipButton.tintColor = doneButtonTintColor
 
         return skipButton
     }()

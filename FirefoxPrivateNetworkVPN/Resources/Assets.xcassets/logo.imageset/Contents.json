@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "icon_close.pdf",
+      "filename" : "dark_logo.pdf",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "icon_closeWhite.pdf",
+      "filename" : "light_logo.pdf",
       "idiom" : "universal"
     }
   ],
@@ -20,7 +20,6 @@
     "version" : 1
   },
   "properties" : {
-    "preserves-vector-representation" : true,
-    "template-rendering-intent" : "original"
+    "preserves-vector-representation" : true
   }
 }
