@@ -32,10 +32,10 @@ enum SettingsItem: Equatable {
 
     var iconImage: UIImage? {
         switch self {
-        case .device: return #imageLiteral(resourceName: "icon_device")
-        case .help: return #imageLiteral(resourceName: "icon_help")
-        case .about: return #imageLiteral(resourceName: "icon_about")
-        case .feedback: return #imageLiteral(resourceName: "icon_smile")
+        case .device: return #imageLiteral(resourceName: "icon_device").withRenderingMode(.alwaysTemplate)
+        case .help: return #imageLiteral(resourceName: "icon_help").withRenderingMode(.alwaysTemplate)
+        case .about: return #imageLiteral(resourceName: "icon_about").withRenderingMode(.alwaysTemplate)
+        case .feedback: return #imageLiteral(resourceName: "icon_smile").withRenderingMode(.alwaysTemplate)
         case .signout, .account: return nil
         }
     }
@@ -43,7 +43,7 @@ enum SettingsItem: Equatable {
     var disclosureImage: UIImage? {
         switch self {
         case .feedback: return #imageLiteral(resourceName: "icon_openIn.pdf")
-        default: return #imageLiteral(resourceName: "icon_forwardChevron.pdf")
+        default: return #imageLiteral(resourceName: "icon_forwardChevron.pdf").withRenderingMode(.alwaysTemplate)
         }
     }
 

@@ -31,10 +31,13 @@ class DeviceManagementViewController: UIViewController, Navigating {
     }
 
     private lazy var backButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(named: "icon_backChevron"),
+        let chevron = UIImage(named: "icon_backChevron")?.withRenderingMode(.alwaysTemplate)
+        let item = UIBarButtonItem(image: chevron,
                                style: .plain,
                                target: self,
                                action: #selector(goBack))
+        item.tintColor = UIColor.custom(.grey40)
+        return item
     }()
 
     private lazy var deviceCountItem: UIBarButtonItem = {

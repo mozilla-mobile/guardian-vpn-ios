@@ -96,7 +96,7 @@ extension VPNState {
     var backgroundColor: UIColor {
         switch self {
         case .off, .disconnecting, .switching:
-            return UIColor.white
+            return UIColor.custom(.currentVPNSelectorBackground)
         default:
             return UIColor.custom(.purple90)
         }

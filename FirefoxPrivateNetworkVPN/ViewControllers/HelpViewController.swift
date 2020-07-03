@@ -40,7 +40,8 @@ class HelpViewController: UIViewController, Navigating {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.title = LocalizedString.helpTitle.value
         navigationItem.titleView?.tintColor = UIColor.custom(.grey50)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_backChevron"), style: .plain, target: self, action: #selector(goBack))
+        let chevron = UIImage(named: "icon_backChevron")?.withRenderingMode(.alwaysTemplate)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: chevron, style: .plain, target: self, action: #selector(goBack))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.custom(.grey40)
     }
 
