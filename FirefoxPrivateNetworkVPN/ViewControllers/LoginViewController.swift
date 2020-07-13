@@ -11,6 +11,7 @@
 
 import UIKit
 import SafariServices
+import WebKit
 
 class LoginViewController: UIViewController, Navigating {
     static var navigableItem: NavigableItem = .login
@@ -21,6 +22,13 @@ class LoginViewController: UIViewController, Navigating {
     private var verifyTimer: Timer?
     private var isVerifying = false
 
+    lazy var webView: WKWebView = { [unowned self] in
+        let configuration = WKWebViewConfiguration()
+        let wkWebView = WKWebView(frame: self.view.frame, configuration: configuration)
+        wkWebView.navigationDelegate = self
+        return wkWebView
+    }()
+
     init() {
         super.init(nibName: nil, bundle: nil)
         guardianAPI.initiateUserLogin { [weak self] result in
@@ -28,6 +36,16 @@ class LoginViewController: UIViewController, Navigating {
             case .success(let checkpointModel):
                 guard let loginURL = checkpointModel.loginUrl else { return }
                 self?.verificationURL = checkpointModel.verificationUrl
+                #if targetEnvironment(macCatalyst)
+                guard let webView = self?.webView else { return }
+                DispatchQueue.main.async {
+                    self?.view.addSubview(webView)
+                    self?.webView.frame = self?.view.bounds ?? CGRect.zero
+                    let request = URLRequest(url: loginURL)
+                    self?.webView.load(request)
+                }
+                #else
+
                 let safariViewController = SFSafariViewController(url: loginURL)
                 DispatchQueue.main.async {
                     self?.addChild(safariViewController)
@@ -38,6 +56,7 @@ class LoginViewController: UIViewController, Navigating {
                 }
                 safariViewController.delegate = self
                 self?.safariViewController = safariViewController
+                #endif
             case .failure(let error):
                 let loginError = error.getLoginError()
                 let context: NavigableContext = loginError == .maxDevicesReached ? .maxDevicesReached : .error(loginError)
@@ -95,5 +114,27 @@ extension LoginViewController: SFSafariViewControllerDelegate {
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         self.verifyTimer?.invalidate()
         navigate(to: .landing)
+    }
+}
+
+// MARK: - WKNavigationDelegate
+extension LoginViewController: WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated {
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
+    }
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        decisionHandler(.allow)
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if verifyTimer == nil {
+            verifyTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(verify), userInfo: nil, repeats: true)
+        }
     }
 }
