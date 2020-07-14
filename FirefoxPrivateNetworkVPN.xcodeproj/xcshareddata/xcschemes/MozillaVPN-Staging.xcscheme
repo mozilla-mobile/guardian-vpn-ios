@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6FF4AC13211EC46F002C96EB"
-               BuildableName = "Firefox Private Network VPN.app"
-               BlueprintName = "FirefoxPrivateNetworkVPN"
+               BlueprintIdentifier = "D52F4CCE24BDC6CB00379292"
+               BuildableName = "FirefoxPrivateNetworkVPN_Staging.app"
+               BlueprintName = "FirefoxPrivateNetworkVPN_Staging"
                ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6FF4AC13211EC46F002C96EB"
-            BuildableName = "Firefox Private Network VPN.app"
-            BlueprintName = "FirefoxPrivateNetworkVPN"
+            BlueprintIdentifier = "D52F4CCE24BDC6CB00379292"
+            BuildableName = "FirefoxPrivateNetworkVPN_Staging.app"
+            BlueprintName = "FirefoxPrivateNetworkVPN_Staging"
             ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -57,16 +57,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6FF4AC13211EC46F002C96EB"
-            BuildableName = "Firefox Private Network VPN.app"
-            BlueprintName = "FirefoxPrivateNetworkVPN"
+            BlueprintIdentifier = "D52F4CCE24BDC6CB00379292"
+            BuildableName = "FirefoxPrivateNetworkVPN_Staging.app"
+            BlueprintName = "FirefoxPrivateNetworkVPN_Staging"
             ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
