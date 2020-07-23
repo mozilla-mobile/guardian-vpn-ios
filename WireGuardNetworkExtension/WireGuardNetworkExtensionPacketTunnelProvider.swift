@@ -1,6 +1,6 @@
 //
-//  WireGuardTunnelPacketTunnelProvider
-//  WireGuardTunnel
+//  WireGuardNetworkExtensionPacketTunnelProvider
+//  WireGuardNetworkExtension
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -12,7 +12,7 @@
 import Foundation
 import NetworkExtension
 
-class WireGuardTunnelPacketTunnelProvider: PacketTunnelProvider {
+class WireGuardNetworkExtensionPacketTunnelProvider: PacketTunnelProvider {
 
     override func startTunnel(options: [String: NSObject]?, completionHandler startTunnelCompletionHandler: @escaping (Error?) -> Void) {
         super.startTunnel(options: options) { error in

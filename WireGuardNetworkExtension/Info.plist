@@ -29,11 +29,11 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.networkextension.packet-tunnel</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).WireGuardTunnelPacketTunnelProvider</string>
+		<string>$(PRODUCT_MODULE_NAME).WireGuardNetworkExtensionPacketTunnelProvider</string>
 	</dict>
 	<key>com.wireguard.ios.app_group_id</key>
 	<string>$(FIREFOX_VPN_APP_GROUP)</string>
 	<key>com.wireguard.macos.app_group_id</key>
-	<string>$(DEVELOPMENT_TEAM).group.$(APP_ID_MACOS)</string>
+	<string>$(DEVELOPMENT_TEAM).$(FIREFOX_VPN_APP_GROUP)</string>
 </dict>
 </plist>

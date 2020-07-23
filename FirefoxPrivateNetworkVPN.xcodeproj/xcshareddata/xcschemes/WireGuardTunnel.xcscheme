@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6F5D0C19218352EF000F85AD"
-               BuildableName = "WireGuardTunnel.appex"
-               BlueprintName = "WireGuardTunnel"
+               BuildableName = "WireGuardNetworkExtension.appex"
+               BlueprintName = "WireGuardNetworkExtensioniOS"
                ReferencedContainer = "container:FirefoxPrivateNetworkVPN.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
