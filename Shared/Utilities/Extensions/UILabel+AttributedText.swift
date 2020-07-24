@@ -9,6 +9,8 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
+#if os(iOS)
+
 import UIKit
 
 extension UILabel {
@@ -30,3 +32,28 @@ extension UILabel {
         attributedText = attributedString
     }
 }
+
+#elseif os(macOS)
+
+import AppKit
+
+extension NSTextField {
+    func setAttributedText(title: String, lineHeightMultiple: CGFloat, font: NSFont, color: NSColor) {
+        let attributedString = NSMutableAttributedString(string: title)
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = lineHeightMultiple
+
+        let attributedDict = [NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                              NSAttributedString.Key.font: font,
+                              NSAttributedString.Key.foregroundColor: color]
+
+        //swiftlint:disable legacy_constructor
+        attributedString.addAttributes(attributedDict,
+                                       range: NSMakeRange(0, attributedString.length))
+
+        attributedStringValue = attributedString
+    }
+}
+
+#endif

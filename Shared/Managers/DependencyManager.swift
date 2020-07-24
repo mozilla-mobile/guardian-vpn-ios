@@ -9,8 +9,6 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-import UIKit
-
 class DependencyManager: DependencyProviding {
 
     static let shared: DependencyProviding = DependencyManager()
@@ -25,9 +23,7 @@ class DependencyManager: DependencyProviding {
     // MARK: -
     lazy var guardianAPI = GuardianAPI(networkLayer: networkLayer,
                                        userAgentInfo: NetworkingUtilities.userAgentInfo)
-    lazy var accountManager: AccountManaging = AccountManager(guardianAPI: guardianAPI,
-                                                              accountStore: accountStore,
-                                                              deviceName: UIDevice.current.name)
+    lazy var accountManager: AccountManaging = AccountManager(guardianAPI: guardianAPI, accountStore: accountStore)
     lazy var tunnelManager: TunnelManaging = {
         #if targetEnvironment(simulator)
           return SimulatorTunnelManager()
@@ -35,7 +31,6 @@ class DependencyManager: DependencyProviding {
           return GuardianTunnelManager()
         #endif
     }()
-    lazy var navigationCoordinator: NavigationCoordinating = NavigationCoordinator()
     lazy var connectionHealthMonitor: ConnectionHealthMonitoring = ConnectionHealthMonitor()
     lazy var releaseMonitor: ReleaseMonitoring = ReleaseMonitor(accountStore: accountStore, guardianAPI: guardianAPI)
     lazy var heartbeatMonitor: HeartbeatMonitoring = HeartbeatMonitor()

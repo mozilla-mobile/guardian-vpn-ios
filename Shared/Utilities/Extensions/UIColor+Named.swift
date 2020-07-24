@@ -9,8 +9,6 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-import UIKit
-
 enum CustomColor: String {
     case blue50 = "custom_blue50"
     case blue60 = "custom_blue60"
@@ -32,9 +30,26 @@ enum CustomColor: String {
     case white80 = "custom_white80"
 }
 
+#if os(iOS)
+
+import UIKit
+
 extension UIColor {
     static func custom(_ color: CustomColor) -> UIColor {
         // Must correspond with named colors in Assets.xcassets
         return UIColor(named: color.rawValue)!
     }
 }
+
+#elseif os(macOS)
+
+import AppKit
+
+extension NSColor {
+    static func custom(_ color: CustomColor) -> NSColor {
+        // Must correspond with named colors in Assets.xcassets
+        return NSColor(named: color.rawValue)!
+    }
+}
+
+#endif

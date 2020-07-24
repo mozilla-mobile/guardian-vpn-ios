@@ -9,13 +9,25 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 struct ReleaseInfo: Codable {
 
     private let latestVersion: String
     private let minimumVersion: String
     let dateRetrieved: Date
+
+    static var appVersion: String {
+        #if os(iOS)
+        return UIApplication.appVersion
+        #elseif os(macOS)
+        return NSApplication.appVersion
+        #endif
+    }
 
     init(latestVersion: String, minimumVersion: String, dateRetrieved: Date) {
         self.latestVersion = latestVersion
@@ -37,7 +49,7 @@ struct ReleaseInfo: Codable {
         dateRetrieved = try container.decode(Date.self, forKey: .dateRetrieved)
     }
 
-    func getUpdateStatus(of currentVersion: String = UIApplication.appVersion) -> UpdateStatus {
+    func getUpdateStatus(of currentVersion: String = appVersion) -> UpdateStatus {
         switch (currentVersion.compare(with: latestVersion), currentVersion.compare(with: minimumVersion)) {
         case (_, .orderedAscending):
             return .required

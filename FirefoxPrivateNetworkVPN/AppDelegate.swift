@@ -15,22 +15,19 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var dependencyManager: DependencyProviding?
+    let dependencyManager: DependencyProviding = DependencyManager.shared
+    let navigationCoordinator: NavigationCoordinating = NavigationCoordinator.shared
     let userDedaults = AppExtensionUserDefaults.standard
 
-    func application(
-        _ application: UIApplication,
-        willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-        dependencyManager = DependencyManager.shared
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
-        let firstViewController = dependencyManager?.navigationCoordinator.firstViewController
+        let firstViewController = navigationCoordinator.firstViewController
         window.rootViewController = firstViewController
         window.makeKeyAndVisible()
 
-        dependencyManager?.releaseMonitor.start()
+        dependencyManager.releaseMonitor.start()
 
         Logger.configureGlobal(tagged: "APP", withFilePath: FileManager.logFileURL?.path)
 
@@ -41,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        guard let dependencyManager = dependencyManager else { return }
 
         dependencyManager.releaseMonitor.start()
 
@@ -52,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch dependencyManager.tunnelManager.stateEvent.value {
         case .on:
             if let hostAddress = dependencyManager.accountManager.selectedCity?.selectedServer?.ipv4Gateway {
-                self.dependencyManager?.connectionHealthMonitor.start(hostAddress: hostAddress)
+                self.dependencyManager.connectionHealthMonitor.start(hostAddress: hostAddress)
             }
         case .switching:
             userDedaults.set(true, forKey: .isSwitchingInProgress)
@@ -66,9 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        dependencyManager?.connectionHealthMonitor.stop()
-        dependencyManager?.heartbeatMonitor.stop()
-        dependencyManager?.releaseMonitor.stop()
+        dependencyManager.connectionHealthMonitor.stop()
+        dependencyManager.heartbeatMonitor.stop()
+        dependencyManager.releaseMonitor.stop()
         userDedaults.set(false, forKey: .isSwitchingInProgress)
     }
 }

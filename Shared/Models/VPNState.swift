@@ -9,7 +9,6 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-import UIKit
 import NetworkExtension
 
 enum VPNState {
@@ -36,23 +35,6 @@ enum VPNState {
 }
 
 extension VPNState {
-    var textColor: UIColor {
-        switch self {
-        case .off, .switching, .disconnecting:
-            return UIColor.custom(.grey50)
-        default:
-            return UIColor.white
-        }
-    }
-
-    var subtitleColor: UIColor {
-        switch self {
-        case .off, .switching, .disconnecting:
-            return UIColor.custom(.grey40)
-        default:
-            return UIColor.custom(.white80)
-        }
-    }
 
     var title: String {
         switch self {
@@ -93,15 +75,6 @@ extension VPNState {
         }
     }
 
-    var backgroundColor: UIColor {
-        switch self {
-        case .off, .disconnecting, .switching:
-            return UIColor.white
-        default:
-            return UIColor.custom(.purple90)
-        }
-    }
-
     var showActivityIndicator: Bool {
         switch self {
         case .connecting:
@@ -130,4 +103,78 @@ extension VPNState {
     }
 }
 
+// MARK: - Equatable
+
 extension VPNState: Equatable { }
+
+// MARK: - Color
+
+#if os(iOS)
+
+import UIKit
+
+extension VPNState {
+
+    var textColor: UIColor {
+        switch self {
+        case .off, .switching, .disconnecting:
+            return UIColor.custom(.grey50)
+        default:
+            return UIColor.white
+        }
+    }
+
+    var subtitleColor: UIColor {
+        switch self {
+        case .off, .switching, .disconnecting:
+            return UIColor.custom(.grey40)
+        default:
+            return UIColor.custom(.white80)
+        }
+    }
+
+    var backgroundColor: UIColor {
+        switch self {
+        case .off, .disconnecting, .switching:
+            return UIColor.white
+        default:
+            return UIColor.custom(.purple90)
+        }
+    }
+}
+
+#elseif os(macOS)
+
+import AppKit
+
+extension VPNState {
+
+    var textColor: NSColor {
+        switch self {
+        case .off, .switching, .disconnecting:
+            return NSColor.custom(.grey50)
+        default:
+            return NSColor.white
+        }
+    }
+
+    var subtitleColor: NSColor {
+        switch self {
+        case .off, .switching, .disconnecting:
+            return NSColor.custom(.grey40)
+        default:
+            return NSColor.custom(.white80)
+        }
+    }
+
+    var backgroundColor: NSColor {
+        switch self {
+        case .off, .disconnecting, .switching:
+            return NSColor.white
+        default:
+            return NSColor.custom(.purple90)
+        }
+    }
+}
+
+#endif

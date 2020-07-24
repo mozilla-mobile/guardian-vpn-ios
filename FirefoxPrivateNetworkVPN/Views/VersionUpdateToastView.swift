@@ -55,7 +55,6 @@ final class VersionUpdateToastView: UIView {
     }
 
     @IBAction private func tapped(_ sender: UITapGestureRecognizer) {
-        DependencyManager.shared.navigationCoordinator
-            .navigate(from: .home, to: .appStore)
+        NavigationCoordinator.shared.navigate(from: .home, to: .appStore)
     }
 }

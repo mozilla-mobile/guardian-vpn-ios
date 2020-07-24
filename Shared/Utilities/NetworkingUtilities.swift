@@ -9,6 +9,8 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
+#if os(iOS)
+
 import UIKit
 
 class NetworkingUtilities {
@@ -17,4 +19,27 @@ class NetworkingUtilities {
         return UIApplication.appNameWithoutSpaces + "/" + UIApplication.appVersion
             + " " + UIDevice.modelName + "/" + UIDevice.current.systemVersion
     }
+
+    static var deviceName: String {
+        UIDevice.current.name
+    }
 }
+
+#elseif os(macOS)
+
+import AppKit
+
+class NetworkingUtilities {
+
+    static var userAgentInfo: String {
+        let systemVersion = ProcessInfo.processInfo.operatingSystemVersionString
+        return NSApplication.appNameWithoutSpaces + "/" + NSApplication.appVersion
+        + " " + Host.modelName + "/" + systemVersion
+    }
+
+    static var deviceName: String {
+        Host.current().name ?? ""
+    }
+}
+
+#endif

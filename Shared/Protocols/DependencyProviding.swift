@@ -15,7 +15,6 @@ protocol DependencyProviding {
     var guardianAPI: GuardianAPI { get }
     var accountManager: AccountManaging { get }
     var tunnelManager: TunnelManaging { get }
-    var navigationCoordinator: NavigationCoordinating { get }
     var connectionHealthMonitor: ConnectionHealthMonitoring { get }
     var releaseMonitor: ReleaseMonitoring { get }
     var heartbeatMonitor: HeartbeatMonitoring { get }

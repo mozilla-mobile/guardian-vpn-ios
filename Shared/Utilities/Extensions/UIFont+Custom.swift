@@ -9,8 +9,6 @@
 //  Copyright © 2019 Mozilla Corporation.
 //
 
-import UIKit
-
 enum CustomFont: String {
     case metropolis = "Metropolis"
     case metropolisSemiBold = "Metropolis-SemiBold"
@@ -18,8 +16,24 @@ enum CustomFont: String {
     case inter = "Inter"
 }
 
+#if os(iOS)
+
+import UIKit
+
 extension UIFont {
     static func custom(_ font: CustomFont, size: CGFloat = 15) -> UIFont {
         return UIFont(name: font.rawValue, size: size)!
     }
 }
+
+#elseif os(macOS)
+
+import AppKit
+
+extension NSFont {
+    static func custom(_ font: CustomFont, size: CGFloat = 15) -> NSFont {
+        return NSFont(name: font.rawValue, size: size)!
+    }
+}
+
+#endif

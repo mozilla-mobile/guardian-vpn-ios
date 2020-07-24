@@ -9,7 +9,6 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
-import UIKit
 import RxSwift
 import RxCocoa
 

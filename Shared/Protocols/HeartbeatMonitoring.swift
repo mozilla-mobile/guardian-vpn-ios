@@ -9,8 +9,6 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
-import UIKit
-
 extension Notification.Name {
     static let expiredSubscriptionNotification = Notification.Name("expiredSubscription")
     static let activeSubscriptionNotification = Notification.Name("activeSubscription")

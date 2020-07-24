@@ -11,8 +11,7 @@
 
 import RxSwift
 
-class AccountManager: AccountManaging, Navigating {
-    static var navigableItem: NavigableItem = .account
+class AccountManager: AccountManaging {
 
     private(set) var account: Account?
     private(set) var availableServers: [VPNCountry] = []
@@ -26,12 +25,11 @@ class AccountManager: AccountManaging, Navigating {
     private let disposeBag = DisposeBag()
     private let guardianAPI: GuardianAPI
     private let accountStore: AccountStoring
-    private let deviceName: String
+    private let deviceName: String = NetworkingUtilities.deviceName
 
-    init(guardianAPI: GuardianAPI, accountStore: AccountStoring, deviceName: String) {
+    init(guardianAPI: GuardianAPI, accountStore: AccountStoring) {
         self.guardianAPI = guardianAPI
         self.accountStore = accountStore
-        self.deviceName = deviceName
 
         subscribeToExpiredSubscriptionNotification()
     }
@@ -249,7 +247,11 @@ class AccountManager: AccountManaging, Navigating {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.resetAccount()
-                self?.navigate(to: .landing)
+                #if os(iOS)
+                NavigationCoordinator.shared.navigate(from: .expiredSubscription, to: .landing)
+                #elseif os(macOS)
+                // TODO: GO BACK TO LANDING PAGE
+                #endif
         }).disposed(by: disposeBag)
     }
 }

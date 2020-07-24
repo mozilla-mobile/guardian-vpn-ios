@@ -104,10 +104,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
         viewModel.trashTappedSubject
             .subscribe(onNext: { [weak self] device in
                 guard let self = self else { return }
-                let confirmAlert = DependencyManager
-                    .shared
-                    .navigationCoordinator
-                    .createDeviceDeletionAlert(deviceName: device.name) { _ in
+                let confirmAlert = NavigationCoordinator.shared.createDeviceDeletionAlert(deviceName: device.name) { _ in
                         self.viewModel.deletionConfirmedSubject.onNext(device)
                         self.tableView.reloadData()
                 }
@@ -122,7 +119,7 @@ class DeviceManagementViewController: UIViewController, Navigating {
                 guard let account = self.account else { return }
 
                 if account.hasDeviceBeenAdded {
-                    DependencyManager.shared.navigationCoordinator.homeTab(isEnabled: true)
+                    NavigationCoordinator.shared.homeTab(isEnabled: true)
                 }
                 self.refreshViews()
 

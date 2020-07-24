@@ -9,6 +9,8 @@
 //  Copyright © 2020 Mozilla Corporation.
 //
 
+#if os(iOS)
+
 import UIKit
 
 extension UIApplication {
@@ -35,3 +37,36 @@ extension UIApplication {
         }
     }
 }
+
+#elseif os(macOS)
+
+import AppKit
+
+extension NSApplication {
+    private static let bundleAppNameKey = "CFBundleName"
+    private static let bundleVersionKey = "CFBundleShortVersionString"
+
+    static var appName: String {
+        return Bundle.main.object(forInfoDictionaryKey: NSApplication.bundleAppNameKey) as? String ?? ""
+    }
+
+    static var appNameWithoutSpaces: String {
+        return appName.replacingOccurrences(of: " ", with: "")
+    }
+
+    static var appVersion: String {
+        return Bundle.main.object(forInfoDictionaryKey: NSApplication.bundleVersionKey) as? String ?? ""
+    }
+}
+
+extension NSWorkspace {
+    private static let appStoreURL = "itms-apps://itunes.apple.com/app/id1489407738"
+
+    func openAppStore() {
+        if let url = URL(string: NSWorkspace.appStoreURL) {
+            open(url)
+        }
+    }
+}
+
+#endif

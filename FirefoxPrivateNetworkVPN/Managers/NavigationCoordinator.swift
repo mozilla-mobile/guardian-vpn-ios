@@ -24,11 +24,11 @@ enum NavigableItem: Hashable {
     case servers
     case settings
     case tab
-    case account
     case appStore
     case recommendedUpdate
     case requiredUpdate
     case safari
+    case expiredSubscription
 }
 
 enum NavigableContext {
@@ -39,6 +39,11 @@ enum NavigableContext {
 
 class NavigationCoordinator: NavigationCoordinating {
 
+    static let shared: NavigationCoordinating = NavigationCoordinator()
+
+    private init() { }
+
+    // MARK: -
     private var currentViewController: (UIViewController & Navigating)?
     private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
@@ -58,7 +63,7 @@ class NavigationCoordinator: NavigationCoordinating {
             case (.loading, .landing):
                 self.initializeWithLandingScreen()
 
-            case (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
+            case (.settings, .landing), (.expiredSubscription, .landing), (.requiredUpdate, .landing):
                 self.initializeWithLandingScreen()
 
                 if let landingViewController = self.currentViewController as? LandingViewController {
