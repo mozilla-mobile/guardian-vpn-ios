@@ -296,8 +296,7 @@ class GuardianTunnelManager: TunnelManaging {
 
 private extension NETunnelProviderManager {
     func setNewConfiguration(for device: Device, city: VPNCity, key: Data) {
-        guard let newConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: key) else { return }
-
+        let newConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: key)
         self.protocolConfiguration = NETunnelProviderProtocol(tunnelConfiguration: newConfiguration)
         self.localizedDescription = newConfiguration.name ?? city.name
     }

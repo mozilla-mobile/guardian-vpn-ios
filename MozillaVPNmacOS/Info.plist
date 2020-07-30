@@ -36,5 +36,7 @@
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
+	<key>com.wireguard.macos.app_group_id</key>
+	<string>$(DEVELOPMENT_TEAM).$(FIREFOX_VPN_APP_GROUP)</string>
 </dict>
 </plist>
