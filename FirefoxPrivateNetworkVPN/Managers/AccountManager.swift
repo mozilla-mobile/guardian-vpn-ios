@@ -66,12 +66,14 @@ class AccountManager: AccountManaging, Navigating {
             switch (addDeviceError, retrieveServersError) {
             case (.none, .none):
                 self.accountStore.save(credentials: credentials)
+                self.accountStore.save(user: verification.user)
                 self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
                 DependencyManager.shared.heartbeatMonitor.start()
                 completion(.success(()))
             case (.some(let error), _):
                 guard error != .maxDevicesReached else {
                     self.accountStore.save(credentials: credentials)
+                    self.accountStore.save(user: verification.user)
                     self.selectedCity = self.accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
                     DependencyManager.shared.heartbeatMonitor.start()
                     completion(.failure(.maxDevicesReached))
@@ -91,14 +93,13 @@ class AccountManager: AccountManaging, Navigating {
 
     func loginWithStoredCredentials() -> Bool {
         guard let credentials = accountStore.getCredentials(),
-            let currentDevice: Device = accountStore.getCurrentDevice(),
             let user: User = accountStore.getUser() else {
                 return false
         }
 
         self.account = Account(credentials: credentials,
                                user: user,
-                               currentDevice: currentDevice)
+                               currentDevice: accountStore.getCurrentDevice())
 
         self.availableServers = accountStore.getVpnServers()
         self.selectedCity = accountStore.getSelectedCity() ?? self.availableServers.getRandomUSCity()
@@ -141,6 +142,13 @@ class AccountManager: AccountManaging, Navigating {
             completion(.success(()))
             return
         }
+        #if os(iOS)
+        guard account.isSubscriptionActive else {
+            completion(.success(()))
+            return
+        }
+        #endif
+
 
         guardianAPI.addDevice(with: account.credentials.verificationToken, body: body) { [weak self] result in
             guard let self = self else {
