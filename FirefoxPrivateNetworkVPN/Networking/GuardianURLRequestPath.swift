@@ -22,7 +22,11 @@ enum GuardianURLRequestPath {
         let prefix = "api/v1/vpn/"
         switch self {
         case .login:
+            #if os(iOS)
+            return prefix + "login?platform=ios"
+            #elseif os(macOS)
             return prefix + "login"
+            #endif
         case .verify(let token):
             return prefix + "login/verify/" + token
         case .retrieveServers:
