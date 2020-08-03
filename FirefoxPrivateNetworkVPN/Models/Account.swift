@@ -37,4 +37,8 @@ class Account {
     var hasDeviceBeenAdded: Bool {
         return currentDevice != nil
     }
+
+    var isSubscriptionActive: Bool {
+        return user.vpnSubscription.isActive
+    }
 }
