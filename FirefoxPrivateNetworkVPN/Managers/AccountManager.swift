@@ -94,7 +94,7 @@ class AccountManager: AccountManaging, Navigating {
     func loginWithStoredCredentials() -> Bool {
         guard let credentials = accountStore.getCredentials(),
             let user: User = accountStore.getUser() else {
-                return false
+            return false
         }
 
         self.account = Account(credentials: credentials,
@@ -128,15 +128,13 @@ class AccountManager: AccountManaging, Navigating {
     // MARK: - Account Operations
     func addCurrentDevice(completion: @escaping (Result<Void, DeviceManagementError>) -> Void) {
         guard let account = account else {
-            completion(Result.failure(.couldNotAddDevice))
+            completion(.failure(.couldNotAddDevice))
             return
         }
         guard let devicePublicKey = account.credentials.deviceKeys.publicKey.base64Key() else {
-            completion(Result.failure(.noPublicKey))
+            completion(.failure(.noPublicKey))
             return
         }
-        let body: [String: Any] = ["name": deviceName,
-                                   "pubkey": devicePublicKey]
 
         guard !account.hasDeviceBeenAdded else {
             completion(.success(()))
@@ -149,6 +147,8 @@ class AccountManager: AccountManaging, Navigating {
         }
         #endif
 
+        let body: [String: Any] = ["name": deviceName,
+                                   "pubkey": devicePublicKey]
 
         guardianAPI.addDevice(with: account.credentials.verificationToken, body: body) { [weak self] result in
             guard let self = self else {
