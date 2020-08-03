@@ -73,8 +73,13 @@ class SettingsViewController: UIViewController, Navigating {
         //swiftlint:disable:next trailing_closure
         dataSource?.settingSelected
             .subscribe(onNext: { [weak self] item in
-                if let navigableItem = item.navigableItem {
-                    self?.navigate(to: navigableItem, context: item.navigableContext)
+                if item == .device, !item.isSubscriptionActive {
+                    // TODO: show IAP page
+                    print("Show IAP page")
+                } else {
+                    if let navigableItem = item.navigableItem {
+                        self?.navigate(to: navigableItem, context: item.navigableContext)
+                    }
                 }
             })
             .disposed(by: disposeBag)
