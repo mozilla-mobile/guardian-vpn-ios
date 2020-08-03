@@ -30,20 +30,27 @@ enum SettingsItem: Equatable {
         }
     }
 
+    var textColor: UIColor {
+        return self == .device && !isSubscriptionActive
+            ? UIColor.custom(.grey50).withAlphaComponent(0.5)
+            : UIColor.custom(.grey50)
+    }
+
     var iconImage: UIImage? {
         switch self {
-        case .device: return #imageLiteral(resourceName: "icon_device")
-        case .help: return #imageLiteral(resourceName: "icon_help")
-        case .about: return #imageLiteral(resourceName: "icon_about")
-        case .feedback: return #imageLiteral(resourceName: "icon_smile")
+        case .device: return isSubscriptionActive ? UIImage(named: "icon_device") : UIImage(named: "icon_secure")
+        case .help: return UIImage(named: "icon_help")
+        case .about: return UIImage(named: "icon_about")
+        case .feedback: return UIImage(named: "icon_smile")
         case .signout, .account: return nil
         }
     }
 
     var disclosureImage: UIImage? {
         switch self {
-        case .feedback: return #imageLiteral(resourceName: "icon_openIn.pdf")
-        default: return #imageLiteral(resourceName: "icon_forwardChevron.pdf")
+        case .device: return isSubscriptionActive ? UIImage(named: "icon_forwardChevron") : nil
+        case .feedback: return UIImage(named: "icon_openIn")
+        default: return UIImage(named: "icon_forwardChevron")
         }
     }
 
@@ -63,5 +70,13 @@ enum SettingsItem: Equatable {
         case .account(let email): return .url(FirefoxURL.account(email: email).value)
         case .device, .about, .help, .signout: return nil
         }
+    }
+
+    var isSubscriptionActive: Bool {
+        return DependencyManager.shared.accountManager.account?.isSubscriptionActive ?? false
+    }
+
+    var isDeviceAdded: Bool {
+        return DependencyManager.shared.accountManager.account?.hasDeviceBeenAdded ?? false
     }
 }

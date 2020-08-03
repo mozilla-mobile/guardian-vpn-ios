@@ -57,6 +57,7 @@
 "settingsItemAbout" = "About us";
 "settingsSignOut" = "Sign out";
 "settingsFeedback" = "Give feedback";
+"settingsPurchase" = "Try Mozilla VPN";
 
 "settingsDefaultName" = "VPN User";
 "settingsManageAccount" = "Manage account";
