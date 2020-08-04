@@ -183,7 +183,7 @@ class AccountManager: AccountManaging, Navigating {
             }
             switch result {
             case .success(let user):
-                account.user = user
+                self.account?.user = user
                 self.accountStore.save(user: user)
                 completion(.success(()))
             case .failure(let error):

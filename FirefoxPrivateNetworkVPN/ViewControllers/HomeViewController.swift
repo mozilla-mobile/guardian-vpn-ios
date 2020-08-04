@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, Navigating {
     @IBOutlet private weak var selectConnectionLabel: UILabel!
     @IBOutlet private weak var vpnSelectionView: CurrentVPNSelectorView!
     @IBOutlet private weak var warningToastView: WarningToastView!
-    @IBOutlet private weak var versionUpdateBannerView: TopBannerView!
+    @IBOutlet private weak var topBannerView: TopBannerView!
     @IBOutlet private weak var vpnStackView: UIStackView!
 
     private let pinger = LongPinger()
@@ -28,6 +28,7 @@ class HomeViewController: UIViewController, Navigating {
     private let rxValueObserving = ConnectionRxValue()
     private let tunnelManager = DependencyManager.shared.tunnelManager
     private let releaseMonitor = DependencyManager.shared.releaseMonitor
+    private let accountManager = DependencyManager.shared.accountManager
     private let disposeBag = DisposeBag()
 
     init() {
@@ -43,9 +44,11 @@ class HomeViewController: UIViewController, Navigating {
         super.viewDidLoad()
         setStrings()
         setupToggleView()
+        setupTopBannerView()
         subscribeToVpnStates()
         subscribeToErrors()
         subscribeToVersionUpdates()
+        subscribeToSubscription()
     }
 
     override func viewWillLayoutSubviews() {
@@ -73,6 +76,24 @@ class HomeViewController: UIViewController, Navigating {
 
         vpnToggleView.disconnectionHandler = { [weak self] in
             self?.tunnelManager.stop()
+        }
+
+        vpnToggleView.tapGestureHandler = { [weak self] in
+            self?.topBannerView.vibrate()
+        }
+    }
+    
+    private func setupTopBannerView() {
+        if let isSubscriptionActive = accountManager.account?.isSubscriptionActive, !isSubscriptionActive {
+            let text = NSAttributedString.formatted(LocalizedString.bannerInAppPurchase.value,
+                                                    actionMessage: LocalizedString.tryMozillaVPN.value)
+            topBannerView.configure(text: text, hideDismiss: true) {
+                // TODO: show IAP page
+                print("Show IAP page")
+            }
+            topBannerView.isHidden = false
+        } else {
+            topBannerView.isHidden = true
         }
     }
 
@@ -136,17 +157,28 @@ class HomeViewController: UIViewController, Navigating {
                 case .optional:
                     let text = NSAttributedString.formatted(LocalizedString.bannerFeaturesAvailable.value,
                                                             actionMessage: LocalizedString.updateNow.value)
-                    self.versionUpdateBannerView.configure(text: text) {
+                    self.topBannerView.configure(text: text) {
                         DependencyManager.shared.navigationCoordinator.navigate(from: .home, to: .appStore)
                     }
-                    self.versionUpdateBannerView.isHidden = false
+                    self.topBannerView.isHidden = false
                 case .required:
                     Logger.global?.log(message: "Required update detected")
-                    self.versionUpdateBannerView.isHidden = true
+                    self.topBannerView.isHidden = true
                     self.navigate(to: .requiredUpdate)
                 default: //.none or nil
-                    self.versionUpdateBannerView.isHidden = true
+                    self.topBannerView.isHidden = true
                 }
+            }).disposed(by: disposeBag)
+    }
+
+    private func subscribeToSubscription() {
+        //swiftlint:disable:next trailing_closure
+        NotificationCenter.default.rx
+            .notification(.activeSubscriptionNotification)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.topBannerView.isHidden = true
+                self?.vpnToggleView.update(with: .off)
             }).disposed(by: disposeBag)
     }
 
