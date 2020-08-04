@@ -44,11 +44,11 @@ class HomeViewController: UIViewController, Navigating {
         super.viewDidLoad()
         setStrings()
         setupToggleView()
-        setupTopBannerView()
         subscribeToVpnStates()
         subscribeToErrors()
         subscribeToVersionUpdates()
         subscribeToSubscription()
+        setupTopBannerView()
     }
 
     override func viewWillLayoutSubviews() {
@@ -123,10 +123,8 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func connectToTunnel() {
-        let currentDevice = DependencyManager.shared.accountManager.account?.currentDevice
-
         //swiftlint:disable:next trailing_closure
-        tunnelManager.connect(with: currentDevice)
+        tunnelManager.connect()
             .subscribe(onError: { [weak self] _ in
                 guard let self = self else { return }
                 self.warningToastView.show(message: NSAttributedString.formattedError(TunnelError.couldNotConnect),

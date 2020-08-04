@@ -41,14 +41,14 @@ class SimulatorTunnelManager: TunnelManaging {
         }).disposed(by: disposeBag)
     }
 
-    func connect(with device: Device?) -> Single<Void> {
+    func connect() -> Single<Void> {
         internalState.accept(.connecting)
         internalState.accept(.on)
         connectionEstablishedTime = Date()
         return Single.just(())
     }
 
-    func switchServer(with device: Device) -> Single<Void> {
+    func switchServer() -> Single<Void> {
         internalState.accept(.switching(lastSelectedCity?.name ?? "", currentSelectedCity?.name ?? ""))
         internalState.accept(.on)
         connectionEstablishedTime = Date()
