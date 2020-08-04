@@ -123,20 +123,16 @@ class ServerListViewModel {
                 DependencyManager.shared.tunnelManager.cityChangedEvent.onNext(newCity)
             })
             .flatMap { _ -> Single<Void> in
-                guard let device = DependencyManager.shared.accountManager.account?.currentDevice else {
-                    OSLog.log(.error, "No device found when switching VPN server")
-                    return .never()
-                }
-                return DependencyManager.shared.tunnelManager.switchServer(with: device)
-        }
-        .catchError { error -> Observable<Void> in
-            OSLog.logTunnel(.error, error.localizedDescription)
-            NotificationCenter.default.post(Notification(name: .switchServerError))
-            return Observable.just(())
-        }
-        .subscribe(onNext: { [weak self] in
-            self?._vpnSelection.onNext(())
-        }).disposed(by: disposeBag)
+                return DependencyManager.shared.tunnelManager.switchServer()
+            }
+            .catchError { error -> Observable<Void> in
+                OSLog.logTunnel(.error, error.localizedDescription)
+                NotificationCenter.default.post(Notification(name: .switchServerError))
+                return Observable.just(())
+            }
+            .subscribe(onNext: { [weak self] in
+                self?._vpnSelection.onNext(())
+            }).disposed(by: disposeBag)
 
         cellSelection
             .filter { $0.isCountryHeader }
