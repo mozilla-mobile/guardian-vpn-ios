@@ -1,5 +1,5 @@
 //
-//  UpdateToastView
+//  TopBannerView
 //  FirefoxPrivateNetworkVPN
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -11,11 +11,13 @@
 
 import UIKit
 
-final class VersionUpdateToastView: UIView {
+final class TopBannerView: UIView {
 
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private var view: UIView!
     @IBOutlet private weak var dismissView: UIView!
+
+    private var action: (() -> Void)?
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -23,9 +25,6 @@ final class VersionUpdateToastView: UIView {
         Bundle.main.loadNibNamed(String(describing: Self.self), owner: self, options: nil)
         view.frame = bounds
         addSubview(view)
-
-        label.attributedText = NSAttributedString.formatted(LocalizedString.toastFeaturesAvailable.value,
-                                                            actionMessage: LocalizedString.updateNow.value)
     }
 
     override func awakeFromNib() {
@@ -42,20 +41,23 @@ final class VersionUpdateToastView: UIView {
         dismissView.shadowRadius = dismissView.frame.height/10
     }
 
+    func configure(text: NSAttributedString, hideDismiss: Bool = false, action: @escaping () -> Void) {
+        label.attributedText = text
+        dismissView.isHidden = hideDismiss
+        self.action = action
+    }
+
     @IBAction private func dismiss(_ sender: Any) {
         dismissView.backgroundColor = .custom(.blue80)
 
-        UIView.animate(withDuration: 0.3,
-                       animations: { [weak self] in
-                        self?.alpha = 0
-            },
-                       completion: { [weak self] _ in
-                        self?.isHidden = true
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.alpha = 0
+        }, completion: { [weak self] _ in
+            self?.isHidden = true
         })
     }
 
     @IBAction private func tapped(_ sender: UITapGestureRecognizer) {
-        DependencyManager.shared.navigationCoordinator
-            .navigate(from: .home, to: .appStore)
+        action?()
     }
 }

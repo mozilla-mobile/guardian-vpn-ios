@@ -98,7 +98,7 @@
 "updateNow" = "Update Jetzt";
 
 // MARK: - Update toast
-"toastFeaturesAvailable" = "Neue Funktionen sind verfügbar!";
+"bannerFeaturesAvailable" = "Neue Funktionen sind verfügbar!";
 
 // Mark: - Recommended Update
 "updateRecommended" = "Update empfohlen";

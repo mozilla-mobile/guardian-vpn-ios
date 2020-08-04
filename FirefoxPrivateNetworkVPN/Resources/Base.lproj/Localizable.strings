@@ -97,9 +97,11 @@
 //Mark: - Update
 "updateConnection" = "Your connection will not be secure while you update.";
 "updateNow" = "Update now";
+"tryMozillaVPN" = "Try Mozilla VPN";
 
-// MARK: - Update toast
-"toastFeaturesAvailable" = "New features are available!";
+// MARK: - Banner
+"bannerFeaturesAvailable" = "New features are available!";
+"bannerInAppPurchase" = "Subscribe to turn on VPN.";
 
 // Mark: - Recommended Update
 "updateRecommended" = "Update recommended";
