@@ -89,8 +89,10 @@ enum LocalizedString: String {
     case toastNoConnection
     case toastAuthenticationError
 
-    case toastFeaturesAvailable
+    case bannerFeaturesAvailable
+    case bannerInAppPurchase
 
+    case tryMozillaVPN
     case updateNow
     case updateConnection
 

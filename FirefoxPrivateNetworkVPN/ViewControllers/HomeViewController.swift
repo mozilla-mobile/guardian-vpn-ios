@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, Navigating {
     @IBOutlet private weak var selectConnectionLabel: UILabel!
     @IBOutlet private weak var vpnSelectionView: CurrentVPNSelectorView!
     @IBOutlet private weak var warningToastView: WarningToastView!
-    @IBOutlet private weak var versionUpdateToastView: VersionUpdateToastView!
+    @IBOutlet private weak var versionUpdateBannerView: TopBannerView!
     @IBOutlet private weak var vpnStackView: UIStackView!
 
     private let pinger = LongPinger()
@@ -134,13 +134,18 @@ class HomeViewController: UIViewController, Navigating {
                 guard let self = self else { return }
                 switch value {
                 case .optional:
-                    self.versionUpdateToastView.isHidden = false
+                    let text = NSAttributedString.formatted(LocalizedString.bannerFeaturesAvailable.value,
+                                                            actionMessage: LocalizedString.updateNow.value)
+                    self.versionUpdateBannerView.configure(text: text) {
+                        DependencyManager.shared.navigationCoordinator.navigate(from: .home, to: .appStore)
+                    }
+                    self.versionUpdateBannerView.isHidden = false
                 case .required:
                     Logger.global?.log(message: "Required update detected")
-                    self.versionUpdateToastView.isHidden = true
+                    self.versionUpdateBannerView.isHidden = true
                     self.navigate(to: .requiredUpdate)
                 default: //.none or nil
-                    self.versionUpdateToastView.isHidden = true
+                    self.versionUpdateBannerView.isHidden = true
                 }
             }).disposed(by: disposeBag)
     }
