@@ -21,7 +21,7 @@
             <connections>
                 <outlet property="navigationTitleLabel" destination="Rpo-Dd-s6i" id="iLn-NZ-4zI"/>
                 <outlet property="selectConnectionLabel" destination="oGq-Iz-V78" id="kph-nE-1mz"/>
-                <outlet property="versionUpdateBannerView" destination="Yry-ba-MAs" id="mV5-Zu-gNP"/>
+                <outlet property="topBannerView" destination="Yry-ba-MAs" id="mV5-Zu-gNP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vpnSelectionView" destination="6xU-vI-Kl7" id="P7N-x9-c9b"/>
                 <outlet property="vpnStackView" destination="d5Z-V5-CBU" id="4f5-ZT-iU4"/>
