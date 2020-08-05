@@ -19,9 +19,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
             <connections>
+                <outlet property="inAppPurchaseBannerView" destination="PwB-hN-hKE" id="0Az-OH-g7s"/>
                 <outlet property="navigationTitleLabel" destination="Rpo-Dd-s6i" id="iLn-NZ-4zI"/>
                 <outlet property="selectConnectionLabel" destination="oGq-Iz-V78" id="kph-nE-1mz"/>
-                <outlet property="topBannerView" destination="Yry-ba-MAs" id="mV5-Zu-gNP"/>
+                <outlet property="versionUpdateBannerView" destination="Yry-ba-MAs" id="mV5-Zu-gNP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vpnSelectionView" destination="6xU-vI-Kl7" id="P7N-x9-c9b"/>
                 <outlet property="vpnStackView" destination="d5Z-V5-CBU" id="4f5-ZT-iU4"/>
@@ -64,6 +65,15 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d5Z-V5-CBU" userLabel="VPN Stack View">
                     <rect key="frame" x="32" y="120" width="770" height="434"/>
                     <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwB-hN-hKE" customClass="TopBannerView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="770" height="56"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="rjg-l2-qBT">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="56"/>
+                                </constraint>
+                            </constraints>
+                        </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yry-ba-MAs" customClass="TopBannerView" customModule="Firefox_Private_Network_VPN" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="770" height="56"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
