@@ -248,6 +248,7 @@
 		D54D31DE2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
 		D54CF58824DA5F9F005CA66E /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58624DA5F9F005CA66E /* ProductViewController.swift */; };
 		D54CF58924DA5F9F005CA66E /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54CF58724DA5F9F005CA66E /* ProductViewController.xib */; };
+		D54CF58C24DAAC8F005CA66E /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58B24DAAC8F005CA66E /* StoreManager.swift */; };
 		D5D349B3249A73FB00DD9F50 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B1249A73FA00DD9F50 /* error_noSignal.png */; };
 		D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B2249A73FA00DD9F50 /* error_unstable.png */; };
 		D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
@@ -600,6 +601,7 @@
 		D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCECodeGenerator.swift; sourceTree = "<group>"; };
 		D54CF58624DA5F9F005CA66E /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		D54CF58724DA5F9F005CA66E /* ProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewController.xib; sourceTree = "<group>"; };
+		D54CF58B24DAAC8F005CA66E /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		D5D349B1249A73FA00DD9F50 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
 		D5D349B2249A73FA00DD9F50 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
 		D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensionUserDefaults.swift; sourceTree = "<group>"; };
@@ -1003,6 +1005,14 @@
 			path = NotificationContentExtension;
 			sourceTree = "<group>";
 		};
+		D54CF58A24DAAC63005CA66E /* Apple IAP */ = {
+			isa = PBXGroup;
+			children = (
+				D54CF58B24DAAC8F005CA66E /* StoreManager.swift */,
+			);
+			path = "Apple IAP";
+			sourceTree = "<group>";
+		};
 		F401097E240453B6006DFF96 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
@@ -1056,6 +1066,7 @@
 		F41CCA1923711C7A0018DC43 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				D54CF58A24DAAC63005CA66E /* Apple IAP */,
 				F4B42C02238DD1FA001F64F7 /* Connection Heath Monitor */,
 				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
 				F41CCA1A23711C7A0018DC43 /* DependencyManager.swift */,
@@ -2290,6 +2301,7 @@
 				F4E908FD2371CAAD00EB9FE6 /* HomeViewController.swift in Sources */,
 				F4E909132371CAAD00EB9FE6 /* DeviceLimitReachedView.swift in Sources */,
 				F42DE7C62395A61C000B79C3 /* LandingViewController.swift in Sources */,
+				D54CF58C24DAAC8F005CA66E /* StoreManager.swift in Sources */,
 				F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */,
 				F4AED249235F7BB800F80ABF /* WireGuardAppError.swift in Sources */,
 				F4E909052371CAAD00EB9FE6 /* ServersViewController.swift in Sources */,
