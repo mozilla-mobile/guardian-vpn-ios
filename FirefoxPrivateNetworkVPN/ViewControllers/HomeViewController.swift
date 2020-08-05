@@ -20,7 +20,8 @@ class HomeViewController: UIViewController, Navigating {
     @IBOutlet private weak var selectConnectionLabel: UILabel!
     @IBOutlet private weak var vpnSelectionView: CurrentVPNSelectorView!
     @IBOutlet private weak var warningToastView: WarningToastView!
-    @IBOutlet private weak var topBannerView: TopBannerView!
+    @IBOutlet private weak var inAppPurchaseBannerView: TopBannerView!
+    @IBOutlet private weak var versionUpdateBannerView: TopBannerView!
     @IBOutlet private weak var vpnStackView: UIStackView!
 
     private let pinger = LongPinger()
@@ -44,11 +45,11 @@ class HomeViewController: UIViewController, Navigating {
         super.viewDidLoad()
         setStrings()
         setupToggleView()
+        setupTopBannerView()
         subscribeToVpnStates()
         subscribeToErrors()
         subscribeToVersionUpdates()
         subscribeToSubscription()
-        setupTopBannerView()
     }
 
     override func viewWillLayoutSubviews() {
@@ -79,21 +80,21 @@ class HomeViewController: UIViewController, Navigating {
         }
 
         vpnToggleView.tapGestureHandler = { [weak self] in
-            self?.topBannerView.vibrate()
+            self?.inAppPurchaseBannerView.vibrate()
         }
     }
-    
+
     private func setupTopBannerView() {
         if let isSubscriptionActive = accountManager.account?.isSubscriptionActive, !isSubscriptionActive {
             let text = NSAttributedString.formatted(LocalizedString.bannerInAppPurchase.value,
                                                     actionMessage: LocalizedString.tryMozillaVPN.value)
-            topBannerView.configure(text: text, hideDismiss: true) {
+            inAppPurchaseBannerView.configure(text: text, hideDismiss: true) {
                 // TODO: show IAP page
                 print("Show IAP page")
             }
-            topBannerView.isHidden = false
+            inAppPurchaseBannerView.isHidden = false
         } else {
-            topBannerView.isHidden = true
+            inAppPurchaseBannerView.isHidden = true
         }
     }
 
@@ -151,20 +152,23 @@ class HomeViewController: UIViewController, Navigating {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
+                guard let isSubscriptionActive = self.accountManager.account?.isSubscriptionActive, isSubscriptionActive else {
+                    return
+                }
                 switch value {
                 case .optional:
                     let text = NSAttributedString.formatted(LocalizedString.bannerFeaturesAvailable.value,
                                                             actionMessage: LocalizedString.updateNow.value)
-                    self.topBannerView.configure(text: text) {
+                    self.versionUpdateBannerView.configure(text: text) {
                         DependencyManager.shared.navigationCoordinator.navigate(from: .home, to: .appStore)
                     }
-                    self.topBannerView.isHidden = false
+                    self.versionUpdateBannerView.isHidden = false
                 case .required:
                     Logger.global?.log(message: "Required update detected")
-                    self.topBannerView.isHidden = true
+                    self.versionUpdateBannerView.isHidden = true
                     self.navigate(to: .requiredUpdate)
                 default: //.none or nil
-                    self.topBannerView.isHidden = true
+                    self.versionUpdateBannerView.isHidden = true
                 }
             }).disposed(by: disposeBag)
     }
@@ -175,7 +179,7 @@ class HomeViewController: UIViewController, Navigating {
             .notification(.activeSubscriptionNotification)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                self?.topBannerView.isHidden = true
+                self?.inAppPurchaseBannerView.isHidden = true
                 self?.vpnToggleView.update(with: .off)
             }).disposed(by: disposeBag)
     }
