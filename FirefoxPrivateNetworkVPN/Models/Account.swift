@@ -11,7 +11,7 @@
 
 import RxSwift
 
-class Account {
+struct Account {
     var credentials: Credentials
     var currentDevice: Device?
     var user: User
