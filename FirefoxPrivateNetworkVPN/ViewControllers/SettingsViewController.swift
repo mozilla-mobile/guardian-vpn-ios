@@ -74,8 +74,7 @@ class SettingsViewController: UIViewController, Navigating {
         dataSource?.settingSelected
             .subscribe(onNext: { [weak self] item in
                 if item == .device, !item.isSubscriptionActive {
-                    // TODO: show IAP page
-                    print("Show IAP page")
+                    self?.navigate(to: .product)
                 } else {
                     if let navigableItem = item.navigableItem {
                         self?.navigate(to: navigableItem, context: item.navigableContext)

@@ -38,4 +38,9 @@ extension UIViewController {
     @objc func closeModal() {
         dismiss(animated: true, completion: nil)
     }
+
+    func hideNavigationBarBottomLine() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
 }

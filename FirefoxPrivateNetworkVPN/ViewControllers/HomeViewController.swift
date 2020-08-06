@@ -182,8 +182,7 @@ class HomeViewController: UIViewController, Navigating {
                 let text = NSAttributedString.formatted(LocalizedString.bannerInAppPurchase.value,
                                                         actionMessage: LocalizedString.tryMozillaVPN.value)
                 self.inAppPurchaseBannerView.configure(text: text, action: {
-                    // TODO: show IAP page
-                    print("Show IAP page")
+                    self.navigate(to: .product)
                 })
                 self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || isActiveSubscription
             }).disposed(by: disposeBag)

@@ -21,6 +21,7 @@ enum NavigableItem: Hashable {
     case landing
     case loading
     case login
+    case product
     case servers
     case settings
     case tab
@@ -95,6 +96,12 @@ class NavigationCoordinator: NavigationCoordinating {
             // To Home
             case (.settings, .home), (.tab, .home):
                 (self.currentViewController as? GuardianTabBarController)?.displayTab(.home)
+
+            // To Product
+            case (.home, .product), (.settings, .product):
+                let productViewController = ProductViewController()
+                let navController = UINavigationController(rootViewController: productViewController)
+                self.currentViewController?.present(navController, animated: true, completion: nil)
 
             // To Servers
             case (.home, .servers):

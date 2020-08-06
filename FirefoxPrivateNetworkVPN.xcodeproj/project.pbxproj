@@ -246,6 +246,8 @@
 		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D54D31DD2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
 		D54D31DE2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
+		D54CF58824DA5F9F005CA66E /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58624DA5F9F005CA66E /* ProductViewController.swift */; };
+		D54CF58924DA5F9F005CA66E /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54CF58724DA5F9F005CA66E /* ProductViewController.xib */; };
 		D5D349B3249A73FB00DD9F50 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B1249A73FA00DD9F50 /* error_noSignal.png */; };
 		D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B2249A73FA00DD9F50 /* error_unstable.png */; };
 		D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
@@ -596,6 +598,8 @@
 		D54700EA2491D90C00FA40A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCECodeGenerator.swift; sourceTree = "<group>"; };
+		D54CF58624DA5F9F005CA66E /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		D54CF58724DA5F9F005CA66E /* ProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewController.xib; sourceTree = "<group>"; };
 		D5D349B1249A73FA00DD9F50 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
 		D5D349B2249A73FA00DD9F50 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
 		D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensionUserDefaults.swift; sourceTree = "<group>"; };
@@ -1177,6 +1181,8 @@
 				F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */,
 				F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */,
 				F4483D0223F594E80094BE3E /* UpdateRequiredViewController.xib */,
+				D54CF58624DA5F9F005CA66E /* ProductViewController.swift */,
+				D54CF58724DA5F9F005CA66E /* ProductViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1772,6 +1778,7 @@
 				F4230484237209B000572A93 /* HelpViewController.xib in Resources */,
 				F4E908DD2371CAAD00EB9FE6 /* Metropolis-BoldItalic.otf in Resources */,
 				F4E909142371CAAD00EB9FE6 /* DeviceLimitReachedView.xib in Resources */,
+				D54CF58924DA5F9F005CA66E /* ProductViewController.xib in Resources */,
 				D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */,
 				F4E909032371CAAD00EB9FE6 /* LoadingViewController.xib in Resources */,
 				F4E9090C2371CAAD00EB9FE6 /* AccountInformationHeader.xib in Resources */,
@@ -2272,6 +2279,7 @@
 				F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */,
 				F4E908CA2371CAAD00EB9FE6 /* User.swift in Sources */,
 				F47865972425069700598AAF /* PersistenceLayer.swift in Sources */,
+				D54CF58824DA5F9F005CA66E /* ProductViewController.swift in Sources */,
 				F4E909152371CAAD00EB9FE6 /* DeviceManagementCell.swift in Sources */,
 				F4AED251235F835200F80ABF /* Data+KeyEncoding.swift in Sources */,
 				F40109802406F303006DFF96 /* FirefoxURL.swift in Sources */,
