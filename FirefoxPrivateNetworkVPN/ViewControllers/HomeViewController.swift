@@ -30,6 +30,7 @@ class HomeViewController: UIViewController, Navigating {
     private let tunnelManager = DependencyManager.shared.tunnelManager
     private let releaseMonitor = DependencyManager.shared.releaseMonitor
     private let accountManager = DependencyManager.shared.accountManager
+    private let heartbeatMonitor = DependencyManager.shared.heartbeatMonitor
     private let disposeBag = DisposeBag()
 
     init() {
@@ -45,7 +46,6 @@ class HomeViewController: UIViewController, Navigating {
         super.viewDidLoad()
         setStrings()
         setupToggleView()
-        setupTopBannerView()
         subscribeToVpnStates()
         subscribeToErrors()
         subscribeToVersionUpdates()
@@ -55,6 +55,11 @@ class HomeViewController: UIViewController, Navigating {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         vpnSelectionView.view.cornerRadius = vpnSelectionView.view.frame.height/2
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        heartbeatMonitor.pollNow()
     }
 
     private func setStrings() {
@@ -81,20 +86,7 @@ class HomeViewController: UIViewController, Navigating {
 
         vpnToggleView.tapGestureHandler = { [weak self] in
             self?.inAppPurchaseBannerView.vibrate()
-        }
-    }
-
-    private func setupTopBannerView() {
-        if let isSubscriptionActive = accountManager.account?.isSubscriptionActive, !isSubscriptionActive {
-            let text = NSAttributedString.formatted(LocalizedString.bannerInAppPurchase.value,
-                                                    actionMessage: LocalizedString.tryMozillaVPN.value)
-            inAppPurchaseBannerView.configure(text: text, hideDismiss: true) {
-                // TODO: show IAP page
-                print("Show IAP page")
-            }
-            inAppPurchaseBannerView.isHidden = false
-        } else {
-            inAppPurchaseBannerView.isHidden = true
+            self?.versionUpdateBannerView.vibrate()
         }
     }
 
@@ -152,15 +144,12 @@ class HomeViewController: UIViewController, Navigating {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
-                guard let isSubscriptionActive = self.accountManager.account?.isSubscriptionActive, isSubscriptionActive else {
-                    return
-                }
                 switch value {
                 case .optional:
                     let text = NSAttributedString.formatted(LocalizedString.bannerFeaturesAvailable.value,
                                                             actionMessage: LocalizedString.updateNow.value)
                     self.versionUpdateBannerView.configure(text: text) {
-                        DependencyManager.shared.navigationCoordinator.navigate(from: .home, to: .appStore)
+                        self.navigate(to: .appStore)
                     }
                     self.versionUpdateBannerView.isHidden = false
                 case .required:
@@ -170,17 +159,24 @@ class HomeViewController: UIViewController, Navigating {
                 default: //.none or nil
                     self.versionUpdateBannerView.isHidden = true
                 }
+                self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || (self.accountManager.account?.isSubscriptionActive ?? false)
             }).disposed(by: disposeBag)
     }
 
     private func subscribeToSubscription() {
-        //swiftlint:disable:next trailing_closure
-        NotificationCenter.default.rx
-            .notification(.activeSubscriptionNotification)
+        accountManager.isSubscriptionActive
+            .distinctUntilChanged()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
-                self?.inAppPurchaseBannerView.isHidden = true
-                self?.vpnToggleView.update(with: .off)
+            .subscribe(onNext: { [weak self] isActiveSubscription in
+                guard let self = self else { return }
+
+                let text = NSAttributedString.formatted(LocalizedString.bannerInAppPurchase.value,
+                                                        actionMessage: LocalizedString.tryMozillaVPN.value)
+                self.inAppPurchaseBannerView.configure(text: text, hideDismiss: true) {
+                    // TODO: show IAP page
+                    print("Show IAP page")
+                }
+                self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || isActiveSubscription
             }).disposed(by: disposeBag)
     }
 

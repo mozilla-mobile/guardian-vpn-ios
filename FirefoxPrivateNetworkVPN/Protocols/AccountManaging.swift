@@ -13,6 +13,7 @@ import Foundation
 import RxSwift
 
 protocol AccountManaging {
+    var isSubscriptionActive: Observable<Bool> { get }
     var account: Account? { get }
     var availableServers: [VPNCountry] { get }
     var selectedCity: VPNCity? { get }

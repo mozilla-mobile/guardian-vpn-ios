@@ -10,11 +10,16 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class AccountManager: AccountManaging, Navigating {
     static var navigableItem: NavigableItem = .account
 
-    private(set) var account: Account?
+    private(set) var account: Account? {
+        didSet {
+            _isSubscriptionActive.accept(account?.isSubscriptionActive ?? false)
+        }
+    }
     private(set) var availableServers: [VPNCountry] = []
     private(set) var selectedCity: VPNCity? {
         didSet {
@@ -27,11 +32,18 @@ class AccountManager: AccountManaging, Navigating {
     private let guardianAPI: GuardianAPI
     private let accountStore: AccountStoring
     private let deviceName: String
+    private var _isSubscriptionActive: BehaviorRelay<Bool>
+
+    var isSubscriptionActive: Observable<Bool> {
+        return _isSubscriptionActive.asObservable()
+    }
 
     init(guardianAPI: GuardianAPI, accountStore: AccountStoring, deviceName: String) {
         self.guardianAPI = guardianAPI
         self.accountStore = accountStore
         self.deviceName = deviceName
+
+        _isSubscriptionActive = BehaviorRelay<Bool>(value: false)
 
         subscribeToExpiredSubscriptionNotification()
     }
@@ -195,19 +207,20 @@ class AccountManager: AccountManaging, Navigating {
 
     func remove(device: Device) -> Single<Void> {
         return Single<Void>.create { [weak self] resolver in
-            guard let account = self?.account else {
+            guard let self = self,
+                let verificationToken = self.account?.credentials.verificationToken else {
                 resolver(.error(DeviceManagementError.couldNotRemoveDevice(device)))
                 return Disposables.create()
             }
 
-            account.user.markIsBeingRemoved(for: device)
-            self?.guardianAPI.removeDevice(with: account.credentials.verificationToken, deviceKey: device.publicKey) { result in
+            self.account?.user.markIsBeingRemoved(for: device)
+            self.guardianAPI.removeDevice(with: verificationToken, deviceKey: device.publicKey) { result in
                 switch result {
                 case .success:
-                    account.user.remove(device: device)
+                    self.account?.user.remove(device: device)
                     resolver(.success(()))
                 case .failure(let error):
-                    account.user.failedRemoval(of: device)
+                    self.account?.user.failedRemoval(of: device)
                     Logger.global?.log(message: "Remove Device Error: \(error)")
                     resolver(.error(DeviceManagementError.couldNotRemoveDevice(device)))
                 }
