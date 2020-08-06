@@ -148,9 +148,16 @@ class HomeViewController: UIViewController, Navigating {
                 case .optional:
                     let text = NSAttributedString.formatted(LocalizedString.bannerFeaturesAvailable.value,
                                                             actionMessage: LocalizedString.updateNow.value)
-                    self.versionUpdateBannerView.configure(text: text) {
+                    self.versionUpdateBannerView.configure(text: text, action: {
                         self.navigate(to: .appStore)
-                    }
+                    }, dismiss: {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.versionUpdateBannerView.alpha = 0
+                        }, completion: { _ in
+                            self.versionUpdateBannerView.isHidden = true
+                            self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || (self.accountManager.account?.isSubscriptionActive ?? false)
+                        })
+                    })
                     self.versionUpdateBannerView.isHidden = false
                 case .required:
                     Logger.global?.log(message: "Required update detected")
@@ -172,10 +179,10 @@ class HomeViewController: UIViewController, Navigating {
 
                 let text = NSAttributedString.formatted(LocalizedString.bannerInAppPurchase.value,
                                                         actionMessage: LocalizedString.tryMozillaVPN.value)
-                self.inAppPurchaseBannerView.configure(text: text, hideDismiss: true) {
+                self.inAppPurchaseBannerView.configure(text: text, action: {
                     // TODO: show IAP page
                     print("Show IAP page")
-                }
+                })
                 self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || isActiveSubscription
             }).disposed(by: disposeBag)
     }

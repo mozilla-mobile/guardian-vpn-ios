@@ -18,6 +18,7 @@ final class TopBannerView: UIView {
     @IBOutlet private weak var dismissView: UIView!
 
     private var action: (() -> Void)?
+    private var dismiss: (() -> Void)?
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -41,20 +42,15 @@ final class TopBannerView: UIView {
         dismissView.shadowRadius = dismissView.frame.height/10
     }
 
-    func configure(text: NSAttributedString, hideDismiss: Bool = false, action: @escaping () -> Void) {
+    func configure(text: NSAttributedString, action: @escaping () -> Void, dismiss: (() -> Void)? = nil) {
         label.attributedText = text
-        dismissView.isHidden = hideDismiss
+        dismissView.isHidden = dismiss == nil
         self.action = action
+        self.dismiss = dismiss
     }
 
     @IBAction private func dismiss(_ sender: Any) {
-        dismissView.backgroundColor = .custom(.blue80)
-
-        UIView.animate(withDuration: 0.3, animations: { [weak self] in
-            self?.alpha = 0
-        }, completion: { [weak self] _ in
-            self?.isHidden = true
-        })
+        dismiss?()
     }
 
     @IBAction private func tapped(_ sender: UITapGestureRecognizer) {
