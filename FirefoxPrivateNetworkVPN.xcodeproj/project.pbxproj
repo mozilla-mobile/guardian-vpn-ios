@@ -397,6 +397,9 @@
 		D54700EB2491D90C00FA40A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54700E92491D90C00FA40A2 /* MainInterface.storyboard */; };
 		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D54CF58524D27A76005CA66E /* WireGuardNetworkExtensionPacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F693A724976192009BDA0A /* WireGuardNetworkExtensionPacketTunnelProvider.swift */; };
+		D54CF59A24DD40EF005CA66E /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF59824DD40EF005CA66E /* LandingViewController.swift */; };
+		D54CF59B24DD40EF005CA66E /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54CF59924DD40EF005CA66E /* LandingViewController.xib */; };
+		D54CF59D24DD431B005CA66E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
 		D550F04224D02A5A00EE25B5 /* TunnelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550F03E24D02A5900EE25B5 /* TunnelsManager.swift */; };
 		D550F04324D02A5A00EE25B5 /* TunnelErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550F03F24D02A5900EE25B5 /* TunnelErrors.swift */; };
 		D550F04424D02A5A00EE25B5 /* MockTunnels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550F04024D02A5A00EE25B5 /* MockTunnels.swift */; };
@@ -792,6 +795,8 @@
 		D54700E72491D90C00FA40A2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D54700EA2491D90C00FA40A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D54CF59824DD40EF005CA66E /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		D54CF59924DD40EF005CA66E /* LandingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
 		D550F03E24D02A5900EE25B5 /* TunnelsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunnelsManager.swift; sourceTree = "<group>"; };
 		D550F03F24D02A5900EE25B5 /* TunnelErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunnelErrors.swift; sourceTree = "<group>"; };
 		D550F04024D02A5A00EE25B5 /* MockTunnels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTunnels.swift; sourceTree = "<group>"; };
@@ -1205,6 +1210,7 @@
 		D541191F24C95CEE00628DF6 /* MozillaVPNmacOS */ = {
 			isa = PBXGroup;
 			children = (
+				D54CF59E24DD5675005CA66E /* ViewController */,
 				D541192024C95CEF00628DF6 /* AppDelegate.swift */,
 				D541192224C95CEF00628DF6 /* ViewController.swift */,
 				D541192424C95CF000628DF6 /* Assets.xcassets */,
@@ -1329,6 +1335,15 @@
 				D54700EC2491D90C00FA40A2 /* Info.plist */,
 			);
 			path = NotificationContentExtension;
+			sourceTree = "<group>";
+		};
+		D54CF59E24DD5675005CA66E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D54CF59824DD40EF005CA66E /* LandingViewController.swift */,
+				D54CF59924DD40EF005CA66E /* LandingViewController.xib */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		D550EFFE24CADE2F00EE25B5 /* Managers */ = {
@@ -2255,8 +2270,10 @@
 				D54119AB24C98A8900628DF6 /* Metropolis-LightItalic.otf in Resources */,
 				D54119A024C98A8900628DF6 /* Inter-Regular.otf in Resources */,
 				D54119A724C98A8900628DF6 /* Metropolis-ExtraBoldItalic.otf in Resources */,
+				D54CF59D24DD431B005CA66E /* Assets.xcassets in Resources */,
 				D54119A824C98A8900628DF6 /* Metropolis-ExtraLight.otf in Resources */,
 				D54119B924C98AF200628DF6 /* Animations in Resources */,
+				D54CF59B24DD40EF005CA66E /* LandingViewController.xib in Resources */,
 				D54119A524C98A8900628DF6 /* Metropolis-BoldItalic.otf in Resources */,
 				D541199F24C98A8900628DF6 /* Inter-Medium.otf in Resources */,
 				D54119AD24C98A8900628DF6 /* Metropolis-MediumItalic.otf in Resources */,
@@ -3096,6 +3113,7 @@
 				D541199824C9848A00628DF6 /* NetworkRequesting.swift in Sources */,
 				D5411A0C24C996CF00628DF6 /* ConnectionHealthMonitor.swift in Sources */,
 				D54119D024C98C6700628DF6 /* TunnelConfiguration+WgQuickConfig.swift in Sources */,
+				D54CF59A24DD40EF005CA66E /* LandingViewController.swift in Sources */,
 				D54119CC24C98C6700628DF6 /* key.c in Sources */,
 				D541197924C97E3E00628DF6 /* FirefoxURL.swift in Sources */,
 				D541199124C9848A00628DF6 /* AccountManaging.swift in Sources */,

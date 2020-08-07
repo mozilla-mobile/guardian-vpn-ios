@@ -2,6 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+        <string>Metropolis-Black.otf</string>
+        <string>Metropolis-BlackItalic.otf</string>
+        <string>Metropolis-Bold.otf</string>
+        <string>Metropolis-BoldItalic.otf</string>
+        <string>Metropolis-ExtraBold.otf</string>
+        <string>Metropolis-ExtraBoldItalic.otf</string>
+        <string>Metropolis-ExtraLight.otf</string>
+        <string>Metropolis-ExtraLightItalic.otf</string>
+        <string>Metropolis-Light.otf</string>
+        <string>Metropolis-LightItalic.otf</string>
+        <string>Metropolis-Medium.otf</string>
+        <string>Metropolis-MediumItalic.otf</string>
+        <string>Metropolis-Regular.otf</string>
+        <string>Metropolis-RegularItalic.otf</string>
+        <string>Metropolis-SemiBold.otf</string>
+        <string>Metropolis-SemiBoldItalic.otf</string>
+        <string>Metropolis-Thin.otf</string>
+        <string>Metropolis-ThinItalic.otf</string>
+        <string>Inter-Medium.otf</string>
+        <string>Inter-Regular.otf</string>
+        <string>Inter-SemiBold.otf</string>
+    </array>
+	<key>NSRequiresAquaSystemAppearance</key>
+	<string>true</string>
 	<key>CFBundleDisplayName</key>
 	<string>$(APP_DISPLAY_NAME)</string>
 	<key>CFBundleDevelopmentRegion</key>
