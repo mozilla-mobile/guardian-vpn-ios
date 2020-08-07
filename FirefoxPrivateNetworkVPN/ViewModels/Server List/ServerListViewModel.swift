@@ -128,15 +128,15 @@ class ServerListViewModel {
                     return .never()
                 }
                 return DependencyManager.shared.tunnelManager.switchServer(with: device)
-        }
-        .catchError { error -> Observable<Void> in
-            OSLog.logTunnel(.error, error.localizedDescription)
-            NotificationCenter.default.post(Notification(name: .switchServerError))
-            return Observable.just(())
-        }
-        .subscribe(onNext: { [weak self] in
-            self?._vpnSelection.onNext(())
-        }).disposed(by: disposeBag)
+            }
+            .catchError { error -> Observable<Void> in
+                OSLog.logTunnel(.error, error.localizedDescription)
+                NotificationCenter.default.post(Notification(name: .switchServerError))
+                return Observable.just(())
+            }
+            .subscribe(onNext: { [weak self] in
+                self?._vpnSelection.onNext(())
+            }).disposed(by: disposeBag)
 
         cellSelection
             .filter { $0.isCountryHeader }
