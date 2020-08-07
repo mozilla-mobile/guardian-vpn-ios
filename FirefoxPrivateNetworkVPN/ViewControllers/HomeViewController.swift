@@ -32,6 +32,7 @@ class HomeViewController: UIViewController, Navigating {
     private let accountManager = DependencyManager.shared.accountManager
     private let heartbeatMonitor = DependencyManager.shared.heartbeatMonitor
     private let disposeBag = DisposeBag()
+    private let notificationFeedback = UINotificationFeedbackGenerator()
 
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
@@ -85,6 +86,7 @@ class HomeViewController: UIViewController, Navigating {
         }
 
         vpnToggleView.tapGestureHandler = { [weak self] in
+            self?.notificationFeedback.notificationOccurred(.error)
             self?.inAppPurchaseBannerView.vibrate()
             self?.versionUpdateBannerView.vibrate()
         }
