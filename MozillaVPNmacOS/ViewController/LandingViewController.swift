@@ -97,5 +97,13 @@ class LandingViewController: NSViewController {
 
     @IBAction func `continue`(_ sender: NSButton) {
         print("continue")
+        self.view.window?.close()
+
+        let rootViewController = HomeViewController()
+        let window = NSWindow(contentViewController: rootViewController)
+        window.title = "Mozilla VPN"
+        window.setContentSize(NSSize(width: 360, height: 176))
+        window.setFrameAutosaveName(NSWindow.FrameAutosaveName("HomeWindow"))
+        window.makeKeyAndOrderFront(nil)
     }
 }

@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window = NSWindow(contentViewController: rootViewController)
         window?.title = "Mozilla VPN"
         window?.setContentSize(NSSize(width: 360, height: 176))
-        window?.setFrameAutosaveName(NSWindow.FrameAutosaveName("ManageTunnelsWindow"))
+        window?.setFrameAutosaveName(NSWindow.FrameAutosaveName("LoginWindow"))
         window?.makeKeyAndOrderFront(nil)
     }
 

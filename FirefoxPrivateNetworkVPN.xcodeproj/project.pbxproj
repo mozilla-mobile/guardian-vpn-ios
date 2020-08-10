@@ -400,6 +400,8 @@
 		D54CF59A24DD40EF005CA66E /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF59824DD40EF005CA66E /* LandingViewController.swift */; };
 		D54CF59B24DD40EF005CA66E /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54CF59924DD40EF005CA66E /* LandingViewController.xib */; };
 		D54CF59D24DD431B005CA66E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F41CCA1D23711C7A0018DC43 /* Assets.xcassets */; };
+		D54F381124DD6590002E6F54 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54F380F24DD6590002E6F54 /* HomeViewController.swift */; };
+		D54F381224DD6590002E6F54 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54F381024DD6590002E6F54 /* HomeViewController.xib */; };
 		D550F04224D02A5A00EE25B5 /* TunnelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550F03E24D02A5900EE25B5 /* TunnelsManager.swift */; };
 		D550F04324D02A5A00EE25B5 /* TunnelErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550F03F24D02A5900EE25B5 /* TunnelErrors.swift */; };
 		D550F04424D02A5A00EE25B5 /* MockTunnels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550F04024D02A5A00EE25B5 /* MockTunnels.swift */; };
@@ -797,6 +799,8 @@
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D54CF59824DD40EF005CA66E /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		D54CF59924DD40EF005CA66E /* LandingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
+		D54F380F24DD6590002E6F54 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D54F381024DD6590002E6F54 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		D550F03E24D02A5900EE25B5 /* TunnelsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunnelsManager.swift; sourceTree = "<group>"; };
 		D550F03F24D02A5900EE25B5 /* TunnelErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunnelErrors.swift; sourceTree = "<group>"; };
 		D550F04024D02A5A00EE25B5 /* MockTunnels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTunnels.swift; sourceTree = "<group>"; };
@@ -1342,6 +1346,8 @@
 			children = (
 				D54CF59824DD40EF005CA66E /* LandingViewController.swift */,
 				D54CF59924DD40EF005CA66E /* LandingViewController.xib */,
+				D54F380F24DD6590002E6F54 /* HomeViewController.swift */,
+				D54F381024DD6590002E6F54 /* HomeViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2286,6 +2292,7 @@
 				D54119A124C98A8900628DF6 /* Inter-SemiBold.otf in Resources */,
 				D541192824C95CF000628DF6 /* Main.storyboard in Resources */,
 				D54119AE24C98A8900628DF6 /* Metropolis-Regular.otf in Resources */,
+				D54F381224DD6590002E6F54 /* HomeViewController.xib in Resources */,
 				D5411A0024C995BE00628DF6 /* error_noSignal.png in Resources */,
 				D54119B124C98A8900628DF6 /* Metropolis-SemiBoldItalic.otf in Resources */,
 				D54119B024C98A8900628DF6 /* Metropolis-SemiBold.otf in Resources */,
@@ -3174,6 +3181,7 @@
 				D54119F924C98E9E00628DF6 /* UIDevice+Extensions.swift in Sources */,
 				D541196F24C97E3600628DF6 /* AccountError.swift in Sources */,
 				D54119C324C98C5E00628DF6 /* Logger.swift in Sources */,
+				D54F381124DD6590002E6F54 /* HomeViewController.swift in Sources */,
 				D54119FA24C98EC900628DF6 /* UIImage+Color.swift in Sources */,
 				D54119BD24C98C4000628DF6 /* TunnelConfiguration.swift in Sources */,
 				D541198624C97EC300628DF6 /* GuardianAPI.swift in Sources */,
@@ -3421,7 +3429,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3673,7 +3681,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = "$(MACOS_VERSION_NAME)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				OTHER_SWIFT_FLAGS = "";
@@ -3746,7 +3754,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = "$(MACOS_VERSION_NAME)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -3822,7 +3830,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = "$(MACOS_VERSION_NAME)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -3854,7 +3862,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = "$(MACOS_VERSION_NAME)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(WIREGUARD_NETWORK_EXTENSION_MACOS_BUNDLE_IDENTIFIER)";
@@ -3921,7 +3929,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = "$(MACOS_VERSION_NAME)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -3991,7 +3999,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = "$(MACOS_VERSION_NAME)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -4356,7 +4364,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -4540,7 +4548,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

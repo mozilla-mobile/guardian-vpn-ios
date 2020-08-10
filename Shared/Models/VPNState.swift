@@ -32,6 +32,21 @@ enum VPNState {
             self = .off
         }
     }
+
+    init(with status: TunnelStatus) {
+        switch status {
+        case .inactive:
+            self = .off
+        case .activating, .reasserting:
+            self = .connecting
+        case .active:
+            self = .on
+        case .deactivating:
+            self = .disconnecting()
+        default:
+            self = .off
+        }
+    }
 }
 
 extension VPNState {
