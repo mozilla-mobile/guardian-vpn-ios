@@ -102,7 +102,7 @@ class LandingViewController: NSViewController {
         let rootViewController = HomeViewController()
         let window = NSWindow(contentViewController: rootViewController)
         window.title = "Mozilla VPN"
-        window.setContentSize(NSSize(width: 360, height: 176))
+        window.setContentSize(NSSize(width: 360, height: 454))
         window.setFrameAutosaveName(NSWindow.FrameAutosaveName("HomeWindow"))
         window.makeKeyAndOrderFront(nil)
     }

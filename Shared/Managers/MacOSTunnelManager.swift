@@ -18,6 +18,13 @@ extension TunnelsManager {
     }
 }
 
+extension TunnelContainer {
+
+    fileprivate var connectedDate: Date? {
+        return tunnelProvider.connection.connectedDate
+    }
+}
+
 class MacOSTunnelManager {
 
     private let tunnelsManager: TunnelsManager
@@ -27,7 +34,9 @@ class MacOSTunnelManager {
         return tunnelsManager.selectedTunnel
     }
 
-    var timeSinceConnected: Double { 0.0 }
+    var timeSinceConnected: Double {
+        return Date().timeIntervalSince(tunnelsManager.selectedTunnel?.connectedDate ?? Date())
+    }
 
     init(tunnelsManager: TunnelsManager, accountManager: AccountManager) {
         self.tunnelsManager = tunnelsManager

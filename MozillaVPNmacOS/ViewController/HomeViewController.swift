@@ -63,7 +63,7 @@ class HomeViewController: NSViewController {
 
     private var formattedTime: String {
         let day = 86400.0
-        let secondsSinceConnected = 0.0 // TODO
+        let secondsSinceConnected = tunnelsManager?.timeSinceConnected ?? 0.0
 
         switch secondsSinceConnected {
         case 0..<day:
@@ -121,6 +121,14 @@ class HomeViewController: NSViewController {
         rippleAnimationView = createAnimation(for: "ripples", in: backgroundAnimationContainerView)
         rippleAnimationView?.respectAnimationFrameRate = true
         rippleAnimationView?.animationSpeed = 0.5
+
+        if let city = accountManager.selectedCity,
+            let flagCode = city.flagCode?.lowercased() {
+            print("city: \(city.name)")
+            print("flagCode: \(flagCode)")
+            countryTitleLabel.stringValue = city.name
+            countryFlagImageView.image = NSImage(named: "flag_\(flagCode)")
+        }
     }
 
     private func createAnimation(for name: String, in containerView: NSView) -> AnimationView {
@@ -343,6 +351,14 @@ class HomeViewController: NSViewController {
             AppExtensionUserDefaults.standard.set(false, forKey: .isSwitchingInProgress)
         default: break
         }
+    }
+
+    @IBAction func showServerList(_ sender: NSButton) {
+
+    }
+
+    @IBAction func showDeviceList(_ sender: NSButton) {
+
     }
 }
 
