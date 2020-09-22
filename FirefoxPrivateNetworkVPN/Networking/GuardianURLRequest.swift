@@ -31,18 +31,13 @@ struct GuardianURLRequest {
         return urlRequest(with: urlString, type: type, queryParameters: queryParameters, httpHeaderParams: httpHeaderParams, body: body)
     }
 
-    static func urlRequest(with urlString: String,
-                           type: HttpMethod,
-                           queryParameters: [String: String]? = nil,
-                           httpHeaderParams: [String: String]? = nil,
-                           body: Data? = nil) -> URLRequest {
-        var urlComponent = URLComponents(string: urlString)!
-        if let queryParameters = queryParameters {
-            let queryItems = queryParameters.map { URLQueryItem(name: $0.key, value: $0.value) }
-            urlComponent.queryItems = queryItems
-        }
-
-        var urlRequest = URLRequest(url: urlComponent.url!)
+    static private func urlRequest(with urlString: String,
+                                   type: HttpMethod,
+                                   queryParameters: [String: String]? = nil,
+                                   httpHeaderParams: [String: String]? = nil,
+                                   body: Data? = nil) -> URLRequest {
+        let url = generateURL(urlString: urlString, queryParameters: queryParameters)
+        var urlRequest = URLRequest(url: url!)
         if let httpHeaderParams = httpHeaderParams {
             httpHeaderParams.forEach {
                 urlRequest.setValue($0.value, forHTTPHeaderField: $0.key)
@@ -56,5 +51,21 @@ struct GuardianURLRequest {
         }
 
         return urlRequest
+    }
+
+    static private func generateURL(urlString: String, queryParameters: [String: String]?) -> URL? {
+        var urlComponent = URLComponents(string: urlString)!
+        if let queryParameters = queryParameters {
+            let queryItems = queryParameters.map { URLQueryItem(name: $0.key, value: $0.value) }
+            urlComponent.queryItems = queryItems
+        }
+
+        return urlComponent.url
+    }
+
+    static func pkceLoginURL(codeChallenge: String) -> URL {
+        let urlString = "\(GuardianURLRequest.baseURL)\(GuardianURLRequestPath.login.endpoint)"
+        let queryParameters = ["code_challenge": codeChallenge, "code_challenge_method": "S256"]
+        return generateURL(urlString: urlString, queryParameters: queryParameters)!
     }
 }

@@ -18,5 +18,6 @@
 #include "ringlogger.h"
 #include "key.h"
 #import "SimplePing.h"
+#import "CommonCrypto/CommonCrypto.h"
 
 #endif /* Guardian_Bridging_Header_h */

@@ -244,6 +244,8 @@
 		D54700E82491D90C00FA40A2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54700E72491D90C00FA40A2 /* NotificationViewController.swift */; };
 		D54700EB2491D90C00FA40A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54700E92491D90C00FA40A2 /* MainInterface.storyboard */; };
 		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D54D31DD2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
+		D54D31DE2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
 		D5D349B3249A73FB00DD9F50 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B1249A73FA00DD9F50 /* error_noSignal.png */; };
 		D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B2249A73FA00DD9F50 /* error_unstable.png */; };
 		D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
@@ -593,6 +595,7 @@
 		D54700E72491D90C00FA40A2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D54700EA2491D90C00FA40A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCECodeGenerator.swift; sourceTree = "<group>"; };
 		D5D349B1249A73FA00DD9F50 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
 		D5D349B2249A73FA00DD9F50 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
 		D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensionUserDefaults.swift; sourceTree = "<group>"; };
@@ -1134,6 +1137,7 @@
 				F4056031239E9F31000A93CC /* KeychainStored.swift */,
 				F43DFC0A234D0B5C003EA64A /* TunnelConfigurationBuilder.swift */,
 				F4108050242CDAB300973421 /* NetworkingUtilities.swift */,
+				D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -2256,6 +2260,7 @@
 				F4E908D32371CAAD00EB9FE6 /* NavigationCoordinating.swift in Sources */,
 				F4E909092371CAAD00EB9FE6 /* AccountInformationCell.swift in Sources */,
 				F42DE7C82395A64A000B79C3 /* CarouselViewController.swift in Sources */,
+				D54D31DD2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */,
 				F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */,
 				F4A7FA24237C5C960034AF6C /* Account.swift in Sources */,
 				F4E908D52371CAAD00EB9FE6 /* TunnelManaging.swift in Sources */,
@@ -2404,6 +2409,7 @@
 				D541182F24C8358500628DF6 /* NavigationCoordinating.swift in Sources */,
 				D541183024C8358500628DF6 /* AccountInformationCell.swift in Sources */,
 				D541183124C8358500628DF6 /* CarouselViewController.swift in Sources */,
+				D54D31DE2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */,
 				D541183224C8358500628DF6 /* CarouselPageViewController.swift in Sources */,
 				D541183324C8358500628DF6 /* Account.swift in Sources */,
 				D541183424C8358500628DF6 /* TunnelManaging.swift in Sources */,

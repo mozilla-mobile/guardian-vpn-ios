@@ -20,15 +20,6 @@ class GuardianAPI: NetworkRequesting {
     }
 
     // MARK: -
-    func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, GuardianAPIError>) -> Void) {
-        let urlRequest = GuardianURLRequest.urlRequest(request: .login, type: .POST)
-        networkLayer.fire(urlRequest: urlRequest) { result in
-            DispatchQueue.main.async {
-                completion(result.decode(to: LoginCheckpointModel.self))
-            }
-        }
-    }
-
     func accountInfo(token: String, completion: @escaping (Result<User, GuardianAPIError>) -> Void) {
         let urlRequest = GuardianURLRequest.urlRequest(request: .account, type: .GET, httpHeaderParams: headers(with: token))
         networkLayer.fire(urlRequest: urlRequest) { result in
@@ -38,8 +29,14 @@ class GuardianAPI: NetworkRequesting {
         }
     }
 
-    func verify(urlString: String, completion: @escaping (Result<VerifyResponse, GuardianAPIError>) -> Void) {
-        let urlRequest = GuardianURLRequest.urlRequest(with: urlString, type: .GET)
+    func verify(code: String, codeVerifier: String, completion: @escaping (Result<VerifyResponse, GuardianAPIError>) -> Void) {
+        let body: [String: Any] = ["code": code, "code_verifier": codeVerifier]
+        guard let data = try? JSONSerialization.data(withJSONObject: body) else {
+            completion(.failure(.couldNotEncodeData))
+            return
+        }
+
+        let urlRequest = GuardianURLRequest.urlRequest(request: .verify, type: .POST, httpHeaderParams: headers(), body: data)
         networkLayer.fire(urlRequest: urlRequest) { result in
             DispatchQueue.main.async {
                 completion(result.decode(to: VerifyResponse.self))
@@ -106,9 +103,12 @@ class GuardianAPI: NetworkRequesting {
     }
 
     // MARK: - Utils
-    private func headers(with token: String) -> [String: String] {
-        return ["Authorization": "Bearer \(token)",
-            "Content-Type": "application/json",
-            "User-Agent": userAgentInfo]
+    private func headers(with token: String = "") -> [String: String] {
+        var headers = ["Content-Type": "application/json",
+                       "User-Agent": userAgentInfo]
+        if !token.isEmpty {
+            headers["Authorization"] = "Bearer \(token)"
+        }
+        return headers
     }
 }
