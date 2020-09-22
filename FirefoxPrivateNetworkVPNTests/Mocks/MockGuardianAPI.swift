@@ -17,14 +17,6 @@ class MockGuardianAPI: NetworkRequesting {
 
     var apiCallObservable = PublishSubject<Void>()
 
-    func initiateUserLogin(completion: @escaping (Result<LoginCheckpointModel, GuardianAPIError>) -> Void) {
-        apiCallObservable.onNext(())
-        guard let jsonUserURL = Bundle.main.url(forResource: "loginCheckpointModel", withExtension: "json"),
-            let loginCheckpointModel = try? JSONDecoder().decode(LoginCheckpointModel.self, from: Data(contentsOf: jsonUserURL))
-            else { return }
-        completion(Result.success(loginCheckpointModel))
-    }
-
     func accountInfo(token: String, completion: @escaping (Result<User, GuardianAPIError>) -> Void) {
         apiCallObservable.onNext(())
         guard let jsonUserURL = Bundle.main.url(forResource: "user", withExtension: "json"),
@@ -33,7 +25,7 @@ class MockGuardianAPI: NetworkRequesting {
         completion(Result.success(user))
     }
 
-    func verify(urlString: String, completion: @escaping (Result<VerifyResponse, GuardianAPIError>) -> Void) {
+    func verify(code: String, codeVerifier: String, completion: @escaping (Result<VerifyResponse, GuardianAPIError>) -> Void) {
         apiCallObservable.onNext(())
         guard let jsonUserURL = Bundle.main.url(forResource: "verifyResponse", withExtension: "json"),
             let verifyResponse = try? JSONDecoder().decode(VerifyResponse.self, from: Data(contentsOf: jsonUserURL))
