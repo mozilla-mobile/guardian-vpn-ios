@@ -11,7 +11,7 @@
 
 enum GuardianURLRequestPath {
     case login
-    case verify(String)
+    case verify
     case retrieveServers
     case account
     case addDevice
@@ -20,11 +20,12 @@ enum GuardianURLRequestPath {
 
     var endpoint: String {
         let prefix = "api/v1/vpn/"
+        let v2Prefix = "api/v2/vpn/"
         switch self {
         case .login:
-            return prefix + "login"
-        case .verify(let token):
-            return prefix + "login/verify/" + token
+            return v2Prefix + "login/ios"
+        case .verify:
+            return v2Prefix + "login/verify"
         case .retrieveServers:
             return prefix + "servers"
         case .account:

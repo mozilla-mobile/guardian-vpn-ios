@@ -65,6 +65,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIDevice.current.userInterfaceIdiom == .pad ? .all : [.portrait, .portraitUpsideDown]
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if let sourceApplication = options[.sourceApplication] as? String,
+            sourceApplication == "com.apple.SafariViewService" {
+           NotificationCenter.default.post(name: .callbackURLNotification, object: nil,
+                                           userInfo: ["callbackURL": url])
+           return true
+        }
+        return false
+    }
+
     func applicationDidEnterBackground(_ application: UIApplication) {
         dependencyManager?.connectionHealthMonitor.stop()
         dependencyManager?.heartbeatMonitor.stop()
