@@ -121,19 +121,20 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     func logout(completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
-        guard let device = account?.currentDevice, let token = account?.token else {
-            completion(Result.failure(.unknown))
-            return
-        }
-        guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [weak self] result in
-            switch result {
-            case .success:
+        if let device = account?.currentDevice, let token = account?.token {
+            guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [weak self] result in
                 self?.resetAccount()
-                completion(.success(()))
-            case .failure(let error):
-                Logger.global?.log(message: "Logout Error: \(error)")
-                completion(.failure(error))
+                switch result {
+                case .success:
+                    completion(.success(()))
+                case .failure(let error):
+                    Logger.global?.log(message: "Logout Error: \(error)")
+                    completion(.failure(error))
+                }
             }
+        } else {
+            resetAccount()
+            completion(.success(()))
         }
     }
 
@@ -152,12 +153,10 @@ class AccountManager: AccountManaging, Navigating {
             completion(.success(()))
             return
         }
-        #if os(iOS)
         guard account.isSubscriptionActive else {
             completion(.success(()))
             return
         }
-        #endif
 
         let body: [String: Any] = ["name": deviceName,
                                    "pubkey": devicePublicKey]
