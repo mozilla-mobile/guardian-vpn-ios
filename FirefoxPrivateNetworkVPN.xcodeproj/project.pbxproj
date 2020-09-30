@@ -12,6 +12,7 @@
 		527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB523752E9300368965 /* AboutDataSource.swift */; };
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
+		D4ED3C91252487BB00BDE261 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED3C90252487BB00BDE261 /* BaseTestCase.swift */; };
 		D535B6552490B699007171EC /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
 		D541181924C8358500628DF6 /* VPNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B21E422366514700136316 /* VPNState.swift */; };
 		D541181A24C8358500628DF6 /* UIView+Designing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947D23709033007595C3 /* UIView+Designing.swift */; };
@@ -584,6 +585,7 @@
 		6FF4AC23211EC472002C96EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
+		D4ED3C90252487BB00BDE261 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
 		D535B6542490B699007171EC /* LocalNotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationFactory.swift; sourceTree = "<group>"; };
 		D54118EA24C8358500628DF6 /* Sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54118EB24C8358600628DF6 /* Sandbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Sandbox-Info.plist"; path = "/Users/hstang/Projects/guardian-vpn-ios/Sandbox-Info.plist"; sourceTree = "<absolute>"; };
@@ -1502,6 +1504,7 @@
 			children = (
 				F4E908A32371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift */,
 				F4E908A52371C31400EB9FE6 /* Info.plist */,
+				D4ED3C90252487BB00BDE261 /* BaseTestCase.swift */,
 			);
 			path = FirefoxPrivateNetworkVPNUITests;
 			sourceTree = "<group>";
@@ -2571,6 +2574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4ED3C91252487BB00BDE261 /* BaseTestCase.swift in Sources */,
 				F4E908A42371C31400EB9FE6 /* FirefoxPrivateNetworkVPNUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
