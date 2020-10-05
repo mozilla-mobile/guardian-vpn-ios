@@ -17,11 +17,19 @@ class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // UI tests must launch the application that they test.
-        app.launch()
+    func testGetStarted() {
+        // The main screen is shown
         waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 3)
         XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
+
+        // Tap on Get started
+        app.buttons["Get started"].tap()
+
+        // Wait for the sing in page and verify that the Email text field is focused
+        waitForExistence(app.toolbars["Toolbar"], timeout: 10)
+        XCTAssertTrue((app.textFields.element(boundBy: 0).value != nil), "Keybard Focused")
+
+
     }
 
     func testLaunchPerformance() {
@@ -46,18 +54,18 @@ class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
         waitForExistence(app.staticTexts["Device-level encryption"], timeout: 3)
         XCTAssertTrue(app.buttons["icon close"].exists)
         XCTAssertTrue(app.buttons["Skip"].exists)
-        // XCTAssertTrue(app.pageIndicators["page 1 of 4"].exists)
+        XCTAssertTrue(app.pageIndicators["page 1 of 4"].exists)
 
         app.staticTexts["Device-level encryption"].swipeLeft()
 
         // Wait for the second onboarding card shown
         waitForExistence(app.staticTexts["Servers in 30+ countries"], timeout: 3)
-        // XCTAssertTrue(app.pageIndicators["page 2 of 4"].exists
+        XCTAssertTrue(app.pageIndicators["page 2 of 4"].exists)
         app.staticTexts["Servers in 30+ countries"].swipeLeft()
 
         // Wait for the third onboarding card shown
         waitForExistence(app.staticTexts["No bandwidth restrictions"], timeout: 3)
-        // XCTAssertTrue(app.pageIndicators["page 3 of 4"].exists)
+        XCTAssertTrue(app.pageIndicators["page 3 of 4"].exists)
 
         app.staticTexts["No bandwidth restrictions"].swipeLeft()
 
