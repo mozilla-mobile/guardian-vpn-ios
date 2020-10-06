@@ -245,6 +245,55 @@ class AccountManager: AccountManaging, Navigating {
         }
     }
 
+    // MARK: - IAP Operations
+
+    func handleAfterPurchased(completion: @escaping (Result<Void, LoginError>) -> Void) {
+        addCurrentDevice { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                guard error != .maxDevicesReached else {
+                    completion(.failure(.maxDevicesReached))
+                    return
+                }
+                completion(.failure(.couldNotAddDevice))
+            }
+        }
+    }
+
+    func getProducts(completion: @escaping (Result<[String], GuardianAPIError>) -> Void) {
+        guard let account = account else {
+            completion(Result.failure(.userNotFound))
+            return
+        }
+
+        guardianAPI.getProducts(with: account.credentials.verificationToken) { result in
+            switch result {
+            case .success(let products):
+                completion(.success(products))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func uploadReceipt(receipt: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
+        guard let account = account else {
+            completion(Result.failure(.userNotFound))
+            return
+        }
+
+        guardianAPI.uploadReceipt(with: account.credentials.verificationToken, receipt: receipt) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     private func resetAccount() {
         DependencyManager.shared.tunnelManager.stopAndRemove()
         DependencyManager.shared.heartbeatMonitor.stop()

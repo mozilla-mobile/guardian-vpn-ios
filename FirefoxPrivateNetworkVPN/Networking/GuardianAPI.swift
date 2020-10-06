@@ -102,6 +102,41 @@ class GuardianAPI: NetworkRequesting {
         networkLayer.fire(urlRequest: urlRequest, completion: completion)
     }
 
+    func getProducts(with token: String, completion: @escaping (Result<[String], GuardianAPIError>) -> Void) {
+        let urlRequest = GuardianURLRequest.urlRequest(request: .getProducts, type: .GET, httpHeaderParams: headers(with: token))
+        networkLayer.fire(urlRequest: urlRequest) { result in
+            DispatchQueue.main.async {
+                completion(result
+                    .decode(to: [String: [String]].self)
+                    .map { $0["products"]! }
+                )
+            }
+        }
+    }
+
+    func uploadReceipt(with token: String, receipt: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
+
+        let body: [String: Any] = ["appId": Bundle.main.bundleIdentifier ?? "", "receipt": receipt]
+
+        guard let data = try? JSONSerialization.data(withJSONObject: body) else {
+            completion(.failure(.couldNotEncodeData))
+            return
+        }
+
+        let urlRequest = GuardianURLRequest.urlRequest(request: .uploadReceipt, type: .POST, httpHeaderParams: headers(with: token), body: data)
+
+        networkLayer.fire(urlRequest: urlRequest) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    completion(.success(()))
+                case.failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+
     // MARK: - Utils
     private func headers(with token: String = "") -> [String: String] {
         var headers = ["Content-Type": "application/json",
