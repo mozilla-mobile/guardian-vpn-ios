@@ -36,6 +36,7 @@ enum NavigableContext {
     case maxDevicesReached
     case url(URL?)
     case error(LocalizedError)
+    case iapSucceed
 }
 
 class NavigationCoordinator: NavigationCoordinating {
@@ -91,6 +92,21 @@ class NavigationCoordinator: NavigationCoordinating {
                 if case .maxDevicesReached = context {
                     self.navigate(from: .home, to: .settings)
                     self.navigate(from: .settings, to: .devices, context: .maxDevicesReached)
+                }
+
+            case (.product, .home):
+                self.currentViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
+                (self.currentViewController as? GuardianTabBarController)?.displayTab(.home)
+
+                switch context {
+                case .maxDevicesReached:
+                    self.navigate(from: .home, to: .settings)
+                    self.navigate(from: .settings, to: .devices, context: .maxDevicesReached)
+                default:
+                    if let tabBarController = self.currentViewController as? GuardianTabBarController,
+                        let homeViewController = tabBarController.tabs[.home] as? HomeViewController {
+                        homeViewController.showIAPToast(context: context)
+                    }
                 }
 
             // To Home

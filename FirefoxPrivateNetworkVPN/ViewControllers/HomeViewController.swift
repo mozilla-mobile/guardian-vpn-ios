@@ -51,6 +51,7 @@ class HomeViewController: UIViewController, Navigating {
         subscribeToErrors()
         subscribeToVersionUpdates()
         subscribeToSubscription()
+        getProducts()
     }
 
     override func viewWillLayoutSubviews() {
@@ -185,7 +186,33 @@ class HomeViewController: UIViewController, Navigating {
                     self.navigate(to: .product)
                 })
                 self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || isActiveSubscription
+                self.vpnToggleView.update(with: self.tunnelManager.stateEvent.value)
             }).disposed(by: disposeBag)
+    }
+
+    private func getProducts() {
+        accountManager.getProducts { result in
+            if case .success(let products) = result {
+                StoreManager.shared.startProductRequest(with: products)
+            }
+        }
+    }
+
+    func showIAPToast(context: NavigableContext?) {
+        guard let context = context else { return }
+        switch context {
+        case .iapSucceed:
+            inAppPurchaseBannerView.isHidden = true
+            let attributedString = NSAttributedString.formatted("Subscription confirmed!", actionMessage: "Turn on VPN")
+            warningToastView.show(type: .positive, message: attributedString, action: connectToTunnel)
+        case .error(let error):
+            let attributedString = NSAttributedString.formattedError(error)
+            warningToastView.show(message: attributedString) {
+                self.navigate(to: .product)
+            }
+        default:
+            return
+        }
     }
 
     // MARK: - VPN Selection handling

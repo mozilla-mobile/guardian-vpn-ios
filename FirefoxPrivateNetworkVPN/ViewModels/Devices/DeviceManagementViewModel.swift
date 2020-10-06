@@ -30,7 +30,7 @@ class DeviceManagementViewModel {
             } ?? []
 
         //if their device could not be added because they're over their device limit, add a mock device to display as their current one
-        if let account = account, !account.hasDeviceBeenAdded {
+        if let account = account, account.isSubscriptionActive, !account.hasDeviceBeenAdded {
             devices.insert(Device.mock(name: UIDevice.current.name), at: 0)
         }
         return devices

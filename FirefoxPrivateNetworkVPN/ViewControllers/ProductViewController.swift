@@ -17,6 +17,8 @@ class ProductViewController: UIViewController, Navigating {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var purchaseButton: UIButton!
 
+    private let accountManager = DependencyManager.shared.accountManager
+
     // MARK: - Properties
     static var navigableItem: NavigableItem = .product
 
@@ -32,7 +34,7 @@ class ProductViewController: UIViewController, Navigating {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        StoreManager.shared.delegate = self
         setupNavigationBarForModalPresentation()
         hideNavigationBarBottomLine()
         setCornerRadius()
@@ -60,10 +62,37 @@ class ProductViewController: UIViewController, Navigating {
     }
 
     @IBAction func purchase(_ sender: UIButton) {
-
+        StoreManager.shared.buy()
     }
 
     @IBAction func restore(_ sender: UIButton) {
+        StoreManager.shared.restore()
+    }
+}
 
+extension ProductViewController: StoreManagerDelegate {
+
+    func didUploadReceipt() {
+        self.accountManager.handleAfterPurchased { loginResult in
+            switch loginResult {
+            case .success:
+                self.navigate(to: .home, context: .iapSucceed)
+            case .failure(let error):
+                let context: NavigableContext = error == .maxDevicesReached ? .maxDevicesReached : .error(error)
+                self.navigate(to: .home, context: context)
+            }
+        }
+    }
+
+    func didReceiveError(_ error: Error) {
+        if let error = error as? LocalizedError {
+            self.navigate(to: .home, context: .error(error))
+        }
+    }
+
+    func invalidAccount() {
+        let alert = UIAlertController(title: "Please sign in with the Firefox account you used for Apple IAP", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in /* Do nothing */ })
+        present(alert, animated: true, completion: nil)
     }
 }
