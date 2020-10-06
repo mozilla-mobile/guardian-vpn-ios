@@ -75,6 +75,18 @@ class AccountStore: AccountStoring {
         return persistenceLayer.readCredentials()
     }
 
+    func save(iapEmail: String) {
+        persistenceLayer.saveIAPCredentials(iapEmail)
+    }
+
+    func getIapEmail() -> String? {
+        return persistenceLayer.readIAPCredentials()
+    }
+
+    func removeIapEmail() {
+        return persistenceLayer.removeIAPCredentials()
+    }
+
     func removeAll() {
         Key.allCases
             .forEach {

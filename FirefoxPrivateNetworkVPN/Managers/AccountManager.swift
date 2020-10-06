@@ -197,6 +197,9 @@ class AccountManager: AccountManaging, Navigating {
             case .success(let user):
                 self.account?.user = user
                 self.accountStore.save(user: user)
+                if !user.vpnSubscription.isActive, self.isIAPAccount {
+                    self.accountStore.removeIapEmail()
+                }
                 completion(.success(()))
             case .failure(let error):
                 Logger.global?.log(message: "Account Error: \(error)")
@@ -246,6 +249,21 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     // MARK: - IAP Operations
+
+    var isIAPAccount: Bool {
+        guard let iapEmail = accountStore.getIapEmail(),
+            let currentEmail = account?.user.email else {
+            return false
+        }
+
+        return iapEmail == currentEmail
+    }
+
+    func saveIAPEmail() {
+        guard let account = account,
+            accountStore.getIapEmail() == nil else { return }
+        accountStore.save(iapEmail: account.user.email)
+    }
 
     func handleAfterPurchased(completion: @escaping (Result<Void, LoginError>) -> Void) {
         addCurrentDevice { result in
