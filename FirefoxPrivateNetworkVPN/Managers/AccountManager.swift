@@ -58,12 +58,14 @@ class AccountManager: AccountManaging, Navigating {
         var addDeviceError: DeviceManagementError?
         var retrieveServersError: Error?
 
-        dispatchGroup.enter()
-        addCurrentDevice { result in
-            if case .failure(let error) = result {
-                addDeviceError = error
+        if account?.isSubscriptionActive == true {
+            dispatchGroup.enter()
+            addCurrentDevice { result in
+                if case .failure(let error) = result {
+                    addDeviceError = error
+                }
+                dispatchGroup.leave()
             }
-            dispatchGroup.leave()
         }
 
         dispatchGroup.enter()
@@ -121,11 +123,14 @@ class AccountManager: AccountManaging, Navigating {
     }
 
     func logout(completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
-        if let device = account?.currentDevice, let token = account?.token {
+        if account?.isSubscriptionActive == true,
+            let device = account?.currentDevice,
+            let token = account?.token {
             guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [weak self] result in
                 self?.resetAccount()
                 switch result {
                 case .success:
+                    self?.resetAccount()
                     completion(.success(()))
                 case .failure(let error):
                     Logger.global?.log(message: "Logout Error: \(error)")
@@ -150,10 +155,6 @@ class AccountManager: AccountManaging, Navigating {
         }
 
         guard !account.hasDeviceBeenAdded else {
-            completion(.success(()))
-            return
-        }
-        guard account.isSubscriptionActive else {
             completion(.success(()))
             return
         }

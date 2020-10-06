@@ -244,11 +244,14 @@
 		D54700E82491D90C00FA40A2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54700E72491D90C00FA40A2 /* NotificationViewController.swift */; };
 		D54700EB2491D90C00FA40A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54700E92491D90C00FA40A2 /* MainInterface.storyboard */; };
 		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D54D31DD2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
-		D54D31DE2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
 		D54CF58824DA5F9F005CA66E /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58624DA5F9F005CA66E /* ProductViewController.swift */; };
 		D54CF58924DA5F9F005CA66E /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54CF58724DA5F9F005CA66E /* ProductViewController.xib */; };
 		D54CF58C24DAAC8F005CA66E /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58B24DAAC8F005CA66E /* StoreManager.swift */; };
+		D54D31DD2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
+		D54D31DE2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
+		D571174B251A10E2003468ED /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58624DA5F9F005CA66E /* ProductViewController.swift */; };
+		D571174C251A10FC003468ED /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58B24DAAC8F005CA66E /* StoreManager.swift */; };
+		D571174D251A1184003468ED /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54CF58724DA5F9F005CA66E /* ProductViewController.xib */; };
 		D5D349B3249A73FB00DD9F50 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B1249A73FA00DD9F50 /* error_noSignal.png */; };
 		D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B2249A73FA00DD9F50 /* error_unstable.png */; };
 		D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
@@ -598,10 +601,10 @@
 		D54700E72491D90C00FA40A2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D54700EA2491D90C00FA40A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCECodeGenerator.swift; sourceTree = "<group>"; };
 		D54CF58624DA5F9F005CA66E /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		D54CF58724DA5F9F005CA66E /* ProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewController.xib; sourceTree = "<group>"; };
 		D54CF58B24DAAC8F005CA66E /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCECodeGenerator.swift; sourceTree = "<group>"; };
 		D5D349B1249A73FA00DD9F50 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
 		D5D349B2249A73FA00DD9F50 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
 		D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensionUserDefaults.swift; sourceTree = "<group>"; };
@@ -1849,6 +1852,7 @@
 				D54118BA24C8358500628DF6 /* HelpViewController.xib in Resources */,
 				D54118BB24C8358500628DF6 /* Metropolis-BoldItalic.otf in Resources */,
 				D54118BC24C8358500628DF6 /* DeviceLimitReachedView.xib in Resources */,
+				D571174D251A1184003468ED /* ProductViewController.xib in Resources */,
 				D54118BD24C8358500628DF6 /* error_unstable.png in Resources */,
 				D54118BE24C8358500628DF6 /* LoadingViewController.xib in Resources */,
 				D54118BF24C8358500628DF6 /* AccountInformationHeader.xib in Resources */,
@@ -2441,6 +2445,7 @@
 				D541183A24C8358500628DF6 /* CarouselViewType.swift in Sources */,
 				D541183B24C8358500628DF6 /* User.swift in Sources */,
 				D541183C24C8358500628DF6 /* PersistenceLayer.swift in Sources */,
+				D571174B251A10E2003468ED /* ProductViewController.swift in Sources */,
 				D541183D24C8358500628DF6 /* DeviceManagementCell.swift in Sources */,
 				D541183E24C8358500628DF6 /* Data+KeyEncoding.swift in Sources */,
 				D541183F24C8358500628DF6 /* FirefoxURL.swift in Sources */,
@@ -2451,6 +2456,7 @@
 				D541184424C8358500628DF6 /* HomeViewController.swift in Sources */,
 				D541184524C8358500628DF6 /* DeviceLimitReachedView.swift in Sources */,
 				D541184624C8358500628DF6 /* LandingViewController.swift in Sources */,
+				D571174C251A10FC003468ED /* StoreManager.swift in Sources */,
 				D541184724C8358500628DF6 /* CarouselDataSource.swift in Sources */,
 				D541184824C8358500628DF6 /* WireGuardAppError.swift in Sources */,
 				D541184924C8358500628DF6 /* ServersViewController.swift in Sources */,
