@@ -13,13 +13,16 @@ import Foundation
 import StoreKit
 
 protocol StoreManagerDelegate: class {
-    func didReceiveProducts(_ products: [SKProduct])
+    func didUploadReceipt()
     func didReceiveError(_ error: Error)
+    func invalidAccount()
 }
 
 class StoreManager: NSObject {
-
     static let shared = StoreManager()
+    private let accountManager = DependencyManager.shared.accountManager
+    weak var delegate: StoreManagerDelegate?
+    private var isUploading: Bool = false
 
     private override init() {
         super.init()
@@ -31,8 +34,6 @@ class StoreManager: NSObject {
     private var availableProducts = [SKProduct]()
     private var productRequest: SKProductsRequest?
 
-    weak var delegate: StoreManagerDelegate?
-
     // MARK: - Request Product Information
 
     func startProductRequest(with identifiers: [String]) {
@@ -43,9 +44,11 @@ class StoreManager: NSObject {
 
     // MARK: - Submit Payment Request
 
-    func buy(_ product: SKProduct) {
-        let payment = SKMutablePayment(product: product)
-        SKPaymentQueue.default().add(payment)
+    func buy() {
+        if let product = availableProducts.first {
+            let payment = SKMutablePayment(product: product)
+            SKPaymentQueue.default().add(payment)
+        }
     }
 
     // MARK: - Restore All Restorable Purchases
@@ -62,15 +65,6 @@ extension StoreManager: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         if !response.products.isEmpty {
             availableProducts = response.products
-            DispatchQueue.main.async {
-                self.delegate?.didReceiveProducts(response.products)
-            }
-        }
-    }
-
-    func request(_ request: SKRequest, didFailWithError error: Error) {
-        DispatchQueue.main.async {
-            self.delegate?.didReceiveError(error)
         }
     }
 }
@@ -94,6 +88,7 @@ extension StoreManager: SKPaymentTransactionObserver {
                 handleFailed(transaction)
             case .restored:
                 print("*** restored")
+                handleRestored(transaction)
             @unknown default:
                 print("*** Unknown payment transaction case")
             }
@@ -104,47 +99,46 @@ extension StoreManager: SKPaymentTransactionObserver {
 
     private func handlePurchased(_ transaction: SKPaymentTransaction) {
         print("Deliver content for \(transaction.payment.productIdentifier).")
-
         SKPaymentQueue.default().finishTransaction(transaction)
-
-        getReceipt()
-    }
-
-    private func getReceipt() {
-        if let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
-            FileManager.default.fileExists(atPath: appStoreReceiptURL.path) {
-
-            do {
-                let receiptData = try Data(contentsOf: appStoreReceiptURL, options: .alwaysMapped)
-                let receiptString = receiptData.base64EncodedString(options: [])
-                print("*** receipt: \(receiptString)")
-            } catch {
-                print("Couldn't read receipt data with error: \(error.localizedDescription)")
-            }
-        } else {
-            print("[ERROR] get receipt failed")
-        }
+        accountManager.saveIAPEmail()
+        uploadReceipt()
     }
 
     private func handleFailed(_ transaction: SKPaymentTransaction) {
-        var message = "Purchase of \(transaction.payment.productIdentifier) failed"
-
-        if let error = transaction.error {
-            message += "\nError: \(error.localizedDescription)"
-            print("Error: \(error.localizedDescription)")
-        }
-
-        if (transaction.error as? SKError)?.code != .paymentCancelled {
-            print("[ERROR] purchase failed: \(message)")
-        }
-
         SKPaymentQueue.default().finishTransaction(transaction)
+
+        if let error = transaction.error as? SKError {
+            delegate?.didReceiveError(error)
+        }
     }
 
     private func handleRestored(_ transaction: SKPaymentTransaction) {
         print("Restore content for \(transaction.payment.productIdentifier).")
-
-        // Finishes the restored transaction.
         SKPaymentQueue.default().finishTransaction(transaction)
+        uploadReceipt()
+    }
+
+    private func uploadReceipt() {
+        if accountManager.isIAPAccount {
+            if !isUploading,
+                let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
+                FileManager.default.fileExists(atPath: appStoreReceiptURL.path),
+                let receiptData = try? Data(contentsOf: appStoreReceiptURL, options: .alwaysMapped) {
+                let receiptString = receiptData.base64EncodedString()
+
+                isUploading = true
+                accountManager.uploadReceipt(receipt: receiptString) { result in
+                    self.isUploading = false
+                    switch result {
+                    case .success:
+                        self.delegate?.didUploadReceipt()
+                    case .failure(let error):
+                        self.delegate?.didReceiveError(error)
+                    }
+                }
+            }
+        } else {
+            self.delegate?.invalidAccount()
+        }
     }
 }
