@@ -11,28 +11,25 @@
 
 import XCTest
 
-class FirefoxPrivateNetworkVPNUITests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
+class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    func testGetStarted() {
+        // The main screen is shown
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 3)
+        XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Tap on Get started
+        app.buttons["Get started"].tap()
+
+        // Wait for the sing in page and verify that the Email text field is focused
+        waitForExistence(app.toolbars["Toolbar"], timeout: 10)
+        XCTAssertTrue((app.textFields.element(boundBy: 0).value != nil), "Keybard Focused")
+
+
     }
 
     func testLaunchPerformance() {
@@ -42,5 +39,44 @@ class FirefoxPrivateNetworkVPNUITests: XCTestCase {
                 XCUIApplication().launch()
             }
         }
+    }
+
+    func testOnboarding() {
+        // Wait for main page to load where Mozilla VPN label is shown
+        waitForExistence(app.buttons["Learn more"], timeout: 5)
+        XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists)
+
+        // Start the onboaring cards
+        app.buttons["Learn more"].tap()
+
+        // Wait for the first onboarding card shown
+        // Verify the close, skip and page indicator buttons
+        waitForExistence(app.staticTexts["Device-level encryption"], timeout: 3)
+        XCTAssertTrue(app.buttons["icon close"].exists)
+        XCTAssertTrue(app.buttons["Skip"].exists)
+        XCTAssertTrue(app.pageIndicators["page 1 of 4"].exists)
+
+        app.staticTexts["Device-level encryption"].swipeLeft()
+
+        // Wait for the second onboarding card shown
+        waitForExistence(app.staticTexts["Servers in 30+ countries"], timeout: 3)
+        XCTAssertTrue(app.pageIndicators["page 2 of 4"].exists)
+        app.staticTexts["Servers in 30+ countries"].swipeLeft()
+
+        // Wait for the third onboarding card shown
+        waitForExistence(app.staticTexts["No bandwidth restrictions"], timeout: 3)
+        XCTAssertTrue(app.pageIndicators["page 3 of 4"].exists)
+
+        app.staticTexts["No bandwidth restrictions"].swipeLeft()
+
+        // Wait for the final slide showing the get started button
+        waitForExistence(app.scrollViews.otherElements.buttons["Get started"], timeout: 3)
+        app.scrollViews.otherElements.buttons["Get started"].tap()
+
+        // Wait for the FxASingIn page to be shown
+        waitForExistence(app.webViews.textFields["Email"], timeout: 10)
+        XCTAssertTrue(app.buttons["Done"].exists)
+        XCTAssertTrue(app.buttons["ReloadButton"].exists)
+        XCTAssertTrue(app.webViews.textFields["Email"].exists)
     }
 }
