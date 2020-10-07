@@ -35,7 +35,7 @@ enum NavigableItem: Hashable {
 enum NavigableContext {
     case maxDevicesReached
     case url(URL?)
-    case error(LocalizedError)
+    case error(Error)
     case iapSucceed
 }
 
