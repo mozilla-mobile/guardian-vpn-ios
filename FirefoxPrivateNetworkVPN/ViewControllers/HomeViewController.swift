@@ -203,7 +203,7 @@ class HomeViewController: UIViewController, Navigating {
         switch context {
         case .iapSucceed:
             inAppPurchaseBannerView.isHidden = true
-            let attributedString = NSAttributedString.formatted("Subscription confirmed!", actionMessage: "Turn on VPN")
+            let attributedString = NSAttributedString.formatted(LocalizedString.subscriptionConfirmed.value, actionMessage: LocalizedString.toastTurnOnVPN.value)
             warningToastView.show(type: .positive, message: attributedString, action: connectToTunnel)
         case .error(let error):
             let attributedString = NSAttributedString.formattedError(error)

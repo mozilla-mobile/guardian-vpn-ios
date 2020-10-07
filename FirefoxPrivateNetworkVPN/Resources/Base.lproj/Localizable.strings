@@ -93,6 +93,7 @@
 "toastLoggedOut" = "Signed out and device removed";
 "toastNoConnection" = "No internet connection.";
 "toastAuthenticationError" = "Authentication error.";
+"toastTurnOnVPN" = "Turn on VPN";
 
 //Mark: - Update
 "updateConnection" = "Your connection will not be secure while you update.";
@@ -114,6 +115,9 @@
 //MARK: - Error Descriptions
 "errorDeviceRemoval" = "Unable to remove device.";
 "errorConnectVPN" = "Unable to connect.";
+"subscriptionConfirmed" = "Subscription confirmed!";
+"errorInvalidAccount" = "Please sign in with the Firefox account you used for Apple IAP";
+"confirmInvalidAccount" = "OK";
 
 //MARK: - Email Logs
 "logsFileName" = "debug_logs";

@@ -91,8 +91,8 @@ extension ProductViewController: StoreManagerDelegate {
     }
 
     func invalidAccount() {
-        let alert = UIAlertController(title: "Please sign in with the Firefox account you used for Apple IAP", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in /* Do nothing */ })
+        let alert = UIAlertController(title: LocalizedString.errorInvalidAccount.value, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LocalizedString.confirmInvalidAccount.value, style: .default) { _ in /* Do nothing */ })
         present(alert, animated: true, completion: nil)
     }
 }

@@ -88,6 +88,7 @@ enum LocalizedString: String {
     case toastLoggedOut
     case toastNoConnection
     case toastAuthenticationError
+    case toastTurnOnVPN
 
     case bannerFeaturesAvailable
     case bannerInAppPurchase
@@ -104,6 +105,9 @@ enum LocalizedString: String {
 
     case errorDeviceRemoval
     case errorConnectVPN
+    case subscriptionConfirmed
+    case errorInvalidAccount
+    case confirmInvalidAccount
 
     case logsFileName
     case logsMailSubject
