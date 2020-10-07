@@ -130,7 +130,6 @@ class AccountManager: AccountManaging, Navigating {
                 self?.resetAccount()
                 switch result {
                 case .success:
-                    self?.resetAccount()
                     completion(.success(()))
                 case .failure(let error):
                     Logger.global?.log(message: "Logout Error: \(error)")

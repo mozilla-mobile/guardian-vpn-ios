@@ -84,7 +84,7 @@ extension ProductViewController: StoreManagerDelegate {
         }
     }
 
-    func didReceiveError(_ error: Error) {
+    func didReceiveError(_ error: Error?) {
         if let error = error as? LocalizedError {
             self.navigate(to: .home, context: .error(error))
         }

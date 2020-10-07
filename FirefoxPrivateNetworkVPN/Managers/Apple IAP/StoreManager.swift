@@ -14,7 +14,7 @@ import StoreKit
 
 protocol StoreManagerDelegate: class {
     func didUploadReceipt()
-    func didReceiveError(_ error: Error)
+    func didReceiveError(_ error: Error?)
     func invalidAccount()
 }
 
@@ -76,21 +76,14 @@ extension StoreManager: SKPaymentTransactionObserver {
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             switch transaction.transactionState {
-            case .purchasing:
-                print("*** purchasing")
-            case .deferred:
-                print("*** deferred")
             case .purchased:
-                print("*** purchased")
                 handlePurchased(transaction)
             case .failed:
-                print("*** failed")
                 handleFailed(transaction)
             case .restored:
-                print("*** restored")
                 handleRestored(transaction)
-            @unknown default:
-                print("*** Unknown payment transaction case")
+            default:
+                break
             }
         }
     }
@@ -98,7 +91,6 @@ extension StoreManager: SKPaymentTransactionObserver {
     // MARK: - Handle Payment Transactions
 
     private func handlePurchased(_ transaction: SKPaymentTransaction) {
-        print("Deliver content for \(transaction.payment.productIdentifier).")
         SKPaymentQueue.default().finishTransaction(transaction)
         accountManager.saveIAPEmail()
         uploadReceipt()
@@ -106,14 +98,10 @@ extension StoreManager: SKPaymentTransactionObserver {
 
     private func handleFailed(_ transaction: SKPaymentTransaction) {
         SKPaymentQueue.default().finishTransaction(transaction)
-
-        if let error = transaction.error as? SKError {
-            delegate?.didReceiveError(error)
-        }
+        delegate?.didReceiveError(transaction.error)
     }
 
     private func handleRestored(_ transaction: SKPaymentTransaction) {
-        print("Restore content for \(transaction.payment.productIdentifier).")
         SKPaymentQueue.default().finishTransaction(transaction)
         uploadReceipt()
     }
@@ -124,10 +112,9 @@ extension StoreManager: SKPaymentTransactionObserver {
                 let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
                 FileManager.default.fileExists(atPath: appStoreReceiptURL.path),
                 let receiptData = try? Data(contentsOf: appStoreReceiptURL, options: .alwaysMapped) {
-                let receiptString = receiptData.base64EncodedString()
 
                 isUploading = true
-                accountManager.uploadReceipt(receipt: receiptString) { result in
+                accountManager.uploadReceipt(receipt: receiptData.base64EncodedString()) { result in
                     self.isUploading = false
                     switch result {
                     case .success:

@@ -65,7 +65,7 @@ struct GuardianURLRequest {
 
     static func pkceLoginURL(codeChallenge: String) -> URL {
         let urlString = "\(GuardianURLRequest.baseURL)\(GuardianURLRequestPath.login.endpoint)"
-        let queryParameters = ["iap": "true", "code_challenge": codeChallenge, "code_challenge_method": "S256"]
+        let queryParameters = ["platform": "ios", "iap": "true", "code_challenge": codeChallenge, "code_challenge_method": "S256"]
         return generateURL(urlString: urlString, queryParameters: queryParameters)!
     }
 }
