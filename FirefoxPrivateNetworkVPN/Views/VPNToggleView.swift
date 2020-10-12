@@ -176,11 +176,7 @@ class VPNToggleView: UIView {
         }
 
         if let isSubscriptionActive = accountManager.account?.isSubscriptionActive {
-            if isSubscriptionActive {
-                vpnSwitch.alpha = newState.isEnabled ? 1 : 0.5
-            } else {
-                vpnSwitch.alpha = 0.5
-            }
+            vpnSwitch.alpha = (isSubscriptionActive && newState.isEnabled) ? 1 : 0.5
         }
     }
 

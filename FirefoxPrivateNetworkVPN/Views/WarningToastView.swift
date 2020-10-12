@@ -15,11 +15,17 @@ enum WarningToastViewType {
     case positive, negative
 
     var backgroundColor: UIColor {
-        self == WarningToastViewType.positive ? UIColor.custom(.green50) : UIColor.custom(.red50)
+        switch self {
+        case .positive: return UIColor.custom(.green50)
+        case .negative: return UIColor.custom(.red50)
+        }
     }
 
     var textColor: UIColor {
-        self == WarningToastViewType.positive ? .black : .white
+        switch self {
+        case .positive: return .black
+        case .negative: return .white
+        }
     }
 }
 

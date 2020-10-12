@@ -37,6 +37,7 @@ class StoreManager: NSObject {
     // MARK: - Request Product Information
 
     func startProductRequest(with identifiers: [String]) {
+        if !availableProducts.isEmpty { return }
         productRequest = SKProductsRequest(productIdentifiers: Set(identifiers))
         productRequest?.delegate = self
         productRequest?.start()
@@ -63,9 +64,7 @@ class StoreManager: NSObject {
 extension StoreManager: SKProductsRequestDelegate {
 
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        if !response.products.isEmpty {
-            availableProducts = response.products
-        }
+        availableProducts = response.products
     }
 }
 
@@ -125,7 +124,7 @@ extension StoreManager: SKPaymentTransactionObserver {
                 }
             }
         } else {
-            self.delegate?.invalidAccount()
+            delegate?.invalidAccount()
         }
     }
 }

@@ -57,7 +57,7 @@ class AccountManager: AccountManaging {
         var addDeviceError: DeviceManagementError?
         var retrieveServersError: Error?
 
-        if account?.isSubscriptionActive == true {
+        if let account = account, account.isSubscriptionActive {
             dispatchGroup.enter()
             addCurrentDevice { result in
                 if case .failure(let error) = result {
@@ -122,10 +122,10 @@ class AccountManager: AccountManaging {
     }
 
     func logout(completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
-        if account?.isSubscriptionActive == true,
-            let device = account?.currentDevice,
-            let token = account?.token {
-            guardianAPI.removeDevice(with: token, deviceKey: device.publicKey) { [weak self] result in
+        if let account = account,
+            account.isSubscriptionActive,
+            let device = account.currentDevice {
+            guardianAPI.removeDevice(with: account.token, deviceKey: device.publicKey) { [weak self] result in
                 self?.resetAccount()
                 switch result {
                 case .success:
@@ -177,7 +177,7 @@ class AccountManager: AccountManaging {
 
     func getUser(completion: @escaping (Result<Void, AccountError>) -> Void) {
         guard let account = account else {
-            completion(Result.failure(.noAccountFound))
+            completion(.failure(.noAccountFound))
             return
         }
 
@@ -274,35 +274,13 @@ class AccountManager: AccountManaging {
     }
 
     func getProducts(completion: @escaping (Result<[String], GuardianAPIError>) -> Void) {
-        guard let account = account else {
-            completion(Result.failure(.userNotFound))
-            return
-        }
-
-        guardianAPI.getProducts(with: account.credentials.verificationToken) { result in
-            switch result {
-            case .success(let products):
-                completion(.success(products))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        guard let account = account else { return }
+        guardianAPI.getProducts(with: account.credentials.verificationToken, completion: completion)
     }
 
     func uploadReceipt(receipt: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void) {
-        guard let account = account else {
-            completion(Result.failure(.userNotFound))
-            return
-        }
-
-        guardianAPI.uploadReceipt(with: account.credentials.verificationToken, receipt: receipt) { result in
-            switch result {
-            case .success:
-                completion(.success(()))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        guard let account = account else { return }
+        guardianAPI.uploadReceipt(with: account.credentials.verificationToken, receipt: receipt, completion: completion)
     }
 
     private func stopVPNService() {
