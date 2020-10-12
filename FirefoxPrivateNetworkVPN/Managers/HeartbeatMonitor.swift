@@ -40,17 +40,15 @@ class HeartbeatMonitor: HeartbeatMonitoring {
     }
 
     private func pollUser() {
-        guard let account = accountManager.account else { return }
-
         accountManager.getUser { result in
             switch result {
             case .success:
-                if account.isSubscriptionActive {
-                    NotificationCenter.default.post(name: NSNotification.Name.activeSubscriptionNotification, object: nil)
-                }
+                guard let account = self.accountManager.account else { return }
+                let name: NSNotification.Name = account.isSubscriptionActive ? .activeSubscriptionNotification : .expiredSubscriptionNotification
+                NotificationCenter.default.post(name: name, object: nil)
             case .failure(let error):
                 if error == .subscriptionError {
-                    NotificationCenter.default.post(name: NSNotification.Name.expiredSubscriptionNotification, object: nil)
+                    NotificationCenter.default.post(name: .expiredSubscriptionNotification, object: nil)
                 }
             }
         }

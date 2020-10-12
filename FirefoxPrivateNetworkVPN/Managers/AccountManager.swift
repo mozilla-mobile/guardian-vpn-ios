@@ -12,8 +12,7 @@
 import RxSwift
 import RxCocoa
 
-class AccountManager: AccountManaging, Navigating {
-    static var navigableItem: NavigableItem = .account
+class AccountManager: AccountManaging {
 
     private(set) var account: Account? {
         didSet {
@@ -150,11 +149,6 @@ class AccountManager: AccountManaging, Navigating {
         }
         guard let devicePublicKey = account.credentials.deviceKeys.publicKey.base64Key() else {
             completion(.failure(.noPublicKey))
-            return
-        }
-
-        guard !account.hasDeviceBeenAdded else {
-            completion(.success(()))
             return
         }
 
@@ -311,10 +305,14 @@ class AccountManager: AccountManaging, Navigating {
         }
     }
 
-    private func resetAccount() {
+    private func stopVPNService() {
         DependencyManager.shared.tunnelManager.stopAndRemove()
         DependencyManager.shared.heartbeatMonitor.stop()
         DependencyManager.shared.connectionHealthMonitor.stop()
+    }
+
+    private func resetAccount() {
+        stopVPNService()
 
         account = nil
         availableServers = []
@@ -332,11 +330,10 @@ class AccountManager: AccountManaging, Navigating {
     private func subscribeToExpiredSubscriptionNotification() {
         //swiftlint:disable:next trailing_closure
         NotificationCenter.default.rx
-            .notification(Notification.Name.expiredSubscriptionNotification)
+            .notification(.expiredSubscriptionNotification)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                self?.resetAccount()
-                self?.navigate(to: .landing)
+                self?.stopVPNService()
         }).disposed(by: disposeBag)
     }
 }

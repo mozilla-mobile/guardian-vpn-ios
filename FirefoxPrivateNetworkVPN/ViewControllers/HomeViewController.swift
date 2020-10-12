@@ -186,7 +186,7 @@ class HomeViewController: UIViewController, Navigating {
                     self.navigate(to: .product)
                 })
                 self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || isActiveSubscription
-                self.vpnToggleView.update(with: self.tunnelManager.stateEvent.value)
+                self.vpnToggleView.update(with: isActiveSubscription ? self.tunnelManager.stateEvent.value : .off)
             }).disposed(by: disposeBag)
     }
 

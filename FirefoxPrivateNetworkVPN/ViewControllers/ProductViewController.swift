@@ -73,7 +73,7 @@ class ProductViewController: UIViewController, Navigating {
 extension ProductViewController: StoreManagerDelegate {
 
     func didUploadReceipt() {
-        self.accountManager.handleAfterPurchased { loginResult in
+        accountManager.handleAfterPurchased { loginResult in
             switch loginResult {
             case .success:
                 self.navigate(to: .home, context: .iapSucceed)

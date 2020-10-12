@@ -25,7 +25,6 @@ enum NavigableItem: Hashable {
     case servers
     case settings
     case tab
-    case account
     case appStore
     case recommendedUpdate
     case requiredUpdate
@@ -60,7 +59,7 @@ class NavigationCoordinator: NavigationCoordinating {
             case (.loading, .landing):
                 self.initializeWithLandingScreen()
 
-            case (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
+            case (.settings, .landing), (.requiredUpdate, .landing):
                 self.initializeWithLandingScreen()
 
                 if let landingViewController = self.currentViewController as? LandingViewController {
