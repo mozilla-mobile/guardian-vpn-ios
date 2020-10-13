@@ -47,7 +47,8 @@ class SettingsViewController: UIViewController, Navigating {
 
         subscribeToSettingSelected()
         subscribeToSignoutTapped()
-        subscribeToActiveSubscriptionNotification()
+        subscribeToSubscriptionNotification(.activeSubscriptionNotification)
+        subscribeToSubscriptionNotification(.expiredSubscriptionNotification)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,10 +96,10 @@ class SettingsViewController: UIViewController, Navigating {
             .disposed(by: self.disposeBag)
     }
 
-    private func subscribeToActiveSubscriptionNotification() {
+    private func subscribeToSubscriptionNotification(_ name: Notification.Name) {
         //swiftlint:disable:next trailing_closure
         NotificationCenter.default.rx
-            .notification(Notification.Name.activeSubscriptionNotification)
+            .notification(name)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
