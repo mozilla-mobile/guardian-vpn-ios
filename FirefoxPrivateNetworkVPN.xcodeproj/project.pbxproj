@@ -13,6 +13,10 @@
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
 		D4ED3C91252487BB00BDE261 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED3C90252487BB00BDE261 /* BaseTestCase.swift */; };
+		D524358E2535B9F700A47858 /* macosglue.mm in Sources */ = {isa = PBXBuildFile; fileRef = D524358D2535B9F700A47858 /* macosglue.mm */; };
+		D524358F2535B9F700A47858 /* macosglue.mm in Sources */ = {isa = PBXBuildFile; fileRef = D524358D2535B9F700A47858 /* macosglue.mm */; };
+		D52435902535B9F700A47858 /* macosglue.mm in Sources */ = {isa = PBXBuildFile; fileRef = D524358D2535B9F700A47858 /* macosglue.mm */; };
+		D52435912535B9F700A47858 /* macosglue.mm in Sources */ = {isa = PBXBuildFile; fileRef = D524358D2535B9F700A47858 /* macosglue.mm */; };
 		D535B6552490B699007171EC /* LocalNotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535B6542490B699007171EC /* LocalNotificationFactory.swift */; };
 		D541181924C8358500628DF6 /* VPNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B21E422366514700136316 /* VPNState.swift */; };
 		D541181A24C8358500628DF6 /* UIView+Designing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4947D23709033007595C3 /* UIView+Designing.swift */; };
@@ -141,7 +145,6 @@
 		D541189524C8358500628DF6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB123752DCA00368965 /* AboutViewController.swift */; };
 		D541189624C8358500628DF6 /* ConnectionHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F868F82395602000BBC2F4 /* ConnectionHealth.swift */; };
 		D541189724C8358500628DF6 /* UpdateRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */; };
-		D541189824C8358500628DF6 /* key.c in Sources */ = {isa = PBXBuildFile; fileRef = F4AED126235F450D00F80ABF /* key.c */; };
 		D541189924C8358500628DF6 /* HyperlinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8FA602374E00700D840D8 /* HyperlinkItem.swift */; };
 		D541189A24C8358500628DF6 /* DNSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED122235F450D00F80ABF /* DNSServer.swift */; };
 		D541189B24C8358500628DF6 /* KeychainStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056031239E9F31000A93CC /* KeychainStored.swift */; };
@@ -230,7 +233,6 @@
 		D541190124C8358900628DF6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED128235F450D00F80ABF /* Endpoint.swift */; };
 		D541190224C8358900628DF6 /* InterfaceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED11D235F450D00F80ABF /* InterfaceConfiguration.swift */; };
 		D541190324C8358900628DF6 /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1AE235F450D00F80ABF /* DNSResolver.swift */; };
-		D541190424C8358900628DF6 /* key.c in Sources */ = {isa = PBXBuildFile; fileRef = F4AED126235F450D00F80ABF /* key.c */; };
 		D541190524C8358900628DF6 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
 		D541190624C8358900628DF6 /* DNSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED122235F450D00F80ABF /* DNSServer.swift */; };
 		D541190724C8358900628DF6 /* PacketTunnelSettingsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED1B0235F450D00F80ABF /* PacketTunnelSettingsGenerator.swift */; };
@@ -330,11 +332,9 @@
 		F4AED1DE235F4C5700F80ABF /* TunnelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED123235F450D00F80ABF /* TunnelConfiguration.swift */; };
 		F4AED1DF235F4C5700F80ABF /* NETunnelProviderProtocol+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED124235F450D00F80ABF /* NETunnelProviderProtocol+Extension.swift */; };
 		F4AED1E0235F4C5700F80ABF /* String+ArrayConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED125235F450D00F80ABF /* String+ArrayConversion.swift */; };
-		F4AED1E1235F4C5700F80ABF /* key.c in Sources */ = {isa = PBXBuildFile; fileRef = F4AED126235F450D00F80ABF /* key.c */; };
 		F4AED1E2235F4C5700F80ABF /* IPAddressRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED127235F450D00F80ABF /* IPAddressRange.swift */; };
 		F4AED1E3235F4C5700F80ABF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED128235F450D00F80ABF /* Endpoint.swift */; };
 		F4AED1E4235F4F2A00F80ABF /* TunnelConfiguration+UapiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED19B235F450D00F80ABF /* TunnelConfiguration+UapiConfig.swift */; };
-		F4AED1ED235F50D200F80ABF /* key.c in Sources */ = {isa = PBXBuildFile; fileRef = F4AED126235F450D00F80ABF /* key.c */; };
 		F4AED20F235F52AE00F80ABF /* x25519.c in Sources */ = {isa = PBXBuildFile; fileRef = F4AED182235F450D00F80ABF /* x25519.c */; };
 		F4AED210235F52AE00F80ABF /* Curve25519.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED183235F450D00F80ABF /* Curve25519.swift */; };
 		F4AED21C235F55EA00F80ABF /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AED11A235F450D00F80ABF /* FileManager+Extension.swift */; };
@@ -586,6 +586,7 @@
 		6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
 		D4ED3C90252487BB00BDE261 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
+		D524358D2535B9F700A47858 /* macosglue.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macosglue.mm; sourceTree = "<group>"; };
 		D535B6542490B699007171EC /* LocalNotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationFactory.swift; sourceTree = "<group>"; };
 		D54118EA24C8358500628DF6 /* Sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54118EB24C8358600628DF6 /* Sandbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Sandbox-Info.plist"; path = "/Users/hstang/Projects/guardian-vpn-ios/Sandbox-Info.plist"; sourceTree = "<absolute>"; };
@@ -761,7 +762,6 @@
 		F4AED123235F450D00F80ABF /* TunnelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfiguration.swift; sourceTree = "<group>"; };
 		F4AED124235F450D00F80ABF /* NETunnelProviderProtocol+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NETunnelProviderProtocol+Extension.swift"; sourceTree = "<group>"; };
 		F4AED125235F450D00F80ABF /* String+ArrayConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ArrayConversion.swift"; sourceTree = "<group>"; };
-		F4AED126235F450D00F80ABF /* key.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = key.c; sourceTree = "<group>"; };
 		F4AED127235F450D00F80ABF /* IPAddressRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAddressRange.swift; sourceTree = "<group>"; };
 		F4AED128235F450D00F80ABF /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		F4AED12A235F450D00F80ABF /* ringlogger.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ringlogger.c; sourceTree = "<group>"; };
@@ -1339,6 +1339,7 @@
 			isa = PBXGroup;
 			children = (
 				F484429223CCF98700D140B1 /* FirefoxPrivateNetworkVPN.xcconfig */,
+				D524358D2535B9F700A47858 /* macosglue.mm */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1395,7 +1396,6 @@
 				F4AED128235F450D00F80ABF /* Endpoint.swift */,
 				F4AED11D235F450D00F80ABF /* InterfaceConfiguration.swift */,
 				F4AED127235F450D00F80ABF /* IPAddressRange.swift */,
-				F4AED126235F450D00F80ABF /* key.c */,
 				F4AED121235F450D00F80ABF /* key.h */,
 				F4AED124235F450D00F80ABF /* NETunnelProviderProtocol+Extension.swift */,
 				F4AED120235F450D00F80ABF /* PeerConfiguration.swift */,
@@ -2225,7 +2225,7 @@
 				F4AED1E3235F4C5700F80ABF /* Endpoint.swift in Sources */,
 				F4AED1D9235F4C5700F80ABF /* InterfaceConfiguration.swift in Sources */,
 				F4AED1D2235F49FC00F80ABF /* DNSResolver.swift in Sources */,
-				F4AED1E1235F4C5700F80ABF /* key.c in Sources */,
+				D524358F2535B9F700A47858 /* macosglue.mm in Sources */,
 				D5D349B7249B744C00DD9F50 /* AppExtensionUserDefaults.swift in Sources */,
 				F4AED1DD235F4C5700F80ABF /* DNSServer.swift in Sources */,
 				F4AED1D3235F49FF00F80ABF /* PacketTunnelSettingsGenerator.swift in Sources */,
@@ -2238,6 +2238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D524358E2535B9F700A47858 /* macosglue.mm in Sources */,
 				F4E908C72371CAAD00EB9FE6 /* VPNState.swift in Sources */,
 				F4E908F92371CAAD00EB9FE6 /* UIView+Designing.swift in Sources */,
 				F401097D24002C8B006DFF96 /* DeviceManagementViewModel.swift in Sources */,
@@ -2366,7 +2367,6 @@
 				527C7EB323752DCA00368965 /* AboutViewController.swift in Sources */,
 				F4F868F92395602000BBC2F4 /* ConnectionHealth.swift in Sources */,
 				F4483D0323F594E80094BE3E /* UpdateRequiredViewController.swift in Sources */,
-				F4AED1ED235F50D200F80ABF /* key.c in Sources */,
 				F4E8FA612374E00700D840D8 /* HyperlinkItem.swift in Sources */,
 				F4AED253235F835200F80ABF /* DNSServer.swift in Sources */,
 				F4056032239E9F31000A93CC /* KeychainStored.swift in Sources */,
@@ -2387,6 +2387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D52435902535B9F700A47858 /* macosglue.mm in Sources */,
 				D541181924C8358500628DF6 /* VPNState.swift in Sources */,
 				D541181A24C8358500628DF6 /* UIView+Designing.swift in Sources */,
 				D541181B24C8358500628DF6 /* DeviceManagementViewModel.swift in Sources */,
@@ -2515,7 +2516,6 @@
 				D541189524C8358500628DF6 /* AboutViewController.swift in Sources */,
 				D541189624C8358500628DF6 /* ConnectionHealth.swift in Sources */,
 				D541189724C8358500628DF6 /* UpdateRequiredViewController.swift in Sources */,
-				D541189824C8358500628DF6 /* key.c in Sources */,
 				D541189924C8358500628DF6 /* HyperlinkItem.swift in Sources */,
 				D541189A24C8358500628DF6 /* DNSServer.swift in Sources */,
 				D541189B24C8358500628DF6 /* KeychainStored.swift in Sources */,
@@ -2553,7 +2553,7 @@
 				D541190124C8358900628DF6 /* Endpoint.swift in Sources */,
 				D541190224C8358900628DF6 /* InterfaceConfiguration.swift in Sources */,
 				D541190324C8358900628DF6 /* DNSResolver.swift in Sources */,
-				D541190424C8358900628DF6 /* key.c in Sources */,
+				D52435912535B9F700A47858 /* macosglue.mm in Sources */,
 				D541190524C8358900628DF6 /* AppExtensionUserDefaults.swift in Sources */,
 				D541190624C8358900628DF6 /* DNSServer.swift in Sources */,
 				D541190724C8358900628DF6 /* PacketTunnelSettingsGenerator.swift in Sources */,
