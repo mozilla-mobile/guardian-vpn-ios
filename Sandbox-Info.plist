@@ -78,13 +78,6 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<false/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Localized</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Localized</string>
 	<key>UIAppFonts</key>
