@@ -190,8 +190,8 @@ class AccountManager: AccountManaging {
             case .success(let user):
                 self.account?.user = user
                 self.accountStore.save(user: user)
-                if !user.vpnSubscription.isActive, self.isIAPAccount {
-                    self.accountStore.removeIapEmail()
+                if !user.vpnSubscription.isActive, self.isIAPAccount, self.didUploadReceipt {
+                    self.accountStore.removeIapInfo()
                 }
                 completion(.success(()))
             case .failure(let error):
@@ -244,7 +244,7 @@ class AccountManager: AccountManaging {
     // MARK: - IAP Operations
 
     var isIAPAccount: Bool {
-        guard let iapEmail = accountStore.getIapEmail(),
+        guard let iapEmail = accountStore.getIapInfo()?.purchaser,
             let currentEmail = account?.user.email else {
             return false
         }
@@ -252,10 +252,20 @@ class AccountManager: AccountManaging {
         return iapEmail == currentEmail
     }
 
-    func saveIAPEmail() {
-        guard let account = account,
-            accountStore.getIapEmail() == nil else { return }
-        accountStore.save(iapEmail: account.user.email)
+    var didUploadReceipt: Bool {
+        return accountStore.getIapInfo()?.didUploadReceipt ?? false
+    }
+
+    func saveIAPInfo() {
+        guard let account = account, accountStore.getIapInfo() == nil else { return }
+        let iapInfo = IAPInfo(purchaser: account.user.email, didUploadReceipt: false)
+        accountStore.save(iapInfo: iapInfo)
+    }
+
+    func updateIAPInfo() {
+        guard var iapInfo = accountStore.getIapInfo(), isIAPAccount else { return }
+        iapInfo.didUploadReceipt = true
+        accountStore.save(iapInfo: iapInfo)
     }
 
     func handleAfterPurchased(completion: @escaping (Result<Void, LoginError>) -> Void) {

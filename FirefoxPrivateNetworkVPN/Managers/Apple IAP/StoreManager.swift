@@ -91,7 +91,7 @@ extension StoreManager: SKPaymentTransactionObserver {
 
     private func handlePurchased(_ transaction: SKPaymentTransaction) {
         SKPaymentQueue.default().finishTransaction(transaction)
-        accountManager.saveIAPEmail()
+        accountManager.saveIAPInfo()
         uploadReceipt()
     }
 
@@ -108,6 +108,7 @@ extension StoreManager: SKPaymentTransactionObserver {
     private func uploadReceipt() {
         if accountManager.isIAPAccount {
             if !isUploading,
+                !accountManager.didUploadReceipt,
                 let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
                 FileManager.default.fileExists(atPath: appStoreReceiptURL.path),
                 let receiptData = try? Data(contentsOf: appStoreReceiptURL, options: .alwaysMapped) {
@@ -117,6 +118,7 @@ extension StoreManager: SKPaymentTransactionObserver {
                     self.isUploading = false
                     switch result {
                     case .success:
+                        self.accountManager.updateIAPInfo()
                         self.delegate?.didUploadReceipt()
                     case .failure(let error):
                         self.delegate?.didReceiveError(error)

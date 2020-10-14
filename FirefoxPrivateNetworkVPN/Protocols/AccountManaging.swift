@@ -34,7 +34,9 @@ protocol AccountManaging {
 
     // MARK: - IAP Operations
     var isIAPAccount: Bool { get }
-    func saveIAPEmail()
+    var didUploadReceipt: Bool { get }
+    func saveIAPInfo()
+    func updateIAPInfo()
     func handleAfterPurchased(completion: @escaping (Result<Void, LoginError>) -> Void)
     func getProducts(completion: @escaping (Result<[String], GuardianAPIError>) -> Void)
     func uploadReceipt(receipt: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void)

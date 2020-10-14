@@ -17,7 +17,7 @@ protocol Persisting {
     func saveCredentials(_ credentials: Credentials)
     func readCredentials() -> Credentials?
     func removeCredentials()
-    func saveIAPCredentials(_ credentials: String)
-    func readIAPCredentials() -> String?
+    func saveIAPCredentials(_ credentials: IAPInfo)
+    func readIAPCredentials() -> IAPInfo?
     func removeIAPCredentials()
 }

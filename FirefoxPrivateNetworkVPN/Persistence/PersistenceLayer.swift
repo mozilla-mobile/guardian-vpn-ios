@@ -16,7 +16,12 @@ private class CredentialsKeyChain {
 
 private class IAPKeyChain {
     private static let containerKey = "org.mozilla.guardian.iap"
-    @KeychainStored<String>(service: containerKey) var credentials: String?
+    @KeychainStored<IAPInfo>(service: containerKey) var credentials: IAPInfo?
+}
+
+struct IAPInfo: Codable {
+    let purchaser: String
+    var didUploadReceipt: Bool
 }
 
 class PersistenceLayer: Persisting {
@@ -62,11 +67,11 @@ class PersistenceLayer: Persisting {
         credentialsKeyChain.credentials = nil
     }
 
-    func saveIAPCredentials(_ credentials: String) {
+    func saveIAPCredentials(_ credentials: IAPInfo) {
         iapKeyChain.credentials = credentials
     }
 
-    func readIAPCredentials() -> String? {
+    func readIAPCredentials() -> IAPInfo? {
         return iapKeyChain.credentials
     }
 
