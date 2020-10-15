@@ -46,6 +46,6 @@ class CurrentVPNSelectorView: UIView {
 
     func showUnselected() {
         self.transform = CGAffineTransform.identity
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.custom(.currentVPNSelectorBackground)
     }
 }

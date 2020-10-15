@@ -30,6 +30,7 @@ enum CustomColor: String {
     case silver = "custom_silver"
     case yellow50 = "custom_yellow50"
     case white80 = "custom_white80"
+    case currentVPNSelectorBackground = "custom_current_vpn_selector_bg"
 }
 
 extension UIColor {

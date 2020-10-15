@@ -23,7 +23,9 @@ class AccountInformationCell: UITableViewCell {
     func setup(_ type: SettingsItem, isDeviceAdded: Bool) {
         titleLabel.text = type.title
         iconImageView.image = type.iconImage
+        iconImageView.tintColor = UIColor.custom(.grey50)
         disclosureImageView.image = type.disclosureImage
+        disclosureImageView.tintColor = UIColor.custom(.grey50)
         accessoryIconImageView.isHidden = true
 
         if type.navigableItem == .devices,

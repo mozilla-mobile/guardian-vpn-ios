@@ -71,6 +71,5 @@ class LandingViewController: UIViewController, Navigating {
         getStartedButton.setTitle(LocalizedString.getStarted.value, for: .normal)
         getStartedButton.setBackgroundImage(UIImage.image(with: UIColor.custom(.blue80)), for: .highlighted)
         learnMoreButton.setTitle(LocalizedString.learnMore.value, for: .normal)
-        imageView.image = UIImage(named: "dark_logo")
     }
 }
