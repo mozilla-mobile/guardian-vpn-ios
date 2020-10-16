@@ -11,7 +11,7 @@
 
 import RxSwift
 
-class Account {
+struct Account {
     var credentials: Credentials
     var currentDevice: Device?
     var user: User
@@ -36,5 +36,9 @@ class Account {
 
     var hasDeviceBeenAdded: Bool {
         return currentDevice != nil
+    }
+
+    var isSubscriptionActive: Bool {
+        return user.vpnSubscription.isActive
     }
 }

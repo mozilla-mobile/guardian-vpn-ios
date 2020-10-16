@@ -41,7 +41,7 @@ class LandingViewController: UIViewController, Navigating {
         getStartedButton.cornerRadius = getStartedButton.frame.height/10
     }
 
-    func showToast(with error: LocalizedError) {
+    func showToast(with error: Error) {
         let attributedString = NSAttributedString.formattedError(error)
         warningToastView.show(message: attributedString) { [weak self] in
             self?.navigate(to: .login)

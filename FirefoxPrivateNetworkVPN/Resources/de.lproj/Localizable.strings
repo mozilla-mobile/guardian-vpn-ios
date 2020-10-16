@@ -92,13 +92,14 @@
 "toastLoggedOut" = "Logged out and device removed";
 "toastNoConnection" = "No internet connection.";
 "toastAuthenticationError" = "Authentication error.";
+"toastTurnOnVPN" = "Turn on VPN";
 
 //Mark: - Update
 "updateConnection" = "Die Verbindung ist während des Updateprozesses nicht sicher.";
 "updateNow" = "Update Jetzt";
 
 // MARK: - Update toast
-"toastFeaturesAvailable" = "Neue Funktionen sind verfügbar!";
+"bannerFeaturesAvailable" = "Neue Funktionen sind verfügbar!";
 
 // Mark: - Recommended Update
 "updateRecommended" = "Update empfohlen";
@@ -111,6 +112,9 @@
 //MARK: - Error Descriptions
 "errorDeviceRemoval" = "Gerät kann nicht entfernt werden.";
 "errorConnectVPN" = "Verbindung kann nicht hergestellt werden.";
+"subscriptionConfirmed" = "Subscription confirmed!";
+"errorInvalidAccount" = "Please sign in with the Firefox account you used for Apple IAP";
+"confirmInvalidAccount" = "OK";
 
 //MARK: - Email Logs
 "logsFileName" = "debug_logs";

@@ -16,17 +16,18 @@ import NetworkExtension
 import Lottie
 
 class VPNToggleView: UIView {
-    @IBOutlet private var view: UIView!
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var subtitleLabel: UILabel!
-    @IBOutlet private var vpnSwitch: UISwitch!
-    @IBOutlet weak var vpnToggleButton: UIButton!
+    @IBOutlet private weak var view: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var vpnSwitch: UISwitch!
+    @IBOutlet private weak var vpnToggleButton: UIButton!
     @IBOutlet private weak var containingView: UIView!
-    @IBOutlet weak var globeAnimationContainer: UIView!
-    @IBOutlet weak var backgroundAnimationContainerView: UIView!
+    @IBOutlet private weak var globeAnimationContainer: UIView!
+    @IBOutlet private weak var backgroundAnimationContainerView: UIView!
 
     var connectionHandler: (() -> Void)?
     var disconnectionHandler: (() -> Void)?
+    var tapGestureHandler: (() -> Void)?
 
     private var currentState = VPNState.off
     private let disposeBag = DisposeBag()
@@ -114,6 +115,11 @@ class VPNToggleView: UIView {
 
     // MARK: - Actions
     @IBAction func toggleTapped() {
+        guard let isSubscriptionActive = accountManager.account?.isSubscriptionActive, isSubscriptionActive else {
+            tapGestureHandler?()
+            return
+        }
+
         if !vpnSwitch.isOn {
             connectionHandler?()
         } else {
@@ -169,7 +175,9 @@ class VPNToggleView: UIView {
             vpnSwitch.setOn(newState.isToggleOn, animated: false)
         }
 
-        vpnSwitch.alpha = newState.isEnabled ? 1 : 0.5
+        if let isSubscriptionActive = accountManager.account?.isSubscriptionActive {
+            vpnSwitch.alpha = (isSubscriptionActive && newState.isEnabled) ? 1 : 0.5
+        }
     }
 
     // MARK: - Animations

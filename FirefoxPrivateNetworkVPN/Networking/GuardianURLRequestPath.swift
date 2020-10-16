@@ -17,6 +17,9 @@ enum GuardianURLRequestPath {
     case addDevice
     case removeDevice(String)
     case versions
+    // IAP
+    case getProducts
+    case uploadReceipt
 
     var endpoint: String {
         let prefix = "api/v1/vpn/"
@@ -36,6 +39,10 @@ enum GuardianURLRequestPath {
             return prefix + "device/" + deviceKey
         case .versions:
             return prefix + "versions"
+        case .getProducts:
+            return prefix + "products/ios"
+        case .uploadReceipt:
+            return prefix + "purchases/ios"
         }
     }
 }

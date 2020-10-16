@@ -56,6 +56,7 @@ enum LocalizedString: String {
     case settingsItemAbout
     case settingsSignOut
     case settingsFeedback
+    case settingsPurchase
 
     case settingsDefaultName
     case settingsManageAccount
@@ -87,9 +88,12 @@ enum LocalizedString: String {
     case toastLoggedOut
     case toastNoConnection
     case toastAuthenticationError
+    case toastTurnOnVPN
 
-    case toastFeaturesAvailable
+    case bannerFeaturesAvailable
+    case bannerInAppPurchase
 
+    case tryMozillaVPN
     case updateNow
     case updateConnection
 
@@ -101,6 +105,9 @@ enum LocalizedString: String {
 
     case errorDeviceRemoval
     case errorConnectVPN
+    case subscriptionConfirmed
+    case errorInvalidAccount
+    case confirmInvalidAccount
 
     case logsFileName
     case logsMailSubject

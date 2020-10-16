@@ -12,7 +12,7 @@
 import UIKit
 
 extension NSAttributedString {
-    static func formattedError(_ error: LocalizedError, canTryAgain: Bool = true) -> NSAttributedString {
+    static func formattedError(_ error: Error, canTryAgain: Bool = true) -> NSAttributedString {
         return formatted(error.localizedDescription, actionMessage: canTryAgain ? LocalizedString.toastTryAgain.value : nil)
     }
 

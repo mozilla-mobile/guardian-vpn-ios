@@ -83,3 +83,22 @@ extension UIView {
         }
     }
 }
+
+extension UIView {
+
+    func vibrate() {
+        let animation: CABasicAnimation = {
+            let animation = CABasicAnimation(keyPath: "position.x")
+            animation.fromValue = self.center.x + 5
+            animation.toValue = self.center.x - 5
+            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            animation.duration = 0.25
+            animation.speed = 2
+            animation.autoreverses = true
+            animation.repeatCount = 2
+            return animation
+        }()
+
+        self.layer.add(animation, forKey: "position\(self)")
+    }
+}

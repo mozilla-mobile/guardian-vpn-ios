@@ -76,7 +76,7 @@
 		D541185024C8358500628DF6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E33D802358BF1500B2003A /* LoginViewController.swift */; };
 		D541185124C8358500628DF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CCA2423711C7A0018DC43 /* AppDelegate.swift */; };
 		D541185224C8358500628DF6 /* HeartbeatMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401097A23FEE828006DFF96 /* HeartbeatMonitoring.swift */; };
-		D541185324C8358500628DF6 /* VersionUpdateToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */; };
+		D541185324C8358500628DF6 /* TopBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* TopBannerView.swift */; };
 		D541185424C8358500628DF6 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4230481237209B000572A93 /* HelpViewController.swift */; };
 		D541185524C8358500628DF6 /* GuardianAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4658544233BB7690081D7D7 /* GuardianAPI.swift */; };
 		D541185624C8358500628DF6 /* UINavigationBar+font.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0B2385EF930084B5DE /* UINavigationBar+font.swift */; };
@@ -186,7 +186,7 @@
 		D54118C124C8358500628DF6 /* Inter-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70E92342775000871447 /* Inter-Medium.otf */; };
 		D54118C224C8358500628DF6 /* Metropolis-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70BD2342431E00871447 /* Metropolis-MediumItalic.otf */; };
 		D54118C324C8358500628DF6 /* Metropolis-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70BC2342431E00871447 /* Metropolis-BlackItalic.otf */; };
-		D54118C424C8358500628DF6 /* VersionUpdateToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */; };
+		D54118C424C8358500628DF6 /* TopBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* TopBannerView.xib */; };
 		D54118C524C8358500628DF6 /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70B32342431E00871447 /* Metropolis-Medium.otf */; };
 		D54118C624C8358500628DF6 /* Metropolis-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F45D70BF2342431E00871447 /* Metropolis-RegularItalic.otf */; };
 		D54118C724C8358500628DF6 /* AboutHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F429A87C2417FC3100D6F0C0 /* AboutHeaderTableViewCell.xib */; };
@@ -247,8 +247,14 @@
 		D54700E82491D90C00FA40A2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54700E72491D90C00FA40A2 /* NotificationViewController.swift */; };
 		D54700EB2491D90C00FA40A2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54700E92491D90C00FA40A2 /* MainInterface.storyboard */; };
 		D54700EF2491D90C00FA40A2 /* NotificationContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D54700E12491D90C00FA40A2 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D54CF58824DA5F9F005CA66E /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58624DA5F9F005CA66E /* ProductViewController.swift */; };
+		D54CF58924DA5F9F005CA66E /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54CF58724DA5F9F005CA66E /* ProductViewController.xib */; };
+		D54CF58C24DAAC8F005CA66E /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58B24DAAC8F005CA66E /* StoreManager.swift */; };
 		D54D31DD2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
 		D54D31DE2519F33500D6ED57 /* PKCECodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */; };
+		D571174B251A10E2003468ED /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58624DA5F9F005CA66E /* ProductViewController.swift */; };
+		D571174C251A10FC003468ED /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54CF58B24DAAC8F005CA66E /* StoreManager.swift */; };
+		D571174D251A1184003468ED /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54CF58724DA5F9F005CA66E /* ProductViewController.xib */; };
 		D5D349B3249A73FB00DD9F50 /* error_noSignal.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B1249A73FA00DD9F50 /* error_noSignal.png */; };
 		D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D349B2249A73FA00DD9F50 /* error_unstable.png */; };
 		D5D349B6249B703F00DD9F50 /* AppExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D349B5249B703F00DD9F50 /* AppExtensionUserDefaults.swift */; };
@@ -296,8 +302,8 @@
 		F45D1D1023873B8A0084B5DE /* CarouselPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D1D0F23873B8A0084B5DE /* CarouselPageViewController.swift */; };
 		F47112A023E200F000539A15 /* UINavigationBar+HandleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */; };
 		F47112A223E218AC00539A15 /* UIViewController+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47112A123E218AC00539A15 /* UIViewController+Modal.swift */; };
-		F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */; };
-		F471537823C3D17A00226CB8 /* VersionUpdateToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */; };
+		F471537623C3D15900226CB8 /* TopBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537523C3D15900226CB8 /* TopBannerView.swift */; };
+		F471537823C3D17A00226CB8 /* TopBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F471537723C3D17A00226CB8 /* TopBannerView.xib */; };
 		F471537A23C4E81F00226CB8 /* ReleaseMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */; };
 		F4720259238C3D620033A14B /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4720258238C3D620033A14B /* UIFont+Custom.swift */; };
 		F474281024214C7B00056A81 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474280F24214C7B00056A81 /* Subscription.swift */; };
@@ -598,6 +604,9 @@
 		D54700E72491D90C00FA40A2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D54700EA2491D90C00FA40A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D54700EC2491D90C00FA40A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D54CF58624DA5F9F005CA66E /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		D54CF58724DA5F9F005CA66E /* ProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewController.xib; sourceTree = "<group>"; };
+		D54CF58B24DAAC8F005CA66E /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		D54D31DC2519F33500D6ED57 /* PKCECodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCECodeGenerator.swift; sourceTree = "<group>"; };
 		D5D349B1249A73FA00DD9F50 /* error_noSignal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_noSignal.png; sourceTree = "<group>"; };
 		D5D349B2249A73FA00DD9F50 /* error_unstable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error_unstable.png; sourceTree = "<group>"; };
@@ -705,8 +714,8 @@
 		F465854C233BF0850081D7D7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F471129F23E200F000539A15 /* UINavigationBar+HandleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+HandleBar.swift"; sourceTree = "<group>"; };
 		F47112A123E218AC00539A15 /* UIViewController+Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Modal.swift"; sourceTree = "<group>"; };
-		F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdateToastView.swift; sourceTree = "<group>"; };
-		F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersionUpdateToastView.xib; sourceTree = "<group>"; };
+		F471537523C3D15900226CB8 /* TopBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBannerView.swift; sourceTree = "<group>"; };
+		F471537723C3D17A00226CB8 /* TopBannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopBannerView.xib; sourceTree = "<group>"; };
 		F471537923C4E81F00226CB8 /* ReleaseMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseMonitor.swift; sourceTree = "<group>"; };
 		F4720258238C3D620033A14B /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
 		F474280F24214C7B00056A81 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
@@ -1001,6 +1010,14 @@
 			path = NotificationContentExtension;
 			sourceTree = "<group>";
 		};
+		D54CF58A24DAAC63005CA66E /* Apple IAP */ = {
+			isa = PBXGroup;
+			children = (
+				D54CF58B24DAAC8F005CA66E /* StoreManager.swift */,
+			);
+			path = "Apple IAP";
+			sourceTree = "<group>";
+		};
 		F401097E240453B6006DFF96 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
@@ -1054,6 +1071,7 @@
 		F41CCA1923711C7A0018DC43 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				D54CF58A24DAAC63005CA66E /* Apple IAP */,
 				F4B42C02238DD1FA001F64F7 /* Connection Heath Monitor */,
 				F40831CE233CFA2000A60FCA /* AccountManager.swift */,
 				F41CCA1A23711C7A0018DC43 /* DependencyManager.swift */,
@@ -1179,6 +1197,8 @@
 				F4DF5B1323CFBDAA006A7E4C /* UpdateRecommendedViewController.xib */,
 				F4483D0123F594E70094BE3E /* UpdateRequiredViewController.swift */,
 				F4483D0223F594E80094BE3E /* UpdateRequiredViewController.xib */,
+				D54CF58624DA5F9F005CA66E /* ProductViewController.swift */,
+				D54CF58724DA5F9F005CA66E /* ProductViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1206,8 +1226,8 @@
 				F42304882372101000572A93 /* HyperlinkCell.xib */,
 				F43BEA5C2412F7DE000249C3 /* SignoutTableViewCell.swift */,
 				F43BEA5D2412F7DE000249C3 /* SignoutTableViewCell.xib */,
-				F471537523C3D15900226CB8 /* VersionUpdateToastView.swift */,
-				F471537723C3D17A00226CB8 /* VersionUpdateToastView.xib */,
+				F471537523C3D15900226CB8 /* TopBannerView.swift */,
+				F471537723C3D17A00226CB8 /* TopBannerView.xib */,
 				F420F4192368840A00CD48BF /* VPNToggleView.swift */,
 				F420F41A2368840A00CD48BF /* VPNToggleView.xib */,
 				F42DE7CD2395B9E7000B79C3 /* WarningToastView.swift */,
@@ -1775,6 +1795,7 @@
 				F4230484237209B000572A93 /* HelpViewController.xib in Resources */,
 				F4E908DD2371CAAD00EB9FE6 /* Metropolis-BoldItalic.otf in Resources */,
 				F4E909142371CAAD00EB9FE6 /* DeviceLimitReachedView.xib in Resources */,
+				D54CF58924DA5F9F005CA66E /* ProductViewController.xib in Resources */,
 				D5D349B4249A73FB00DD9F50 /* error_unstable.png in Resources */,
 				F4E909032371CAAD00EB9FE6 /* LoadingViewController.xib in Resources */,
 				F4E9090C2371CAAD00EB9FE6 /* AccountInformationHeader.xib in Resources */,
@@ -1782,7 +1803,7 @@
 				F4E908D72371CAAD00EB9FE6 /* Inter-Medium.otf in Resources */,
 				F4E908E52371CAAD00EB9FE6 /* Metropolis-MediumItalic.otf in Resources */,
 				F4E908DB2371CAAD00EB9FE6 /* Metropolis-BlackItalic.otf in Resources */,
-				F471537823C3D17A00226CB8 /* VersionUpdateToastView.xib in Resources */,
+				F471537823C3D17A00226CB8 /* TopBannerView.xib in Resources */,
 				F4E908E42371CAAD00EB9FE6 /* Metropolis-Medium.otf in Resources */,
 				F4E908E72371CAAD00EB9FE6 /* Metropolis-RegularItalic.otf in Resources */,
 				F429A87E2417FC3200D6F0C0 /* AboutHeaderTableViewCell.xib in Resources */,
@@ -1834,6 +1855,7 @@
 				D54118BA24C8358500628DF6 /* HelpViewController.xib in Resources */,
 				D54118BB24C8358500628DF6 /* Metropolis-BoldItalic.otf in Resources */,
 				D54118BC24C8358500628DF6 /* DeviceLimitReachedView.xib in Resources */,
+				D571174D251A1184003468ED /* ProductViewController.xib in Resources */,
 				D54118BD24C8358500628DF6 /* error_unstable.png in Resources */,
 				D54118BE24C8358500628DF6 /* LoadingViewController.xib in Resources */,
 				D54118BF24C8358500628DF6 /* AccountInformationHeader.xib in Resources */,
@@ -1841,7 +1863,7 @@
 				D54118C124C8358500628DF6 /* Inter-Medium.otf in Resources */,
 				D54118C224C8358500628DF6 /* Metropolis-MediumItalic.otf in Resources */,
 				D54118C324C8358500628DF6 /* Metropolis-BlackItalic.otf in Resources */,
-				D54118C424C8358500628DF6 /* VersionUpdateToastView.xib in Resources */,
+				D54118C424C8358500628DF6 /* TopBannerView.xib in Resources */,
 				D54118C524C8358500628DF6 /* Metropolis-Medium.otf in Resources */,
 				D54118C624C8358500628DF6 /* Metropolis-RegularItalic.otf in Resources */,
 				D54118C724C8358500628DF6 /* AboutHeaderTableViewCell.xib in Resources */,
@@ -2276,6 +2298,7 @@
 				F42DE7CA2395A824000B79C3 /* CarouselViewType.swift in Sources */,
 				F4E908CA2371CAAD00EB9FE6 /* User.swift in Sources */,
 				F47865972425069700598AAF /* PersistenceLayer.swift in Sources */,
+				D54CF58824DA5F9F005CA66E /* ProductViewController.swift in Sources */,
 				F4E909152371CAAD00EB9FE6 /* DeviceManagementCell.swift in Sources */,
 				F4AED251235F835200F80ABF /* Data+KeyEncoding.swift in Sources */,
 				F40109802406F303006DFF96 /* FirefoxURL.swift in Sources */,
@@ -2286,6 +2309,7 @@
 				F4E908FD2371CAAD00EB9FE6 /* HomeViewController.swift in Sources */,
 				F4E909132371CAAD00EB9FE6 /* DeviceLimitReachedView.swift in Sources */,
 				F42DE7C62395A61C000B79C3 /* LandingViewController.swift in Sources */,
+				D54CF58C24DAAC8F005CA66E /* StoreManager.swift in Sources */,
 				F45D1D0E238721E20084B5DE /* CarouselDataSource.swift in Sources */,
 				F4AED249235F7BB800F80ABF /* WireGuardAppError.swift in Sources */,
 				F4E909052371CAAD00EB9FE6 /* ServersViewController.swift in Sources */,
@@ -2298,7 +2322,7 @@
 				F4E909042371CAAD00EB9FE6 /* LoginViewController.swift in Sources */,
 				F4E908C12371CAAD00EB9FE6 /* AppDelegate.swift in Sources */,
 				F401097B23FEE829006DFF96 /* HeartbeatMonitoring.swift in Sources */,
-				F471537623C3D15900226CB8 /* VersionUpdateToastView.swift in Sources */,
+				F471537623C3D15900226CB8 /* TopBannerView.swift in Sources */,
 				F4230483237209B000572A93 /* HelpViewController.swift in Sources */,
 				F4E908CD2371CAAD00EB9FE6 /* GuardianAPI.swift in Sources */,
 				F45D1D0C2385EF930084B5DE /* UINavigationBar+font.swift in Sources */,
@@ -2425,6 +2449,7 @@
 				D541183A24C8358500628DF6 /* CarouselViewType.swift in Sources */,
 				D541183B24C8358500628DF6 /* User.swift in Sources */,
 				D541183C24C8358500628DF6 /* PersistenceLayer.swift in Sources */,
+				D571174B251A10E2003468ED /* ProductViewController.swift in Sources */,
 				D541183D24C8358500628DF6 /* DeviceManagementCell.swift in Sources */,
 				D541183E24C8358500628DF6 /* Data+KeyEncoding.swift in Sources */,
 				D541183F24C8358500628DF6 /* FirefoxURL.swift in Sources */,
@@ -2435,6 +2460,7 @@
 				D541184424C8358500628DF6 /* HomeViewController.swift in Sources */,
 				D541184524C8358500628DF6 /* DeviceLimitReachedView.swift in Sources */,
 				D541184624C8358500628DF6 /* LandingViewController.swift in Sources */,
+				D571174C251A10FC003468ED /* StoreManager.swift in Sources */,
 				D541184724C8358500628DF6 /* CarouselDataSource.swift in Sources */,
 				D541184824C8358500628DF6 /* WireGuardAppError.swift in Sources */,
 				D541184924C8358500628DF6 /* ServersViewController.swift in Sources */,
@@ -2447,7 +2473,7 @@
 				D541185024C8358500628DF6 /* LoginViewController.swift in Sources */,
 				D541185124C8358500628DF6 /* AppDelegate.swift in Sources */,
 				D541185224C8358500628DF6 /* HeartbeatMonitoring.swift in Sources */,
-				D541185324C8358500628DF6 /* VersionUpdateToastView.swift in Sources */,
+				D541185324C8358500628DF6 /* TopBannerView.swift in Sources */,
 				D541185424C8358500628DF6 /* HelpViewController.swift in Sources */,
 				D541185524C8358500628DF6 /* GuardianAPI.swift in Sources */,
 				D541185624C8358500628DF6 /* UINavigationBar+font.swift in Sources */,

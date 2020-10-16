@@ -11,6 +11,24 @@
 
 import UIKit
 
+enum WarningToastViewType {
+    case positive, negative
+
+    var backgroundColor: UIColor {
+        switch self {
+        case .positive: return UIColor.custom(.green50)
+        case .negative: return UIColor.custom(.red50)
+        }
+    }
+
+    var textColor: UIColor {
+        switch self {
+        case .positive: return .black
+        case .negative: return .white
+        }
+    }
+}
+
 final class WarningToastView: UIView {
 
     @IBOutlet var view: UIView!
@@ -41,7 +59,9 @@ final class WarningToastView: UIView {
         view.shadowRadius = view.frame.height/10
     }
 
-    func show(message: NSAttributedString, dismissAfter: TimeInterval = 3, action: Action? = nil) {
+    func show(type: WarningToastViewType = .negative, message: NSAttributedString, dismissAfter: TimeInterval = 3, action: Action? = nil) {
+        label.textColor = type.textColor
+        view.backgroundColor = type.backgroundColor
         label.attributedText = message
         self.action = action
 

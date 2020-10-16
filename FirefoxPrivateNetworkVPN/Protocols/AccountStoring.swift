@@ -31,5 +31,9 @@ protocol AccountStoring {
     func save(credentials: Credentials)
     func getCredentials() -> Credentials?
 
+    func save(iapInfo: IAPInfo)
+    func getIapInfo() -> IAPInfo?
+    func removeIapInfo()
+
     func removeAll()
 }

@@ -13,6 +13,7 @@ import Foundation
 import RxSwift
 
 protocol AccountManaging {
+    var isSubscriptionActive: Observable<Bool> { get }
     var account: Account? { get }
     var availableServers: [VPNCountry] { get }
     var selectedCity: VPNCity? { get }
@@ -30,4 +31,13 @@ protocol AccountManaging {
     // MARK: - VPN Server Operations
     func retrieveVPNServers(with token: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void)
     func updateSelectedCity(with newCity: VPNCity)
+
+    // MARK: - IAP Operations
+    var isIAPAccount: Bool { get }
+    var didUploadReceipt: Bool { get }
+    func saveIAPInfo()
+    func updateIAPInfo()
+    func handleAfterPurchased(completion: @escaping (Result<Void, LoginError>) -> Void)
+    func getProducts(completion: @escaping (Result<[String], GuardianAPIError>) -> Void)
+    func uploadReceipt(receipt: String, completion: @escaping (Result<Void, GuardianAPIError>) -> Void)
 }

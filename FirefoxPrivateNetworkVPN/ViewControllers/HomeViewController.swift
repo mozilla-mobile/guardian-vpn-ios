@@ -20,7 +20,8 @@ class HomeViewController: UIViewController, Navigating {
     @IBOutlet private weak var selectConnectionLabel: UILabel!
     @IBOutlet private weak var vpnSelectionView: CurrentVPNSelectorView!
     @IBOutlet private weak var warningToastView: WarningToastView!
-    @IBOutlet private weak var versionUpdateToastView: VersionUpdateToastView!
+    @IBOutlet private weak var inAppPurchaseBannerView: TopBannerView!
+    @IBOutlet private weak var versionUpdateBannerView: TopBannerView!
     @IBOutlet private weak var vpnStackView: UIStackView!
 
     private let pinger = LongPinger()
@@ -28,7 +29,10 @@ class HomeViewController: UIViewController, Navigating {
     private let rxValueObserving = ConnectionRxValue()
     private let tunnelManager = DependencyManager.shared.tunnelManager
     private let releaseMonitor = DependencyManager.shared.releaseMonitor
+    private let accountManager = DependencyManager.shared.accountManager
+    private let heartbeatMonitor = DependencyManager.shared.heartbeatMonitor
     private let disposeBag = DisposeBag()
+    private let notificationFeedback = UINotificationFeedbackGenerator()
 
     init() {
         super.init(nibName: String(describing: Self.self), bundle: nil)
@@ -46,11 +50,18 @@ class HomeViewController: UIViewController, Navigating {
         subscribeToVpnStates()
         subscribeToErrors()
         subscribeToVersionUpdates()
+        subscribeToSubscription()
+        getProducts()
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         vpnSelectionView.view.cornerRadius = vpnSelectionView.view.frame.height/2
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        heartbeatMonitor.pollNow()
     }
 
     private func setStrings() {
@@ -73,6 +84,12 @@ class HomeViewController: UIViewController, Navigating {
 
         vpnToggleView.disconnectionHandler = { [weak self] in
             self?.tunnelManager.stop()
+        }
+
+        vpnToggleView.tapGestureHandler = { [weak self] in
+            self?.notificationFeedback.notificationOccurred(.error)
+            self?.inAppPurchaseBannerView.vibrate()
+            self?.versionUpdateBannerView.vibrate()
         }
     }
 
@@ -102,10 +119,8 @@ class HomeViewController: UIViewController, Navigating {
     }
 
     private func connectToTunnel() {
-        let currentDevice = DependencyManager.shared.accountManager.account?.currentDevice
-
         //swiftlint:disable:next trailing_closure
-        tunnelManager.connect(with: currentDevice)
+        tunnelManager.connect()
             .subscribe(onError: { [weak self] _ in
                 guard let self = self else { return }
                 self.warningToastView.show(message: NSAttributedString.formattedError(TunnelError.couldNotConnect),
@@ -134,15 +149,70 @@ class HomeViewController: UIViewController, Navigating {
                 guard let self = self else { return }
                 switch value {
                 case .optional:
-                    self.versionUpdateToastView.isHidden = false
+                    let text = NSAttributedString.formatted(LocalizedString.bannerFeaturesAvailable.value,
+                                                            actionMessage: LocalizedString.updateNow.value)
+                    self.versionUpdateBannerView.configure(text: text, action: {
+                        self.navigate(to: .appStore)
+                    }, dismiss: {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.versionUpdateBannerView.alpha = 0
+                        }, completion: { _ in
+                            self.versionUpdateBannerView.isHidden = true
+                            self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || (self.accountManager.account?.isSubscriptionActive ?? false)
+                        })
+                    })
+                    self.versionUpdateBannerView.isHidden = false
                 case .required:
                     Logger.global?.log(message: "Required update detected")
-                    self.versionUpdateToastView.isHidden = true
+                    self.versionUpdateBannerView.isHidden = true
                     self.navigate(to: .requiredUpdate)
                 default: //.none or nil
-                    self.versionUpdateToastView.isHidden = true
+                    self.versionUpdateBannerView.isHidden = true
                 }
+                self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || (self.accountManager.account?.isSubscriptionActive ?? false)
             }).disposed(by: disposeBag)
+    }
+
+    private func subscribeToSubscription() {
+        accountManager.isSubscriptionActive
+            .distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isActiveSubscription in
+                guard let self = self else { return }
+
+                let text = NSAttributedString.formatted(LocalizedString.bannerInAppPurchase.value,
+                                                        actionMessage: LocalizedString.tryMozillaVPN.value)
+                self.inAppPurchaseBannerView.configure(text: text, action: {
+                    self.navigate(to: .product)
+                })
+                self.inAppPurchaseBannerView.isHidden = !self.versionUpdateBannerView.isHidden || isActiveSubscription
+                self.vpnToggleView.update(with: isActiveSubscription ? self.tunnelManager.stateEvent.value : .off)
+            }).disposed(by: disposeBag)
+    }
+
+    private func getProducts() {
+        accountManager.getProducts { result in
+            if case .success(let products) = result {
+                StoreManager.shared.startProductRequest(with: products)
+            }
+        }
+    }
+
+    func showIAPToast(context: NavigableContext?) {
+        guard let context = context else { return }
+        switch context {
+        case .iapSucceed:
+            inAppPurchaseBannerView.isHidden = true
+            let attributedString = NSAttributedString.formatted(LocalizedString.subscriptionConfirmed.value, actionMessage: LocalizedString.toastTurnOnVPN.value)
+            warningToastView.show(type: .positive, message: attributedString, action: connectToTunnel)
+        case .error(let error):
+            let attributedString = NSAttributedString.formattedError(error)
+            warningToastView.show(message: attributedString) {
+                self.navigate(to: .product)
+            }
+        default:
+            return
+        }
     }
 
     // MARK: - VPN Selection handling

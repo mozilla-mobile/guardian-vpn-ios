@@ -21,10 +21,10 @@ enum NavigableItem: Hashable {
     case landing
     case loading
     case login
+    case product
     case servers
     case settings
     case tab
-    case account
     case appStore
     case recommendedUpdate
     case requiredUpdate
@@ -34,7 +34,8 @@ enum NavigableItem: Hashable {
 enum NavigableContext {
     case maxDevicesReached
     case url(URL?)
-    case error(LocalizedError)
+    case error(Error)
+    case iapSucceed
 }
 
 class NavigationCoordinator: NavigationCoordinating {
@@ -58,7 +59,7 @@ class NavigationCoordinator: NavigationCoordinating {
             case (.loading, .landing):
                 self.initializeWithLandingScreen()
 
-            case (.settings, .landing), (.account, .landing), (.requiredUpdate, .landing):
+            case (.settings, .landing), (.requiredUpdate, .landing):
                 self.initializeWithLandingScreen()
 
                 if let landingViewController = self.currentViewController as? LandingViewController {
@@ -92,9 +93,30 @@ class NavigationCoordinator: NavigationCoordinating {
                     self.navigate(from: .settings, to: .devices, context: .maxDevicesReached)
                 }
 
+            case (.product, .home):
+                self.currentViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
+                (self.currentViewController as? GuardianTabBarController)?.displayTab(.home)
+
+                switch context {
+                case .maxDevicesReached:
+                    self.navigate(from: .home, to: .settings)
+                    self.navigate(from: .settings, to: .devices, context: .maxDevicesReached)
+                default:
+                    if let tabBarController = self.currentViewController as? GuardianTabBarController,
+                        let homeViewController = tabBarController.tabs[.home] as? HomeViewController {
+                        homeViewController.showIAPToast(context: context)
+                    }
+                }
+
             // To Home
             case (.settings, .home), (.tab, .home):
                 (self.currentViewController as? GuardianTabBarController)?.displayTab(.home)
+
+            // To Product
+            case (.home, .product), (.settings, .product):
+                let productViewController = ProductViewController()
+                let navController = UINavigationController(rootViewController: productViewController)
+                self.currentViewController?.present(navController, animated: true, completion: nil)
 
             // To Servers
             case (.home, .servers):

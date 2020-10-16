@@ -102,7 +102,7 @@ class GuardianTunnelManager: TunnelManaging {
 
     // MARK: -
 
-    func connect(with device: Device?) -> Single<Void> {
+    func connect() -> Single<Void> {
         return Single<Void>.create { [unowned self] resolver in
             self.loadTunnel { error in
                 if let error = error {
@@ -111,8 +111,8 @@ class GuardianTunnelManager: TunnelManaging {
                     return
                 }
                 let tunnelProviderManager = self.tunnel ?? NETunnelProviderManager()
-                guard let device = device,
-                    let account = self.account,
+                guard let account = self.account,
+                    let device = account.currentDevice,
                     let city = self.accountManager.selectedCity else { return }
 
                 tunnelProviderManager.setNewConfiguration(for: device,
@@ -148,14 +148,10 @@ class GuardianTunnelManager: TunnelManaging {
         }
     }
 
-    func switchServer(with device: Device) -> Single<Void> {
+    func switchServer() -> Single<Void> {
         return Single<Void>.create { [unowned self] resolver in
             guard let tunnel = self.tunnel else {
-                self.connect(with: device)
-                    .subscribe { error in
-                        resolver(.error(error))
-                }.disposed(by: self.disposeBag)
-
+                resolver(.success(()))
                 return Disposables.create()
             }
 
@@ -169,6 +165,7 @@ class GuardianTunnelManager: TunnelManaging {
                 }
             }
             guard let account = self.account,
+                let device = account.currentDevice,
                 let newCity = self.accountManager.selectedCity else {
                     resolver(.error(TunnelError.couldNotSwitch))
                     return Disposables.create()
@@ -298,6 +295,7 @@ private extension NETunnelProviderManager {
     func setNewConfiguration(for device: Device, city: VPNCity, key: Data) {
         guard let newConfiguration = TunnelConfigurationBuilder.createTunnelConfiguration(device: device, city: city, privateKey: key) else { return }
 
+        (self.protocolConfiguration as? NETunnelProviderProtocol)?.destroyConfigurationReference()
         self.protocolConfiguration = NETunnelProviderProtocol(tunnelConfiguration: newConfiguration)
         self.localizedDescription = newConfiguration.name ?? city.name
     }

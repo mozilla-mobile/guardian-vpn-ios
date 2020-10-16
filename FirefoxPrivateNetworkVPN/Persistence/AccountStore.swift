@@ -32,8 +32,7 @@ class AccountStore: AccountStoring {
     }
 
     func getUser() -> User? {
-        return persistenceLayer.readValue(for: Key.user
-            .rawValue)
+        return persistenceLayer.readValue(for: Key.user.rawValue)
     }
 
     func save(vpnServers: [VPNCountry]) {
@@ -41,8 +40,7 @@ class AccountStore: AccountStoring {
     }
 
     func getVpnServers() -> [VPNCountry] {
-        return persistenceLayer.readValue(for: Key.vpnServers
-            .rawValue) ?? []
+        return persistenceLayer.readValue(for: Key.vpnServers.rawValue) ?? []
     }
 
     func save(currentDevice: Device) {
@@ -50,8 +48,7 @@ class AccountStore: AccountStoring {
     }
 
     func getCurrentDevice() -> Device? {
-        return persistenceLayer.readValue(for: Key.device
-            .rawValue)
+        return persistenceLayer.readValue(for: Key.device.rawValue)
     }
 
     func save(selectedCity: VPNCity) {
@@ -59,9 +56,7 @@ class AccountStore: AccountStoring {
     }
 
     func getSelectedCity() -> VPNCity? {
-        return persistenceLayer.readValue(for: Key.selectedCity
-            .rawValue)
-
+        return persistenceLayer.readValue(for: Key.selectedCity.rawValue)
     }
 
     func save(releaseInfo: ReleaseInfo) {
@@ -69,8 +64,7 @@ class AccountStore: AccountStoring {
     }
 
     func getReleaseInfo() -> ReleaseInfo? {
-        return persistenceLayer.readValue(for: Key.releaseInfo
-            .rawValue)
+        return persistenceLayer.readValue(for: Key.releaseInfo.rawValue)
     }
 
     func save(credentials: Credentials) {
@@ -79,6 +73,18 @@ class AccountStore: AccountStoring {
 
     func getCredentials() -> Credentials? {
         return persistenceLayer.readCredentials()
+    }
+
+    func save(iapInfo: IAPInfo) {
+        persistenceLayer.saveIAPCredentials(iapInfo)
+    }
+
+    func getIapInfo() -> IAPInfo? {
+        return persistenceLayer.readIAPCredentials()
+    }
+
+    func removeIapInfo() {
+        return persistenceLayer.removeIAPCredentials()
     }
 
     func removeAll() {

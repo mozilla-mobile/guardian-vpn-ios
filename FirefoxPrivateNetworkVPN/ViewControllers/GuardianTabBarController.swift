@@ -14,7 +14,7 @@ import UIKit
 class GuardianTabBarController: UITabBarController, Navigating {
     static var navigableItem: NavigableItem = .tab
 
-    private let tabs: [NavigableItem: UIViewController]
+    let tabs: [NavigableItem: UIViewController]
 
     init() {
         let navigationController = UINavigationController(rootViewController: SettingsViewController())

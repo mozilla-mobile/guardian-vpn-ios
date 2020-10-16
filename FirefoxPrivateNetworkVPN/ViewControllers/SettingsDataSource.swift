@@ -53,7 +53,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? AccountInformationCell
         let settingsItem = representedObject[indexPath.row]
-        cell?.setup(settingsItem, isDeviceAdded: account?.hasDeviceBeenAdded ?? false)
+        cell?.setup(settingsItem, isSubscriptionActive: account?.isSubscriptionActive ?? false, isDeviceAdded: account?.hasDeviceBeenAdded ?? true)
 
         return cell ?? UITableViewCell(frame: .zero)
     }
