@@ -99,6 +99,7 @@
 "updateConnection" = "Your connection will not be secure while you update.";
 "updateNow" = "Update now";
 "tryMozillaVPN" = "Try Mozilla VPN";
+"loadingSpinner" = "Please wait...";
 
 // MARK: - Banner
 "bannerFeaturesAvailable" = "New features are available!";

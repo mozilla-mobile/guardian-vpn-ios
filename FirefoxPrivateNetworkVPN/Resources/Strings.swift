@@ -94,6 +94,7 @@ enum LocalizedString: String {
     case bannerInAppPurchase
 
     case tryMozillaVPN
+    case loadingSpinner
     case updateNow
     case updateConnection
 
