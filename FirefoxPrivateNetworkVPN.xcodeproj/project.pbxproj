@@ -12,6 +12,7 @@
 		527C7EB623752E9300368965 /* AboutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C7EB523752E9300368965 /* AboutDataSource.swift */; };
 		6B5CA6B1220DE4E900F126CF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */; };
 		6FDEF7E421846C1A00D8FBF6 /* libwg-go.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */; };
+		8039A13F254B4377006C44A3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8039A13E254B4377006C44A3 /* StoreKit.framework */; };
 		D4ED3C91252487BB00BDE261 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED3C90252487BB00BDE261 /* BaseTestCase.swift */; };
 		D524358E2535B9F700A47858 /* macosglue.mm in Sources */ = {isa = PBXBuildFile; fileRef = D524358D2535B9F700A47858 /* macosglue.mm */; };
 		D524358F2535B9F700A47858 /* macosglue.mm in Sources */ = {isa = PBXBuildFile; fileRef = D524358D2535B9F700A47858 /* macosglue.mm */; };
@@ -591,6 +592,7 @@
 		6FF4AC23211EC472002C96EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FF4AC462120B9E0002C96EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6FF4AC482120B9E0002C96EB /* FirefoxPrivateNetworkVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirefoxPrivateNetworkVPN.entitlements; sourceTree = "<group>"; };
+		8039A13E254B4377006C44A3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D4ED3C90252487BB00BDE261 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
 		D524358D2535B9F700A47858 /* macosglue.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macosglue.mm; sourceTree = "<group>"; };
 		D535B6542490B699007171EC /* LocalNotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationFactory.swift; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4E908BF2371C49300EB9FE6 /* SafariServices.framework in Frameworks */,
+				8039A13F254B4377006C44A3 /* StoreKit.framework in Frameworks */,
 				F4E908BE2371C48E00EB9FE6 /* NetworkExtension.framework in Frameworks */,
 				F4E908BB2371C48600EB9FE6 /* RxRelay.framework in Frameworks */,
 				F4E908BC2371C48600EB9FE6 /* RxCocoa.framework in Frameworks */,
@@ -962,6 +965,7 @@
 		6FF4AC452120B9E0002C96EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8039A13E254B4377006C44A3 /* StoreKit.framework */,
 				F4B42C1623900E6D001F64F7 /* RxBlocking.framework */,
 				F4B42C1723900E6D001F64F7 /* RxTest.framework */,
 				6FDEF7E321846C1A00D8FBF6 /* libwg-go.a */,

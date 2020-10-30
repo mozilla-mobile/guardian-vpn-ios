@@ -44,12 +44,30 @@ class HeartbeatMonitor: HeartbeatMonitoring {
             switch result {
             case .success:
                 guard let account = self.accountManager.account else { return }
-                let name: NSNotification.Name = account.isSubscriptionActive ? .activeSubscriptionNotification : .expiredSubscriptionNotification
-                NotificationCenter.default.post(name: name, object: nil)
-            case .failure(let error):
-                if error == .subscriptionError {
+                switch (account.isSubscriptionActive, account.hasDeviceBeenAdded) {
+                case (true, true):
+                    NotificationCenter.default.post(name: .activeSubscriptionNotification, object: nil)
+                case (true, false):
+                    self.addCurrentDevice()
+                case (false, _):
                     NotificationCenter.default.post(name: .expiredSubscriptionNotification, object: nil)
                 }
+            case .failure(let error) where error == .subscriptionError:
+                 NotificationCenter.default.post(name: .expiredSubscriptionNotification, object: nil)
+            case .failure:
+                break
+            }
+        }
+    }
+    private func addCurrentDevice() {
+        accountManager.addCurrentDevice { result in
+            switch result {
+            case .success:
+                NotificationCenter.default.post(name: .activeSubscriptionNotification, object: nil)
+            case .failure(let error) where error == .maxDevicesReached:
+                NotificationCenter.default.post(name: .activeSubscriptionNotification, object: nil)
+            case .failure:
+                NotificationCenter.default.post(name: .expiredSubscriptionNotification, object: nil)
             }
         }
     }

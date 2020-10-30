@@ -21,6 +21,14 @@ class ProductViewController: UIViewController, Navigating {
 
     // MARK: - Properties
     static var navigableItem: NavigableItem = .product
+    private lazy var loadingAlert: UIAlertController = {
+        let alert = UIAlertController(title: nil, message: LocalizedString.loadingSpinner.value, preferredStyle: .alert)
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        indicator.style = .gray
+        indicator.startAnimating()
+        alert.view.addSubview(indicator)
+        return alert
+    }()
 
     // MARK: - Initialization
     init() {
@@ -62,10 +70,12 @@ class ProductViewController: UIViewController, Navigating {
     }
 
     @IBAction func purchase(_ sender: UIButton) {
+        present(loadingAlert, animated: false, completion: nil)
         StoreManager.shared.buy()
     }
 
     @IBAction func restore(_ sender: UIButton) {
+        present(loadingAlert, animated: false, completion: nil)
         StoreManager.shared.restore()
     }
 }
@@ -81,6 +91,7 @@ extension ProductViewController: StoreManagerDelegate {
                 let context: NavigableContext = error == .maxDevicesReached ? .maxDevicesReached : .error(error)
                 self.navigate(to: .home, context: context)
             }
+            self.loadingAlert.dismiss(animated: false, completion: nil)
         }
     }
 
@@ -88,9 +99,12 @@ extension ProductViewController: StoreManagerDelegate {
         if let error = error {
             self.navigate(to: .home, context: .error(error))
         }
+        loadingAlert.dismiss(animated: false, completion: nil)
     }
 
     func invalidAccount() {
+        loadingAlert.dismiss(animated: false, completion: nil)
+
         let alert = UIAlertController(title: LocalizedString.errorInvalidAccount.value, message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: LocalizedString.confirmInvalidAccount.value, style: .default) { _ in /* Do nothing */ })
         present(alert, animated: true, completion: nil)
