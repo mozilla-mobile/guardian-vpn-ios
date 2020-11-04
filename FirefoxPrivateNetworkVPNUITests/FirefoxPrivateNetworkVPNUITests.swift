@@ -29,7 +29,6 @@ class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
         waitForExistence(app.toolbars["Toolbar"], timeout: 10)
         XCTAssertTrue((app.textFields.element(boundBy: 0).value != nil), "Keybard Focused")
 
-
     }
 
     func testLaunchPerformance() {
@@ -78,5 +77,59 @@ class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
         XCTAssertTrue(app.buttons["Done"].exists)
         XCTAssertTrue(app.buttons["ReloadButton"].exists)
         XCTAssertTrue(app.webViews.textFields["Email"].exists)
+
+    }
+    func testSignInAsNonSubscribedUser() {
+        // The main screen is shown
+<<<<<<< HEAD
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 5)
+=======
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 3)
+>>>>>>> 59cc8d4d... Sign in and out test for non subscribed VPN user
+        XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
+
+        // Tap on Get started
+        app.buttons["Get started"].tap()
+
+        // Wait for the FxASingIn page to be shown
+        waitForExistence(app.webViews.textFields["Email"], timeout: 10)
+        app.textFields["Email"].tap()
+        app.typeText("test-f5aefc1935@restmail.net")
+
+<<<<<<< HEAD
+        waitForExistence(app.buttons["Continue"], timeout: 15)
+=======
+        waitForExistence(app.buttons["Continue"], timeout: 5)
+>>>>>>> 59cc8d4d... Sign in and out test for non subscribed VPN user
+        app.buttons["Continue"].firstMatch.tap()
+
+        //Enter the password
+        app.secureTextFields["Password"].tap()
+        app.typeText("gkgJqyzJ")
+        app.buttons["Sign in"].tap()
+
+        //Verify that a non subscibed VPN user can see the 'Try Mozilla link' message
+<<<<<<< HEAD
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 15)
+=======
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 10)
+>>>>>>> 59cc8d4d... Sign in and out test for non subscribed VPN user
+        XCTAssertTrue(app.staticTexts["Subscribe to turn on VPN. Try Mozilla VPN"].exists)
+
+        //Sign out
+        app.tabBars.buttons["Settings"].tap()
+
+        //Click the signout option
+        waitForExistence(app.staticTexts["VPN User"], timeout: 10)
+        app.tables.staticTexts["Sign out"].tap()
+
+        //Verify that the user is signed out and is at the home page
+<<<<<<< HEAD
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 15)
+=======
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 3)
+>>>>>>> 59cc8d4d... Sign in and out test for non subscribed VPN user
+        XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
+
     }
 }
