@@ -28,8 +28,6 @@ class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
         // Wait for the sing in page and verify that the Email text field is focused
         waitForExistence(app.toolbars["Toolbar"], timeout: 10)
         XCTAssertTrue((app.textFields.element(boundBy: 0).value != nil), "Keybard Focused")
-
-
     }
 
     func testLaunchPerformance() {
