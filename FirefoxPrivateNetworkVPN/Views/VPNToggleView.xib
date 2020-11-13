@@ -89,10 +89,14 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="16"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="VpnToggleSwitch"/>
                             </userDefinedRuntimeAttributes>
                         </switch>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-MW-iTo" userLabel="Toggle Button">
                             <rect key="frame" x="150.5" y="210" width="49" height="31"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="VpnToggleButton"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="toggleTapped" destination="-1" eventType="touchUpInside" id="SsJ-hE-bTx"/>
                             </connections>
