@@ -16,7 +16,6 @@ let nonSubscribedPassword = "gkgJqyzJ"
 let subscribedEmail = "test-5418393dc0@restmail.net"
 let subscribedPassword = "OVSuBGwI"
 
-
 class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
 
     override func tearDown() {
@@ -131,20 +130,21 @@ class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
             app.staticTexts["Use a different account"].tap()
 
             // Enter an email for a subscribed VPN user
-            waitForExistence(app.webViews.textFields["Email"], timeout: 15)
-
-            for _ in 1...nonSubscribedEmail.count {
-              // Remove char
-              app.textFields["Email"].typeText("\u{0008}")
-            }
-
+            waitForExistence(app.webViews.textFields["Email"], timeout: 25)
+            app.textFields["Email"].tap()
+            waitForExistence(app.textFields["Email"], timeout: 3)
+            app.textFields["Email"].press(forDuration: 3)
+            waitForExistence(app.menuItems["Select All"], timeout: 5)
+            app.menuItems["Select All"].tap()
+            app.textFields["Email"].typeText("\u{0008}")
             app.typeText(subscribedEmail)
-            waitForExistence(app.buttons["Continue"], timeout: 10)
+            waitForExistence(app.buttons["Continue"], timeout: 15)
             app.buttons["Continue"].tap()
 
             // Enter the password
             app.secureTextFields["Password"].tap()
             app.typeText(subscribedPassword)
+            waitForExistence(app.buttons["Sign in"], timeout: 15)
             app.buttons["Sign in"].tap()
 
             // Verify that a non subscibed VPN user can see the 'Try Mozilla link' message
@@ -170,6 +170,5 @@ class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
             // Verify that the user is signed out and is at the home page
             waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 15)
             XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
-
         }
-    }
+  }
