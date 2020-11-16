@@ -117,58 +117,60 @@ class FirefoxPrivateNetworkVPNUITests: BaseTestCase {
         // Verify that the user is signed out and is at the home page
         waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 15)
         XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
-        }
+    }
 
     func testSignInAsSubscribedUser() {
-            // The main screen is shown
-            waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 15)
-            XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
+        // The main screen is shown
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 15)
+        XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
 
-            // Tap on Get started
-            app.buttons["Get started"].tap()
-            waitForExistence(app.staticTexts["Use a different account"], timeout: 15)
-            app.staticTexts["Use a different account"].tap()
+        // Tap on Get started and select a different account option
+        app.buttons["Get started"].tap()
+        waitForExistence(app.staticTexts["Use a different account"], timeout: 15)
+        app.staticTexts["Use a different account"].tap()
 
-            // Enter an email for a subscribed VPN user
-            waitForExistence(app.webViews.textFields["Email"], timeout: 25)
-            app.textFields["Email"].tap()
-            waitForExistence(app.textFields["Email"], timeout: 3)
-            app.textFields["Email"].press(forDuration: 3)
-            waitForExistence(app.menuItems["Select All"], timeout: 5)
-            app.menuItems["Select All"].tap()
-            app.textFields["Email"].typeText("\u{0008}")
-            app.typeText(subscribedEmail)
-            waitForExistence(app.buttons["Continue"], timeout: 15)
-            app.buttons["Continue"].tap()
+        // Remove the prefilled email from the previous login
+        waitForExistence(app.webViews.textFields["Email"], timeout: 25)
+        app.textFields["Email"].tap()
+        waitForExistence(app.textFields["Email"], timeout: 3)
+        app.textFields["Email"].press(forDuration: 3)
+        waitForExistence(app.menuItems["Select All"], timeout: 5)
+        app.menuItems["Select All"].tap()
+        app.textFields["Email"].typeText("\u{0008}")
 
-            // Enter the password
-            app.secureTextFields["Password"].tap()
-            app.typeText(subscribedPassword)
-            waitForExistence(app.buttons["Sign in"], timeout: 15)
-            app.buttons["Sign in"].tap()
+        // Enter the new subscribed email
+        app.typeText(subscribedEmail)
+        waitForExistence(app.buttons["Continue"], timeout: 15)
+        app.buttons["Continue"].tap()
 
-            // Verify that a non subscibed VPN user can see the 'Try Mozilla link' message
-            waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 10)
-            XCTAssertFalse(app.staticTexts["Subscribe to turn on VPN. Try Mozilla VPN"].exists)
+        // Enter the password
+        app.secureTextFields["Password"].tap()
+        app.typeText(subscribedPassword)
+        waitForExistence(app.buttons["Sign in"], timeout: 15)
+        app.buttons["Sign in"].tap()
 
-            // Verify VPN is turned off
-            XCTAssertTrue(app.staticTexts["VPN is off"].exists)
-            let switchValue1 = app.otherElements.switches["VpnToggleSwitch"].value!
-            XCTAssertEqual(switchValue1 as? String, "0")
+        // Verify that a non subscibed VPN user can see the 'Try Mozilla link' message
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 10)
+        XCTAssertFalse(app.staticTexts["Subscribe to turn on VPN. Try Mozilla VPN"].exists)
 
-            // Turn the VPN On and verify that it's turned on
-            app.buttons["VpnToggleButton"].tap()
-            waitForExistence(app.staticTexts["VPN is on"], timeout: 15)
-            let switchValue2 = app.otherElements.switches["VpnToggleSwitch"].value!
-            XCTAssertEqual(switchValue2 as? String, "1")
+        // Verify VPN is turned off
+        XCTAssertTrue(app.staticTexts["VPN is off"].exists)
+        let switchValue1 = app.otherElements.switches["VpnToggleSwitch"].value!
+        XCTAssertEqual(switchValue1 as? String, "0")
 
-            // Go to Settings and sign out
-            app.tabBars.buttons["Settings"].tap()
-            waitForExistence(app.staticTexts["VPN User"], timeout: 10)
-            app.tables.staticTexts["Sign out"].tap()
+        // Turn the VPN On and verify that it's turned on
+        app.buttons["VpnToggleButton"].tap()
+        waitForExistence(app.staticTexts["VPN is on"], timeout: 15)
+        let switchValue2 = app.otherElements.switches["VpnToggleSwitch"].value!
+        XCTAssertEqual(switchValue2 as? String, "1")
 
-            // Verify that the user is signed out and is at the home page
-            waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 15)
-            XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
-        }
+        // Go to Settings and sign out
+        app.tabBars.buttons["Settings"].tap()
+        waitForExistence(app.staticTexts["VPN User"], timeout: 10)
+        app.tables.staticTexts["Sign out"].tap()
+
+        // Verify that the user is signed out and is at the home page
+        waitForExistence(app.staticTexts["Mozilla VPN"], timeout: 15)
+        XCTAssertTrue(app.staticTexts["Mozilla VPN"].exists, "The main page is not loaded correctly")
+    }
   }
