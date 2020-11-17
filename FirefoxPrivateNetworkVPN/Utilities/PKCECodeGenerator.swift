@@ -29,6 +29,7 @@ struct PKCECodeGenerator {
         return data.base64EncodedString()
                    .replacingOccurrences(of: "+", with: "-")
                    .replacingOccurrences(of: "/", with: "_")
+                   .replacingOccurrences(of: "=", with: "")
     }
 
     private static func sha256(string: String) -> Data? {
